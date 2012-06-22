@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C487AF815946E2300674AB9 /* GameplayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487AF715946E2300674AB9 /* GameplayLayer.m */; };
+		0C487AFB159471E000674AB9 /* CameraObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487AFA159471E000674AB9 /* CameraObject.m */; };
+		0C487AFF1594729D00674AB9 /* spaceship-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C487AFE1594729D00674AB9 /* spaceship-hd.png */; };
+		0C487B01159472A500674AB9 /* spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C487B00159472A500674AB9 /* spaceship.png */; };
+		0C487B051594739600674AB9 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B041594739600674AB9 /* Player.m */; };
+		0C487B07159476AA00674AB9 /* planet2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C487B06159476AA00674AB9 /* planet2-hd.png */; };
+		0C487B0B159476D700674AB9 /* planet2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C487B0A159476D700674AB9 /* planet2.png */; };
+		0C487B0E1594792C00674AB9 /* Planet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B0D1594792C00674AB9 /* Planet.m */; };
 		0C7AA5F315946939000B58F2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F215946939000B58F2 /* QuartzCore.framework */; };
 		0C7AA5F515946939000B58F2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F415946939000B58F2 /* OpenGLES.framework */; };
 		0C7AA5F715946939000B58F2 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F615946939000B58F2 /* OpenAL.framework */; };
@@ -121,10 +129,22 @@
 		0C7AA7531594693C000B58F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA7521594693C000B58F2 /* main.m */; };
 		0C7AA7561594693D000B58F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA7551594693D000B58F2 /* AppDelegate.m */; };
 		0C7AA7591594693D000B58F2 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA7581594693D000B58F2 /* RootViewController.m */; };
-		0C7AA75C1594693D000B58F2 /* GamePlayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA75B1594693D000B58F2 /* GamePlayLayer.m */; };
+		0C7AA75C1594693D000B58F2 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C487AF615946E2300674AB9 /* GameplayLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameplayLayer.h; sourceTree = "<group>"; };
+		0C487AF715946E2300674AB9 /* GameplayLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameplayLayer.m; sourceTree = "<group>"; };
+		0C487AF9159471E000674AB9 /* CameraObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraObject.h; sourceTree = "<group>"; };
+		0C487AFA159471E000674AB9 /* CameraObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraObject.m; sourceTree = "<group>"; };
+		0C487AFE1594729D00674AB9 /* spaceship-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spaceship-hd.png"; sourceTree = "<group>"; };
+		0C487B00159472A500674AB9 /* spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spaceship.png; sourceTree = "<group>"; };
+		0C487B031594739500674AB9 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		0C487B041594739600674AB9 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		0C487B06159476AA00674AB9 /* planet2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planet2-hd.png"; sourceTree = "<group>"; };
+		0C487B0A159476D700674AB9 /* planet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = planet2.png; sourceTree = "<group>"; };
+		0C487B0C1594792C00674AB9 /* Planet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Planet.h; sourceTree = "<group>"; };
+		0C487B0D1594792C00674AB9 /* Planet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Planet.m; sourceTree = "<group>"; };
 		0C7AA5EE15946939000B58F2 /* Planet Orbiting iOS Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Planet Orbiting iOS Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C7AA5F215946939000B58F2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0C7AA5F415946939000B58F2 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -357,8 +377,8 @@
 		0C7AA7551594693D000B58F2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0C7AA7571594693D000B58F2 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		0C7AA7581594693D000B58F2 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		0C7AA75A1594693D000B58F2 /* GamePlayLayer.h */ = {isa = PBXFileReference; path = GamePlayLayer.h; sourceTree = "<group>"; };
-		0C7AA75B1594693D000B58F2 /* GamePlayLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GamePlayLayer.m; sourceTree = "<group>"; };
+		0C7AA75A1594693D000B58F2 /* MainMenuLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
+		0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
 		0C7AA75D1594693D000B58F2 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -381,6 +401,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C487AFC159471E800674AB9 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				0C487AF9159471E000674AB9 /* CameraObject.h */,
+				0C487AFA159471E000674AB9 /* CameraObject.m */,
+				0C487B031594739500674AB9 /* Player.h */,
+				0C487B041594739600674AB9 /* Player.m */,
+				0C487B0C1594792C00674AB9 /* Planet.h */,
+				0C487B0D1594792C00674AB9 /* Planet.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		0C487AFD159471FF00674AB9 /* Basic Stuff - Ignore */ = {
+			isa = PBXGroup;
+			children = (
+				0C7AA7541594693D000B58F2 /* AppDelegate.h */,
+				0C7AA7551594693D000B58F2 /* AppDelegate.m */,
+				0C7AA7571594693D000B58F2 /* RootViewController.h */,
+				0C7AA7581594693D000B58F2 /* RootViewController.m */,
+			);
+			name = "Basic Stuff - Ignore";
+			sourceTree = "<group>";
+		};
+		0C487B02159472AC00674AB9 /* Sprites */ = {
+			isa = PBXGroup;
+			children = (
+				0C487AFE1594729D00674AB9 /* spaceship-hd.png */,
+				0C487B06159476AA00674AB9 /* planet2-hd.png */,
+				0C487B0A159476D700674AB9 /* planet2.png */,
+				0C487B00159472A500674AB9 /* spaceship.png */,
+			);
+			name = Sprites;
+			sourceTree = "<group>";
+		};
+		0C487B0F159481C500674AB9 /* Icons and Launch Images */ = {
+			isa = PBXGroup;
+			children = (
+				0C7AA60415946939000B58F2 /* Default.png */,
+				0C7AA60615946939000B58F2 /* fps_images.png */,
+				0C7AA60815946939000B58F2 /* Icon-72.png */,
+				0C7AA60A15946939000B58F2 /* Icon-Small-50.png */,
+				0C7AA60C15946939000B58F2 /* Icon-Small.png */,
+				0C7AA60E15946939000B58F2 /* Icon-Small@2x.png */,
+				0C7AA61015946939000B58F2 /* Icon.png */,
+				0C7AA61215946939000B58F2 /* Icon@2x.png */,
+				0C7AA61415946939000B58F2 /* Info.plist */,
+				0C7AA61515946939000B58F2 /* iTunesArtwork */,
+			);
+			name = "Icons and Launch Images";
+			sourceTree = "<group>";
+		};
 		0C7AA5E315946938000B58F2 = {
 			isa = PBXGroup;
 			children = (
@@ -416,12 +488,12 @@
 		0C7AA60215946939000B58F2 /* Planet Orbiting iOS Game */ = {
 			isa = PBXGroup;
 			children = (
-				0C7AA7541594693D000B58F2 /* AppDelegate.h */,
-				0C7AA7551594693D000B58F2 /* AppDelegate.m */,
-				0C7AA7571594693D000B58F2 /* RootViewController.h */,
-				0C7AA7581594693D000B58F2 /* RootViewController.m */,
-				0C7AA75A1594693D000B58F2 /* GamePlayLayer.h */,
-				0C7AA75B1594693D000B58F2 /* GamePlayLayer.m */,
+				0C487AFD159471FF00674AB9 /* Basic Stuff - Ignore */,
+				0C487AFC159471E800674AB9 /* Classes */,
+				0C7AA75A1594693D000B58F2 /* MainMenuLayer.h */,
+				0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */,
+				0C487AF615946E2300674AB9 /* GameplayLayer.h */,
+				0C487AF715946E2300674AB9 /* GameplayLayer.m */,
 				0C7AA75D1594693D000B58F2 /* GameConfig.h */,
 				0C7AA60315946939000B58F2 /* Resources */,
 				0C7AA61715946939000B58F2 /* libs */,
@@ -433,16 +505,8 @@
 		0C7AA60315946939000B58F2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0C7AA60415946939000B58F2 /* Default.png */,
-				0C7AA60615946939000B58F2 /* fps_images.png */,
-				0C7AA60815946939000B58F2 /* Icon-72.png */,
-				0C7AA60A15946939000B58F2 /* Icon-Small-50.png */,
-				0C7AA60C15946939000B58F2 /* Icon-Small.png */,
-				0C7AA60E15946939000B58F2 /* Icon-Small@2x.png */,
-				0C7AA61015946939000B58F2 /* Icon.png */,
-				0C7AA61215946939000B58F2 /* Icon@2x.png */,
-				0C7AA61415946939000B58F2 /* Info.plist */,
-				0C7AA61515946939000B58F2 /* iTunesArtwork */,
+				0C487B02159472AC00674AB9 /* Sprites */,
+				0C487B0F159481C500674AB9 /* Icons and Launch Images */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -818,6 +882,10 @@
 				0C7AA61115946939000B58F2 /* Icon.png in Resources */,
 				0C7AA61315946939000B58F2 /* Icon@2x.png in Resources */,
 				0C7AA61615946939000B58F2 /* iTunesArtwork in Resources */,
+				0C487AFF1594729D00674AB9 /* spaceship-hd.png in Resources */,
+				0C487B01159472A500674AB9 /* spaceship.png in Resources */,
+				0C487B07159476AA00674AB9 /* planet2-hd.png in Resources */,
+				0C487B0B159476D700674AB9 /* planet2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -925,7 +993,11 @@
 				0C7AA7531594693C000B58F2 /* main.m in Sources */,
 				0C7AA7561594693D000B58F2 /* AppDelegate.m in Sources */,
 				0C7AA7591594693D000B58F2 /* RootViewController.m in Sources */,
-				0C7AA75C1594693D000B58F2 /* GamePlayLayer.m in Sources */,
+				0C7AA75C1594693D000B58F2 /* MainMenuLayer.m in Sources */,
+				0C487AF815946E2300674AB9 /* GameplayLayer.m in Sources */,
+				0C487AFB159471E000674AB9 /* CameraObject.m in Sources */,
+				0C487B051594739600674AB9 /* Player.m in Sources */,
+				0C487B0E1594792C00674AB9 /* Planet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1019,6 +1091,7 @@
 				0C7AA7621594693D000B58F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,18 +1,20 @@
 //
-//  HelloWorldLayer.h
+//  GameplayLayer.h
 //  Planet Orbiting iOS Game
 //
 //  Created by Clay Schubiner on 6/22/12.
-//  Copyright Stanford University 2012. All rights reserved.
+//  Copyright 2012 Stanford University. All rights reserved.
 //
 
-
-// When you import this file, you import all the cocos2d classes
+#import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Player.h"
 
-// HelloWorldLayer
-@interface GamePlayLayer : CCLayer
-{
+@interface GameplayLayer : CCLayer {
+    
+    Player *player;
+    NSMutableArray *cameraObjects;
+    CGSize size ;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
