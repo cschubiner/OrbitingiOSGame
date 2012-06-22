@@ -39,9 +39,9 @@
 		CGSize size = [[CCDirector sharedDirector] winSize];
         CCLayer *menuLayer = [[CCLayer alloc] init];
         [self addChild:menuLayer];
-
+        
 		// create and initialize a Label
-    CCLabelTTF *label = [CCLabelTTF labelWithString:@"Planet Orbiting Game" fontName:@"Marker Felt" fontSize:32];
+        CCLabelTTF *label = [CCLabelTTF labelWithString:@"Planet Orbiting Game" fontName:@"Marker Felt" fontSize:32];
 		// position the label on the center of the screen
 		label.position =  ccp( size.width /2 , 3*size.height/4 );
 		// add the label as a child to this Layer
@@ -58,8 +58,8 @@
 
 - (void) startGame: (id) sender
 {
-
-   [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
 }
 
 // on "dealloc" you need to release all your retained objects

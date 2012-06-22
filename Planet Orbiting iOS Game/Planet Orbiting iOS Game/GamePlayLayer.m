@@ -59,12 +59,12 @@ static float thrustStrength = .015;
         //alex b, do some stuff to load the planet's sprite (planet2.png)
         //set planet's position
         //OMG TRY TO DO IT WITHOUT COPYING AND PASTING--- what a nice exercise!!
-
+        
         [cameraObjects addObject:planet];
         [planet release];
         
         
-
+        
         
         [self schedule:@selector(Update:) interval:0]; //this makes the update loop loop1!!!
 	}
@@ -94,7 +94,6 @@ static float thrustStrength = .015;
 - (void) Update:(ccTime)dt {
     
     [self UpdatePlayer];
-    
     [self UpdateCameraObjects];
 }
 
@@ -102,10 +101,10 @@ static float thrustStrength = .015;
 {
     for (UITouch *touch in touches)
     {
-    CGPoint location = [touch locationInView:[touch view]];
-    location = [[CCDirector sharedDirector] convertToGL:location];
-    
-    [player setThrustBeginPoint:location];
+        CGPoint location = [touch locationInView:[touch view]];
+        location = [[CCDirector sharedDirector] convertToGL:location];
+        
+        [player setThrustBeginPoint:location];
     }
 }
 
@@ -113,10 +112,10 @@ static float thrustStrength = .015;
 {
     for (UITouch *touch in touches)
     {
-    CGPoint location = [touch locationInView:[touch view]];
-    location = [[CCDirector sharedDirector] convertToGL:location];
-    [player setThrustEndPoint:location];
-     player.thrustJustOccurred = true;
+        CGPoint location = [touch locationInView:[touch view]];
+        location = [[CCDirector sharedDirector] convertToGL:location];
+        [player setThrustEndPoint:location];
+        player.thrustJustOccurred = true;
     }
 }
 
