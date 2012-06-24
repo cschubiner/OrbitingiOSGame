@@ -99,7 +99,7 @@ static float thrustStrength = .015;
     
     for (Planet* planet in planets)
     {
-    planet.velocity = ccp(1, 1);
+    planet.velocity = ccp(1, -1);
     }
     
     [self UpdatePlayer];
