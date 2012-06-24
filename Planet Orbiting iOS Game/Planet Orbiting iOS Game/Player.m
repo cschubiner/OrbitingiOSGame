@@ -10,5 +10,5 @@
 
 
 @implementation Player
-@synthesize thrustEndPoint,thrustBeginPoint,thrustJustOccurred;
+@synthesize thrustEndPoint,thrustBeginPoint,thrustJustOccurred,mass;
 @end

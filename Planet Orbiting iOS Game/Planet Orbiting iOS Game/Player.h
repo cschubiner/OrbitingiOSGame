@@ -21,4 +21,5 @@
 @property (nonatomic) CGPoint thrustBeginPoint;
 @property (nonatomic) CGPoint thrustEndPoint;
 @property (nonatomic) bool thrustJustOccurred;
+@property (nonatomic) float mass;
 @end

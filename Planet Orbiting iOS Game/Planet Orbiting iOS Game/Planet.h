@@ -14,4 +14,6 @@
     
 }
 
+@property (nonatomic) CGPoint forceExertingOnPlayer;
+@property (nonatomic) float mass;
 @end

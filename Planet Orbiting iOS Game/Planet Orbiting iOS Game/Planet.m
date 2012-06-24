@@ -10,5 +10,5 @@
 
 
 @implementation Planet
-
+@synthesize forceExertingOnPlayer,mass;
 @end

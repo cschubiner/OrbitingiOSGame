@@ -51,7 +51,7 @@
         
         CCMenu *menu = [CCMenu menuWithItems:startButton, nil];
         [menuLayer addChild:menu];
-        
+      
 	}
 	return self;
 }
