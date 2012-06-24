@@ -47,6 +47,7 @@ static float thrustStrength = .015;
         self.isTouchEnabled= TRUE;
         
         cameraObjects = [[NSMutableArray alloc]init];
+        planets = [[NSMutableArray alloc]init];
         
         player = [[Player alloc]init];        
         player.sprite = [CCSprite spriteWithFile:@"spaceship.png"];
@@ -62,7 +63,7 @@ static float thrustStrength = .015;
         [cameraObjects addObject:planet];
         [planets addObject:planet];
         [self addChild:planet.sprite];        
-        //[planet release];
+        [planet release];
         
         
         
