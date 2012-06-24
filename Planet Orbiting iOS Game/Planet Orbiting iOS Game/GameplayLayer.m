@@ -128,7 +128,7 @@ static float thrustStrength = .015;
 }
 
 - (int)RandomBetween:(int)minvalue maxvalue:(int)maxvalue  {
-    int randomNumber =                minvalue+  arc4random() % (1+maxvalue-minvalue);
+    int randomNumber = minvalue+  arc4random() % (1+maxvalue-minvalue);
     return randomNumber;
 }
 @end
