@@ -13,6 +13,7 @@
 @interface GameplayLayer : CCLayer {
     
     Player *player;
+    NSMutableArray *planets;
     NSMutableArray *cameraObjects;
     CGSize size ;
 }

@@ -13,6 +13,7 @@
 
 @interface Player : CameraObject {
     
+    
 }
 
 

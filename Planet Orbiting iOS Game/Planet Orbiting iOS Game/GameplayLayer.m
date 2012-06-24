@@ -32,6 +32,7 @@ static float thrustStrength = .015;
 
 - (void)setGameConstants
 {
+    // ask director the the window size
     size = [[CCDirector sharedDirector] winSize];
     
 }
@@ -42,26 +43,26 @@ static float thrustStrength = .015;
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
-        self.isTouchEnabled= TRUE;
-        // ask director the the window size
-        cameraObjects = [[NSMutableArray alloc]init];
-        player = [[Player alloc]init];
         [self setGameConstants];
+        self.isTouchEnabled= TRUE;
         
+        cameraObjects = [[NSMutableArray alloc]init];
+        
+        player = [[Player alloc]init];        
         player.sprite = [CCSprite spriteWithFile:@"spaceship.png"];
-        player.sprite.position =  ccp( size.width /2 , size.height/2 );
-        player.thrustJustOccurred = false;
-        
+        player.sprite.position =  ccp( 0, 0 );
+        player.thrustJustOccurred = false;        
         [cameraObjects addObject:player];
         [self addChild:player.sprite];
         
-        Planet* planet = [[Planet alloc]init];
-        //alex b, do some stuff to load the planet's sprite (planet2.png)
-        //set planet's position
-        //OMG TRY TO DO IT WITHOUT COPYING AND PASTING--- what a nice exercise!!
         
+        Planet* planet = [[Planet alloc]init];
+        planet.sprite = [CCSprite spriteWithFile:@"planet2.png"];
+        planet.sprite.position =  ccp( size.width /2 , size.height/2 );        
         [cameraObjects addObject:planet];
-        [planet release];
+        [planets addObject:planet];
+        [self addChild:planet.sprite];        
+        //[planet release];
         
         
         
@@ -73,6 +74,7 @@ static float thrustStrength = .015;
 
 - (void)UpdateCameraObjects {
     for (CameraObject *object in cameraObjects) {
+        
         object.velocity = ccpAdd(object.velocity, object.acceleration);
         object.sprite.position = ccpAdd(object.velocity, object.sprite.position);
     }
@@ -92,6 +94,12 @@ static float thrustStrength = .015;
 }
 
 - (void) Update:(ccTime)dt {
+    
+    
+    for (Planet* planet in planets)
+    {
+    planet.velocity = ccp(1, 1);
+    }
     
     [self UpdatePlayer];
     [self UpdateCameraObjects];
