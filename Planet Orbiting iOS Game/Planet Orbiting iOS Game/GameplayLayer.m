@@ -100,7 +100,7 @@ static float thrustStrength = .015;
 
 - (void)UpdatePlayer {
     float distanceMult = 2;
-    float gravitationalConstant = 500;
+    float gravitationalConstant = 1000;
     
     
     CGPoint acclerationToAdd;
