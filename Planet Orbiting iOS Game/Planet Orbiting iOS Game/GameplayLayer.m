@@ -90,7 +90,7 @@ static float thrustStrength = .015;
         
         object.velocity = ccpAdd(object.velocity, object.acceleration);
         object.sprite.position = ccpAdd(object.velocity, object.sprite.position);
-        object.sprite.position = ccpSub(object.sprite.position, player.velocity);
+       // object.sprite.position = ccpSub(object.sprite.position, player.velocity);
     }
 }
 
