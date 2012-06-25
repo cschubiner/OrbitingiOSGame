@@ -11,7 +11,9 @@
 #import "Player.h"
 #import "Planet.h"
 
-static float thrustStrength = .015;
+const float thrustStrength = .015;
+const float distanceMult = 2;
+const float gravitationalConstant = 1000;
 
 @implementation GameplayLayer
 
@@ -49,19 +51,12 @@ static float thrustStrength = .015;
         cameraObjects = [[NSMutableArray alloc]init];
         planets = [[NSMutableArray alloc]init];
         
-        player = [[Player alloc]init];        
-        player.sprite = [CCSprite spriteWithFile:@"spaceship.png"];
-        player.sprite.position = ccp( size.width/2 + 50, size.height/2);
-        player.velocity = ccp(0, -1.2);
-        player.mass = 1;
-        player.thrustJustOccurred = false;        
-        [cameraObjects addObject:player];
-        [self addChild:player.sprite];
+
         
         
         
         Planet* planet = [[Planet alloc]init];
-        planet.sprite = [CCSprite spriteWithFile:@"planet2.png"];
+        planet.sprite = [CCSprite spriteWithFile:@"PlanetMichael.png"];
         planet.sprite.position =  ccp( 100 , size.height/2 );     
         planet.mass = 1;
         [cameraObjects addObject:planet];
@@ -70,13 +65,59 @@ static float thrustStrength = .015;
         [planet release];
         
         Planet* planet2 = [[Planet alloc]init];
-        planet2.sprite = [CCSprite spriteWithFile:@"planet2.png"];
+        planet2.sprite = [CCSprite spriteWithFile:@"PlanetMichael.png"];
         planet2.sprite.position =  ccp( 400  , size.height/2 );      
         planet2.mass = 1;    
         [cameraObjects addObject:planet2];
         [planets addObject:planet2];
         [self addChild:planet2.sprite];        
         [planet2 release];
+        
+        
+        Planet* planet3 = [[Planet alloc]init];
+        planet3.sprite = [CCSprite spriteWithFile:@"PlanetMichael.png"];
+        planet3.sprite.position =  ccp( 400  , 500 );      
+        planet3.mass = 1;    
+        [cameraObjects addObject:planet3];
+        [planets addObject:planet3];
+        [self addChild:planet3.sprite];        
+        [planet3 release];
+        
+        
+        
+        Planet* planet4 = [[Planet alloc]init];
+        planet4.sprite = [CCSprite spriteWithFile:@"PlanetMichael.png"];
+        planet4.sprite.position =  ccp( 300  , 700 );      
+        planet4.mass = 1;    
+        [cameraObjects addObject:planet4];
+        [planets addObject:planet4];
+        [self addChild:planet4.sprite];        
+        [planet4 release];
+        
+        
+        Planet* planet5 = [[Planet alloc]init];
+        planet5.sprite = [CCSprite spriteWithFile:@"PlanetMichael.png"];
+        planet5.sprite.position =  ccp( 500  , 950 );      
+        planet5.mass = 1;    
+        [cameraObjects addObject:planet5];
+        [planets addObject:planet5];
+        [self addChild:planet5.sprite];        
+        [planet5 release];
+        
+        
+        
+        
+        
+        player = [[Player alloc]init];        
+        player.sprite = [CCSprite spriteWithFile:@"planet2.png"];
+        player.sprite.position = ccp( size.width/2, size.height/2);
+        player.velocity = ccp(0, 0);
+        player.mass = 1;
+        player.thrustJustOccurred = false;        
+        [cameraObjects addObject:player];
+        [self addChild:player.sprite];
+        
+        
         
         
         
@@ -90,7 +131,7 @@ static float thrustStrength = .015;
         
         object.velocity = ccpAdd(object.velocity, object.acceleration);
         object.sprite.position = ccpAdd(object.velocity, object.sprite.position);
-       // object.sprite.position = ccpSub(object.sprite.position, player.velocity);
+        object.sprite.position = ccpSub(object.sprite.position, player.velocity);
     }
 }
 
@@ -99,8 +140,6 @@ static float thrustStrength = .015;
 }
 
 - (void)UpdatePlayer {
-    float distanceMult = 2;
-    float gravitationalConstant = 1000;
     
     
     CGPoint acclerationToAdd;
@@ -118,10 +157,11 @@ static float thrustStrength = .015;
     
     if (player.thrustJustOccurred)
     {
+        
         CGPoint thrustVelocity = ccpAdd(ccp(-player.thrustBeginPoint.x,-player.thrustBeginPoint.y), player.thrustEndPoint);
         
         thrustVelocity = ccp( thrustVelocity.x* thrustStrength,thrustVelocity.y*thrustStrength);
-                
+        
         player.velocity = ccpAdd(player.velocity, thrustVelocity);
         player.thrustJustOccurred=false;
     }
