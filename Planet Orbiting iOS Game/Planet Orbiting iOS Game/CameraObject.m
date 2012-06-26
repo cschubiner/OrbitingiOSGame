@@ -10,5 +10,5 @@
 
 
 @implementation CameraObject
-@synthesize rotation,sprite,alive,ID,acceleration,velocity,rect;
+@synthesize sprite,alive,ID,acceleration,velocity;
 @end

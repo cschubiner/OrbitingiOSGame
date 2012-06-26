@@ -183,6 +183,9 @@ typedef enum {
 /** conforms to CCTextureProtocol protocol */
 @property (nonatomic,readwrite) ccBlendFunc blendFunc;
 
+-(CGFloat)width;
+-(CGFloat)height;
+
 #pragma mark CCSprite - Initializers
 
 /** Creates an sprite with a texture.

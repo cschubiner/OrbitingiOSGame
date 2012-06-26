@@ -11,11 +11,11 @@
 #import "CameraObject.h"
 
 @interface Planet : CameraObject {
-    
+    float radius;
 }
 -(id)init;
 
 @property (nonatomic) CGPoint forceExertingOnPlayer;
 @property (nonatomic) float mass;
-@property (nonatomic) float diameter;
+@property (nonatomic) float radius;
 @end

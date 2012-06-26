@@ -17,8 +17,6 @@
 @property (nonatomic,retain) CCSprite *sprite;
 @property (nonatomic) CGPoint velocity;
 @property (nonatomic) CGPoint acceleration;
-@property (nonatomic) float rotation;
-@property (nonatomic ) CGRect rect;
 @property (nonatomic) int ID; //or "number", as we used to call it in copter crush...
 @property (nonatomic) bool alive;
 

@@ -16,7 +16,7 @@
     
 }
 
-
+-(id)init;
 
 @property (nonatomic) CGPoint thrustBeginPoint;
 @property (nonatomic) CGPoint thrustEndPoint;
