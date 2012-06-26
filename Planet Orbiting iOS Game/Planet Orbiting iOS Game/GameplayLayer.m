@@ -104,7 +104,8 @@ CGFloat lastPlanetYPos = 0;
     for (CameraObject *object in cameraObjects) {
         object.velocity = ccpAdd(object.velocity, object.acceleration);
         object.sprite.position = ccpAdd(object.velocity, object.sprite.position);
-        object.sprite.position = ccpSub(object.sprite.position, player.velocity);//moves "camera" to follow player
+        object.sprite.position = ccpSub(object.sprite.position, player.velocity); // moves "camera" to follow player
+            // e.g. if we want the player to "move" right, everything else will just move to the left and the "camera" will thus follow the player
     }
 }
 
