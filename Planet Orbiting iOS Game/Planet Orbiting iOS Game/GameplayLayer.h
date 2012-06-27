@@ -23,6 +23,9 @@
     int score;
     int prevScore;
     int initialScoreConstant;
+    
+    //this is where the player is on screen (240,160 is center of screen)
+    CGPoint cameraFocusPosition;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

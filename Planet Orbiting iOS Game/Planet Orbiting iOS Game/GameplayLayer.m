@@ -95,7 +95,6 @@
 - (void)UpdateCameraObjects {
     for (CameraObject *object in cameraObjects) {
         
-        
         object.velocity = ccpAdd(object.velocity, object.acceleration);
         object.sprite.position = ccpAdd(object.velocity, object.sprite.position);
         object.sprite.position = ccpSub(object.sprite.position, player.velocity); // moves "camera" to follow player
@@ -155,13 +154,16 @@
 
 -(void)CenterCameraAtPlayer {
     for (CameraObject *object in cameraObjects) {
-        object.sprite.position = ccpSub(object.sprite.position, ccpSub(player.sprite.position,ccp( size.width/2, size.height/2)));
+        object.sprite.position = ccpSub(object.sprite.position, ccpSub(player.sprite.position,cameraFocusPosition));
     }
 }
 
 - (void)resetVariablesForNewGame {
     score=0;
     prevScore=0;
+    
+    //this is where the player is on screen (240,160 is center of screen)
+    cameraFocusPosition = CGPointMake( 240, 160);
     [player setVelocity:ccp(0,0)];
 }
 
@@ -172,30 +174,34 @@
 }
 
 - (void)UpdatePlanets {
+    
+    //Planet-to-Player collision detection follows-------------
     for (Planet* planet in planets)
     {
         if (ccpDistance([[player sprite]position], [[planet sprite]position])<[planet radius])
         {
             [self JumpPlayerToPlanet:0];
         }
-    }
+    }//end collision detection code-----------------
 }
 
+/*Your score goes up as you move along the vector between the first and last planet. Your score will also never go down, as the user doesn't like to see his score go down. The initialScoreConstant will be set only when firstTimeRunning == true. initialScoreConstant is what ensures your score starts at zero, and not some negative number.*/
 - (void)UpdateScore:(bool)firstTimeRunning {
     CGPoint firstToLastPlanet = ccpSub(((Planet*)[planets objectAtIndex:[planets count]-1]).sprite.position, ((Planet*)[planets objectAtIndex:0]).sprite.position);
-    CGPoint firstToPlayerPos = ccpSub(((Planet*)[planets objectAtIndex:[planets count]-1]).sprite.position, player.sprite.position);
-    CGPoint diff = ccpSub(firstToLastPlanet, firstToPlayerPos);
+    CGPoint firstToPlayerPos = ccpSub(((Planet*)[planets objectAtIndex:0]).sprite.position, player.sprite.position);
+    CGPoint diff = ccpAdd(firstToLastPlanet, firstToPlayerPos);
     if (firstTimeRunning)
-        initialScoreConstant = -(int)((float)-ccpLength(firstToLastPlanet)+ccpLength(diff));
+        initialScoreConstant = -(int)((float)ccpLength(firstToLastPlanet)-ccpLength(diff));
     prevScore = score;
-    int newScore= (int)((float)-ccpLength(firstToLastPlanet)+ccpLength(diff)+initialScoreConstant);
+    
+    NSLog([NSString stringWithFormat:@"firstToLast: %f firstToPlayer: %f diff: %f",ccpLength(firstToLastPlanet),ccpLength(firstToPlayerPos),ccpLength(diff)]);
+    int newScore= (int)((float)ccpLength(firstToLastPlanet)-ccpLength(diff)+initialScoreConstant);
     if (newScore>prevScore)
         score = newScore;
     [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score]];
 }
 
 - (void) Update:(ccTime)dt {
-    
     
     [self UpdatePlanets];    
     [self UpdatePlayer];
@@ -205,8 +211,7 @@
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    for (UITouch *touch in touches)
-    {
+    for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
         [player setThrustBeginPoint:location];
@@ -215,8 +220,7 @@
 
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    for (UITouch *touch in touches)
-    {
+    for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
         [player setThrustEndPoint:location];
