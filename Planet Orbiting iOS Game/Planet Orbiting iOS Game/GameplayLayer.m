@@ -181,7 +181,7 @@ CGFloat lastPlanetYPos = 0;
     {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
-        [player setThrustEndPoint:location];
+        [player setThrustEndPoint:location]; //this sets the end point. love, alex mark
         
         CGPoint thrustVelocity = ccpAdd(ccp(-player.thrustBeginPoint.x,-player.thrustBeginPoint.y), player.thrustEndPoint);
         thrustVelocity = ccp( thrustVelocity.x* thrustStrength / (ccpLength(player.velocity)+thrustVelocNormalizerOffset),thrustVelocity.y*thrustStrength / (ccpLength(player.velocity)+thrustVelocNormalizerOffset));
