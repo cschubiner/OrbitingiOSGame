@@ -143,8 +143,8 @@
     }
     player.acceleration = ccp(acclerationToAdd.x * absoluteSpeedMult, acclerationToAdd.y * absoluteSpeedMult);
     
-    if (player.thrustJustOccurred)
-    {
+    /*This sets the player's velocity when the user just swiped the screen (when player.thrustJustOccurred==true).*/
+    if (player.thrustJustOccurred) {
         CGPoint thrustVelocity = ccpAdd(ccp(-player.thrustBeginPoint.x,-player.thrustBeginPoint.y), player.thrustEndPoint);
         thrustVelocity = ccp( thrustVelocity.x* thrustStrength,thrustVelocity.y*thrustStrength);
         player.velocity = ccpAdd(player.velocity, thrustVelocity);
@@ -193,8 +193,6 @@
     if (firstTimeRunning)
         initialScoreConstant = -(int)((float)ccpLength(firstToLastPlanet)-ccpLength(diff));
     prevScore = score;
-    
-    NSLog([NSString stringWithFormat:@"firstToLast: %f firstToPlayer: %f diff: %f",ccpLength(firstToLastPlanet),ccpLength(firstToPlayerPos),ccpLength(diff)]);
     int newScore= (int)((float)ccpLength(firstToLastPlanet)-ccpLength(diff)+initialScoreConstant);
     if (newScore>prevScore)
         score = newScore;
