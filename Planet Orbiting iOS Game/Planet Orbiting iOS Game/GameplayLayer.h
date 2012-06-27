@@ -15,7 +15,12 @@
     Player *player;
     NSMutableArray *planets;
     NSMutableArray *cameraObjects;
+    CCLabelTTF *label;
+    CCLabelTTF *label2;
+    CCLabelTTF *label3;
+    CCLabelTTF *label4;
     CGSize size ;
+    int planetCounter;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

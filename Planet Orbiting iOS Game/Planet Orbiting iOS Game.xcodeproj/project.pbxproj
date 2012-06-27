@@ -130,7 +130,7 @@
 		0C7AA7561594693D000B58F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA7551594693D000B58F2 /* AppDelegate.m */; };
 		0C7AA7591594693D000B58F2 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA7581594693D000B58F2 /* RootViewController.m */; };
 		0C7AA75C1594693D000B58F2 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */; };
-		CE9E5A8C15982F51007333E8 /* PlanetMichael.png in Resources */ = {isa = PBXBuildFile; fileRef = CE9E5A8B15982F51007333E8 /* PlanetMichael.png */; };
+		CE72301E1599C69A0093ECC4 /* PlanetMichael.png in Resources */ = {isa = PBXBuildFile; fileRef = CE72301D1599C69A0093ECC4 /* PlanetMichael.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -382,7 +382,7 @@
 		0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
 		0C7AA75D1594693D000B58F2 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		C49E914A159A48D700BC424D /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		CE9E5A8B15982F51007333E8 /* PlanetMichael.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlanetMichael.png; sourceTree = "<group>"; };
+		CE72301D1599C69A0093ECC4 /* PlanetMichael.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlanetMichael.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -431,8 +431,8 @@
 		0C487B02159472AC00674AB9 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
-				CE9E5A8B15982F51007333E8 /* PlanetMichael.png */,
 				0C487AFE1594729D00674AB9 /* spaceship-hd.png */,
+				CE72301D1599C69A0093ECC4 /* PlanetMichael.png */,
 				0C487B06159476AA00674AB9 /* planet2-hd.png */,
 				0C487B0A159476D700674AB9 /* planet2.png */,
 				0C487B00159472A500674AB9 /* spaceship.png */,
@@ -891,7 +891,7 @@
 				0C487B01159472A500674AB9 /* spaceship.png in Resources */,
 				0C487B07159476AA00674AB9 /* planet2-hd.png in Resources */,
 				0C487B0B159476D700674AB9 /* planet2.png in Resources */,
-				CE9E5A8C15982F51007333E8 /* PlanetMichael.png in Resources */,
+				CE72301E1599C69A0093ECC4 /* PlanetMichael.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
