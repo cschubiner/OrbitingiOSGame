@@ -1,6 +1,5 @@
 # Xcode
 build/*
-.DS_Store
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -14,3 +13,5 @@ build/*
 xcuserdata
 profile
 *.moved-aside
+.DS_Store
+hi this line hopefully will break whatever this is
