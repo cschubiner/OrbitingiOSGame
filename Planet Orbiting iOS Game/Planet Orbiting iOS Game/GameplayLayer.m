@@ -11,16 +11,11 @@
 #import "Player.h"
 #import "Planet.h"
 
-const float thrustStrength = .004;
-const float gravitationalConstant = 3900000;
-const float distanceMult = 3;
-const float gravitationalDistancePower = 3;
-const float reverseGravitationalConstant = 100000000000;
-const float reverseDistanceMult = 2.5;
-const float reverseGravitationalDistancePower = 5;
-const float thrustVelocNormalizerOffset = 1;
+const float thrustStrength = .018;
+const float distanceMult = 2;
+const float gravitationalConstant = 1000;
+const float gravitationalDistancePower = 2;
 const float planetSizeScale = 1.9;
-const float velocityDampener = 1;
 CGFloat lastPlanetXPos = 0;
 CGFloat lastPlanetYPos = 0;
 
@@ -125,16 +120,17 @@ CGFloat lastPlanetYPos = 0;
         float gravityMultiplier = (gravitationalConstant * planet.mass * player.mass) /distanceBetweenToAPower;
         planet.forceExertingOnPlayer = ccp(direction.x * gravityMultiplier, direction.y * gravityMultiplier);
         acclerationToAdd = ccpAdd(acclerationToAdd, planet.forceExertingOnPlayer);
-        
-        CGPoint reverseDirection;
-        reverseDirection = ccpNormalize(ccpSub(player.sprite.position, planet.sprite.position));
-        float reverseDistanceBetweenToAPower = pow(reverseDistanceMult*ccpLength(ccpSub(planet.sprite.position, player.sprite.position)), reverseGravitationalDistancePower);
-        float reverseGravityMultiplier = (reverseGravitationalConstant * planet.mass * player.mass) /reverseDistanceBetweenToAPower;
-        planet.forceExertingOnPlayer = ccp(reverseDirection.x * reverseGravityMultiplier, reverseDirection.y * reverseGravityMultiplier);
-        acclerationToAdd = ccpAdd(acclerationToAdd, planet.forceExertingOnPlayer);
     }
     player.acceleration = acclerationToAdd;
-    player.velocity = ccp(player.velocity.x * velocityDampener, player.velocity.y * velocityDampener);
+    
+    
+    if (player.thrustJustOccurred)
+    {
+        CGPoint thrustVelocity = ccpAdd(ccp(-player.thrustBeginPoint.x,-player.thrustBeginPoint.y), player.thrustEndPoint);
+        thrustVelocity = ccp( thrustVelocity.x* thrustStrength,thrustVelocity.y*thrustStrength);
+        player.velocity = ccpAdd(player.velocity, thrustVelocity);
+        player.thrustJustOccurred=false;
+    }
 }
 
 -(void)CenterCameraAtPlayer {
@@ -145,8 +141,8 @@ CGFloat lastPlanetYPos = 0;
 
 - (void)JumpPlayerToPlanet:(int)planetIndex {
     player.sprite.position = ccpAdd(((Planet*)[planets objectAtIndex:planetIndex]).sprite.position, ccp(130,0));
-
-    [player setVelocity:ccp(0,0)];
+  //  [player setVelocity:CGPointZero];
+    [player setVelocity:ccp(-1.95,2.63904)];
     [self CenterCameraAtPlayer];
 }
 
@@ -174,28 +170,24 @@ CGFloat lastPlanetYPos = 0;
     [self UpdateCameraObjects];
 }
 
-
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     for (UITouch *touch in touches)
     {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
-        player.thrustBeginPoint = location;
+        [player setThrustBeginPoint:location];
     }
 }
 
--(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+-(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     for (UITouch *touch in touches)
     {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
         [player setThrustEndPoint:location];
-        
-        CGPoint thrustVelocity = ccpAdd(ccp(-player.thrustBeginPoint.x,-player.thrustBeginPoint.y), player.thrustEndPoint);
-        thrustVelocity = ccp( thrustVelocity.x* thrustStrength / (ccpLength(player.velocity)+thrustVelocNormalizerOffset),thrustVelocity.y*thrustStrength / (ccpLength(player.velocity)+thrustVelocNormalizerOffset));
-        player.velocity = ccpAdd(player.velocity, thrustVelocity);
+        player.thrustJustOccurred = true;
     }
 }
 
