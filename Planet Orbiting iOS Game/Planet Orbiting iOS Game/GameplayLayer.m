@@ -97,7 +97,8 @@ CGFloat lastPlanetYPos = 0;
         [cameraObjects addObject:player];
         [self addChild:player.sprite];
         
-        [self JumpPlayerToPlanet:0];    
+        [self JumpPlayerToPlanet:0];
+        
         
         [self schedule:@selector(Update:) interval:0]; //this makes the update loop loop1!!!
 	}
