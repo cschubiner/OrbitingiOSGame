@@ -18,9 +18,12 @@
     CCLabelTTF *label;
     CCLabelTTF *label2;
     CCLabelTTF *label3;
-    CCLabelTTF *label4;
+    CCLabelTTF *scoreLabel;
     CGSize size ;
     int planetCounter;
+    int score;
+    int prevScore;
+    int initialScoreConstant;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

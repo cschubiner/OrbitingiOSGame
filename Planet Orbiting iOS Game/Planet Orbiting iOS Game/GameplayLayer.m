@@ -42,8 +42,7 @@ CGFloat lastPlanetYPos = 0;
 
 - (void)CreatePlanet:(CGFloat)xPos yPos:(CGFloat)yPos
 {
-    Planet *planet;
-    planet = [[Planet alloc]init];
+    Planet *planet = [[Planet alloc]init];
     planet.sprite = [CCSprite spriteWithFile:@"PlanetMichael.png"];
     planet.sprite.position =  ccp( xPos , yPos );     
     [planet.sprite setScale:planetSizeScale];
@@ -69,13 +68,13 @@ CGFloat lastPlanetYPos = 0;
         planetCounter = 0;
         cameraObjects = [[NSMutableArray alloc]init];
         planets = [[NSMutableArray alloc]init];
+       
         
-        
-        label = [CCLabelTTF labelWithString:@"HILOLZ" fontName:@"Marker Felt" fontSize:24];
+        label = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:24];
         label.position = ccp(200, 300);
         [self addChild: label];
         
-        label2 = [CCLabelTTF labelWithString:@"HILOLZ" fontName:@"Marker Felt" fontSize:24];
+        label2 = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:24];
         label2.position = ccp(200, 270);
         [self addChild: label2];        
         
@@ -83,9 +82,9 @@ CGFloat lastPlanetYPos = 0;
         label3.position = ccp(200, 240);
         [self addChild: label3];  
         
-        label4 = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:24];
-        label4.position = ccp(50, 50);
-        [self addChild: label4];
+        scoreLabel = [CCLabelTTF labelWithString:@"Score: " fontName:@"Marker Felt" fontSize:24];
+        scoreLabel.position = ccp(400, [scoreLabel boundingBox].size.height);
+        [self addChild: scoreLabel];
         
         
         [self CreatePlanet:100 yPos:size.width/2];
@@ -105,7 +104,7 @@ CGFloat lastPlanetYPos = 0;
         [self addChild:player.sprite];
         
         [self JumpPlayerToPlanet:0];    
-        
+        [self UpdateScore:true];
         [self schedule:@selector(Update:) interval:0]; //this makes the update loop loop1!!!
 	}
 	return self;
@@ -148,9 +147,6 @@ CGFloat lastPlanetYPos = 0;
         
         
         if (ccpLength(planet.forceExertingOnPlayer) <= ccpLength(reverseForceOnPlayer)) {   
-            
-            
-            
             CGPoint l = planet.sprite.position;
             CGPoint p = player.sprite.position;
             CGPoint v = player.velocity;
@@ -206,10 +202,15 @@ CGFloat lastPlanetYPos = 0;
     }
 }
 
+- (void)resetVariablesForNewGame {
+    score=0;
+    prevScore=0;
+    [player setVelocity:ccp(0,0)];
+}
+
 - (void)JumpPlayerToPlanet:(int)planetIndex {
     player.sprite.position = ccpAdd(((Planet*)[planets objectAtIndex:planetIndex]).sprite.position, ccp(130,0));
-    
-    [player setVelocity:ccp(0,0)];
+    [self resetVariablesForNewGame];
     [self CenterCameraAtPlayer];
 }
 
@@ -230,11 +231,25 @@ CGFloat lastPlanetYPos = 0;
     }
 }
 
+- (void)UpdateScore:(bool)firstTimeRunning {
+    CGPoint firstToLastPlanet = ccpSub(((Planet*)[planets objectAtIndex:[planets count]-1]).sprite.position, ((Planet*)[planets objectAtIndex:0]).sprite.position);
+    CGPoint firstToPlayerPos = ccpSub(((Planet*)[planets objectAtIndex:[planets count]-1]).sprite.position, player.sprite.position);
+    CGPoint diff = ccpSub(firstToLastPlanet, firstToPlayerPos);
+    if (firstTimeRunning)
+        initialScoreConstant = -(int)((float)-ccpLength(firstToLastPlanet)+ccpLength(diff));
+    prevScore = score;
+    int newScore= (int)((float)-ccpLength(firstToLastPlanet)+ccpLength(diff)+initialScoreConstant);
+    if (newScore>prevScore)
+        score = newScore;
+    [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score]];
+}
+
 - (void) Update:(ccTime)dt {
     
     
     [self UpdatePlanets];    
     [self UpdatePlayer];
+    [self UpdateScore:false];
     [self UpdateCameraObjects];
 }
 
