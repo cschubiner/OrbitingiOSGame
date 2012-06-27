@@ -259,6 +259,12 @@ CGFloat lastPlanetYPos = 0;
     }
 }
 
+
+- (int)RandomBetween:(int)minvalue maxvalue:(int)maxvalue  {
+    int randomNumber = minvalue+  arc4random() % (1+maxvalue-minvalue);
+    return randomNumber;
+}
+
 /*
  BELOW IS CONSTANT VELOCITY ADDING CODE
  -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -284,9 +290,4 @@ CGFloat lastPlanetYPos = 0;
  player.velocity = ccpAdd(player.velocity, thrustVelocity);
  }
  }*/
-
-- (int)RandomBetween:(int)minvalue maxvalue:(int)maxvalue  {
-    int randomNumber = minvalue+  arc4random() % (1+maxvalue-minvalue);
-    return randomNumber;
-}
 @end

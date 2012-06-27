@@ -22,13 +22,6 @@
 	return self;
 }
 
--(void)setRadius:(float)radiusToSet{
-    CGPoint * error = nil;
-    [self setVelocity:*error];
-    //this method causes an intentional error to make sure you don't use it!!
-    
-}
-
 -(float)radius{
     radius = MAX([[self sprite] width],[[self sprite] width])/2;
     return radius;
