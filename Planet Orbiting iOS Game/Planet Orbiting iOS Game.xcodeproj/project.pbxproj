@@ -381,6 +381,7 @@
 		0C7AA75A1594693D000B58F2 /* MainMenuLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
 		0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
 		0C7AA75D1594693D000B58F2 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
+		C49E914A159A48D700BC424D /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		CE9E5A8B15982F51007333E8 /* PlanetMichael.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlanetMichael.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -495,6 +496,7 @@
 				0C487AFC159471E800674AB9 /* Classes */,
 				0C7AA75A1594693D000B58F2 /* MainMenuLayer.h */,
 				0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */,
+				C49E914A159A48D700BC424D /* Constants.h */,
 				0C487AF615946E2300674AB9 /* GameplayLayer.h */,
 				0C487AF715946E2300674AB9 /* GameplayLayer.m */,
 				0C7AA75D1594693D000B58F2 /* GameConfig.h */,
