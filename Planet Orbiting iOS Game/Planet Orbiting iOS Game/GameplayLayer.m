@@ -10,8 +10,17 @@
 #import "CameraObject.h"
 #import "Player.h"
 #import "Planet.h"
-#import "Constants.h"
 
+const float thrustStrength = .004;
+const float gravitationalConstant = 3900000;
+const float distanceMult = 3;
+const float gravitationalDistancePower = 3;
+const float reverseGravitationalConstant = 100000000000;
+const float reverseDistanceMult = 2.5;
+const float reverseGravitationalDistancePower = 5;
+const float thrustVelocNormalizerOffset = 1;
+const float planetSizeScale = 1.9;
+const float velocityDampener = 1;
 CGFloat lastPlanetXPos = 0;
 CGFloat lastPlanetYPos = 0;
 
