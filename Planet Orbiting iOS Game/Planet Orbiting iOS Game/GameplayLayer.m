@@ -12,9 +12,6 @@
 #import "Planet.h"
 #import "Constants.h"
 
-CGFloat lastPlanetXPos = 0;
-CGFloat lastPlanetYPos = 0;
-
 @implementation GameplayLayer
 
 +(CCScene *) scene
@@ -38,7 +35,6 @@ CGFloat lastPlanetYPos = 0;
     size = [[CCDirector sharedDirector] winSize];
     
 }
-
 
 - (void)CreatePlanet:(CGFloat)xPos yPos:(CGFloat)yPos
 {
@@ -68,24 +64,10 @@ CGFloat lastPlanetYPos = 0;
         planetCounter = 0;
         cameraObjects = [[NSMutableArray alloc]init];
         planets = [[NSMutableArray alloc]init];
-       
-        
-        label = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:24];
-        label.position = ccp(200, 300);
-        [self addChild: label];
-        
-        label2 = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:24];
-        label2.position = ccp(200, 270);
-        [self addChild: label2];        
-        
-        label3 = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:24];
-        label3.position = ccp(200, 240);
-        [self addChild: label3];  
         
         scoreLabel = [CCLabelTTF labelWithString:@"Score: " fontName:@"Marker Felt" fontSize:24];
         scoreLabel.position = ccp(400, [scoreLabel boundingBox].size.height);
         [self addChild: scoreLabel];
-        
         
         [self CreatePlanet:100 yPos:size.width/2];
         [self CreatePlanet:lastPlanetXPos+300 yPos:lastPlanetYPos];
@@ -133,9 +115,6 @@ CGFloat lastPlanetYPos = 0;
         planet.forceExertingOnPlayer = ccp(direction.x * gravityMultiplier, direction.y * gravityMultiplier);
         acclerationToAdd = ccpAdd(acclerationToAdd, planet.forceExertingOnPlayer);
         
-        
-        //[label setString: [NSString stringWithFormat: @"%f", planet.ID]];
-        
         CGPoint reverseForceOnPlayer;
         CGPoint reverseDirection;
         reverseDirection = ccpNormalize(ccpSub(player.sprite.position, planet.sprite.position));
@@ -144,18 +123,13 @@ CGFloat lastPlanetYPos = 0;
         reverseForceOnPlayer = ccp(reverseDirection.x * reverseGravityMultiplier, reverseDirection.y * reverseGravityMultiplier);
         acclerationToAdd = ccpAdd(acclerationToAdd, reverseForceOnPlayer);
         
-        
-        
         if (ccpLength(planet.forceExertingOnPlayer) <= ccpLength(reverseForceOnPlayer)) {   
             CGPoint l = planet.sprite.position;
             CGPoint p = player.sprite.position;
             CGPoint v = player.velocity;
             CGPoint a = ccpSub(p, l);
             CGPoint b = ccpSub(ccpAdd(p, v), l);
-            
             float distIn = ccpLength(a)-ccpLength(b);
-            
-            
             CGPoint dir = ccpNormalize(b);
             CGPoint dampenerToAdd;
             if (ccpLength(a) > ccpLength(b)) {
@@ -166,24 +140,7 @@ CGFloat lastPlanetYPos = 0;
             }
             
             player.velocity = ccpAdd(player.velocity, dampenerToAdd);
-            
-            //dont delete this asap of might experiment with it furthur in the future
-            //[label4 setString: [NSString stringWithFormat: @"%f", distIn]];
-            //player.velocity = ccp(player.velocity.x * (1-(distIn/4)) * velocityDampener, player.velocity.y * (1-(distIn/4)) * velocityDampener);
-            
-            
         }
-        
-        
-        /*
-         if (ccpLength(planet.forceExertingOnPlayer) <= ccpLength(reverseForceOnPlayer)) {
-         [label3 setString: [NSString stringWithFormat: @"ja"]];
-         
-         player.velocity = ccp(player.velocity.x * .8, player.velocity.y * .8);
-         }
-         else {
-         [label3 setString: [NSString stringWithFormat: @""]];
-         }*/
     }
     player.acceleration = ccp(acclerationToAdd.x * absoluteSpeedMult, acclerationToAdd.y * absoluteSpeedMult);
     
@@ -217,17 +174,10 @@ CGFloat lastPlanetYPos = 0;
 - (void)UpdatePlanets {
     for (Planet* planet in planets)
     {
-        /* //RECTANGULAR PLAYER DISTANCE CALCULATOR
-         if (ccpDistance(ccp([[player sprite]width]/2+[player sprite].position.x,[[player sprite]height]/2+[player sprite].position.y),planet.       sprite.position)<[planet radius]       ||
-         ccpDistance(ccp([[player sprite]width]/2+[player sprite].position.x,-[[player sprite]height]/2+[player sprite].position.y),planet.sprite.position)<[planet radius]   ||
-         ccpDistance(ccp(-[[player sprite]width]/2+[player sprite].position.x,[[player sprite]height]/2+[player sprite].position.y),planet.sprite.position)<[planet radius]   ||
-         ccpDistance(ccp(-[[player sprite]width]/2+[player sprite].position.x,-[[player sprite]height]/2+[player sprite].position.y),planet.sprite.position)<[planet radius])*/
         if (ccpDistance([[player sprite]position], [[planet sprite]position])<[planet radius])
         {
             [self JumpPlayerToPlanet:0];
         }
-        
-        
     }
 }
 
@@ -279,30 +229,4 @@ CGFloat lastPlanetYPos = 0;
     int randomNumber = minvalue+  arc4random() % (1+maxvalue-minvalue);
     return randomNumber;
 }
-
-/*
- BELOW IS CONSTANT VELOCITY ADDING CODE
- -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
- {
- for (UITouch *touch in touches)
- {
- CGPoint location = [touch locationInView:[touch view]];
- location = [[CCDirector sharedDirector] convertToGL:location];
- player.thrustBeginPoint = location;
- }
- }
- 
- -(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
- {
- for (UITouch *touch in touches)
- {
- CGPoint location = [touch locationInView:[touch view]];
- location = [[CCDirector sharedDirector] convertToGL:location];
- [player setThrustEndPoint:location]; //this sets the end point. love, alex mark
- 
- CGPoint thrustVelocity = ccpAdd(ccp(-player.thrustBeginPoint.x,-player.thrustBeginPoint.y), player.thrustEndPoint);
- thrustVelocity = ccp( thrustVelocity.x* thrustStrength, thrustVelocity.y*thrustStrength);
- player.velocity = ccpAdd(player.velocity, thrustVelocity);
- }
- }*/
 @end

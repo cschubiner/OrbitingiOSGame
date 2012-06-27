@@ -15,9 +15,8 @@
     Player *player;
     NSMutableArray *planets;
     NSMutableArray *cameraObjects;
-    CCLabelTTF *label;
-    CCLabelTTF *label2;
-    CCLabelTTF *label3;
+    CGFloat lastPlanetXPos;
+    CGFloat lastPlanetYPos;
     CCLabelTTF *scoreLabel;
     CGSize size ;
     int planetCounter;
