@@ -73,6 +73,7 @@
     [planet release];
     lastPlanetXPos = xPos;
     lastPlanetYPos = yPos;
+<<<<<<< HEAD
     
     Zone *zone = [[Zone alloc] init];
     zone.sprite = [CCSprite spriteWithFile:@"zone.png"];
@@ -85,6 +86,9 @@
     [zone release];
     
     planetCounter += 1;
+=======
+
+>>>>>>> did sum stuff idk
 }
 
 /*
