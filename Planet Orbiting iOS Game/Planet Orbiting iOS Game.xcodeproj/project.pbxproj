@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C2DEF02159C20BE0018F0FA /* Zone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2DEF01159C20BE0018F0FA /* Zone.m */; };
 		0C487AF815946E2300674AB9 /* GameplayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487AF715946E2300674AB9 /* GameplayLayer.m */; };
 		0C487AFB159471E000674AB9 /* CameraObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487AFA159471E000674AB9 /* CameraObject.m */; };
 		0C487AFF1594729D00674AB9 /* spaceship-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C487AFE1594729D00674AB9 /* spaceship-hd.png */; };
@@ -134,6 +135,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C2DEF00159C20BE0018F0FA /* Zone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Zone.h; sourceTree = "<group>"; };
+		0C2DEF01159C20BE0018F0FA /* Zone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Zone.m; sourceTree = "<group>"; };
 		0C487AF615946E2300674AB9 /* GameplayLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameplayLayer.h; sourceTree = "<group>"; };
 		0C487AF715946E2300674AB9 /* GameplayLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameplayLayer.m; sourceTree = "<group>"; };
 		0C487AF9159471E000674AB9 /* CameraObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraObject.h; sourceTree = "<group>"; };
@@ -413,6 +416,8 @@
 				0C487B041594739600674AB9 /* Player.m */,
 				0C487B0C1594792C00674AB9 /* Planet.h */,
 				0C487B0D1594792C00674AB9 /* Planet.m */,
+				0C2DEF00159C20BE0018F0FA /* Zone.h */,
+				0C2DEF01159C20BE0018F0FA /* Zone.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1004,6 +1009,7 @@
 				0C487AFB159471E000674AB9 /* CameraObject.m in Sources */,
 				0C487B051594739600674AB9 /* Player.m in Sources */,
 				0C487B0E1594792C00674AB9 /* Planet.m in Sources */,
+				0C2DEF02159C20BE0018F0FA /* Zone.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

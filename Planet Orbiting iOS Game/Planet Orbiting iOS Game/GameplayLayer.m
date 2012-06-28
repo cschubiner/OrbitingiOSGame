@@ -10,6 +10,7 @@
 #import "CameraObject.h"
 #import "Player.h"
 #import "Planet.h"
+#import "Zone.h"
 #import "Constants.h"
 
 @implementation GameplayLayer
@@ -36,7 +37,7 @@
     
 }
 
-- (void)CreatePlanet:(CGFloat)xPos yPos:(CGFloat)yPos
+- (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos
 {
     Planet *planet = [[Planet alloc]init];
     planet.sprite = [CCSprite spriteWithFile:@"PlanetMichael.png"];
@@ -44,13 +45,24 @@
     [planet.sprite setScale:planetSizeScale];
     planet.mass = 1;
     planet.ID = planetCounter;
-    planetCounter += 1;
     [cameraObjects addObject:planet];
     [planets addObject:planet];
     [self addChild:planet.sprite];        
     [planet release];
     lastPlanetXPos = xPos;
     lastPlanetYPos = yPos;
+    
+    Zone *zone = [[Zone alloc]init];
+    zone.sprite = [CCSprite spriteWithFile:@"PlanetMichael.png"];
+    zone.sprite.position =  ccp( xPos , yPos );     
+    zone.ID = planetCounter;
+    [cameraObjects addObject:zone];
+    [zones addObject:zone];
+    [self addChild:zone.sprite];        
+    [zone release];
+    
+    planetCounter += 1;
+
 }
 
 // on "init" you need to initialize your instance
@@ -64,17 +76,18 @@
         planetCounter = 0;
         cameraObjects = [[NSMutableArray alloc]init];
         planets = [[NSMutableArray alloc]init];
+        zones = [[NSMutableArray alloc]init];
         
         scoreLabel = [CCLabelTTF labelWithString:@"Score: " fontName:@"Marker Felt" fontSize:24];
         scoreLabel.position = ccp(400, [scoreLabel boundingBox].size.height);
         [self addChild: scoreLabel];
         
-        [self CreatePlanet:100 yPos:size.width/2];
-        [self CreatePlanet:lastPlanetXPos+300 yPos:lastPlanetYPos];
-        [self CreatePlanet:lastPlanetXPos+200 yPos:lastPlanetYPos+100];
-        [self CreatePlanet:lastPlanetXPos+180 yPos:lastPlanetYPos+120];
-        [self CreatePlanet:lastPlanetXPos+30 yPos:lastPlanetYPos+230];
-        [self CreatePlanet:lastPlanetXPos-150 yPos:lastPlanetYPos+160];
+        [self CreatePlanetAndZone:100 yPos:size.width/2];
+        [self CreatePlanetAndZone:lastPlanetXPos+300 yPos:lastPlanetYPos];
+        [self CreatePlanetAndZone:lastPlanetXPos+200 yPos:lastPlanetYPos+100];
+        [self CreatePlanetAndZone:lastPlanetXPos+180 yPos:lastPlanetYPos+120];
+        [self CreatePlanetAndZone:lastPlanetXPos+30 yPos:lastPlanetYPos+230];
+        [self CreatePlanetAndZone:lastPlanetXPos-150 yPos:lastPlanetYPos+160];
         
         player = [[Player alloc]init];        
         player.sprite = [CCSprite spriteWithFile:@"planet2.png"];
@@ -212,6 +225,9 @@
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
+        if (location.x <=size.width/4 && location.y <=size.height/4)
+            [self JumpPlayerToPlanet:0];
+        else
         [player setThrustBeginPoint:location];
     }
 }

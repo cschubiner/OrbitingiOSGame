@@ -14,6 +14,7 @@
     
     Player *player;
     NSMutableArray *planets;
+    NSMutableArray *zones;
     NSMutableArray *cameraObjects;
     CGFloat lastPlanetXPos;
     CGFloat lastPlanetYPos;
