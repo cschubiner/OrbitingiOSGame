@@ -85,9 +85,9 @@
         scoreLabel.position = ccp(400, [scoreLabel boundingBox].size.height);
         [self addChild: scoreLabel];
         
-        scoreLabel2 = [CCLabelTTF labelWithString:@"Score2: " fontName:@"Marker Felt" fontSize:24];
-        scoreLabel2.position = ccp(100, [scoreLabel2 boundingBox].size.height);
-        [self addChild: scoreLabel2];
+        zonesReachedLabel = [CCLabelTTF labelWithString:@"Zones Reached: " fontName:@"Marker Felt" fontSize:24];
+        zonesReachedLabel.position = ccp(100, [zonesReachedLabel boundingBox].size.height);
+        [self addChild: zonesReachedLabel];
         
         [self CreatePlanetAndZone:100*1.5 yPos:size.width/2];
         [self CreatePlanetAndZone:lastPlanetXPos+300*1.5 yPos:lastPlanetYPos];
@@ -183,7 +183,7 @@
 
 - (void)resetVariablesForNewGame {
     score=0;
-    score2=0;
+    zonesReached=0;
     prevScore=0;
     
     //this is where the player is on screen (240,160 is center of screen)
@@ -223,15 +223,15 @@
             {
                 if (i == 0)
                 {
-                    [zone.sprite setScale:0];
+                    [self removeChild:zone.sprite cleanup:YES];
                     zone.hasPlayerHitThisZone = true;    
-                    score2 ++;
+                    zonesReached ++;
                 }
                 else if ([[zones objectAtIndex:i - 1]hasPlayerHitThisZone])
                 {
-                    [zone.sprite setScale:0];
+                    [self removeChild:zone.sprite cleanup:YES];
                     zone.hasPlayerHitThisZone = true;  
-                    score2 ++;
+                    zonesReached ++;
                 }
             }
         }
@@ -251,7 +251,7 @@
     if (newScore>prevScore)
         score = newScore;
     [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score]];
-    [scoreLabel2 setString:[NSString stringWithFormat:@"Zones Reached: %d",score2]];
+    [zonesReachedLabel setString:[NSString stringWithFormat:@"Zones Reached: %d",zonesReached]];
 }
 
 - (void) Update:(ccTime)dt {

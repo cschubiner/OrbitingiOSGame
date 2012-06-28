@@ -19,11 +19,11 @@
     CGFloat lastPlanetXPos;
     CGFloat lastPlanetYPos;
     CCLabelTTF *scoreLabel;
-    CCLabelTTF *scoreLabel2;
+    CCLabelTTF *zonesReachedLabel;
     CGSize size ;
     int planetCounter;
     int score;
-    int score2;
+    int zonesReached;
     int prevScore;
     int initialScoreConstant;
     
