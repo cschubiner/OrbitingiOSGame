@@ -19,9 +19,11 @@
     CGFloat lastPlanetXPos;
     CGFloat lastPlanetYPos;
     CCLabelTTF *scoreLabel;
+    CCLabelTTF *scoreLabel2;
     CGSize size ;
     int planetCounter;
     int score;
+    int score2;
     int prevScore;
     int initialScoreConstant;
     

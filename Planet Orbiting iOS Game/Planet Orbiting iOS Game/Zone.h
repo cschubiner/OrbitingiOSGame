@@ -9,9 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "CameraObject.h"
-@interface Zone : CameraObject {
-    
-}
--(float)radius;
 
+@interface Zone : CameraObject {
+    float radius;
+    bool hasPlayerHitThisZone;
+}
+-(id)init;
+@property (nonatomic) bool hasPlayerHitThisZone;
+
+-(float)radius;
 @end

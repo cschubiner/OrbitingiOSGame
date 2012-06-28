@@ -52,9 +52,11 @@
     lastPlanetXPos = xPos;
     lastPlanetYPos = yPos;
     
+    
     Zone *zone = [[Zone alloc]init];
-    zone.sprite = [CCSprite spriteWithFile:@"PlanetMichael.png"];
-    zone.sprite.position =  ccp( xPos , yPos );     
+    zone.sprite = [CCSprite spriteWithFile:@"zone.png"];
+    zone.sprite.position =  ccp( xPos , yPos );    
+    [zone.sprite setScale:planetSizeScale*zoneScaleRelativeToPlanet];   
     zone.ID = planetCounter;
     [cameraObjects addObject:zone];
     [zones addObject:zone];
@@ -62,7 +64,8 @@
     [zone release];
     
     planetCounter += 1;
-
+    
+    
 }
 
 // on "init" you need to initialize your instance
@@ -82,12 +85,16 @@
         scoreLabel.position = ccp(400, [scoreLabel boundingBox].size.height);
         [self addChild: scoreLabel];
         
-        [self CreatePlanetAndZone:100 yPos:size.width/2];
-        [self CreatePlanetAndZone:lastPlanetXPos+300 yPos:lastPlanetYPos];
-        [self CreatePlanetAndZone:lastPlanetXPos+200 yPos:lastPlanetYPos+100];
-        [self CreatePlanetAndZone:lastPlanetXPos+180 yPos:lastPlanetYPos+120];
-        [self CreatePlanetAndZone:lastPlanetXPos+30 yPos:lastPlanetYPos+230];
-        [self CreatePlanetAndZone:lastPlanetXPos-150 yPos:lastPlanetYPos+160];
+        scoreLabel2 = [CCLabelTTF labelWithString:@"Score2: " fontName:@"Marker Felt" fontSize:24];
+        scoreLabel2.position = ccp(100, [scoreLabel2 boundingBox].size.height);
+        [self addChild: scoreLabel2];
+        
+        [self CreatePlanetAndZone:100*1.5 yPos:size.width/2];
+        [self CreatePlanetAndZone:lastPlanetXPos+300*1.5 yPos:lastPlanetYPos];
+        [self CreatePlanetAndZone:lastPlanetXPos+200*1.5 yPos:lastPlanetYPos+100*1.5];
+        [self CreatePlanetAndZone:lastPlanetXPos+180*1.5 yPos:lastPlanetYPos+120*1.5];
+        [self CreatePlanetAndZone:lastPlanetXPos+30*1.5 yPos:lastPlanetYPos+230*1.5];
+        [self CreatePlanetAndZone:lastPlanetXPos-150*1.5 yPos:lastPlanetYPos+160*1.5];
         
         player = [[Player alloc]init];        
         player.sprite = [CCSprite spriteWithFile:@"planet2.png"];
@@ -126,6 +133,8 @@
         float gravityMultiplier = (gravitationalConstant * planet.mass * player.mass) /distanceBetweenToAPower;
         planet.forceExertingOnPlayer = ccp(direction.x * gravityMultiplier, direction.y * gravityMultiplier);
         acclerationToAdd = ccpAdd(acclerationToAdd, planet.forceExertingOnPlayer);
+        acclerationToAdd = ccpAdd(acclerationToAdd, planet.forceExertingOnPlayer);
+        
         
         CGPoint reverseForceOnPlayer;
         CGPoint reverseDirection;
@@ -134,6 +143,7 @@
         float reverseGravityMultiplier = (reverseGravitationalConstant * planet.mass * player.mass) /reverseDistanceBetweenToAPower;
         reverseForceOnPlayer = ccp(reverseDirection.x * reverseGravityMultiplier, reverseDirection.y * reverseGravityMultiplier);
         acclerationToAdd = ccpAdd(acclerationToAdd, reverseForceOnPlayer);
+        
         
         if (ccpLength(planet.forceExertingOnPlayer) <= ccpLength(reverseForceOnPlayer)) {   
             CGPoint l = planet.sprite.position;
@@ -173,11 +183,17 @@
 
 - (void)resetVariablesForNewGame {
     score=0;
+    score2=0;
     prevScore=0;
     
     //this is where the player is on screen (240,160 is center of screen)
     cameraFocusPosition = CGPointMake( 240, 160);
     [player setVelocity:ccp(0,0)];
+    for (Zone* zone in zones)
+    {
+        [zone.sprite setScale:planetSizeScale*zoneScaleRelativeToPlanet]; 
+        zone.hasPlayerHitThisZone = false;
+    }
 }
 
 - (void)JumpPlayerToPlanet:(int)planetIndex {
@@ -196,6 +212,31 @@
             [self JumpPlayerToPlanet:0];
         }
     }//end collision detection code-----------------
+    
+    //Zone-to-Player collision detection follows-------------
+    int i = 0;
+    for (Zone* zone in zones)
+    {
+        if (ccpDistance([[player sprite]position], [[zone sprite]position])<[zone radius])
+        {
+            if (!zone.hasPlayerHitThisZone)
+            {
+                if (i == 0)
+                {
+                    [zone.sprite setScale:0];
+                    zone.hasPlayerHitThisZone = true;    
+                    score2 ++;
+                }
+                else if ([[zones objectAtIndex:i - 1]hasPlayerHitThisZone])
+                {
+                    [zone.sprite setScale:0];
+                    zone.hasPlayerHitThisZone = true;  
+                    score2 ++;
+                }
+            }
+        }
+        i += 1;
+    }//end collision detection code-----------------
 }
 
 /*Your score goes up as you move along the vector between the first and last planet. Your score will also never go down, as the user doesn't like to see his score go down. The initialScoreConstant will be set only when firstTimeRunning == true. initialScoreConstant is what ensures your score starts at zero, and not some negative number.*/
@@ -210,6 +251,7 @@
     if (newScore>prevScore)
         score = newScore;
     [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score]];
+    [scoreLabel2 setString:[NSString stringWithFormat:@"Zones Reached: %d",score2]];
 }
 
 - (void) Update:(ccTime)dt {
@@ -228,7 +270,7 @@
         if (location.x <=size.width/4 && location.y <=size.height/4)
             [self JumpPlayerToPlanet:0];
         else
-        [player setThrustBeginPoint:location];
+            [player setThrustBeginPoint:location];
     }
 }
 
