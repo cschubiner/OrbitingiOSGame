@@ -11,7 +11,11 @@
 #import "cocos2d.h"
 
 @interface MainMenuLayer : CCLayer
+{
 
-+ (CCScene *) scene;
+}
+
+// returns a CCScene that contains the HelloWorldLayer as the only child
++(CCScene *) scene;
 
 @end
