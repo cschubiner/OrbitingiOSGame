@@ -14,7 +14,10 @@
 // HelloWorldLayer implementation
 @implementation MainMenuLayer
 
-+(CCScene *) scene
+/*
+    returns a CCScene that contains the HelloWorldLayer as the only child
+*/
++ (CCScene *) scene
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
@@ -30,7 +33,7 @@
 }
 
 // on "init" you need to initialize your instance
--(id) init
+- (id) init
 {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
@@ -72,4 +75,5 @@
 	// don't forget to call "super dealloc"
 	[super dealloc];
 }
+
 @end

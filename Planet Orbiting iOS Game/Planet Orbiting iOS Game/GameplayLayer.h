@@ -10,24 +10,10 @@
 #import "cocos2d.h"
 #import "Player.h"
 
-@interface GameplayLayer : CCLayer {
-    
-    Player *player;
-    NSMutableArray *planets;
-    NSMutableArray *zones;
-    NSMutableArray *cameraObjects;
-    CGFloat lastPlanetXPos;
-    CGFloat lastPlanetYPos;
-    CCLabelTTF *scoreLabel;
-    CCLabelTTF *zonesReachedLabel;
-    CGSize size;
+@interface GameplayLayer : CCLayer
 
-    // where the player is on the screen (240,160 is center of screen)
-    CGPoint cameraFocusPosition;
-}
-
-// returns a CCScene that contains the HelloWorldLayer as the only child
-+(CCScene *) scene;
++ (CCScene *) scene;
 
 - (int)RandomBetween:(int)minvalue maxvalue:(int)maxvalue;
+
 @end

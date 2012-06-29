@@ -4,6 +4,7 @@
 //
 //  Created by Clay Schubiner on 6/22/12.
 //  Copyright Stanford University 2012. All rights reserved.
+//
 
 #import "GameplayLayer.h"
 #import "CameraObject.h"
@@ -18,8 +19,24 @@
     int zonesReached;
     int prevScore;
     int initialScoreConstant;
+    
+    Player *player;
+    NSMutableArray *planets;
+    NSMutableArray *zones;
+    NSMutableArray *cameraObjects;
+    CGFloat lastPlanetXPos;
+    CGFloat lastPlanetYPos;
+    CCLabelTTF *scoreLabel;
+    CCLabelTTF *zonesReachedLabel;
+    CGSize size;
+    
+    // where the player is on the screen (240,160 is center of screen)
+    CGPoint cameraFocusPosition;
 }
 
+/* 
+    Returns a CCScene that contains the HelloWorldLayer as the only child
+*/
 + (CCScene *) scene
 {
 	// 'scene' is an autorelease object.
@@ -44,9 +61,9 @@
 
 - (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos
 {
-    Planet *planet = [[Planet alloc]init];
+    Planet *planet = [[Planet alloc] init];
     planet.sprite = [CCSprite spriteWithFile:@"PlanetMichael.png"];
-    planet.sprite.position =  ccp( xPos , yPos );     
+    planet.sprite.position =  ccp(xPos, yPos);     
     [planet.sprite setScale:planetSizeScale];
     planet.mass = 1;
     planet.ID = planetCounter;
@@ -57,8 +74,7 @@
     lastPlanetXPos = xPos;
     lastPlanetYPos = yPos;
     
-    
-    Zone *zone = [[Zone alloc]init];
+    Zone *zone = [[Zone alloc] init];
     zone.sprite = [CCSprite spriteWithFile:@"zone.png"];
     zone.sprite.position =  ccp( xPos , yPos );    
     [zone.sprite setScale:planetSizeScale*zoneScaleRelativeToPlanet];   
@@ -69,8 +85,6 @@
     [zone release];
     
     planetCounter += 1;
-    
-    
 }
 
 /*
@@ -84,9 +98,9 @@
         [self setGameConstants];
         self.isTouchEnabled= TRUE;
         planetCounter = 0;
-        cameraObjects = [[NSMutableArray alloc]init];
-        planets = [[NSMutableArray alloc]init];
-        zones = [[NSMutableArray alloc]init];
+        cameraObjects = [[NSMutableArray alloc] init];
+        planets = [[NSMutableArray alloc] init];
+        zones = [[NSMutableArray alloc] init];
         
         scoreLabel = [CCLabelTTF labelWithString:@"Score: " fontName:@"Marker Felt" fontSize:24];
         scoreLabel.position = ccp(400, [scoreLabel boundingBox].size.height);
@@ -97,11 +111,11 @@
         [self addChild: zonesReachedLabel];
         
         [self CreatePlanetAndZone:100*1.5 yPos:size.width/2];
-        [self CreatePlanetAndZone:lastPlanetXPos+300*1.5 yPos:lastPlanetYPos];
-        [self CreatePlanetAndZone:lastPlanetXPos+200*1.5 yPos:lastPlanetYPos+100*1.5];
-        [self CreatePlanetAndZone:lastPlanetXPos+180*1.5 yPos:lastPlanetYPos+120*1.5];
-        [self CreatePlanetAndZone:lastPlanetXPos+30*1.5 yPos:lastPlanetYPos+230*1.5];
-        [self CreatePlanetAndZone:lastPlanetXPos-150*1.5 yPos:lastPlanetYPos+160*1.5];
+        [self CreatePlanetAndZone:lastPlanetXPos + 300*1.5 yPos:lastPlanetYPos];
+        [self CreatePlanetAndZone:lastPlanetXPos + 200*1.5 yPos:lastPlanetYPos + 100*1.5];
+        [self CreatePlanetAndZone:lastPlanetXPos + 180*1.5 yPos:lastPlanetYPos + 120*1.5];
+        [self CreatePlanetAndZone:lastPlanetXPos + 30*1.5 yPos:lastPlanetYPos + 230*1.5];
+        [self CreatePlanetAndZone:lastPlanetXPos - 150*1.5 yPos:lastPlanetYPos + 160*1.5];
         
         player = [[Player alloc]init];        
         player.sprite = [CCSprite spriteWithFile:@"planet2.png"];
@@ -114,7 +128,7 @@
         
         [self JumpPlayerToPlanet:0];    
         [self UpdateScore:true];
-        [self schedule:@selector(Update:) interval:0]; //this makes the update loop loop1!!!
+        [self schedule:@selector(Update:) interval:0]; //this makes the update loop loop1!
 	}
 	return self;
 }
