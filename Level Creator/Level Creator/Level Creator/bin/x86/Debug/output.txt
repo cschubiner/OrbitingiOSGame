@@ -1,4 +1,0 @@
-        [self CreatePlanetAndZone:231 yPos:202];
-        [self CreatePlanetAndZone:1 yPos:9];
-        [self CreatePlanetAndZone:1 yPos:10];
-
