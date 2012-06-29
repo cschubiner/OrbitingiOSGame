@@ -8,7 +8,12 @@
 
 #import "CameraObject.h"
 
-
 @implementation CameraObject
-@synthesize sprite,alive,ID,acceleration,velocity;
+
+@synthesize sprite;
+@synthesize alive;
+@synthesize ID;
+@synthesize acceleration;
+@synthesize velocity;
+
 @end

@@ -10,16 +10,11 @@
 #import "cocos2d.h"
 #import "CameraObject.h"
 
-
-@interface Player : CameraObject {
-    
-    
-}
-
--(id)init;
+@interface Player : CameraObject
 
 @property (nonatomic) CGPoint thrustBeginPoint;
 @property (nonatomic) CGPoint thrustEndPoint;
 @property (nonatomic) bool thrustJustOccurred;
 @property (nonatomic) float mass;
+
 @end

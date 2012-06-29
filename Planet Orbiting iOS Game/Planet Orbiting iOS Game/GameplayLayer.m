@@ -77,7 +77,7 @@
     
     Zone *zone = [[Zone alloc] init];
     zone.sprite = [CCSprite spriteWithFile:@"zone.png"];
-    zone.sprite.position =  ccp( xPos , yPos );    
+    zone.sprite.position =  ccp(xPos, yPos );    
     [zone.sprite setScale:planetSizeScale*zoneScaleRelativeToPlanet];   
     zone.ID = planetCounter;
     [cameraObjects addObject:zone];
@@ -85,20 +85,24 @@
     [self addChild:zone.sprite];        
     [zone release];
     
+<<<<<<< HEAD
     planetCounter += 1;
 =======
 
 >>>>>>> did sum stuff idk
+=======
+    planetCounter++;
+>>>>>>> fixed
 }
 
 /*
     On "init," initialize the instance
 */
-- (id) init
+-  (id)init
 {
 	// always call "super" init.
 	// Apple recommends to re-assign "self" with the "super" return value
-	if( (self=[super init])) {
+	if (self = [super init]) {
         [self setGameConstants];
         self.isTouchEnabled= TRUE;
         planetCounter = 0;
@@ -107,12 +111,12 @@
         zones = [[NSMutableArray alloc] init];
         
         scoreLabel = [CCLabelTTF labelWithString:@"Score: " fontName:@"Marker Felt" fontSize:24];
-        scoreLabel.position = ccp(400, [scoreLabel boundingBox].size.height);
-        [self addChild: scoreLabel];
+        scoreLabel.position = ccp(400, scoreLabel.boundingBox.size.height);
+        [self addChild:scoreLabel];
         
         zonesReachedLabel = [CCLabelTTF labelWithString:@"Zones Reached: " fontName:@"Marker Felt" fontSize:24];
-        zonesReachedLabel.position = ccp(100, [zonesReachedLabel boundingBox].size.height);
-        [self addChild: zonesReachedLabel];
+        zonesReachedLabel.position = ccp(100, zonesReachedLabel.boundingBox.size.height);
+        [self addChild:zonesReachedLabel];
         
         [self CreatePlanetAndZone:100*1.5 yPos:size.width/2];
         [self CreatePlanetAndZone:lastPlanetXPos + 300*1.5 yPos:lastPlanetYPos];
@@ -121,7 +125,7 @@
         [self CreatePlanetAndZone:lastPlanetXPos + 30*1.5 yPos:lastPlanetYPos + 230*1.5];
         [self CreatePlanetAndZone:lastPlanetXPos - 150*1.5 yPos:lastPlanetYPos + 160*1.5];
         
-        player = [[Player alloc]init];        
+        player = [[Player alloc] init];        
         player.sprite = [CCSprite spriteWithFile:@"planet2.png"];
         [player.sprite setScale:1.3];
         player.sprite.position = ccp( size.width/2, size.height/2);
@@ -132,14 +136,15 @@
         
         [self JumpPlayerToPlanet:0];    
         [self UpdateScore:true];
-        [self schedule:@selector(Update:) interval:0]; //this makes the update loop loop1!
+        
+        // this makes the update loop loop1!
+        [self schedule:@selector(Update:) interval:0]; 
 	}
 	return self;
 }
 
 - (void)UpdateCameraObjects {
     for (CameraObject *object in cameraObjects) {
-        
         object.velocity = ccpAdd(object.velocity, object.acceleration);
         object.sprite.position = ccpAdd(object.velocity, object.sprite.position);
         object.sprite.position = ccpSub(object.sprite.position, player.velocity); // moves "camera" to follow player

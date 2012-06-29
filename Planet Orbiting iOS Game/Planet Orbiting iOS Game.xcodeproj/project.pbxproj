@@ -446,12 +446,12 @@
 		0C487B02159472AC00674AB9 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				0C487B00159472A500674AB9 /* spaceship.png */,
 				0C487AFE1594729D00674AB9 /* spaceship-hd.png */,
 				CE72301D1599C69A0093ECC4 /* PlanetMichael.png */,
 				CE48B36D159B0C75006DFE00 /* zone.png */,
 				0C487B06159476AA00674AB9 /* planet2-hd.png */,
 				0C487B0A159476D700674AB9 /* planet2.png */,
-				0C487B00159472A500674AB9 /* spaceship.png */,
 				C4A416C7159CC4B300468D54 /* zone.png */,
 			);
 			name = Sprites;
@@ -511,9 +511,9 @@
 			children = (
 				0C487AFD159471FF00674AB9 /* Basic Stuff - Ignore */,
 				0C487AFC159471E800674AB9 /* Classes */,
+				C49E914A159A48D700BC424D /* Constants.h */,
 				0C7AA75A1594693D000B58F2 /* MainMenuLayer.h */,
 				0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */,
-				C49E914A159A48D700BC424D /* Constants.h */,
 				0C487AF615946E2300674AB9 /* GameplayLayer.h */,
 				0C487AF715946E2300674AB9 /* GameplayLayer.m */,
 				0C7AA75D1594693D000B58F2 /* GameConfig.h */,

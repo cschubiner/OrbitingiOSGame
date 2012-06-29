@@ -12,7 +12,7 @@
 @implementation Zone
 @synthesize hasPlayerHitThisZone;
 
--(id) init
+- (id)init
 {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
@@ -22,8 +22,9 @@
 	return self;
 }
 
--(float)radius{
-    radius = MAX([[self sprite] width],[[self sprite] width])/2;
+- (float)radius {
+    float radius = MAX([[self sprite] width],[[self sprite] width])/2;
     return radius;
 }
+
 @end

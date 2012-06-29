@@ -10,12 +10,11 @@
 #import "cocos2d.h"
 #import "CameraObject.h"
 
-@interface Planet : CameraObject {
-    float radius;
-}
--(id)init;
+@interface Planet : CameraObject
 
 @property (nonatomic) CGPoint forceExertingOnPlayer;
 @property (nonatomic) float mass;
--(float)radius;
+
+- (float)radius;
+
 @end

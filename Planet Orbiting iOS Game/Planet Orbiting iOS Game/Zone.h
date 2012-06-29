@@ -11,11 +11,11 @@
 #import "CameraObject.h"
 
 @interface Zone : CameraObject {
-    float radius;
     bool hasPlayerHitThisZone;
 }
--(id)init;
+
 @property (nonatomic) bool hasPlayerHitThisZone;
 
--(float)radius;
+- (float)radius;
+
 @end

@@ -9,15 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface CameraObject : CCNode {
-    
-    
-}
+@interface CameraObject : CCNode
 
 @property (nonatomic,retain) CCSprite *sprite;
+@property (nonatomic) bool alive;
 @property (nonatomic) CGPoint velocity;
 @property (nonatomic) CGPoint acceleration;
-@property (nonatomic) int ID; //or "number", as we used to call it in copter crush...
-@property (nonatomic) bool alive;
+
+// or "number," as we used to call it in copter crush...
+@property (nonatomic) int ID;
 
 @end
