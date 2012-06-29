@@ -113,7 +113,7 @@
         arrow.position = player.position;
         arrow.velocity = player.velocity;
         arrow.acceleration = player.acceleration;
-        arrow.sprite = [[CCSprite alloc] initWithFile:@"arrow.png"];
+        arrow.sprite = [CCSprite spriteWithFile:@"arrow2.png"];
         arrow.sprite.opacity = 140; // opacity goes from 0 to 255
         arrow.sprite.visible = NO;
         [cameraObjects addObject:arrow];
@@ -311,7 +311,10 @@
     CGFloat length = ccpDistance(origin, ending);
     CGFloat angle = CC_RADIANS_TO_DEGREES(-ccpToAngle(vector));
     
-    arrow.sprite.contentSize = CGSizeMake(length, arrow.sprite.height);
+    //The boundingBox is the size of the rectangle's sprite NOT accounting for scaling.
+    //To find the actual, scaled width of a sprite, use [sprite width]. 
+    [arrow.sprite setScaleX:length/[arrow.sprite boundingBox].size.width];
+    [arrow.sprite setScaleY:.2];
     arrow.sprite.rotation = angle;
 }
 

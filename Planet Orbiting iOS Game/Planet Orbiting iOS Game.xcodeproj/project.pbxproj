@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		01D5AD03159D938000D6EB90 /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D5AD02159D938000D6EB90 /* Arrow.m */; };
-		01D5AD08159D981700D6EB90 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D5AD07159D981700D6EB90 /* arrow.png */; };
 		0C2DEF02159C20BE0018F0FA /* Zone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2DEF01159C20BE0018F0FA /* Zone.m */; };
 		0C487AF815946E2300674AB9 /* GameplayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487AF715946E2300674AB9 /* GameplayLayer.m */; };
 		0C487AFB159471E000674AB9 /* CameraObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487AFA159471E000674AB9 /* CameraObject.m */; };
@@ -134,13 +133,13 @@
 		0C7AA7591594693D000B58F2 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA7581594693D000B58F2 /* RootViewController.m */; };
 		0C7AA75C1594693D000B58F2 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */; };
 		C4A416C8159CC4B300468D54 /* zone.png in Resources */ = {isa = PBXBuildFile; fileRef = C4A416C7159CC4B300468D54 /* zone.png */; };
+		C4E09658159E106000E31908 /* arrow2.png in Resources */ = {isa = PBXBuildFile; fileRef = C4E09657159E106000E31908 /* arrow2.png */; };
 		CE72301E1599C69A0093ECC4 /* PlanetMichael.png in Resources */ = {isa = PBXBuildFile; fileRef = CE72301D1599C69A0093ECC4 /* PlanetMichael.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		01D5AD01159D938000D6EB90 /* Arrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arrow.h; sourceTree = "<group>"; };
 		01D5AD02159D938000D6EB90 /* Arrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Arrow.m; sourceTree = "<group>"; };
-		01D5AD07159D981700D6EB90 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow.png; path = ../../../Documents/arrow.png; sourceTree = "<group>"; };
 		0C2DEF00159C20BE0018F0FA /* Zone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Zone.h; sourceTree = "<group>"; };
 		0C2DEF01159C20BE0018F0FA /* Zone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Zone.m; sourceTree = "<group>"; };
 		0C487AF615946E2300674AB9 /* GameplayLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameplayLayer.h; sourceTree = "<group>"; };
@@ -392,6 +391,7 @@
 		0C7AA75D1594693D000B58F2 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		C49E914A159A48D700BC424D /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		C4A416C7159CC4B300468D54 /* zone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zone.png; sourceTree = "<group>"; };
+		C4E09657159E106000E31908 /* arrow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow2.png; sourceTree = "<group>"; };
 		CE72301D1599C69A0093ECC4 /* PlanetMichael.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlanetMichael.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -445,8 +445,8 @@
 		0C487B02159472AC00674AB9 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
-				01D5AD07159D981700D6EB90 /* arrow.png */,
 				0C487AFE1594729D00674AB9 /* spaceship-hd.png */,
+				C4E09657159E106000E31908 /* arrow2.png */,
 				CE72301D1599C69A0093ECC4 /* PlanetMichael.png */,
 				0C487B06159476AA00674AB9 /* planet2-hd.png */,
 				0C487B0A159476D700674AB9 /* planet2.png */,
@@ -909,7 +909,7 @@
 				0C487B0B159476D700674AB9 /* planet2.png in Resources */,
 				CE72301E1599C69A0093ECC4 /* PlanetMichael.png in Resources */,
 				C4A416C8159CC4B300468D54 /* zone.png in Resources */,
-				01D5AD08159D981700D6EB90 /* arrow.png in Resources */,
+				C4E09658159E106000E31908 /* arrow2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
