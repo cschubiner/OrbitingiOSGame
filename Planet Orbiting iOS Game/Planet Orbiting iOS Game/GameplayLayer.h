@@ -20,7 +20,7 @@
     CGFloat lastPlanetYPos;
     CCLabelTTF *scoreLabel;
     CCLabelTTF *zonesReachedLabel;
-    CGSize size;
+    CGSize size ;
 
     // where the player is on the screen (240,160 is center of screen)
     CGPoint cameraFocusPosition;
