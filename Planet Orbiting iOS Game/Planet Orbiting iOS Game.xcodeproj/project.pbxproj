@@ -131,11 +131,7 @@
 		0C7AA7561594693D000B58F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA7551594693D000B58F2 /* AppDelegate.m */; };
 		0C7AA7591594693D000B58F2 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA7581594693D000B58F2 /* RootViewController.m */; };
 		0C7AA75C1594693D000B58F2 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */; };
-<<<<<<< HEAD
 		C4A416C8159CC4B300468D54 /* zone.png in Resources */ = {isa = PBXBuildFile; fileRef = C4A416C7159CC4B300468D54 /* zone.png */; };
-=======
-		CE48B36E159B0C75006DFE00 /* zone.png in Resources */ = {isa = PBXBuildFile; fileRef = CE48B36D159B0C75006DFE00 /* zone.png */; };
->>>>>>> did sum stuff idk
 		CE72301E1599C69A0093ECC4 /* PlanetMichael.png in Resources */ = {isa = PBXBuildFile; fileRef = CE72301D1599C69A0093ECC4 /* PlanetMichael.png */; };
 /* End PBXBuildFile section */
 
@@ -390,11 +386,7 @@
 		0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
 		0C7AA75D1594693D000B58F2 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		C49E914A159A48D700BC424D /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		C4A416C7159CC4B300468D54 /* zone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zone.png; sourceTree = "<group>"; };
-=======
-		CE48B36D159B0C75006DFE00 /* zone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zone.png; sourceTree = "<group>"; };
->>>>>>> did sum stuff idk
 		CE72301D1599C69A0093ECC4 /* PlanetMichael.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlanetMichael.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -448,7 +440,6 @@
 			children = (
 				0C487AFE1594729D00674AB9 /* spaceship-hd.png */,
 				CE72301D1599C69A0093ECC4 /* PlanetMichael.png */,
-				CE48B36D159B0C75006DFE00 /* zone.png */,
 				0C487B06159476AA00674AB9 /* planet2-hd.png */,
 				0C487B0A159476D700674AB9 /* planet2.png */,
 				0C487B00159472A500674AB9 /* spaceship.png */,
@@ -909,11 +900,7 @@
 				0C487B07159476AA00674AB9 /* planet2-hd.png in Resources */,
 				0C487B0B159476D700674AB9 /* planet2.png in Resources */,
 				CE72301E1599C69A0093ECC4 /* PlanetMichael.png in Resources */,
-<<<<<<< HEAD
 				C4A416C8159CC4B300468D54 /* zone.png in Resources */,
-=======
-				CE48B36E159B0C75006DFE00 /* zone.png in Resources */,
->>>>>>> did sum stuff idk
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

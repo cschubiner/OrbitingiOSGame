@@ -8,21 +8,12 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-<<<<<<< HEAD
 const float thrustStrength = .05;
 const float gravitationalConstant = 2200000000;
 const float distanceMult = 12;
 const float gravitationalDistancePower = 3;
 const float reverseGravitationalConstant = 2800000000000;
 const float reverseDistanceMult = 3;
-=======
-const float thrustStrength = .015;
-const float gravitationalConstant = 500000000;
-const float distanceMult = 10;
-const float gravitationalDistancePower = 3;
-const float reverseGravitationalConstant = 250000000000;
-const float reverseDistanceMult = 2.5;
->>>>>>> did sum stuff idk
 const float reverseGravitationalDistancePower = 5;
 
 // this is purely visual and doesn't affect mass.
