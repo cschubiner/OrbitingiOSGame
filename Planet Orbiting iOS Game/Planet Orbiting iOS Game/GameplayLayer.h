@@ -20,14 +20,14 @@
     CGFloat lastPlanetYPos;
     CCLabelTTF *scoreLabel;
     CCLabelTTF *zonesReachedLabel;
-    CGSize size ;
+    CGSize size;
 
     // where the player is on the screen (240,160 is center of screen)
     CGPoint cameraFocusPosition;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
-+(CCScene *) scene;
++ (CCScene *) scene;
 
 - (int)RandomBetween:(int)minvalue maxvalue:(int)maxvalue;
 @end

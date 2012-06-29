@@ -3,7 +3,7 @@
 //  Planet Orbiting iOS Game
 //
 //  Created by Clay Schubiner on 6/22/12.
-//  Copyright Stanfdord University 2012. All rights reserved.
+//  Copyright Stanford University 2012. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
