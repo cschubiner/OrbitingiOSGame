@@ -8,14 +8,11 @@
 
 #import "Player.h"
 
+
 @implementation Player
+@synthesize thrustEndPoint,thrustBeginPoint,thrustJustOccurred,mass;
 
-@synthesize thrustEndPoint;
-@synthesize thrustBeginPoint;
-@synthesize thrustJustOccurred;
-@synthesize mass;
-
-- (id)init
+-(id) init
 {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
