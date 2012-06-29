@@ -57,7 +57,6 @@
     lastPlanetXPos = xPos;
     lastPlanetYPos = yPos;
     
-    
     Zone *zone = [[Zone alloc]init];
     zone.sprite = [CCSprite spriteWithFile:@"zone.png"];
     zone.sprite.position =  ccp( xPos , yPos );    
@@ -68,9 +67,7 @@
     [self addChild:zone.sprite];        
     [zone release];
     
-    planetCounter += 1;
-    
-    
+    planetCounter++;
 }
 
 /*
@@ -106,11 +103,21 @@
         player = [[Player alloc]init];        
         player.sprite = [CCSprite spriteWithFile:@"planet2.png"];
         [player.sprite setScale:1.3];
-        player.sprite.position = ccp( size.width/2, size.height/2);
+        player.sprite.position = ccp(size.width/2, size.height/2);
         player.velocity = ccp(0, 0);
         player.thrustJustOccurred = false;        
         [cameraObjects addObject:player];
         [self addChild:player.sprite];
+        
+        arrow = [[Arrow alloc] init];
+        arrow.position = player.position;
+        arrow.velocity = player.velocity;
+        arrow.acceleration = player.acceleration;
+        arrow.sprite = [[CCSprite alloc] initWithFile:@"arrow.png"];
+        arrow.sprite.opacity = 140; // opacity goes from 0 to 255
+        arrow.sprite.visible = NO;
+        [cameraObjects addObject:arrow];
+        [self addChild:arrow.sprite];
         
         [self JumpPlayerToPlanet:0];    
         [self UpdateScore:true];
@@ -142,7 +149,6 @@
         acclerationToAdd = ccpAdd(acclerationToAdd, planet.forceExertingOnPlayer);
         acclerationToAdd = ccpAdd(acclerationToAdd, planet.forceExertingOnPlayer);
         
-        
         CGPoint reverseForceOnPlayer;
         CGPoint reverseDirection;
         reverseDirection = ccpNormalize(ccpSub(player.sprite.position, planet.sprite.position));
@@ -162,7 +168,7 @@
             CGPoint dir = ccpNormalize(b);
             CGPoint dampenerToAdd;
             if (ccpLength(a) > ccpLength(b)) {
-                dampenerToAdd = ccp(dir.x * distIn * theBestFuckingConstantEver, dir.y *    distIn * theBestFuckingConstantEver);
+                dampenerToAdd = ccp(dir.x * distIn * theBestFuckingConstantEver, dir.y * distIn * theBestFuckingConstantEver);
             }
             else {
                 dampenerToAdd = ccp(dir.x * distIn * theBestFuckingConstantEver * theBestConstantComplement, dir.y *    distIn * theBestFuckingConstantEver * theBestConstantComplement);
@@ -238,7 +244,7 @@
                 {
                     [self removeChild:zone.sprite cleanup:YES];
                     zone.hasPlayerHitThisZone = true;  
-                    zonesReached ++;
+                    zonesReached++;
                 }
             }
         }
@@ -263,33 +269,59 @@
     [zonesReachedLabel setString:[NSString stringWithFormat:@"Zones Reached: %d",zonesReached]];
 }
 
+- (void) UpdateArrow {
+    arrow.position = player.position;
+    arrow.velocity = player.velocity;
+    arrow.acceleration = player.acceleration;
+    arrow.sprite.position = player.sprite.position;
+}
+
 - (void) Update:(ccTime)dt {
     
     [self UpdatePlanets];    
     [self UpdatePlayer];
+    [self UpdateArrow];
     [self UpdateScore:false];
     [self UpdateCameraObjects];
 }
 
-- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
-        if (location.x <=size.width/4 && location.y <=size.height/4)
+        if (location.x <= size.width/4 && location.y <= size.height/4)
             [self JumpPlayerToPlanet:0];
         else
             [player setThrustBeginPoint:location];
+        [arrow setSwipeOrigin:location];
+        arrow.sprite.visible = YES;
     }
 }
 
-- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [touches anyObject];
+
+    CGPoint origin = arrow.swipeOrigin;
+    CGPoint ending = [touch locationInView:[touch view]];
+    
+    CGPoint startPoint = [[CCDirector sharedDirector] convertToGL:origin];
+    CGPoint endPoint = [[CCDirector sharedDirector] convertToGL:ending];
+
+    CGPoint vector = ccpSub(endPoint, startPoint);
+    CGFloat length = ccpDistance(origin, ending);
+    CGFloat angle = CC_RADIANS_TO_DEGREES(-ccpToAngle(vector));
+    
+    arrow.sprite.contentSize = CGSizeMake(length, arrow.sprite.height);
+    arrow.sprite.rotation = angle;
+}
+
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
         [player setThrustEndPoint:location];
         player.thrustJustOccurred = true;
+        arrow.sprite.visible = NO;
     }
 }
 

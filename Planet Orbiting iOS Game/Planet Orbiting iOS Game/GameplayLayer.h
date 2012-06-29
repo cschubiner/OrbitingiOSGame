@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Player.h"
+#import "Arrow.h"
 
 @interface GameplayLayer : CCLayer {
     
     Player *player;
+    Arrow *arrow;
     NSMutableArray *planets;
     NSMutableArray *zones;
     NSMutableArray *cameraObjects;

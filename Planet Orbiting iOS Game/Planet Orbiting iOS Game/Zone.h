@@ -14,8 +14,10 @@
     float radius;
     bool hasPlayerHitThisZone;
 }
+
 -(id)init;
 @property (nonatomic) bool hasPlayerHitThisZone;
 
 -(float)radius;
+
 @end
