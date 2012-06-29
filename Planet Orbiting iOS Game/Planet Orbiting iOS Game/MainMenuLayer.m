@@ -41,7 +41,7 @@
         [self addChild:menuLayer];
         
 		// create and initialize a Label
-        CCLabelTTF *label = [CCLabelTTF labelWithString:@"Planet Orbiting Game" fontName:@"Marker Felt" fontSize:32];
+        CCLabelTTF *label = [CCLabelTTF labelWithString:@"Project Warlock" fontName:@"Marker Felt" fontSize:32];
 		// position the label on the center of the screen
 		label.position =  ccp( size.width /2 , 3*size.height/4 );
 		// add the label as a child to this Layer

@@ -16,20 +16,20 @@ const float reverseGravitationalConstant = 2800000000000;
 const float reverseDistanceMult = 3;
 const float reverseGravitationalDistancePower = 5;
 
-//this is purely visual and doesn't affect mass.
+// this is purely visual and doesn't affect mass.
 const float planetSizeScale = .21;
 
-//the zone scale is the planet scale * this number
+// the zone scale is the planet scale * this number
 const float zoneScaleRelativeToPlanet = 1.8;
 
-//it actualy does nothing right now but normally this constant multiplies the velocity whenever it is super close to a planet
+// it actualy does nothing right now but normally this constant multiplies the velocity whenever it is super close to a planet
 const float velocityDampener = 1;
 
-//this is basically how much gravity affects you. If you reduce both this and thrustStregth, you will effectively be slowing down the speed of the game
+// this is basically how much gravity affects you. If you reduce both this and thrustStregth, you will effectively be slowing down the speed of the game
 const float absoluteSpeedMult = .3;
 
-//the truely magical but well thought out constant that makes it easy to orbit!!!!! 0=nothing, 1=impossible to hit a planet. values between 0 and 1 make the planet harder to hit as they get closer to 1.
+// the truely magical but well thought-out constant that makes it easy to orbit. 0 = nothing, 1 = impossible to hit a planet. values between 0 and 1 make the planet harder to hit as they get closer to 1.
 const float theBestFuckingConstantEver = .3;
 
-//the factor by which to scale theBestFuckingConstantEver for when the spaceship is moving away from the planet
+// the factor by which to scale theBestFuckingConstantEver for when the spaceship is moving away from the planet
 const float theBestConstantComplement = 1.5;

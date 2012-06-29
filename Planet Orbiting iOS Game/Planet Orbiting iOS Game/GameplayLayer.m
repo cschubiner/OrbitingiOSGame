@@ -3,8 +3,7 @@
 //  Planet Orbiting iOS Game
 //
 //  Created by Clay Schubiner on 6/22/12.
-//  Copyright 2012 Stanford University. All rights reserved.
-//  HIHI THIS Q C TEST
+//  Copyright Stanford University 2012. All rights reserved.
 
 #import "GameplayLayer.h"
 #import "CameraObject.h"
@@ -13,9 +12,15 @@
 #import "Zone.h"
 #import "Constants.h"
 
-@implementation GameplayLayer
+@implementation GameplayLayer {
+    int planetCounter;
+    int score;
+    int zonesReached;
+    int prevScore;
+    int initialScoreConstant;
+}
 
-+(CCScene *) scene
++ (CCScene *) scene
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
@@ -68,10 +73,12 @@
     
 }
 
-// on "init" you need to initialize your instance
--(id) init
+/*
+    On "init," initialize the instance
+*/
+- (id) init
 {
-	// always call "super" init
+	// always call "super" init.
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
         [self setGameConstants];
@@ -166,7 +173,7 @@
     }
     player.acceleration = ccp(acclerationToAdd.x * absoluteSpeedMult, acclerationToAdd.y * absoluteSpeedMult);
     
-    /*This sets the player's velocity when the user just swiped the screen (when player.thrustJustOccurred==true).*/
+    // set the player's velocity when the user just swiped the screen (when player.thrustJustOccurred==true).*/
     if (player.thrustJustOccurred) {
         CGPoint thrustVelocity = ccpAdd(ccp(-player.thrustBeginPoint.x,-player.thrustBeginPoint.y), player.thrustEndPoint);
         thrustVelocity = ccp( thrustVelocity.x* thrustStrength,thrustVelocity.y*thrustStrength);
@@ -175,7 +182,7 @@
     }
 }
 
--(void)CenterCameraAtPlayer {
+- (void)CenterCameraAtPlayer {
     for (CameraObject *object in cameraObjects) {
         object.sprite.position = ccpSub(object.sprite.position, ccpSub(player.sprite.position,cameraFocusPosition));
     }
@@ -204,16 +211,16 @@
 
 - (void)UpdatePlanets {
     
-    //Planet-to-Player collision detection follows-------------
+    // Planet-to-Player collision detection follows-------------
     for (Planet* planet in planets)
     {
         if (ccpDistance([[player sprite]position], [[planet sprite]position])<[planet radius])
         {
             [self JumpPlayerToPlanet:0];
         }
-    }//end collision detection code-----------------
+    } // end collision detection code-----------------
     
-    //Zone-to-Player collision detection follows-------------
+    // Zone-to-Player collision detection follows-------------
     int i = 0;
     for (Zone* zone in zones)
     {
@@ -236,10 +243,12 @@
             }
         }
         i += 1;
-    }//end collision detection code-----------------
+    } // end collision detection code-----------------
 }
 
-/*Your score goes up as you move along the vector between the first and last planet. Your score will also never go down, as the user doesn't like to see his score go down. The initialScoreConstant will be set only when firstTimeRunning == true. initialScoreConstant is what ensures your score starts at zero, and not some negative number.*/
+/*
+    Your score goes up as you move along the vector between the first and last planet. Your score will also never go down, as the user doesn't like to see his score go down. The initialScoreConstant will be set only when firstTimeRunning == true. initialScoreConstant is what ensures your score starts at zero, and not some negative number.
+*/
 - (void)UpdateScore:(bool)firstTimeRunning {
     CGPoint firstToLastPlanet = ccpSub(((Planet*)[planets objectAtIndex:[planets count]-1]).sprite.position, ((Planet*)[planets objectAtIndex:0]).sprite.position);
     CGPoint firstToPlayerPos = ccpSub(((Planet*)[planets objectAtIndex:0]).sprite.position, player.sprite.position);
@@ -262,7 +271,7 @@
     [self UpdateCameraObjects];
 }
 
--(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
@@ -274,7 +283,7 @@
     }
 }
 
--(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
@@ -289,4 +298,5 @@
     int randomNumber = minvalue+  arc4random() % (1+maxvalue-minvalue);
     return randomNumber;
 }
+
 @end

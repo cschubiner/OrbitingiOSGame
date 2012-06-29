@@ -21,13 +21,8 @@
     CCLabelTTF *scoreLabel;
     CCLabelTTF *zonesReachedLabel;
     CGSize size ;
-    int planetCounter;
-    int score;
-    int zonesReached;
-    int prevScore;
-    int initialScoreConstant;
-    
-    //this is where the player is on screen (240,160 is center of screen)
+
+    // where the player is on the screen (240,160 is center of screen)
     CGPoint cameraFocusPosition;
 }
 

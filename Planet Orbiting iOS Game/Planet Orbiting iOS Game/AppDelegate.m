@@ -23,7 +23,7 @@
 	//
 	// THIS CODE REMOVES THE STARTUP FLICKER
 	//
-	// Uncomment the following code if you Application only supports landscape mode
+	// Uncomment the following code if your Application only supports landscape mode
 	//
 #if GAME_AUTOROTATION == kGameAutorotationUIViewController
 
@@ -138,13 +138,9 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 	CCDirector *director = [CCDirector sharedDirector];
-	
 	[[director openGLView] removeFromSuperview];
-	
 	[viewController release];
-	
 	[window release];
-	
 	[director end];	
 }
 
