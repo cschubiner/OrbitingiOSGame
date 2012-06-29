@@ -11,6 +11,8 @@
 #import "Planet.h"
 #import "Zone.h"
 #import "Constants.h"
+#import "CCLayerStreak.h"
+
 
 @implementation GameplayLayer {
     int planetCounter;
@@ -52,19 +54,19 @@
     planet.ID = planetCounter;
     [cameraObjects addObject:planet];
     [planets addObject:planet];
-    [self addChild:planet.sprite];        
+    [cameraLayer addChild:planet.sprite];        
     [planet release];
     lastPlanetXPos = xPos;
     lastPlanetYPos = yPos;
     
     Zone *zone = [[Zone alloc]init];
     zone.sprite = [CCSprite spriteWithFile:@"zone.png"];
-    zone.sprite.position =  ccp( xPos , yPos );    
     [zone.sprite setScale:planetSizeScale*zoneScaleRelativeToPlanet];   
     zone.ID = planetCounter;
+    zone.sprite.position = planet.sprite.position;
     [cameraObjects addObject:zone];
     [zones addObject:zone];
-    [self addChild:zone.sprite];        
+    [cameraLayer addChild:zone.sprite];        
     [zone release];
     
     planetCounter++;
@@ -84,14 +86,16 @@
         cameraObjects = [[NSMutableArray alloc]init];
         planets = [[NSMutableArray alloc]init];
         zones = [[NSMutableArray alloc]init];
+        hudLayer = [[CCLayer alloc]init];
+        cameraLayer = [[CCLayer alloc]init];
         
         scoreLabel = [CCLabelTTF labelWithString:@"Score: " fontName:@"Marker Felt" fontSize:24];
         scoreLabel.position = ccp(400, [scoreLabel boundingBox].size.height);
-        [self addChild: scoreLabel];
+        [hudLayer addChild: scoreLabel];
         
         zonesReachedLabel = [CCLabelTTF labelWithString:@"Zones Reached: " fontName:@"Marker Felt" fontSize:24];
         zonesReachedLabel.position = ccp(100, [zonesReachedLabel boundingBox].size.height);
-        [self addChild: zonesReachedLabel];
+        [hudLayer addChild: zonesReachedLabel];
         
         [self CreatePlanetAndZone:100*1.5 yPos:size.width/2];
         [self CreatePlanetAndZone:lastPlanetXPos+300*1.5 yPos:lastPlanetYPos];
@@ -104,22 +108,30 @@
         player.sprite = [CCSprite spriteWithFile:@"planet2.png"];
         [player.sprite setScale:1.3];
         player.sprite.position = ccp(size.width/2, size.height/2);
-        player.velocity = ccp(0, 0);
+        player.velocity = CGPointZero;
+        player.streak = [CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak.png" width:16 length:32 color:ccc4(0,0,255, 255) target:player.sprite];
+        [cameraLayer addChild:player.streak];
+
         player.thrustJustOccurred = false;        
         [cameraObjects addObject:player];
-        [self addChild:player.sprite];
+        [cameraLayer addChild:player.sprite];
         
         arrow = [[Arrow alloc] init];
-        arrow.position = player.position;
         arrow.velocity = player.velocity;
         arrow.acceleration = player.acceleration;
         arrow.sprite = [CCSprite spriteWithFile:@"arrow2.png"];
         arrow.sprite.opacity = 140; // opacity goes from 0 to 255
         arrow.sprite.visible = NO;
         [cameraObjects addObject:arrow];
-        [self addChild:arrow.sprite];
+        [cameraLayer addChild:arrow.sprite];
+        
+        id followAction = [CCFollow actionWithTarget:player.sprite];
+        [cameraLayer runAction: followAction];
         
         [self JumpPlayerToPlanet:0];    
+        
+        [self addChild:cameraLayer];
+        [self addChild:hudLayer];
         [self UpdateScore:true];
         [self schedule:@selector(Update:) interval:0]; //this makes the update loop loop1!!!
 	}
@@ -128,11 +140,8 @@
 
 - (void)UpdateCameraObjects {
     for (CameraObject *object in cameraObjects) {
-        
         object.velocity = ccpAdd(object.velocity, object.acceleration);
         object.sprite.position = ccpAdd(object.velocity, object.sprite.position);
-        object.sprite.position = ccpSub(object.sprite.position, player.velocity); // moves "camera" to follow player
-        // e.g. if we want the player to "move" right, everything else will just move to the left and the "camera" will thus follow the player
     }
 }
 
@@ -270,7 +279,6 @@
 }
 
 - (void) UpdateArrow {
-    arrow.position = player.position;
     arrow.velocity = player.velocity;
     arrow.acceleration = player.acceleration;
     arrow.sprite.position = player.sprite.position;

@@ -132,7 +132,8 @@
 		0C7AA7561594693D000B58F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA7551594693D000B58F2 /* AppDelegate.m */; };
 		0C7AA7591594693D000B58F2 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA7581594693D000B58F2 /* RootViewController.m */; };
 		0C7AA75C1594693D000B58F2 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */; };
-		C4A416C8159CC4B300468D54 /* zone.png in Resources */ = {isa = PBXBuildFile; fileRef = C4A416C7159CC4B300468D54 /* zone.png */; };
+		C455064D159E337E00F362D1 /* CCLayerStreak.m in Sources */ = {isa = PBXBuildFile; fileRef = C455064C159E337E00F362D1 /* CCLayerStreak.m */; };
+		C4550650159E3C2C00F362D1 /* zone.png in Resources */ = {isa = PBXBuildFile; fileRef = C455064F159E3C2C00F362D1 /* zone.png */; };
 		C4E09658159E106000E31908 /* arrow2.png in Resources */ = {isa = PBXBuildFile; fileRef = C4E09657159E106000E31908 /* arrow2.png */; };
 		CE72301E1599C69A0093ECC4 /* PlanetMichael.png in Resources */ = {isa = PBXBuildFile; fileRef = CE72301D1599C69A0093ECC4 /* PlanetMichael.png */; };
 /* End PBXBuildFile section */
@@ -389,8 +390,10 @@
 		0C7AA75A1594693D000B58F2 /* MainMenuLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
 		0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
 		0C7AA75D1594693D000B58F2 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
+		C455064B159E337E00F362D1 /* CCLayerStreak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLayerStreak.h; sourceTree = "<group>"; };
+		C455064C159E337E00F362D1 /* CCLayerStreak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLayerStreak.m; sourceTree = "<group>"; };
+		C455064F159E3C2C00F362D1 /* zone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zone.png; sourceTree = "<group>"; };
 		C49E914A159A48D700BC424D /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		C4A416C7159CC4B300468D54 /* zone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zone.png; sourceTree = "<group>"; };
 		C4E09657159E106000E31908 /* arrow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow2.png; sourceTree = "<group>"; };
 		CE72301D1599C69A0093ECC4 /* PlanetMichael.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlanetMichael.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -417,6 +420,8 @@
 		0C487AFC159471E800674AB9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C455064B159E337E00F362D1 /* CCLayerStreak.h */,
+				C455064C159E337E00F362D1 /* CCLayerStreak.m */,
 				0C487AF9159471E000674AB9 /* CameraObject.h */,
 				0C487AFA159471E000674AB9 /* CameraObject.m */,
 				0C487B031594739500674AB9 /* Player.h */,
@@ -451,7 +456,7 @@
 				0C487B06159476AA00674AB9 /* planet2-hd.png */,
 				0C487B0A159476D700674AB9 /* planet2.png */,
 				0C487B00159472A500674AB9 /* spaceship.png */,
-				C4A416C7159CC4B300468D54 /* zone.png */,
+				C455064F159E3C2C00F362D1 /* zone.png */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -510,11 +515,11 @@
 			children = (
 				0C487AFD159471FF00674AB9 /* Basic Stuff - Ignore */,
 				0C487AFC159471E800674AB9 /* Classes */,
-				0C7AA75A1594693D000B58F2 /* MainMenuLayer.h */,
-				0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */,
 				C49E914A159A48D700BC424D /* Constants.h */,
 				0C487AF615946E2300674AB9 /* GameplayLayer.h */,
 				0C487AF715946E2300674AB9 /* GameplayLayer.m */,
+				0C7AA75A1594693D000B58F2 /* MainMenuLayer.h */,
+				0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */,
 				0C7AA75D1594693D000B58F2 /* GameConfig.h */,
 				0C7AA60315946939000B58F2 /* Resources */,
 				0C7AA61715946939000B58F2 /* libs */,
@@ -908,8 +913,8 @@
 				0C487B07159476AA00674AB9 /* planet2-hd.png in Resources */,
 				0C487B0B159476D700674AB9 /* planet2.png in Resources */,
 				CE72301E1599C69A0093ECC4 /* PlanetMichael.png in Resources */,
-				C4A416C8159CC4B300468D54 /* zone.png in Resources */,
 				C4E09658159E106000E31908 /* arrow2.png in Resources */,
+				C4550650159E3C2C00F362D1 /* zone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1024,6 +1029,7 @@
 				0C487B0E1594792C00674AB9 /* Planet.m in Sources */,
 				0C2DEF02159C20BE0018F0FA /* Zone.m in Sources */,
 				01D5AD03159D938000D6EB90 /* Arrow.m in Sources */,
+				C455064D159E337E00F362D1 /* CCLayerStreak.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

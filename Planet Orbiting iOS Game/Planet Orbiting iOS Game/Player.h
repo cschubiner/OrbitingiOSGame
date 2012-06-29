@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "CameraObject.h"
-
+#import "CCLayerStreak.h"
 
 @interface Player : CameraObject {
     
@@ -22,4 +22,6 @@
 @property (nonatomic) CGPoint thrustEndPoint;
 @property (nonatomic) bool thrustJustOccurred;
 @property (nonatomic) float mass;
+@property (nonatomic, retain) CCLayerStreak* streak;
+
 @end

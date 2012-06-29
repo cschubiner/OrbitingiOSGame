@@ -20,4 +20,6 @@
 @property (nonatomic) int ID; //or "number", as we used to call it in copter crush...
 @property (nonatomic) bool alive;
 
+-(CGPoint)position;
+-(void)setPosition:(CGPoint)position;
 @end

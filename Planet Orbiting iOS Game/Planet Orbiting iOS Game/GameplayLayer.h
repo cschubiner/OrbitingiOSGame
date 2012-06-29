@@ -23,6 +23,8 @@
     CCLabelTTF *scoreLabel;
     CCLabelTTF *zonesReachedLabel;
     CGSize size;
+    CCLayer *hudLayer;
+    CCLayer *cameraLayer;
 
     // where the player is on the screen (240,160 is center of screen)
     CGPoint cameraFocusPosition;
