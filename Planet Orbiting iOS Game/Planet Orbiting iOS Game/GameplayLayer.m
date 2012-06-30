@@ -198,6 +198,7 @@
     if (player.thrustJustOccurred) {
         CGPoint thrustVelocity = ccpAdd(ccp(-player.thrustBeginPoint.x,-player.thrustBeginPoint.y), player.thrustEndPoint);
         thrustVelocity = ccp( thrustVelocity.x* thrustStrength,thrustVelocity.y*thrustStrength);
+        //NSLog([NSString stringWithFormat:@"thrust mag: %f",ccpLength(thrustVelocity)]);
         player.velocity = ccpAdd(player.velocity, thrustVelocity);
         player.thrustJustOccurred=false;
     }
@@ -293,7 +294,6 @@
 }
 
 - (void) Update:(ccTime)dt {
-    
     [self UpdatePlanets];    
     [self UpdatePlayer];
     [self UpdateArrow];
