@@ -116,7 +116,6 @@
 
         player.thrustJustOccurred = false;        
         [cameraObjects addObject:player];
-        [cameraLayer addChild:player.sprite];
         
         arrow = [[Arrow alloc] init];
         arrow.velocity = player.velocity;
@@ -125,6 +124,8 @@
         arrow.sprite.visible = NO;
         [cameraObjects addObject:arrow];
         [cameraLayer addChild:arrow.sprite];
+        [cameraLayer addChild:player.sprite];
+
         
         CCSprite *background = [CCSprite spriteWithFile:@"space_background.png"];
         [self addChild: background]; 
@@ -319,15 +320,21 @@
 
     UITouch *touch = [touches anyObject];
 
-    CGPoint origin = arrow.swipeOrigin;
+    [arrow.sprite setAnchorPoint:CGPointZero];
+    CGPoint origin = player.thrustBeginPoint;
     CGPoint ending = [touch locationInView:[touch view]];
+    CGPoint location;
+    for (UITouch *touch in touches) {
+         location = [touch locationInView:[touch view]];
+        location = [[CCDirector sharedDirector] convertToGL:location];
+    }
     
     CGPoint startPoint = [[CCDirector sharedDirector] convertToGL:origin];
     CGPoint endPoint = [[CCDirector sharedDirector] convertToGL:ending];
 
-    CGPoint vector = ccpSub(endPoint, startPoint);
+    CGPoint vector = ccpSub(origin, location);
     CGFloat length = ccpDistance(origin, ending);
-    CGFloat angle = CC_RADIANS_TO_DEGREES(-ccpToAngle(vector));
+    CGFloat angle = 180+-CC_RADIANS_TO_DEGREES(ccpToAngle(vector));
     
     CGFloat maxLength = MAX(self.boundingBox.size.width, self.boundingBox.size.height)/1.75;
     
@@ -339,7 +346,7 @@
     }
     arrow.sprite.opacity = newOpacity;
     
-    [[arrow sprite ] setScaleX:2.5*newOpacity/255];
+    [[arrow sprite ] setScaleX:3.5*newOpacity/255];
     
     //The boundingBox is the size of the rectangle's sprite NOT accounting for scaling.
     //To find the actual, scaled width of a sprite, use [sprite width]. 
