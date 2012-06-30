@@ -119,8 +119,7 @@
         arrow = [[Arrow alloc] init];
         arrow.velocity = player.velocity;
         arrow.acceleration = player.acceleration;
-        arrow.sprite = [CCSprite spriteWithFile:@"arrow2.png"];
-        arrow.sprite.opacity = 140; // opacity goes from 0 to 255
+        arrow.sprite = [CCSprite spriteWithFile:@"arrowBest.png"];
         arrow.sprite.visible = NO;
         [cameraObjects addObject:arrow];
         [cameraLayer addChild:arrow.sprite];
@@ -310,11 +309,12 @@
         else
             [player setThrustBeginPoint:location];
         [arrow setSwipeOrigin:location];
-        arrow.sprite.visible = YES;
     }
 }
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    arrow.sprite.visible = YES;
+
     UITouch *touch = [touches anyObject];
 
     CGPoint origin = arrow.swipeOrigin;
@@ -327,10 +327,20 @@
     CGFloat length = ccpDistance(origin, ending);
     CGFloat angle = CC_RADIANS_TO_DEGREES(-ccpToAngle(vector));
     
+    CGFloat maxLength = MAX(self.boundingBox.size.width, self.boundingBox.size.height)/1.75;
+    
+    CGFloat power = length / maxLength;
+    
+    CGFloat newOpacity = 255 * pow(power, 0.8);
+    if (newOpacity > 255) {
+        newOpacity = 255;
+    }
+    arrow.sprite.opacity = newOpacity;
+    
     //The boundingBox is the size of the rectangle's sprite NOT accounting for scaling.
     //To find the actual, scaled width of a sprite, use [sprite width]. 
-    [arrow.sprite setScaleX:length/[arrow.sprite boundingBox].size.width];
-    [arrow.sprite setScaleY:.2];
+    //[arrow.sprite setScaleX:length/[arrow.sprite boundingBox].size.width];
+    //[arrow.sprite setScaleY:.2];
     arrow.sprite.rotation = angle;
 }
 
