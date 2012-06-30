@@ -105,12 +105,10 @@
         [self CreatePlanetAndZone:lastPlanetXPos-150*1.5 yPos:lastPlanetYPos+160*1.5];
         
         player = [[Player alloc]init];        
-        player.sprite = [CCSprite spriteWithFile:@"spaceship.png"];
-        [player.sprite setScale:0.2];
+        player.sprite = [CCSprite spriteWithFile:@"planet2.png"];
+        [player.sprite setScale:1.3];
         player.sprite.position = ccp(size.width/2, size.height/2);
         player.velocity = CGPointZero;
-        
-        
         player.streak = [CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak.png" width:16 length:32 color:ccc4(0,0,255, 255) target:player.sprite];
         [cameraLayer addChild:player.streak];
 
