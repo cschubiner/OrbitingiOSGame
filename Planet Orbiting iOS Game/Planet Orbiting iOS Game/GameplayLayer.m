@@ -125,6 +125,10 @@
         [cameraObjects addObject:arrow];
         [cameraLayer addChild:arrow.sprite];
         
+        CCSprite *background = [CCSprite spriteWithFile:@"space_background.png"];
+        [self addChild: background]; 
+        background.position = ccp(0,0);
+        
         id followAction = [CCFollow actionWithTarget:player.sprite];
         [cameraLayer runAction: followAction];
         
@@ -133,7 +137,9 @@
         [self addChild:cameraLayer];
         [self addChild:hudLayer];
         [self UpdateScore:true];
-        [self schedule:@selector(Update:) interval:0]; //this makes the update loop loop1!!!
+        [self schedule:@selector(Update:) interval:0]; //this makes the update loop loop!!!!
+        
+        
 	}
 	return self;
 }

@@ -136,6 +136,7 @@
 		C4550650159E3C2C00F362D1 /* zone.png in Resources */ = {isa = PBXBuildFile; fileRef = C455064F159E3C2C00F362D1 /* zone.png */; };
 		C4E09658159E106000E31908 /* arrow2.png in Resources */ = {isa = PBXBuildFile; fileRef = C4E09657159E106000E31908 /* arrow2.png */; };
 		CE72301E1599C69A0093ECC4 /* PlanetMichael.png in Resources */ = {isa = PBXBuildFile; fileRef = CE72301D1599C69A0093ECC4 /* PlanetMichael.png */; };
+		CEF4A751159EE6E4005D32A1 /* space_background.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF4A750159EE6E4005D32A1 /* space_background.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -396,6 +397,7 @@
 		C49E914A159A48D700BC424D /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		C4E09657159E106000E31908 /* arrow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow2.png; sourceTree = "<group>"; };
 		CE72301D1599C69A0093ECC4 /* PlanetMichael.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlanetMichael.png; sourceTree = "<group>"; };
+		CEF4A750159EE6E4005D32A1 /* space_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = space_background.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -453,6 +455,7 @@
 				0C487AFE1594729D00674AB9 /* spaceship-hd.png */,
 				C4E09657159E106000E31908 /* arrow2.png */,
 				CE72301D1599C69A0093ECC4 /* PlanetMichael.png */,
+				CEF4A750159EE6E4005D32A1 /* space_background.png */,
 				0C487B06159476AA00674AB9 /* planet2-hd.png */,
 				0C487B0A159476D700674AB9 /* planet2.png */,
 				0C487B00159472A500674AB9 /* spaceship.png */,
@@ -915,6 +918,7 @@
 				CE72301E1599C69A0093ECC4 /* PlanetMichael.png in Resources */,
 				C4E09658159E106000E31908 /* arrow2.png in Resources */,
 				C4550650159E3C2C00F362D1 /* zone.png in Resources */,
+				CEF4A751159EE6E4005D32A1 /* space_background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
