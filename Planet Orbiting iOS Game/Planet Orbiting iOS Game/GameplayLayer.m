@@ -156,7 +156,7 @@
         float gravityMultiplier = (gravitationalConstant * planet.mass * player.mass) /distanceBetweenToAPower;
         planet.forceExertingOnPlayer = ccp(direction.x * gravityMultiplier, direction.y * gravityMultiplier);
         acclerationToAdd = ccpAdd(acclerationToAdd, planet.forceExertingOnPlayer);
-        acclerationToAdd = ccpAdd(acclerationToAdd, planet.forceExertingOnPlayer);
+        
         
         CGPoint reverseForceOnPlayer;
         CGPoint reverseDirection;
@@ -167,7 +167,7 @@
         acclerationToAdd = ccpAdd(acclerationToAdd, reverseForceOnPlayer);
         
         
-        if (ccpLength(planet.forceExertingOnPlayer) <= ccpLength(reverseForceOnPlayer)) {   
+        if (ccpLength(ccpSub(planet.sprite.position,player.sprite.position)) <= planet.radius*2) {   
             CGPoint l = planet.sprite.position;
             CGPoint p = player.sprite.position;
             CGPoint v = player.velocity;
@@ -176,12 +176,12 @@
             float distIn = ccpLength(a)-ccpLength(b);
             CGPoint dir = ccpNormalize(b);
             CGPoint dampenerToAdd;
-            if (ccpLength(a) > ccpLength(b)) {
-                dampenerToAdd = ccp(dir.x * distIn * theBestFuckingConstantEver, dir.y * distIn * theBestFuckingConstantEver);
-            }
-            else {
-                dampenerToAdd = ccp(dir.x * distIn * theBestFuckingConstantEver * theBestConstantComplement, dir.y *    distIn * theBestFuckingConstantEver * theBestConstantComplement);
-            }
+            //if (ccpLength(a) > ccpLength(b)) {
+            //    dampenerToAdd = ccp(dir.x * distIn * theBestFuckingConstantEver, dir.y * distIn * theBestFuckingConstantEver);
+            //}
+            //else {
+                dampenerToAdd = ccp(dir.x * distIn * theBestFuckingConstantEver / (1*ccpLength(ccpSub(planet.sprite.position, player.sprite.position))), dir.y * distIn * theBestFuckingConstantEver / (1*ccpLength(ccpSub(planet.sprite.position, player.sprite.position))));
+            //}
             
             player.velocity = ccpAdd(player.velocity, dampenerToAdd);
         }
@@ -212,8 +212,9 @@
     cameraFocusPosition = CGPointMake( 240, 160);
     [player setVelocity:ccp(0,0)];
     for (Zone* zone in zones)
-    {
-        [zone.sprite setScale:planetSizeScale*zoneScaleRelativeToPlanet]; 
+    {        
+        [cameraLayer removeChild:zone.sprite cleanup:YES];
+        [cameraLayer addChild:zone.sprite];
         zone.hasPlayerHitThisZone = false;
     }
 }
@@ -231,7 +232,8 @@
     {
         if (ccpDistance([[player sprite]position], [[planet sprite]position])<[planet radius])
         {
-            [self JumpPlayerToPlanet:0];
+            //i disagree from a philosophical standpoint with the idea of dying
+            //[self JumpPlayerToPlanet:0];
         }
     } // end collision detection code-----------------
     

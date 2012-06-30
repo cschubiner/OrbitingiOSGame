@@ -9,10 +9,10 @@
 #import "cocos2d.h"
 
 const float thrustStrength = .05;
-const float gravitationalConstant = 2200000000;
-const float distanceMult = 12;
+const float gravitationalConstant = 1000000000;
+const float distanceMult = 5;
 const float gravitationalDistancePower = 3;
-const float reverseGravitationalConstant = 2800000000000;
+const float reverseGravitationalConstant = 10000000000000;
 const float reverseDistanceMult = 3;
 const float reverseGravitationalDistancePower = 5;
 
@@ -29,7 +29,7 @@ const float velocityDampener = 1;
 const float absoluteSpeedMult = .3;
 
 // the truely magical but well thought-out constant that makes it easy to orbit. 0 = nothing, 1 = impossible to hit a planet. values between 0 and 1 make the planet harder to hit as they get closer to 1.
-const float theBestFuckingConstantEver = .3;
+const float theBestFuckingConstantEver = 10.3;
 
 // the factor by which to scale theBestFuckingConstantEver for when the spaceship is moving away from the planet
-const float theBestConstantComplement = 1.5;
+const float theBestConstantComplement = 0;
