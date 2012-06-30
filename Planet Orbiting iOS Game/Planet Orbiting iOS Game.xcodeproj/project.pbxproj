@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		011DBCF5159EEDDE006D5285 /* arrow3Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 011DBCF1159EEDDE006D5285 /* arrow3Small.png */; };
+		011DBCF6159EEDDE006D5285 /* arrowBest.png in Resources */ = {isa = PBXBuildFile; fileRef = 011DBCF2159EEDDE006D5285 /* arrowBest.png */; };
+		011DBCF7159EEDDE006D5285 /* arrowBest2.png in Resources */ = {isa = PBXBuildFile; fileRef = 011DBCF3159EEDDE006D5285 /* arrowBest2.png */; };
+		011DBCF8159EEDDE006D5285 /* newArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 011DBCF4159EEDDE006D5285 /* newArrow.png */; };
 		01D5AD03159D938000D6EB90 /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D5AD02159D938000D6EB90 /* Arrow.m */; };
 		0C2DEF02159C20BE0018F0FA /* Zone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2DEF01159C20BE0018F0FA /* Zone.m */; };
 		0C487AF815946E2300674AB9 /* GameplayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487AF715946E2300674AB9 /* GameplayLayer.m */; };
 		0C487AFB159471E000674AB9 /* CameraObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487AFA159471E000674AB9 /* CameraObject.m */; };
 		0C487AFF1594729D00674AB9 /* spaceship-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C487AFE1594729D00674AB9 /* spaceship-hd.png */; };
-		0C487B01159472A500674AB9 /* spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C487B00159472A500674AB9 /* spaceship.png */; };
 		0C487B051594739600674AB9 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B041594739600674AB9 /* Player.m */; };
 		0C487B07159476AA00674AB9 /* planet2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C487B06159476AA00674AB9 /* planet2-hd.png */; };
 		0C487B0B159476D700674AB9 /* planet2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C487B0A159476D700674AB9 /* planet2.png */; };
@@ -136,9 +139,15 @@
 		C4550650159E3C2C00F362D1 /* zone.png in Resources */ = {isa = PBXBuildFile; fileRef = C455064F159E3C2C00F362D1 /* zone.png */; };
 		C4E09658159E106000E31908 /* arrow2.png in Resources */ = {isa = PBXBuildFile; fileRef = C4E09657159E106000E31908 /* arrow2.png */; };
 		CE72301E1599C69A0093ECC4 /* PlanetMichael.png in Resources */ = {isa = PBXBuildFile; fileRef = CE72301D1599C69A0093ECC4 /* PlanetMichael.png */; };
+		CEF4A6F4159FAA5C009C5BE4 /* spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF4A6F3159FAA5C009C5BE4 /* spaceship.png */; };
+		CEF4A751159EE6E4005D32A1 /* space_background.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF4A750159EE6E4005D32A1 /* space_background.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		011DBCF1159EEDDE006D5285 /* arrow3Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow3Small.png; sourceTree = "<group>"; };
+		011DBCF2159EEDDE006D5285 /* arrowBest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowBest.png; sourceTree = "<group>"; };
+		011DBCF3159EEDDE006D5285 /* arrowBest2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowBest2.png; sourceTree = "<group>"; };
+		011DBCF4159EEDDE006D5285 /* newArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newArrow.png; sourceTree = "<group>"; };
 		01D5AD01159D938000D6EB90 /* Arrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arrow.h; sourceTree = "<group>"; };
 		01D5AD02159D938000D6EB90 /* Arrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Arrow.m; sourceTree = "<group>"; };
 		0C2DEF00159C20BE0018F0FA /* Zone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Zone.h; sourceTree = "<group>"; };
@@ -148,7 +157,6 @@
 		0C487AF9159471E000674AB9 /* CameraObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraObject.h; sourceTree = "<group>"; };
 		0C487AFA159471E000674AB9 /* CameraObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraObject.m; sourceTree = "<group>"; };
 		0C487AFE1594729D00674AB9 /* spaceship-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spaceship-hd.png"; sourceTree = "<group>"; };
-		0C487B00159472A500674AB9 /* spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spaceship.png; sourceTree = "<group>"; };
 		0C487B031594739500674AB9 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		0C487B041594739600674AB9 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		0C487B06159476AA00674AB9 /* planet2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planet2-hd.png"; sourceTree = "<group>"; };
@@ -396,6 +404,8 @@
 		C49E914A159A48D700BC424D /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		C4E09657159E106000E31908 /* arrow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow2.png; sourceTree = "<group>"; };
 		CE72301D1599C69A0093ECC4 /* PlanetMichael.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlanetMichael.png; sourceTree = "<group>"; };
+		CEF4A6F3159FAA5C009C5BE4 /* spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spaceship.png; sourceTree = "<group>"; };
+		CEF4A750159EE6E4005D32A1 /* space_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = space_background.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -450,12 +460,17 @@
 		0C487B02159472AC00674AB9 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				011DBCF1159EEDDE006D5285 /* arrow3Small.png */,
+				011DBCF2159EEDDE006D5285 /* arrowBest.png */,
+				011DBCF3159EEDDE006D5285 /* arrowBest2.png */,
+				011DBCF4159EEDDE006D5285 /* newArrow.png */,
+				CEF4A6F3159FAA5C009C5BE4 /* spaceship.png */,
 				0C487AFE1594729D00674AB9 /* spaceship-hd.png */,
 				C4E09657159E106000E31908 /* arrow2.png */,
 				CE72301D1599C69A0093ECC4 /* PlanetMichael.png */,
+				CEF4A750159EE6E4005D32A1 /* space_background.png */,
 				0C487B06159476AA00674AB9 /* planet2-hd.png */,
 				0C487B0A159476D700674AB9 /* planet2.png */,
-				0C487B00159472A500674AB9 /* spaceship.png */,
 				C455064F159E3C2C00F362D1 /* zone.png */,
 			);
 			name = Sprites;
@@ -909,12 +924,17 @@
 				0C7AA61315946939000B58F2 /* Icon@2x.png in Resources */,
 				0C7AA61615946939000B58F2 /* iTunesArtwork in Resources */,
 				0C487AFF1594729D00674AB9 /* spaceship-hd.png in Resources */,
-				0C487B01159472A500674AB9 /* spaceship.png in Resources */,
 				0C487B07159476AA00674AB9 /* planet2-hd.png in Resources */,
 				0C487B0B159476D700674AB9 /* planet2.png in Resources */,
 				CE72301E1599C69A0093ECC4 /* PlanetMichael.png in Resources */,
 				C4E09658159E106000E31908 /* arrow2.png in Resources */,
 				C4550650159E3C2C00F362D1 /* zone.png in Resources */,
+				CEF4A751159EE6E4005D32A1 /* space_background.png in Resources */,
+				011DBCF5159EEDDE006D5285 /* arrow3Small.png in Resources */,
+				011DBCF6159EEDDE006D5285 /* arrowBest.png in Resources */,
+				011DBCF7159EEDDE006D5285 /* arrowBest2.png in Resources */,
+				011DBCF8159EEDDE006D5285 /* newArrow.png in Resources */,
+				CEF4A6F4159FAA5C009C5BE4 /* spaceship.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
