@@ -20,6 +20,7 @@
     int zonesReached;
     int prevScore;
     int initialScoreConstant;
+    float playerRot;
 }
 
 + (CCScene *) scene
@@ -105,15 +106,16 @@
         [self CreatePlanetAndZone:lastPlanetXPos-150*1.5 yPos:lastPlanetYPos+160*1.5];
         
         player = [[Player alloc]init];        
-        player.sprite = [CCSprite spriteWithFile:@"planet2.png"];
-        [player.sprite setScale:1.3];
+        player.sprite = [CCSprite spriteWithFile:@"spaceship.png"];
+        [player.sprite setScale:0.6];
         player.sprite.position = ccp(size.width/2, size.height/2);
         player.velocity = CGPointZero;
         player.streak = [CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak.png" width:16 length:32 color:ccc4(0,0,255, 255) target:player.sprite];
         [cameraLayer addChild:player.streak];
-
+ 
         player.thrustJustOccurred = false;        
         [cameraObjects addObject:player];
+        
         
         arrow = [[Arrow alloc] init];
         arrow.velocity = player.velocity;
@@ -153,6 +155,8 @@
 
 
 - (void)UpdatePlayer {
+    playerRot += 3;
+    player.sprite.rotation = playerRot;
     CGPoint acclerationToAdd;
     for (Planet* planet in planets)
     {
@@ -202,6 +206,7 @@
         player.velocity = ccpAdd(player.velocity, thrustVelocity);
         player.thrustJustOccurred=false;
     }
+
 }
 
 - (void)CenterCameraAtPlayer {
