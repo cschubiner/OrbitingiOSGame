@@ -245,13 +245,13 @@
             {
                 if (i == 0)
                 {
-                    [self removeChild:zone.sprite cleanup:YES];
+                    [cameraLayer removeChild:zone.sprite cleanup:YES];
                     zone.hasPlayerHitThisZone = true;    
                     zonesReached ++;
                 }
                 else if ([[zones objectAtIndex:i - 1]hasPlayerHitThisZone])
                 {
-                    [self removeChild:zone.sprite cleanup:YES];
+                    [cameraLayer removeChild:zone.sprite cleanup:YES];
                     zone.hasPlayerHitThisZone = true;  
                     zonesReached++;
                 }
