@@ -337,6 +337,8 @@
     }
     arrow.sprite.opacity = newOpacity;
     
+    [[arrow sprite ] setScaleX:2.5*newOpacity/255];
+    
     //The boundingBox is the size of the rectangle's sprite NOT accounting for scaling.
     //To find the actual, scaled width of a sprite, use [sprite width]. 
     //[arrow.sprite setScaleX:length/[arrow.sprite boundingBox].size.width];
