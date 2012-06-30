@@ -25,6 +25,9 @@
     CGSize size;
     CCLayer *hudLayer;
     CCLayer *cameraLayer;
+    float initScaler;
+    float scaler;
+    float thrustMag;
 
     // where the player is on the screen (240,160 is center of screen)
     CGPoint cameraFocusPosition;

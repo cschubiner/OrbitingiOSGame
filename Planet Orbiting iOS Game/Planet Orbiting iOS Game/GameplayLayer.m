@@ -130,6 +130,8 @@
         
         [self JumpPlayerToPlanet:0];    
         
+        scaler = 1;
+        
         [self addChild:cameraLayer];
         [self addChild:hudLayer];
         [self UpdateScore:true];
@@ -146,7 +148,7 @@
 }
 
 
-- (void)UpdatePlayer {
+- (void)UpdatePlayer:(float)dt {
     CGPoint acclerationToAdd;
     for (Planet* planet in planets)
     {
@@ -166,7 +168,6 @@
         reverseForceOnPlayer = ccp(reverseDirection.x * reverseGravityMultiplier, reverseDirection.y * reverseGravityMultiplier);
         acclerationToAdd = ccpAdd(acclerationToAdd, reverseForceOnPlayer);
         
-        
         if (ccpLength(ccpSub(planet.sprite.position,player.sprite.position)) <= planet.radius*2) {   
             CGPoint l = planet.sprite.position;
             CGPoint p = player.sprite.position;
@@ -176,23 +177,33 @@
             float distIn = ccpLength(a)-ccpLength(b);
             CGPoint dir = ccpNormalize(b);
             CGPoint dampenerToAdd;
-            //if (ccpLength(a) > ccpLength(b)) {
-            //    dampenerToAdd = ccp(dir.x * distIn * theBestFuckingConstantEver, dir.y * distIn * theBestFuckingConstantEver);
-            //}
-            //else {
-                dampenerToAdd = ccp(dir.x * distIn * theBestFuckingConstantEver / (1*ccpLength(ccpSub(planet.sprite.position, player.sprite.position))), dir.y * distIn * theBestFuckingConstantEver / (1*ccpLength(ccpSub(planet.sprite.position, player.sprite.position))));
-            //}
             
+            dampenerToAdd = ccp(dir.x * distIn * theMagicalConstant / ccpLength(ccpSub(planet.sprite.position, player.sprite.position)), dir.y * distIn * theMagicalConstant / ccpLength(ccpSub(planet.sprite.position, player.sprite.position)));
+            
+            if (ccpLength(a) < ccpLength(b)) {
+            //    dampenerToAdd = ccp(dir.x * distIn * theBestFuckingConstantEver, dir.y * distIn * theBestFuckingConstantEver);
+                dampenerToAdd = ccp(dampenerToAdd.x * scaler, dampenerToAdd.y * scaler);
+            }
+
+        //dampenerToAdd *= scaler?            
             player.velocity = ccpAdd(player.velocity, dampenerToAdd);
         }
     }
-    player.acceleration = ccp(acclerationToAdd.x * absoluteSpeedMult, acclerationToAdd.y * absoluteSpeedMult);
+    scaler += dt * (1/(1-initScaler))*(1/secsToScale);
+    scaler = clampf(scaler, 0, 1);
+    NSLog([NSString stringWithFormat: @"scaler= %f", scaler]);
+    player.acceleration = ccp(acclerationToAdd.x * absoluteSpeedMult * scaler, acclerationToAdd.y * absoluteSpeedMult * scaler);
     
     // set the player's velocity when the user just swiped the screen (when player.thrustJustOccurred==true).*/
     if (player.thrustJustOccurred) {
         CGPoint thrustVelocity = ccpAdd(ccp(-player.thrustBeginPoint.x,-player.thrustBeginPoint.y), player.thrustEndPoint);
         thrustVelocity = ccp( thrustVelocity.x* thrustStrength,thrustVelocity.y*thrustStrength);
         player.velocity = ccpAdd(player.velocity, thrustVelocity);
+        
+        thrustMag = clampf(ccpLength(thrustVelocity), 0, maxSwipeInput);
+        initScaler = minScaler + (1 - minScaler) * ((maxSwipeInput - thrustMag)/maxSwipeInput);
+        scaler = initScaler;
+        
         player.thrustJustOccurred=false;
     }
 }
@@ -241,7 +252,7 @@
     int i = 0;
     for (Zone* zone in zones)
     {
-        if (ccpDistance([[player sprite]position], [[zone sprite]position])<[zone radius])
+        if (ccpDistance([[player sprite]position], [[zone sprite]position])<[zone radius]*.99)
         {
             if (!zone.hasPlayerHitThisZone)
             {
@@ -289,7 +300,7 @@
 - (void) Update:(ccTime)dt {
     
     [self UpdatePlanets];    
-    [self UpdatePlayer];
+    [self UpdatePlayer: dt];
     [self UpdateArrow];
     [self UpdateScore:false];
     [self UpdateCameraObjects];
