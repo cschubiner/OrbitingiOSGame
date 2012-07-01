@@ -40,6 +40,15 @@
     CGPoint cameraPositionToFocus;
     bool justReachedNewPlanet;
     ccTime totalGameTime;
+    float timeSinceCometLeftScreen;
+    float timeSincePlanetExplosion;
+    bool planetJustExploded;
+    
+    CCParticleSystemQuad * thrustParticle;
+    CCParticleSystemQuad * planetExplosionParticle;
+    CCParticleSystemQuad * spaceBackgroundParticle;
+    CCParticleSystemQuad * cometParticle;
+    CGPoint cometVelocity;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

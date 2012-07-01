@@ -23,5 +23,6 @@
 @property (nonatomic) bool thrustJustOccurred;
 @property (nonatomic) float mass;
 @property (nonatomic, retain) CCLayerStreak* streak;
+@property (nonatomic) bool isInZone;
 
 @end
