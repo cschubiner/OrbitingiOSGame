@@ -174,6 +174,12 @@ typedef struct
 	return self;
 }
 
+-(void)ZoomLayer:(CCLayer*)layer withScale:(CGFloat)scale toPosition:(CGPoint)position{
+    [layer setScale:scale];
+    cameraFocusNode.position = ccp(scale*position.x,scale*position.y);
+    [cameraFocusNode setPosition:ccpAdd(cameraFocusNode.position, ccp(-((-.5+.5*scale)*size.width),(-(-.5+.5*scale)*size.height)))];
+}
+
 - (void)UpdateCameraObjects:(float)dt {
     for (CameraObject *object in cameraObjects) {
         object.velocity = ccpAdd(object.velocity, object.acceleration);
@@ -188,18 +194,16 @@ typedef struct
     
     CGPoint focusPosition = ccpMidpoint(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
  //   focusPosition = ccpMidpoint(focusPosition, player.sprite.position);
-    
-    
     cameraFocusNode.position = ccpLerp(cameraFocusNode.position, focusPosition, .06f);
     CGFloat distanceBetweenPlanets = ccpDistance(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
-    
-    CGPoint playerPosOnScreen = [cameraLayer convertToWorldSpace:player.sprite.position];
-    //[cameraLayer setPosition:((Planet*)[planets objectAtIndex:0]).sprite.position];
-    //[cameraLayer setScale:1];
-  //  [cameraLayer setScale:2];
-    //[cameraLayer setScale:-0.0011304347826086958*distanceBetweenPlanets+1.218695652173913];
+    //CGPoint playerPosOnScreen = [cameraLayer convertToWorldSpace:player.sprite.position];
+    float scale = -0.0011304347826086958*distanceBetweenPlanets+1.218695652173913;
+    scale*=.8;
+    focusPosition =ccpLerp(cameraLastFocusPosition, focusPosition, .06f);
+    [self ZoomLayer:cameraLayer withScale:scale toPosition: focusPosition];
     id followAction = [CCFollow actionWithTarget:cameraFocusNode];
     [cameraLayer runAction: followAction]; 
+    cameraLastFocusPosition=focusPosition;
 }
 
 
@@ -351,6 +355,7 @@ typedef struct
 - (void)resetVariablesForNewGame {
     score=0;
     zonesReached=0;
+    totalGameTime = 0 ;
     lastPlanetVisited = [planets objectAtIndex:0];
     
     prevScore=0;
@@ -431,10 +436,12 @@ typedef struct
     if (newScore>prevScore)
         score = newScore;
     [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score]];
-    [zonesReachedLabel setString:[NSString stringWithFormat:@"Zones Reached: %d",zonesReached]];
+    [zonesReachedLabel setString:[NSString stringWithFormat:@"Zones: %d Time: %1.0fs",zonesReached,totalGameTime]];
 }
 
 - (void) Update:(ccTime)dt {
+    if (zonesReached<[planets count])
+    totalGameTime+=dt;
     [self UpdatePlanets];    
     [self UpdatePlayer: dt];
     [self UpdateScore:false];
@@ -493,6 +500,7 @@ typedef struct
     // Now adjust your layer by the delta.
     yourLayer.position = ccpAdd(yourLayer.position, centerPointDelta);
 }
+
 
 double lerpd(double a, double b, double t)
 {

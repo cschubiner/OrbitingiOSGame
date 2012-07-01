@@ -16,3 +16,7 @@ profile
 *.moved-aside
 *.xcodeproj
 *.pbxproj
+*/*.xcodeproj
+*/*.*pbxproj
+*xcodeproj
+*pbjproj

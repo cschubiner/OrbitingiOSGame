@@ -39,6 +39,7 @@
     CGPoint cameraFocusPosition;
     CGPoint cameraPositionToFocus;
     bool justReachedNewPlanet;
+    ccTime totalGameTime;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
