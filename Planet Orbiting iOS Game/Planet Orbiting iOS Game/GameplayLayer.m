@@ -193,7 +193,7 @@ typedef struct
 - (void)UpdateCamera:(float)dt {
     for (CameraObject *object in cameraObjects) {
         object.velocity = ccpAdd(object.velocity, object.acceleration);
-        object.sprite.position = ccpAdd(object.velocity, object.sprite.position);
+        object.sprite.position = ccpAdd(ccpMult(object.velocity, 60*dt), object.sprite.position);
     }
     
     Planet * nextPlanet;
