@@ -80,12 +80,12 @@ typedef struct
 
 - (void)CreatePredPoints
 {
-    for (int i = 0; i < 15; i++){
+    for (int i = 0; i < totalPredictingLines; i++){
         
         PredPoint *predPoint = [[PredPoint alloc]init];
         predPoint.sprite = [CCSprite spriteWithFile:@"point.png"];
-        [predPoint.sprite setScale: .4];
-        [ [predPoint sprite]setOpacity:((double)(15-i/1.5)/(double)15)*255 ];
+        [predPoint.sprite setScale: scaleForLines];
+        [ [predPoint sprite]setOpacity:((double)(totalPredictingLines-i/1.5)/(double)totalPredictingLines)*255 ];
         [predPoints addObject:predPoint];
         [cameraLayer addChild:predPoint.sprite];        
         [predPoint release];
@@ -154,7 +154,7 @@ typedef struct
         [self addChild: background]; 
         background.position = ccp(0,0);
         
-        id followAction = [CCFollow actionWithTarget:player.sprite];
+        //id followAction = [CCFollow actionWithTarget:player.sprite];
         //  [cameraLayer runAction: followAction];
         cameraFocusNode = [[CCSprite alloc]init];
         
@@ -294,7 +294,7 @@ typedef struct
             predPoint.acceleration = ((PredPoint*)[predPoints objectAtIndex:i - 1]).acceleration;  
         }
         
-        for (int j = 0; j < 4; j++) {
+        for (int j = 0; j < numberSpacingBetweenLines; j++) {
             [self ApplyGravity:dt pos:predPoint.sprite.position velocity:predPoint.velocity acceleration:predPoint.acceleration];
             
             predPoint.sprite.position = gravityReturner.position;

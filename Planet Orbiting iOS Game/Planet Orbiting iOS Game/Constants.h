@@ -9,7 +9,7 @@
 #import "cocos2d.h"
 
 const float thrustStrength = .035;
-const float gravitationalConstant = 11000000000;
+const float gravitationalConstant = 12000000000;
 const float distanceMult = 10;
 const float gravitationalDistancePower = 3;
 const float reverseGravitationalConstant = 12000000000000;
@@ -33,4 +33,8 @@ const float theMagicalConstant = 10.3;
 
 const float maxSwipeInput = 7;
 const float minScaler = 0;
-const float secsToScale = .3;
+const float secsToScale = .5;
+
+const int totalPredictingLines = 15;
+const int numberSpacingBetweenLines = 4;
+const float scaleForLines = .5;
