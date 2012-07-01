@@ -13,15 +13,20 @@
 #import "Constants.h"
 #import "CCLayerStreak.h"
 
-
 @implementation GameplayLayer {
     int planetCounter;
     int score;
     int zonesReached;
     int prevScore;
     int initialScoreConstant;
-    float playerRot;
 }
+
+typedef struct 
+{
+    CGPoint velocity;
+    CGPoint acceleration;
+    CGPoint position;
+} VelocityAccelerationPositionStruct;
 
 + (CCScene *) scene
 {
@@ -73,9 +78,23 @@
     planetCounter++;
 }
 
+- (void)CreatePredPoints
+{
+    for (int i = 0; i < 15; i++){
+        
+        PredPoint *predPoint = [[PredPoint alloc]init];
+        predPoint.sprite = [CCSprite spriteWithFile:@"point.png"];
+        [predPoint.sprite setScale: .4];
+        [ [predPoint sprite]setOpacity:((double)(15-i/1.5)/(double)15)*255 ];
+        [predPoints addObject:predPoint];
+        [cameraLayer addChild:predPoint.sprite];        
+        [predPoint release];
+    }
+}
+
 /*
-    On "init," initialize the instance
-*/
+ On "init," initialize the instance
+ */
 - (id) init
 {
 	// always call "super" init.
@@ -87,8 +106,10 @@
         cameraObjects = [[NSMutableArray alloc]init];
         planets = [[NSMutableArray alloc]init];
         zones = [[NSMutableArray alloc]init];
+        predPoints = [[NSMutableArray alloc]init];
         hudLayer = [[CCLayer alloc]init];
         cameraLayer = [[CCLayer alloc]init];
+        gravityReturner = [[GravityReturnClass alloc]init];
         
         scoreLabel = [CCLabelTTF labelWithString:@"Score: " fontName:@"Marker Felt" fontSize:24];
         scoreLabel.position = ccp(400, [scoreLabel boundingBox].size.height);
@@ -98,12 +119,23 @@
         zonesReachedLabel.position = ccp(100, [zonesReachedLabel boundingBox].size.height);
         [hudLayer addChild: zonesReachedLabel];
         
-        [self CreatePlanetAndZone:100*1.5 yPos:size.width/2];
-        [self CreatePlanetAndZone:lastPlanetXPos+300*1.5 yPos:lastPlanetYPos];
-        [self CreatePlanetAndZone:lastPlanetXPos+200*1.5 yPos:lastPlanetYPos+100*1.5];
-        [self CreatePlanetAndZone:lastPlanetXPos+180*1.5 yPos:lastPlanetYPos+120*1.5];
-        [self CreatePlanetAndZone:lastPlanetXPos+30*1.5 yPos:lastPlanetYPos+230*1.5];
-        [self CreatePlanetAndZone:lastPlanetXPos-150*1.5 yPos:lastPlanetYPos+160*1.5];
+        [self CreatePlanetAndZone:0 yPos:-39];
+        [self CreatePlanetAndZone:10 yPos:309];
+        [self CreatePlanetAndZone:314 yPos:539];
+        [self CreatePlanetAndZone:682 yPos:485];
+        [self CreatePlanetAndZone:889 yPos:228];
+        [self CreatePlanetAndZone:1115 yPos:101];
+        [self CreatePlanetAndZone:1383 yPos:6];
+        [self CreatePlanetAndZone:1683 yPos:119];
+        [self CreatePlanetAndZone:1847 yPos:380];
+        [self CreatePlanetAndZone:1761 yPos:702];
+        [self CreatePlanetAndZone:1558 yPos:886];
+        [self CreatePlanetAndZone:1303 yPos:998];
+        [self CreatePlanetAndZone:1000 yPos:1040];
+        [self CreatePlanetAndZone:688 yPos:1040];
+        [self CreatePlanetAndZone:436 yPos:963];
+        [self CreatePlanetAndZone:199 yPos:1020];
+        [self CreatePlanetAndZone:0 yPos:867];
         
         player = [[Player alloc]init];        
         player.sprite = [CCSprite spriteWithFile:@"spaceship.png"];
@@ -112,20 +144,12 @@
         player.velocity = CGPointZero;
         player.streak = [CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak.png" width:16 length:32 color:ccc4(0,0,255, 255) target:player.sprite];
         [cameraLayer addChild:player.streak];
- 
+        
         player.thrustJustOccurred = false;        
-        [cameraObjects addObject:player];
+        [cameraObjects addObject:player]; 
         
-        
-        arrow = [[Arrow alloc] init];
-        arrow.velocity = player.velocity;
-        arrow.acceleration = player.acceleration;
-        arrow.sprite = [CCSprite spriteWithFile:@"arrowBest.png"];
-        arrow.sprite.visible = NO;
-        [cameraObjects addObject:arrow];
-        [cameraLayer addChild:arrow.sprite];
-        [cameraLayer addChild:player.sprite];
-
+        [self CreatePredPoints]; 
+        [cameraLayer addChild:player.sprite];  
         
         CCSprite *background = [CCSprite spriteWithFile:@"space_background.png"];
         [self addChild: background]; 
@@ -157,53 +181,131 @@
 
 
 
-- (void)UpdatePlayer:(float)dt {
-    playerRot += 3;
-    player.sprite.rotation = playerRot;
-    CGPoint acclerationToAdd;
+- (void)ApplyGravity:(float)dt pos:(CGPoint)position velocity:(CGPoint)velocity acceleration:(CGPoint)acceleration {
+    //NSLog([NSString stringWithFormat: @"scaler= %f", scaler]);
+    
+    CGPoint acclerationToAdd=CGPointZero;
     for (Planet* planet in planets)
     {
         CGPoint direction;
-        direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
-        float distanceBetweenToAPower = pow(distanceMult*ccpLength(ccpSub(planet.sprite.position, player.sprite.position)), gravitationalDistancePower);
+        direction = ccpNormalize(ccpSub(planet.sprite.position, position));
+        float distanceBetweenToAPower = pow(distanceMult*ccpLength(ccpSub(planet.sprite.position, position)), gravitationalDistancePower);
         float gravityMultiplier = (gravitationalConstant * planet.mass * player.mass) /distanceBetweenToAPower;
         planet.forceExertingOnPlayer = ccp(direction.x * gravityMultiplier, direction.y * gravityMultiplier);
         acclerationToAdd = ccpAdd(acclerationToAdd, planet.forceExertingOnPlayer);
-        
+        if (ccpLength(acclerationToAdd)>10)
+        {
+            //   NSLog(@"1 dubtif q  happening. planet num: %d",planet.ID);
+        }
         
         CGPoint reverseForceOnPlayer;
         CGPoint reverseDirection;
-        reverseDirection = ccpNormalize(ccpSub(player.sprite.position, planet.sprite.position));
-        float reverseDistanceBetweenToAPower = pow(reverseDistanceMult*ccpLength(ccpSub(planet.sprite.position, player.sprite.position)), reverseGravitationalDistancePower);
+        reverseDirection = ccpNormalize(ccpSub(position, planet.sprite.position));
+        float reverseDistanceBetweenToAPower = pow(reverseDistanceMult*ccpLength(ccpSub(planet.sprite.position, position)), reverseGravitationalDistancePower);
         float reverseGravityMultiplier = (reverseGravitationalConstant * planet.mass * player.mass) /reverseDistanceBetweenToAPower;
         reverseForceOnPlayer = ccp(reverseDirection.x * reverseGravityMultiplier, reverseDirection.y * reverseGravityMultiplier);
         acclerationToAdd = ccpAdd(acclerationToAdd, reverseForceOnPlayer);
-        
-        if (ccpLength(ccpSub(planet.sprite.position,player.sprite.position)) <= planet.radius*2) {   
+        if (acclerationToAdd.y>20)
+        {
+            //  NSLog(@"2 dubtif q  happening. planet num: %d",planet.ID);
+        }
+        if (ccpLength(ccpSub(planet.sprite.position,position)) <= planet.radius*2) {   
             CGPoint l = planet.sprite.position;
-            CGPoint p = player.sprite.position;
-            CGPoint v = player.velocity;
+            CGPoint p = position;
+            CGPoint v = velocity;
             CGPoint a = ccpSub(p, l);
             CGPoint b = ccpSub(ccpAdd(p, v), l);
             float distIn = ccpLength(a)-ccpLength(b);
             CGPoint dir = ccpNormalize(b);
             CGPoint dampenerToAdd;
             
-            dampenerToAdd = ccp(dir.x * distIn * theMagicalConstant / ccpLength(ccpSub(planet.sprite.position, player.sprite.position)), dir.y * distIn * theMagicalConstant / ccpLength(ccpSub(planet.sprite.position, player.sprite.position)));
+            dampenerToAdd = ccp(dir.x * distIn * theMagicalConstant / ccpLength(ccpSub(planet.sprite.position, position)), dir.y * distIn * theMagicalConstant / ccpLength(ccpSub(planet.sprite.position, position)));
             
             if (ccpLength(a) < ccpLength(b)) {
-            //    dampenerToAdd = ccp(dir.x * distIn * theBestFuckingConstantEver, dir.y * distIn * theBestFuckingConstantEver);
                 dampenerToAdd = ccp(dampenerToAdd.x * scaler, dampenerToAdd.y * scaler);
             }
-
-        //dampenerToAdd *= scaler?            
-            player.velocity = ccpAdd(player.velocity, dampenerToAdd);
+            
+            //dampenerToAdd *= scaler?            
+            velocity = ccpAdd(velocity, dampenerToAdd);
         }
     }
     scaler += dt * (1/(1-initScaler))*(1/secsToScale);
     scaler = clampf(scaler, 0, 1);
-    NSLog([NSString stringWithFormat: @"scaler= %f", scaler]);
-    player.acceleration = ccp(acclerationToAdd.x * absoluteSpeedMult * scaler, acclerationToAdd.y * absoluteSpeedMult * scaler);
+    //NSLog([NSString stringWithFormat: @"scaler= %f", scaler]);
+    acceleration = ccp(acclerationToAdd.x * absoluteSpeedMult * scaler, acclerationToAdd.y * absoluteSpeedMult * scaler);
+    
+    gravityReturner.position = position;
+    gravityReturner.acceleration = acceleration;
+    gravityReturner.velocity= velocity;
+    
+}
+
+- (void)UpdatePlayer:(float)dt {
+    [self ApplyGravity:dt pos:player.sprite.position velocity:player.velocity acceleration:player.acceleration]; 
+    player.sprite.position = gravityReturner.position;
+    player.velocity = gravityReturner.velocity;
+    player.acceleration = gravityReturner.acceleration;
+    
+    
+    
+    
+    
+    PredPoint *firstPredPoint = [predPoints objectAtIndex:0];
+    firstPredPoint.sprite.position = player.sprite.position;
+    firstPredPoint.velocity = ccpAdd(player.velocity,futureThrustVelocity);
+    firstPredPoint.acceleration = player.acceleration;
+    
+    int i = 0;
+    for (PredPoint* predPoint in predPoints)
+    {        
+        //if (i>=[predPoints count] - 1)
+        //  break;
+        //PredPoint *nextPredPoint = [predPoints objectAtIndex:i + 1];
+        
+        if (i > 0) {
+            
+            predPoint.sprite.position = ((PredPoint*)[predPoints objectAtIndex:i - 1]).sprite.position;
+            predPoint.velocity = ((PredPoint*)[predPoints objectAtIndex:i - 1]).velocity;
+            predPoint.acceleration = ((PredPoint*)[predPoints objectAtIndex:i - 1]).acceleration;  
+        }
+        
+        for (int j = 0; j < 4; j++) {
+            [self ApplyGravity:dt pos:predPoint.sprite.position velocity:predPoint.velocity acceleration:predPoint.acceleration];
+            
+            predPoint.sprite.position = gravityReturner.position;
+            predPoint.velocity = gravityReturner.velocity;
+            predPoint.acceleration = gravityReturner.acceleration;     
+            predPoint.velocity = ccpAdd(predPoint.velocity, predPoint.acceleration);
+            predPoint.sprite.position = ccpAdd(predPoint.sprite.position, predPoint.velocity);
+            predPoint.sprite.rotation = 180+-CC_RADIANS_TO_DEGREES(ccpToAngle(predPoint.velocity));
+            
+        }
+        
+        //predPoint.sprite.position = gravityReturner.position;
+        //predPoint.velocity = gravityReturner.velocity;
+        //predPoint.acceleration = gravityReturner.acceleration;
+        
+        //NSLog([NSString stringWithFormat: @"JOK"]);
+        //predPoint.sprite.position = ccpAdd(player.sprite.position, ccp(player.velocity.x * i, player.velocity.y * i));
+        //predPoint.velocity = ccpAdd(predPoint.velocity, predPoint.acceleration);
+        //predPoint.sprite.position = ccpAdd(predPoint.sprite.position, predPoint.velocity);
+        //predPoint.sprite.rotation =  -CC_RADIANS_TO_DEGREES(ccpAngle(ccp (1, 0), predPoint.velocity));
+        i++;
+        //NSLog([NSString stringWithFormat: @"JOK  %f", ccpLength(ccpSub(nextPredPoint.sprite.position, player.sprite.position))]);
+    }
+    //NSLog([NSString stringWithFormat: @"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"]);
+    
+    /*
+     int i = 0;
+     for (PredPoint* predPoint in predPoints)
+     {
+     predPoint.sprite.position = ccpAdd(player.sprite.position, ccp(player.velocity.x * i, player.velocity.y * i));
+     i++;
+     }
+     */
+    
+    
+    
     
     // set the player's velocity when the user just swiped the screen (when player.thrustJustOccurred==true).*/
     if (player.thrustJustOccurred) {
@@ -218,7 +320,11 @@
         
         player.thrustJustOccurred=false;
     }
-
+    
+    
+    
+    
+    
 }
 
 - (void)CenterCameraAtPlayer {
@@ -245,8 +351,10 @@
 
 - (void)JumpPlayerToPlanet:(int)planetIndex {
     player.sprite.position = ccpAdd(((Planet*)[planets objectAtIndex:planetIndex]).sprite.position, ccp(130,0));
+    player.velocity=CGPointZero;
+    player.acceleration=CGPointZero;
     [self resetVariablesForNewGame];
-    [self CenterCameraAtPlayer];
+    //   [self CenterCameraAtPlayer];
 }
 
 - (void)UpdatePlanets {
@@ -288,8 +396,8 @@
 }
 
 /*
-    Your score goes up as you move along the vector between the first and last planet. Your score will also never go down, as the user doesn't like to see his score go down. The initialScoreConstant will be set only when firstTimeRunning == true. initialScoreConstant is what ensures your score starts at zero, and not some negative number.
-*/
+ Your score goes up as you move along the vector between the first and last planet. Your score will also never go down, as the user doesn't like to see his score go down. The initialScoreConstant will be set only when firstTimeRunning == true. initialScoreConstant is what ensures your score starts at zero, and not some negative number.
+ */
 - (void)UpdateScore:(bool)firstTimeRunning {
     CGPoint firstToLastPlanet = ccpSub(((Planet*)[planets objectAtIndex:[planets count]-1]).sprite.position, ((Planet*)[planets objectAtIndex:0]).sprite.position);
     CGPoint firstToPlayerPos = ccpSub(((Planet*)[planets objectAtIndex:0]).sprite.position, player.sprite.position);
@@ -304,16 +412,9 @@
     [zonesReachedLabel setString:[NSString stringWithFormat:@"Zones Reached: %d",zonesReached]];
 }
 
-- (void) UpdateArrow {
-    arrow.velocity = player.velocity;
-    arrow.acceleration = player.acceleration;
-    arrow.sprite.position = player.sprite.position;
-}
-
 - (void) Update:(ccTime)dt {
     [self UpdatePlanets];    
     [self UpdatePlayer: dt];
-    [self UpdateArrow];
     [self UpdateScore:false];
     [self UpdateCameraObjects];
 }
@@ -326,48 +427,18 @@
             [self JumpPlayerToPlanet:0];
         else
             [player setThrustBeginPoint:location];
-        [arrow setSwipeOrigin:location];
     }
 }
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    arrow.sprite.visible = YES;
-
-    UITouch *touch = [touches anyObject];
-
-    [arrow.sprite setAnchorPoint:CGPointZero];
-    CGPoint origin = player.thrustBeginPoint;
-    CGPoint ending = [touch locationInView:[touch view]];
     CGPoint location;
     for (UITouch *touch in touches) {
-         location = [touch locationInView:[touch view]];
+        location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
     }
     
-    CGPoint startPoint = [[CCDirector sharedDirector] convertToGL:origin];
-    CGPoint endPoint = [[CCDirector sharedDirector] convertToGL:ending];
-
-    CGPoint vector = ccpSub(origin, location);
-    CGFloat length = ccpDistance(origin, ending);
-    CGFloat angle = 180+-CC_RADIANS_TO_DEGREES(ccpToAngle(vector));
-    
-    CGFloat maxLength = MAX(self.boundingBox.size.width, self.boundingBox.size.height)/1.75;
-    
-    CGFloat power = length / maxLength;
-    
-    CGFloat newOpacity = 255 * pow(power, 0.8);
-    if (newOpacity > 255) {
-        newOpacity = 255;
-    }
-    arrow.sprite.opacity = newOpacity;
-    
-    [[arrow sprite ] setScaleX:3.5*newOpacity/255];
-    
-    //The boundingBox is the size of the rectangle's sprite NOT accounting for scaling.
-    //To find the actual, scaled width of a sprite, use [sprite width]. 
-    //[arrow.sprite setScaleX:length/[arrow.sprite boundingBox].size.width];
-    //[arrow.sprite setScaleY:.2];
-    arrow.sprite.rotation = angle;
+    futureThrustVelocity = ccpAdd(ccp(-player.thrustBeginPoint.x,-player.thrustBeginPoint.y), location);
+    futureThrustVelocity = ccp( futureThrustVelocity.x* thrustStrength,futureThrustVelocity.y*thrustStrength);
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -376,8 +447,8 @@
         location = [[CCDirector sharedDirector] convertToGL:location];
         [player setThrustEndPoint:location];
         player.thrustJustOccurred = true;
-        arrow.sprite.visible = NO;
     }
+    futureThrustVelocity=CGPointZero;
 }
 
 

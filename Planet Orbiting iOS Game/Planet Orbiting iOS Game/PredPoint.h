@@ -1,16 +1,16 @@
 //
-//  Arrow.h
+//  Point.h
 //  Planet Orbiting iOS Game
 //
-//  Created by Jeff Grimes on 6/29/12.
-//  Copyright (c) 2012 Stanford University. All rights reserved.
+//  Created by Lion User on 30/06/2012.
+//  Copyright 2012 Stanford University. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "CameraObject.h"
 
-@interface Arrow : CameraObject {
+@interface PredPoint : CameraObject {
     CGPoint swipeOrigin;
 }
 

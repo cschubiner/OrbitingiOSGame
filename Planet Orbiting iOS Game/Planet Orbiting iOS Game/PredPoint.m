@@ -1,14 +1,15 @@
 //
-//  Arrow.m
+//  PredPoint.m
 //  Planet Orbiting iOS Game
 //
-//  Created by Jeff Grimes on 6/29/12.
-//  Copyright (c) 2012 Stanford University. All rights reserved.
+//  Created by Lion User on 30/06/2012.
+//  Copyright 2012 Stanford University. All rights reserved.
 //
 
-#import "Arrow.h"
+#import "PredPoint.h"
 
-@implementation Arrow
+
+@implementation PredPoint
 
 - (id)init
 {

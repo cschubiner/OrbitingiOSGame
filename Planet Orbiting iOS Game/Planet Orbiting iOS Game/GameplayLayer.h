@@ -9,14 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Player.h"
-#import "Arrow.h"
+#import "PredPoint.h"
+#import "GravityReturnClass.h"
 
 @interface GameplayLayer : CCLayer {
     
     Player *player;
-    Arrow *arrow;
     NSMutableArray *planets;
     NSMutableArray *zones;
+    NSMutableArray *predPoints;
     NSMutableArray *cameraObjects;
     CGFloat lastPlanetXPos;
     CGFloat lastPlanetYPos;
@@ -28,9 +29,10 @@
     float initScaler;
     float scaler;
     float thrustMag;
-
+    GravityReturnClass* gravityReturner;
     // where the player is on the screen (240,160 is center of screen)
     CGPoint cameraFocusPosition;
+    CGPoint futureThrustVelocity;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
