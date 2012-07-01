@@ -10,7 +10,7 @@
 
 
 @implementation CameraObject
-@synthesize sprite,alive,ID,acceleration,velocity;
+@synthesize sprite,alive,number,acceleration,velocity;
 
 -(CGPoint)position{
     //don't do object.position, do object.SPRITE!!!.position. 
@@ -25,5 +25,9 @@
     int * hi =NULL;
     int jok = *hi;
     jok++;
+}
+
+-(CGPoint)getPositionOnScreen:(CCLayer*)layerObjectIsOn{
+    return [layerObjectIsOn convertToWorldSpace:self.sprite.position];
 }
 @end

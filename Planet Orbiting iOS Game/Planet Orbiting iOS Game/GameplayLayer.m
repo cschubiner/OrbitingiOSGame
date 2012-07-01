@@ -57,7 +57,7 @@ typedef struct
     planet.sprite.position =  ccp( xPos , yPos );     
     [planet.sprite setScale:planetSizeScale];
     planet.mass = 1;
-    planet.ID = planetCounter;
+    planet.number = planetCounter;
     [cameraObjects addObject:planet];
     [planets addObject:planet];
     [cameraLayer addChild:planet.sprite];        
@@ -68,7 +68,7 @@ typedef struct
     Zone *zone = [[Zone alloc]init];
     zone.sprite = [CCSprite spriteWithFile:@"zone.png"];
     [zone.sprite setScale:planetSizeScale*zoneScaleRelativeToPlanet];   
-    zone.ID = planetCounter;
+    zone.number = planetCounter;
     zone.sprite.position = planet.sprite.position;
     [cameraObjects addObject:zone];
     [zones addObject:zone];
@@ -142,9 +142,8 @@ typedef struct
         [player.sprite setScale:0.6];
         player.sprite.position = ccp(size.width/2, size.height/2);
         player.velocity = CGPointZero;
-        player.streak = [CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak.png" width:16 length:32 color:ccc4(0,0,255, 255) target:player.sprite];
+        player.streak = [CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak.png" width:12 length:32 color:ccc4(255,255,255, 255) target:player.sprite];
         [cameraLayer addChild:player.streak];
-        
         player.thrustJustOccurred = false;        
         [cameraObjects addObject:player]; 
         
@@ -156,7 +155,10 @@ typedef struct
         background.position = ccp(0,0);
         
         id followAction = [CCFollow actionWithTarget:player.sprite];
-        [cameraLayer runAction: followAction];
+        //  [cameraLayer runAction: followAction];
+        cameraFocusNode = [[CCSprite alloc]init];
+        
+        
         
         [self JumpPlayerToPlanet:0];    
         
@@ -172,18 +174,38 @@ typedef struct
 	return self;
 }
 
-- (void)UpdateCameraObjects {
+- (void)UpdateCameraObjects:(float)dt {
     for (CameraObject *object in cameraObjects) {
         object.velocity = ccpAdd(object.velocity, object.acceleration);
         object.sprite.position = ccpAdd(object.velocity, object.sprite.position);
     }
+    
+    Planet * nextPlanet;
+    if (lastPlanetVisited.number +1 < [planets count])
+        nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
+    else     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
+    
+    
+    CGPoint focusPosition = ccpMidpoint(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
+ //   focusPosition = ccpMidpoint(focusPosition, player.sprite.position);
+    
+    
+    cameraFocusNode.position = ccpLerp(cameraFocusNode.position, focusPosition, .06f);
+    CGFloat distanceBetweenPlanets = ccpDistance(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
+    
+    CGPoint playerPosOnScreen = [cameraLayer convertToWorldSpace:player.sprite.position];
+    //[cameraLayer setPosition:((Planet*)[planets objectAtIndex:0]).sprite.position];
+    //[cameraLayer setScale:1];
+  //  [cameraLayer setScale:2];
+    //[cameraLayer setScale:-0.0011304347826086958*distanceBetweenPlanets+1.218695652173913];
+    id followAction = [CCFollow actionWithTarget:cameraFocusNode];
+    [cameraLayer runAction: followAction]; 
 }
 
 
 
 - (void)ApplyGravity:(float)dt pos:(CGPoint)position velocity:(CGPoint)velocity acceleration:(CGPoint)acceleration {
-    //NSLog([NSString stringWithFormat: @"scaler= %f", scaler]);
-    
+
     CGPoint acclerationToAdd=CGPointZero;
     for (Planet* planet in planets)
     {
@@ -225,7 +247,6 @@ typedef struct
                 dampenerToAdd = ccp(dampenerToAdd.x * scaler, dampenerToAdd.y * scaler);
             }
             
-            //dampenerToAdd *= scaler?            
             velocity = ccpAdd(velocity, dampenerToAdd);
         }
     }
@@ -305,8 +326,6 @@ typedef struct
      */
     
     
-    
-    
     // set the player's velocity when the user just swiped the screen (when player.thrustJustOccurred==true).*/
     if (player.thrustJustOccurred) {
         CGPoint thrustVelocity = ccpAdd(ccp(-player.thrustBeginPoint.x,-player.thrustBeginPoint.y), player.thrustEndPoint);
@@ -321,10 +340,6 @@ typedef struct
         player.thrustJustOccurred=false;
     }
     
-    
-    
-    
-    
 }
 
 - (void)CenterCameraAtPlayer {
@@ -336,6 +351,8 @@ typedef struct
 - (void)resetVariablesForNewGame {
     score=0;
     zonesReached=0;
+    lastPlanetVisited = [planets objectAtIndex:0];
+    
     prevScore=0;
     
     //this is where the player is on screen (240,160 is center of screen)
@@ -346,6 +363,7 @@ typedef struct
         [cameraLayer removeChild:zone.sprite cleanup:YES];
         [cameraLayer addChild:zone.sprite];
         zone.hasPlayerHitThisZone = false;
+        justReachedNewPlanet = true;
     }
 }
 
@@ -353,6 +371,9 @@ typedef struct
     player.sprite.position = ccpAdd(((Planet*)[planets objectAtIndex:planetIndex]).sprite.position, ccp(130,0));
     player.velocity=CGPointZero;
     player.acceleration=CGPointZero;
+    cameraFocusNode.position = ccpAdd(player.sprite.position, ccp(100,0));
+    cameraLastFocusPosition = cameraFocusNode.position;
+    cameraPositionToFocus = cameraFocusNode.position;
     [self resetVariablesForNewGame];
     //   [self CenterCameraAtPlayer];
 }
@@ -385,6 +406,7 @@ typedef struct
                 }
                 else if ([[zones objectAtIndex:i - 1]hasPlayerHitThisZone])
                 {
+                    lastPlanetVisited = [planets objectAtIndex:zone.number];
                     [cameraLayer removeChild:zone.sprite cleanup:YES];
                     zone.hasPlayerHitThisZone = true;  
                     zonesReached++;
@@ -416,15 +438,16 @@ typedef struct
     [self UpdatePlanets];    
     [self UpdatePlayer: dt];
     [self UpdateScore:false];
-    [self UpdateCameraObjects];
+    [self UpdateCameraObjects:dt];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
-        if (location.x <= size.width/4 && location.y <= size.height/4)
+        if (location.x <= size.width/4 && location.y <= size.height/4) {
             [self JumpPlayerToPlanet:0];
+        }
         else
             [player setThrustBeginPoint:location];
     }
@@ -451,10 +474,38 @@ typedef struct
     futureThrustVelocity=CGPointZero;
 }
 
+- (void) scaleLayer:(CCLayer *) yourLayer newScale:(CGFloat) newScale scaleCenter:(CGPoint) scaleCenter {
+    // scaleCenter is the point to zoom to.. 
+    // If you are doing a pinch zoom, this should be the center of your pinch.
+    
+    // Get the original center point.
+    CGPoint oldCenterPoint = ccp(scaleCenter.x * yourLayer.scale, scaleCenter.y * yourLayer.scale); 
+    
+    // Set the scale.
+    yourLayer.scale = newScale;
+    
+    // Get the new center point.
+    CGPoint newCenterPoint = ccp(scaleCenter.x * yourLayer.scale, scaleCenter.y * yourLayer.scale); 
+    
+    // Then calculate the delta.
+    CGPoint centerPointDelta  = ccpSub(oldCenterPoint, newCenterPoint);
+    
+    // Now adjust your layer by the delta.
+    yourLayer.position = ccpAdd(yourLayer.position, centerPointDelta);
+}
+
+double lerpd(double a, double b, double t)
+{
+    return a + (b - a) * t;
+}
+
+float lerpf(float a, float b, float t)
+{
+    return a + (b - a) * t;
+}
 
 - (int)RandomBetween:(int)minvalue maxvalue:(int)maxvalue  {
     int randomNumber = minvalue+  arc4random() % (1+maxvalue-minvalue);
     return randomNumber;
 }
-
 @end

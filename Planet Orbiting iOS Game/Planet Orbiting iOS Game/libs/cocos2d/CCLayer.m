@@ -68,6 +68,43 @@
 	
 	return self;
 }
+- (void) scaleWithCenterPoint:(CGFloat) newScale scaleCenter:(CGPoint) scaleCenter {
+    
+    // scaleCenter is the point to zoom to.. 
+    
+    // If you are doing a pinch zoom, this should be the center of your pinch.
+    
+    
+    
+    // Get the original center point.
+    
+    CGPoint oldCenterPoint = ccp(scaleCenter.x * self.scale, scaleCenter.y * self.scale); 
+    
+    
+    
+    // Set the scale.
+    
+    self.scale = newScale;
+    
+    
+    
+    // Get the new center point.
+    
+    CGPoint newCenterPoint = ccp(scaleCenter.x * self.scale, scaleCenter.y * self.scale); 
+    
+    
+    
+    // Then calculate the delta.
+    
+    CGPoint centerPointDelta  = ccpSub(oldCenterPoint, newCenterPoint);
+    
+    
+    
+    // Now adjust your layer by the delta.
+    
+    self.position = ccpAdd(self.position, centerPointDelta);
+    
+}
 
 #pragma mark Layer - Touch and Accelerometer related
 
@@ -610,5 +647,8 @@
 	
 	[self addChild: [layers_ objectAtIndex:n]];		
 }
+
+
+
 @end
 
