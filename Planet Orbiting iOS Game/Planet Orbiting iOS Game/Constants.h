@@ -9,7 +9,7 @@
 #import "cocos2d.h"
 
 const float thrustStrength = .035;
-const float gravitationalConstant = 11000000000;
+const float gravitationalConstant = 12000000000;
 const float distanceMult = 10;
 const float gravitationalDistancePower = 3;
 const float reverseGravitationalConstant = 12000000000000;
@@ -31,6 +31,13 @@ const float absoluteSpeedMult = .05;
 // the truely magical but well thought-out constant that makes it easy to orbit. 0 = nothing, 1 = impossible to hit a planet. values between 0 and 1 make the planet harder to hit as they get closer to 1.
 const float theMagicalConstant = 10.3;
 
-const float maxSwipeInput = 7;
+const float maxSwipeInput = 6;
 const float minScaler = 0;
-const float secsToScale = .3;
+const float secsToScale = .8;
+
+//the planet radius multiplier at which to start auto orbiting
+const float autoOrbitRadius = 1.1;
+//0=no auto orbit, the higher the number the higher the rate at which your velocity will increase during auto orbit
+const float autoOrbitEase = .5;
+//auto orbit will not boost you past this speed
+const float autoOrbitMaxVelocity = 9;

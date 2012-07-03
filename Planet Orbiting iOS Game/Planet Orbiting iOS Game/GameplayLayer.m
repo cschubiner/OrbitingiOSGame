@@ -154,7 +154,6 @@ typedef struct
         [self addChild: background]; 
         background.position = ccp(0,0);
         
-        id followAction = [CCFollow actionWithTarget:player.sprite];
         //  [cameraLayer runAction: followAction];
         cameraFocusNode = [[CCSprite alloc]init];
         
@@ -243,7 +242,29 @@ typedef struct
             CGPoint b = ccpSub(ccpAdd(p, v), l);
             float distIn = ccpLength(a)-ccpLength(b);
             CGPoint dir = ccpNormalize(b);
+            
             CGPoint dampenerToAdd;
+            
+            if (ccpLength(velocity) >= 9)
+                velocity = ccpMult(velocity, 1);
+            
+            
+            
+            bool condition1 = ccpLength(ccpSub(planet.sprite.position,position)) <= planet.radius*autoOrbitRadius;
+            bool condition2 = ccpLength(velocity) <= autoOrbitMaxVelocity;
+            if (condition1 && condition2) {
+                //NSLog([NSString stringWithFormat: @"JOK %f", ccpLength(velocity)]);
+                
+                CGPoint dir2 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(M_PI/2)));
+                CGPoint dir3 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(-M_PI/2)));
+                
+                if (ccpLength(ccpSub(ccpAdd(a, dir2), ccpAdd(a, v))) < ccpLength(ccpSub(ccpAdd(a, dir3), ccpAdd(a, v)))) { //up is closer
+                    velocity = ccpAdd(velocity, ccpMult(dir2, autoOrbitEase));
+                }
+                else {
+                    velocity = ccpAdd(velocity, ccpMult(dir3, autoOrbitEase));
+                }
+            }
             
             dampenerToAdd = ccp(dir.x * distIn * theMagicalConstant / ccpLength(ccpSub(planet.sprite.position, position)), dir.y * distIn * theMagicalConstant / ccpLength(ccpSub(planet.sprite.position, position)));
             
@@ -254,7 +275,7 @@ typedef struct
             velocity = ccpAdd(velocity, dampenerToAdd);
         }
     }
-    scaler += dt * (1/(1-initScaler))*(1/secsToScale);
+    scaler += dt * (1/(1-initScaler))*powf((1/secsToScale), 2);
     scaler = clampf(scaler, 0, 1);
     //NSLog([NSString stringWithFormat: @"scaler= %f", scaler]);
     acceleration = ccp(acclerationToAdd.x * absoluteSpeedMult * scaler, acclerationToAdd.y * absoluteSpeedMult * scaler);
@@ -270,7 +291,6 @@ typedef struct
     player.sprite.position = gravityReturner.position;
     player.velocity = gravityReturner.velocity;
     player.acceleration = gravityReturner.acceleration;
-    
     
     
     
