@@ -172,9 +172,7 @@ typedef struct
         [self addChild:cameraLayer];
         [self addChild:hudLayer];
         [self UpdateScore:true];
-        [self schedule:@selector(Update:) interval:0]; //this makes the update loop loop!!!!
-        
-        
+        [self schedule:@selector(Update:) interval:0]; //this makes the update loop loop!!!!        
 	}
 	return self;
 }
