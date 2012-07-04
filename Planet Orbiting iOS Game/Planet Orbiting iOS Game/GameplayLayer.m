@@ -156,14 +156,7 @@ typedef struct
         [cameraLayer addChild:thrustParticle];
         [self CreatePredPoints]; 
         [cameraLayer addChild:player.sprite];  
-        
-        CCSprite *background = [CCSprite spriteWithFile:@"space_background.png"];
-        [self addChild: background]; 
-        background.position = ccp(0,0);
-        
-        //id followAction = [CCFollow actionWithTarget:player.sprite];
-        //  [cameraLayer runAction: followAction];
-
+                
         cameraFocusNode = [[CCSprite alloc]init];
         
         [self addChild:spaceBackgroundParticle];
