@@ -127,7 +127,7 @@ typedef struct
         zonesReachedLabel.position = ccp(100, [zonesReachedLabel boundingBox].size.height);
         [hudLayer addChild: zonesReachedLabel];
         
-        [self CreatePlanetAndZone:0 yPos:-39];
+        [self CreatePlanetAndZone:10 yPos:-39];
         [self CreatePlanetAndZone:10 yPos:309];
         [self CreatePlanetAndZone:314 yPos:539];
         [self CreatePlanetAndZone:682 yPos:485];
@@ -298,6 +298,16 @@ typedef struct
     
 }
 
+- (void)SetPredPointsColorTo:(ccColor3B)color3b {
+    PredPoint * firstPredPoint = [predPoints objectAtIndex:0];
+    if (firstPredPoint.sprite.color.b == color3b.b 
+        &&firstPredPoint.sprite.color.r == color3b.r
+        &&firstPredPoint.sprite.color.g == color3b.g) 
+        return;
+    for (PredPoint* predPoint in predPoints) 
+        [[predPoint sprite] setColor:color3b];
+}
+
 - (void)UpdatePlayer:(float)dt {
     [self ApplyGravity:dt pos:player.sprite.position velocity:player.velocity acceleration:player.acceleration]; 
     player.sprite.position = gravityReturner.position;
@@ -349,6 +359,39 @@ typedef struct
     {
         [self JumpPlayerToPlanet:lastPlanetVisited.number];
     }
+    
+    
+    Planet * nextPlanet;
+    if (lastPlanetVisited.number +1 < [planets count])
+        nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
+    else     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
+       
+    
+    
+    float takeoffAngleToNextPlanet=CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(nextPlanet.sprite.position, lastPlanetVisited.sprite.position)))-CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(player.sprite.position, lastPlanetVisited.sprite.position)));
+   if (takeoffAngleToNextPlanet-lastAngle2minusptopangle<0)//if you are going CCW
+   {
+       if (takeoffAngleToNextPlanet>=0 && takeoffAngleToNextPlanet <= 90)
+       {
+           [self SetPredPointsColorTo:ccc3(0, 255, 0)];
+       }
+       else {
+           if (!playerIsTouchingScreen)
+           [self SetPredPointsColorTo:ccc3(255, 0, 0)];
+           else [self SetPredPointsColorTo:ccc3(0, 0, 255)];
+
+       }
+   }
+   else if (takeoffAngleToNextPlanet>=270||(takeoffAngleToNextPlanet >=-90 && takeoffAngleToNextPlanet <=0)) {
+       [self SetPredPointsColorTo:ccc3(0, 255, 0)];
+   }
+   else {
+       if (!playerIsTouchingScreen)
+       [self SetPredPointsColorTo:ccc3(255, 0, 0)];
+       else [self SetPredPointsColorTo:ccc3(0, 0, 255)];
+
+   }
+    lastAngle2minusptopangle = takeoffAngleToNextPlanet;
 }
 
 - (void)resetVariablesForNewGame {
@@ -483,7 +526,7 @@ typedef struct
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-
+    
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
@@ -491,8 +534,10 @@ typedef struct
         if (location.x <= size.width/6 && location.y >= 4*size.height/5) {
             [self resetVariablesForNewGame];
         }
-        else if (player.isInZone)
+        else if (player.isInZone) {
             [player setThrustBeginPoint:location];
+            playerIsTouchingScreen=true;
+        }
     }
 }
 
@@ -510,6 +555,7 @@ typedef struct
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    playerIsTouchingScreen = false;
     if (player.isInZone) {
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];

@@ -43,12 +43,15 @@
     float timeSinceCometLeftScreen;
     float timeSincePlanetExplosion;
     bool planetJustExploded;
+    bool playerIsTouchingScreen;
     
     CCParticleSystemQuad * thrustParticle;
     CCParticleSystemQuad * planetExplosionParticle;
     CCParticleSystemQuad * spaceBackgroundParticle;
     CCParticleSystemQuad * cometParticle;
     CGPoint cometVelocity;
+    
+    float lastAngle2minusptopangle;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
