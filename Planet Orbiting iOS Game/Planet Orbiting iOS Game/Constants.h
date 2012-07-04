@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+const float durationOfPostExplosionScreenShake = .62f;
 const float thrustStrength = .035;
 const float gravitationalConstant = 12000000000;
 const float distanceMult = 10;

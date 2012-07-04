@@ -10,7 +10,7 @@
 
 
 @implementation Zone
-@synthesize hasPlayerHitThisZone;
+@synthesize hasPlayerHitThisZone,hasExploded;
 
 -(id) init
 {
