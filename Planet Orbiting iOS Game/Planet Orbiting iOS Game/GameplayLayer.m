@@ -156,7 +156,7 @@ typedef struct
         [cameraLayer addChild:thrustParticle];
         [self CreatePredPoints]; 
         [cameraLayer addChild:player.sprite];  
-                
+        
         cameraFocusNode = [[CCSprite alloc]init];
         
         [self addChild:spaceBackgroundParticle];
@@ -333,7 +333,7 @@ typedef struct
         }
         i++;
     }
-
+    
     // set the player's velocity when the user just swiped the screen (when player.thrustJustOccurred==true).*/
     if (player.thrustJustOccurred) {
         CGPoint thrustVelocity = ccpAdd(ccp(-player.thrustBeginPoint.x,-player.thrustBeginPoint.y), player.thrustEndPoint);
@@ -358,29 +358,29 @@ typedef struct
     if (lastPlanetVisited.number +1 < [planets count])
         nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
     else     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
-       
+    
     
     float takeoffAngleToNextPlanet=CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(nextPlanet.sprite.position, lastPlanetVisited.sprite.position)))-CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(player.sprite.position, lastPlanetVisited.sprite.position)));
-   if (takeoffAngleToNextPlanet-lastAngle2minusptopangle<0)//if you are going CCW
-   {
-       if (takeoffAngleToNextPlanet>=0+anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees && takeoffAngleToNextPlanet <= 90+anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees)
-           [self SetPredPointsColorTo:ccc3(0, 255, 0)];
-       else {
-           if (!playerIsTouchingScreen)
-           [self SetPredPointsColorTo:ccc3(255, 0, 0)];
-           else [self SetPredPointsColorTo:ccc3(0, 0, 255)];
-
-       }
-   }
-   else if ((takeoffAngleToNextPlanet>=270-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees&&takeoffAngleToNextPlanet<=360-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees)||
-            (takeoffAngleToNextPlanet >=-90-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees && takeoffAngleToNextPlanet <=0-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees)) {
-       [self SetPredPointsColorTo:ccc3(0, 255, 0)];
-   }
-   else {
-       if (!playerIsTouchingScreen)
-       [self SetPredPointsColorTo:ccc3(255, 0, 0)];
-       else [self SetPredPointsColorTo:ccc3(0, 0, 255)];
-   }
+    if (takeoffAngleToNextPlanet-lastAngle2minusptopangle<0)//if you are going CCW
+    {
+        if (takeoffAngleToNextPlanet>=0+anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees && takeoffAngleToNextPlanet <= 90+anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees)
+            [self SetPredPointsColorTo:ccc3(0, 255, 0)];
+        else {
+            if (!playerIsTouchingScreen)
+                [self SetPredPointsColorTo:ccc3(255, 0, 0)];
+            else [self SetPredPointsColorTo:ccc3(0, 0, 255)];
+            
+        }
+    }
+    else if ((takeoffAngleToNextPlanet>=270-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees&&takeoffAngleToNextPlanet<=360-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees)||
+             (takeoffAngleToNextPlanet >=-90-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees && takeoffAngleToNextPlanet <=0-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees)) {
+        [self SetPredPointsColorTo:ccc3(0, 255, 0)];
+    }
+    else {
+        if (!playerIsTouchingScreen)
+            [self SetPredPointsColorTo:ccc3(255, 0, 0)];
+        else [self SetPredPointsColorTo:ccc3(0, 0, 255)];
+    }
     lastAngle2minusptopangle = takeoffAngleToNextPlanet;
 }
 
@@ -535,27 +535,27 @@ typedef struct
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     if (player.isInZone) {
-    CGPoint location;
-    for (UITouch *touch in touches) {
-        location = [touch locationInView:[touch view]];
-        location = [[CCDirector sharedDirector] convertToGL:location];
-    }
-    
-    futureThrustVelocity = ccpAdd(ccp(-player.thrustBeginPoint.x,-player.thrustBeginPoint.y), location);
-    futureThrustVelocity = ccp( futureThrustVelocity.x* thrustStrength,futureThrustVelocity.y*thrustStrength);
+        CGPoint location;
+        for (UITouch *touch in touches) {
+            location = [touch locationInView:[touch view]];
+            location = [[CCDirector sharedDirector] convertToGL:location];
+        }
+        
+        futureThrustVelocity = ccpAdd(ccp(-player.thrustBeginPoint.x,-player.thrustBeginPoint.y), location);
+        futureThrustVelocity = ccp( futureThrustVelocity.x* thrustStrength,futureThrustVelocity.y*thrustStrength);
     }
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     playerIsTouchingScreen = false;
     if (player.isInZone) {
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInView:[touch view]];
-        location = [[CCDirector sharedDirector] convertToGL:location];
-        [player setThrustEndPoint:location];
-        player.thrustJustOccurred = true;
-    }
-    futureThrustVelocity=CGPointZero;
+        for (UITouch *touch in touches) {
+            CGPoint location = [touch locationInView:[touch view]];
+            location = [[CCDirector sharedDirector] convertToGL:location];
+            [player setThrustEndPoint:location];
+            player.thrustJustOccurred = true;
+        }
+        futureThrustVelocity=CGPointZero;
     }
 }
 
