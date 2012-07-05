@@ -11,7 +11,6 @@
 #import "Planet.h"
 #import "Zone.h"
 #import "Constants.h"
-#import "CCLayerStreak.h"
 
 @implementation GameplayLayer {
     int planetCounter;
@@ -53,14 +52,13 @@ typedef struct
 - (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos
 {
     Planet *planet = [[Planet alloc]init];
-    planet.sprite = [CCSprite spriteWithFile:@"PlanetMichael.png"];
+    planet.sprite = [CCSprite spriteWithFile:@"planet.png"];
     planet.sprite.position =  ccp( xPos , yPos );     
     [planet.sprite setScale:planetSizeScale];
     planet.mass = 1;
     planet.number = planetCounter;
     [cameraObjects addObject:planet];
     [planets addObject:planet];
-    [cameraLayer addChild:planet.sprite];        
     [planet release];
     lastPlanetXPos = xPos;
     lastPlanetYPos = yPos;
@@ -72,7 +70,6 @@ typedef struct
     zone.sprite.position = planet.sprite.position;
     [cameraObjects addObject:zone];
     [zones addObject:zone];
-    [cameraLayer addChild:zone.sprite];        
     [zone release];
     
     planetCounter++;
@@ -87,7 +84,6 @@ typedef struct
         [predPoint.sprite setScale: scaleForLines];
         [ [predPoint sprite]setOpacity:((double)(totalPredictingLines-i/1.5)/(double)totalPredictingLines)*255 ];
         [predPoints addObject:predPoint];
-        [cameraLayer addChild:predPoint.sprite];        
         [predPoint release];
     }
 }
@@ -127,8 +123,8 @@ typedef struct
         zonesReachedLabel.position = ccp(100, [zonesReachedLabel boundingBox].size.height);
         [hudLayer addChild: zonesReachedLabel];
         
-        [self CreatePlanetAndZone:10 yPos:-39];
-        [self CreatePlanetAndZone:10 yPos:309];
+        [self CreatePlanetAndZone:10 yPos:59];
+        [self CreatePlanetAndZone:150 yPos:309];
         [self CreatePlanetAndZone:314 yPos:539];
         [self CreatePlanetAndZone:682 yPos:485];
         [self CreatePlanetAndZone:889 yPos:228];
@@ -147,15 +143,13 @@ typedef struct
         
         player = [[Player alloc]init];        
         player.sprite = [CCSprite spriteWithFile:@"spaceship.png"];
-        [player.sprite setScale:0.6];
+        [player.sprite setScale:1.2];
         player.sprite.position = ccp(size.width/2, size.height/2);
         player.velocity = CGPointZero;
         player.thrustJustOccurred = false;        
         [cameraObjects addObject:player]; 
         
-        [cameraLayer addChild:thrustParticle];
         [self CreatePredPoints]; 
-        [cameraLayer addChild:player.sprite];  
         
         cameraFocusNode = [[CCSprite alloc]init];
         
@@ -196,11 +190,10 @@ typedef struct
     
     
     CGPoint focusPosition = ccpMidpoint(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
-    //   focusPosition = ccpMidpoint(focusPosition, player.sprite.position);
+    focusPosition = ccpLerp(focusPosition, ccpMidpoint(focusPosition, player.sprite.position), .25f) ;
     cameraFocusNode.position = ccpLerp(cameraFocusNode.position, focusPosition, .06f);
     CGFloat distanceBetweenPlanets = ccpDistance(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
-    float scale = -0.0011304347826086958*distanceBetweenPlanets+1.218695652173913;
-    scale*=.8*.9;
+    float scale =zoomMultiplier*(-0.0011304347826086958*distanceBetweenPlanets+1.218695652173913);
     focusPosition =ccpLerp(cameraLastFocusPosition, focusPosition, .06f);
     [self ZoomLayer:cameraLayer withScale:scale toPosition: focusPosition];
     id followAction = [CCFollow actionWithTarget:cameraFocusNode];
@@ -224,7 +217,7 @@ typedef struct
             acclerationToAdd = ccpAdd(acclerationToAdd, planet.forceExertingOnPlayer);
             if (ccpLength(acclerationToAdd)>10)
             {
-                //   NSLog(@"1 dubtif q  happening. planet num: %d",planet.ID);
+                //   CCLOG(@"1 dubtif q  happening. planet num: %d",planet.ID);
             }
             
             CGPoint reverseForceOnPlayer;
@@ -236,7 +229,7 @@ typedef struct
             acclerationToAdd = ccpAdd(acclerationToAdd, reverseForceOnPlayer);
             if (acclerationToAdd.y>20)
             {
-                //  NSLog(@"2 dubtif q  happening. planet num: %d",planet.ID);
+                //  CCLOG(@"2 dubtif q  happening. planet num: %d",planet.ID);
             }
             if (ccpLength(ccpSub(planet.sprite.position,position)) <= planet.radius*2) {   
                 CGPoint l = planet.sprite.position;
@@ -257,7 +250,7 @@ typedef struct
                 bool condition1 = ccpLength(ccpSub(planet.sprite.position,position)) <= planet.radius*autoOrbitRadius;
                 bool condition2 = ccpLength(velocity) <= autoOrbitMaxVelocity;
                 if (condition1 && condition2) {
-                    //NSLog([NSString stringWithFormat: @"JOK %f", ccpLength(velocity)]);
+                    //CCLOG([NSString stringWithFormat: @"JOK %f", ccpLength(velocity)]);
                     
                     CGPoint dir2 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(M_PI/2)));
                     CGPoint dir3 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(-M_PI/2)));
@@ -282,8 +275,8 @@ typedef struct
     }
     scaler += dt * (1/(1-initScaler))*powf((1/secsToScale), 2);
     scaler = clampf(scaler, 0, 1);
-    //NSLog([NSString stringWithFormat: @"scaler= %f", scaler]);
-    acceleration = ccp(acclerationToAdd.x * absoluteSpeedMult * scaler, acclerationToAdd.y * absoluteSpeedMult * scaler);
+    //CCLOG([NSString stringWithFormat: @"scaler= %f", scaler]);
+    acceleration = ccp(acclerationToAdd.x * (absoluteSpeedMult*timeDilationCoefficient) * scaler, acclerationToAdd.y * (absoluteSpeedMult*timeDilationCoefficient) * scaler);
     
     gravityReturner.position = position;
     gravityReturner.acceleration = acceleration;
@@ -338,7 +331,7 @@ typedef struct
     if (player.thrustJustOccurred) {
         CGPoint thrustVelocity = ccpAdd(ccp(-player.thrustBeginPoint.x,-player.thrustBeginPoint.y), player.thrustEndPoint);
         thrustVelocity = ccp( thrustVelocity.x* thrustStrength,thrustVelocity.y*thrustStrength);
-        //NSLog([NSString stringWithFormat:@"thrust mag: %f",ccpLength(thrustVelocity)]);
+        //CCLOG([NSString stringWithFormat:@"thrust mag: %f",ccpLength(thrustVelocity)]);
         player.velocity = ccpAdd(player.velocity, thrustVelocity);
         
         thrustMag = clampf(ccpLength(thrustVelocity), 0, maxSwipeInput);
@@ -359,39 +352,43 @@ typedef struct
         nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
     else     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
     
-    
-    float takeoffAngleToNextPlanet=CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(nextPlanet.sprite.position, lastPlanetVisited.sprite.position)))-CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(player.sprite.position, lastPlanetVisited.sprite.position)));
-    if (takeoffAngleToNextPlanet-lastAngle2minusptopangle<0)//if you are going CCW
-    {
-        if (takeoffAngleToNextPlanet>=0+anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees && takeoffAngleToNextPlanet <= 90+anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees)
+    if (player.isInZone) { //may want to keep on calculating lastAngle... not sure.
+        float takeoffAngleToNextPlanet=CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(nextPlanet.sprite.position, lastPlanetVisited.sprite.position)))-CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(player.sprite.position, lastPlanetVisited.sprite.position)));
+        if (takeoffAngleToNextPlanet-lastAngle2minusptopangle<0)//if you are going CCW
+        {
+            if (takeoffAngleToNextPlanet>=0-anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees && takeoffAngleToNextPlanet <= 90+anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees)
+                [self SetPredPointsColorTo:ccc3(0, 255, 0)];
+            else {
+                if (!playerIsTouchingScreen)
+                    [self SetPredPointsColorTo:ccc3(255, 0, 0)];
+                else [self SetPredPointsColorTo:ccc3(0, 0, 255)];
+                
+            }
+        }
+        else if ((takeoffAngleToNextPlanet>=270-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees&&takeoffAngleToNextPlanet<=360+anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees)||
+                 (takeoffAngleToNextPlanet >=-90-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees && takeoffAngleToNextPlanet <=0+anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees)) {
             [self SetPredPointsColorTo:ccc3(0, 255, 0)];
+        }
         else {
             if (!playerIsTouchingScreen)
                 [self SetPredPointsColorTo:ccc3(255, 0, 0)];
             else [self SetPredPointsColorTo:ccc3(0, 0, 255)];
-            
         }
+        lastAngle2minusptopangle = takeoffAngleToNextPlanet;
     }
-    else if ((takeoffAngleToNextPlanet>=270-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees&&takeoffAngleToNextPlanet<=360-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees)||
-             (takeoffAngleToNextPlanet >=-90-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees && takeoffAngleToNextPlanet <=0-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees)) {
-        [self SetPredPointsColorTo:ccc3(0, 255, 0)];
-    }
-    else {
-        if (!playerIsTouchingScreen)
-            [self SetPredPointsColorTo:ccc3(255, 0, 0)];
-        else [self SetPredPointsColorTo:ccc3(0, 0, 255)];
-    }
-    lastAngle2minusptopangle = takeoffAngleToNextPlanet;
+    else [self SetPredPointsColorTo:ccc3(255, 0, 0)];
 }
 
 - (void)resetVariablesForNewGame {
     [self JumpPlayerToPlanet:0];
+    [cameraLayer removeChild:thrustParticle cleanup:NO];
+    
     score=0;
     zonesReached=0;
     totalGameTime = 0 ;
     lastPlanetVisited = [planets objectAtIndex:0];
     timeSinceCometLeftScreen=0;
-    timeSincePlanetExplosion=40000;
+    timeSincePlanetExplosion=40000; //some arbitrarily high number
     prevScore=0;
     
     //this is where the player is on screen (240,160 is center of screen)
@@ -405,6 +402,7 @@ typedef struct
         [cameraLayer addChild:zone.sprite];
         zone.hasPlayerHitThisZone = false;
         zone.hasExploded=false;
+        [zone.sprite setColor:ccc3(255, 255, 255)];
     }
     for (Planet* planet in planets)
     {        
@@ -412,9 +410,18 @@ typedef struct
         [cameraLayer addChild:planet.sprite];
         planet.alive = true;
     }
+    [cameraLayer addChild:thrustParticle];
+    for (PredPoint* predPoint in predPoints) {
+        [cameraLayer removeChild:predPoint.sprite cleanup:YES];
+        [cameraLayer addChild:predPoint.sprite];
+    }
+    [cameraLayer removeChild:player.sprite cleanup:YES];
+    [cameraLayer addChild:player.sprite];
 }
 
 - (void)JumpPlayerToPlanet:(int)planetIndex {
+    timeDilationCoefficient = 1;
+    numZonesHitInARow = 0;
     player.sprite.position = ccpAdd(((Planet*)[planets objectAtIndex:planetIndex]).sprite.position, ccp(130,0));
     player.velocity=CGPointZero;
     player.acceleration=CGPointZero;
@@ -429,8 +436,7 @@ typedef struct
     int i = 0;
     for (Zone* zone in zones)
     {
-        float distanceBetweenPlayerAndZone = ccpDistance([[player sprite]position], [[zone sprite]position]);
-        if (distanceBetweenPlayerAndZone<[zone radius]*.99)
+        if (zone.number<=lastPlanetVisited.number+1&& ccpDistance([[player sprite]position], [[zone sprite]position])<[zone radius]*.99)
         {
             player.isInZone = true;
             if (!zone.hasPlayerHitThisZone)
@@ -438,16 +444,18 @@ typedef struct
                 if (i == 0);
                 else if ([[zones objectAtIndex:i - 1]hasPlayerHitThisZone])
                     lastPlanetVisited = [planets objectAtIndex:zone.number];
-                [cameraLayer removeChild:zone.sprite cleanup:YES];
+                
+                [zone.sprite setColor:ccc3(255, 80, 180)];
                 zone.hasPlayerHitThisZone = true;  
                 zonesReached++;
-                
+                numZonesHitInARow++;
             }
         }
-        else if (distanceBetweenPlayerAndZone>[zone radius]*1.21f){
+        else if (i<[zones count]-1&&((Zone*)[zones objectAtIndex:i+1]).hasPlayerHitThisZone) { //if player has hit the next zone and it hasn't exploded yet
             if (zone.hasPlayerHitThisZone&&!zone.hasExploded){
                 Planet * planet = [planets objectAtIndex:zone.number];
                 [cameraLayer removeChild:planet.sprite cleanup:NO];
+                [cameraLayer removeChild:zone.sprite cleanup:YES];
                 planet.alive = false;
                 [planetExplosionParticle setPosition:zone.sprite.position];
                 [planetExplosionParticle resetSystem];
@@ -456,8 +464,7 @@ typedef struct
                 planetJustExploded=true;
             }
         }
-        
-        i += 1;
+        i++;
     } // end collision detection code-----------------
 }
 
@@ -479,8 +486,7 @@ typedef struct
 - (void)UpdateParticles:(ccTime)dt {
     [thrustParticle setPosition:player.sprite.position];
     [thrustParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
-    //[thrustParticle setTotalParticles:ccpLength(player.velocity)/autoOrbitMaxVelocity*400];
-    
+    [thrustParticle setEmissionRate:ccpLength(player.velocity)/autoOrbitMaxVelocity*600*2];
     if (cometParticle.position.y<0) {
         [cometParticle stopSystem];
         timeSinceCometLeftScreen+=dt;
@@ -499,9 +505,8 @@ typedef struct
         if (timeSincePlanetExplosion<= durationOfPostExplosionScreenShake) {
             [self setPosition:ccp([self RandomBetween:-6 maxvalue:6],[self RandomBetween:-5 maxvalue:5])];
         }
-        else {
+        else
             planetJustExploded =false;
-        }
     }
     else [self setPosition:CGPointZero];
 }
@@ -514,6 +519,8 @@ typedef struct
     [self UpdateScore:false];
     [self UpdateCamera:dt];
     [self UpdateParticles:dt];
+    timeDilationCoefficient= pow(timeDilationPowerFactor,numZonesHitInARow);
+    //CCLOG(@"combos: %d time dilation: %f",numZonesHitInARow,timeDilationCoefficient);
     
 }
 

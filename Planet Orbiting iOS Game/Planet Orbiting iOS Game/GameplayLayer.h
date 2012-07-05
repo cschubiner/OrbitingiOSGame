@@ -52,6 +52,12 @@
     CGPoint cometVelocity;
     
     float lastAngle2minusptopangle;
+    
+    //is multiplied by the absoluteSpeedMult to cause time dilation
+    float timeDilationCoefficient;
+    
+    //number of zones gone through without screwing up
+    int numZonesHitInARow;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
