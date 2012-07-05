@@ -360,14 +360,11 @@ typedef struct
     else     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
        
     
-    
     float takeoffAngleToNextPlanet=CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(nextPlanet.sprite.position, lastPlanetVisited.sprite.position)))-CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(player.sprite.position, lastPlanetVisited.sprite.position)));
    if (takeoffAngleToNextPlanet-lastAngle2minusptopangle<0)//if you are going CCW
    {
-       if (takeoffAngleToNextPlanet>=0 && takeoffAngleToNextPlanet <= 90)
-       {
+       if (takeoffAngleToNextPlanet>=0+anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees && takeoffAngleToNextPlanet <= 90+anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees)
            [self SetPredPointsColorTo:ccc3(0, 255, 0)];
-       }
        else {
            if (!playerIsTouchingScreen)
            [self SetPredPointsColorTo:ccc3(255, 0, 0)];
@@ -375,14 +372,14 @@ typedef struct
 
        }
    }
-   else if (takeoffAngleToNextPlanet>=270||(takeoffAngleToNextPlanet >=-90 && takeoffAngleToNextPlanet <=0)) {
+   else if ((takeoffAngleToNextPlanet>=270-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees&&takeoffAngleToNextPlanet<=360-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees)||
+            (takeoffAngleToNextPlanet >=-90-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees && takeoffAngleToNextPlanet <=0-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees)) {
        [self SetPredPointsColorTo:ccc3(0, 255, 0)];
    }
    else {
        if (!playerIsTouchingScreen)
        [self SetPredPointsColorTo:ccc3(255, 0, 0)];
        else [self SetPredPointsColorTo:ccc3(0, 0, 255)];
-
    }
     lastAngle2minusptopangle = takeoffAngleToNextPlanet;
 }
@@ -482,6 +479,8 @@ typedef struct
 - (void)UpdateParticles:(ccTime)dt {
     [thrustParticle setPosition:player.sprite.position];
     [thrustParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
+    //[thrustParticle setTotalParticles:ccpLength(player.velocity)/autoOrbitMaxVelocity*400];
+    
     if (cometParticle.position.y<0) {
         [cometParticle stopSystem];
         timeSinceCometLeftScreen+=dt;
