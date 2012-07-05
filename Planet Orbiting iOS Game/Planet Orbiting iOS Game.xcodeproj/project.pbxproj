@@ -140,6 +140,7 @@
 		CE0E365B159F240A00B95115 /* PredPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0E365A159F240A00B95115 /* PredPoint.m */; };
 		CE0E365E159F268F00B95115 /* point.png in Resources */ = {isa = PBXBuildFile; fileRef = CE0E365D159F268F00B95115 /* point.png */; };
 		CE46897E15A02622009F4195 /* GravityReturnClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CE46897D15A02622009F4195 /* GravityReturnClass.m */; };
+		CE46899015A55D3A009F4195 /* dottedArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CE46898F15A55D3A009F4195 /* dottedArrow.png */; };
 		CE72301E1599C69A0093ECC4 /* PlanetMichael.png in Resources */ = {isa = PBXBuildFile; fileRef = CE72301D1599C69A0093ECC4 /* PlanetMichael.png */; };
 		CEF4A6F4159FAA5C009C5BE4 /* spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF4A6F3159FAA5C009C5BE4 /* spaceship.png */; };
 		CEF4A751159EE6E4005D32A1 /* space_background.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF4A750159EE6E4005D32A1 /* space_background.png */; };
@@ -408,6 +409,7 @@
 		CE0E365D159F268F00B95115 /* point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point.png; sourceTree = "<group>"; };
 		CE46897C15A02622009F4195 /* GravityReturnClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GravityReturnClass.h; path = ../GravityReturnClass.h; sourceTree = "<group>"; };
 		CE46897D15A02622009F4195 /* GravityReturnClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GravityReturnClass.m; path = ../GravityReturnClass.m; sourceTree = "<group>"; };
+		CE46898F15A55D3A009F4195 /* dottedArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dottedArrow.png; sourceTree = "<group>"; };
 		CE72301D1599C69A0093ECC4 /* PlanetMichael.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlanetMichael.png; sourceTree = "<group>"; };
 		CEF4A6F3159FAA5C009C5BE4 /* spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spaceship.png; sourceTree = "<group>"; };
 		CEF4A750159EE6E4005D32A1 /* space_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = space_background.png; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 				CEF4A6F3159FAA5C009C5BE4 /* spaceship.png */,
 				0C487AFE1594729D00674AB9 /* spaceship-hd.png */,
 				C4E09657159E106000E31908 /* arrow2.png */,
+				CE46898F15A55D3A009F4195 /* dottedArrow.png */,
 				CE72301D1599C69A0093ECC4 /* PlanetMichael.png */,
 				CEF4A750159EE6E4005D32A1 /* space_background.png */,
 				0C487B06159476AA00674AB9 /* planet2-hd.png */,
@@ -952,6 +955,7 @@
 				C4E994B315A435E600C7009D /* planetExplosion.plist in Resources */,
 				C4E994B415A435E600C7009D /* spaceParticles.plist in Resources */,
 				C4E994B515A435E600C7009D /* thrustParticle.plist in Resources */,
+				CE46899015A55D3A009F4195 /* dottedArrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

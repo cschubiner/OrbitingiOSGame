@@ -16,6 +16,7 @@
 @interface GameplayLayer : CCLayer {
     
     Player *player;
+    CCSprite *dottedArrowSprite;
     NSMutableArray *planets;
     NSMutableArray *zones;
     NSMutableArray *predPoints;
@@ -27,11 +28,7 @@
     CGSize size;
     CCLayer *hudLayer;
     CCLayer *cameraLayer;
-    float initScaler;
-    float scaler;
-    float thrustMag;
     GravityReturnClass* gravityReturner;
-    CGPoint futureThrustVelocity;
     CCNode * cameraFocusNode;
     CGPoint cameraLastFocusPosition;
     Planet * lastPlanetVisited;
