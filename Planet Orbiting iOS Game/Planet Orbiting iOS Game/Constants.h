@@ -34,7 +34,7 @@ const float zoneScaleRelativeToPlanet = 1.8;
 const float velocityDampener = 1;
 
 // this is basically how much gravity affects you. If you reduce both this and thrustStregth, you will effectively be slowing down the speed of the game
-const float absoluteSpeedMult = .05*.14f*.8f;
+const float absoluteSpeedMult = .05*.14f*.8f*1.4f;
 
 // the truely magical but well thought-out constant that makes it easy to orbit. 0 = nothing, 1 = impossible to hit a planet. values between 0 and 1 make the planet harder to hit as they get closer to 1.
 const float theMagicalConstant = 10.3;

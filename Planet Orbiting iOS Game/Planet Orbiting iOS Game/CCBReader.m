@@ -21,7 +21,7 @@
     return self;
 }
 
-- (void)dealloc
+-(void)dealloc
 {
     [super dealloc];
 }
