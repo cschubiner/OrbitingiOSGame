@@ -8,12 +8,11 @@
 
 #import "Planet.h"
 
-
 @implementation Planet
+
 @synthesize forceExertingOnPlayer,mass;
 
--(id) init
-{
+-(id) init {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
@@ -22,7 +21,7 @@
 	return self;
 }
 
--(float)radius{
+- (float)radius {
     radius = MAX([[self sprite] width],[[self sprite] width])/2;
     return radius;
 }

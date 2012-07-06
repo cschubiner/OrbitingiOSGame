@@ -8,8 +8,8 @@
 
 #import "CameraObject.h"
 
-
 @implementation CameraObject
+
 @synthesize sprite,alive,number,acceleration,velocity;
 
 -(CGPoint)position{
@@ -30,4 +30,5 @@
 -(CGPoint)getPositionOnScreen:(CCLayer*)layerObjectIsOn{
     return [layerObjectIsOn convertToWorldSpace:self.sprite.position];
 }
+
 @end

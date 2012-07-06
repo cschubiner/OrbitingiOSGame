@@ -8,8 +8,8 @@
 
 #import "Player.h"
 
-
 @implementation Player
+
 @synthesize thrustEndPoint,thrustBeginPoint,thrustJustOccurred,mass,isInZone;
 
 -(id) init

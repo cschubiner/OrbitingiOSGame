@@ -8,7 +8,8 @@
 
 #import "GravityReturnClass.h"
 
-
 @implementation GravityReturnClass
+
 @synthesize velocity,acceleration,position;
+
 @end

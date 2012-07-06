@@ -10,8 +10,7 @@
 #import "cocos2d.h"
 
 @interface CameraObject : CCNode {
-    
-    
+
 }
 
 @property (nonatomic,retain) CCSprite *sprite;
@@ -23,4 +22,5 @@
 -(CGPoint)position;
 -(void)setPosition:(CGPoint)position;
 -(CGPoint)getPositionOnScreen:(CCLayer*)layerObjectIsOn;
+
 @end

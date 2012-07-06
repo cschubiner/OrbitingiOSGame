@@ -10,6 +10,7 @@
 
 //this is x in the equation timeDilationCoefficient = x^(numZonesHitInARow);
 const float timeDilationPowerFactor = 1.08f;
+
 //changes how zoomed in the camera in. higher numbers mean more zoom (everything looks bigger)
 const float zoomMultiplier = .72f;
 const float anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees = 65;
@@ -51,7 +52,9 @@ const float secsToScale = .8;
 
 //the planet radius multiplier at which to start auto orbiting
 const float autoOrbitRadius = 1.1;
+
 //0=no auto orbit, the higher the number the higher the rate at which your velocity will increase during auto orbit
 const float autoOrbitEase = .5;
+
 //auto orbit will not boost you past this speed
 const float autoOrbitMaxVelocity = 9;

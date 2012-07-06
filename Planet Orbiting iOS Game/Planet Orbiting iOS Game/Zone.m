@@ -8,11 +8,11 @@
 
 #import "Zone.h"
 
-
 @implementation Zone
+
 @synthesize hasPlayerHitThisZone,hasExploded;
 
--(id) init
+- (id)init
 {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
@@ -22,8 +22,9 @@
 	return self;
 }
 
--(float)radius{
+- (float)radius {
     radius = MAX([[self sprite] width],[[self sprite] width])/2;
     return radius;
 }
+
 @end

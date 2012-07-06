@@ -16,7 +16,7 @@
 }
 
 /** Ribbon used by LayerStreak (weak reference) */
-@property (nonatomic,readonly) CCRibbon *ribbon;
+@property (nonatomic, readonly) CCRibbon *ribbon;
 
 /** creates the a LayerStreak. The image will be loaded using the TextureMgr. */
 +(id)streakWithFade:(float)fade minSeg:(float)seg image:(NSString*)path width:(float)width length:(float)length color:(ccColor4B)color target:(id)target;

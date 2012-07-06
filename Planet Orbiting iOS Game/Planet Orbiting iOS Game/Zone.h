@@ -15,10 +15,11 @@
     bool hasPlayerHitThisZone;
 }
 
--(id)init;
+- (id)init;
+
 @property (nonatomic) bool hasPlayerHitThisZone;
 @property (nonatomic) bool hasExploded;
 
--(float)radius;
+- (float)radius;
 
 @end

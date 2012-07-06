@@ -13,7 +13,6 @@
 
 @interface Player : CameraObject {
     
-    
 }
 
 -(id)init;

@@ -13,9 +13,12 @@
 @interface Planet : CameraObject {
     float radius;
 }
+
 -(id)init;
 
 @property (nonatomic) CGPoint forceExertingOnPlayer;
 @property (nonatomic) float mass;
+
 -(float)radius;
+
 @end

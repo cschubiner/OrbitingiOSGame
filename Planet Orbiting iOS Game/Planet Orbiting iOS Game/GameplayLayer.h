@@ -53,17 +53,18 @@
     
     float lastAngle2minusptopangle;
     
-    //is multiplied by the absoluteSpeedMult to cause time dilation
+    // is multiplied by the absoluteSpeedMult to cause time dilation
     float timeDilationCoefficient;
     
-    //number of zones gone through without screwing up
+    // number of zones gone through without screwing up
     int numZonesHitInARow;
 }
 
-// returns a CCScene that contains the HelloWorldLayer as the only child
 + (CCScene *) scene;
 
 - (int)RandomBetween:(int)minvalue maxvalue:(int)maxvalue;
+
 double lerpd(double a, double b, double t);
 float lerpf(float a, float b, float t);
+
 @end

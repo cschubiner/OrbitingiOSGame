@@ -70,7 +70,7 @@
 }
 - (void) scaleWithCenterPoint:(CGFloat) newScale scaleCenter:(CGPoint) scaleCenter {
     
-    // scaleCenter is the point to zoom to.. 
+    // scaleCenter is the point to zoom to.
     
     // If you are doing a pinch zoom, this should be the center of your pinch.
     

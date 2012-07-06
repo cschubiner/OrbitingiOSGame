@@ -12,7 +12,9 @@
 @interface GravityReturnClass : CCNode {
     
 }
+
 @property (nonatomic) CGPoint velocity;
 @property (nonatomic) CGPoint acceleration;
 @property (nonatomic) CGPoint position;
+
 @end
