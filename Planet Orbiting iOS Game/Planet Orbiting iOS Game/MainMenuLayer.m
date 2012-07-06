@@ -28,32 +28,18 @@
 }
 
 
-// This method is set as an attribute to the CCMenuItemImage in
-// CocosBuilder, and automatically set up to be called when the
-// button is pressed.
-- (void)pressedButton:(id)sender
-{    
-    // Stop all running actions for the icon sprite
-
-}
-
 // on "init" you need to initialize your instance
 - (id)init {
 	if (self = [super init]) {
-        CCLayer *menuLayer = [[CCLayer alloc] init];
-        [self addChild:menuLayer];
-        
-        CCMenuItemFont *startButton = [CCMenuItemFont itemFromString:@"Stadrt" target:self selector:@selector(startGame:)];
-        
-        CCMenu *menu = [CCMenu menuWithItems:startButton, nil];
-        [menuLayer addChild:menu];
-        
+
+        //we may have custom menu logic here, but for now everything is just made with cocosbuilder 1.x (not 2.x!!)
 	}
 	return self;
 }
 
+//this is called (magically??) by cocosbuilder when the start button is pressed
 - (void)startGame: (id)sender {
-    NSLog(@"gameplayLayer scene launched, game starting");
+    CCLOG(@"gameplayLayer scene launched, game starting");
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
 }
 
