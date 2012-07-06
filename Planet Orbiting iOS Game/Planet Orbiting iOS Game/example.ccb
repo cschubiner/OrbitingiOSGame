@@ -608,7 +608,7 @@
 									<key>scaleY</key>
 									<real>1</real>
 									<key>selector</key>
-									<string>pressedButton:</string>
+									<string>startGame:</string>
 									<key>spriteFileDisabled</key>
 									<string>btn-test-2.png</string>
 									<key>spriteFileNormal</key>
@@ -803,7 +803,7 @@
 				<real>320</real>
 			</array>
 			<key>customClass</key>
-			<string>HelloCocosBuilder</string>
+			<string>MainMenuLayer</string>
 			<key>isExpanded</key>
 			<true/>
 			<key>isRelativeAnchorPoint</key>

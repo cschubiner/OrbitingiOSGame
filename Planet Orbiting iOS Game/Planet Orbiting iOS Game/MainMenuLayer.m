@@ -29,6 +29,16 @@
 	return scene;
 }
 
+
+// This method is set as an attribute to the CCMenuItemImage in
+// CocosBuilder, and automatically set up to be called when the
+// button is pressed.
+- (void) pressedButton:(id)sender
+{    
+    // Stop all runnint actions for the icon sprite
+
+}
+
 // on "init" you need to initialize your instance
 -(id) init
 {
@@ -45,12 +55,12 @@
 		// position the label on the center of the screen
 		label.position =  ccp( size.width /2 , 3*size.height/4 );
 		// add the label as a child to this Layer
-		[self addChild: label];
+	//	[self addChild: label];
         
         CCMenuItemFont *startButton = [CCMenuItemFont itemFromString:@"Start" target:self selector:@selector(startGame:)];
         
         CCMenu *menu = [CCMenu menuWithItems:startButton, nil];
-        [menuLayer addChild:menu];
+      //  [menuLayer addChild:menu];
         
 	}
 	return self;

@@ -127,6 +127,21 @@
 		0C7AA7561594693D000B58F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA7551594693D000B58F2 /* AppDelegate.m */; };
 		0C7AA7591594693D000B58F2 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA7581594693D000B58F2 /* RootViewController.m */; };
 		0C7AA75C1594693D000B58F2 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */; };
+		C445303E15A68880004F8F48 /* btn-test-0.png in Resources */ = {isa = PBXBuildFile; fileRef = C445303015A68880004F8F48 /* btn-test-0.png */; };
+		C445303F15A68880004F8F48 /* btn-test-1.png in Resources */ = {isa = PBXBuildFile; fileRef = C445303115A68880004F8F48 /* btn-test-1.png */; };
+		C445304015A68880004F8F48 /* btn-test-2.png in Resources */ = {isa = PBXBuildFile; fileRef = C445303215A68880004F8F48 /* btn-test-2.png */; };
+		C445304115A68880004F8F48 /* burst.png in Resources */ = {isa = PBXBuildFile; fileRef = C445303315A68880004F8F48 /* burst.png */; };
+		C445304315A68880004F8F48 /* jungle.png in Resources */ = {isa = PBXBuildFile; fileRef = C445303515A68880004F8F48 /* jungle.png */; };
+		C445304415A68880004F8F48 /* logo-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C445303615A68880004F8F48 /* logo-icon.png */; };
+		C445304515A68880004F8F48 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C445303715A68880004F8F48 /* logo.png */; };
+		C445304615A68880004F8F48 /* markerfelt24shadow.fnt in Resources */ = {isa = PBXBuildFile; fileRef = C445303815A68880004F8F48 /* markerfelt24shadow.fnt */; };
+		C445304715A68880004F8F48 /* markerfelt24shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = C445303915A68880004F8F48 /* markerfelt24shadow.png */; };
+		C445304815A68880004F8F48 /* particle-fire.png in Resources */ = {isa = PBXBuildFile; fileRef = C445303A15A68880004F8F48 /* particle-fire.png */; };
+		C445304915A68880004F8F48 /* particle-smoke.png in Resources */ = {isa = PBXBuildFile; fileRef = C445303B15A68880004F8F48 /* particle-smoke.png */; };
+		C445304A15A68880004F8F48 /* particle-snow.png in Resources */ = {isa = PBXBuildFile; fileRef = C445303C15A68880004F8F48 /* particle-snow.png */; };
+		C445304B15A68880004F8F48 /* particle-stars.png in Resources */ = {isa = PBXBuildFile; fileRef = C445303D15A68880004F8F48 /* particle-stars.png */; };
+		C445305115A688AD004F8F48 /* CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = C445305015A688AD004F8F48 /* CCBReader.m */; };
+		C445305315A68993004F8F48 /* example.ccb in Resources */ = {isa = PBXBuildFile; fileRef = C445305215A68993004F8F48 /* example.ccb */; };
 		C455064D159E337E00F362D1 /* CCLayerStreak.m in Sources */ = {isa = PBXBuildFile; fileRef = C455064C159E337E00F362D1 /* CCLayerStreak.m */; };
 		C4D4AA9815A613EA0021D266 /* planet-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C4D4AA9415A613E90021D266 /* planet-hd.png */; };
 		C4D4AA9915A613EA0021D266 /* point-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C4D4AA9515A613E90021D266 /* point-hd.png */; };
@@ -392,6 +407,22 @@
 		0C7AA75A1594693D000B58F2 /* MainMenuLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
 		0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
 		0C7AA75D1594693D000B58F2 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
+		C445303015A68880004F8F48 /* btn-test-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-test-0.png"; sourceTree = "<group>"; };
+		C445303115A68880004F8F48 /* btn-test-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-test-1.png"; sourceTree = "<group>"; };
+		C445303215A68880004F8F48 /* btn-test-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-test-2.png"; sourceTree = "<group>"; };
+		C445303315A68880004F8F48 /* burst.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = burst.png; sourceTree = "<group>"; };
+		C445303515A68880004F8F48 /* jungle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jungle.png; sourceTree = "<group>"; };
+		C445303615A68880004F8F48 /* logo-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-icon.png"; sourceTree = "<group>"; };
+		C445303715A68880004F8F48 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		C445303815A68880004F8F48 /* markerfelt24shadow.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = markerfelt24shadow.fnt; sourceTree = "<group>"; };
+		C445303915A68880004F8F48 /* markerfelt24shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = markerfelt24shadow.png; sourceTree = "<group>"; };
+		C445303A15A68880004F8F48 /* particle-fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "particle-fire.png"; sourceTree = "<group>"; };
+		C445303B15A68880004F8F48 /* particle-smoke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "particle-smoke.png"; sourceTree = "<group>"; };
+		C445303C15A68880004F8F48 /* particle-snow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "particle-snow.png"; sourceTree = "<group>"; };
+		C445303D15A68880004F8F48 /* particle-stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "particle-stars.png"; sourceTree = "<group>"; };
+		C445304F15A688AD004F8F48 /* CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBReader.h; sourceTree = "<group>"; };
+		C445305015A688AD004F8F48 /* CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBReader.m; sourceTree = "<group>"; };
+		C445305215A68993004F8F48 /* example.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = example.ccb; sourceTree = "<group>"; };
 		C455064B159E337E00F362D1 /* CCLayerStreak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLayerStreak.h; sourceTree = "<group>"; };
 		C455064C159E337E00F362D1 /* CCLayerStreak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLayerStreak.m; sourceTree = "<group>"; };
 		C49E914A159A48D700BC424D /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -543,6 +574,7 @@
 				0C487AF715946E2300674AB9 /* GameplayLayer.m */,
 				0C7AA75A1594693D000B58F2 /* MainMenuLayer.h */,
 				0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */,
+				C445304D15A68888004F8F48 /* CocosBuilder  */,
 				0C7AA60315946939000B58F2 /* Resources */,
 				0C7AA61715946939000B58F2 /* libs */,
 				0C7AA7501594693C000B58F2 /* Supporting Files */,
@@ -871,6 +903,45 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C445304D15A68888004F8F48 /* CocosBuilder  */ = {
+			isa = PBXGroup;
+			children = (
+				C445305415A68AA0004F8F48 /* ignore */,
+				C445304E15A68890004F8F48 /* Resources */,
+			);
+			name = "CocosBuilder ";
+			sourceTree = "<group>";
+		};
+		C445304E15A68890004F8F48 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C445303015A68880004F8F48 /* btn-test-0.png */,
+				C445303115A68880004F8F48 /* btn-test-1.png */,
+				C445303215A68880004F8F48 /* btn-test-2.png */,
+				C445303315A68880004F8F48 /* burst.png */,
+				C445305215A68993004F8F48 /* example.ccb */,
+				C445303515A68880004F8F48 /* jungle.png */,
+				C445303615A68880004F8F48 /* logo-icon.png */,
+				C445303715A68880004F8F48 /* logo.png */,
+				C445303815A68880004F8F48 /* markerfelt24shadow.fnt */,
+				C445303915A68880004F8F48 /* markerfelt24shadow.png */,
+				C445303A15A68880004F8F48 /* particle-fire.png */,
+				C445303B15A68880004F8F48 /* particle-smoke.png */,
+				C445303C15A68880004F8F48 /* particle-snow.png */,
+				C445303D15A68880004F8F48 /* particle-stars.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		C445305415A68AA0004F8F48 /* ignore */ = {
+			isa = PBXGroup;
+			children = (
+				C445304F15A688AD004F8F48 /* CCBReader.h */,
+				C445305015A688AD004F8F48 /* CCBReader.m */,
+			);
+			name = ignore;
+			sourceTree = "<group>";
+		};
 		C4E994B715A435EA00C7009D /* Particles */ = {
 			isa = PBXGroup;
 			children = (
@@ -956,6 +1027,20 @@
 				C4D4AAA115A613F50021D266 /* point.png in Resources */,
 				C4D4AAA215A613F50021D266 /* spaceship.png in Resources */,
 				C4D4AAA315A613F50021D266 /* zone.png in Resources */,
+				C445303E15A68880004F8F48 /* btn-test-0.png in Resources */,
+				C445303F15A68880004F8F48 /* btn-test-1.png in Resources */,
+				C445304015A68880004F8F48 /* btn-test-2.png in Resources */,
+				C445304115A68880004F8F48 /* burst.png in Resources */,
+				C445304315A68880004F8F48 /* jungle.png in Resources */,
+				C445304415A68880004F8F48 /* logo-icon.png in Resources */,
+				C445304515A68880004F8F48 /* logo.png in Resources */,
+				C445304615A68880004F8F48 /* markerfelt24shadow.fnt in Resources */,
+				C445304715A68880004F8F48 /* markerfelt24shadow.png in Resources */,
+				C445304815A68880004F8F48 /* particle-fire.png in Resources */,
+				C445304915A68880004F8F48 /* particle-smoke.png in Resources */,
+				C445304A15A68880004F8F48 /* particle-snow.png in Resources */,
+				C445304B15A68880004F8F48 /* particle-stars.png in Resources */,
+				C445305315A68993004F8F48 /* example.ccb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1072,6 +1157,7 @@
 				C455064D159E337E00F362D1 /* CCLayerStreak.m in Sources */,
 				CE0E365B159F240A00B95115 /* PredPoint.m in Sources */,
 				CE46897E15A02622009F4195 /* GravityReturnClass.m in Sources */,
+				C445305115A688AD004F8F48 /* CCBReader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
