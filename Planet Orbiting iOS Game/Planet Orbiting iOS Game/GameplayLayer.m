@@ -208,97 +208,102 @@ typedef struct {
     CGPoint acclerationToAdd=CGPointZero;
     for (Planet* planet in planets)
     {
-        if (planet.alive) {
+        // if (CGRectContainsRect(CGRectMake(0, 0, size.width, size.height), CGRectMake([cameraLayer convertToWorldSpace:zone.sprite.position].x-zone.sprite.width/2, [cameraLayer convertToWorldSpace:zone.sprite.position].y-zone.sprite.height/2, zone.sprite.width, zone.sprite.height)))
+        if ([self IsPositionOnScreen:[cameraLayer convertToWorldSpace:planet.sprite.position]])
+        {
             
-            if (!shouldUseFakeScaler) {
+            if (planet.alive) {
                 
-                
-                if (ccpLength(ccpSub(planet.sprite.position,position)) <= planet.radius * planetRadiusCollisionZone)
-                    [self JumpPlayerToPlanet:lastPlanetVisited.number];
-            }
-            
-            CGPoint direction;
-            direction = ccpNormalize(ccpSub(planet.sprite.position, position));
-            float distanceBetweenToAPower = pow(distanceMult*ccpLength(ccpSub(planet.sprite.position, position)), gravitationalDistancePower);
-            float gravityMultiplier = (gravitationalConstant * planet.mass * player.mass) /distanceBetweenToAPower;
-            planet.forceExertingOnPlayer = ccp(direction.x * gravityMultiplier, direction.y * gravityMultiplier);
-            acclerationToAdd = ccpAdd(acclerationToAdd, planet.forceExertingOnPlayer);
-            if (ccpLength(acclerationToAdd)>10) {
-                //   CCLOG(@"1 dubtif q  happening. planet num: %d",planet.ID);
-            }
-            
-            CGPoint reverseForceOnPlayer;
-            CGPoint reverseDirection;
-            reverseDirection = ccpNormalize(ccpSub(position, planet.sprite.position));
-            float reverseDistanceBetweenToAPower = pow(reverseDistanceMult*ccpLength(ccpSub(planet.sprite.position, position)), reverseGravitationalDistancePower);
-            float reverseGravityMultiplier = (reverseGravitationalConstant * planet.mass * player.mass) /reverseDistanceBetweenToAPower;
-            reverseForceOnPlayer = ccp(reverseDirection.x * reverseGravityMultiplier, reverseDirection.y * reverseGravityMultiplier);
-            acclerationToAdd = ccpAdd(acclerationToAdd, reverseForceOnPlayer);
-            
-            
-            if (ccpLength(ccpSub(planet.sprite.position,position)) <= planet.radius*2) {   
-                CGPoint l = planet.sprite.position;
-                CGPoint p = position;
-                CGPoint v = velocity;
-                CGPoint a = ccpSub(p, l);
-                CGPoint b = ccpSub(ccpAdd(p, v), l);
-                float distIn = ccpLength(a)-ccpLength(b);
-                CGPoint dir = ccpNormalize(b);
-                
-                CGPoint dampenerToAdd;
-                
-                if (ccpLength(velocity) >= 9)
-                    velocity = ccpMult(velocity, 1);
-                
-                bool condition1 = ccpLength(ccpSub(planet.sprite.position,position)) <= planet.radius*autoOrbitRadius;
-                bool condition2 = ccpLength(velocity) <= autoOrbitMaxVelocity;
-                if (condition1) {
+                if (!shouldUseFakeScaler) {
                     
-                    //CCLOG([NSString stringWithFormat: @"JOK %f", ccpLength(velocity)]);
                     
-                    CGPoint dir2 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(M_PI/2)));
-                    CGPoint dir3 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(-M_PI/2)));
+                    if (ccpLength(ccpSub(planet.sprite.position,position)) <= planet.radius * planetRadiusCollisionZone)
+                        [self JumpPlayerToPlanet:lastPlanetVisited.number];
+                }
+                
+                CGPoint direction;
+                direction = ccpNormalize(ccpSub(planet.sprite.position, position));
+                float distanceBetweenToAPower = pow(distanceMult*ccpLength(ccpSub(planet.sprite.position, position)), gravitationalDistancePower);
+                float gravityMultiplier = (gravitationalConstant * planet.mass * player.mass) /distanceBetweenToAPower;
+                planet.forceExertingOnPlayer = ccp(direction.x * gravityMultiplier, direction.y * gravityMultiplier);
+                acclerationToAdd = ccpAdd(acclerationToAdd, planet.forceExertingOnPlayer);
+                if (ccpLength(acclerationToAdd)>10) {
+                    //   CCLOG(@"1 dubtif q  happening. planet num: %d",planet.ID);
+                }
+                
+                CGPoint reverseForceOnPlayer;
+                CGPoint reverseDirection;
+                reverseDirection = ccpNormalize(ccpSub(position, planet.sprite.position));
+                float reverseDistanceBetweenToAPower = pow(reverseDistanceMult*ccpLength(ccpSub(planet.sprite.position, position)), reverseGravitationalDistancePower);
+                float reverseGravityMultiplier = (reverseGravitationalConstant * planet.mass * player.mass) /reverseDistanceBetweenToAPower;
+                reverseForceOnPlayer = ccp(reverseDirection.x * reverseGravityMultiplier, reverseDirection.y * reverseGravityMultiplier);
+                acclerationToAdd = ccpAdd(acclerationToAdd, reverseForceOnPlayer);
+                
+                
+                if (ccpLength(ccpSub(planet.sprite.position,position)) <= planet.radius*2) {   
+                    CGPoint l = planet.sprite.position;
+                    CGPoint p = position;
+                    CGPoint v = velocity;
+                    CGPoint a = ccpSub(p, l);
+                    CGPoint b = ccpSub(ccpAdd(p, v), l);
+                    float distIn = ccpLength(a)-ccpLength(b);
+                    CGPoint dir = ccpNormalize(b);
                     
-                    if (condition2) {
+                    CGPoint dampenerToAdd;
+                    
+                    if (ccpLength(velocity) >= 9)
+                        velocity = ccpMult(velocity, 1);
+                    
+                    bool condition1 = ccpLength(ccpSub(planet.sprite.position,position)) <= planet.radius*autoOrbitRadius;
+                    bool condition2 = ccpLength(velocity) <= autoOrbitMaxVelocity;
+                    if (condition1) {
                         
-                        if (ccpLength(ccpSub(ccpAdd(a, dir2), ccpAdd(a, v))) < ccpLength(ccpSub(ccpAdd(a, dir3), ccpAdd(a, v)))) { //up is closer
-                            velocity = ccpAdd(velocity, ccpMult(dir2, autoOrbitEase));
+                        //CCLOG([NSString stringWithFormat: @"JOK %f", ccpLength(velocity)]);
+                        
+                        CGPoint dir2 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(M_PI/2)));
+                        CGPoint dir3 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(-M_PI/2)));
+                        
+                        if (condition2) {
+                            
+                            if (ccpLength(ccpSub(ccpAdd(a, dir2), ccpAdd(a, v))) < ccpLength(ccpSub(ccpAdd(a, dir3), ccpAdd(a, v)))) { //up is closer
+                                velocity = ccpAdd(velocity, ccpMult(dir2, autoOrbitEase));
+                            }
+                            else {
+                                velocity = ccpAdd(velocity, ccpMult(dir3, autoOrbitEase));
+                            }
                         }
                         else {
-                            velocity = ccpAdd(velocity, ccpMult(dir3, autoOrbitEase));
-                        }
-                    }
-                    else {
-                        
-                        if (ccpLength(ccpSub(ccpAdd(a, dir2), ccpAdd(a, v))) > ccpLength(ccpSub(ccpAdd(a, dir3), ccpAdd(a, v)))) { //up is closer
-                            if (shouldUseFakeScaler)
-                                velocity = ccpAdd(velocity, ccpMult(dir2, autoOrbitSlowerEase*fakeScaler));
-                            else
-                                velocity = ccpAdd(velocity, ccpMult(dir2, autoOrbitSlowerEase*scaler));
-                        }
-                        else {
-                            if (shouldUseFakeScaler)
-                                velocity = ccpAdd(velocity, ccpMult(dir3, autoOrbitSlowerEase*fakeScaler));
-                            else
-                                velocity = ccpAdd(velocity, ccpMult(dir3, autoOrbitSlowerEase*scaler));
+                            
+                            if (ccpLength(ccpSub(ccpAdd(a, dir2), ccpAdd(a, v))) > ccpLength(ccpSub(ccpAdd(a, dir3), ccpAdd(a, v)))) { //up is closer
+                                if (shouldUseFakeScaler)
+                                    velocity = ccpAdd(velocity, ccpMult(dir2, autoOrbitSlowerEase*fakeScaler));
+                                else
+                                    velocity = ccpAdd(velocity, ccpMult(dir2, autoOrbitSlowerEase*scaler));
+                            }
+                            else {
+                                if (shouldUseFakeScaler)
+                                    velocity = ccpAdd(velocity, ccpMult(dir3, autoOrbitSlowerEase*fakeScaler));
+                                else
+                                    velocity = ccpAdd(velocity, ccpMult(dir3, autoOrbitSlowerEase*scaler));
+                                
+                            }
+                            
+                            
                             
                         }
-                        
-
-                        
                     }
+                    
+                    dampenerToAdd = ccp(dir.x * distIn * theMagicalConstant / ccpLength(ccpSub(planet.sprite.position, position)), dir.y * distIn * theMagicalConstant / ccpLength(ccpSub(planet.sprite.position, position)));
+                    
+                    if (ccpLength(a) < ccpLength(b)) {
+                        if (shouldUseFakeScaler)
+                            dampenerToAdd = ccp(dampenerToAdd.x * fakeScaler, dampenerToAdd.y * fakeScaler);
+                        else
+                            dampenerToAdd = ccp(dampenerToAdd.x * scaler, dampenerToAdd.y * scaler);
+                    }
+                    
+                    velocity = ccpAdd(velocity, dampenerToAdd);
                 }
-                
-                dampenerToAdd = ccp(dir.x * distIn * theMagicalConstant / ccpLength(ccpSub(planet.sprite.position, position)), dir.y * distIn * theMagicalConstant / ccpLength(ccpSub(planet.sprite.position, position)));
-                
-                if (ccpLength(a) < ccpLength(b)) {
-                    if (shouldUseFakeScaler)
-                        dampenerToAdd = ccp(dampenerToAdd.x * fakeScaler, dampenerToAdd.y * fakeScaler);
-                    else
-                        dampenerToAdd = ccp(dampenerToAdd.x * scaler, dampenerToAdd.y * scaler);
-                }
-                
-                velocity = ccpAdd(velocity, dampenerToAdd);
             }
         }
     }

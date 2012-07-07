@@ -16,7 +16,7 @@ const float zoomMultiplier = .72f;
 const float anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees = 65;
 const float anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees = -10;
 const float durationOfPostExplosionScreenShake = .47f;
-const float thrustStrength = .2;
+const float thrustStrength = .21;
 const float gravitationalConstant = 11000000000;
 const float distanceMult = 10;
 const float gravitationalDistancePower = 3;
@@ -47,9 +47,9 @@ const float secsToScale = .4;
 
 
 
-const int totalPredictingLines = 11;
-const int numberSpacingBetweenLines = 7;
-const float scaleForLines = 1;
+const int totalPredictingLines = 10;
+const int numberSpacingBetweenLines = 4;
+const float scaleForLines = 1.1;
 
 
 //the planet radius multiplier at which to start auto orbiting
