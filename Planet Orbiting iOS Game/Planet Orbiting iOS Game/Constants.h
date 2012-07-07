@@ -16,11 +16,11 @@ const float zoomMultiplier = .72f;
 const float anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees = 65;
 const float anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees = -10;
 const float durationOfPostExplosionScreenShake = .47f;
-const float thrustStrength = .17;
+const float thrustStrength = .2;
 const float gravitationalConstant = 11000000000;
 const float distanceMult = 10;
 const float gravitationalDistancePower = 3;
-const float reverseGravitationalConstant = 12000000000000;
+const float reverseGravitationalConstant = 12500000000000;
 const float reverseDistanceMult = 3;
 const float reverseGravitationalDistancePower = 5;
 
@@ -36,7 +36,7 @@ const float velocityDampener = 1;
 // this is basically how much gravity affects you. If you reduce both this and thrustStregth, you will effectively be slowing down the speed of the game
 const float absoluteSpeedMult = .35;
 
-const float speedOfGame = .15;
+const float speedOfGame = .2;
 
 // the truely magical but well thought-out constant that makes it easy to orbit. 0 = nothing, 1 = impossible to hit a planet. values between 0 and 1 make the planet harder to hit as they get closer to 1.
 const float theMagicalConstant = 10.3;
@@ -47,8 +47,8 @@ const float secsToScale = .4;
 
 
 
-const int totalPredictingLines = 10;
-const int numberSpacingBetweenLines = 10;
+const int totalPredictingLines = 11;
+const int numberSpacingBetweenLines = 7;
 const float scaleForLines = 1;
 
 
@@ -57,11 +57,11 @@ const float autoOrbitRadius = 1.95;
 
 //0=no auto orbit, the higher the number the higher the rate at which your velocity will increase during auto orbit
 const float autoOrbitEase = .5;
-const float autoOrbitSlowerEase = 1;
+const float autoOrbitSlowerEase = 2;
 
 //auto orbit will not boost you past this speed
 const float autoOrbitMaxVelocity = 20;
 
 
-const float planetRadiusCollisionZone = .94;
+const float planetRadiusCollisionZone = .92;
 
