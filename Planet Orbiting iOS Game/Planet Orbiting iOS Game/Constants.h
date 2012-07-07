@@ -57,7 +57,7 @@ const float scaleForLines = 1.1;
 const float autoOrbitRadius = 1.95;
 
 //0=no auto orbit, the higher the number the higher the rate at which your velocity will increase during auto orbit
-const float autoOrbitEase = .5;
+const float autoOrbitEase = 2.5;
 //how quickly you are tangentially slowed down to get to the point of autoOrbitMaxVelocity (scaled by scaler
 const float autoOrbitSlowerEase = 1.5;
 
