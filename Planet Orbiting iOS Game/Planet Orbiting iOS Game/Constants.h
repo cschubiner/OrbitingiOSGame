@@ -16,7 +16,7 @@ const float zoomMultiplier = .72f;
 const float anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees = 65;
 const float anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees = -10;
 const float durationOfPostExplosionScreenShake = .47f;
-const float thrustStrength = .21;
+const float thrustStrength = .15;
 const float gravitationalConstant = 11000000000;
 const float distanceMult = 10;
 const float gravitationalDistancePower = 3;
@@ -39,7 +39,8 @@ const float absoluteSpeedMult = .35;
 const float speedOfGame = .2;
 
 // the truely magical but well thought-out constant that makes it easy to orbit. 0 = nothing, 1 = impossible to hit a planet. values between 0 and 1 make the planet harder to hit as they get closer to 1.
-const float theMagicalConstant = 10.3;
+const float theMagicalConstant = 15;
+const float theMagicalConstantReverse = .8;
 
 const float maxSwipeInput = 6;
 const float minScaler = 1;
@@ -47,7 +48,7 @@ const float secsToScale = .4;
 
 
 
-const int totalPredictingLines = 10;
+const int totalPredictingLines = 8;
 const int numberSpacingBetweenLines = 4;
 const float scaleForLines = 1.1;
 

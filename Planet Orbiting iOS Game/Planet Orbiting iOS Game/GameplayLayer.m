@@ -293,7 +293,11 @@ typedef struct {
                         }
                     }
                     
-                    dampenerToAdd = ccp(dir.x * distIn * theMagicalConstant / ccpLength(ccpSub(planet.sprite.position, position)), dir.y * distIn * theMagicalConstant / ccpLength(ccpSub(planet.sprite.position, position)));
+                    if (ccpLength(a) >= ccpLength(b))
+                        dampenerToAdd = ccp(dir.x * distIn * theMagicalConstant / ccpLength(ccpSub(planet.sprite.position, position)), dir.y * distIn * theMagicalConstant / ccpLength(ccpSub(planet.sprite.position, position)));
+                    else                        
+                        dampenerToAdd = ccp(dir.x * distIn * theMagicalConstantReverse / ccpLength(ccpSub(planet.sprite.position, position)), dir.y * distIn * theMagicalConstantReverse / ccpLength(ccpSub(planet.sprite.position, position)));
+
                     
                     if (ccpLength(a) < ccpLength(b)) {
                         if (shouldUseFakeScaler)
