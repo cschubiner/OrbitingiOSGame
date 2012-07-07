@@ -161,6 +161,7 @@ typedef struct {
         
         timeSincePlanetExplosion=400000;
         scaler = 1;
+        fakeScaler = 1;
         
         [self addChild:cameraLayer];
         [self addChild:hudLayer];
@@ -179,7 +180,7 @@ typedef struct {
 - (void)UpdateCamera:(float)dt {
     for (CameraObject *object in cameraObjects) {
         object.velocity = ccpAdd(object.velocity, object.acceleration);
-        object.sprite.position = ccpAdd(ccpMult(object.velocity, 60*dt), object.sprite.position);
+        object.sprite.position = ccpAdd(ccpMult(object.velocity, 60*dt*speedOfGame*timeDilationCoefficient), object.sprite.position);
     }
     
     Planet * nextPlanet;
@@ -202,12 +203,20 @@ typedef struct {
 
 
 
-- (void)ApplyGravity:(float)dt pos:(CGPoint)position velocity:(CGPoint)velocity acceleration:(CGPoint)acceleration {
+- (void)ApplyGravity:(float)dt pos:(CGPoint)position velocity:(CGPoint)velocity acceleration:(CGPoint)acceleration shouldUseFakeScaler:(bool)shouldUseFakeScaler {
     
     CGPoint acclerationToAdd=CGPointZero;
     for (Planet* planet in planets)
     {
         if (planet.alive) {
+            
+            if (!shouldUseFakeScaler) {
+                
+                
+                if (ccpLength(ccpSub(planet.sprite.position,position)) <= planet.radius * planetRadiusCollisionZone)
+                    [self JumpPlayerToPlanet:lastPlanetVisited.number];
+            }
+            
             CGPoint direction;
             direction = ccpNormalize(ccpSub(planet.sprite.position, position));
             float distanceBetweenToAPower = pow(distanceMult*ccpLength(ccpSub(planet.sprite.position, position)), gravitationalDistancePower);
@@ -226,9 +235,6 @@ typedef struct {
             reverseForceOnPlayer = ccp(reverseDirection.x * reverseGravityMultiplier, reverseDirection.y * reverseGravityMultiplier);
             acclerationToAdd = ccpAdd(acclerationToAdd, reverseForceOnPlayer);
             
-            if (acclerationToAdd.y>20) {
-                //  CCLOG(@"2 dubtif q happening. planet num: %d",planet.ID);
-            }
             
             if (ccpLength(ccpSub(planet.sprite.position,position)) <= planet.radius*2) {   
                 CGPoint l = planet.sprite.position;
@@ -246,24 +252,50 @@ typedef struct {
                 
                 bool condition1 = ccpLength(ccpSub(planet.sprite.position,position)) <= planet.radius*autoOrbitRadius;
                 bool condition2 = ccpLength(velocity) <= autoOrbitMaxVelocity;
-                if (condition1 && condition2) {
+                if (condition1) {
+                    
                     //CCLOG([NSString stringWithFormat: @"JOK %f", ccpLength(velocity)]);
                     
                     CGPoint dir2 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(M_PI/2)));
                     CGPoint dir3 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(-M_PI/2)));
                     
-                    if (ccpLength(ccpSub(ccpAdd(a, dir2), ccpAdd(a, v))) < ccpLength(ccpSub(ccpAdd(a, dir3), ccpAdd(a, v)))) { //up is closer
-                        velocity = ccpAdd(velocity, ccpMult(dir2, autoOrbitEase));
+                    if (condition2) {
+                        
+                        if (ccpLength(ccpSub(ccpAdd(a, dir2), ccpAdd(a, v))) < ccpLength(ccpSub(ccpAdd(a, dir3), ccpAdd(a, v)))) { //up is closer
+                            velocity = ccpAdd(velocity, ccpMult(dir2, autoOrbitEase));
+                        }
+                        else {
+                            velocity = ccpAdd(velocity, ccpMult(dir3, autoOrbitEase));
+                        }
                     }
                     else {
-                        velocity = ccpAdd(velocity, ccpMult(dir3, autoOrbitEase));
+                        
+                        if (ccpLength(ccpSub(ccpAdd(a, dir2), ccpAdd(a, v))) > ccpLength(ccpSub(ccpAdd(a, dir3), ccpAdd(a, v)))) { //up is closer
+                            if (shouldUseFakeScaler)
+                                velocity = ccpAdd(velocity, ccpMult(dir2, autoOrbitSlowerEase*fakeScaler));
+                            else
+                                velocity = ccpAdd(velocity, ccpMult(dir2, autoOrbitSlowerEase*scaler));
+                        }
+                        else {
+                            if (shouldUseFakeScaler)
+                                velocity = ccpAdd(velocity, ccpMult(dir3, autoOrbitSlowerEase*fakeScaler));
+                            else
+                                velocity = ccpAdd(velocity, ccpMult(dir3, autoOrbitSlowerEase*scaler));
+                            
+                        }
+                        
+
+                        
                     }
                 }
                 
                 dampenerToAdd = ccp(dir.x * distIn * theMagicalConstant / ccpLength(ccpSub(planet.sprite.position, position)), dir.y * distIn * theMagicalConstant / ccpLength(ccpSub(planet.sprite.position, position)));
                 
                 if (ccpLength(a) < ccpLength(b)) {
-                    dampenerToAdd = ccp(dampenerToAdd.x * scaler, dampenerToAdd.y * scaler);
+                    if (shouldUseFakeScaler)
+                        dampenerToAdd = ccp(dampenerToAdd.x * fakeScaler, dampenerToAdd.y * fakeScaler);
+                    else
+                        dampenerToAdd = ccp(dampenerToAdd.x * scaler, dampenerToAdd.y * scaler);
                 }
                 
                 velocity = ccpAdd(velocity, dampenerToAdd);
@@ -271,11 +303,20 @@ typedef struct {
         }
     }
     
-    scaler += dt * (1/(1-initScaler))*powf((1/secsToScale), 2);
-    scaler = clampf(scaler, 0, 1);
-    //CCLOG([NSString stringWithFormat: @"scaler= %f", scaler]);
-    acceleration = ccp(acclerationToAdd.x * (absoluteSpeedMult*timeDilationCoefficient) * scaler, acclerationToAdd.y * (absoluteSpeedMult*timeDilationCoefficient) * scaler);
-    
+    if (shouldUseFakeScaler) {
+    fakeScaler += dt * (1/(1-fakeInitScaler))*powf((1/secsToScale), 2);
+    fakeScaler = clampf(fakeScaler, 0, 1);
+        
+    acceleration = ccp(acclerationToAdd.x * absoluteSpeedMult * fakeScaler, acclerationToAdd.y * absoluteSpeedMult * fakeScaler);
+    }
+    else {
+        scaler += dt * (1/(1-initScaler))*powf((1/secsToScale), 2);
+        scaler = clampf(scaler, 0, 1);
+        
+        acceleration = ccp(acclerationToAdd.x * absoluteSpeedMult * scaler, acclerationToAdd.y * absoluteSpeedMult * scaler);
+    }
+        
+        
     gravityReturner.position = position;
     gravityReturner.acceleration = acceleration;
     gravityReturner.velocity= velocity;
@@ -293,10 +334,16 @@ typedef struct {
 }
 
 - (void)UpdatePlayer:(float)dt {
-    [self ApplyGravity:dt pos:player.sprite.position velocity:player.velocity acceleration:player.acceleration]; 
+    [self ApplyGravity:dt pos:player.sprite.position velocity:player.velocity acceleration:player.acceleration shouldUseFakeScaler:false]; 
     player.sprite.position = gravityReturner.position;
     player.velocity = gravityReturner.velocity;
     player.acceleration = gravityReturner.acceleration;
+    
+    if (playerIsTouchingScreen) {
+        float thrustMag2 = clampf(ccpLength(futureThrustVelocity), 0, maxSwipeInput);
+        fakeInitScaler = minScaler + (1 - minScaler) * ((maxSwipeInput - thrustMag2)/maxSwipeInput);
+        fakeScaler = fakeInitScaler;
+    }
     
     PredPoint *firstPredPoint = [predPoints objectAtIndex:0];
     firstPredPoint.sprite.position = player.sprite.position;
@@ -312,13 +359,13 @@ typedef struct {
         }
         
         for (int j = 0; j < numberSpacingBetweenLines; j++) {
-            [self ApplyGravity:dt pos:predPoint.sprite.position velocity:predPoint.velocity acceleration:predPoint.acceleration];
+            [self ApplyGravity:dt pos:predPoint.sprite.position velocity:predPoint.velocity acceleration:predPoint.acceleration shouldUseFakeScaler:true];
             
             predPoint.sprite.position = gravityReturner.position;
             predPoint.velocity = gravityReturner.velocity;
             predPoint.acceleration = gravityReturner.acceleration;     
             predPoint.velocity = ccpAdd(predPoint.velocity, predPoint.acceleration);
-            predPoint.sprite.position = ccpAdd(predPoint.sprite.position, predPoint.velocity);
+            predPoint.sprite.position = ccpAdd(ccpMult(predPoint.velocity, 60*dt*speedOfGame*timeDilationCoefficient), predPoint.sprite.position);
             predPoint.sprite.rotation = 180+-CC_RADIANS_TO_DEGREES(ccpToAngle(predPoint.velocity));
             
         }

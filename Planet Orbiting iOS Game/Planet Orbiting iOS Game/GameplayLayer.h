@@ -28,7 +28,9 @@
     CCLayer *hudLayer;
     CCLayer *cameraLayer;
     float initScaler;
+    float fakeInitScaler;
     float scaler;
+    float fakeScaler;
     float thrustMag;
     GravityReturnClass* gravityReturner;
     CGPoint futureThrustVelocity;
