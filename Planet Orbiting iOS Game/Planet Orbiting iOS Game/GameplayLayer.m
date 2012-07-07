@@ -122,6 +122,7 @@ typedef struct {
         zonesReachedLabel.position = ccp(100, [zonesReachedLabel boundingBox].size.height);
         [hudLayer addChild: zonesReachedLabel];
         
+        
         [self CreatePlanetAndZone:10 yPos:59];
         [self CreatePlanetAndZone:150 yPos:309];
         [self CreatePlanetAndZone:314 yPos:539];
@@ -140,6 +141,27 @@ typedef struct {
         [self CreatePlanetAndZone:199 yPos:1020];
         [self CreatePlanetAndZone:0 yPos:867];
         
+
+        /*
+        [self CreatePlanetAndZone:0 yPos:-39];
+        [self CreatePlanetAndZone:365 yPos:-36];
+        [self CreatePlanetAndZone:676 yPos:182];
+        [self CreatePlanetAndZone:795 yPos:387];
+        [self CreatePlanetAndZone:973 yPos:489];
+        [self CreatePlanetAndZone:1320 yPos:432];
+        [self CreatePlanetAndZone:1185 yPos:103];
+        [self CreatePlanetAndZone:1563 yPos:-30];
+        [self CreatePlanetAndZone:1919 yPos:235];
+        [self CreatePlanetAndZone:1919 yPos:639];
+        [self CreatePlanetAndZone:1672 yPos:989];
+        [self CreatePlanetAndZone:1287 yPos:894];
+        [self CreatePlanetAndZone:948 yPos:1040];
+        [self CreatePlanetAndZone:590 yPos:836];
+        [self CreatePlanetAndZone:380 yPos:528];
+        [self CreatePlanetAndZone:0 yPos:574];
+        [self CreatePlanetAndZone:64 yPos:903];
+        [self CreatePlanetAndZone:316 yPos:1040];*/
+         
         player = [[Player alloc]init];        
         player.sprite = [CCSprite spriteWithFile:@"spaceship.png"];
         [player.sprite setScale:1.2];
@@ -288,6 +310,8 @@ typedef struct {
                                 
                             }
                             
+
+                            
                             
                             
                         }
@@ -316,13 +340,13 @@ typedef struct {
     fakeScaler += dt * (1/(1-fakeInitScaler))*powf((1/secsToScale), 2);
     fakeScaler = clampf(fakeScaler, 0, 1);
         
-    acceleration = ccp(acclerationToAdd.x * absoluteSpeedMult * fakeScaler, acclerationToAdd.y * absoluteSpeedMult * fakeScaler);
+    acceleration = ccp(acclerationToAdd.x * absoluteSpeedMult * fakeScaler * timeDilationCoefficient, acclerationToAdd.y * absoluteSpeedMult * fakeScaler * timeDilationCoefficient);
     }
     else {
         scaler += dt * (1/(1-initScaler))*powf((1/secsToScale), 2);
         scaler = clampf(scaler, 0, 1);
         
-        acceleration = ccp(acclerationToAdd.x * absoluteSpeedMult * scaler, acclerationToAdd.y * absoluteSpeedMult * scaler);
+        acceleration = ccp(acclerationToAdd.x * absoluteSpeedMult * scaler * timeDilationCoefficient, acclerationToAdd.y * absoluteSpeedMult * scaler * timeDilationCoefficient);
     }
         
         
