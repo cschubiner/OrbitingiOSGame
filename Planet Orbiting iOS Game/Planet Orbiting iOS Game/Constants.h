@@ -28,3 +28,18 @@ const float gravity = .4;
 
 //the radius at which you will orbit. make sure it is small enough to put you in the planet's zone
 const float distToSpawn = 100;
+
+//radius percentage at which you will collide with a planet
+const float planetRadiusCollisionZone = .95;
+
+//initial percentage of gravity felt immediately after you swipe in a non-green zone
+const float initialPercentageOfGravityAfterSwipe = .3;
+
+//the rate at which gravity decreases. increase the number to increase the rate of decrease
+const float rateToDecreaseGravity = .01;
+
+//percentage to multiply swipe vector by to get the velocity vector you add to the player's velocity
+const float swipeStrength = .03;
+
+//the minimum velocity you can have when isExperienceGravity is true
+const float minimumVelocity = .2;

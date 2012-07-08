@@ -42,7 +42,10 @@
     bool isOrbiting;
     bool isInAZone;
     bool justSwiped;
+    bool justBadSwiped;
+    bool isExperiencingGravity;
     bool isGreen;
+    float gravityReducer;
     Planet* targetPlanet;
     CGPoint swipeVector;
     
