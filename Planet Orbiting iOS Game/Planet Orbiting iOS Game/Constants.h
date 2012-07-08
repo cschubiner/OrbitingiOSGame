@@ -23,18 +23,8 @@ const float planetSizeScale = .42;
 // the zone scale is the planet scale * this number
 const float zoneScaleRelativeToPlanet = 1.8;
 
-
 //the gravitational force. increase this to force the the orbiting velocity to increase
 const float gravity = .4;
 
 //the radius at which you will orbit. make sure it is small enough to put you in the planet's zone
 const float distToSpawn = 100;
-
-//0 -> 1 == gravity completely dissapears -> gravity doesn't goes away at all
-const float gravityDamepenerDeparture = .2;
-
-//0 -> 1 == gravity completely dissapears -> gravity doesn't goes away at all
-const float gravityDamepenerArrival = .4;
-
-//how quickly gravity goes away after tapping. The bigger the number (closer to 1), the faster it goes away
-const float rateToDecreaseGravity = .01;

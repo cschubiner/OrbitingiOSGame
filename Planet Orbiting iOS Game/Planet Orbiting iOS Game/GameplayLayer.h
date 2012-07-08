@@ -41,8 +41,10 @@
     bool isOnFirstRun;
     bool isOrbiting;
     bool isInAZone;
-    float gravReducer;
-    CGPoint lastAcceleration;
+    bool justSwiped;
+    bool isGreen;
+    Planet* targetPlanet;
+    CGPoint swipeVector;
     
     CCParticleSystemQuad * thrustParticle;
     CCParticleSystemQuad * planetExplosionParticle;
