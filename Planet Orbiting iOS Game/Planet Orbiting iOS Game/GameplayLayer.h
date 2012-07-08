@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Player.h"
-#import "PredPoint.h"
-#import "GravityReturnClass.h"
 #import "Planet.h"
 
 @interface GameplayLayer : CCLayer {
@@ -27,13 +25,6 @@
     CGSize size;
     CCLayer *hudLayer;
     CCLayer *cameraLayer;
-    float initScaler;
-    float fakeInitScaler;
-    float scaler;
-    float fakeScaler;
-    float thrustMag;
-    GravityReturnClass* gravityReturner;
-    CGPoint futureThrustVelocity;
     CCNode * cameraFocusNode;
     CGPoint cameraLastFocusPosition;
     Planet * lastPlanetVisited;
@@ -46,6 +37,11 @@
     float timeSincePlanetExplosion;
     bool planetJustExploded;
     bool playerIsTouchingScreen;
+    
+    bool isOnFirstRun;
+    bool isOrbiting;
+    bool isInAZone;
+    CGPoint lastAcceleration;
     
     CCParticleSystemQuad * thrustParticle;
     CCParticleSystemQuad * planetExplosionParticle;

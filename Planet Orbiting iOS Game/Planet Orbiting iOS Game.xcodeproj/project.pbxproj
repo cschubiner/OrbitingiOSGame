@@ -167,8 +167,6 @@
 		C4E994B315A435E600C7009D /* planetExplosion.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4E994AF15A435E600C7009D /* planetExplosion.plist */; };
 		C4E994B415A435E600C7009D /* spaceParticles.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4E994B015A435E600C7009D /* spaceParticles.plist */; };
 		C4E994B515A435E600C7009D /* thrustParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4E994B115A435E600C7009D /* thrustParticle.plist */; };
-		CE0E365B159F240A00B95115 /* PredPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0E365A159F240A00B95115 /* PredPoint.m */; };
-		CE46897E15A02622009F4195 /* GravityReturnClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CE46897D15A02622009F4195 /* GravityReturnClass.m */; };
 		CEF4A751159EE6E4005D32A1 /* space_background.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF4A750159EE6E4005D32A1 /* space_background.png */; };
 /* End PBXBuildFile section */
 
@@ -461,10 +459,6 @@
 		C4E994AF15A435E600C7009D /* planetExplosion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = planetExplosion.plist; sourceTree = "<group>"; };
 		C4E994B015A435E600C7009D /* spaceParticles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = spaceParticles.plist; sourceTree = "<group>"; };
 		C4E994B115A435E600C7009D /* thrustParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = thrustParticle.plist; sourceTree = "<group>"; };
-		CE0E3659159F240A00B95115 /* PredPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PredPoint.h; sourceTree = "<group>"; };
-		CE0E365A159F240A00B95115 /* PredPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PredPoint.m; sourceTree = "<group>"; };
-		CE46897C15A02622009F4195 /* GravityReturnClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GravityReturnClass.h; path = ../GravityReturnClass.h; sourceTree = "<group>"; };
-		CE46897D15A02622009F4195 /* GravityReturnClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GravityReturnClass.m; path = ../GravityReturnClass.m; sourceTree = "<group>"; };
 		CEF4A750159EE6E4005D32A1 /* space_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = space_background.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -490,8 +484,6 @@
 		0C487AFC159471E800674AB9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				CE46897C15A02622009F4195 /* GravityReturnClass.h */,
-				CE46897D15A02622009F4195 /* GravityReturnClass.m */,
 				C455064B159E337E00F362D1 /* CCLayerStreak.h */,
 				C455064C159E337E00F362D1 /* CCLayerStreak.m */,
 				0C487AF9159471E000674AB9 /* CameraObject.h */,
@@ -502,8 +494,6 @@
 				0C487B0D1594792C00674AB9 /* Planet.m */,
 				0C2DEF00159C20BE0018F0FA /* Zone.h */,
 				0C2DEF01159C20BE0018F0FA /* Zone.m */,
-				CE0E3659159F240A00B95115 /* PredPoint.h */,
-				CE0E365A159F240A00B95115 /* PredPoint.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1199,8 +1189,6 @@
 				0C487B0E1594792C00674AB9 /* Planet.m in Sources */,
 				0C2DEF02159C20BE0018F0FA /* Zone.m in Sources */,
 				C455064D159E337E00F362D1 /* CCLayerStreak.m in Sources */,
-				CE0E365B159F240A00B95115 /* PredPoint.m in Sources */,
-				CE46897E15A02622009F4195 /* GravityReturnClass.m in Sources */,
 				C445305115A688AD004F8F48 /* CCBReader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
