@@ -372,7 +372,8 @@ typedef struct {
     timeDilationCoefficient = 1;
     numZonesHitInARow = 0;
     //CCLOG([NSString stringWithFormat:@"thrust mag:"]);
-    player.sprite.position = ccpAdd(((Planet*)[planets objectAtIndex:planetIndex]).sprite.position, ccp(distToSpawn,0));
+    CGPoint dir = ccpNormalize(ccpSub(((Planet*)[planets objectAtIndex:planetIndex+1]).sprite.position,((Planet*)[planets objectAtIndex:planetIndex]).sprite.position));
+    player.sprite.position = ccpAdd(((Planet*)[planets objectAtIndex:planetIndex]).sprite.position, ccpMult(dir, distToSpawn));
     player.velocity=CGPointZero;
     player.acceleration=CGPointZero;
     isOrbiting = true;
