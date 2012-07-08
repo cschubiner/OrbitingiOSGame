@@ -160,6 +160,7 @@ typedef struct {
         isOnFirstRun = true;
         isOrbiting = true;
         lastAcceleration = CGPointZero;
+        gravReducer = 1;
         
         [self addChild:spaceBackgroundParticle];
         [self addChild:cometParticle];
@@ -265,6 +266,7 @@ typedef struct {
                 CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
                 player.acceleration = ccpMult(direction, gravity);
                 lastAcceleration = player.acceleration;
+                gravReducer = 1;
             }
             else {
                 CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
@@ -273,7 +275,8 @@ typedef struct {
                 Planet* nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
                 direction = ccpNormalize(ccpSub(nextPlanet.sprite.position, player.sprite.position));
                 accelToAdd = ccpAdd(accelToAdd, ccpMult(direction, gravity*gravityDamepenerArrival));
-                player.acceleration = accelToAdd;
+                
+                player.acceleration = ccpMult(accelToAdd, clampf(gravReducer, 0, 1));                
             }
                // }
             //}
@@ -287,6 +290,7 @@ typedef struct {
 
 - (void)UpdatePlayer:(float)dt {
     [self ApplyGravity:dt];
+    gravReducer -= rateToDecreaseGravity;
     
     // set the player's velocity when the user just swiped the screen (when player.thrustJustOccurred==true)
     if (player.thrustJustOccurred) {

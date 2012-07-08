@@ -41,6 +41,7 @@
     bool isOnFirstRun;
     bool isOrbiting;
     bool isInAZone;
+    float gravReducer;
     CGPoint lastAcceleration;
     
     CCParticleSystemQuad * thrustParticle;

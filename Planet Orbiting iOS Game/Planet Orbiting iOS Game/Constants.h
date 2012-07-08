@@ -31,7 +31,10 @@ const float gravity = .4;
 const float distToSpawn = 100;
 
 //0 -> 1 == gravity completely dissapears -> gravity doesn't goes away at all
-const float gravityDamepenerDeparture = .5;
+const float gravityDamepenerDeparture = .1;
 
 //0 -> 1 == gravity completely dissapears -> gravity doesn't goes away at all
-const float gravityDamepenerArrival = .9;
+const float gravityDamepenerArrival = .2;
+
+//how quickly gravity goes away after tapping. The bigger the number (closer to 1), the faster it goes away
+const float rateToDecreaseGravity = .005;
