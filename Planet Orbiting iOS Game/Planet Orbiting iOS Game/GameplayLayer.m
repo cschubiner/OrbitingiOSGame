@@ -265,30 +265,32 @@ typedef struct {
                 player.acceleration = ccpMult(direction, gravity);
             }
             else {
-                player.acceleration = CGPointZero;
-                if (justSwiped) {
-                    justSwiped = false;
-                    //set velocity
-                    //player.velocity = ccpMult(swipeVector, .55);
-                    CGPoint d = ccpSub(targetPlanet.sprite.position, player.sprite.position);
-                    
-                    CGPoint dir2 = ccpNormalize(CGPointApplyAffineTransform(d, CGAffineTransformMakeRotation(M_PI/2)));
-                    CGPoint dir3 = ccpNormalize(CGPointApplyAffineTransform(d, CGAffineTransformMakeRotation(-M_PI/2)));            
-                    
-                    
-                    CGPoint left = ccpAdd(ccpMult(dir2, distToSpawn), targetPlanet.sprite.position);
-                    
-                    CGPoint right = ccpAdd(ccpMult(dir3, distToSpawn), targetPlanet.sprite.position);
-                    
-                    CGPoint vel = CGPointZero;
-                    if (ccpLength(ccpSub(ccpAdd(player.sprite.position, swipeVector), left)) <= ccpLength(ccpSub(ccpAdd(player.sprite.position, swipeVector), right))) { //closer to the left
-                        vel = ccpSub(left, player.sprite.position);
-                    } else {
-                        vel = ccpSub(right, player.sprite.position);
+                if (isGreen) {
+                    player.acceleration = CGPointZero;
+                    if (justSwiped) {
+                        justSwiped = false;
+                        //set velocity
+                        //player.velocity = ccpMult(swipeVector, .55);
+                        CGPoint d = ccpSub(targetPlanet.sprite.position, player.sprite.position);
+                        
+                        CGPoint dir2 = ccpNormalize(CGPointApplyAffineTransform(d, CGAffineTransformMakeRotation(M_PI/2)));
+                        CGPoint dir3 = ccpNormalize(CGPointApplyAffineTransform(d, CGAffineTransformMakeRotation(-M_PI/2)));            
+                        
+                        
+                        CGPoint left = ccpAdd(ccpMult(dir2, distToSpawn), targetPlanet.sprite.position);
+                        
+                        CGPoint right = ccpAdd(ccpMult(dir3, distToSpawn), targetPlanet.sprite.position);
+                        
+                        CGPoint vel = CGPointZero;
+                        if (ccpLength(ccpSub(ccpAdd(player.sprite.position, swipeVector), left)) <= ccpLength(ccpSub(ccpAdd(player.sprite.position, swipeVector), right))) { //closer to the left
+                            vel = ccpSub(left, player.sprite.position);
+                        } else {
+                            vel = ccpSub(right, player.sprite.position);
+                        }
+                        
+                        player.velocity = ccpMult(ccpNormalize(vel), ccpLength(player.velocity));
+                        
                     }
-                    
-                    player.velocity = ccpMult(ccpNormalize(vel), ccpLength(player.velocity));
-                
                 }
                 if (ccpLength(ccpSub(player.sprite.position, targetPlanet.sprite.position)) <= distToSpawn) {
                     isOrbiting = true;
@@ -536,7 +538,7 @@ typedef struct {
         isOrbiting = false;
         targetPlanet = [planets objectAtIndex: (lastPlanetVisited.number + 1)];
     }
-        
+    
     playerIsTouchingScreen = false;
     if (player.isInZone) {
         for (UITouch *touch in touches) {
