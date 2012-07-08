@@ -31,4 +31,7 @@ const float gravity = .4;
 const float distToSpawn = 100;
 
 //0 -> 1 == gravity completely dissapears -> gravity doesn't goes away at all
-const float gravityDamepener = 1;
+const float gravityDamepenerDeparture = .5;
+
+//0 -> 1 == gravity completely dissapears -> gravity doesn't goes away at all
+const float gravityDamepenerArrival = .9;

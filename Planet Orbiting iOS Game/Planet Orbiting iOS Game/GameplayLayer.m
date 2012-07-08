@@ -267,9 +267,13 @@ typedef struct {
                 lastAcceleration = player.acceleration;
             }
             else {
+                CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
+                CGPoint accelToAdd = ccpMult(direction, gravity*gravityDamepenerDeparture);                
+                
                 Planet* nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
-                CGPoint direction = ccpNormalize(ccpSub(nextPlanet.sprite.position, player.sprite.position));
-                player.acceleration = ccpMult(direction, gravity*gravityDamepener);
+                direction = ccpNormalize(ccpSub(nextPlanet.sprite.position, player.sprite.position));
+                accelToAdd = ccpAdd(accelToAdd, ccpMult(direction, gravity*gravityDamepenerArrival));
+                player.acceleration = accelToAdd;
             }
                // }
             //}
