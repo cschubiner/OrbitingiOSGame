@@ -10,6 +10,8 @@
 
 @implementation Asteroid
 
+@synthesize p1, p2, updatesSinceVelChange, velMult;
+
 -(id) init {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
@@ -22,5 +24,7 @@
     radius = MAX([[self sprite] width],[[self sprite] width])/2;
     return radius;
 }
+
+
 
 @end

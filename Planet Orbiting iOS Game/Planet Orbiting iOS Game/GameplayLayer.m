@@ -73,13 +73,16 @@ typedef struct {
         asteroid.sprite = [CCSprite spriteWithFile:@"asteroid.png"];
         CGPoint a = ccpMult(ccpAdd(planet.sprite.position, previousPlanet.sprite.position), .5);
         
-        
-        int hi = [self RandomBetween:-1 maxvalue:1];
+        asteroid.velMult = asteroidVelocity * [self randomValueBetween:(1-asteroidVelVar) andValue:(1+asteroidVelVar)];
+        //int hi = [self RandomBetween:-1 maxvalue:1];
+        float hi2 = [self randomValueBetween:-1 andValue:1];
         CGPoint sub = ccpSub(planet.sprite.position, previousPlanet.sprite.position);
         CGPoint dir = ccpNormalize(CGPointApplyAffineTransform(sub, CGAffineTransformMakeRotation(M_PI/2)));     
         
-        asteroid.sprite.position = ccpAdd(a, ccpMult(dir, distToSpawn*hi));
-        
+        asteroid.sprite.position = ccpAdd(a, ccpMult(dir, distToSpawn*hi2));
+        asteroid.p1 = ccpAdd(a, ccpMult(dir, distToSpawn));
+        asteroid.p2 = ccpAdd(a, ccpMult(dir, distToSpawn*-1));
+        asteroid.velocity = ccpNormalize(ccpSub(asteroid.p1, asteroid.p2));
         //asteroid.sprite.position = a;
         
         
@@ -158,7 +161,7 @@ typedef struct {
         [self CreatePlanetAndZone:380 yPos:528];
         [self CreatePlanetAndZone:0 yPos:574];
         [self CreatePlanetAndZone:64 yPos:903];
-        [self CreatePlanetAndZone:316 yPos:1040];
+        [self CreatePlanetAndZone:356 yPos:1070];
         
         
         
@@ -243,7 +246,7 @@ typedef struct {
     focusPosition =ccpLerp(cameraLastFocusPosition, focusPosition, .06f);
     [self ZoomLayer:cameraLayer withScale:scale toPosition: focusPosition];
     id followAction = [CCFollow actionWithTarget:cameraFocusNode];
-    [cameraLayer runAction: followAction]; 
+    [cameraLayer runAction: followAction];
     cameraLastFocusPosition=focusPosition;
 }
 
@@ -252,6 +255,28 @@ typedef struct {
 - (void)ApplyGravity:(float)dt {
     
     for (Asteroid* asteroid in asteroids) {
+        asteroid.updatesSinceVelChange++;
+        
+        CGPoint p = asteroid.sprite.position;
+        CGPoint one = asteroid.p1;
+        CGPoint two = asteroid.p2;
+        float dif = ccpLength(ccpSub(one, two));
+        
+        
+        if (ccpLength(ccpSub(p, one)) < ccpLength(ccpSub(p, two))) {
+            asteroid.velocity = ccpMult(ccpNormalize(asteroid.velocity), asteroid.velMult*pow(ccpLength(ccpSub(p, one)), .3));
+        } else {
+            asteroid.velocity = ccpMult(ccpNormalize(asteroid.velocity), asteroid.velMult*pow(ccpLength(ccpSub(p, two)), .3));
+        }
+        
+        //asteroid.velocity = ccpNormalize(ccpSub(one, two));
+        if ((ccpLength(ccpSub(p, one)) >= dif || ccpLength(ccpSub(p, two)) >= dif) && asteroid.updatesSinceVelChange >= 5) {
+            asteroid.updatesSinceVelChange = 0;
+            asteroid.velocity = ccpMult(asteroid.velocity, -1);
+            
+        }
+        
+        
         if (asteroid.number = lastPlanetVisited.number) {
             if (ccpLength(ccpSub(player.sprite.position, asteroid.sprite.position)) <= asteroid.radius * asteroidRadiusCollisionZone) {
                 [self JumpPlayerToPlanet:lastPlanetVisited.number - 1];
@@ -658,6 +683,10 @@ double lerpd(double a, double b, double t) {
 
 float lerpf(float a, float b, float t) {
     return a + (b - a) * t;
+}
+
+-(float) randomValueBetween:(float)low andValue:(float)high {
+    return (((float) arc4random() / 0xFFFFFFFFu) * (high - low)) + low;
 }
 
 - (int)RandomBetween:(int)minvalue maxvalue:(int)maxvalue  {

@@ -35,6 +35,12 @@ const float planetRadiusCollisionZone = .95;
 //radius percentage at which you will collide with a asteroid
 const float asteroidRadiusCollisionZone = .8;
 
+//the asteroids velocity
+const float asteroidVelocity = .4;
+
+//the amount the asteroid velocity will vary from asteroid to asteroid (it could go up or down by this amount)
+const float asteroidVelVar = .2;
+
 //initial percentage of gravity felt immediately after you swipe in a non-green zone
 const float initialPercentageOfGravityAfterSwipe = .3;
 

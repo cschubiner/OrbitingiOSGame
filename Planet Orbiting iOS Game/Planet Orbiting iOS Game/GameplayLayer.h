@@ -66,6 +66,8 @@
 
 + (CCScene *) scene;
 
+- (float)randomValueBetween:(float)low andValue:(float)high;
+
 - (int)RandomBetween:(int)minvalue maxvalue:(int)maxvalue;
 
 double lerpd(double a, double b, double t);
