@@ -32,6 +32,9 @@ const float distToSpawn = 100;
 //radius percentage at which you will collide with a planet
 const float planetRadiusCollisionZone = .95;
 
+//radius percentage at which you will collide with a asteroid
+const float asteroidRadiusCollisionZone = .8;
+
 //initial percentage of gravity felt immediately after you swipe in a non-green zone
 const float initialPercentageOfGravityAfterSwipe = .3;
 
@@ -42,4 +45,4 @@ const float rateToDecreaseGravity = .01;
 const float swipeStrength = .03;
 
 //the minimum velocity you can have when isExperienceGravity is true
-const float minimumVelocity = .2;
+const float minimumVelocity = .3;

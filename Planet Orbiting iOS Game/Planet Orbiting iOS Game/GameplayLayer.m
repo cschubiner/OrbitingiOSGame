@@ -9,6 +9,7 @@
 #import "CameraObject.h"
 #import "Player.h"
 #import "Planet.h"
+#import "Asteroid.h"
 #import "Zone.h"
 #import "Constants.h"
 
@@ -62,6 +63,37 @@ typedef struct {
     lastPlanetXPos = xPos;
     lastPlanetYPos = yPos;
     
+    
+    
+    if (planetCounter > 1) {
+        Planet* previousPlanet = [planets objectAtIndex: planetCounter - 1];
+        
+        
+        Asteroid *asteroid = [[Asteroid alloc]init];
+        asteroid.sprite = [CCSprite spriteWithFile:@"asteroid.png"];
+        CGPoint a = ccpMult(ccpAdd(planet.sprite.position, previousPlanet.sprite.position), .5);
+        
+        
+        int hi = [self RandomBetween:-1 maxvalue:1];
+        CGPoint sub = ccpSub(planet.sprite.position, previousPlanet.sprite.position);
+        CGPoint dir = ccpNormalize(CGPointApplyAffineTransform(sub, CGAffineTransformMakeRotation(M_PI/2)));     
+        
+        asteroid.sprite.position = ccpAdd(a, ccpMult(dir, distToSpawn*hi));
+        
+        //asteroid.sprite.position = a;
+        
+        
+        [asteroid.sprite setScale:planetSizeScale];
+        asteroid.number = planetCounter - 1;
+        [cameraObjects addObject:asteroid];
+        [asteroids addObject:asteroid];
+        [asteroid release];
+        
+    }
+    
+    
+    
+    
     Zone *zone = [[Zone alloc]init];
     zone.sprite = [CCSprite spriteWithFile:@"zone.png"];
     [zone.sprite setScale:planetSizeScale*zoneScaleRelativeToPlanet];   
@@ -87,8 +119,8 @@ typedef struct {
         planetCounter = 0;
         cameraObjects = [[NSMutableArray alloc]init];
         planets = [[NSMutableArray alloc]init];
+        asteroids = [[NSMutableArray alloc]init];
         zones = [[NSMutableArray alloc]init];
-        predPoints = [[NSMutableArray alloc]init];
         hudLayer = [[CCLayer alloc]init];
         cameraLayer = [[CCLayer alloc]init];
         
@@ -109,6 +141,28 @@ typedef struct {
         [hudLayer addChild: zonesReachedLabel];
         
         
+        
+        [self CreatePlanetAndZone:0 yPos:-39];
+        [self CreatePlanetAndZone:365 yPos:-36];
+        [self CreatePlanetAndZone:676 yPos:182];
+        [self CreatePlanetAndZone:973 yPos:489];
+        [self CreatePlanetAndZone:1320 yPos:432];
+        [self CreatePlanetAndZone:1185 yPos:103];
+        [self CreatePlanetAndZone:1563 yPos:-30];
+        [self CreatePlanetAndZone:1919 yPos:235];
+        [self CreatePlanetAndZone:1919 yPos:639];
+        [self CreatePlanetAndZone:1672 yPos:989];
+        [self CreatePlanetAndZone:1287 yPos:894];
+        [self CreatePlanetAndZone:948 yPos:1040];
+        [self CreatePlanetAndZone:590 yPos:836];
+        [self CreatePlanetAndZone:380 yPos:528];
+        [self CreatePlanetAndZone:0 yPos:574];
+        [self CreatePlanetAndZone:64 yPos:903];
+        [self CreatePlanetAndZone:316 yPos:1040];
+        
+        
+        
+        /*
         [self CreatePlanetAndZone:10 yPos:59];
         [self CreatePlanetAndZone:150 yPos:309];
         [self CreatePlanetAndZone:314 yPos:539];
@@ -125,28 +179,9 @@ typedef struct {
         [self CreatePlanetAndZone:688 yPos:1040];
         [self CreatePlanetAndZone:436 yPos:963];
         [self CreatePlanetAndZone:199 yPos:1020];
-        [self CreatePlanetAndZone:0 yPos:867];
+        [self CreatePlanetAndZone:0 yPos:867];*/
         
-
-        /*
-        [self CreatePlanetAndZone:0 yPos:-39];
-        [self CreatePlanetAndZone:365 yPos:-36];
-        [self CreatePlanetAndZone:676 yPos:182];
-        [self CreatePlanetAndZone:795 yPos:387];
-        [self CreatePlanetAndZone:973 yPos:489];
-        [self CreatePlanetAndZone:1320 yPos:432];
-        [self CreatePlanetAndZone:1185 yPos:103];
-        [self CreatePlanetAndZone:1563 yPos:-30];
-        [self CreatePlanetAndZone:1919 yPos:235];
-        [self CreatePlanetAndZone:1919 yPos:639];
-        [self CreatePlanetAndZone:1672 yPos:989];
-        [self CreatePlanetAndZone:1287 yPos:894];
-        [self CreatePlanetAndZone:948 yPos:1040];
-        [self CreatePlanetAndZone:590 yPos:836];
-        [self CreatePlanetAndZone:380 yPos:528];
-        [self CreatePlanetAndZone:0 yPos:574];
-        [self CreatePlanetAndZone:64 yPos:903];
-        [self CreatePlanetAndZone:316 yPos:1040];*/
+       
          
         player = [[Player alloc]init];        
         player.sprite = [CCSprite spriteWithFile:@"spaceship.png"];
@@ -215,6 +250,14 @@ typedef struct {
 
 
 - (void)ApplyGravity:(float)dt {
+    
+    for (Asteroid* asteroid in asteroids) {
+        if (asteroid.number = lastPlanetVisited.number) {
+            if (ccpLength(ccpSub(player.sprite.position, asteroid.sprite.position)) <= asteroid.radius * asteroidRadiusCollisionZone) {
+                [self JumpPlayerToPlanet:lastPlanetVisited.number - 1];
+            }
+        }
+    }
     
     for (Planet* planet in planets)
     {        
@@ -415,6 +458,12 @@ typedef struct {
         [cameraLayer removeChild:planet.sprite cleanup:YES];
         [cameraLayer addChild:planet.sprite];
         planet.alive = true;
+    }
+    
+    for (Asteroid* asteroid in asteroids) {        
+        [cameraLayer removeChild:asteroid.sprite cleanup:YES];
+        [cameraLayer addChild:asteroid.sprite];
+        asteroid.alive = true;
     }
     
     [cameraLayer addChild:thrustParticle];
