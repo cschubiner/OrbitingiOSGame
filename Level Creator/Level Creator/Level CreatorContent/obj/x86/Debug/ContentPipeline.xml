@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\PlanetMichael.xnb</Output>
-      <Time>2012-06-28T21:40:15.2921993-07:00</Time>
+      <Time>2012-07-08T18:26:47.0379296-07:00</Time>
     </Item>
     <Item>
       <Source>font.spritefont</Source>
@@ -17,7 +17,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\font.xnb</Output>
-      <Time>2012-06-28T21:40:15.3142006-07:00</Time>
+      <Time>2012-07-08T19:04:21.3297269-07:00</Time>
     </Item>
     <Item>
       <Source>iphone box.png</Source>
@@ -26,7 +26,16 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\iphone box.xnb</Output>
-      <Time>2012-06-28T21:40:15.3162007-07:00</Time>
+      <Time>2012-07-08T18:59:18.2003889-07:00</Time>
+    </Item>
+    <Item>
+      <Source>zone.png</Source>
+      <Name>zone</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\zone.xnb</Output>
+      <Time>2012-07-08T18:28:26.9496442-07:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
