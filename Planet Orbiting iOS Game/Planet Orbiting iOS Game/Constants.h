@@ -8,14 +8,25 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-//this is x in the equation timeDilationCoefficient = x^(numZonesHitInARow);
-const float timeDilationPowerFactor = 1.06;
+//how long the comet takes to respawn after it dies in seconds
+const float cometRespawnTimer = 1;
+const float cometMinYSpeed = 2;
+const float cometMaxYSpeed = 5;
+
+//as this goes up, the steepness goes DOWN
+const float timeDilationSteepness = 8;
+//the max factor by which the player's speed will be multiplied
+const float timeDilationLimit = 2.5;
 
 //changes how zoomed in the camera in. higher numbers mean more zoom (everything looks bigger)
 const float zoomMultiplier = .72f;
-const float anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees = 65;
+
+const float anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees = 55;
 const float anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees = -10;
-const float durationOfPostExplosionScreenShake = .47f;
+
+const float durationOfPostExplosionScreenShake = .40f;
+const float postExplosionShakeXMagnitude = 4;
+const float postExplosionShakeYMagnitude = 3;
 
 // this is purely visual and doesn't affect mass.
 const float planetSizeScale = .42;

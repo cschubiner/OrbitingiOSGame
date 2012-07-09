@@ -524,6 +524,8 @@ typedef struct {
                 zone.hasPlayerHitThisZone = true;  
                 zonesReached++;
                 numZonesHitInARow++;
+                timeDilationCoefficient= ((timeDilationLimit-1)*pow(numZonesHitInARow,timeDilationSteepness)/pow((numZonesHitInARow+1),timeDilationSteepness))+1;
+                CCLOG(@"combos: %d time dilation: %f",numZonesHitInARow+1,timeDilationCoefficient);
             }
         }
         else if (i<[zones count]-1&&((Zone*)[zones objectAtIndex:i+1]).hasPlayerHitThisZone) { //if player has hit the next zone and it hasn't exploded yet
@@ -562,13 +564,14 @@ typedef struct {
     [thrustParticle setPosition:player.sprite.position];
     [thrustParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
     [thrustParticle setEmissionRate:400];
+    
     if (cometParticle.position.y<0) {
         [cometParticle stopSystem];
         timeSinceCometLeftScreen+=dt;
-        if (timeSinceCometLeftScreen>4) {
+        if (timeSinceCometLeftScreen>cometRespawnTimer) {
             [cometParticle resetSystem];
             cometParticle.position = ccp([self RandomBetween:0 maxvalue:480],325);
-            cometVelocity = ccp([self RandomBetween:-10 maxvalue:10]/5,-[self RandomBetween:5 maxvalue:23]/5);
+            cometVelocity = ccp([self RandomBetween:-10 maxvalue:10]/5,-[self RandomBetween:cometMinYSpeed maxvalue:cometMaxYSpeed]);
             timeSinceCometLeftScreen=0;
             [cometParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(cometVelocity))];
         }
@@ -578,7 +581,7 @@ typedef struct {
     if (planetJustExploded) {
         timeSincePlanetExplosion+=dt;
         if (timeSincePlanetExplosion<= durationOfPostExplosionScreenShake) {
-            [self setPosition:ccp([self RandomBetween:-6 maxvalue:6],[self RandomBetween:-5 maxvalue:5])];
+            [self setPosition:ccp([self RandomBetween:-postExplosionShakeXMagnitude maxvalue:postExplosionShakeXMagnitude],[self RandomBetween:-postExplosionShakeYMagnitude maxvalue:postExplosionShakeYMagnitude])];
         } else {
             planetJustExploded =false;
         }
@@ -594,8 +597,6 @@ typedef struct {
     [self UpdateScore:false];
     [self UpdateCamera:dt];
     [self UpdateParticles:dt];
-    timeDilationCoefficient= pow(timeDilationPowerFactor,numZonesHitInARow);
-    //CCLOG(@"combos: %d time dilation: %f",numZonesHitInARow,timeDilationCoefficient);
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
