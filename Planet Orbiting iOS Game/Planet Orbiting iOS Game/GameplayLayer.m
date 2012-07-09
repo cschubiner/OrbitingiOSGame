@@ -86,7 +86,7 @@ typedef struct {
         //asteroid.sprite.position = a;
         
         
-        [asteroid.sprite setScale:planetSizeScale];
+        [asteroid.sprite setScale:asteroidSizeScale];
         asteroid.number = planetCounter - 1;
         [cameraObjects addObject:asteroid];
         [asteroids addObject:asteroid];

@@ -32,10 +32,13 @@ const float distToSpawn = 100;
 //radius percentage at which you will collide with a planet
 const float planetRadiusCollisionZone = .95;
 
+// this is purely visual and doesn't affect mass.
+const float asteroidSizeScale = .30;
+
 //radius percentage at which you will collide with a asteroid
 const float asteroidRadiusCollisionZone = .8;
 
-//the asteroids velocity
+//the asteroid's velocity
 const float asteroidVelocity = .4;
 
 //the amount the asteroid velocity will vary from asteroid to asteroid (it could go up or down by this amount)
