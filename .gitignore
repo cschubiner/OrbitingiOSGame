@@ -20,3 +20,5 @@ profile
 */*.*pbxproj
 *xcodeproj
 *pbjproj
+*/bin/x86/*
+*\bin/\x86\*
