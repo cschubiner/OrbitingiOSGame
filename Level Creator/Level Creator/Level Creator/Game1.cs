@@ -20,6 +20,7 @@ namespace Level_Creator
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D planetTexture;
+        Texture2D zoneTexture;
         Texture2D frameTexture;
         MouseState lastMouseState;
         List<Vector2> posArray;
@@ -27,7 +28,9 @@ namespace Level_Creator
         Vector2 currPosToDraw;
         SpriteFont font;
         string toDisplay;
-
+        float planetScaleSize;
+        // the zone scale is the planet scale * this number
+        float zoneScaleRelativeToPlanet;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -38,6 +41,9 @@ namespace Level_Creator
             Window.AllowUserResizing = true;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
+            zoneScaleRelativeToPlanet = 1.8f;
+            planetScaleSize = .21f;
         }
 
         /// <summary>
@@ -68,6 +74,7 @@ namespace Level_Creator
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             planetTexture = Content.Load<Texture2D>("PlanetMichael");
+            zoneTexture = Content.Load<Texture2D>("zone");
             frameTexture = Content.Load<Texture2D>("iphone box");
             // TODO: use this.Content to load your game content here
             lastMouseState = Mouse.GetState();
@@ -113,7 +120,7 @@ namespace Level_Creator
 
             if (Keyboard.GetState().IsKeyDown(Keys.C))
             {
-                string first = "        [self CreatePlanetAndZone:";
+                string first = "[self CreatePlanetAndZone:";
                 string middle = " yPos:";
                 string end = "];\r\n";
 
@@ -132,8 +139,22 @@ namespace Level_Creator
                 textOut.Close();
             }
 
+            if (mouseState.MiddleButton == ButtonState.Released&&lastMouseState.MiddleButton == ButtonState.Pressed)
+            foreach (Vector2 pos in posArray)
+            {
+                if (mouseState.X >= pos.X - zoneTexture.Width * planetScaleSize * zoneScaleRelativeToPlanet / 2 && mouseState.X <= pos.X + zoneTexture.Width * planetScaleSize * zoneScaleRelativeToPlanet / 2
+                    && mouseState.Y >= pos.Y - zoneTexture.Height * planetScaleSize * zoneScaleRelativeToPlanet / 2 && mouseState.Y <= pos.Y + zoneTexture.Height * planetScaleSize * zoneScaleRelativeToPlanet / 2)
+                {
+                    posArray.Remove(pos);
+                    break;
+                }
+            }
 
-            toDisplay = mouseState.X.ToString() + ", " + (graphics.GraphicsDevice.Viewport.Height - mouseState.Y).ToString();
+            if (Keyboard.GetState().IsKeyDown(Keys.Z))
+                zoneScaleRelativeToPlanet += .1f * (mouseState.ScrollWheelValue - lastMouseState.ScrollWheelValue) / 120;
+            else
+            planetScaleSize += .03f * (mouseState.ScrollWheelValue-lastMouseState.ScrollWheelValue)/120;
+            toDisplay = "Planet Scale (scroll to change): " + planetScaleSize.ToString() + "   Relative Zone Scale (Hold Z while scrolling): " + zoneScaleRelativeToPlanet.ToString() + "    Mouse Pos: "+ mouseState.X.ToString() + ", " + (graphics.GraphicsDevice.Viewport.Height - mouseState.Y).ToString();
 
             lastMouseState = mouseState;
             base.Update(gameTime);
@@ -145,24 +166,28 @@ namespace Level_Creator
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
 
-            spriteBatch.DrawString(font, "'C' outputs code to \"output.txt\" in the exe's directory. Right click to display iPhone's frame size. Mouse Pos: "+toDisplay, new Vector2(10, 
-                graphics.GraphicsDevice.Viewport.Height - 25), Color.Red);
+            spriteBatch.DrawString(font, "'C' outputs code to \"output.txt\" in the exe's directory.       Right click to display iPhone's frame size.       Middle click to delete.\n"+toDisplay, new Vector2(10, 
+                graphics.GraphicsDevice.Viewport.Height - 45), Color.Red);
 
-            float planetScaleSize = .21f;
 
             foreach (Vector2 pos in posArray)
-                spriteBatch.Draw(planetTexture, pos, null, Color.White, 0, pos, planetScaleSize, SpriteEffects.None, 0);
+            {
+                spriteBatch.Draw(zoneTexture, pos, null, Color.White, 0, new Vector2(zoneTexture.Width / 2, zoneTexture.Height / 2), planetScaleSize * zoneScaleRelativeToPlanet, SpriteEffects.None, 0);
+                spriteBatch.Draw(planetTexture, pos, null, Color.White, 0, new Vector2(planetTexture.Width / 2, planetTexture.Height / 2), planetScaleSize, SpriteEffects.None, 0);
+            }
             foreach (Vector2 pos in posArrayForFrame)
-                spriteBatch.Draw(frameTexture, pos, Color.White);
-
+                spriteBatch.Draw(frameTexture, pos, null, Color.White, 0, new Vector2(frameTexture.Width / 2, frameTexture.Height / 2), 1, SpriteEffects.None, 0);
             MouseState mouseState = Mouse.GetState();
             if (mouseState.LeftButton == ButtonState.Pressed)
-                spriteBatch.Draw(planetTexture, currPosToDraw, null, Color.White, 0, currPosToDraw, planetScaleSize, SpriteEffects.None, 0);
+            {
+                spriteBatch.Draw(zoneTexture, currPosToDraw, null, Color.White, 0, new Vector2(zoneTexture.Width / 2, zoneTexture.Height / 2), planetScaleSize * zoneScaleRelativeToPlanet, SpriteEffects.None, 0);
+                spriteBatch.Draw(planetTexture, currPosToDraw, null, Color.White, 0, new Vector2(planetTexture.Width/2,planetTexture.Height/2), planetScaleSize, SpriteEffects.None, 0);
+            }
             if (mouseState.RightButton == ButtonState.Pressed)
-                spriteBatch.Draw(frameTexture, currPosToDraw, Color.White);
+                spriteBatch.Draw(frameTexture, currPosToDraw, null, Color.White, 0, new Vector2(frameTexture.Width / 2, frameTexture.Height / 2), 1, SpriteEffects.None, 0);
 
             spriteBatch.End();
             base.Draw(gameTime);
