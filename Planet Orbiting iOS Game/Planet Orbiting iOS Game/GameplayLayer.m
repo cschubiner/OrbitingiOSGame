@@ -423,32 +423,23 @@ typedef struct {
         
         // if you are going CCW
         if (takeoffAngleToNextPlanet-lastAngle2minusptopangle<0) {
-            if (takeoffAngleToNextPlanet>=0-anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees && takeoffAngleToNextPlanet <= 90+anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees) {
-                //[self SetPredPointsColorTo:ccc3(0, 255, 0)];
+            if ((takeoffAngleToNextPlanet<=-270+anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees&&takeoffAngleToNextPlanet>=-360+anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees)||
+                (takeoffAngleToNextPlanet>=0-anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees && takeoffAngleToNextPlanet <= 90+anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees)) {
                 player.sprite.color = ccc3(0, 255, 0);
                 isGreen = true;
             }
-            else {
-                //if (!playerIsTouchingScreen)
-                //    [self SetPredPointsColorTo:ccc3(255, 0, 0)];
-                //else [self SetPredPointsColorTo:ccc3(0, 0, 255)];
-                
-            }
+
         } else if ((takeoffAngleToNextPlanet>=270-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees&&takeoffAngleToNextPlanet<=360+anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees)||
                    (takeoffAngleToNextPlanet >=-90-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees && takeoffAngleToNextPlanet <=0+anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees)) {
-            //[self SetPredPointsColorTo:ccc3(0, 255, 0)];
             player.sprite.color = ccc3(0, 255, 0);
             isGreen = true;
         } else {
             if (!playerIsTouchingScreen) {
-                //[self SetPredPointsColorTo:ccc3(255, 0, 0)];
             } else {
-                //[self SetPredPointsColorTo:ccc3(0, 0, 255)];
             }
         }
         lastAngle2minusptopangle = takeoffAngleToNextPlanet;
     } else {
-        //[self SetPredPointsColorTo:ccc3(255, 0, 0)];
     }
     if (!isGreen)
         player.sprite.color = ccc3(255, 255, 255);
