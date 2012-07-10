@@ -280,24 +280,38 @@ typedef struct {
         object.sprite.position = ccpAdd(ccpMult(object.velocity, 60*dt*timeDilationCoefficient), object.sprite.position);
     }
     
+    //camera code follows -----------------------------
     Planet * nextPlanet;
     if (lastPlanetVisited.number +1 < [planets count])
         nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
     else     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
     
-    CGPoint focusPosition = ccpMidpoint(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
+    CGPoint focusPosition;
+    Planet* planetForZoom = nextPlanet;
+    if (player.isInZone) {
+    focusPosition= ccpMidpoint(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
     focusPosition = ccpLerp(focusPosition, ccpMidpoint(focusPosition, player.sprite.position), .25f) ;
-    cameraFocusNode.position = ccpLerp(cameraFocusNode.position, focusPosition, .06f);
-    CGFloat distanceBetweenPlanets = ccpDistance(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
+    }
+    else {
+        focusPosition = ccpMidpoint(player.sprite.position, nextPlanet.sprite.position);
+        if (nextPlanet.number +1 < [planets count]) {
+            Planet* nextNextPlanet = [planets objectAtIndex:(nextPlanet.number+1)];
+            planetForZoom=nextNextPlanet;
+            focusPosition = ccpMidpoint(player.sprite.position, nextNextPlanet.sprite.position);
+        }
+    }
+    CGFloat distanceBetweenPlanets = ccpDistance(lastPlanetVisited.sprite.position, planetForZoom.sprite.position);
     float scale =zoomMultiplier*(-0.0011304347826086958*distanceBetweenPlanets+1.218695652173913);
-    focusPosition =ccpLerp(cameraLastFocusPosition, focusPosition, .06f);
-    [self ZoomLayer:cameraLayer withScale:scale toPosition: focusPosition];
+    if (planetForZoom!=nextPlanet)
+        scale*=extraOutsideOfZoneZoom;
+
+    cameraFocusNode.position = ccpLerp(cameraFocusNode.position, focusPosition, cameraMovementSpeed);
+    focusPosition =ccpLerp(cameraLastFocusPosition, focusPosition, cameraMovementSpeed);
+    [self ZoomLayer:cameraLayer withScale:lerpf([cameraLayer scale], scale, cameraZoomSpeed) toPosition: focusPosition];
     id followAction = [CCFollow actionWithTarget:cameraFocusNode];
     [cameraLayer runAction: followAction];
     cameraLastFocusPosition=focusPosition;
 }
-
-
 
 - (void)ApplyGravity:(float)dt {
     
@@ -316,8 +330,6 @@ typedef struct {
         
         asteroid.velocity = ccpMult(ccpNormalize(asteroid.velocity), asteroid.velMult*pow(ccpLength(ccpSub(p, pointToUse)), .3));
         
-        
-        //asteroid.velocity = ccpNormalize(ccpSub(one, two));
         if ((ccpLength(ccpSub(p, one)) >= dif || ccpLength(ccpSub(p, two)) >= dif) && asteroid.updatesSinceVelChange >= 15) {
             
             asteroid.updatesSinceVelChange = 0;
@@ -536,7 +548,7 @@ typedef struct {
 
 - (void)UpdatePlanets {    
     // Zone-to-Player collision detection follows-------------
-    player.isInZone = true;
+    player.isInZone = false;
     isInAZone = false;
     
     int zoneCount = zones.count;

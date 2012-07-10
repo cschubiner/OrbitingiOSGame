@@ -20,6 +20,12 @@ const float timeDilationLimit = 2.5;
 
 //changes how zoomed in the camera in. higher numbers mean more zoom (everything looks bigger)
 const float zoomMultiplier = .72f;
+//changes how much more the camera should be zoomed in when the player is outside of a zone
+const float extraOutsideOfZoneZoom = 1.23f;
+//changes how quickly the camera zooms in and out
+const float cameraZoomSpeed = .01875f;
+//changes how quickly the camera changes position
+const float cameraMovementSpeed = .06f;
 
 const float anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees = 55;
 const float anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees = -35;
