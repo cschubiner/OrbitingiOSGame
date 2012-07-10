@@ -17,7 +17,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\font.xnb</Output>
-      <Time>2012-07-08T19:04:21.3297269-07:00</Time>
+      <Time>2012-07-09T01:08:45.57229-07:00</Time>
     </Item>
     <Item>
       <Source>iphone box.png</Source>
@@ -26,16 +26,25 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\iphone box.xnb</Output>
-      <Time>2012-07-08T18:59:18.2003889-07:00</Time>
+      <Time>2012-07-09T01:08:45.5752902-07:00</Time>
     </Item>
     <Item>
-      <Source>zone.png</Source>
-      <Name>zone</Name>
+      <Source>zone-hd.png</Source>
+      <Name>zone-hd</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\zone.xnb</Output>
-      <Time>2012-07-08T18:28:26.9496442-07:00</Time>
+      <Output>C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\zone-hd.xnb</Output>
+      <Time>2012-07-09T21:19:51.7887676-07:00</Time>
+    </Item>
+    <Item>
+      <Source>biggerFont.spritefont</Source>
+      <Name>biggerFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\biggerFont.xnb</Output>
+      <Time>2012-07-09T21:54:39.1161559-07:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

@@ -63,10 +63,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="zone.png">
-      <Name>zone</Name>
+    <Compile Include="zone-hd.png">
+      <Name>zone-hd</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="biggerFont.spritefont">
+      <Name>biggerFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
