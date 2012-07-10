@@ -18,8 +18,6 @@
     NSMutableArray *zones;
     NSMutableArray *asteroids;
     NSMutableArray *cameraObjects;
-    CGFloat lastPlanetXPos;
-    CGFloat lastPlanetYPos;
     CCLabelTTF *scoreLabel;
     CCLabelTTF *zonesReachedLabel;
     CGSize size;
