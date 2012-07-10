@@ -130,8 +130,6 @@ typedef struct {
         zonesReachedLabel.position = ccp(100, [zonesReachedLabel boundingBox].size.height);
         [hudLayer addChild: zonesReachedLabel];
         
-        
-        
         [self CreatePlanetAndZone:143 yPos:144];
         [self CreatePlanetAndZone:514 yPos:154];
         [self CreatePlanetAndZone:782 yPos:415];
@@ -238,10 +236,7 @@ typedef struct {
         [self CreatePlanetAndZone:7673 yPos:3745];
         [self CreatePlanetAndZone:7993 yPos:3827];
         [self CreatePlanetAndZone:8261 yPos:4059];
-        
-
-        
-        
+                
         player = [[Player alloc]init];        
         player.sprite = [CCSprite spriteWithFile:@"spaceship.png"];
         [player.sprite setScale:1.2];
@@ -284,15 +279,12 @@ typedef struct {
     for (CameraObject *object in cameraObjects) {
         object.velocity = ccpAdd(object.velocity, object.acceleration);
         object.sprite.position = ccpAdd(ccpMult(object.velocity, 60*dt*timeDilationCoefficient), object.sprite.position);
-        
-        
     }
     
     Planet * nextPlanet;
     if (lastPlanetVisited.number +1 < [planets count])
         nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
     else     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
-    
     
     CGPoint focusPosition = ccpMidpoint(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
     focusPosition = ccpLerp(focusPosition, ccpMidpoint(focusPosition, player.sprite.position), .25f) ;
@@ -318,20 +310,16 @@ typedef struct {
         CGPoint two = asteroid.p2;
         float dif = ccpLength(ccpSub(one, two));
         
-        
         if (ccpLength(ccpSub(p, one)) < ccpLength(ccpSub(p, two))) {
             asteroid.velocity = ccpMult(ccpNormalize(asteroid.velocity), asteroid.velMult*pow(ccpLength(ccpSub(p, one)), .3));
         } else {
             asteroid.velocity = ccpMult(ccpNormalize(asteroid.velocity), asteroid.velMult*pow(ccpLength(ccpSub(p, two)), .3));
         }
         
-        //asteroid.velocity = ccpNormalize(ccpSub(one, two));
         if ((ccpLength(ccpSub(p, one)) >= dif || ccpLength(ccpSub(p, two)) >= dif) && asteroid.updatesSinceVelChange >= 5) {
             asteroid.updatesSinceVelChange = 0;
             asteroid.velocity = ccpMult(asteroid.velocity, -1);
-            
         }
-        
         
         if (asteroid.number = lastPlanetVisited.number) {
             if (ccpLength(ccpSub(player.sprite.position, asteroid.sprite.position)) <= asteroid.radius * asteroidRadiusCollisionZone) {
@@ -445,12 +433,13 @@ typedef struct {
             // }
             //}
         }
+        if (planet.number >lastPlanetVisited.number)
+break;
     }
 }
 
 - (void)UpdatePlayer:(float)dt {
     [self ApplyGravity:dt];
-    
     gravityReducer -= rateToDecreaseGravity;
     
     // if player is off-screen
@@ -513,22 +502,30 @@ typedef struct {
     
     for (Zone* zone in zones) {        
         [cameraLayer removeChild:zone.sprite cleanup:YES];
-        [cameraLayer addChild:zone.sprite];
         zone.hasPlayerHitThisZone = false;
         zone.hasExploded=false;
         [zone.sprite setColor:ccc3(255, 255, 255)];
     }
     
     for (Planet* planet in planets) {        
+        planet.alive=false;
         [cameraLayer removeChild:planet.sprite cleanup:YES];
-        [cameraLayer addChild:planet.sprite];
-        planet.alive = true;
     }
+
     
     for (Asteroid* asteroid in asteroids) {        
         [cameraLayer removeChild:asteroid.sprite cleanup:YES];
-        [cameraLayer addChild:asteroid.sprite];
         asteroid.alive = true;
+    }
+    
+    for (int i = 0 ; i < 4; i++){
+        Planet * planet = [planets objectAtIndex:i];
+        Asteroid * asteroid = [asteroids objectAtIndex:i];
+        Zone * zone = [zones objectAtIndex:i];
+        [cameraLayer addChild:zone.sprite];
+        [cameraLayer addChild:planet.sprite];
+        [cameraLayer addChild:asteroid.sprite];
+        planet.alive = true;
     }
     
     [cameraLayer addChild:thrustParticle];
@@ -577,6 +574,15 @@ typedef struct {
                 [zone.sprite setColor:ccc3(255, 80, 180)];
                 zone.hasPlayerHitThisZone = true;  
                 zonesReached++;
+                
+                if (zonesReached+3<zoneCount){
+                [cameraLayer addChild:((Zone*)[zones objectAtIndex:zonesReached+3]).sprite];
+                [cameraLayer addChild:((Planet*)[planets objectAtIndex:zonesReached+3]).sprite];
+                    if (zonesReached+5<zoneCount)
+                [cameraLayer addChild:((Asteroid*)[asteroids objectAtIndex:zonesReached+3]).sprite];
+                [cameraLayer reorderChild:player.sprite z:0];
+                }
+               
                 numZonesHitInARow++;
                 timeDilationCoefficient= ((timeDilationLimit-1)*pow(numZonesHitInARow,timeDilationSteepness)/pow((numZonesHitInARow+1),timeDilationSteepness))+1;
                 CCLOG(@"combos: %d time dilation: %f",numZonesHitInARow+1,timeDilationCoefficient);
@@ -587,6 +593,8 @@ typedef struct {
                 Planet * planet = [planets objectAtIndex:zone.number];
                 [cameraLayer removeChild:planet.sprite cleanup:NO];
                 [cameraLayer removeChild:zone.sprite cleanup:YES];
+                if (zone.number>2)
+                    [cameraLayer removeChild:((Asteroid*)[asteroids objectAtIndex:zone.number-3]).sprite cleanup:YES];
                 planet.alive = false;
                 [planetExplosionParticle setPosition:zone.sprite.position];
                 [planetExplosionParticle resetSystem];
