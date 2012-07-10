@@ -22,38 +22,35 @@ const float timeDilationLimit = 2.5;
 const float zoomMultiplier = .72f;
 
 const float anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees = 55;
-const float anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees = -10;
+const float anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees = -35;
 
 const float durationOfPostExplosionScreenShake = .40f;
 const float postExplosionShakeXMagnitude = 4;
 const float postExplosionShakeYMagnitude = 3;
 
 // this is purely visual and doesn't affect mass.
-const float planetSizeScale = .42;
+const float planetSizeScale = .5;
 
 // the zone scale is the planet scale * this number
-const float zoneScaleRelativeToPlanet = 1.8;
+const float zoneScaleRelativeToPlanet = 1.5;
 
-//the gravitational force. increase this to force the the orbiting velocity to increase
-const float gravity = .4;
-
-//the radius at which you will orbit. make sure it is small enough to put you in the planet's zone
-const float distToSpawn = 100;
+//the gravitational force. increase this to force the orbiting velocity to increase
+const float gravity = .45;
 
 //radius percentage at which you will collide with a planet
-const float planetRadiusCollisionZone = .95;
+const float planetRadiusCollisionZone = .96;
 
 // this is purely visual and doesn't affect mass.
-const float asteroidSizeScale = .30;
+const float asteroidSizeScale = .36;
 
 //radius percentage at which you will collide with a asteroid
-const float asteroidRadiusCollisionZone = .8;
+const float asteroidRadiusCollisionZone = .82;
 
-//the asteroid's velocity
-const float asteroidVelocity = .4;
+//the asteroid's minimum velocity
+const float minAstVel = 0;
 
-//the amount the asteroid velocity will vary from asteroid to asteroid (it could go up or down by this amount)
-const float asteroidVelVar = .2;
+//the asteroid's maximum velocity
+const float maxAstVel = .4;
 
 //initial percentage of gravity felt immediately after you swipe in a non-green zone
 const float initialPercentageOfGravityAfterSwipe = .3;
@@ -66,3 +63,6 @@ const float swipeStrength = .03;
 
 //the minimum velocity you can have when isExperienceGravity is true
 const float minimumVelocity = .3;
+
+//the minimum velocity you can have when isExperienceGravity is true
+const float minSwipeStrength = 20;
