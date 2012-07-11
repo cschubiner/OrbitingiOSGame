@@ -20,6 +20,7 @@
     int prevScore;
     int initialScoreConstant;
     float orbitRadius;
+    float killer;
 }
 
 typedef struct {
@@ -244,6 +245,7 @@ typedef struct {
         
         cameraFocusNode = [[CCSprite alloc]init];
         
+        killer = 0;
         isOnFirstRun = true;
         isOrbiting = true;
         justSwiped = false;
@@ -407,10 +409,6 @@ typedef struct {
                 }
                 if (isExperiencingGravity) {
                     
-                    if (ccpLength(player.velocity) <= minimumVelocity) {
-                        player.velocity = ccpMult(player.velocity, 1.1);
-                    }
-                    
                     if (ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) <= planet.radius * planetRadiusCollisionZone) {
                         [self JumpPlayerToPlanet:lastPlanetVisited.number];
                     }
@@ -438,9 +436,19 @@ typedef struct {
     }
 }
 
+- (void)KillIfEnoughTimeHasPassed {
+    killer++;    
+    if (player.isInZone)
+        killer = 0;    
+    if (killer > deathAfterThisLong)
+        [self JumpPlayerToPlanet:lastPlanetVisited.number];
+}
+
 - (void)UpdatePlayer:(float)dt {
     [self ApplyGravity:dt];
     gravityReducer -= rateToDecreaseGravity;
+    
+    [self KillIfEnoughTimeHasPassed];
     
     // if player is off-screen
     if (![self IsPositionOnScreen:[self GetPlayerPositionOnScreen]]) { 
@@ -696,7 +704,7 @@ typedef struct {
         }
     }
     if (ccpLength(swipeVector) >= minSwipeStrength)
-        if (isExperiencingGravity == false) {
+        if (isOrbiting) {
             if (isGreen) {
                 justSwiped = true;
                 isOrbiting = false;

@@ -68,7 +68,7 @@ const float rateToDecreaseGravity = .01;
 const float swipeStrength = .03;
 
 //the minimum velocity you can have when isExperienceGravity is true
-const float minimumVelocity = .3;
-
-//the minimum velocity you can have when isExperienceGravity is true
 const float minSwipeStrength = 20;
+
+//how many updates pass while the player isn't in a zone until tie go will did
+const float deathAfterThisLong = 120;
