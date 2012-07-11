@@ -121,7 +121,9 @@ typedef struct {
         [planetExplosionParticle stopSystem];
         spaceBackgroundParticle = [CCParticleSystemQuad particleWithFile:@"spaceParticles.plist"];
         thrustParticle = [CCParticleSystemQuad particleWithFile:@"thrustParticle.plist"];
-        
+        blackHoleParticle = [CCParticleSystemQuad particleWithFile:@"blackHoleParticle.plist"];
+        [blackHoleParticle setPositionType:kCCPositionTypeGrouped];
+
         scoreLabel = [CCLabelTTF labelWithString:@"Score: " fontName:@"Marker Felt" fontSize:24];
         scoreLabel.position = ccp(400, [scoreLabel boundingBox].size.height);
         [hudLayer addChild: scoreLabel];
@@ -129,6 +131,7 @@ typedef struct {
         zonesReachedLabel = [CCLabelTTF labelWithString:@"Zones Reached: " fontName:@"Marker Felt" fontSize:24];
         zonesReachedLabel.position = ccp(100, [zonesReachedLabel boundingBox].size.height);
         [hudLayer addChild: zonesReachedLabel];
+        
         
         [self CreatePlanetAndZone:143 yPos:144];
         [self CreatePlanetAndZone:514 yPos:154];
@@ -535,7 +538,11 @@ typedef struct {
         [cameraLayer addChild:asteroid.sprite];
         planet.alive = true;
     }
-    
+
+    blackHoleParticle.position=ccp(-100,-100);
+    [cameraLayer removeChild:blackHoleParticle cleanup:NO];
+    [cameraLayer addChild:blackHoleParticle];
+
     [cameraLayer addChild:thrustParticle];
     [cameraLayer removeChild:player.sprite cleanup:YES];
     [cameraLayer addChild:player.sprite];
@@ -656,6 +663,8 @@ typedef struct {
         }
     }
     else [self setPosition:CGPointZero];
+    
+    [blackHoleParticle setPosition:ccpLerp(blackHoleParticle.position, player.sprite.position, .009f)];
 }
 
 - (void) Update:(ccTime)dt {
@@ -716,27 +725,6 @@ typedef struct {
             }
         }
 }
-
-- (void) scaleLayer:(CCLayer *) yourLayer newScale:(CGFloat) newScale scaleCenter:(CGPoint) scaleCenter {
-    // scaleCenter is the point to zoom to
-    // If you are doing a pinch zoom, this should be the center of your pinch
-    
-    // Get the original center point
-    CGPoint oldCenterPoint = ccp(scaleCenter.x * yourLayer.scale, scaleCenter.y * yourLayer.scale); 
-    
-    // Set the scale
-    yourLayer.scale = newScale;
-    
-    // Get the new center point
-    CGPoint newCenterPoint = ccp(scaleCenter.x * yourLayer.scale, scaleCenter.y * yourLayer.scale); 
-    
-    // Then calculate the delta
-    CGPoint centerPointDelta  = ccpSub(oldCenterPoint, newCenterPoint);
-    
-    // Now adjust your layer by the delta
-    yourLayer.position = ccpAdd(yourLayer.position, centerPointDelta);
-}
-
 
 double lerpd(double a, double b, double t) {
     return a + (b - a) * t;

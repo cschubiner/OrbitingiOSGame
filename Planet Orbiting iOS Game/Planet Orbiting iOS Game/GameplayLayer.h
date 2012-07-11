@@ -51,6 +51,7 @@
     CCParticleSystemQuad * planetExplosionParticle;
     CCParticleSystemQuad * spaceBackgroundParticle;
     CCParticleSystemQuad * cometParticle;
+    CCParticleSystemQuad * blackHoleParticle;
     CGPoint cometVelocity;
     
     float lastAngle2minusptopangle;

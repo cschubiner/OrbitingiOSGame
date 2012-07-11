@@ -167,6 +167,7 @@
 		C4E994B315A435E600C7009D /* planetExplosion.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4E994AF15A435E600C7009D /* planetExplosion.plist */; };
 		C4E994B415A435E600C7009D /* spaceParticles.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4E994B015A435E600C7009D /* spaceParticles.plist */; };
 		C4E994B515A435E600C7009D /* thrustParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4E994B115A435E600C7009D /* thrustParticle.plist */; };
+		C4FDA2D615AE0143005E8D7B /* blackHoleParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4FDA2D515AE0143005E8D7B /* blackHoleParticle.plist */; };
 		CE30F28015AA962300796589 /* asteroid.png in Resources */ = {isa = PBXBuildFile; fileRef = CE30F27F15AA962300796589 /* asteroid.png */; };
 		CE30F28715AA972E00796589 /* Asteroid.m in Sources */ = {isa = PBXBuildFile; fileRef = CE30F28615AA972E00796589 /* Asteroid.m */; };
 		CEF4A751159EE6E4005D32A1 /* space_background.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF4A750159EE6E4005D32A1 /* space_background.png */; };
@@ -461,6 +462,7 @@
 		C4E994AF15A435E600C7009D /* planetExplosion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = planetExplosion.plist; sourceTree = "<group>"; };
 		C4E994B015A435E600C7009D /* spaceParticles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = spaceParticles.plist; sourceTree = "<group>"; };
 		C4E994B115A435E600C7009D /* thrustParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = thrustParticle.plist; sourceTree = "<group>"; };
+		C4FDA2D515AE0143005E8D7B /* blackHoleParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = blackHoleParticle.plist; sourceTree = "<group>"; };
 		CE30F27F15AA962300796589 /* asteroid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroid.png; sourceTree = "<group>"; };
 		CE30F28515AA972E00796589 /* Asteroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asteroid.h; sourceTree = "<group>"; };
 		CE30F28615AA972E00796589 /* Asteroid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Asteroid.m; sourceTree = "<group>"; };
@@ -976,6 +978,7 @@
 		C4E994B715A435EA00C7009D /* Particles */ = {
 			isa = PBXGroup;
 			children = (
+				C4FDA2D515AE0143005E8D7B /* blackHoleParticle.plist */,
 				C4E994AE15A435E600C7009D /* cometParticle.plist */,
 				C4E994AF15A435E600C7009D /* planetExplosion.plist */,
 				C4E994B015A435E600C7009D /* spaceParticles.plist */,
@@ -1084,6 +1087,7 @@
 				C47774FF15A75CE2005D0AEB /* jungle-hd.png in Resources */,
 				C477750215A75D2D005D0AEB /* burst-hd.png in Resources */,
 				CE30F28015AA962300796589 /* asteroid.png in Resources */,
+				C4FDA2D615AE0143005E8D7B /* blackHoleParticle.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
