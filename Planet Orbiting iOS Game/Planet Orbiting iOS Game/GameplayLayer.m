@@ -132,6 +132,10 @@ typedef struct {
         zonesReachedLabel.position = ccp(100, [zonesReachedLabel boundingBox].size.height);
         [hudLayer addChild: zonesReachedLabel];
         
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"phasenwandler_-_Longing_for_Freedom.mp3" loop:YES];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"bomb.wav"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.wav"];
+
         
         [self CreatePlanetAndZone:143 yPos:144];
         [self CreatePlanetAndZone:514 yPos:154];
@@ -328,7 +332,6 @@ typedef struct {
         CGPoint two = asteroid.p2;
         float dif = ccpLength(ccpSub(one, two));
         
-        
         CGPoint pointToUse = two;
         if (ccpLength(ccpSub(p, one)) < ccpLength(ccpSub(p, two))) 
             pointToUse = one;
@@ -336,7 +339,6 @@ typedef struct {
         asteroid.velocity = ccpMult(ccpNormalize(asteroid.velocity), asteroid.velMult*pow(ccpLength(ccpSub(p, pointToUse)), .3));
         
         if ((ccpLength(ccpSub(p, one)) >= dif || ccpLength(ccpSub(p, two)) >= dif) && asteroid.updatesSinceVelChange >= 15) {
-            
             asteroid.updatesSinceVelChange = 0;
             asteroid.velocity = ccpMult(asteroid.velocity, -1);
         }
@@ -357,11 +359,8 @@ typedef struct {
                 player.velocity = initialVel;
             }
             
-            
             if (isOrbiting) {
-                
                 CGPoint a = ccpSub(player.sprite.position, planet.sprite.position);
-                
                 if (ccpLength(a) != orbitRadius) {
                     float offset = orbitRadius/ccpLength(a);
                     player.sprite.position = ccpAdd(planet.sprite.position, ccpMult(a, offset)); 
@@ -382,6 +381,7 @@ typedef struct {
             else {
                 if (justSwiped) {
                     justSwiped = false;
+                    [[SimpleAudioEngine sharedEngine]playEffect:@"SWOOSH.WAV"];
                     player.acceleration = CGPointZero;
                     //set velocity
                     //player.velocity = ccpMult(swipeVector, .55);
@@ -539,13 +539,13 @@ typedef struct {
         planet.alive = true;
     }
 
-    blackHoleParticle.position=ccp(-100,-100);
+    blackHoleParticle.position=ccp(-400,-400);
     [cameraLayer removeChild:blackHoleParticle cleanup:NO];
-    [cameraLayer addChild:blackHoleParticle];
+    [cameraLayer addChild:blackHoleParticle z:3];
 
-    [cameraLayer addChild:thrustParticle];
+    [cameraLayer addChild:thrustParticle z:2];
     [cameraLayer removeChild:player.sprite cleanup:YES];
-    [cameraLayer addChild:player.sprite];
+    [cameraLayer addChild:player.sprite z:1];
 }
 
 - (void)JumpPlayerToPlanet:(int)planetIndex {
@@ -613,6 +613,7 @@ typedef struct {
                 planet.alive = false;
                 [planetExplosionParticle setPosition:zone.sprite.position];
                 [planetExplosionParticle resetSystem];
+                [[SimpleAudioEngine sharedEngine]playEffect:@"bomb.wav"];
                 zone.hasExploded=true;
                 timeSincePlanetExplosion=0;
                 planetJustExploded=true;
@@ -664,7 +665,14 @@ typedef struct {
     }
     else [self setPosition:CGPointZero];
     
-    [blackHoleParticle setPosition:ccpLerp(blackHoleParticle.position, player.sprite.position, .009f)];
+}
+
+- (void)UpdateBlackhole {
+    [blackHoleParticle setPosition:ccpLerp(blackHoleParticle.position, player.sprite.position, .009f*blackHoleSpeedFactor)];
+    if (ccpDistance(player.sprite.position, blackHoleParticle.position)<blackHoleParticle.startRadius*blackHoleCollisionRadiusFactor)
+    {
+        [self endGame];
+    }
 }
 
 - (void) Update:(ccTime)dt {
@@ -675,6 +683,12 @@ typedef struct {
     [self UpdateScore:false];
     [self UpdateCamera:dt];
     [self UpdateParticles:dt];
+    [self UpdateBlackhole];
+}
+
+- (void)endGame {
+    CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"example.ccb"];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: scene]];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -683,7 +697,7 @@ typedef struct {
         location = [[CCDirector sharedDirector] convertToGL:location];
         
         if (location.x <= size.width/6 && location.y >= 4*size.height/5) {
-            [self resetVariablesForNewGame];
+            [self endGame];
         }
         else if (player.isInZone) {
             [player setThrustBeginPoint:location];

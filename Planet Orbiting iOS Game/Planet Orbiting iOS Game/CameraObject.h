@@ -16,7 +16,7 @@
 @property (nonatomic,retain) CCSprite *sprite;
 @property (nonatomic) CGPoint velocity;
 @property (nonatomic) CGPoint acceleration;
-@property (nonatomic) int number; //or "number", as we used to call it in copter crush...
+@property (nonatomic) int number;
 @property (nonatomic) bool alive;
 
 -(CGPoint)position;

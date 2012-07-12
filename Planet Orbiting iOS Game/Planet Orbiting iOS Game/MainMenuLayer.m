@@ -33,6 +33,9 @@
 	if (self = [super init]) {
 
         //we may have custom menu logic here, but for now everything is just made with cocosbuilder 1.x (not 2.x!!)
+        
+        [[CDAudioManager sharedManager] playBackgroundMusic:@"LLSDemo-Aegis-Guard.mp3" loop:YES];
+
 	}
 	return self;
 }

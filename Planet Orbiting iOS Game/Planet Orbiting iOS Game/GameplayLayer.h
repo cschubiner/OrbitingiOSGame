@@ -10,6 +10,9 @@
 #import "cocos2d.h"
 #import "Player.h"
 #import "Planet.h"
+#import "SimpleAudioEngine.h"
+#import "MainMenuLayer.h"
+#import "CCBReader.h"
 
 @interface GameplayLayer : CCLayer {
     

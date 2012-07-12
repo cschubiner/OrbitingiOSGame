@@ -127,6 +127,12 @@
 		0C7AA7561594693D000B58F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA7551594693D000B58F2 /* AppDelegate.m */; };
 		0C7AA7591594693D000B58F2 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA7581594693D000B58F2 /* RootViewController.m */; };
 		0C7AA75C1594693D000B58F2 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */; };
+		0CFB822D15AE61EC00EADAF3 /* LLSDemo-Aegis-Guard.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CFB822B15AE61EC00EADAF3 /* LLSDemo-Aegis-Guard.mp3 */; };
+		0CFB822E15AE61EC00EADAF3 /* phasenwandler_-_Longing_for_Freedom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CFB822C15AE61EC00EADAF3 /* phasenwandler_-_Longing_for_Freedom.mp3 */; };
+		0CFB823315AE626D00EADAF3 /* asteroid.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CFB823215AE626D00EADAF3 /* asteroid.png */; };
+		0CFB823515AE627800EADAF3 /* asteroid-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CFB823415AE627800EADAF3 /* asteroid-hd.png */; };
+		0CFB823715AE6E3000EADAF3 /* bomb.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0CFB823615AE6E3000EADAF3 /* bomb.wav */; };
+		0CFB823915AE733800EADAF3 /* SWOOSH.WAV in Resources */ = {isa = PBXBuildFile; fileRef = 0CFB823815AE733800EADAF3 /* SWOOSH.WAV */; };
 		C445303E15A68880004F8F48 /* btn-test-0.png in Resources */ = {isa = PBXBuildFile; fileRef = C445303015A68880004F8F48 /* btn-test-0.png */; };
 		C445303F15A68880004F8F48 /* btn-test-1.png in Resources */ = {isa = PBXBuildFile; fileRef = C445303115A68880004F8F48 /* btn-test-1.png */; };
 		C445304015A68880004F8F48 /* btn-test-2.png in Resources */ = {isa = PBXBuildFile; fileRef = C445303215A68880004F8F48 /* btn-test-2.png */; };
@@ -168,7 +174,6 @@
 		C4E994B415A435E600C7009D /* spaceParticles.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4E994B015A435E600C7009D /* spaceParticles.plist */; };
 		C4E994B515A435E600C7009D /* thrustParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4E994B115A435E600C7009D /* thrustParticle.plist */; };
 		C4FDA2D615AE0143005E8D7B /* blackHoleParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4FDA2D515AE0143005E8D7B /* blackHoleParticle.plist */; };
-		CE30F28015AA962300796589 /* asteroid.png in Resources */ = {isa = PBXBuildFile; fileRef = CE30F27F15AA962300796589 /* asteroid.png */; };
 		CE30F28715AA972E00796589 /* Asteroid.m in Sources */ = {isa = PBXBuildFile; fileRef = CE30F28615AA972E00796589 /* Asteroid.m */; };
 		CEF4A751159EE6E4005D32A1 /* space_background.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF4A750159EE6E4005D32A1 /* space_background.png */; };
 /* End PBXBuildFile section */
@@ -419,6 +424,12 @@
 		0C7AA75A1594693D000B58F2 /* MainMenuLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
 		0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
 		0C7AA75D1594693D000B58F2 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
+		0CFB822B15AE61EC00EADAF3 /* LLSDemo-Aegis-Guard.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "LLSDemo-Aegis-Guard.mp3"; sourceTree = "<group>"; };
+		0CFB822C15AE61EC00EADAF3 /* phasenwandler_-_Longing_for_Freedom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "phasenwandler_-_Longing_for_Freedom.mp3"; sourceTree = "<group>"; };
+		0CFB823215AE626D00EADAF3 /* asteroid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroid.png; sourceTree = "<group>"; };
+		0CFB823415AE627800EADAF3 /* asteroid-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "asteroid-hd.png"; sourceTree = "<group>"; };
+		0CFB823615AE6E3000EADAF3 /* bomb.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bomb.wav; sourceTree = "<group>"; };
+		0CFB823815AE733800EADAF3 /* SWOOSH.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SWOOSH.WAV; sourceTree = "<group>"; };
 		C445303015A68880004F8F48 /* btn-test-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-test-0.png"; sourceTree = "<group>"; };
 		C445303115A68880004F8F48 /* btn-test-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-test-1.png"; sourceTree = "<group>"; };
 		C445303215A68880004F8F48 /* btn-test-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-test-2.png"; sourceTree = "<group>"; };
@@ -463,7 +474,6 @@
 		C4E994B015A435E600C7009D /* spaceParticles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = spaceParticles.plist; sourceTree = "<group>"; };
 		C4E994B115A435E600C7009D /* thrustParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = thrustParticle.plist; sourceTree = "<group>"; };
 		C4FDA2D515AE0143005E8D7B /* blackHoleParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = blackHoleParticle.plist; sourceTree = "<group>"; };
-		CE30F27F15AA962300796589 /* asteroid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroid.png; sourceTree = "<group>"; };
 		CE30F28515AA972E00796589 /* Asteroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asteroid.h; sourceTree = "<group>"; };
 		CE30F28615AA972E00796589 /* Asteroid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Asteroid.m; sourceTree = "<group>"; };
 		CEF4A750159EE6E4005D32A1 /* space_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = space_background.png; sourceTree = "<group>"; };
@@ -522,10 +532,11 @@
 		0C487B02159472AC00674AB9 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
-				CE30F27F15AA962300796589 /* asteroid.png */,
 				C4E09657159E106000E31908 /* arrow2.png */,
 				C4D4AA9C15A613F50021D266 /* planet.png */,
+				0CFB823415AE627800EADAF3 /* asteroid-hd.png */,
 				C4D4AA9D15A613F50021D266 /* point.png */,
+				0CFB823215AE626D00EADAF3 /* asteroid.png */,
 				C4D4AA9E15A613F50021D266 /* spaceship.png */,
 				C4D4AA9F15A613F50021D266 /* zone.png */,
 				C4D4AA9415A613E90021D266 /* planet-hd.png */,
@@ -607,6 +618,7 @@
 		0C7AA60315946939000B58F2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0CFB823015AE61F300EADAF3 /* Audio */,
 				C4E994B715A435EA00C7009D /* Particles */,
 				0C487B02159472AC00674AB9 /* Sprites */,
 				0C487B0F159481C500674AB9 /* Icons and Launch Images */,
@@ -925,6 +937,33 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		0CFB823015AE61F300EADAF3 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				0CFB823A15AE733B00EADAF3 /* Effects */,
+				0CFB823115AE61F900EADAF3 /* Music */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
+		0CFB823115AE61F900EADAF3 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				0CFB822B15AE61EC00EADAF3 /* LLSDemo-Aegis-Guard.mp3 */,
+				0CFB822C15AE61EC00EADAF3 /* phasenwandler_-_Longing_for_Freedom.mp3 */,
+			);
+			name = Music;
+			sourceTree = "<group>";
+		};
+		0CFB823A15AE733B00EADAF3 /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				0CFB823815AE733800EADAF3 /* SWOOSH.WAV */,
+				0CFB823615AE6E3000EADAF3 /* bomb.wav */,
+			);
+			name = Effects;
+			sourceTree = "<group>";
+		};
 		C445304D15A68888004F8F48 /* CocosBuilder  */ = {
 			isa = PBXGroup;
 			children = (
@@ -1086,8 +1125,13 @@
 				C47774FE15A75CE2005D0AEB /* btn-test-2-hd.png in Resources */,
 				C47774FF15A75CE2005D0AEB /* jungle-hd.png in Resources */,
 				C477750215A75D2D005D0AEB /* burst-hd.png in Resources */,
-				CE30F28015AA962300796589 /* asteroid.png in Resources */,
 				C4FDA2D615AE0143005E8D7B /* blackHoleParticle.plist in Resources */,
+				0CFB822D15AE61EC00EADAF3 /* LLSDemo-Aegis-Guard.mp3 in Resources */,
+				0CFB822E15AE61EC00EADAF3 /* phasenwandler_-_Longing_for_Freedom.mp3 in Resources */,
+				0CFB823315AE626D00EADAF3 /* asteroid.png in Resources */,
+				0CFB823515AE627800EADAF3 /* asteroid-hd.png in Resources */,
+				0CFB823715AE6E3000EADAF3 /* bomb.wav in Resources */,
+				0CFB823915AE733800EADAF3 /* SWOOSH.WAV in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
