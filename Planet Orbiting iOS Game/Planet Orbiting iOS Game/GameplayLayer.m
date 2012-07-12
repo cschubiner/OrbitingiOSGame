@@ -259,6 +259,7 @@ typedef struct {
         justBadSwiped = false;
         isExperiencingGravity = false;
         gravityReducer = 1;
+        timeDilationCoefficient = 1;
         
         [self addChild:spaceBackgroundParticle];
         [self addChild:cometParticle];
@@ -450,6 +451,11 @@ typedef struct {
 - (void)UpdatePlayer:(float)dt {
     [self ApplyGravity:dt];
     gravityReducer -= rateToDecreaseGravity;
+    timeDilationCoefficient -= timeDilationReduceRate;
+    
+    timeDilationCoefficient = clampf(timeDilationCoefficient, absoluteMinTimeDilation, absoluteMaxTimeDilation);
+    
+    CCLOG([NSString stringWithFormat:@"thrust mag: %f", timeDilationCoefficient]);
     
     [self KillIfEnoughTimeHasPassed];
     
@@ -549,7 +555,7 @@ typedef struct {
 }
 
 - (void)JumpPlayerToPlanet:(int)planetIndex {
-    timeDilationCoefficient = 1;
+    //timeDilationCoefficient = 1;
     numZonesHitInARow = 0;
     //CCLOG([NSString stringWithFormat:@"thrust mag:"]);
     CGPoint dir = ccpNormalize(ccpSub(((Planet*)[planets objectAtIndex:planetIndex+1]).sprite.position,((Planet*)[planets objectAtIndex:planetIndex]).sprite.position));
@@ -599,7 +605,7 @@ typedef struct {
                 }
                 
                 numZonesHitInARow++;
-                timeDilationCoefficient= ((timeDilationLimit-1)*pow(numZonesHitInARow,timeDilationSteepness)/pow((numZonesHitInARow+1),timeDilationSteepness))+1;
+                timeDilationCoefficient += timeDilationIncreaseRate;
                 
             }
         }
