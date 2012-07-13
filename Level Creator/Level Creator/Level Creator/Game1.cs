@@ -23,17 +23,27 @@ namespace Level_Creator
         Texture2D zoneTexture;
         Texture2D frameTexture;
         MouseState lastMouseState;
-        List<Vector2> posArray;
-        List<Vector2> posArrayForFrame;
+
+        public struct posScaleStruct
+        {
+            public Vector2 pos;
+            public float scale;
+        }
+
+        List<posScaleStruct> posArray;
+        List<posScaleStruct> posArrayForFrame;
         Vector2 currPosToDraw;
         SpriteFont font;
         SpriteFont biggerFont;
         string toDisplay;
-        float planetScaleSize;
+        const float defaultPlanetScaleSize = .21f;
+        float currentPlanetScale;
+        float currentFrameScale;
+        float currentZoneScale;
         KeyboardState lastKeyboardState;
         Vector2 offset;
         // the zone scale is the planet scale * this number
-        float zoneScaleRelativeToPlanet;
+        const float defaultZoneScaleRelativeToPlanet = 1.3f;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -45,8 +55,6 @@ namespace Level_Creator
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            zoneScaleRelativeToPlanet = 1.8f;
-            planetScaleSize = .21f;
         }
 
         /// <summary>
@@ -59,11 +67,13 @@ namespace Level_Creator
         {
             // TODO: Add your initialization logic here
 
-            posArray = new List<Vector2>();
-            posArrayForFrame = new List<Vector2>();
+            posArray = new List<posScaleStruct>();
+            posArrayForFrame = new List<posScaleStruct>();
             base.Initialize();
             currPosToDraw = Vector2.Zero;
-
+            currentFrameScale = 1;
+            currentPlanetScale = defaultPlanetScaleSize;
+            currentZoneScale = defaultZoneScaleRelativeToPlanet;
 
         }
 
@@ -114,14 +124,22 @@ namespace Level_Creator
 
                 if (mouseState.LeftButton == ButtonState.Released && lastMouseState.LeftButton == ButtonState.Pressed)
                 {
-                    Vector2 pos = new Vector2(mouseState.X - offset.X, mouseState.Y - offset.Y);
-                    posArray.Add(pos);
+                    posScaleStruct pstruct;
+                    pstruct.pos = new Vector2(mouseState.X - offset.X, mouseState.Y - offset.Y);
+                    pstruct.scale = currentPlanetScale;
+                    currentPlanetScale = defaultPlanetScaleSize;
+                    posArray.Add(pstruct);
                 }
+
+                if (mouseState.RightButton == ButtonState.Pressed && lastMouseState.RightButton == ButtonState.Released)
+                    currentFrameScale = 1;
 
                 if (mouseState.RightButton == ButtonState.Released && lastMouseState.RightButton == ButtonState.Pressed)
                 {
-                    Vector2 pos = new Vector2(mouseState.X - offset.X, mouseState.Y - offset.Y);
-                    posArrayForFrame.Add(pos);
+                    posScaleStruct pstruct;
+                    pstruct.pos = new Vector2(mouseState.X - offset.X, mouseState.Y - offset.Y);
+                    pstruct.scale = currentFrameScale;
+                    posArrayForFrame.Add(pstruct);
                 }
                 currPosToDraw = new Vector2(mouseState.X, mouseState.Y);
 
@@ -129,15 +147,18 @@ namespace Level_Creator
                 {
                     string first = "[self CreatePlanetAndZone:";
                     string middle = " yPos:";
-                    string end = "];\r\n";
+                    string middle2 = " scale:";
+                    string end = "f];\r\n";
 
                     string toCopy = "";
-                    foreach (Vector2 pos in posArray)
+                    foreach (posScaleStruct pstruct in posArray)
                     {
                         toCopy += first;
-                        toCopy += pos.X.ToString();
+                        toCopy += pstruct.pos.X.ToString();
                         toCopy += middle;
-                        toCopy += (graphics.GraphicsDevice.Viewport.Height - pos.Y).ToString();
+                        toCopy += (graphics.GraphicsDevice.Viewport.Height - pstruct.pos.Y).ToString();
+                        toCopy += middle2;
+                        toCopy += pstruct.scale.ToString();
                         toCopy += end;
                     }
 
@@ -147,21 +168,29 @@ namespace Level_Creator
                 }
 
                 if (mouseState.MiddleButton == ButtonState.Released && lastMouseState.MiddleButton == ButtonState.Pressed)
-                    foreach (Vector2 pos in posArray)
+                    foreach (posScaleStruct pstruct in posArray)
                     {
-                        if (mouseState.X >= (pos.X + offset.X) - zoneTexture.Width * planetScaleSize * zoneScaleRelativeToPlanet / 2 && mouseState.X <= (pos.X + offset.X) + zoneTexture.Width * planetScaleSize * zoneScaleRelativeToPlanet / 2
-                            && mouseState.Y >= (pos.Y + offset.Y) - zoneTexture.Height * planetScaleSize * zoneScaleRelativeToPlanet / 2 && mouseState.Y <= (pos.Y + offset.Y) + zoneTexture.Height * planetScaleSize * zoneScaleRelativeToPlanet / 2)
+                        Vector2 pos = pstruct.pos;
+                        if (mouseState.X >= (pos.X + offset.X) - zoneTexture.Width * pstruct.scale / 2 && mouseState.X <= (pos.X + offset.X) + zoneTexture.Width * pstruct.scale / 2
+                            && mouseState.Y >= (pos.Y + offset.Y) - zoneTexture.Height * pstruct.scale / 2 && mouseState.Y <= (pos.Y + offset.Y) + zoneTexture.Height * pstruct.scale / 2)
                         {
-                            posArray.Remove(pos);
+                            posArray.Remove(pstruct);
                             break;
                         }
                     }
 
                 if (keyboardState.IsKeyDown(Keys.Z))
-                    zoneScaleRelativeToPlanet += .1f * (mouseState.ScrollWheelValue - lastMouseState.ScrollWheelValue) / 120;
-                else
-                    planetScaleSize += .03f * (mouseState.ScrollWheelValue - lastMouseState.ScrollWheelValue) / 120;
-                toDisplay = "Planet Scale (scroll to change): " + planetScaleSize.ToString() + "   Relative Zone Scale (Hold Z while scrolling): " + zoneScaleRelativeToPlanet.ToString() + "    Mouse Pos: " + (offset.X + mouseState.X).ToString() + ", " + (graphics.GraphicsDevice.Viewport.Height - (offset.Y + mouseState.Y)).ToString();
+                    currentZoneScale += .1f * (mouseState.ScrollWheelValue - lastMouseState.ScrollWheelValue) / 120;
+                else if (mouseState.LeftButton == ButtonState.Pressed)
+                    currentPlanetScale += .03f * (mouseState.ScrollWheelValue - lastMouseState.ScrollWheelValue) / 120;
+                else if (mouseState.RightButton == ButtonState.Pressed)
+                    currentFrameScale += .07f * (mouseState.ScrollWheelValue - lastMouseState.ScrollWheelValue) / 120;
+                toDisplay = "Planet Scale: " + currentPlanetScale.ToString() + "   Relative Zone Scale: " + 
+                    currentZoneScale.ToString() + "    Mouse Pos: " + (offset.X + mouseState.X).ToString() + ", " + (graphics.GraphicsDevice.Viewport.Height - (offset.Y + mouseState.Y)).ToString()
+                    +"   Zoom scale: "+(1/currentFrameScale).ToString();
+
+                if (posArray.Count > 1)
+                    toDisplay += "     Last Planet Distance: "+(posArray[posArray.Count - 2].pos - posArray[posArray.Count - 1].pos).Length().ToString();
 
                 int offsetPixels = 200;
                 if (keyboardState.IsKeyDown(Keys.Up) && lastKeyboardState.IsKeyUp(Keys.Up))
@@ -200,24 +229,24 @@ namespace Level_Creator
                 graphics.GraphicsDevice.Viewport.Height - 45), Color.Red);
 
             int index= 0 ;
-            foreach (Vector2 pos in posArray)
+            foreach (posScaleStruct pstruct in posArray)
             {
-
-                spriteBatch.Draw(zoneTexture, pos+offset, null, Color.White, 0, new Vector2(zoneTexture.Width / 2, zoneTexture.Height / 2), planetScaleSize * zoneScaleRelativeToPlanet, SpriteEffects.None, 0);
-                spriteBatch.Draw(planetTexture, pos + offset, null, Color.White, 0, new Vector2(planetTexture.Width / 2, planetTexture.Height / 2), planetScaleSize, SpriteEffects.None, 0);
+                Vector2 pos = pstruct.pos;
+                spriteBatch.Draw(zoneTexture, pos+offset, null, Color.White, 0, new Vector2(zoneTexture.Width / 2, zoneTexture.Height / 2), pstruct.scale * defaultZoneScaleRelativeToPlanet, SpriteEffects.None, 0);
+                spriteBatch.Draw(planetTexture, pos + offset, null, Color.White, 0, new Vector2(planetTexture.Width / 2, planetTexture.Height / 2), pstruct.scale, SpriteEffects.None, 0);
                 spriteBatch.DrawString(biggerFont, index.ToString(), pos + offset, new Color(97,255,110));
                 index++;
             }
-            foreach (Vector2 pos in posArrayForFrame)
-                spriteBatch.Draw(frameTexture, pos + offset, null, Color.White, 0, new Vector2(frameTexture.Width / 2, frameTexture.Height / 2), 1, SpriteEffects.None, 0);
+            foreach (posScaleStruct pstruct in posArrayForFrame)
+                spriteBatch.Draw(frameTexture, pstruct.pos + offset, null, Color.White, 0, new Vector2(frameTexture.Width / 2, frameTexture.Height / 2), pstruct.scale, SpriteEffects.None, 0);
             MouseState mouseState = Mouse.GetState();
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                spriteBatch.Draw(zoneTexture, currPosToDraw, null, Color.White, 0, new Vector2(zoneTexture.Width / 2, zoneTexture.Height / 2), planetScaleSize * zoneScaleRelativeToPlanet, SpriteEffects.None, 0);
-                spriteBatch.Draw(planetTexture, currPosToDraw, null, Color.White, 0, new Vector2(planetTexture.Width/2,planetTexture.Height/2), planetScaleSize, SpriteEffects.None, 0);
+                spriteBatch.Draw(zoneTexture, currPosToDraw, null, Color.White, 0, new Vector2(zoneTexture.Width / 2, zoneTexture.Height / 2), currentPlanetScale * defaultZoneScaleRelativeToPlanet, SpriteEffects.None, 0);
+                spriteBatch.Draw(planetTexture, currPosToDraw, null, Color.White, 0, new Vector2(planetTexture.Width / 2, planetTexture.Height / 2), currentPlanetScale, SpriteEffects.None, 0);
             }
             if (mouseState.RightButton == ButtonState.Pressed)
-                spriteBatch.Draw(frameTexture, currPosToDraw, null, Color.White, 0, new Vector2(frameTexture.Width / 2, frameTexture.Height / 2), 1, SpriteEffects.None, 0);
+                spriteBatch.Draw(frameTexture, currPosToDraw, null, Color.White, 0, new Vector2(frameTexture.Width / 2, frameTexture.Height / 2), currentFrameScale, SpriteEffects.None, 0);
 
             spriteBatch.End();
             base.Draw(gameTime);
