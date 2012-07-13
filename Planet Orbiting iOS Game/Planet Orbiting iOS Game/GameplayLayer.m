@@ -51,12 +51,12 @@ typedef struct {
     
 }
 
-- (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos
+- (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale
 {
     Planet *planet = [[Planet alloc]init];
     planet.sprite = [CCSprite spriteWithFile:@"planet.png"];
     planet.sprite.position =  ccp( xPos , yPos );     
-    [planet.sprite setScale:planetSizeScale];
+    [planet.sprite setScale:scale];
     planet.mass = 1;
     planet.number = planetCounter;
     [cameraObjects addObject:planet];
@@ -65,7 +65,7 @@ typedef struct {
     
     Zone *zone = [[Zone alloc]init];
     zone.sprite = [CCSprite spriteWithFile:@"zone.png"];
-    [zone.sprite setScale:planetSizeScale*zoneScaleRelativeToPlanet];  
+    [zone.sprite setScale:scale*zoneScaleRelativeToPlanet];  
     orbitRadius = zone.radius*.98; 
     zone.number = planetCounter;
     zone.sprite.position = planet.sprite.position;
@@ -137,112 +137,15 @@ typedef struct {
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.wav"];
 
         
-        [self CreatePlanetAndZone:143 yPos:144];
-        [self CreatePlanetAndZone:514 yPos:154];
-        [self CreatePlanetAndZone:782 yPos:415];
-        [self CreatePlanetAndZone:1041 yPos:677];
-        [self CreatePlanetAndZone:958 yPos:1034];
-        [self CreatePlanetAndZone:611 yPos:1142];
-        [self CreatePlanetAndZone:259 yPos:994];
-        [self CreatePlanetAndZone:27 yPos:712];
-        [self CreatePlanetAndZone:-347 yPos:702];
-        [self CreatePlanetAndZone:-729 yPos:696];
-        [self CreatePlanetAndZone:-1020 yPos:947];
-        [self CreatePlanetAndZone:-1302 yPos:1215];
-        [self CreatePlanetAndZone:-1360 yPos:1567];
-        [self CreatePlanetAndZone:-1292 yPos:1917];
-        [self CreatePlanetAndZone:-1146 yPos:2242];
-        [self CreatePlanetAndZone:-984 yPos:2583];
-        [self CreatePlanetAndZone:-851 yPos:2942];
-        [self CreatePlanetAndZone:-486 yPos:3018];
-        [self CreatePlanetAndZone:-116 yPos:2929];
-        [self CreatePlanetAndZone:137 yPos:2638];
-        [self CreatePlanetAndZone:315 yPos:2326];
-        [self CreatePlanetAndZone:566 yPos:2046];
-        [self CreatePlanetAndZone:870 yPos:2186];
-        [self CreatePlanetAndZone:1171 yPos:2018];
-        [self CreatePlanetAndZone:1025 yPos:1733];
-        [self CreatePlanetAndZone:1262 yPos:1463];
-        [self CreatePlanetAndZone:1587 yPos:1367];
-        [self CreatePlanetAndZone:1808 yPos:1625];
-        [self CreatePlanetAndZone:1740 yPos:1958];
-        [self CreatePlanetAndZone:1578 yPos:2300];
-        [self CreatePlanetAndZone:1363 yPos:2601];
-        [self CreatePlanetAndZone:1513 yPos:2935];
-        [self CreatePlanetAndZone:1754 yPos:3214];
-        [self CreatePlanetAndZone:2075 yPos:3408];
-        [self CreatePlanetAndZone:2376 yPos:3200];
-        [self CreatePlanetAndZone:2373 yPos:2850];
-        [self CreatePlanetAndZone:2080 yPos:2624];
-        [self CreatePlanetAndZone:2073 yPos:2295];
-        [self CreatePlanetAndZone:2273 yPos:2015];
-        [self CreatePlanetAndZone:2418 yPos:1710];
-        [self CreatePlanetAndZone:2765 yPos:1597];
-        [self CreatePlanetAndZone:3057 yPos:1800];
-        [self CreatePlanetAndZone:2900 yPos:2093];
-        [self CreatePlanetAndZone:2734 yPos:2402];
-        [self CreatePlanetAndZone:3009 yPos:2630];
-        [self CreatePlanetAndZone:3361 yPos:2548];
-        [self CreatePlanetAndZone:3471 yPos:2215];
-        [self CreatePlanetAndZone:3524 yPos:1869];
-        [self CreatePlanetAndZone:3525 yPos:1494];
-        [self CreatePlanetAndZone:3239 yPos:1275];
-        [self CreatePlanetAndZone:3047 yPos:992];
-        [self CreatePlanetAndZone:3155 yPos:663];
-        [self CreatePlanetAndZone:3402 yPos:390];
-        [self CreatePlanetAndZone:3745 yPos:298];
-        [self CreatePlanetAndZone:4088 yPos:409];
-        [self CreatePlanetAndZone:4340 yPos:688];
-        [self CreatePlanetAndZone:4376 yPos:1060];
-        [self CreatePlanetAndZone:4169 yPos:1394];
-        [self CreatePlanetAndZone:4021 yPos:1709];
-        [self CreatePlanetAndZone:4326 yPos:1916];
-        [self CreatePlanetAndZone:4698 yPos:1924];
-        [self CreatePlanetAndZone:4978 yPos:1692];
-        [self CreatePlanetAndZone:5085 yPos:1351];
-        [self CreatePlanetAndZone:5002 yPos:1014];
-        [self CreatePlanetAndZone:5372 yPos:987];
-        [self CreatePlanetAndZone:5637 yPos:1205];
-        [self CreatePlanetAndZone:5822 yPos:916];
-        [self CreatePlanetAndZone:6043 yPos:1233];
-        [self CreatePlanetAndZone:6245 yPos:940];
-        [self CreatePlanetAndZone:6441 yPos:1247];
-        [self CreatePlanetAndZone:6623 yPos:941];
-        [self CreatePlanetAndZone:6814 yPos:1245];
-        [self CreatePlanetAndZone:6993 yPos:946];
-        [self CreatePlanetAndZone:7218 yPos:1266];
-        [self CreatePlanetAndZone:7386 yPos:935];
-        [self CreatePlanetAndZone:7577 yPos:1259];
-        [self CreatePlanetAndZone:7763 yPos:977];
-        [self CreatePlanetAndZone:7935 yPos:1274];
-        [self CreatePlanetAndZone:8140 yPos:980];
-        [self CreatePlanetAndZone:8303 yPos:1282];
-        [self CreatePlanetAndZone:8584 yPos:1077];
-        [self CreatePlanetAndZone:8865 yPos:1305];
-        [self CreatePlanetAndZone:8786 yPos:1649];
-        [self CreatePlanetAndZone:8472 yPos:1817];
-        [self CreatePlanetAndZone:8128 yPos:1735];
-        [self CreatePlanetAndZone:7779 yPos:1854];
-        [self CreatePlanetAndZone:7646 yPos:2169];
-        [self CreatePlanetAndZone:7939 yPos:2387];
-        [self CreatePlanetAndZone:8263 yPos:2466];
-        [self CreatePlanetAndZone:8607 yPos:2459];
-        [self CreatePlanetAndZone:8946 yPos:2450];
-        [self CreatePlanetAndZone:9257 yPos:2638];
-        [self CreatePlanetAndZone:9383 yPos:2959];
-        [self CreatePlanetAndZone:9261 yPos:3271];
-        [self CreatePlanetAndZone:8917 yPos:3386];
-        [self CreatePlanetAndZone:8578 yPos:3250];
-        [self CreatePlanetAndZone:8338 yPos:2979];
-        [self CreatePlanetAndZone:8018 yPos:2821];
-        [self CreatePlanetAndZone:7637 yPos:2781];
-        [self CreatePlanetAndZone:7307 yPos:2930];
-        [self CreatePlanetAndZone:7079 yPos:3201];
-        [self CreatePlanetAndZone:7093 yPos:3528];
-        [self CreatePlanetAndZone:7343 yPos:3763];
-        [self CreatePlanetAndZone:7673 yPos:3745];
-        [self CreatePlanetAndZone:7993 yPos:3827];
-        [self CreatePlanetAndZone:8261 yPos:4059];
+        [self CreatePlanetAndZone:143*3 yPos:144*3 scale:1.5];
+        [self CreatePlanetAndZone:514*3 yPos:154*3 scale:1.5];
+        [self CreatePlanetAndZone:782*3 yPos:415*3 scale:1.5];
+        [self CreatePlanetAndZone:1041*3 yPos:677*3 scale:1.5];
+        [self CreatePlanetAndZone:958*3 yPos:1034*3 scale:1.5];
+        [self CreatePlanetAndZone:611*3 yPos:1142*3 scale:1.5];
+        [self CreatePlanetAndZone:259*3 yPos:994*3 scale:1.5];
+        
+        
         
         player = [[Player alloc]init];        
         player.sprite = [CCSprite spriteWithFile:@"spaceship.png"];
@@ -311,9 +214,21 @@ typedef struct {
         }
     }
     CGFloat distanceBetweenPlanets = ccpDistance(lastPlanetVisited.sprite.position, planetForZoom.sprite.position);
-    float scale =zoomMultiplier*(-0.0011304347826086958*distanceBetweenPlanets+1.218695652173913);
+    
+    float distToUse = distanceBetweenPlanets + ((Zone*)[zones objectAtIndex:lastPlanetVisited.number]).radius + ((Zone*)[zones objectAtIndex:planetForZoom.number]).radius;
+    
+    float scale = zoomMultiplier*(-0.0011304347826086958*distanceBetweenPlanets+1.218695652173913);
     if (planetForZoom!=nextPlanet)
         scale*=extraOutsideOfZoneZoom;
+    
+    
+    
+    
+    scale = 400/distToUse;
+    
+    
+    
+    
 
     cameraFocusNode.position = ccpLerp(cameraFocusNode.position, focusPosition, cameraMovementSpeed);
     focusPosition =ccpLerp(cameraLastFocusPosition, focusPosition, cameraMovementSpeed);
@@ -460,7 +375,7 @@ typedef struct {
     [self KillIfEnoughTimeHasPassed];
     
     // if player is off-screen
-    if (![self IsPositionOnScreen:[self GetPlayerPositionOnScreen]]) { 
+    if (![self IsNonConvertedPositionOnScreen:[self GetPlayerPositionOnScreen]]) { 
         [self JumpPlayerToPlanet:lastPlanetVisited.number];
     }
     
@@ -677,7 +592,7 @@ typedef struct {
     [blackHoleParticle setPosition:ccpLerp(blackHoleParticle.position, player.sprite.position, .009f*blackHoleSpeedFactor)];
     if (ccpDistance(player.sprite.position, blackHoleParticle.position)<blackHoleParticle.startRadius*blackHoleCollisionRadiusFactor)
     {
-        [self endGame];
+        //[self endGame];
     }
 }
 
@@ -767,9 +682,14 @@ float lerpf(float a, float b, float t) {
     return [cameraLayer convertToWorldSpace:player.sprite.position];
 }
 
-- (bool)IsPositionOnScreen:(CGPoint)position{
+- (bool)IsNonConvertedPositionOnScreen:(CGPoint)position{
     return CGRectContainsPoint(CGRectMake(0, 0, size.width, size.height), position);
 }
+
+- (bool)IsPositionOnScreen:(CGPoint)position{
+    return CGRectContainsPoint(CGRectMake(0, 0, size.width, size.height), [cameraLayer convertToWorldSpace:position]);
+}
+
 
 #if !defined(MIN)
 #define MIN(A,B)    ({ __typeof__(A) __a = (A); __typeof__(B) __b = (B); __a < __b ? __a : __b; })

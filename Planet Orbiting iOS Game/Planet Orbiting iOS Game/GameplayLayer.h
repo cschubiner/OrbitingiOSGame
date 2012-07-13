@@ -47,6 +47,7 @@
     bool isExperiencingGravity;
     bool isGreen;
     float gravityReducer;
+    float hi99;
     Planet* targetPlanet;
     CGPoint swipeVector;
     

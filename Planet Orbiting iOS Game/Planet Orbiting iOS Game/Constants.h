@@ -19,11 +19,11 @@ const float timeDilationSteepness = 8;
 const float timeDilationLimit = 2.5;
 
 //changes how zoomed in the camera in. higher numbers mean more zoom (everything looks bigger)
-const float zoomMultiplier = .72f;
+const float zoomMultiplier = .42f;
 //changes how much more the camera should be zoomed in when the player is outside of a zone
 const float extraOutsideOfZoneZoom = 1.23f;
 //changes how quickly the camera zooms in and out
-const float cameraZoomSpeed = .01875f;
+const float cameraZoomSpeed = .04f;
 //changes how quickly the camera changes position
 const float cameraMovementSpeed = .06f;
 
@@ -38,7 +38,7 @@ const float postExplosionShakeYMagnitude = 3;
 const float planetSizeScale = .5;
 
 // the zone scale is the planet scale * this number
-const float zoneScaleRelativeToPlanet = 1.5;
+const float zoneScaleRelativeToPlanet = 1.3;
 
 //the gravitational force. increase this to force the orbiting velocity to increase
 const float gravity = .45;
