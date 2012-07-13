@@ -221,7 +221,7 @@ typedef struct {
     if (planetForZoom!=nextPlanet)
         scale*=extraOutsideOfZoneZoom;
     
-    
+    float horizontalScale = 294.388933833*pow(distToUse,-.94226344467);
     
     
     scale = 400/distToUse;
