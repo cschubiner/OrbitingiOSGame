@@ -47,7 +47,6 @@
     bool isExperiencingGravity;
     bool isGreen;
     float gravityReducer;
-    float hi99;
     Planet* targetPlanet;
     CGPoint swipeVector;
     
@@ -58,13 +57,14 @@
     CCParticleSystemQuad * blackHoleParticle;
     CGPoint cometVelocity;
     
-    float lastAngle2minusptopangle;
+    float lastTakeoffAngleToNextPlanet;
     
     // is multiplied by the absoluteSpeedMult to cause time dilation
     float timeDilationCoefficient;
     
     // number of zones gone through without screwing up
     int numZonesHitInARow;
+    int currentPtoPscore;
 }
 
 + (CCScene *) scene;

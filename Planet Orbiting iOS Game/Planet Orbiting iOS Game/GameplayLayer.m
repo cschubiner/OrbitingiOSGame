@@ -17,7 +17,7 @@
     int planetCounter;
     int score;
     int zonesReached;
-    int prevScore;
+    int prevCurrentPtoPScore;
     int initialScoreConstant;
     float orbitRadius;
     float killer;
@@ -138,8 +138,8 @@ typedef struct {
 
         
         [self CreatePlanetAndZone:143*3 yPos:144*3 scale:1.5];
-        [self CreatePlanetAndZone:514*3 yPos:154*3 scale:1.5];
-        [self CreatePlanetAndZone:782*3 yPos:415*3 scale:1.5];
+        [self CreatePlanetAndZone:514*3 yPos:154*3 scale:2.5];
+        [self CreatePlanetAndZone:782*3 yPos:415*3 scale:1];
         [self CreatePlanetAndZone:1041*3 yPos:677*3 scale:1.5];
         [self CreatePlanetAndZone:958*3 yPos:1034*3 scale:1.5];
         [self CreatePlanetAndZone:611*3 yPos:1142*3 scale:1.5];
@@ -175,7 +175,7 @@ typedef struct {
         
         [self addChild:cameraLayer];
         [self addChild:hudLayer];
-        [self UpdateScore:true];
+        [self UpdateScore];
         [self schedule:@selector(Update:) interval:0]; //this makes the update loop loop!!!!        
 	}
 	return self;
@@ -195,6 +195,7 @@ typedef struct {
     
     //camera code follows -----------------------------
     Planet * nextPlanet;
+    float distToUse;
     if (lastPlanetVisited.number +1 < [planets count])
         nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
     else     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
@@ -204,6 +205,7 @@ typedef struct {
     if (player.isInZone) {
     focusPosition= ccpMidpoint(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
     focusPosition = ccpLerp(focusPosition, ccpMidpoint(focusPosition, player.sprite.position), .25f) ;
+        distToUse = ccpDistance(lastPlanetVisited.sprite.position, planetForZoom.sprite.position) + ((Zone*)[zones objectAtIndex:lastPlanetVisited.number]).radius + ((Zone*)[zones objectAtIndex:planetForZoom.number]).radius;
     }
     else {
         focusPosition = ccpMidpoint(player.sprite.position, nextPlanet.sprite.position);
@@ -211,24 +213,23 @@ typedef struct {
             Planet* nextNextPlanet = [planets objectAtIndex:(nextPlanet.number+1)];
             planetForZoom=nextNextPlanet;
             focusPosition = ccpMidpoint(player.sprite.position, nextNextPlanet.sprite.position);
+            distToUse = ccpDistance(player.sprite.position, nextNextPlanet.sprite.position) +player.radius + ((Zone*)[zones objectAtIndex:planetForZoom.number]).radius;
         }
     }
-    CGFloat distanceBetweenPlanets = ccpDistance(lastPlanetVisited.sprite.position, planetForZoom.sprite.position);
     
-    float distToUse = distanceBetweenPlanets + ((Zone*)[zones objectAtIndex:lastPlanetVisited.number]).radius + ((Zone*)[zones objectAtIndex:planetForZoom.number]).radius;
     
-    float scale = zoomMultiplier*(-0.0011304347826086958*distanceBetweenPlanets+1.218695652173913);
+    float scale = zoomMultiplier*(-0.0011304347826086958*distToUse+1.218695652173913);
     if (planetForZoom!=nextPlanet)
         scale*=extraOutsideOfZoneZoom;
     
     float horizontalScale = 294.388933833*pow(distToUse,-.94226344467);
     
     
-    scale = 400/distToUse;
+   // scale = 400/distToUse;
     
     
     
-    
+    scale = zoomMultiplier*horizontalScale;
 
     cameraFocusNode.position = ccpLerp(cameraFocusNode.position, focusPosition, cameraMovementSpeed);
     focusPosition =ccpLerp(cameraLastFocusPosition, focusPosition, cameraMovementSpeed);
@@ -370,7 +371,7 @@ typedef struct {
     
     timeDilationCoefficient = clampf(timeDilationCoefficient, absoluteMinTimeDilation, absoluteMaxTimeDilation);
     
-    CCLOG([NSString stringWithFormat:@"thrust mag: %f", timeDilationCoefficient]);
+    CCLOG(@"thrust mag: %f", timeDilationCoefficient);
     
     [self KillIfEnoughTimeHasPassed];
     
@@ -392,7 +393,7 @@ typedef struct {
         float takeoffAngleToNextPlanet=CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(nextPlanet.sprite.position, lastPlanetVisited.sprite.position)))-CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(player.sprite.position, lastPlanetVisited.sprite.position)));
         
         // if you are going CCW
-        if (takeoffAngleToNextPlanet-lastAngle2minusptopangle<0) {
+        if (takeoffAngleToNextPlanet-lastTakeoffAngleToNextPlanet<0) {
             if ((takeoffAngleToNextPlanet<=-270+anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees&&takeoffAngleToNextPlanet>=-360+anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees)||
                 (takeoffAngleToNextPlanet>=0-anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees && takeoffAngleToNextPlanet <= 90+anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees)) {
                 player.sprite.color = ccc3(0, 255, 0);
@@ -403,12 +404,8 @@ typedef struct {
                    (takeoffAngleToNextPlanet >=-90-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees && takeoffAngleToNextPlanet <=0+anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees)) {
             player.sprite.color = ccc3(0, 255, 0);
             isGreen = true;
-        } else {
-            if (!playerIsTouchingScreen) {
-            } else {
-            }
         }
-        lastAngle2minusptopangle = takeoffAngleToNextPlanet;
+        lastTakeoffAngleToNextPlanet = takeoffAngleToNextPlanet;
     } else {
     }
     if (!isGreen)
@@ -425,7 +422,7 @@ typedef struct {
     lastPlanetVisited = [planets objectAtIndex:0];
     timeSinceCometLeftScreen=0;
     timeSincePlanetExplosion=40000; //some arbitrarily high number
-    prevScore=0;
+    prevCurrentPtoPScore=0;
     
     //this is where the player is on screen (240,160 is center of screen)
     cameraFocusPosition = CGPointMake( 240, 160);
@@ -518,7 +515,9 @@ typedef struct {
                         [cameraLayer addChild:((Asteroid*)[asteroids objectAtIndex:zonesReached+3]).sprite];
                     [cameraLayer reorderChild:player.sprite z:0];
                 }
-                
+                score+=currentPtoPscore;
+                currentPtoPscore=0;
+                prevCurrentPtoPScore=0;
                 numZonesHitInARow++;
                 timeDilationCoefficient += timeDilationIncreaseRate;
                 
@@ -543,18 +542,21 @@ typedef struct {
     } // end collision detection code-----------------
 }
 
-/* Your score goes up as you move along the vector between the first and last planet. Your score will also never go down, as the user doesn't like to see his score go down. The initialScoreConstant will be set only when firstTimeRunning == true. initialScoreConstant is what ensures your score starts at zero, and not some negative number.*/
-- (void)UpdateScore:(bool)firstTimeRunning {
-    CGPoint firstToLastPlanet = ccpSub(((Planet*)[planets objectAtIndex:[planets count]-1]).sprite.position, ((Planet*)[planets objectAtIndex:0]).sprite.position);
-    CGPoint firstToPlayerPos = ccpSub(((Planet*)[planets objectAtIndex:0]).sprite.position, player.sprite.position);
-    CGPoint diff = ccpAdd(firstToLastPlanet, firstToPlayerPos);
-    if (firstTimeRunning)
-        initialScoreConstant = -(int)((float)ccpLength(firstToLastPlanet)-ccpLength(diff));
-    prevScore = score;
-    int newScore= (int)((float)ccpLength(firstToLastPlanet)-ccpLength(diff)+initialScoreConstant);
-    if (newScore>prevScore)
-        score = newScore;
-    [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score]];
+/* Your score goes up as you move along the vector between the current and next planet. Your score will also never go down, as the user doesn't like to see his score go down.*/
+- (void)UpdateScore {
+    Planet * nextPlanet;
+    if (lastPlanetVisited.number +1 < [planets count])
+        nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
+    else     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
+
+    float firstToPlayerAngle = ccpAngle(lastPlanetVisited.sprite.position, player.sprite.position)-ccpAngle(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
+    float firstToPlayerDistance = ccpDistance(lastPlanetVisited.sprite.position, player.sprite.position);    
+    
+    prevCurrentPtoPScore = currentPtoPscore;
+    int newScore= ((int)((float)firstToPlayerDistance*cosf(firstToPlayerAngle)));
+    if (newScore>prevCurrentPtoPScore)
+        currentPtoPscore = newScore;
+    [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score+currentPtoPscore]];
     [zonesReachedLabel setString:[NSString stringWithFormat:@"Zones: %d Time: %1.0fs",zonesReached,totalGameTime]];
 }
 
@@ -601,7 +603,7 @@ typedef struct {
         totalGameTime+=dt;
     [self UpdatePlanets];    
     [self UpdatePlayer: dt];
-    [self UpdateScore:false];
+    [self UpdateScore];
     [self UpdateCamera:dt];
     [self UpdateParticles:dt];
     [self UpdateBlackhole];

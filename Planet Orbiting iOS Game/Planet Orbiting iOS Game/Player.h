@@ -12,7 +12,8 @@
 #import "CCLayerStreak.h"
 
 @interface Player : CameraObject {
-    
+    float radius;
+
 }
 
 -(id)init;
@@ -21,5 +22,7 @@
 @property (nonatomic) CGPoint thrustEndPoint;
 @property (nonatomic) float mass;
 @property (nonatomic) bool isInZone;
+
+-(float)radius;
 
 @end

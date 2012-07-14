@@ -19,13 +19,13 @@ const float timeDilationSteepness = 8;
 const float timeDilationLimit = 2.5;
 
 //changes how zoomed in the camera in. higher numbers mean more zoom (everything looks bigger)
-const float zoomMultiplier = .42f;
+const float zoomMultiplier = .72f;
 //changes how much more the camera should be zoomed in when the player is outside of a zone
 const float extraOutsideOfZoneZoom = 1.23f;
 //changes how quickly the camera zooms in and out
-const float cameraZoomSpeed = .04f;
+const float cameraZoomSpeed = .01875f*1.2f;
 //changes how quickly the camera changes position
-const float cameraMovementSpeed = .06f;
+const float cameraMovementSpeed = .06f*1.1f;
 
 const float anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees = 55;
 const float anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees = -35;
@@ -71,7 +71,7 @@ const float swipeStrength = .03;
 const float minSwipeStrength = 20;
 
 //how many updates pass while the player isn't in a zone until tie go will did
-const float deathAfterThisLong = 55;
+const float deathAfterThisLong = 55*1.35f*1.1f;
 
 //the percent of the black hole's radius that triggers a collision
 const float blackHoleCollisionRadiusFactor = .5f;
