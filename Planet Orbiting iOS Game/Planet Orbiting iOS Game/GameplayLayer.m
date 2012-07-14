@@ -587,7 +587,6 @@ typedef struct {
         }
     }
     else [self setPosition:CGPointZero];
-    
 }
 
 - (void)UpdateBlackhole {

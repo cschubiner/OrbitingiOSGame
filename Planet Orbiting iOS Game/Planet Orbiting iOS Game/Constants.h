@@ -74,8 +74,8 @@ const float minSwipeStrength = 20;
 const float deathAfterThisLong = 55*1.35f*1.1f;
 
 //the percent of the black hole's radius that triggers a collision
-const float blackHoleCollisionRadiusFactor = .5f;
-const float blackHoleSpeedFactor = 1.2f;
+const float blackHoleCollisionRadiusFactor = .2f;
+const float blackHoleSpeedFactor = .8f;
 
 const float timeDilationReduceRate = .00165;
 
