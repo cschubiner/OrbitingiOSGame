@@ -138,9 +138,9 @@ typedef struct {
 
         
         [self CreatePlanetAndZone:143*3 yPos:144*3 scale:1.5];
-        [self CreatePlanetAndZone:514*3 yPos:154*3 scale:2.5];
-        [self CreatePlanetAndZone:782*3 yPos:415*3 scale:1];
-        [self CreatePlanetAndZone:1041*3 yPos:677*3 scale:1.5];
+        [self CreatePlanetAndZone:514*4 yPos:154*4 scale:2.5];
+        [self CreatePlanetAndZone:782*5 yPos:415*5 scale:3.5];
+        [self CreatePlanetAndZone:1041*4 yPos:677*4 scale:4.5];
         [self CreatePlanetAndZone:958*3 yPos:1034*3 scale:1.5];
         [self CreatePlanetAndZone:611*3 yPos:1142*3 scale:1.5];
         [self CreatePlanetAndZone:259*3 yPos:994*3 scale:1.5];
@@ -202,19 +202,17 @@ typedef struct {
     
     CGPoint focusPosition;
     Planet* planetForZoom = nextPlanet;
-    if (player.isInZone) {
+    if (player.isInZone ||nextPlanet.number +1 >= [planets count]) {
     focusPosition= ccpMidpoint(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
     focusPosition = ccpLerp(focusPosition, ccpMidpoint(focusPosition, player.sprite.position), .25f) ;
         distToUse = ccpDistance(lastPlanetVisited.sprite.position, planetForZoom.sprite.position) + ((Zone*)[zones objectAtIndex:lastPlanetVisited.number]).radius + ((Zone*)[zones objectAtIndex:planetForZoom.number]).radius;
     }
     else {
         focusPosition = ccpMidpoint(player.sprite.position, nextPlanet.sprite.position);
-        if (nextPlanet.number +1 < [planets count]) {
             Planet* nextNextPlanet = [planets objectAtIndex:(nextPlanet.number+1)];
             planetForZoom=nextNextPlanet;
             focusPosition = ccpMidpoint(player.sprite.position, nextNextPlanet.sprite.position);
             distToUse = ccpDistance(player.sprite.position, nextNextPlanet.sprite.position) +player.radius + ((Zone*)[zones objectAtIndex:planetForZoom.number]).radius;
-        }
     }
     
     

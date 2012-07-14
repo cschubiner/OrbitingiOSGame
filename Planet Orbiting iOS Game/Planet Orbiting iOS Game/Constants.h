@@ -71,7 +71,7 @@ const float swipeStrength = .03;
 const float minSwipeStrength = 20;
 
 //how many updates pass while the player isn't in a zone until tie go will did
-const float deathAfterThisLong = 55*1.35f*1.1f;
+const float deathAfterThisLong = 55*1.35f*1.1f*1.5f;
 
 //the percent of the black hole's radius that triggers a collision
 const float blackHoleCollisionRadiusFactor = .2f;
