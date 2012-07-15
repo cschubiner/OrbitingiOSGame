@@ -10,7 +10,7 @@
 
 @implementation Planet
 
-@synthesize forceExertingOnPlayer,mass;
+@synthesize forceExertingOnPlayer,mass,orbitRadius;
 
 -(id) init {
 	// always call "super" init

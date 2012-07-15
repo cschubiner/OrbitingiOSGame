@@ -18,6 +18,7 @@
 
 @property (nonatomic) CGPoint forceExertingOnPlayer;
 @property (nonatomic) float mass;
+@property (nonatomic) float orbitRadius;
 
 -(float)radius;
 
