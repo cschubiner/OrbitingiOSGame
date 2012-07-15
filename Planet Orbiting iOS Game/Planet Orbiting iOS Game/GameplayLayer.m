@@ -320,18 +320,17 @@ typedef struct {
 }
 
 - (void)UpdateCamera:(float)dt {
-    
-        
-    
     for (CameraObject *object in cameraObjects) {
         object.velocity = ccpAdd(object.velocity, object.acceleration);
         object.sprite.position = ccpAdd(ccpMult(object.velocity, 60*dt*timeDilationCoefficient), object.sprite.position);
         
         
-        if ([self IsPositionOnScreen:object.sprite.position] && !object.isBeingDrawn) {
-            [cameraLayer addChild:object.sprite];
-            object.isBeingDrawn = true;
-            [cameraLayer reorderChild:player.sprite z:0];
+        if ([self IsPositionOnScreen:object.sprite.position]) {
+            if (!object.isBeingDrawn) {
+                [cameraLayer addChild:object.sprite];
+                object.isBeingDrawn = true;
+                [cameraLayer reorderChild:player.sprite z:0];
+            }
         }
         else {
             [cameraLayer removeChild:object.sprite cleanup:YES];
