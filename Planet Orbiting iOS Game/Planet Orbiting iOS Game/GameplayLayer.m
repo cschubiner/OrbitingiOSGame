@@ -228,12 +228,55 @@ typedef struct {
     
     float horizontalScale = 294.388933833*pow(distToUse,-.94226344467);
     
+    float newAng = 5;
+    
+    newAng = CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(planetForZoom.sprite.position, focusPosition)));
+    
+    if (newAng > 270)
+        newAng = 360 - newAng;
+    if (newAng > 180)
+        newAng = newAng - 180;
+    if (newAng > 90)
+        newAng = 180 - newAng;
+    
+    //float numerator = 2.40353315418*pow(10,2)+-1.97479367386*pow(10,0)*newAng+2.90416672790*pow(10,-1)*pow(newAng,2)+5.52394514351*pow(10,-2)*pow(newAng,3)+-1.24122580858*pow(10,-2)*pow(newAng,4)+9.07122901758*pow(10,-4)*pow(newAng,5)+-3.13674627681*pow(10,-5)*pow(newAng,6)+5.05890458148*pow(10,-7)*pow(newAng,7)+-2.02095577071*pow(10,-9)*pow(newAng,8)+-2.36509752385*pow(10,-011)*pow(newAng,9)+-5.15090770069*pow(10,-13)*pow(newAng,10)+1.83492501187*pow(10,-14)*pow(newAng,11)+-1.18756307791*pow(10,-16)*pow(newAng,12)+-1.11404850297*pow(10,-18)*pow(newAng,13)+2.39723610522*pow(10,-20)*pow(newAng,14)+-1.61808057124*pow(10,-22)*pow(newAng,15)+-8.05435811652*pow(10,-25)*pow(newAng,16)+2.79703263481*pow(10,-26)*pow(newAng,17)+-2.23685797421*pow(10,-28)*pow(newAng,18)+6.15416673330*pow(10,-31)*pow(newAng,19);
     
    // scale = 400/distToUse;
     
     
+    NSMutableArray *vals = [[NSMutableArray alloc] init];
+    [vals addObject: [NSNumber numberWithFloat:240]];
+    [vals addObject: [NSNumber numberWithFloat:240.5]];
+    [vals addObject: [NSNumber numberWithFloat:243]];
+    [vals addObject: [NSNumber numberWithFloat:246.5]];
+    [vals addObject: [NSNumber numberWithFloat:252]];
+    [vals addObject: [NSNumber numberWithFloat:262]];
+    [vals addObject: [NSNumber numberWithFloat:273]];
+    [vals addObject: [NSNumber numberWithFloat:287]];
+    [vals addObject: [NSNumber numberWithFloat:254]];
+    [vals addObject: [NSNumber numberWithFloat:231]];
+    [vals addObject: [NSNumber numberWithFloat:212]];
+    [vals addObject: [NSNumber numberWithFloat:197]];
+    [vals addObject: [NSNumber numberWithFloat:185]];
+    [vals addObject: [NSNumber numberWithFloat:177]];
+    [vals addObject: [NSNumber numberWithFloat:170]];
+    [vals addObject: [NSNumber numberWithFloat:165]];
+    [vals addObject: [NSNumber numberWithFloat:162]];
+    [vals addObject: [NSNumber numberWithFloat:160.5]];
+    [vals addObject: [NSNumber numberWithFloat:160]];
     
-    float scale = zoomMultiplier*horizontalScale;
+    
+    int indexToUse = (int)clampf((newAng/5 + 0.5), 0, 18);
+    
+    float numerator = [[vals objectAtIndex:indexToUse] floatValue];
+    
+    //CCLOG(@"ang: %f, ind: %i, num: %f", newAng, index, numerator);
+    
+    float scalerToUse = numerator/260;
+    
+    CCLOG(@"scaler: %f", scalerToUse);
+    
+    float scale = zoomMultiplier*horizontalScale*scalerToUse;
 
     cameraFocusNode.position = ccpLerp(cameraFocusNode.position, focusPosition, cameraMovementSpeed);
     focusPosition =ccpLerp(cameraLastFocusPosition, focusPosition, cameraMovementSpeed);
@@ -375,7 +418,7 @@ typedef struct {
     
     timeDilationCoefficient = clampf(timeDilationCoefficient, absoluteMinTimeDilation, absoluteMaxTimeDilation);
     
-    CCLOG(@"thrust mag: %f", timeDilationCoefficient);
+    //CCLOG(@"thrust mag: %f", timeDilationCoefficient);
     
     [self KillIfEnoughTimeHasPassed];
     
