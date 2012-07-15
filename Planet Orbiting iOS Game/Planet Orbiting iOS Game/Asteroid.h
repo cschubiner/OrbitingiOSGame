@@ -19,7 +19,5 @@
 
 @property (nonatomic) CGPoint p1;
 @property (nonatomic) CGPoint p2;
-@property (nonatomic) int updatesSinceVelChange;
-@property (nonatomic) float velMult;
 
 @end

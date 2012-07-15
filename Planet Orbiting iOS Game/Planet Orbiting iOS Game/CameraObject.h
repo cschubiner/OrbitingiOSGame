@@ -18,11 +18,12 @@
 @property (nonatomic) CGPoint acceleration;
 @property (nonatomic) int number;
 @property (nonatomic) bool alive;
+@property (nonatomic) bool isBeingDrawn;
 
 -(CGPoint)position;
 -(void)setPosition:(CGPoint)position;
 -(CGPoint)getPositionOnScreen:(CCLayer*)layerObjectIsOn;
-- (float)radius;
+-(float)radius;
 -(CGRect)rect;
 
 @end

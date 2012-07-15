@@ -10,7 +10,14 @@
 
 @implementation CameraObject
 
-@synthesize sprite,alive,number,acceleration,velocity;
+@synthesize sprite,alive,number,acceleration,velocity,isBeingDrawn;
+
+-(id)init {
+    if (self=[super init]) {
+        isBeingDrawn = false;
+    }
+    return self;
+}
 
 -(CGPoint)position{
     //don't do object.position, do object.SPRITE!!!.position. 

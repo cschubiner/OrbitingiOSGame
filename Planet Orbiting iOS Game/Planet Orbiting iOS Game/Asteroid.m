@@ -10,7 +10,7 @@
 
 @implementation Asteroid
 
-@synthesize p1, p2, updatesSinceVelChange, velMult;
+@synthesize p1, p2;
 
 -(id) init {
 	// always call "super" init
