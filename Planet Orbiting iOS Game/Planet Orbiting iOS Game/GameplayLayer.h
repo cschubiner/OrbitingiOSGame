@@ -65,6 +65,8 @@
     // number of zones gone through without screwing up
     int numZonesHitInARow;
     int currentPtoPscore;
+    
+    CCSprite * background;
 }
 
 + (CCScene *) scene;

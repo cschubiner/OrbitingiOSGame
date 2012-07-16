@@ -54,7 +54,7 @@ typedef struct {
 - (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale
 {
     Planet *planet = [[Planet alloc]init];
-    planet.sprite = [CCSprite spriteWithFile:@"planet.png"];
+    planet.sprite = [CCSprite spriteWithFile:@"Planet2.png"];
     planet.sprite.position =  ccp( xPos , yPos );     
     [planet.sprite setScale:scale];
     planet.mass = 1;
@@ -66,9 +66,7 @@ typedef struct {
     zone.number = planetCounter;
     zone.sprite.position = planet.sprite.position;
     
-    
     planet.orbitRadius = zone.radius*.98;
-    
     
     if (planetCounter > 1) {
         Planet* previousPlanet = [planets objectAtIndex: planetCounter - 1];
@@ -143,13 +141,45 @@ typedef struct {
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.wav"];
 
         
-        [self CreatePlanetAndZone:143*5 yPos:144*5 scale:1];
-        [self CreatePlanetAndZone:514*5 yPos:154*5 scale:2];
-        [self CreatePlanetAndZone:782*5 yPos:415*5 scale:1];
-        [self CreatePlanetAndZone:1041*5 yPos:677*5 scale:1.5];
-        [self CreatePlanetAndZone:958*5 yPos:1034*5 scale:4];
-        [self CreatePlanetAndZone:611*5 yPos:1142*5 scale:3];
-        [self CreatePlanetAndZone:259*5 yPos:994*5 scale:4];
+        [self CreatePlanetAndZone:203 yPos:176 scale:0.39f];
+        [self CreatePlanetAndZone:637 yPos:363 scale:0.36f];
+        [self CreatePlanetAndZone:915 yPos:683 scale:0.24f];
+        [self CreatePlanetAndZone:805 yPos:989 scale:0.21f];
+        [self CreatePlanetAndZone:512 yPos:871 scale:0.21f];
+        [self CreatePlanetAndZone:117 yPos:896 scale:0.45f];
+        [self CreatePlanetAndZone:-531 yPos:877 scale:0.75f];
+        [self CreatePlanetAndZone:-1700 yPos:1395 scale:0.8999999f];
+        [self CreatePlanetAndZone:-2337 yPos:1146 scale:0.36f];
+        [self CreatePlanetAndZone:-2755 yPos:933 scale:0.42f];
+        [self CreatePlanetAndZone:-3282 yPos:1070 scale:0.39f];
+        [self CreatePlanetAndZone:-3721 yPos:1205 scale:0.21f];
+        [self CreatePlanetAndZone:-3890 yPos:1412 scale:0.21f];
+        [self CreatePlanetAndZone:-3785 yPos:1664 scale:0.18f];
+        [self CreatePlanetAndZone:-3566 yPos:1805 scale:0.15f];
+        [self CreatePlanetAndZone:-3306 yPos:1758 scale:0.12f];
+        [self CreatePlanetAndZone:-3095 yPos:1708 scale:0.08999999f];
+        [self CreatePlanetAndZone:-2836 yPos:1646 scale:0.21f];
+        [self CreatePlanetAndZone:-2652 yPos:1775 scale:0.21f];
+        [self CreatePlanetAndZone:-2538 yPos:1992 scale:0.21f];
+        [self CreatePlanetAndZone:-2653 yPos:2247 scale:0.3f];
+        [self CreatePlanetAndZone:-3048 yPos:2370 scale:0.36f];
+        [self CreatePlanetAndZone:-3544 yPos:2375 scale:0.48f];
+        [self CreatePlanetAndZone:-4313 yPos:2338 scale:0.51f];
+        [self CreatePlanetAndZone:-5435 yPos:2532 scale:0.36f];
+        [self CreatePlanetAndZone:-5450 yPos:3371 scale:0.54f];
+        [self CreatePlanetAndZone:-5077 yPos:3768 scale:0.21f];
+        [self CreatePlanetAndZone:-4807 yPos:3967 scale:0.21f];
+        [self CreatePlanetAndZone:-4488 yPos:3790 scale:0.21f];
+        [self CreatePlanetAndZone:-4241 yPos:4046 scale:0.21f];
+        [self CreatePlanetAndZone:-3964 yPos:3841 scale:0.21f];
+        [self CreatePlanetAndZone:-3706 yPos:3941 scale:0.21f];
+        [self CreatePlanetAndZone:-3503 yPos:4207 scale:0.36f];
+        [self CreatePlanetAndZone:-3756 yPos:4547 scale:0.39f];
+        [self CreatePlanetAndZone:-4303 yPos:4595 scale:0.42f];
+        [self CreatePlanetAndZone:-4944 yPos:4615 scale:0.6f];
+        [self CreatePlanetAndZone:-5671 yPos:4971 scale:0.8999999f];
+        [self CreatePlanetAndZone:-6798 yPos:5808 scale:1.409999f];
+        [self CreatePlanetAndZone:-8564 yPos:7566 scale:2.279999f];
         
         
         
@@ -169,6 +199,11 @@ typedef struct {
         isExperiencingGravity = false;
         gravityReducer = 1;
         timeDilationCoefficient = 1;
+        
+        background = [CCSprite spriteWithFile:@"Background1.png"];
+        background.position = ccp(background.width/2+10,background.height/2+8);
+        background.scale *=1.5f;
+        [self addChild:background];
         
         [self addChild:spaceBackgroundParticle];
         [self addChild:cometParticle];
