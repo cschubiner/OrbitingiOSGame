@@ -47,7 +47,7 @@ const float gravity = .45;
 const float planetRadiusCollisionZone = .96;
 
 // this is purely visual and doesn't affect mass.
-const float asteroidSizeScale = .36;
+const float asteroidSizeScale = .36*.64f;
 
 //radius percentage at which you will collide with a asteroid
 const float asteroidRadiusCollisionZone = .82;
