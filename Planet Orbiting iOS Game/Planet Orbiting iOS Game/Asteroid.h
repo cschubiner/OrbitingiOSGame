@@ -11,12 +11,10 @@
 #import "CameraObject.h"
 
 @interface Asteroid : CameraObject {
-    float radius;
 }
 
 -(id)init;
 
--(float)radius;
 
 
 @property (nonatomic) CGPoint p1;

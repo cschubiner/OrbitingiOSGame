@@ -31,4 +31,14 @@
     return [layerObjectIsOn convertToWorldSpace:self.sprite.position];
 }
 
+- (float)radius {
+    radius = MAX([[self sprite] height],[[self sprite] width])/2;
+    return radius;
+}
+
+-(CGRect)rect{
+    return CGRectMake([[self sprite]position].x-[[self sprite]width]/2, 
+                      [[self sprite]position].y-[[self sprite]height]/2, [[self sprite]width], [[self sprite]height]);
+}
+
 @end

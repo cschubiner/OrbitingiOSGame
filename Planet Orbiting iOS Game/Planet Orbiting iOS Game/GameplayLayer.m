@@ -127,7 +127,7 @@ typedef struct {
         thrustParticle = [CCParticleSystemQuad particleWithFile:@"thrustParticle.plist"];
         blackHoleParticle = [CCParticleSystemQuad particleWithFile:@"blackHoleParticle.plist"];
         [blackHoleParticle setPositionType:kCCPositionTypeGrouped];
-
+        
         scoreLabel = [CCLabelTTF labelWithString:@"Score: " fontName:@"Marker Felt" fontSize:24];
         scoreLabel.position = ccp(400, [scoreLabel boundingBox].size.height);
         [hudLayer addChild: scoreLabel];
@@ -139,7 +139,7 @@ typedef struct {
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"phasenwandler_-_Longing_for_Freedom.mp3" loop:YES];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"bomb.wav"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.wav"];
-
+        
         
         [self CreatePlanetAndZone:203 yPos:176 scale:0.39f];
         [self CreatePlanetAndZone:637 yPos:363 scale:0.36f];
@@ -244,16 +244,16 @@ typedef struct {
     CGPoint focusPosition;
     Planet* planetForZoom = nextPlanet;
     if (player.isInZone || nextPlanet.number + 1 >= [planets count]) {
-    focusPosition= ccpMidpoint(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
-    focusPosition = ccpLerp(focusPosition, ccpMidpoint(focusPosition, player.sprite.position), .25f) ;
+        focusPosition= ccpMidpoint(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
+        focusPosition = ccpLerp(focusPosition, ccpMidpoint(focusPosition, player.sprite.position), .25f) ;
         distToUse = ccpDistance(lastPlanetVisited.sprite.position, planetForZoom.sprite.position) + ((Zone*)[zones objectAtIndex:lastPlanetVisited.number]).radius + ((Zone*)[zones objectAtIndex:planetForZoom.number]).radius;
     }
     else {
         focusPosition = ccpMidpoint(player.sprite.position, nextPlanet.sprite.position);
-            Planet* nextNextPlanet = [planets objectAtIndex:(nextPlanet.number+1)];
-            planetForZoom=nextNextPlanet;
-            focusPosition = ccpMidpoint(player.sprite.position, nextNextPlanet.sprite.position);
-            distToUse = ccpDistance(player.sprite.position, nextNextPlanet.sprite.position) +player.radius + ((Zone*)[zones objectAtIndex:planetForZoom.number]).radius;
+        Planet* nextNextPlanet = [planets objectAtIndex:(nextPlanet.number+1)];
+        planetForZoom=nextNextPlanet;
+        focusPosition = ccpMidpoint(player.sprite.position, nextNextPlanet.sprite.position);
+        distToUse = ccpDistance(player.sprite.position, nextNextPlanet.sprite.position) +player.radius + ((Zone*)[zones objectAtIndex:planetForZoom.number]).radius;
     }
     
     
@@ -276,7 +276,7 @@ typedef struct {
     
     //float numerator = 2.40353315418*pow(10,2)+-1.97479367386*pow(10,0)*newAng+2.90416672790*pow(10,-1)*pow(newAng,2)+5.52394514351*pow(10,-2)*pow(newAng,3)+-1.24122580858*pow(10,-2)*pow(newAng,4)+9.07122901758*pow(10,-4)*pow(newAng,5)+-3.13674627681*pow(10,-5)*pow(newAng,6)+5.05890458148*pow(10,-7)*pow(newAng,7)+-2.02095577071*pow(10,-9)*pow(newAng,8)+-2.36509752385*pow(10,-011)*pow(newAng,9)+-5.15090770069*pow(10,-13)*pow(newAng,10)+1.83492501187*pow(10,-14)*pow(newAng,11)+-1.18756307791*pow(10,-16)*pow(newAng,12)+-1.11404850297*pow(10,-18)*pow(newAng,13)+2.39723610522*pow(10,-20)*pow(newAng,14)+-1.61808057124*pow(10,-22)*pow(newAng,15)+-8.05435811652*pow(10,-25)*pow(newAng,16)+2.79703263481*pow(10,-26)*pow(newAng,17)+-2.23685797421*pow(10,-28)*pow(newAng,18)+6.15416673330*pow(10,-31)*pow(newAng,19);
     
-   // scale = 400/distToUse;
+    // scale = 400/distToUse;
     
     
     NSMutableArray *vals = [[NSMutableArray alloc] init];
@@ -312,7 +312,7 @@ typedef struct {
     CCLOG(@"scaler: %f", scalerToUse);
     
     float scale = zoomMultiplier*horizontalScale*scalerToUse;
-
+    
     cameraFocusNode.position = ccpLerp(cameraFocusNode.position, focusPosition, cameraMovementSpeed);
     focusPosition =ccpLerp(cameraLastFocusPosition, focusPosition, cameraMovementSpeed);
     [self ZoomLayer:cameraLayer withScale:lerpf([cameraLayer scale], scale, cameraZoomSpeed) toPosition: focusPosition];
@@ -538,11 +538,11 @@ typedef struct {
         [cameraLayer addChild:asteroid.sprite];
         planet.alive = true;
     }
-
+    
     blackHoleParticle.position=ccp(-400,-400);
     [cameraLayer removeChild:blackHoleParticle cleanup:NO];
     [cameraLayer addChild:blackHoleParticle z:3];
-
+    
     [cameraLayer addChild:thrustParticle z:2];
     [cameraLayer removeChild:player.sprite cleanup:YES];
     [cameraLayer addChild:player.sprite z:1];
@@ -630,7 +630,7 @@ typedef struct {
     if (lastPlanetVisited.number +1 < [planets count])
         nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
     else     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
-
+    
     float firstToPlayerAngle = ccpAngle(lastPlanetVisited.sprite.position, player.sprite.position)-ccpAngle(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
     float firstToPlayerDistance = ccpDistance(lastPlanetVisited.sprite.position, player.sprite.position);    
     

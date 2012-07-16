@@ -20,11 +20,5 @@
 	return self;
 }
 
-- (float)radius {
-    radius = MAX([[self sprite] width],[[self sprite] width])/2;
-    return radius;
-}
-
-
 
 @end

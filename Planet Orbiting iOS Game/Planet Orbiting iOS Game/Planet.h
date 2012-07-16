@@ -11,7 +11,6 @@
 #import "CameraObject.h"
 
 @interface Planet : CameraObject {
-    float radius;
 }
 
 -(id)init;
@@ -20,6 +19,5 @@
 @property (nonatomic) float mass;
 @property (nonatomic) float orbitRadius;
 
--(float)radius;
 
 @end

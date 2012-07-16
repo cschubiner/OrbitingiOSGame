@@ -10,7 +10,7 @@
 #import "cocos2d.h"
 
 @interface CameraObject : CCNode {
-
+    float radius;
 }
 
 @property (nonatomic,retain) CCSprite *sprite;
@@ -22,5 +22,7 @@
 -(CGPoint)position;
 -(void)setPosition:(CGPoint)position;
 -(CGPoint)getPositionOnScreen:(CCLayer*)layerObjectIsOn;
+- (float)radius;
+-(CGRect)rect;
 
 @end

@@ -12,7 +12,6 @@
 #import "CCLayerStreak.h"
 
 @interface Player : CameraObject {
-    float radius;
 
 }
 
@@ -23,6 +22,5 @@
 @property (nonatomic) float mass;
 @property (nonatomic) bool isInZone;
 
--(float)radius;
 
 @end
