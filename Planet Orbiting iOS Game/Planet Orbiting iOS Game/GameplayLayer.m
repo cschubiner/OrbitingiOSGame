@@ -324,8 +324,9 @@ typedef struct {
         object.velocity = ccpAdd(object.velocity, object.acceleration);
         object.sprite.position = ccpAdd(ccpMult(object.velocity, 60*dt*timeDilationCoefficient), object.sprite.position);
         
+        bool shitYo = CGRectIntersectsRect(object.rect, CGRectMake(0, 0, size.width, size.height));
         
-        if ([self IsPositionOnScreen:object.sprite.position]) {
+        if (shitYo) { //[self IsPositionOnScreen:object.sprite.position]
             if (!object.isBeingDrawn) {
                 [cameraLayer addChild:object.sprite];
                 object.isBeingDrawn = true;
