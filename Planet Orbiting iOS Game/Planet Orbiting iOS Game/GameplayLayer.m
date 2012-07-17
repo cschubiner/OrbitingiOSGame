@@ -278,7 +278,7 @@ typedef struct {
         
         player = [[Player alloc]init];        
         player.sprite = [CCSprite spriteWithFile:@"spaceship2.png"];
-        [player.sprite setScale:1.2];
+        [player.sprite setScale:playerSizeScale];
         [cameraObjects addObject:player];         
         cameraFocusNode = [[CCSprite alloc]init];
         
@@ -564,13 +564,13 @@ typedef struct {
     
     //spaceship rotating code follows --------------------
     float targetRotation = -CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity));
-    if (isGoingCounterClockwise){
-        if (abs(targetRotation-player.sprite.rotation>=180))player.sprite.rotation+=360;
+    if (isGoingCounterClockwise) {
+        if (targetRotation-player.sprite.rotation>=180)
+            player.sprite.rotation+=360;
     }
-    else if (abs(targetRotation-player.sprite.rotation>=180))player.sprite.rotation-=360;
-    
-    player.sprite.rotation = lerpf(player.sprite.rotation, targetRotation, .16f);
-    
+    else if (targetRotation-player.sprite.rotation<=-180)
+        player.sprite.rotation-=360;    
+    player.sprite.rotation = lerpf(player.sprite.rotation, targetRotation, playerRotationSpeed);
     //end spaceship rotating code --------------------
 }
 

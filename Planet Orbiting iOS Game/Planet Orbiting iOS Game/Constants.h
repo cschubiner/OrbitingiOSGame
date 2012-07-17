@@ -25,6 +25,10 @@ const float cameraZoomSpeed = .03;
 //changes how quickly the camera changes position
 const float cameraMovementSpeed = .06;
 
+//how quickly the player's spaceship rotates when the direction of his velocity changes
+const float playerRotationSpeed = .39f;
+const float playerSizeScale = 1.0f;
+
 const float anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees = 55;
 const float anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees = -35;
 
