@@ -11,15 +11,6 @@
       <Time>2012-07-08T18:26:47.0379296-07:00</Time>
     </Item>
     <Item>
-      <Source>font.spritefont</Source>
-      <Name>font</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\font.xnb</Output>
-      <Time>2012-07-09T01:08:45.57229-07:00</Time>
-    </Item>
-    <Item>
       <Source>iphone box.png</Source>
       <Name>iphone box</Name>
       <Importer>TextureImporter</Importer>
@@ -38,6 +29,24 @@
       <Time>2012-07-09T21:19:51.7887676-07:00</Time>
     </Item>
     <Item>
+      <Source>asteroid.png</Source>
+      <Name>asteroid</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\asteroid.xnb</Output>
+      <Time>2012-07-16T22:01:46.745916-07:00</Time>
+    </Item>
+    <Item>
+      <Source>font.spritefont</Source>
+      <Name>font</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\font.xnb</Output>
+      <Time>2012-07-09T01:08:45.57229-07:00</Time>
+    </Item>
+    <Item>
       <Source>biggerFont.spritefont</Source>
       <Name>biggerFont</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -49,7 +58,7 @@
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
-      <TargetProfile>HiDef</TargetProfile>
+      <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
       <RootDirectory>C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level CreatorContent\</RootDirectory>

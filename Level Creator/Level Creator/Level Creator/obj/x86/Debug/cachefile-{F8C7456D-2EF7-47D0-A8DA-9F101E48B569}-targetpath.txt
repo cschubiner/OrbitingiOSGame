@@ -1,5 +1,6 @@
 Content\PlanetMichael.xnb
 Content\iphone box.xnb
 Content\zone-hd.xnb
+Content\asteroid.xnb
 Content\font.xnb
 Content\biggerFont.xnb
