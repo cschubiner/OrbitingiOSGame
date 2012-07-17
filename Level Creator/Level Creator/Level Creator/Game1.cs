@@ -38,8 +38,8 @@ namespace Level_Creator
         SpriteFont font;
         SpriteFont biggerFont;
         string toDisplay;
-        const float defaultPlanetScaleSize = .21f;
-        const float minPlanetScale = .21f * .7f;
+        const float defaultPlanetScaleSize = .5f;
+        const float minPlanetScale = .5f * .7f;
         const float defaultAsteroidScaleSize =  .36f*.64f;
         const float minAsteroidScale = .36f * .64f * .7f;
         float currentAsteroidScale;
@@ -95,8 +95,8 @@ namespace Level_Creator
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             asteroidTexture  = Content.Load<Texture2D>("asteroid");
-            planetTexture = Content.Load<Texture2D>("PlanetMichael");
-            zoneTexture = Content.Load<Texture2D>("zone-hd");
+            planetTexture = Content.Load<Texture2D>("Planet2");
+            zoneTexture = Content.Load<Texture2D>("zone");
             frameTexture = Content.Load<Texture2D>("iphone box");
             // TODO: use this.Content to load your game content here
             lastMouseState = Mouse.GetState();

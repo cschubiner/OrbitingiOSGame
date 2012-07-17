@@ -100,7 +100,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>mD6Zw1c6BIJ0Rd+FisanxXYKh+A=</dsig:DigestValue>
+        <dsig:DigestValue>tduLs0/4+Hdvx+P4ZSIms3Er03s=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -140,22 +140,22 @@
       <dsig:DigestValue>Z94K9itqBSdduwTgtx1fsyoU4Xs=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\PlanetMichael.xnb" size="1550315">
+  <file name="Content\Planet2.xnb" size="387439">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>PmLt0bUQqbsp2TpR+JIY7XxuFPM=</dsig:DigestValue>
+      <dsig:DigestValue>63g4UdYz8tn3ZMQ1mYjMmLMRU7Q=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\zone-hd.xnb" size="1806523">
+  <file name="Content\zone.xnb" size="451771">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>fPOtpvM+WMos6DVPCQSpV7In1Y4=</dsig:DigestValue>
+      <dsig:DigestValue>3T5DBWEwjWwECmQfx0BqbHNgb8c=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Game.ico" size="4286">
