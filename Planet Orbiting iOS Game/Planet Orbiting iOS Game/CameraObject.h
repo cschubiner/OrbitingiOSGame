@@ -25,5 +25,5 @@
 -(CGPoint)getPositionOnScreen:(CCLayer*)layerObjectIsOn;
 -(float)radius;
 -(CGRect)rect;
-
+-(CGRect)rectOnScreen:(CCLayer*)layerObjectIsOn;
 @end
