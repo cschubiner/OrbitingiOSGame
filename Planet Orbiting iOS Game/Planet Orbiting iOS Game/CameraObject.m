@@ -48,7 +48,7 @@
                       [[self sprite]position].y-[[self sprite]height]/2, [[self sprite]width], [[self sprite]height]);
 }
 
--(CGRect)onscreen:(CCLayer*)layerObjectIsOn{
+-(CGRect)rectOnScreen:(CCLayer*)layerObjectIsOn{
     CGPoint onscreen = [layerObjectIsOn convertToWorldSpace:self.sprite.position];
     return CGRectMake(onscreen.x-[[self sprite]width]/2, 
                       onscreen.y-[[self sprite]height]/2, [[self sprite]width], [[self sprite]height]);
