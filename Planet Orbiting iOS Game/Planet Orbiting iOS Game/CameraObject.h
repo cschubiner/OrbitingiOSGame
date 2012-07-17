@@ -19,6 +19,8 @@
 @property (nonatomic) int number;
 @property (nonatomic) bool alive;
 @property (nonatomic) bool isBeingDrawn;
+@property (nonatomic) bool hasExploded;
+
 
 -(CGPoint)position;
 -(void)setPosition:(CGPoint)position;

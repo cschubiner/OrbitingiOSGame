@@ -274,10 +274,10 @@ typedef struct {
         [self CreateAsteroid:3357 yPos:319 scale:0.3914f];
         [self CreateAsteroid:3518 yPos:354 scale:0.2304f];
         [self CreateAsteroid:3610 yPos:401 scale:0.2304f];
-         
+        
         
         player = [[Player alloc]init];        
-        player.sprite = [CCSprite spriteWithFile:@"spaceship.png"];
+        player.sprite = [CCSprite spriteWithFile:@"spaceship2.png"];
         [player.sprite setScale:1.2];
         [cameraObjects addObject:player];         
         cameraFocusNode = [[CCSprite alloc]init];
@@ -326,19 +326,16 @@ typedef struct {
         
         
         
-        bool shitYo = CGRectIntersectsRect([object rectOnScreen:cameraLayer], CGRectMake(0, 0, size.width, size.height));
-        
-        if (shitYo) { //[self IsPositionOnScreen:object.sprite.position]
-            if (!object.isBeingDrawn) {
+        if (object.isBeingDrawn == FALSE)
+            if (object.hasExploded==FALSE&&CGRectIntersectsRect([object rectOnScreen:cameraLayer], CGRectMake(0, 0, size.width, size.height))) {
                 [cameraLayer addChild:object.sprite];
                 object.isBeingDrawn = true;
                 [cameraLayer reorderChild:player.sprite z:0];
             }
-        }
-        else {
-            [cameraLayer removeChild:object.sprite cleanup:YES];
-            object.isBeingDrawn = false;
-        }
+            else {
+                [cameraLayer removeChild:object.sprite cleanup:YES];
+                object.isBeingDrawn = false;
+            }
     }
     
     //camera code follows -----------------------------
@@ -363,28 +360,15 @@ typedef struct {
         distToUse = ccpDistance(player.sprite.position, nextNextPlanet.sprite.position) +player.radius + ((Zone*)[zones objectAtIndex:planetForZoom.number]).radius;
     }
     
-    
-    //float scale = zoomMultiplier*(-0.0011304347826086958*distToUse+1.218695652173913);
-    //if (planetForZoom!=nextPlanet)
-    //    scale*=extraOutsideOfZoneZoom;
-    
     float horizontalScale = 294.388933833*pow(distToUse,-.94226344467);
     
-    float newAng = 5;
-    
-    newAng = CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(planetForZoom.sprite.position, focusPosition)));
-    
+    float newAng = CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(planetForZoom.sprite.position, focusPosition)));
     if (newAng > 270)
         newAng = 360 - newAng;
     if (newAng > 180)
         newAng = newAng - 180;
     if (newAng > 90)
         newAng = 180 - newAng;
-    
-    //float numerator = 2.40353315418*pow(10,2)+-1.97479367386*pow(10,0)*newAng+2.90416672790*pow(10,-1)*pow(newAng,2)+5.52394514351*pow(10,-2)*pow(newAng,3)+-1.24122580858*pow(10,-2)*pow(newAng,4)+9.07122901758*pow(10,-4)*pow(newAng,5)+-3.13674627681*pow(10,-5)*pow(newAng,6)+5.05890458148*pow(10,-7)*pow(newAng,7)+-2.02095577071*pow(10,-9)*pow(newAng,8)+-2.36509752385*pow(10,-011)*pow(newAng,9)+-5.15090770069*pow(10,-13)*pow(newAng,10)+1.83492501187*pow(10,-14)*pow(newAng,11)+-1.18756307791*pow(10,-16)*pow(newAng,12)+-1.11404850297*pow(10,-18)*pow(newAng,13)+2.39723610522*pow(10,-20)*pow(newAng,14)+-1.61808057124*pow(10,-22)*pow(newAng,15)+-8.05435811652*pow(10,-25)*pow(newAng,16)+2.79703263481*pow(10,-26)*pow(newAng,17)+-2.23685797421*pow(10,-28)*pow(newAng,18)+6.15416673330*pow(10,-31)*pow(newAng,19);
-    
-    // scale = 400/distToUse;
-    
     
     NSMutableArray *vals = [[NSMutableArray alloc] init];
     [vals addObject: [NSNumber numberWithFloat:240]];
@@ -406,19 +390,6 @@ typedef struct {
     [vals addObject: [NSNumber numberWithFloat:162]];
     [vals addObject: [NSNumber numberWithFloat:160.5]];
     [vals addObject: [NSNumber numberWithFloat:160]];
-    
-    
-    /*
-    int lower = (int)clampf((newAng/5), 0, 18);
-    int upper = (int)clampf((newAng/5 + 1), 0, 18);
-    
-    float hi = newAng/5 - lower;
-    
-    float small = [[vals objectAtIndex:lower] floatValue];
-    float big = [[vals objectAtIndex:upper] floatValue];
-    
-    float numerator = hi*big + (1-hi)*small;
-    */
     
     int indexToUse = (int)clampf((newAng/5 + 0.5), 0, 18);
     float numerator = [[vals objectAtIndex:indexToUse] floatValue];
@@ -568,12 +539,13 @@ typedef struct {
         nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
     }
     
+    bool isGoingCounterClockwise;
     isGreen = false;
     if (player.isInZone) { //may want to keep on calculating lastAngle... not sure.
         float takeoffAngleToNextPlanet=CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(nextPlanet.sprite.position, lastPlanetVisited.sprite.position)))-CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(player.sprite.position, lastPlanetVisited.sprite.position)));
         
-        // if you are going CCW
-        if (takeoffAngleToNextPlanet-lastTakeoffAngleToNextPlanet<0) {
+        isGoingCounterClockwise = (takeoffAngleToNextPlanet-lastTakeoffAngleToNextPlanet<0);
+        if (isGoingCounterClockwise) {// if you are going CCW
             if ((takeoffAngleToNextPlanet<=-270+anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees&&takeoffAngleToNextPlanet>=-360+anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees)||
                 (takeoffAngleToNextPlanet>=0-anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees && takeoffAngleToNextPlanet <= 90+anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees)) {
                 player.sprite.color = ccc3(0, 255, 0);
@@ -586,10 +558,20 @@ typedef struct {
             isGreen = true;
         }
         lastTakeoffAngleToNextPlanet = takeoffAngleToNextPlanet;
-    } else {
     }
     if (!isGreen)
         player.sprite.color = ccc3(255, 255, 255);
+    
+    //spaceship rotating code follows --------------------
+    float targetRotation = -CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity));
+    if (isGoingCounterClockwise){
+        if (abs(targetRotation-player.sprite.rotation>=180))player.sprite.rotation+=360;
+    }
+    else if (abs(targetRotation-player.sprite.rotation>=180))player.sprite.rotation-=360;
+    
+    player.sprite.rotation = lerpf(player.sprite.rotation, targetRotation, .16f);
+    
+    //end spaceship rotating code --------------------
 }
 
 - (void)resetVariablesForNewGame {
@@ -660,35 +642,24 @@ typedef struct {
                 zone.hasPlayerHitThisZone = true;  
                 zonesReached++;
                 
-                /*
-                if (zonesReached+3<zoneCount){
-                    [cameraLayer addChild:((Zone*)[zones objectAtIndex:zonesReached+3]).sprite];
-                    [cameraLayer addChild:((Planet*)[planets objectAtIndex:zonesReached+3]).sprite];
-                    //if (zonesReached+5<zoneCount)
-                    //    [cameraLayer addChild:((Asteroid*)[asteroids objectAtIndex:zonesReached+3]).sprite];
-                    [cameraLayer reorderChild:player.sprite z:0];
-                }*/
-                 
                 score+=currentPtoPscore;
                 currentPtoPscore=0;
                 prevCurrentPtoPScore=0;
                 numZonesHitInARow++;
                 timeDilationCoefficient += timeDilationIncreaseRate;
-                
             }
         }
         else if (i<[zones count]-1&&((Zone*)[zones objectAtIndex:i+1]).hasPlayerHitThisZone) { //if player has hit the next zone and it hasn't exploded yet
             if (zone.hasPlayerHitThisZone&&!zone.hasExploded){
                 Planet * planet = [planets objectAtIndex:zone.number];
-                //[cameraLayer removeChild:planet.sprite cleanup:NO];
-                //[cameraLayer removeChild:zone.sprite cleanup:YES];
-                //if (zone.number>2)
-                //    [cameraLayer removeChild:((Asteroid*)[asteroids objectAtIndex:zone.number-3]).sprite cleanup:YES];
                 planet.alive = false;
                 [planetExplosionParticle setPosition:zone.sprite.position];
                 [planetExplosionParticle resetSystem];
                 [[SimpleAudioEngine sharedEngine]playEffect:@"bomb.wav"];
                 zone.hasExploded=true;
+                planet.hasExploded=true;
+                zone.isBeingDrawn=FALSE;
+                planet.isBeingDrawn=FALSE;
                 timeSincePlanetExplosion=0;
                 planetJustExploded=true;
             }
