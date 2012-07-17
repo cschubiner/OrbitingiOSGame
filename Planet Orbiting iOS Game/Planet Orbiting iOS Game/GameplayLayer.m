@@ -324,7 +324,9 @@ typedef struct {
         object.velocity = ccpAdd(object.velocity, object.acceleration);
         object.sprite.position = ccpAdd(ccpMult(object.velocity, 60*dt*timeDilationCoefficient), object.sprite.position);
         
-        bool shitYo = CGRectIntersectsRect(object.rect, CGRectMake(0, 0, size.width, size.height));
+        
+        
+        bool shitYo = CGRectIntersectsRect([object rectOnScreen:cameraLayer], CGRectMake(0, 0, size.width, size.height));
         
         if (shitYo) { //[self IsPositionOnScreen:object.sprite.position]
             if (!object.isBeingDrawn) {
@@ -484,8 +486,7 @@ typedef struct {
                     CGPoint d = ccpSub(targetPlanet.sprite.position, player.sprite.position);
                     
                     CGPoint dir2 = ccpNormalize(CGPointApplyAffineTransform(d, CGAffineTransformMakeRotation(M_PI/2)));
-                    CGPoint dir3 = ccpNormalize(CGPointApplyAffineTransform(d, CGAffineTransformMakeRotation(-M_PI/2)));            
-                    
+                    CGPoint dir3 = ccpNormalize(CGPointApplyAffineTransform(d, CGAffineTransformMakeRotation(-M_PI/2)));                    
                     
                     CGPoint left = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius), targetPlanet.sprite.position);
                     
