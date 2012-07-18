@@ -133,148 +133,23 @@ typedef struct {
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spriteSheetCamera.plist"];
         
         
-        [self CreatePlanetAndZone:194 yPos:498 scale:0.5f];
-        [self CreatePlanetAndZone:551 yPos:715 scale:0.74f];
-        [self CreatePlanetAndZone:1099 yPos:817 scale:1.1f];
-        [self CreatePlanetAndZone:1407 yPos:400 scale:0.5599999f];
-        [self CreatePlanetAndZone:1858 yPos:444 scale:0.5f];
-        [self CreatePlanetAndZone:2087 yPos:801 scale:0.5f];
-        [self CreatePlanetAndZone:1857 yPos:1192 scale:0.5f];
-        [self CreatePlanetAndZone:1549 yPos:1557 scale:1.0045f];
-        [self CreatePlanetAndZone:974 yPos:1563 scale:1.028f];
-        [self CreatePlanetAndZone:691 yPos:1906 scale:0.5f];
-        [self CreatePlanetAndZone:847 yPos:2175 scale:0.5f];
-        [self CreatePlanetAndZone:1213 yPos:2164 scale:0.5f];
-        [self CreatePlanetAndZone:1549 yPos:2256 scale:0.44f];
-        [self CreatePlanetAndZone:1843 yPos:2127 scale:0.5f];
-        [self CreatePlanetAndZone:2120 yPos:2002 scale:0.41f];
-        [self CreatePlanetAndZone:2163 yPos:1756 scale:0.5f];
-        [self CreatePlanetAndZone:2385 yPos:1457 scale:0.5f];
-        [self CreatePlanetAndZone:2399 yPos:1170 scale:0.5f];
-        [self CreatePlanetAndZone:3341 yPos:865 scale:2.25675f];
+        [self CreatePlanetAndZone:257 yPos:262 scale:0.5f];
+        [self CreatePlanetAndZone:836 yPos:419 scale:1.189999f];
+        [self CreatePlanetAndZone:1540 yPos:-43 scale:0.7699997f];
+        [self CreatePlanetAndZone:2337 yPos:320 scale:1.189999f];
+        [self CreatePlanetAndZone:3274 yPos:42 scale:1.459999f];
+        [self CreatePlanetAndZone:3838 yPos:-790 scale:0.6199999f];
         
         
-        [self CreateAsteroid:386 yPos:479 scale:0.2304f];
-        [self CreateAsteroid:387 yPos:408 scale:0.2304f];
-        [self CreateAsteroid:268 yPos:678 scale:0.2304f];
-        [self CreateAsteroid:195 yPos:716 scale:0.2304f];
-        [self CreateAsteroid:791 yPos:750 scale:0.5294f];
-        [self CreateAsteroid:832 yPos:506 scale:0.2304f];
-        [self CreateAsteroid:839 yPos:435 scale:0.2304f];
-        [self CreateAsteroid:722 yPos:998 scale:0.2764f];
-        [self CreateAsteroid:694 yPos:1081 scale:0.2994f];
-        [self CreateAsteroid:1291 yPos:557 scale:0.3684f];
-        [self CreateAsteroid:2117 yPos:527 scale:0.3914f];
-        [self CreateAsteroid:1858 yPos:676 scale:0.4144f];
-        [self CreateAsteroid:2236 yPos:900 scale:0.2764f];
-        [self CreateAsteroid:2242 yPos:796 scale:0.2304f];
-        [self CreateAsteroid:2243 yPos:721 scale:0.2304f];
-        [self CreateAsteroid:1937 yPos:808 scale:0.2304f];
-        [self CreateAsteroid:1864 yPos:767 scale:0.2304f];
-        [self CreateAsteroid:2102 yPos:1040 scale:0.2764f];
-        [self CreateAsteroid:2173 yPos:1075 scale:0.2304f];
-        [self CreateAsteroid:1931 yPos:874 scale:0.2304f];
-        [self CreateAsteroid:1927 yPos:1323 scale:0.2304f];
-        [self CreateAsteroid:1712 yPos:1134 scale:0.2304f];
-        [self CreateAsteroid:1689 yPos:1204 scale:0.2304f];
-        [self CreateAsteroid:1613 yPos:1235 scale:0.2304f];
-        [self CreateAsteroid:1527 yPos:1248 scale:0.2304f];
-        [self CreateAsteroid:1464 yPos:1282 scale:0.2304f];
-        [self CreateAsteroid:1409 yPos:1335 scale:0.2304f];
-        [self CreateAsteroid:1358 yPos:1386 scale:0.2304f];
-        [self CreateAsteroid:1846 yPos:1335 scale:0.2304f];
-        [self CreateAsteroid:1832 yPos:1403 scale:0.2304f];
-        [self CreateAsteroid:1829 yPos:1484 scale:0.2304f];
-        [self CreateAsteroid:1823 yPos:1558 scale:0.2304f];
-        [self CreateAsteroid:1963 yPos:1473 scale:0.6674f];
-        [self CreateAsteroid:1862 yPos:1726 scale:0.9533666f];
-        [self CreateAsteroid:1595 yPos:1942 scale:1.151742f];
-        [self CreateAsteroid:1692 yPos:1792 scale:0.3224f];
-        [self CreateAsteroid:1312 yPos:1852 scale:0.9487666f];
-        [self CreateAsteroid:1469 yPos:1814 scale:0.2304f];
-        [self CreateAsteroid:1258 yPos:1275 scale:0.709375f];
-        [self CreateAsteroid:1092 yPos:1285 scale:0.4144f];
-        [self CreateAsteroid:952 yPos:1264 scale:0.50065f];
-        [self CreateAsteroid:788 yPos:1307 scale:0.5524f];
-        [self CreateAsteroid:673 yPos:1408 scale:0.5524f];
-        [self CreateAsteroid:657 yPos:1559 scale:0.5524f];
-        [self CreateAsteroid:675 yPos:1684 scale:0.3454f];
-        [self CreateAsteroid:1022 yPos:1938 scale:1.069325f];
-        [self CreateAsteroid:1265 yPos:1393 scale:0.3224f];
-        [self CreateAsteroid:1169 yPos:1358 scale:0.2304f];
-        [self CreateAsteroid:1140 yPos:1805 scale:0.2764f];
-        [self CreateAsteroid:1408 yPos:2135 scale:0.2304f];
-        [self CreateAsteroid:1033 yPos:2249 scale:0.2304f];
-        [self CreateAsteroid:1397 yPos:2064 scale:0.2304f];
-        [self CreateAsteroid:1313 yPos:2015 scale:0.3914f];
-        [self CreateAsteroid:1804 yPos:2411 scale:1.108617f];
-        [self CreateAsteroid:1919 yPos:2261 scale:0.2304f];
-        [self CreateAsteroid:1977 yPos:2201 scale:0.2304f];
-        [self CreateAsteroid:1796 yPos:1976 scale:0.2304f];
-        [self CreateAsteroid:1881 yPos:1979 scale:0.2304f];
-        [self CreateAsteroid:2116 yPos:2177 scale:0.5709917f];
-        [self CreateAsteroid:1989 yPos:1887 scale:0.5849833f];
-        [self CreateAsteroid:1834 yPos:1899 scale:0.3914f];
-        [self CreateAsteroid:2153 yPos:1311 scale:1.164967f];
-        [self CreateAsteroid:2091 yPos:1159 scale:0.2304f];
-        [self CreateAsteroid:2157 yPos:1140 scale:0.2304f];
-        [self CreateAsteroid:2024 yPos:1624 scale:0.3914f];
-        [self CreateAsteroid:1921 yPos:1594 scale:0.2994f];
-        [self CreateAsteroid:2756 yPos:829 scale:0.5524f];
-        [self CreateAsteroid:2698 yPos:1056 scale:1.087533f];
-        [self CreateAsteroid:2590 yPos:1203 scale:0.3914f];
-        [self CreateAsteroid:2865 yPos:1171 scale:0.4834f];
-        [self CreateAsteroid:2760 yPos:1201 scale:0.2304f];
-        [self CreateAsteroid:2683 yPos:1210 scale:0.2304f];
-        [self CreateAsteroid:2660 yPos:904 scale:0.2304f];
-        [self CreateAsteroid:2793 yPos:927 scale:0.2304f];
-        [self CreateAsteroid:2586 yPos:938 scale:0.2304f];
-        [self CreateAsteroid:2514 yPos:1078 scale:0.2304f];
-        [self CreateAsteroid:2538 yPos:1135 scale:0.2304f];
-        [self CreateAsteroid:2523 yPos:996 scale:0.2304f];
-        [self CreateAsteroid:2867 yPos:329 scale:0.7364f];
-        [self CreateAsteroid:2694 yPos:480 scale:0.815175f];
-        [self CreateAsteroid:2499 yPos:633 scale:0.9976417f];
-        [self CreateAsteroid:2367 yPos:818 scale:0.6076f];
-        [self CreateAsteroid:3095 yPos:217 scale:0.9397583f];
-        [self CreateAsteroid:3378 yPos:156 scale:0.8086584f];
-        [self CreateAsteroid:3714 yPos:194 scale:1.498275f];
-        [self CreateAsteroid:4046 yPos:483 scale:1.7208f];
-        [self CreateAsteroid:3876 yPos:742 scale:0.2304f];
-        [self CreateAsteroid:4096 yPos:858 scale:1.04115f];
-        [self CreateAsteroid:3734 yPos:433 scale:0.5524f];
-        [self CreateAsteroid:4015 yPos:1098 scale:1.109767f];
-        [self CreateAsteroid:3790 yPos:1379 scale:1.211925f];
-        [self CreateAsteroid:3477 yPos:1523 scale:1.072967f];
-        [self CreateAsteroid:3081 yPos:1535 scale:1.310442f];
-        [self CreateAsteroid:2844 yPos:1391 scale:0.59265f];
-        [self CreateAsteroid:2669 yPos:1385 scale:0.5754f];
-        [self CreateAsteroid:2584 yPos:1510 scale:0.5064f];
-        [self CreateAsteroid:2775 yPos:1526 scale:0.5984f];
-        [self CreateAsteroid:2565 yPos:1638 scale:0.3224f];
-        [self CreateAsteroid:2098 yPos:1542 scale:0.3684f];
-        [self CreateAsteroid:2190 yPos:1469 scale:0.2534f];
-        [self CreateAsteroid:2098 yPos:1472 scale:0.2304f];
-        [self CreateAsteroid:2478 yPos:1789 scale:0.9627583f];
-        [self CreateAsteroid:2447 yPos:2086 scale:1.573408f];
-        [self CreateAsteroid:2330 yPos:1899 scale:0.2304f];
-        [self CreateAsteroid:2980 yPos:1369 scale:0.2304f];
-        [self CreateAsteroid:3299 yPos:1469 scale:0.2304f];
-        [self CreateAsteroid:3586 yPos:1410 scale:0.2304f];
-        [self CreateAsteroid:3670 yPos:1520 scale:0.2304f];
-        [self CreateAsteroid:3862 yPos:1203 scale:0.2304f];
-        [self CreateAsteroid:3955 yPos:1267 scale:0.2304f];
-        [self CreateAsteroid:3988 yPos:726 scale:0.2304f];
-        [self CreateAsteroid:4090 yPos:702 scale:0.2304f];
-        [self CreateAsteroid:4253 yPos:670 scale:0.2304f];
-        [self CreateAsteroid:3847 yPos:659 scale:0.2304f];
-        [self CreateAsteroid:3801 yPos:550 scale:0.2304f];
-        [self CreateAsteroid:3466 yPos:271 scale:0.2304f];
-        [self CreateAsteroid:3266 yPos:272 scale:0.2304f];
-        [self CreateAsteroid:3128 yPos:350 scale:0.2304f];
-        [self CreateAsteroid:3357 yPos:319 scale:0.3914f];
-        [self CreateAsteroid:3518 yPos:354 scale:0.2304f];
-        [self CreateAsteroid:3610 yPos:401 scale:0.2304f];
+        [self CreateAsteroid:589 yPos:109 scale:0.2304f];
+        [self CreateAsteroid:608 yPos:113 scale:0.2304f];
+        [self CreateAsteroid:413 yPos:94 scale:0.2304f];
+        [self CreateAsteroid:259 yPos:73 scale:0.2304f];
+        [self CreateAsteroid:42 yPos:221 scale:0.2304f];
+        [self CreateAsteroid:137 yPos:416 scale:0.2304f];
+        [self CreateAsteroid:365 yPos:605 scale:0.2304f];
+        [self CreateAsteroid:507 yPos:680 scale:0.2304f];
+        [self CreateAsteroid:3301 yPos:-632 scale:0.8744f];
         
         
         player = [[Player alloc]init];        
@@ -284,12 +159,12 @@ typedef struct {
         cameraFocusNode = [[CCSprite alloc]init];
         
         killer = 0;
+        orbitState = 0;
         isOnFirstRun = true;
         isOrbiting = true;
         justSwiped = false;
         justBadSwiped = false;
         isExperiencingGravity = false;
-        gravityReducer = 1;
         timeDilationCoefficient = 1;
         
         background = [CCSprite spriteWithFile:@"background.pvr.ccz"];
@@ -395,7 +270,7 @@ typedef struct {
     
     float scalerToUse = numerator/350; //should be 240 but oh well
     
-    CCLOG(@"scaler: %f", scalerToUse);
+    //CCLOG(@"scaler: %f", scalerToUse);
     
     float scale = zoomMultiplier*horizontalScale*scalerToUse;
     
@@ -427,7 +302,7 @@ typedef struct {
                 player.velocity = initialVel;
             }
             
-            if (isOrbiting) {
+            if (orbitState == 0) {
                 CGPoint a = ccpSub(player.sprite.position, planet.sprite.position);
                 if (ccpLength(a) != planet.orbitRadius) {
                     float offset = planet.orbitRadius/ccpLength(a);
@@ -445,58 +320,86 @@ typedef struct {
                 
                 CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
                 player.acceleration = ccpMult(direction, gravity);
+            } else if (orbitState == 1) {
+                orbitState = 0;
+                //if in position
+                //justSwiped = false;
+                [[SimpleAudioEngine sharedEngine]playEffect:@"SWOOSH.WAV"];
+                player.acceleration = CGPointZero;
+                //set velocity
+                //player.velocity = ccpMult(swipeVector, .55);
+                CGPoint d = ccpSub(targetPlanet.sprite.position, player.sprite.position);
+                
+                CGPoint dir2 = ccpNormalize(CGPointApplyAffineTransform(d, CGAffineTransformMakeRotation(M_PI/2)));
+                CGPoint dir3 = ccpNormalize(CGPointApplyAffineTransform(d, CGAffineTransformMakeRotation(-M_PI/2)));                    
+                
+                CGPoint left = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius), targetPlanet.sprite.position);
+                
+                CGPoint right = ccpAdd(ccpMult(dir3, targetPlanet.orbitRadius), targetPlanet.sprite.position);
+                
+                float newAng = 0;
+                CGPoint vel = CGPointZero;
+                if (ccpLength(ccpSub(ccpAdd(player.sprite.position, swipeVector), left)) <= ccpLength(ccpSub(ccpAdd(player.sprite.position, swipeVector), right))) { //closer to the left
+                    newAng = ccpToAngle(ccpSub(left, player.sprite.position));
+                    vel = ccpSub(left, player.sprite.position);
+                } else {
+                    newAng = ccpToAngle(ccpSub(right, player.sprite.position));
+                    vel = ccpSub(right, player.sprite.position);
+                }
+                
+                float curAng = ccpToAngle(player.velocity);
+                
+                float dif = fabsf(CC_RADIANS_TO_DEGREES(curAng) - CC_RADIANS_TO_DEGREES(newAng));
+                
+                CCLOG(@"cur: %f", dif);
+                
+                if (dif <= 0) {
+                    orbitState = 2;
+                    player.velocity = ccpMult(ccpNormalize(vel), ccpLength(player.velocity));
+                } else {
+                    orbitState = 3;
+                    player.velocity = ccpAdd(player.velocity, ccpMult(swipeVector, swipeStrength));
+                }
+                
+                //player.velocity = ccpMult(ccpNormalize(vel), ccpLength(player.velocity));
+                //end if in position
+            }
+            
+            if (orbitState == 3) {
+                if (ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) <= planet.radius * planetRadiusCollisionZone) {
+                    [self JumpPlayerToPlanet:lastPlanetVisited.number];
+                }
+                
+                
+                CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
+                CGPoint accelToAdd = ccpMult(direction, gravity*planet.sprite.scale);
+                
+                direction = ccpNormalize(ccpSub(targetPlanet.sprite.position, player.sprite.position));
+                accelToAdd = ccpAdd(accelToAdd, ccpMult(direction, gravity*targetPlanet.sprite.scale));
+                
+                player.acceleration = ccpMult(accelToAdd, initialPercentageOfGravityAfterSwipe);
+            }
+            if (ccpLength(ccpSub(player.sprite.position, targetPlanet.sprite.position)) <= targetPlanet.orbitRadius) {
+                orbitState = 0;
+            }
+            
+            if (isOrbiting) {
+
             }
             else {
                 if (justSwiped) {
-                    justSwiped = false;
-                    [[SimpleAudioEngine sharedEngine]playEffect:@"SWOOSH.WAV"];
-                    player.acceleration = CGPointZero;
-                    //set velocity
-                    //player.velocity = ccpMult(swipeVector, .55);
-                    CGPoint d = ccpSub(targetPlanet.sprite.position, player.sprite.position);
-                    
-                    CGPoint dir2 = ccpNormalize(CGPointApplyAffineTransform(d, CGAffineTransformMakeRotation(M_PI/2)));
-                    CGPoint dir3 = ccpNormalize(CGPointApplyAffineTransform(d, CGAffineTransformMakeRotation(-M_PI/2)));                    
-                    
-                    CGPoint left = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius), targetPlanet.sprite.position);
-                    
-                    CGPoint right = ccpAdd(ccpMult(dir3, targetPlanet.orbitRadius), targetPlanet.sprite.position);
-                    
-                    CGPoint vel = CGPointZero;
-                    if (ccpLength(ccpSub(ccpAdd(player.sprite.position, swipeVector), left)) <= ccpLength(ccpSub(ccpAdd(player.sprite.position, swipeVector), right))) { //closer to the left
-                        vel = ccpSub(left, player.sprite.position);
-                    } else {
-                        vel = ccpSub(right, player.sprite.position);
-                    }
-                    
-                    player.velocity = ccpMult(ccpNormalize(vel), ccpLength(player.velocity));
                     
                 } else if (justBadSwiped) {
-                    justBadSwiped = false;
-                    isExperiencingGravity = true;
-                    gravityReducer = 1;
-                    player.velocity = ccpAdd(player.velocity, ccpMult(swipeVector, swipeStrength));
+
                 }
                 if (isExperiencingGravity) {
                     
-                    if (ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) <= planet.radius * planetRadiusCollisionZone) {
-                        [self JumpPlayerToPlanet:lastPlanetVisited.number];
-                    }
-                    
-                    
-                    CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
-                    CGPoint accelToAdd = ccpMult(direction, gravity*planet.sprite.scale);
-                    
-                    direction = ccpNormalize(ccpSub(targetPlanet.sprite.position, player.sprite.position));
-                    accelToAdd = ccpAdd(accelToAdd, ccpMult(direction, gravity*targetPlanet.sprite.scale));
-                    
-                    player.acceleration = ccpMult(accelToAdd, initialPercentageOfGravityAfterSwipe * clampf(gravityReducer, 0, 1));
+
                     
                 }
                 
                 if (ccpLength(ccpSub(player.sprite.position, targetPlanet.sprite.position)) <= targetPlanet.orbitRadius) {
-                    isOrbiting = true;
-                    isExperiencingGravity = false;
+
                 }
                 
             }
@@ -508,7 +411,7 @@ typedef struct {
 
 - (void)KillIfEnoughTimeHasPassed {
     killer++;    
-    if (!isExperiencingGravity)
+    if (orbitState == 0 || orbitState == 2)
         killer = 0;    
     if (killer > deathAfterThisLong)
         [self JumpPlayerToPlanet:lastPlanetVisited.number];
@@ -516,7 +419,7 @@ typedef struct {
 
 - (void)UpdatePlayer:(float)dt {
     [self ApplyGravity:dt];    
-    gravityReducer -= rateToDecreaseGravity;
+    //CCLOG(@"state: %d", orbitState);
     timeDilationCoefficient -= timeDilationReduceRate;
     
     timeDilationCoefficient = clampf(timeDilationCoefficient, absoluteMinTimeDilation, absoluteMaxTimeDilation);
@@ -609,6 +512,7 @@ typedef struct {
     isExperiencingGravity = false;
     isOrbiting = true;
     isInAZone = true;
+    orbitState = 0;
 }
 
 - (void)UpdatePlanets {    
@@ -773,7 +677,7 @@ typedef struct {
             swipeVector = ccpAdd(ccp(-player.thrustBeginPoint.x,-player.thrustBeginPoint.y), player.thrustEndPoint);
         }
     }
-    if (ccpLength(swipeVector) >= minSwipeStrength)
+    if (ccpLength(swipeVector) >= minSwipeStrength) {
         if (isOrbiting) {
             if (isGreen) {
                 justSwiped = true;
@@ -785,6 +689,9 @@ typedef struct {
                 targetPlanet = [planets objectAtIndex: (lastPlanetVisited.number + 1)];
             }
         }
+        orbitState = 1;
+        targetPlanet = [planets objectAtIndex: (lastPlanetVisited.number + 1)];
+    }
 }
 
 double lerpd(double a, double b, double t) {

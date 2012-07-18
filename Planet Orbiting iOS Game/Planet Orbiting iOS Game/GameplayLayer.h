@@ -46,7 +46,7 @@
     bool justBadSwiped;
     bool isExperiencingGravity;
     bool isGreen;
-    float gravityReducer;
+    int orbitState;
     Planet* targetPlanet;
     CGPoint swipeVector;
     
