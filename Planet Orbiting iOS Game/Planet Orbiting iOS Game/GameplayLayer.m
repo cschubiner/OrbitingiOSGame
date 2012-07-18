@@ -129,8 +129,8 @@ typedef struct {
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"bomb.wav"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.wav"];
         
-        spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"spriteSheet.pvr.ccz"];
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spriteSheet.plist"];
+        spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"spriteSheetCamera.pvr.ccz"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spriteSheetCamera.plist"];
         
         
         [self CreatePlanetAndZone:194 yPos:498 scale:0.5f];
