@@ -353,12 +353,12 @@ typedef struct {
                 
                 CCLOG(@"cur: %f", dif);
                 
-                if (dif <= 0) {
+                if (dif <= requiredAngleAccuracy) {
                     orbitState = 2;
                     player.velocity = ccpMult(ccpNormalize(vel), ccpLength(player.velocity));
                 } else {
                     orbitState = 3;
-                    player.velocity = ccpAdd(player.velocity, ccpMult(swipeVector, swipeStrength));
+                    //player.velocity = ccpAdd(player.velocity, ccpMult(swipeVector, swipeStrength));
                 }
                 
                 //player.velocity = ccpMult(ccpNormalize(vel), ccpLength(player.velocity));
@@ -372,10 +372,10 @@ typedef struct {
                 
                 
                 CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
-                CGPoint accelToAdd = ccpMult(direction, gravity*planet.sprite.scale);
+                CGPoint accelToAdd = ccpMult(direction, gravity/**planet.sprite.scale*/);
                 
                 direction = ccpNormalize(ccpSub(targetPlanet.sprite.position, player.sprite.position));
-                accelToAdd = ccpAdd(accelToAdd, ccpMult(direction, gravity*targetPlanet.sprite.scale));
+                accelToAdd = ccpAdd(accelToAdd, ccpMult(direction, gravity/**targetPlanet.sprite.scale*/));
                 
                 player.acceleration = ccpMult(accelToAdd, initialPercentageOfGravityAfterSwipe);
             }

@@ -73,7 +73,7 @@ const float swipeStrength = .03;
 const float minSwipeStrength = 20;
 
 //how many updates pass while the player isn't in a zone until tie go will did
-const float deathAfterThisLong = 55*1.35f*1.1f*1.5f;
+const float deathAfterThisLong = 55*1.35f*1.1f*1.5f*10;
 
 //the percent of the black hole's radius that triggers a collision
 const float blackHoleCollisionRadiusFactor = .2f;
@@ -86,3 +86,6 @@ const float timeDilationIncreaseRate = .11;
 const float absoluteMinTimeDilation = 1;
 
 const float absoluteMaxTimeDilation = 9999;
+
+//0 = impossible/needs to match angle exactly, a higher number means your swipe timing can be off by that many degrees
+const float requiredAngleAccuracy = 0;
