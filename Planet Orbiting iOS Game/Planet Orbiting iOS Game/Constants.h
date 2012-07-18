@@ -88,4 +88,4 @@ const float absoluteMinTimeDilation = 1;
 const float absoluteMaxTimeDilation = 9999;
 
 //0 = impossible/needs to match angle exactly, a higher number means your swipe timing can be off by that many degrees
-const float requiredAngleAccuracy = 0;
+const float requiredAngleAccuracy = 40;
