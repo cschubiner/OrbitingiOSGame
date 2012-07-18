@@ -67,6 +67,7 @@
     int currentPtoPscore;
     
     CCSprite * background;
+    CCSpriteBatchNode* spriteSheet;
 }
 
 + (CCScene *) scene;

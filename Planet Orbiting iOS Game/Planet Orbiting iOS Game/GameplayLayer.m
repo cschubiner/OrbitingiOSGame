@@ -54,44 +54,42 @@ typedef struct {
 - (void)CreateAsteroid:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale
 {
     Asteroid *asteroid = [[Asteroid alloc]init];
-    asteroid.sprite = [CCSprite spriteWithFile:@"asteroid.png"];
+    asteroid.sprite = [CCSprite spriteWithSpriteFrameName:@"asteroid-hd.png"];
     asteroid.sprite.position = ccp(xPos, yPos);
     [asteroid.sprite setScale:scale];
     [cameraObjects addObject:asteroid];
     [asteroids addObject:asteroid];
+    [spriteSheet addChild:asteroid.sprite];
     [asteroid release];
-    
 }
 
 - (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale
 {
     Planet *planet = [[Planet alloc]init];
-    planet.sprite = [CCSprite spriteWithFile:@"Planet2.png"];
+    planet.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"planet%d-hd.png",[self RandomBetween:1 maxvalue:6]]];
     planet.sprite.position =  ccp( xPos , yPos );     
     [planet.sprite setScale:scale];
     planet.mass = 1;
     planet.number = planetCounter;
     
     Zone *zone = [[Zone alloc]init];
-    zone.sprite = [CCSprite spriteWithFile:@"zone.png"];
+    zone.sprite = [CCSprite spriteWithSpriteFrameName:@"zone-hd.png"];
     [zone.sprite setScale:scale*zoneScaleRelativeToPlanet];
     zone.number = planetCounter;
     zone.sprite.position = planet.sprite.position;
     
     planet.orbitRadius = zone.radius*.98;
     
-    
-    
-    
-    
     [cameraObjects addObject:planet];
     [planets addObject:planet];
-    [planet release];
     
     [cameraObjects addObject:zone];
     [zones addObject:zone];
-    [zone release];
     
+    [spriteSheet addChild:planet.sprite];
+    [spriteSheet addChild:zone.sprite];
+    [zone release];
+    [planet release];
     planetCounter++;
 }
 
@@ -130,6 +128,9 @@ typedef struct {
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"phasenwandler_-_Longing_for_Freedom.mp3" loop:YES];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"bomb.wav"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.wav"];
+        
+        spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"spriteSheet.pvr.ccz"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spriteSheet.plist"];
         
         
         [self CreatePlanetAndZone:194 yPos:498 scale:0.5f];
@@ -277,7 +278,7 @@ typedef struct {
         
         
         player = [[Player alloc]init];        
-        player.sprite = [CCSprite spriteWithFile:@"spaceship2.png"];
+        player.sprite = [CCSprite spriteWithSpriteFrameName:@"spaceship-hd.png"];
         [player.sprite setScale:playerSizeScale];
         [cameraObjects addObject:player];         
         cameraFocusNode = [[CCSprite alloc]init];
@@ -291,9 +292,9 @@ typedef struct {
         gravityReducer = 1;
         timeDilationCoefficient = 1;
         
-        background = [CCSprite spriteWithFile:@"Background1.png"];
-        background.position = ccp(background.width/2+10,background.height/2+8);
-        background.scale *=1.5f;
+        background = [CCSprite spriteWithFile:@"background.pvr.ccz"];
+        background.position = ccp(size.width/2+31,19);
+        background.scale *=1.3f;
         [self addChild:background];
         
         [self addChild:spaceBackgroundParticle];
@@ -306,6 +307,7 @@ typedef struct {
         timeSincePlanetExplosion=400000;
         
         [self addChild:cameraLayer];
+        [cameraLayer addChild:spriteSheet];
         [self addChild:hudLayer];
         [self UpdateScore];
         [self schedule:@selector(Update:) interval:0]; //this makes the update loop loop!!!!        
@@ -324,18 +326,15 @@ typedef struct {
         object.velocity = ccpAdd(object.velocity, object.acceleration);
         object.sprite.position = ccpAdd(ccpMult(object.velocity, 60*dt*timeDilationCoefficient), object.sprite.position);
         
-        
-        
-        if (object.isBeingDrawn == FALSE)
+   /*     if (object.isBeingDrawn == FALSE)
             if (object.hasExploded==FALSE&&CGRectIntersectsRect([object rectOnScreen:cameraLayer], CGRectMake(0, 0, size.width, size.height))) {
-                [cameraLayer addChild:object.sprite];
+                object.sprite.visible=true;
                 object.isBeingDrawn = true;
-                [cameraLayer reorderChild:player.sprite z:0];
             }
             else {
-                [cameraLayer removeChild:object.sprite cleanup:YES];
+                object.visible = false;
                 object.isBeingDrawn = false;
-            }
+            }*/
     }
     
     //camera code follows -----------------------------
@@ -596,8 +595,7 @@ typedef struct {
     [cameraLayer addChild:blackHoleParticle z:3];
     
     [cameraLayer addChild:thrustParticle z:2];
-    [cameraLayer removeChild:player.sprite cleanup:YES];
-    [cameraLayer addChild:player.sprite z:1];
+    [spriteSheet addChild:player.sprite z:1];
 }
 
 - (void)JumpPlayerToPlanet:(int)planetIndex {
@@ -659,6 +657,8 @@ typedef struct {
                 zone.hasExploded=true;
                 planet.hasExploded=true;
                 zone.isBeingDrawn=FALSE;
+                [spriteSheet removeChild:planet.sprite cleanup:YES];
+                [spriteSheet removeChild:zone.sprite cleanup:YES];
                 planet.isBeingDrawn=FALSE;
                 timeSincePlanetExplosion=0;
                 planetJustExploded=true;

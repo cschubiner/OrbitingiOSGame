@@ -7,9 +7,9 @@
 //
 
 #import "cocos2d.h"
+#import "CCBReader.h"
 
 @interface MainMenuLayer : CCLayer {
-
 }
 
 + (CCScene *) scene;

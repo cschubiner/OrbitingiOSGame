@@ -92,7 +92,9 @@
 	
 	[director setAnimationInterval:1.0/60];
 	[director setDisplayFPS:YES];
-	
+    
+    [CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
+
 	
 	// make the OpenGLView a child of the view controller
 	[viewController setView:glView];
@@ -112,14 +114,14 @@
 	[self removeStartupFlicker];
     
     // Load the scene from the example.ccb file
-    CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"example.ccb"];
+  //  CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"example.ccb"];
     
     // Run the loaded scene
-	[[CCDirector sharedDirector] runWithScene: scene];
+	//[[CCDirector sharedDirector] runWithScene: scene];
 
 	
 	// Run the intro Scene
-	//[[CCDirector sharedDirector] runWithScene: [GameplayLayer scene]];
+	[[CCDirector sharedDirector] runWithScene: [GameplayLayer scene]];
     //[[CCDirector sharedDirector] runWithScene: [MainMenuLayer scene]];
 }
 
