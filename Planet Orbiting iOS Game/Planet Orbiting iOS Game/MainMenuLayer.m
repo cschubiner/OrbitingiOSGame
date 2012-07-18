@@ -32,9 +32,9 @@
 - (id)init {
 	if (self = [super init]) {
         //we may have custom menu logic here, but for now everything is just made with cocosbuilder 1.x (not 2.x!!)
-        CCLayer* mainMenuCocosBuilderLayer = ((CCLayer*)[CCBReader nodeGraphFromFile:@"example.ccb"]);
-        [mainMenuCocosBuilderLayer setPosition:ccp(100,100)];
-        [self addChild:mainMenuCocosBuilderLayer];
+     //   CCLayer* mainMenuCocosBuilderLayer = ((CCLayer*)[CCBReader nodeGraphFromFile:@"example.ccb"]);
+       // [mainMenuCocosBuilderLayer setPosition:ccp(100,100)];
+      //  [self addChild:mainMenuCocosBuilderLayer];
         [[CDAudioManager sharedManager] playBackgroundMusic:@"LLSDemo-Aegis-Guard.mp3" loop:YES];
 	}
 	return self;
