@@ -1,6 +1,6 @@
 Content\iphone box.xnb
-Content\asteroid.xnb
 Content\font.xnb
 Content\biggerFont.xnb
+Content\asteroid.xnb
 Content\Planet2.xnb
 Content\zone.xnb
