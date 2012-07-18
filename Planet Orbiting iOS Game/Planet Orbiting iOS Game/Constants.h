@@ -60,7 +60,7 @@ const float minAstVel = 0;
 //the asteroid's maximum velocity
 const float maxAstVel = .4;
 
-//initial percentage of gravity felt immediately after you swipe in a non-green zone
+//percentage of gravity felt in free orbit mode
 const float initialPercentageOfGravityAfterSwipe = .3;
 
 //the rate at which gravity decreases. increase the number to increase the rate of decrease
@@ -69,23 +69,27 @@ const float rateToDecreaseGravity = .01;
 //percentage to multiply swipe vector by to get the velocity vector you add to the player's velocity
 const float swipeStrength = .03;
 
-//the minimum velocity you can have when isExperienceGravity is true
-const float minSwipeStrength = 20;
+//the minimum swipe magnitude that will count as a swipe
+const float minSwipeStrength = 25;
 
 //how many updates pass while the player isn't in a zone until tie go will did
-const float deathAfterThisLong = 55*1.35f*1.1f*1.5f*10;
+const float deathAfterThisLong = 55*1.35f*1.1f*1.5f*5;
 
 //the percent of the black hole's radius that triggers a collision
 const float blackHoleCollisionRadiusFactor = .2f;
 const float blackHoleSpeedFactor = .8f;
 
-const float timeDilationReduceRate = .00165;
+//increase to make timeDilationFactor decrease more rapidly
+const float timeDilationReduceRate = .003;
 
-const float timeDilationIncreaseRate = .11;
+//increase to increase timeDilationFactor by a larger amount everytime you get to a new zone
+const float timeDilationIncreaseRate = .4;
 
+//the smallest the time dilation factor can go
 const float absoluteMinTimeDilation = 1;
 
+//the highest the time dilation factor can go. this should probZ just be infinity. bitches will has c slow down if they're going too fast
 const float absoluteMaxTimeDilation = 9999;
 
 //0 = impossible/needs to match angle exactly, a higher number means your swipe timing can be off by that many degrees
-const float requiredAngleAccuracy = 40;
+const float requiredAngleAccuracy = 30;

@@ -40,12 +40,8 @@
     bool playerIsTouchingScreen;
     
     bool isOnFirstRun;
-    bool isOrbiting;
-    bool isInAZone;
-    bool justSwiped;
-    bool justBadSwiped;
-    bool isExperiencingGravity;
-    bool isGreen;
+    CGPoint initialVel;
+
     int orbitState;
     Planet* targetPlanet;
     CGPoint swipeVector;

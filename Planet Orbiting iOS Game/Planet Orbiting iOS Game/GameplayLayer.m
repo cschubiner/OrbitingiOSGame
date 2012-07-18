@@ -133,23 +133,62 @@ typedef struct {
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spriteSheetCamera.plist"];
         
         
-        [self CreatePlanetAndZone:257 yPos:262 scale:0.5f];
-        [self CreatePlanetAndZone:836 yPos:419 scale:1.189999f];
-        [self CreatePlanetAndZone:1540 yPos:-43 scale:0.7699997f];
-        [self CreatePlanetAndZone:2337 yPos:320 scale:1.189999f];
-        [self CreatePlanetAndZone:3274 yPos:42 scale:1.459999f];
-        [self CreatePlanetAndZone:3838 yPos:-790 scale:0.6199999f];
+        [self CreatePlanetAndZone:223 yPos:532 scale:0.8599997f];
+        [self CreatePlanetAndZone:880 yPos:599 scale:0.6799998f];
+        [self CreatePlanetAndZone:1155 yPos:1107 scale:1.189999f];
+        [self CreatePlanetAndZone:1923 yPos:953 scale:0.7999998f];
+        [self CreatePlanetAndZone:3005 yPos:1846 scale:3.469998f];
+        [self CreatePlanetAndZone:3376 yPos:3189 scale:0.7699998f];
+        [self CreatePlanetAndZone:4455 yPos:3574 scale:1.01f];
+        [self CreatePlanetAndZone:3926 yPos:4429 scale:1.579999f];
+        [self CreatePlanetAndZone:2563 yPos:4569 scale:1.01f];
+        [self CreatePlanetAndZone:2151 yPos:3824 scale:0.8299997f];
         
         
-        [self CreateAsteroid:589 yPos:109 scale:0.2304f];
-        [self CreateAsteroid:608 yPos:113 scale:0.2304f];
-        [self CreateAsteroid:413 yPos:94 scale:0.2304f];
-        [self CreateAsteroid:259 yPos:73 scale:0.2304f];
-        [self CreateAsteroid:42 yPos:221 scale:0.2304f];
-        [self CreateAsteroid:137 yPos:416 scale:0.2304f];
-        [self CreateAsteroid:365 yPos:605 scale:0.2304f];
-        [self CreateAsteroid:507 yPos:680 scale:0.2304f];
-        [self CreateAsteroid:3301 yPos:-632 scale:0.8744f];
+        [self CreateAsteroid:363 yPos:870 scale:0.2304f];
+        [self CreateAsteroid:80 yPos:843 scale:0.2304f];
+        [self CreateAsteroid:-109 yPos:709 scale:0.2304f];
+        [self CreateAsteroid:-111 yPos:467 scale:0.2304f];
+        [self CreateAsteroid:5 yPos:283 scale:0.2304f];
+        [self CreateAsteroid:340 yPos:206 scale:0.2304f];
+        [self CreateAsteroid:731 yPos:206 scale:0.2304f];
+        [self CreateAsteroid:1070 yPos:209 scale:0.2304f];
+        [self CreateAsteroid:1265 yPos:305 scale:0.2304f];
+        [self CreateAsteroid:1263 yPos:268 scale:0.2304f];
+        [self CreateAsteroid:781 yPos:102 scale:0.2304f];
+        [self CreateAsteroid:537 yPos:157 scale:0.2304f];
+        [self CreateAsteroid:470 yPos:546 scale:0.2304f];
+        [self CreateAsteroid:499 yPos:549 scale:0.2304f];
+        [self CreateAsteroid:691 yPos:878 scale:0.2304f];
+        [self CreateAsteroid:573 yPos:1060 scale:0.2304f];
+        [self CreateAsteroid:454 yPos:1099 scale:0.2304f];
+        [self CreateAsteroid:1354 yPos:596 scale:0.9894f];
+        [self CreateAsteroid:1002 yPos:783 scale:0.2304f];
+        [self CreateAsteroid:878 yPos:837 scale:0.2304f];
+        [self CreateAsteroid:1368 yPos:832 scale:0.2304f];
+        [self CreateAsteroid:1542 yPos:838 scale:0.5754f];
+        [self CreateAsteroid:1699 yPos:1414 scale:1.1734f];
+        [self CreateAsteroid:2357 yPos:1237 scale:0.5754f];
+        [self CreateAsteroid:2719 yPos:1426 scale:0.4374f];
+        [self CreateAsteroid:2496 yPos:1693 scale:0.8054f];
+        [self CreateAsteroid:2042 yPos:931 scale:0.16128f];
+        [self CreateAsteroid:3304 yPos:2644 scale:0.5064f];
+        [self CreateAsteroid:3372 yPos:2982 scale:0.2304f];
+        [self CreateAsteroid:3793 yPos:3540 scale:1.1964f];
+        [self CreateAsteroid:4281 yPos:3997 scale:0.2304f];
+        [self CreateAsteroid:4388 yPos:4049 scale:0.2304f];
+        [self CreateAsteroid:4558 yPos:4153 scale:0.2304f];
+        [self CreateAsteroid:4405 yPos:4222 scale:0.2304f];
+        [self CreateAsteroid:4747 yPos:3998 scale:0.2304f];
+        [self CreateAsteroid:3254 yPos:4533 scale:0.2304f];
+        [self CreateAsteroid:3404 yPos:4865 scale:0.2304f];
+        [self CreateAsteroid:3279 yPos:3967 scale:0.2304f];
+        [self CreateAsteroid:2872 yPos:4150 scale:0.2304f];
+        [self CreateAsteroid:2779 yPos:4156 scale:0.2304f];
+        [self CreateAsteroid:3731 yPos:3940 scale:0.2304f];
+        [self CreateAsteroid:2687 yPos:3912 scale:0.2304f];
+        [self CreateAsteroid:2107 yPos:4253 scale:0.2304f];
+        [self CreateAsteroid:2143 yPos:4456 scale:0.5524f];
         
         
         player = [[Player alloc]init];        
@@ -161,10 +200,6 @@ typedef struct {
         killer = 0;
         orbitState = 0;
         isOnFirstRun = true;
-        isOrbiting = true;
-        justSwiped = false;
-        justBadSwiped = false;
-        isExperiencingGravity = false;
         timeDilationCoefficient = 1;
         
         background = [CCSprite spriteWithFile:@"background.pvr.ccz"];
@@ -295,9 +330,9 @@ typedef struct {
     
     for (Planet* planet in planets)
     {
-        if (planet.number == lastPlanetVisited.number) {            
-            CGPoint initialVel = ccp(0, sqrtf(planet.orbitRadius*gravity));
-            if (isOnFirstRun) {
+        if (planet.number == lastPlanetVisited.number) {          
+            if (isOnFirstRun) {  
+                initialVel = ccp(0, sqrtf(planet.orbitRadius*gravity));
                 isOnFirstRun = false;
                 player.velocity = initialVel;
             }
@@ -370,6 +405,15 @@ typedef struct {
                     [self JumpPlayerToPlanet:lastPlanetVisited.number];
                 }
                 
+                /*gravity mult thing (just replace 'gravity'):
+                 B = G * clampf((G(angleToStartCreatingGravity-x)*factorToScaleGravityForPerfectSwipe)/angleToStartCreatingGravity, 0, factorToScaleGravityForPerfectSwipe)
+                 
+                 where
+                 angleToStartCreatingGravity ~~ 60-90
+                 and
+                 factorToScaleGravityForPerfectSwipe ~~ 2
+                 */
+                
                 
                 CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
                 CGPoint accelToAdd = ccpMult(direction, gravity/**planet.sprite.scale*/);
@@ -383,26 +427,7 @@ typedef struct {
                 orbitState = 0;
             }
             
-            if (isOrbiting) {
-
-            }
-            else {
-                if (justSwiped) {
-                    
-                } else if (justBadSwiped) {
-
-                }
-                if (isExperiencingGravity) {
-                    
-
-                    
-                }
-                
-                if (ccpLength(ccpSub(player.sprite.position, targetPlanet.sprite.position)) <= targetPlanet.orbitRadius) {
-
-                }
-                
-            }
+            
         }
         if (planet.number >lastPlanetVisited.number)
             break;
@@ -442,27 +467,19 @@ typedef struct {
     }
     
     bool isGoingCounterClockwise;
-    isGreen = false;
     if (player.isInZone) { //may want to keep on calculating lastAngle... not sure.
-        float takeoffAngleToNextPlanet=CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(nextPlanet.sprite.position, lastPlanetVisited.sprite.position)))-CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(player.sprite.position, lastPlanetVisited.sprite.position)));
-        
+        float takeoffAngleToNextPlanet=CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(nextPlanet.sprite.position, lastPlanetVisited.sprite.position)))-CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(player.sprite.position, lastPlanetVisited.sprite.position)));        
         isGoingCounterClockwise = (takeoffAngleToNextPlanet-lastTakeoffAngleToNextPlanet<0);
         if (isGoingCounterClockwise) {// if you are going CCW
             if ((takeoffAngleToNextPlanet<=-270+anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees&&takeoffAngleToNextPlanet>=-360+anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees)||
                 (takeoffAngleToNextPlanet>=0-anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees && takeoffAngleToNextPlanet <= 90+anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees)) {
-                player.sprite.color = ccc3(0, 255, 0);
-                isGreen = true;
             }
             
         } else if ((takeoffAngleToNextPlanet>=270-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees&&takeoffAngleToNextPlanet<=360+anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees)||
                    (takeoffAngleToNextPlanet >=-90-anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees && takeoffAngleToNextPlanet <=0+anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees)) {
-            player.sprite.color = ccc3(0, 255, 0);
-            isGreen = true;
         }
         lastTakeoffAngleToNextPlanet = takeoffAngleToNextPlanet;
     }
-    if (!isGreen)
-        player.sprite.color = ccc3(255, 255, 255);
     
     //spaceship rotating code follows --------------------
     float targetRotation = -CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity));
@@ -502,23 +519,19 @@ typedef struct {
 }
 
 - (void)JumpPlayerToPlanet:(int)planetIndex {
-    //timeDilationCoefficient = 1;
+    timeDilationCoefficient = 1;
     numZonesHitInARow = 0;
     //CCLOG([NSString stringWithFormat:@"thrust mag:"]);
     CGPoint dir = ccpNormalize(ccpSub(((Planet*)[planets objectAtIndex:planetIndex+1]).sprite.position,((Planet*)[planets objectAtIndex:planetIndex]).sprite.position));
     player.sprite.position = ccpAdd(((Planet*)[planets objectAtIndex:planetIndex]).sprite.position, ccpMult(dir, ((Planet*)[planets objectAtIndex:planetIndex]).orbitRadius));
     player.velocity=CGPointZero;
     player.acceleration=CGPointZero;
-    isExperiencingGravity = false;
-    isOrbiting = true;
-    isInAZone = true;
     orbitState = 0;
 }
 
 - (void)UpdatePlanets {    
     // Zone-to-Player collision detection follows-------------
     player.isInZone = false;
-    isInAZone = false;
     
     int zoneCount = zones.count;
     for (int i = MAX(lastPlanetVisited.number-1,0); i < zoneCount;i++)
@@ -528,8 +541,6 @@ typedef struct {
             continue;
         if (zone.number>lastPlanetVisited.number+1)
             break;
-        if (ccpDistance([[player sprite]position], [[zone sprite]position])<[zone radius]*.99)
-            isInAZone = true;
         if (zone.number<=lastPlanetVisited.number+1&& ccpDistance([[player sprite]position], [[zone sprite]position])<[zone radius]*.99)
         {
             player.isInZone = true;
@@ -677,18 +688,7 @@ typedef struct {
             swipeVector = ccpAdd(ccp(-player.thrustBeginPoint.x,-player.thrustBeginPoint.y), player.thrustEndPoint);
         }
     }
-    if (ccpLength(swipeVector) >= minSwipeStrength) {
-        if (isOrbiting) {
-            if (isGreen) {
-                justSwiped = true;
-                isOrbiting = false;
-                targetPlanet = [planets objectAtIndex: (lastPlanetVisited.number + 1)];
-            } else {
-                justBadSwiped = true;
-                isOrbiting = false;
-                targetPlanet = [planets objectAtIndex: (lastPlanetVisited.number + 1)];
-            }
-        }
+    if (ccpLength(swipeVector) >= minSwipeStrength && orbitState == 0) {
         orbitState = 1;
         targetPlanet = [planets objectAtIndex: (lastPlanetVisited.number + 1)];
     }
