@@ -29,9 +29,6 @@
     CCNode * cameraFocusNode;
     CGPoint cameraLastFocusPosition;
     Planet * lastPlanetVisited;
-    // where the player is on the screen (240,160 is center of screen)
-    CGPoint cameraFocusPosition;
-    CGPoint cameraPositionToFocus;
     bool justReachedNewPlanet;
     ccTime totalGameTime;
     float timeSinceCometLeftScreen;
