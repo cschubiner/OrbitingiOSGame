@@ -19,7 +19,7 @@ const float timeDilationSteepness = 8;
 const float timeDilationLimit = 2.5;
 
 //changes how zoomed in the camera in. higher numbers mean more zoom (everything looks bigger)
-const float zoomMultiplier = .95;
+const float zoomMultiplier = .88;
 //changes how quickly the camera zooms in and out
 const float cameraZoomSpeed = .03;
 //changes how quickly the camera changes position
@@ -83,10 +83,10 @@ const float blackHoleSpeedFactor = .8f;
 const float timeDilationReduceRate = .003;
 
 //increase to increase timeDilationFactor by a larger amount everytime you get to a new zone
-const float timeDilationIncreaseRate = .4;
+const float timeDilationIncreaseRate = .3;
 
 //the smallest the time dilation factor can go
-const float absoluteMinTimeDilation = 1;
+const float absoluteMinTimeDilation = 1.1;
 
 //the highest the time dilation factor can go. this should probZ just be infinity. bitches will has c slow down if they're going too fast
 const float absoluteMaxTimeDilation = 9999;

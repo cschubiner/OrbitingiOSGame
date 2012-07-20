@@ -364,7 +364,7 @@ typedef struct {
     
     float horizontalScale = 294.388933833*pow(distToUse,-.94226344467);
     
-    float newAng = CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(planetForZoom.sprite.position, focusPosition)));
+    float newAng = CC_RADIANS_TO_DEGREES(fabs(ccpToAngle(ccpSub(planetForZoom.sprite.position, focusPosition))));
     if (newAng > 270)
         newAng = 360 - newAng;
     if (newAng > 180)
@@ -372,14 +372,24 @@ typedef struct {
     if (newAng > 90)
         newAng = 180 - newAng;
     
-    float vals [] = {240,240.5,243,246.5,252,262,273,287,254,231,212,197,185,177,170,165,162,160.5,160};
+    //0 to 35: 240-(3.1/10)x+(4.6/100)x^2
+    //35 to 90: 499-8.1x+(4.9/100)x^2
     
-    int indexToUse = (int)clampf((newAng/5 + 0.5), 0, 18);
-    float numerator = vals[indexToUse];
+    //float vals [] = {240,240.5,243,246.5,252,262,273,287,254,231,212,197,185,177,170,165,162,160.5,160};
     
-    float scalerToUse = numerator/350; //should be 240 but oh well
+    //int indexToUse = (int)clampf((newAng/5 + 0.5), 0, 18);
+    //float numerator = vals[indexToUse];
     
-    //CCLOG(@"scaler: %f", scalerToUse);
+    float numerator;
+    
+    if (newAng < 35)
+        numerator = 240-(3.1/10)*newAng+(4.6/100)*powf(newAng, 2);
+    else
+        numerator = 499-8.1*newAng + (4.9/100)*powf(newAng, 2);
+    
+    float scalerToUse = numerator/240;
+    
+    CCLOG(@"num: %f, newAng: %f", numerator, newAng);
     
     float scale = zoomMultiplier*horizontalScale*scalerToUse;
     
