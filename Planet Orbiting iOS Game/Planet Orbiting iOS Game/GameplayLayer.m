@@ -372,13 +372,15 @@ typedef struct {
     if (newAng > 90)
         newAng = 180 - newAng;
     
-    //0 to 35: 240-(3.1/10)x+(4.6/100)x^2
-    //35 to 90: 499-8.1x+(4.9/100)x^2
-    
     //float vals [] = {240,240.5,243,246.5,252,262,273,287,254,231,212,197,185,177,170,165,162,160.5,160};
     
     //int indexToUse = (int)clampf((newAng/5 + 0.5), 0, 18);
     //float numerator = vals[indexToUse];
+    
+    
+    
+    //0 to 35: 240-(3.1/10)x+(4.6/100)x^2
+    //35 to 90: 499-8.1x+(4.9/100)x^2
     
     float numerator;
     
@@ -389,7 +391,7 @@ typedef struct {
     
     float scalerToUse = numerator/240;
     
-    CCLOG(@"num: %f, newAng: %f", numerator, newAng);
+    //CCLOG(@"num: %f, newAng: %f", numerator, newAng);
     
     float scale = zoomMultiplier*horizontalScale*scalerToUse;
     
