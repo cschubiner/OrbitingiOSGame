@@ -93,6 +93,152 @@ typedef struct {
     planetCounter++;
 }
 
+- (void)CreateLevel //paste level creation code here
+{
+    [self CreatePlanetAndZone:194 yPos:498 scale:0.5f];
+    [self CreatePlanetAndZone:551 yPos:715 scale:0.74f];
+    [self CreatePlanetAndZone:1099 yPos:817 scale:1.1f];
+    [self CreatePlanetAndZone:1407 yPos:400 scale:0.5599999f];
+    [self CreatePlanetAndZone:1858 yPos:444 scale:0.5f];
+    [self CreatePlanetAndZone:2087 yPos:801 scale:0.5f];
+    [self CreatePlanetAndZone:1857 yPos:1192 scale:0.5f];
+    [self CreatePlanetAndZone:1549 yPos:1557 scale:1.0045f];
+    [self CreatePlanetAndZone:974 yPos:1563 scale:1.028f];
+    [self CreatePlanetAndZone:691 yPos:1906 scale:0.5f];
+    [self CreatePlanetAndZone:847 yPos:2175 scale:0.5f];
+    [self CreatePlanetAndZone:1213 yPos:2164 scale:0.5f];
+    [self CreatePlanetAndZone:1549 yPos:2256 scale:0.44f];
+    [self CreatePlanetAndZone:1843 yPos:2127 scale:0.5f];
+    [self CreatePlanetAndZone:2120 yPos:2002 scale:0.41f];
+    [self CreatePlanetAndZone:2163 yPos:1756 scale:0.5f];
+    [self CreatePlanetAndZone:2385 yPos:1457 scale:0.5f];
+    [self CreatePlanetAndZone:2399 yPos:1170 scale:0.5f];
+    [self CreatePlanetAndZone:3341 yPos:865 scale:2.25675f];
+    
+    
+    [self CreateAsteroid:386 yPos:479 scale:0.2304f];
+    [self CreateAsteroid:387 yPos:408 scale:0.2304f];
+    [self CreateAsteroid:268 yPos:678 scale:0.2304f];
+    [self CreateAsteroid:195 yPos:716 scale:0.2304f];
+    [self CreateAsteroid:791 yPos:750 scale:0.5294f];
+    [self CreateAsteroid:832 yPos:506 scale:0.2304f];
+    [self CreateAsteroid:839 yPos:435 scale:0.2304f];
+    [self CreateAsteroid:722 yPos:998 scale:0.2764f];
+    [self CreateAsteroid:694 yPos:1081 scale:0.2994f];
+    [self CreateAsteroid:1291 yPos:557 scale:0.3684f];
+    [self CreateAsteroid:2117 yPos:527 scale:0.3914f];
+    [self CreateAsteroid:1858 yPos:676 scale:0.4144f];
+    [self CreateAsteroid:2236 yPos:900 scale:0.2764f];
+    [self CreateAsteroid:2242 yPos:796 scale:0.2304f];
+    [self CreateAsteroid:2243 yPos:721 scale:0.2304f];
+    [self CreateAsteroid:1937 yPos:808 scale:0.2304f];
+    [self CreateAsteroid:1864 yPos:767 scale:0.2304f];
+    [self CreateAsteroid:2102 yPos:1040 scale:0.2764f];
+    [self CreateAsteroid:2173 yPos:1075 scale:0.2304f];
+    [self CreateAsteroid:1931 yPos:874 scale:0.2304f];
+    [self CreateAsteroid:1927 yPos:1323 scale:0.2304f];
+    [self CreateAsteroid:1712 yPos:1134 scale:0.2304f];
+    [self CreateAsteroid:1689 yPos:1204 scale:0.2304f];
+    [self CreateAsteroid:1613 yPos:1235 scale:0.2304f];
+    [self CreateAsteroid:1527 yPos:1248 scale:0.2304f];
+    [self CreateAsteroid:1464 yPos:1282 scale:0.2304f];
+    [self CreateAsteroid:1409 yPos:1335 scale:0.2304f];
+    [self CreateAsteroid:1358 yPos:1386 scale:0.2304f];
+    [self CreateAsteroid:1846 yPos:1335 scale:0.2304f];
+    [self CreateAsteroid:1832 yPos:1403 scale:0.2304f];
+    [self CreateAsteroid:1829 yPos:1484 scale:0.2304f];
+    [self CreateAsteroid:1823 yPos:1558 scale:0.2304f];
+    [self CreateAsteroid:1963 yPos:1473 scale:0.6674f];
+    [self CreateAsteroid:1862 yPos:1726 scale:0.9533666f];
+    [self CreateAsteroid:1595 yPos:1942 scale:1.151742f];
+    [self CreateAsteroid:1692 yPos:1792 scale:0.3224f];
+    [self CreateAsteroid:1312 yPos:1852 scale:0.9487666f];
+    [self CreateAsteroid:1469 yPos:1814 scale:0.2304f];
+    [self CreateAsteroid:1258 yPos:1275 scale:0.709375f];
+    [self CreateAsteroid:1092 yPos:1285 scale:0.4144f];
+    [self CreateAsteroid:952 yPos:1264 scale:0.50065f];
+    [self CreateAsteroid:788 yPos:1307 scale:0.5524f];
+    [self CreateAsteroid:673 yPos:1408 scale:0.5524f];
+    [self CreateAsteroid:657 yPos:1559 scale:0.5524f];
+    [self CreateAsteroid:675 yPos:1684 scale:0.3454f];
+    [self CreateAsteroid:1022 yPos:1938 scale:1.069325f];
+    [self CreateAsteroid:1265 yPos:1393 scale:0.3224f];
+    [self CreateAsteroid:1169 yPos:1358 scale:0.2304f];
+    [self CreateAsteroid:1140 yPos:1805 scale:0.2764f];
+    [self CreateAsteroid:1408 yPos:2135 scale:0.2304f];
+    [self CreateAsteroid:1033 yPos:2249 scale:0.2304f];
+    [self CreateAsteroid:1397 yPos:2064 scale:0.2304f];
+    [self CreateAsteroid:1313 yPos:2015 scale:0.3914f];
+    [self CreateAsteroid:1804 yPos:2411 scale:1.108617f];
+    [self CreateAsteroid:1919 yPos:2261 scale:0.2304f];
+    [self CreateAsteroid:1977 yPos:2201 scale:0.2304f];
+    [self CreateAsteroid:1796 yPos:1976 scale:0.2304f];
+    [self CreateAsteroid:1881 yPos:1979 scale:0.2304f];
+    [self CreateAsteroid:2116 yPos:2177 scale:0.5709917f];
+    [self CreateAsteroid:1989 yPos:1887 scale:0.5849833f];
+    [self CreateAsteroid:1834 yPos:1899 scale:0.3914f];
+    [self CreateAsteroid:2153 yPos:1311 scale:1.164967f];
+    [self CreateAsteroid:2091 yPos:1159 scale:0.2304f];
+    [self CreateAsteroid:2157 yPos:1140 scale:0.2304f];
+    [self CreateAsteroid:2024 yPos:1624 scale:0.3914f];
+    [self CreateAsteroid:1921 yPos:1594 scale:0.2994f];
+    [self CreateAsteroid:2756 yPos:829 scale:0.5524f];
+    [self CreateAsteroid:2698 yPos:1056 scale:1.087533f];
+    [self CreateAsteroid:2590 yPos:1203 scale:0.3914f];
+    [self CreateAsteroid:2865 yPos:1171 scale:0.4834f];
+    [self CreateAsteroid:2760 yPos:1201 scale:0.2304f];
+    [self CreateAsteroid:2683 yPos:1210 scale:0.2304f];
+    [self CreateAsteroid:2660 yPos:904 scale:0.2304f];
+    [self CreateAsteroid:2793 yPos:927 scale:0.2304f];
+    [self CreateAsteroid:2586 yPos:938 scale:0.2304f];
+    [self CreateAsteroid:2514 yPos:1078 scale:0.2304f];
+    [self CreateAsteroid:2538 yPos:1135 scale:0.2304f];
+    [self CreateAsteroid:2523 yPos:996 scale:0.2304f];
+    [self CreateAsteroid:2867 yPos:329 scale:0.7364f];
+    [self CreateAsteroid:2694 yPos:480 scale:0.815175f];
+    [self CreateAsteroid:2499 yPos:633 scale:0.9976417f];
+    [self CreateAsteroid:2367 yPos:818 scale:0.6076f];
+    [self CreateAsteroid:3095 yPos:217 scale:0.9397583f];
+    [self CreateAsteroid:3378 yPos:156 scale:0.8086584f];
+    [self CreateAsteroid:3714 yPos:194 scale:1.498275f];
+    [self CreateAsteroid:4046 yPos:483 scale:1.7208f];
+    [self CreateAsteroid:3876 yPos:742 scale:0.2304f];
+    [self CreateAsteroid:4096 yPos:858 scale:1.04115f];
+    [self CreateAsteroid:3734 yPos:433 scale:0.5524f];
+    [self CreateAsteroid:4015 yPos:1098 scale:1.109767f];
+    [self CreateAsteroid:3790 yPos:1379 scale:1.211925f];
+    [self CreateAsteroid:3477 yPos:1523 scale:1.072967f];
+    [self CreateAsteroid:3081 yPos:1535 scale:1.310442f];
+    [self CreateAsteroid:2844 yPos:1391 scale:0.59265f];
+    [self CreateAsteroid:2669 yPos:1385 scale:0.5754f];
+    [self CreateAsteroid:2584 yPos:1510 scale:0.5064f];
+    [self CreateAsteroid:2775 yPos:1526 scale:0.5984f];
+    [self CreateAsteroid:2565 yPos:1638 scale:0.3224f];
+    [self CreateAsteroid:2098 yPos:1542 scale:0.3684f];
+    [self CreateAsteroid:2190 yPos:1469 scale:0.2534f];
+    [self CreateAsteroid:2098 yPos:1472 scale:0.2304f];
+    [self CreateAsteroid:2478 yPos:1789 scale:0.9627583f];
+    [self CreateAsteroid:2447 yPos:2086 scale:1.573408f];
+    [self CreateAsteroid:2330 yPos:1899 scale:0.2304f];
+    [self CreateAsteroid:2980 yPos:1369 scale:0.2304f];
+    [self CreateAsteroid:3299 yPos:1469 scale:0.2304f];
+    [self CreateAsteroid:3586 yPos:1410 scale:0.2304f];
+    [self CreateAsteroid:3670 yPos:1520 scale:0.2304f];
+    [self CreateAsteroid:3862 yPos:1203 scale:0.2304f];
+    [self CreateAsteroid:3955 yPos:1267 scale:0.2304f];
+    [self CreateAsteroid:3988 yPos:726 scale:0.2304f];
+    [self CreateAsteroid:4090 yPos:702 scale:0.2304f];
+    [self CreateAsteroid:4253 yPos:670 scale:0.2304f];
+    [self CreateAsteroid:3847 yPos:659 scale:0.2304f];
+    [self CreateAsteroid:3801 yPos:550 scale:0.2304f];
+    [self CreateAsteroid:3466 yPos:271 scale:0.2304f];
+    [self CreateAsteroid:3266 yPos:272 scale:0.2304f];
+    [self CreateAsteroid:3128 yPos:350 scale:0.2304f];
+    [self CreateAsteroid:3357 yPos:319 scale:0.3914f];
+    [self CreateAsteroid:3518 yPos:354 scale:0.2304f];
+    [self CreateAsteroid:3610 yPos:401 scale:0.2304f];
+}
+
 /* On "init," initialize the instance */
 - (id) init
 {
@@ -133,62 +279,7 @@ typedef struct {
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spriteSheetCamera.plist"];
         
         
-        [self CreatePlanetAndZone:223 yPos:532 scale:0.8599997f];
-        [self CreatePlanetAndZone:880 yPos:599 scale:0.6799998f];
-        [self CreatePlanetAndZone:1155 yPos:1107 scale:1.189999f];
-        [self CreatePlanetAndZone:1923 yPos:953 scale:0.7999998f];
-        [self CreatePlanetAndZone:3005 yPos:1846 scale:3.469998f];
-        [self CreatePlanetAndZone:3376 yPos:3189 scale:0.7699998f];
-        [self CreatePlanetAndZone:4455 yPos:3574 scale:1.01f];
-        [self CreatePlanetAndZone:3926 yPos:4429 scale:1.579999f];
-        [self CreatePlanetAndZone:2563 yPos:4569 scale:1.01f];
-        [self CreatePlanetAndZone:2151 yPos:3824 scale:0.8299997f];
-        
-        
-        [self CreateAsteroid:363 yPos:870 scale:0.2304f];
-        [self CreateAsteroid:80 yPos:843 scale:0.2304f];
-        [self CreateAsteroid:-109 yPos:709 scale:0.2304f];
-        [self CreateAsteroid:-111 yPos:467 scale:0.2304f];
-        [self CreateAsteroid:5 yPos:283 scale:0.2304f];
-        [self CreateAsteroid:340 yPos:206 scale:0.2304f];
-        [self CreateAsteroid:731 yPos:206 scale:0.2304f];
-        [self CreateAsteroid:1070 yPos:209 scale:0.2304f];
-        [self CreateAsteroid:1265 yPos:305 scale:0.2304f];
-        [self CreateAsteroid:1263 yPos:268 scale:0.2304f];
-        [self CreateAsteroid:781 yPos:102 scale:0.2304f];
-        [self CreateAsteroid:537 yPos:157 scale:0.2304f];
-        [self CreateAsteroid:470 yPos:546 scale:0.2304f];
-        [self CreateAsteroid:499 yPos:549 scale:0.2304f];
-        [self CreateAsteroid:691 yPos:878 scale:0.2304f];
-        [self CreateAsteroid:573 yPos:1060 scale:0.2304f];
-        [self CreateAsteroid:454 yPos:1099 scale:0.2304f];
-        [self CreateAsteroid:1354 yPos:596 scale:0.9894f];
-        [self CreateAsteroid:1002 yPos:783 scale:0.2304f];
-        [self CreateAsteroid:878 yPos:837 scale:0.2304f];
-        [self CreateAsteroid:1368 yPos:832 scale:0.2304f];
-        [self CreateAsteroid:1542 yPos:838 scale:0.5754f];
-        [self CreateAsteroid:1699 yPos:1414 scale:1.1734f];
-        [self CreateAsteroid:2357 yPos:1237 scale:0.5754f];
-        [self CreateAsteroid:2719 yPos:1426 scale:0.4374f];
-        [self CreateAsteroid:2496 yPos:1693 scale:0.8054f];
-        [self CreateAsteroid:2042 yPos:931 scale:0.16128f];
-        [self CreateAsteroid:3304 yPos:2644 scale:0.5064f];
-        [self CreateAsteroid:3372 yPos:2982 scale:0.2304f];
-        [self CreateAsteroid:3793 yPos:3540 scale:1.1964f];
-        [self CreateAsteroid:4281 yPos:3997 scale:0.2304f];
-        [self CreateAsteroid:4388 yPos:4049 scale:0.2304f];
-        [self CreateAsteroid:4558 yPos:4153 scale:0.2304f];
-        [self CreateAsteroid:4405 yPos:4222 scale:0.2304f];
-        [self CreateAsteroid:4747 yPos:3998 scale:0.2304f];
-        [self CreateAsteroid:3254 yPos:4533 scale:0.2304f];
-        [self CreateAsteroid:3404 yPos:4865 scale:0.2304f];
-        [self CreateAsteroid:3279 yPos:3967 scale:0.2304f];
-        [self CreateAsteroid:2872 yPos:4150 scale:0.2304f];
-        [self CreateAsteroid:2779 yPos:4156 scale:0.2304f];
-        [self CreateAsteroid:3731 yPos:3940 scale:0.2304f];
-        [self CreateAsteroid:2687 yPos:3912 scale:0.2304f];
-        [self CreateAsteroid:2107 yPos:4253 scale:0.2304f];
-        [self CreateAsteroid:2143 yPos:4456 scale:0.5524f];
+        [self CreateLevel];
         
         player = [[Player alloc]init];        
         player.sprite = [CCSprite spriteWithSpriteFrameName:@"spaceship-hd.png"];
@@ -219,6 +310,9 @@ typedef struct {
         [cameraLayer addChild:spriteSheet];
         [self addChild:hudLayer];
         [self UpdateScore];
+        
+        [FlurryAnalytics logEvent:@"Started Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil] timed:YES];
+        
         [self schedule:@selector(Update:) interval:0]; //this makes the update loop loop!!!!        
 	}
 	return self;
@@ -302,7 +396,7 @@ typedef struct {
     for (Asteroid* asteroid in asteroids) {        
         CGPoint p = asteroid.sprite.position;
         if (ccpLength(ccpSub(player.sprite.position, p)) <= asteroid.radius * asteroidRadiusCollisionZone) {
-            [self JumpPlayerToPlanet:lastPlanetVisited.number - 1];
+            [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number - 1];
         }
     }
     
@@ -382,7 +476,7 @@ typedef struct {
             
             if (orbitState == 3) {
                 if (ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) <= planet.radius * planetRadiusCollisionZone) {
-                    [self JumpPlayerToPlanet:lastPlanetVisited.number];
+                    [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
                 }
                 CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
                 CGPoint accelToAdd = ccpMult(direction, gravity/**planet.sprite.scale*/);
@@ -406,7 +500,12 @@ typedef struct {
     if (orbitState == 0 || orbitState == 2)
         killer = 0;    
     if (killer > deathAfterThisLong)
-        [self JumpPlayerToPlanet:lastPlanetVisited.number];
+        [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
+}
+
+- (void)RespawnPlayerAtPlanetIndex:(int)planetIndex {
+    [FlurryAnalytics logEvent:@"Player Died" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:lastPlanetVisited.number],@"Last planet reached", nil]];
+    [self JumpPlayerToPlanet:planetIndex];
 }
 
 - (void)UpdatePlayer:(float)dt {
@@ -422,7 +521,7 @@ typedef struct {
     
     // if player is off-screen
     if (![self IsNonConvertedPositionOnScreen:[self GetPlayerPositionOnScreen]]) { 
-        [self JumpPlayerToPlanet:lastPlanetVisited.number];
+        [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
     }
     
     
@@ -456,7 +555,7 @@ typedef struct {
     }
     else if (targetRotation-player.sprite.rotation<=-180)
         player.sprite.rotation-=360;    
-    player.sprite.rotation = lerpf(player.sprite.rotation, targetRotation, playerRotationSpeed);
+    player.sprite.rotation = targetRotation;
     //end spaceship rotating code --------------------
 }
 
@@ -524,12 +623,16 @@ typedef struct {
                 [zone.sprite setColor:ccc3(255, 80, 180)];
                 zone.hasPlayerHitThisZone = true;  
                 zonesReached++;
-                
                 score+=currentPtoPscore;
                 currentPtoPscore=0;
                 prevCurrentPtoPScore=0;
                 numZonesHitInARow++;
                 timeDilationCoefficient += timeDilationIncreaseRate;
+                
+                if (zonesReached>=[zones count]) {
+                    [TestFlight passCheckpoint:@"Reached All Zones"];
+                    [FlurryAnalytics endTimedEvent:@"Started Game" withParameters:nil];
+                }
             }
         }
         else if (i<[zones count]-1&&((Zone*)[zones objectAtIndex:i+1]).hasPlayerHitThisZone) { //if player has hit the next zone and it hasn't exploded yet

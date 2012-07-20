@@ -8,6 +8,9 @@
 
 #import "cocos2d.h"
 #import "CCBReader.h"
+#import "TestFlight.h"
+#import "FlurryAnalytics/FlurryAnalytics.h"
+
 
 @interface MainMenuLayer : CCLayer {
 }

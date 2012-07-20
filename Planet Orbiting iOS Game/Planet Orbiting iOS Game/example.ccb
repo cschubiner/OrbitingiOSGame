@@ -689,11 +689,11 @@
 									<key>rotation</key>
 									<real>0.0</real>
 									<key>scaleX</key>
-									<real>1</real>
+									<real>1.7999999523162842</real>
 									<key>scaleY</key>
 									<real>1</real>
 									<key>selector</key>
-									<string>startGame:</string>
+									<string>pressedSendFeedback:</string>
 									<key>spriteFileDisabled</key>
 									<string>btn-test-2.png</string>
 									<key>spriteFileNormal</key>
@@ -784,7 +784,7 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>44</real>
+								<real>203</real>
 								<real>22</real>
 							</array>
 							<key>customClass</key>
@@ -815,7 +815,7 @@
 							<key>scaleY</key>
 							<real>1.1604297161102295</real>
 							<key>string</key>
-							<string>Start</string>
+							<string>*Send Clay Feedback*</string>
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
@@ -1087,7 +1087,7 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>1095</real>
+						<real>1481</real>
 						<real>137</real>
 					</array>
 					<key>customClass</key>

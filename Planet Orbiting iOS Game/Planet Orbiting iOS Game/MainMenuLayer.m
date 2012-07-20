@@ -42,8 +42,19 @@
 
 //this is called (magically??) by cocosbuilder when the start button is pressed
 - (void)startGame: (id)sender {
+    [FlurryAnalytics logEvent:@"Pressed Start Game"];
+
+    [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
+
     CCLOG(@"gameplayLayer scene launched, game starting");
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
+}
+
+- (void) pressedSendFeedback: (id) sender
+{
+    [FlurryAnalytics logEvent:@"Pressed Send Feedback"];
+    [[UIApplication sharedApplication]setStatusBarOrientation:UIInterfaceOrientationPortrait];
+    [TestFlight openFeedbackView];
 }
 
 - (void)dealloc {

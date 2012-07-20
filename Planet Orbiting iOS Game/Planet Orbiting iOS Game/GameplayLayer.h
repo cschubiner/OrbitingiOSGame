@@ -13,6 +13,8 @@
 #import "SimpleAudioEngine.h"
 #import "MainMenuLayer.h"
 #import "CCBReader.h"
+#import "FlurryAnalytics/FlurryAnalytics.h"
+
 
 @interface GameplayLayer : CCLayer {
     

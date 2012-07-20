@@ -168,6 +168,8 @@
 		C47774FE15A75CE2005D0AEB /* btn-test-2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C47774F415A75CE2005D0AEB /* btn-test-2-hd.png */; };
 		C47774FF15A75CE2005D0AEB /* jungle-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C47774F515A75CE2005D0AEB /* jungle-hd.png */; };
 		C477750215A75D2D005D0AEB /* burst-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C477750115A75D2C005D0AEB /* burst-hd.png */; };
+		C4B06C5715B9161D003C0183 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B06C5515B9161D003C0183 /* libTestFlight.a */; };
+		C4B06C6915B919DA003C0183 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B06C6815B919DA003C0183 /* libFlurryAnalytics.a */; };
 		C4E994B215A435E600C7009D /* cometParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4E994AE15A435E600C7009D /* cometParticle.plist */; };
 		C4E994B315A435E600C7009D /* planetExplosion.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4E994AF15A435E600C7009D /* planetExplosion.plist */; };
 		C4E994B415A435E600C7009D /* spaceParticles.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4E994B015A435E600C7009D /* spaceParticles.plist */; };
@@ -470,6 +472,10 @@
 		C47774F515A75CE2005D0AEB /* jungle-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jungle-hd.png"; sourceTree = "<group>"; };
 		C477750115A75D2C005D0AEB /* burst-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "burst-hd.png"; sourceTree = "<group>"; };
 		C49E914A159A48D700BC424D /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		C4B06C5515B9161D003C0183 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		C4B06C5615B9161D003C0183 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		C4B06C6715B919DA003C0183 /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
+		C4B06C6815B919DA003C0183 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		C4E994AE15A435E600C7009D /* cometParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cometParticle.plist; sourceTree = "<group>"; };
 		C4E994AF15A435E600C7009D /* planetExplosion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = planetExplosion.plist; sourceTree = "<group>"; };
 		C4E994B015A435E600C7009D /* spaceParticles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = spaceParticles.plist; sourceTree = "<group>"; };
@@ -496,6 +502,8 @@
 				0C7AA5FD15946939000B58F2 /* UIKit.framework in Frameworks */,
 				0C7AA5FF15946939000B58F2 /* Foundation.framework in Frameworks */,
 				0C7AA60115946939000B58F2 /* CoreGraphics.framework in Frameworks */,
+				C4B06C5715B9161D003C0183 /* libTestFlight.a in Frameworks */,
+				C4B06C6915B919DA003C0183 /* libFlurryAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,6 +607,8 @@
 				0C487AF715946E2300674AB9 /* GameplayLayer.m */,
 				0C7AA75A1594693D000B58F2 /* MainMenuLayer.h */,
 				0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */,
+				C4B06C6615B919DA003C0183 /* FlurryAnalytics */,
+				C4B06C5915B9161F003C0183 /* TestFlight */,
 				C445304D15A68888004F8F48 /* CocosBuilder  */,
 				0C7AA60315946939000B58F2 /* Resources */,
 				0C7AA61715946939000B58F2 /* libs */,
@@ -1020,6 +1030,24 @@
 			name = ignore;
 			sourceTree = "<group>";
 		};
+		C4B06C5915B9161F003C0183 /* TestFlight */ = {
+			isa = PBXGroup;
+			children = (
+				C4B06C5515B9161D003C0183 /* libTestFlight.a */,
+				C4B06C5615B9161D003C0183 /* TestFlight.h */,
+			);
+			name = TestFlight;
+			sourceTree = "<group>";
+		};
+		C4B06C6615B919DA003C0183 /* FlurryAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				C4B06C6715B919DA003C0183 /* FlurryAnalytics.h */,
+				C4B06C6815B919DA003C0183 /* libFlurryAnalytics.a */,
+			);
+			path = FlurryAnalytics;
+			sourceTree = "<group>";
+		};
 		C4E994B715A435EA00C7009D /* Particles */ = {
 			isa = PBXGroup;
 			children = (
@@ -1317,6 +1345,11 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Planet Orbiting iOS Game/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Planet Orbiting iOS Game\"",
+					"\"$(SRCROOT)/Planet Orbiting iOS Game/FlurryAnalytics\"",
+				);
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1341,6 +1374,11 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Planet Orbiting iOS Game/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Planet Orbiting iOS Game\"",
+					"\"$(SRCROOT)/Planet Orbiting iOS Game/FlurryAnalytics\"",
+				);
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
