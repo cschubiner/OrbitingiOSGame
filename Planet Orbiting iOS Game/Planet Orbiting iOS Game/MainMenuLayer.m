@@ -50,7 +50,7 @@
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
 }
 
-- (void) pressedSendFeedback: (id) sender
+- (void)pressedSendFeedback: (id) sender
 {
     [FlurryAnalytics logEvent:@"Pressed Send Feedback"];
     [[UIApplication sharedApplication]setStatusBarOrientation:UIInterfaceOrientationPortrait];

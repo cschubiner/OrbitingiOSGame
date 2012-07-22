@@ -37,23 +37,10 @@ typedef struct {
 	
 	// 'layer' is an autorelease object.
 	GameplayLayer *layer = [GameplayLayer node];
-	
-    NSLog(@"Creating wallet");
-    UserWallet *wallet = [UserWallet sharedInstance];
-    NSLog(@"Wallet created");
-    NSLog(@"balance = %i", [wallet getBalance]);
-    [wallet addCoins:5];
-    NSLog(@"balance = %i", [wallet getBalance]);
-    [wallet removeCoins:2];
-    NSLog(@"balance = %i", [wallet getBalance]);
 
-
-    
 	// add layer as a child to scene
 	[scene addChild: layer];
     
-    
-	
 	// return the scene.
 	return scene;
 }
@@ -128,7 +115,6 @@ typedef struct {
     [self CreatePlanetAndZone:2385 yPos:1457 scale:0.5f];
     [self CreatePlanetAndZone:2399 yPos:1170 scale:0.5f];
     [self CreatePlanetAndZone:3341 yPos:865 scale:2.25675f];
-    
     
     [self CreateAsteroid:386 yPos:479 scale:0.2304f];
     [self CreateAsteroid:387 yPos:408 scale:0.2304f];

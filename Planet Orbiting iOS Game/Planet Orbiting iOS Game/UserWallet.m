@@ -72,12 +72,17 @@ static int MAX_BALANCE = 1000;
 
 /** 
 
-Suggested Implementation for Delegate:
+Suggested implementation for delegate class:
 
-- (void)updatedWalletSuccess {
- UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Transaction Failed" message:errorMessage delegate:self cancelButtonTitle:@"Return" otherButtonTitles: nil];
- [alertView show];
- [alertView release];
+ - (void)updatedWalletSuccess {
+    // handle successful addition or removal of coins
+ }
+
+ 
+- (void)updatedWalletFailure {
+   UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Transaction Failed" message:errorText delegate:self cancelButtonTitle:@"Return" otherButtonTitles: nil];
+   [alertView show];
+   [alertView release];
 }
 
 **/
