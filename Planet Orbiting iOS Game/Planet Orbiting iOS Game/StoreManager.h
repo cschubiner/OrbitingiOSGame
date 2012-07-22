@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "StoreItem.h"
 
 @interface StoreManager : NSObject {
     NSMutableArray *storeItems;
 }
 
 @property (nonatomic, retain) NSMutableArray *storeItems;
+
+- (void)addItemToStore:(StoreItem *)item;
+- (void)removeItemFromStore:(StoreItem *)item;
 
 @end
