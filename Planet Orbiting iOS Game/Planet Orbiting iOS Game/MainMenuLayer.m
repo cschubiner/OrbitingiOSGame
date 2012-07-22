@@ -40,7 +40,7 @@
 	return self;
 }
 
-//this is called (magically??) by cocosbuilder when the start button is pressed
+// this is called (magically??) by cocosbuilder when the start button is pressed
 - (void)startGame: (id)sender {
     [FlurryAnalytics logEvent:@"Pressed Start Game"];
 

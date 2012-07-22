@@ -12,6 +12,7 @@
 #import "Asteroid.h"
 #import "Zone.h"
 #import "Constants.h"
+#import "UserWallet.h"
 
 @implementation GameplayLayer {
     int planetCounter;
@@ -37,8 +38,21 @@ typedef struct {
 	// 'layer' is an autorelease object.
 	GameplayLayer *layer = [GameplayLayer node];
 	
+    NSLog(@"Creating wallet");
+    UserWallet *wallet = [UserWallet sharedInstance];
+    NSLog(@"Wallet created");
+    NSLog(@"balance = %i", [wallet getBalance]);
+    [wallet addCoins:5];
+    NSLog(@"balance = %i", [wallet getBalance]);
+    [wallet removeCoins:2];
+    NSLog(@"balance = %i", [wallet getBalance]);
+
+
+    
 	// add layer as a child to scene
 	[scene addChild: layer];
+    
+    
 	
 	// return the scene.
 	return scene;
@@ -93,7 +107,7 @@ typedef struct {
     planetCounter++;
 }
 
-- (void)CreateLevel //paste level creation code here
+- (void)CreateLevel // paste level creation code here
 {
     [self CreatePlanetAndZone:194 yPos:498 scale:0.5f];
     [self CreatePlanetAndZone:551 yPos:715 scale:0.74f];

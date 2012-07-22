@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UserWallet : NSObject
+@protocol UserWalletProtocol <NSObject>
+- (void)updatedWalletSuccess;
+- (void)updatedWalletFailure:(NSString *)errorText;
+@end
+
+@interface UserWallet : NSObject {
+    id <UserWalletProtocol> userWalletDelegate;
+}
+
++ (id)sharedInstance;
+
+- (int)getBalance;
+- (void)addCoins:(int)coinsToAdd;
+- (void)removeCoins:(int)coinsToRemove;
 
 @end

@@ -17,7 +17,6 @@
 
 
 @interface GameplayLayer : CCLayer {
-    
     Player *player;
     NSMutableArray *planets;
     NSMutableArray *zones;
@@ -51,8 +50,7 @@
     CCParticleSystemQuad * cometParticle;
     CCParticleSystemQuad * blackHoleParticle;
     CGPoint cometVelocity;
-    
-    float lastTakeoffAngleToNextPlanet;
+        float lastTakeoffAngleToNextPlanet;
     
     // is multiplied by the absoluteSpeedMult to cause time dilation
     float timeDilationCoefficient;
