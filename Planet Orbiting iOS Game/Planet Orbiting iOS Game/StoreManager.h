@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface StoreManager : NSObject
+@interface StoreManager : NSObject {
+    NSMutableArray *storeItems;
+}
+
+@property (nonatomic, retain) NSMutableArray *storeItems;
 
 @end

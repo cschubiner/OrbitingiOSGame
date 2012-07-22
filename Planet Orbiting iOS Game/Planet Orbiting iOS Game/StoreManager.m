@@ -10,4 +10,6 @@
 
 @implementation StoreManager
 
+@synthesize storeItems;
+
 @end

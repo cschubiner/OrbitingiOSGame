@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface StoreItem : NSObject
+@interface StoreItem : NSObject {
+    NSString *title;
+    NSString *description;
+    int price;
+}
+
+@property (nonatomic) int price;
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSString *description;
 
 @end

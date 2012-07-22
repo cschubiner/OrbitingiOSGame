@@ -10,4 +10,9 @@
 
 @implementation StoreItem
 
+@synthesize
+title,
+description,
+price;
+
 @end
