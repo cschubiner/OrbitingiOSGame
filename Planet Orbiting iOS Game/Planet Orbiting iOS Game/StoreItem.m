@@ -8,10 +8,13 @@
 
 #import "StoreItem.h"
 
+// itemID numbers must be numbered as are items in an array - i.e. if there are 4 items in the store, then their ID numbers are 0, 1, 2, 3
+
 @implementation StoreItem
 
 @synthesize
 title,
+itemID,
 description,
 price;
 

@@ -11,10 +11,12 @@
 @interface StoreItem : NSObject {
     NSString *title;
     NSString *description;
+    int itemID;
     int price;
 }
 
 @property (nonatomic) int price;
+@property (nonatomic) int itemID;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *description;
 
