@@ -809,6 +809,14 @@ float lerpf(float a, float b, float t) {
 }
 
 
+/**
+- (void)dealloc {
+    // before we add anything here we should talk about what will be retained vs. released vs. set to nil in certain situations
+    [super dealloc];
+}
+ **/
+
+
 #if !defined(MIN)
 #define MIN(A,B)    ({ __typeof__(A) __a = (A); __typeof__(B) __b = (B); __a < __b ? __a : __b; })
 #endif

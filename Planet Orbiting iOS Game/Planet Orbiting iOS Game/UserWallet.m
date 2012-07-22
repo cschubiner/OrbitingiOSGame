@@ -79,7 +79,7 @@ Suggested implementation for delegate class:
  }
 
  
-- (void)updatedWalletFailure {
+- (void)updatedWalletFailure:(NSString *)errorText {
    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Transaction Failed" message:errorText delegate:self cancelButtonTitle:@"Return" otherButtonTitles: nil];
    [alertView show];
    [alertView release];
