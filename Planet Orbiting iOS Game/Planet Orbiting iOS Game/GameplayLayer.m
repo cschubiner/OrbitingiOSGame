@@ -53,9 +53,9 @@ typedef struct {
 - (void)CreateCoin:(CGFloat)xPos yPos:(CGFloat)yPos
 {
     Coin *coin = [[Coin alloc]init];
-    coin.sprite = [CCSprite spriteWithSpriteFrameName:@"asteroid-hd.png"];
+    coin.sprite = [CCSprite spriteWithSpriteFrameName:@"coin.png"];
     coin.sprite.position = ccp(xPos, yPos);
-    [coin.sprite setScale:.3];
+    [coin.sprite setScale:.3f];
     [cameraObjects addObject:coin];
     [coins addObject:coin];
     [spriteSheet addChild:coin.sprite];
@@ -77,7 +77,7 @@ typedef struct {
 - (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale
 {
     Planet *planet = [[Planet alloc]init];
-    planet.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"planet%d-hd.png",[self RandomBetween:1 maxvalue:6]]];
+    planet.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"planet%d-hd.png",[self RandomBetween:1 maxvalue:7]]];
     planet.sprite.position =  ccp(xPos, yPos);
     [planet.sprite setScale:scale];
     planet.mass = 1;
@@ -320,7 +320,7 @@ typedef struct {
         planetExplosionParticle = [CCParticleSystemQuad particleWithFile:@"planetExplosion.plist"];
         [planetExplosionParticle stopSystem];
         spaceBackgroundParticle = [CCParticleSystemQuad particleWithFile:@"spaceParticles.plist"];
-        thrustParticle = [CCParticleSystemQuad particleWithFile:@"thrustParticle.plist"];
+        thrustParticle = [CCParticleSystemQuad particleWithFile:@"thrustParticle2.plist"];
         blackHoleParticle = [CCParticleSystemQuad particleWithFile:@"blackHoleParticle.plist"];
         [blackHoleParticle setPositionType:kCCPositionTypeGrouped];
         
@@ -346,6 +346,11 @@ typedef struct {
         player.sprite = [CCSprite spriteWithSpriteFrameName:@"spaceship-hd.png"];
         [player.sprite setScale:playerSizeScale];
         [cameraObjects addObject:player];         
+        
+        streak=[CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak.png" width:26 length:32 color://ccc4(153,102,0, 255)  //orange
+                ccc4(255,255,255, 255) 
+                                      target:player.sprite];
+        
         cameraFocusNode = [[CCSprite alloc]init];
         
         killer = 0;
@@ -734,7 +739,9 @@ typedef struct {
     [cameraLayer removeChild:blackHoleParticle cleanup:NO];
     [cameraLayer addChild:blackHoleParticle z:3];
     
+    [thrustParticle setPositionType:kCCPositionTypeRelative];
     [cameraLayer addChild:thrustParticle z:2];
+    [cameraLayer addChild:streak z:0];
     [spriteSheet addChild:player.sprite z:1];
 }
 

@@ -134,14 +134,16 @@
 		0C8534C415B64D5C0006EAC9 /* PlainFont.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534C015B64D5C0006EAC9 /* PlainFont.png */; };
 		0C8534C515B64D5C0006EAC9 /* PlainFont-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534C115B64D5C0006EAC9 /* PlainFont-hd.fnt */; };
 		0C8534C615B64D5C0006EAC9 /* PlainFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534C215B64D5C0006EAC9 /* PlainFont.fnt */; };
-		0C8534CB15B6580C0006EAC9 /* spriteSheetCamera-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534C715B6580C0006EAC9 /* spriteSheetCamera-hd.plist */; };
-		0C8534CC15B6580C0006EAC9 /* spriteSheetCamera-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534C815B6580C0006EAC9 /* spriteSheetCamera-hd.pvr.ccz */; };
-		0C8534CD15B6580C0006EAC9 /* spriteSheetCamera.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534C915B6580C0006EAC9 /* spriteSheetCamera.plist */; };
-		0C8534CE15B6580C0006EAC9 /* spriteSheetCamera.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534CA15B6580C0006EAC9 /* spriteSheetCamera.pvr.ccz */; };
 		0C8534E315B660FB0006EAC9 /* background-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534DF15B660FB0006EAC9 /* background-hd.plist */; };
 		0C8534E415B660FB0006EAC9 /* background-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534E015B660FB0006EAC9 /* background-hd.pvr.ccz */; };
 		0C8534E515B660FB0006EAC9 /* background.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534E115B660FB0006EAC9 /* background.plist */; };
 		0C8534E615B660FB0006EAC9 /* background.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534E215B660FB0006EAC9 /* background.pvr.ccz */; };
+		0C8A19C615BDBB300010973F /* spriteSheetCamera-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A19C215BDBB300010973F /* spriteSheetCamera-hd.plist */; };
+		0C8A19C715BDBB300010973F /* spriteSheetCamera-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A19C315BDBB300010973F /* spriteSheetCamera-hd.pvr.ccz */; };
+		0C8A19C815BDBB300010973F /* spriteSheetCamera.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A19C415BDBB300010973F /* spriteSheetCamera.plist */; };
+		0C8A19C915BDBB300010973F /* spriteSheetCamera.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A19C515BDBB300010973F /* spriteSheetCamera.pvr.ccz */; };
+		0C8A19D715BDF6DD0010973F /* streak.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A19D615BDF6DD0010973F /* streak.png */; };
+		0C8A19D915BDF8150010973F /* thrustParticle2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A19D815BDF8150010973F /* thrustParticle2.plist */; };
 		0CFB822D15AE61EC00EADAF3 /* LLSDemo-Aegis-Guard.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CFB822B15AE61EC00EADAF3 /* LLSDemo-Aegis-Guard.mp3 */; };
 		0CFB822E15AE61EC00EADAF3 /* phasenwandler_-_Longing_for_Freedom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CFB822C15AE61EC00EADAF3 /* phasenwandler_-_Longing_for_Freedom.mp3 */; };
 		0CFB823715AE6E3000EADAF3 /* bomb.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0CFB823615AE6E3000EADAF3 /* bomb.wav */; };
@@ -441,14 +443,16 @@
 		0C8534C015B64D5C0006EAC9 /* PlainFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlainFont.png; sourceTree = "<group>"; };
 		0C8534C115B64D5C0006EAC9 /* PlainFont-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "PlainFont-hd.fnt"; sourceTree = "<group>"; };
 		0C8534C215B64D5C0006EAC9 /* PlainFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PlainFont.fnt; sourceTree = "<group>"; };
-		0C8534C715B6580C0006EAC9 /* spriteSheetCamera-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spriteSheetCamera-hd.plist"; sourceTree = "<group>"; };
-		0C8534C815B6580C0006EAC9 /* spriteSheetCamera-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "spriteSheetCamera-hd.pvr.ccz"; sourceTree = "<group>"; };
-		0C8534C915B6580C0006EAC9 /* spriteSheetCamera.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = spriteSheetCamera.plist; sourceTree = "<group>"; };
-		0C8534CA15B6580C0006EAC9 /* spriteSheetCamera.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = spriteSheetCamera.pvr.ccz; sourceTree = "<group>"; };
 		0C8534DF15B660FB0006EAC9 /* background-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "background-hd.plist"; sourceTree = "<group>"; };
 		0C8534E015B660FB0006EAC9 /* background-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background-hd.pvr.ccz"; sourceTree = "<group>"; };
 		0C8534E115B660FB0006EAC9 /* background.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = background.plist; sourceTree = "<group>"; };
 		0C8534E215B660FB0006EAC9 /* background.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = background.pvr.ccz; sourceTree = "<group>"; };
+		0C8A19C215BDBB300010973F /* spriteSheetCamera-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spriteSheetCamera-hd.plist"; sourceTree = "<group>"; };
+		0C8A19C315BDBB300010973F /* spriteSheetCamera-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "spriteSheetCamera-hd.pvr.ccz"; sourceTree = "<group>"; };
+		0C8A19C415BDBB300010973F /* spriteSheetCamera.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = spriteSheetCamera.plist; sourceTree = "<group>"; };
+		0C8A19C515BDBB300010973F /* spriteSheetCamera.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = spriteSheetCamera.pvr.ccz; sourceTree = "<group>"; };
+		0C8A19D615BDF6DD0010973F /* streak.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = streak.png; sourceTree = "<group>"; };
+		0C8A19D815BDF8150010973F /* thrustParticle2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = thrustParticle2.plist; sourceTree = "<group>"; };
 		0CFB822B15AE61EC00EADAF3 /* LLSDemo-Aegis-Guard.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "LLSDemo-Aegis-Guard.mp3"; sourceTree = "<group>"; };
 		0CFB822C15AE61EC00EADAF3 /* phasenwandler_-_Longing_for_Freedom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "phasenwandler_-_Longing_for_Freedom.mp3"; sourceTree = "<group>"; };
 		0CFB823615AE6E3000EADAF3 /* bomb.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bomb.wav; sourceTree = "<group>"; };
@@ -544,8 +548,6 @@
 		0C487AFC159471E800674AB9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C455064B159E337E00F362D1 /* CCLayerStreak.h */,
-				C455064C159E337E00F362D1 /* CCLayerStreak.m */,
 				0C487AF9159471E000674AB9 /* CameraObject.h */,
 				0C487AFA159471E000674AB9 /* CameraObject.m */,
 				0C487B031594739500674AB9 /* Player.h */,
@@ -656,10 +658,11 @@
 				0C8534E015B660FB0006EAC9 /* background-hd.pvr.ccz */,
 				0C8534E115B660FB0006EAC9 /* background.plist */,
 				0C8534E215B660FB0006EAC9 /* background.pvr.ccz */,
-				0C8534C715B6580C0006EAC9 /* spriteSheetCamera-hd.plist */,
-				0C8534C815B6580C0006EAC9 /* spriteSheetCamera-hd.pvr.ccz */,
-				0C8534C915B6580C0006EAC9 /* spriteSheetCamera.plist */,
-				0C8534CA15B6580C0006EAC9 /* spriteSheetCamera.pvr.ccz */,
+				0C8A19C215BDBB300010973F /* spriteSheetCamera-hd.plist */,
+				0C8A19C315BDBB300010973F /* spriteSheetCamera-hd.pvr.ccz */,
+				0C8A19C415BDBB300010973F /* spriteSheetCamera.plist */,
+				0C8A19C515BDBB300010973F /* spriteSheetCamera.pvr.ccz */,
+				0C8A19D615BDF6DD0010973F /* streak.png */,
 				0CFB823015AE61F300EADAF3 /* Audio */,
 				C4E994B715A435EA00C7009D /* Particles */,
 				0C487B02159472AC00674AB9 /* Sprites */,
@@ -675,6 +678,8 @@
 				0C7AA71C1594693C000B58F2 /* LICENSE_CocosDenshion.txt */,
 				0C7AA7271594693C000B58F2 /* LICENSE_TouchJSON.txt */,
 				0C7AA74F1594693C000B58F2 /* LICENSE_FontLabel.txt */,
+				C455064B159E337E00F362D1 /* CCLayerStreak.h */,
+				C455064C159E337E00F362D1 /* CCLayerStreak.m */,
 				0C7AA61815946939000B58F2 /* cocos2d */,
 				0C7AA70E1594693C000B58F2 /* CocosDenshion */,
 				0C7AA71D1594693C000B58F2 /* cocoslive */,
@@ -1079,6 +1084,7 @@
 				C4E994AF15A435E600C7009D /* planetExplosion.plist */,
 				C4E994B015A435E600C7009D /* spaceParticles.plist */,
 				C4E994B115A435E600C7009D /* thrustParticle.plist */,
+				0C8A19D815BDF8150010973F /* thrustParticle2.plist */,
 			);
 			name = Particles;
 			sourceTree = "<group>";
@@ -1175,10 +1181,6 @@
 				0C8534C415B64D5C0006EAC9 /* PlainFont.png in Resources */,
 				0C8534C515B64D5C0006EAC9 /* PlainFont-hd.fnt in Resources */,
 				0C8534C615B64D5C0006EAC9 /* PlainFont.fnt in Resources */,
-				0C8534CB15B6580C0006EAC9 /* spriteSheetCamera-hd.plist in Resources */,
-				0C8534CC15B6580C0006EAC9 /* spriteSheetCamera-hd.pvr.ccz in Resources */,
-				0C8534CD15B6580C0006EAC9 /* spriteSheetCamera.plist in Resources */,
-				0C8534CE15B6580C0006EAC9 /* spriteSheetCamera.pvr.ccz in Resources */,
 				0C8534E315B660FB0006EAC9 /* background-hd.plist in Resources */,
 				0C8534E415B660FB0006EAC9 /* background-hd.pvr.ccz in Resources */,
 				0C8534E515B660FB0006EAC9 /* background.plist in Resources */,
@@ -1188,6 +1190,12 @@
 				0C3F53CC15BD32B4009A5915 /* Default.png in Resources */,
 				0C3F53CE15BD32CD009A5915 /* icon@2x.png in Resources */,
 				0C3F53D015BD32CF009A5915 /* icon.png in Resources */,
+				0C8A19C615BDBB300010973F /* spriteSheetCamera-hd.plist in Resources */,
+				0C8A19C715BDBB300010973F /* spriteSheetCamera-hd.pvr.ccz in Resources */,
+				0C8A19C815BDBB300010973F /* spriteSheetCamera.plist in Resources */,
+				0C8A19C915BDBB300010973F /* spriteSheetCamera.pvr.ccz in Resources */,
+				0C8A19D715BDF6DD0010973F /* streak.png in Resources */,
+				0C8A19D915BDF8150010973F /* thrustParticle2.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
