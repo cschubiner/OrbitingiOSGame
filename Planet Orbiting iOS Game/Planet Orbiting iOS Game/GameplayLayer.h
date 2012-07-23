@@ -44,7 +44,6 @@
     float initialAccelMag;
     
     
-    
     CGPoint spotGoingTo;
     float swipeAccuracy;
     float velSoftener;
