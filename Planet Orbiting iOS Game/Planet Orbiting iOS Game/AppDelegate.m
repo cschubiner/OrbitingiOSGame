@@ -19,6 +19,14 @@
 
 @synthesize window;
 
+-(void)setIsInTutorialMode:(bool)mode{
+    isInTutorialMode = mode;
+}
+
+-(bool)getIsInTutorialMode{
+    return isInTutorialMode;
+}
+
 - (void) removeStartupFlicker
 {
 	//

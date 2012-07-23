@@ -40,7 +40,11 @@
 
 // this is called (magically??) by cocosbuilder when the start button is pressed
 - (void)startGame: (id)sender {
-    [Flurry logEvent:@"Pressed Start Game"];
+    id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,-320)];
+    id ease = [CCEaseOut actionWithAction:action rate:2];
+    [layer runAction: ease];
+
+    [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:FALSE];
 
     [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
 
@@ -60,7 +64,7 @@
 {
     [Flurry logEvent:@"Opened Store"];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,0)];
-    id ease = [CCEaseInOut actionWithAction:action rate:2];
+    id ease = [CCEaseSineInOut actionWithAction:action]; //does this "CCEaseSineInOut" look better than the above "CCEaseInOut"???
     [layer runAction: ease];
 }
 
@@ -70,6 +74,15 @@
     [Flurry logEvent:@"Pressed Send Feedback"];
     [[UIApplication sharedApplication]setStatusBarOrientation:UIInterfaceOrientationPortrait];
     [TestFlight openFeedbackView];
+}
+
+- (void)pressedTutorialButton: (id) sender
+{
+    [Flurry logEvent:@"Pressed Tutorial Button"];
+    [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:TRUE];
+    [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
+    CCLOG(@"gameplayLayer scene launched, game starting");
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
 }
 
 - (void)dealloc {

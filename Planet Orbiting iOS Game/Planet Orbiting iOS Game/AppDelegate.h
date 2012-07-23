@@ -15,7 +15,10 @@
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
 	UIWindow			*window;
 	RootViewController	*viewController;
+    bool isInTutorialMode;
 }
 
 @property (nonatomic, retain) UIWindow *window;
+-(void)setIsInTutorialMode:(bool)mode;
+-(bool)getIsInTutorialMode;
 @end

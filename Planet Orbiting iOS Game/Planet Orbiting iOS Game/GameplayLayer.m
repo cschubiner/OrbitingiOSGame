@@ -306,6 +306,7 @@ typedef struct {
 	if( (self=[super init])) {
         [self setGameConstants];
         self.isTouchEnabled= TRUE;
+        isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate])getIsInTutorialMode];
         planetCounter = 0;
         cameraObjects = [[NSMutableArray alloc]init];
         planets = [[NSMutableArray alloc]init];

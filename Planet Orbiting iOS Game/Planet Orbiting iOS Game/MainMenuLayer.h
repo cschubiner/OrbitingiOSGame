@@ -10,6 +10,7 @@
 #import "CCBReader.h"
 #import "TestFlight.h"
 #import "Flurry.h"
+#import "AppDelegate.h"
 
 
 @interface MainMenuLayer : CCLayer {
