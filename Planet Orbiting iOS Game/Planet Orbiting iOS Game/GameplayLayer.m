@@ -781,6 +781,7 @@ typedef struct {
                 timeDilationCoefficient += timeDilationIncreaseRate;
                 
                 if (zonesReached>=[zones count]) {
+                    [[UIApplication sharedApplication]setStatusBarOrientation:UIInterfaceOrientationPortrait];
                     [TestFlight passCheckpoint:@"Reached All Zones"];
                     [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
                 }

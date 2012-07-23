@@ -34,6 +34,8 @@
         layer = (CCLayer*)[CCBReader nodeGraphFromFile:@"MainMenuScrolling.ccb" owner:self];
         [self addChild:layer];
         [[CDAudioManager sharedManager] playBackgroundMusic:@"LLSDemo-Aegis-Guard.mp3" loop:YES];
+        [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
+
 	}
 	return self;
 }
