@@ -20,7 +20,6 @@
     int zonesReached;
     int prevCurrentPtoPScore;
     int initialScoreConstant;
-    //float orbitRadius;
     float killer;
 }
 
@@ -49,7 +48,6 @@ typedef struct {
 {
     // ask director the the window size
     size = [[CCDirector sharedDirector] winSize];
-    
 }
 
 - (void)CreateCoin:(CGFloat)xPos yPos:(CGFloat)yPos
@@ -57,7 +55,7 @@ typedef struct {
     Coin *coin = [[Coin alloc]init];
     coin.sprite = [CCSprite spriteWithSpriteFrameName:@"asteroid-hd.png"];
     coin.sprite.position = ccp(xPos, yPos);
-    [coin.sprite setScale:.1];
+    [coin.sprite setScale:.3];
     [cameraObjects addObject:coin];
     [coins addObject:coin];
     [spriteSheet addChild:coin.sprite];
@@ -80,7 +78,7 @@ typedef struct {
 {
     Planet *planet = [[Planet alloc]init];
     planet.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"planet%d-hd.png",[self RandomBetween:1 maxvalue:6]]];
-    planet.sprite.position =  ccp(xPos, yPos);     
+    planet.sprite.position =  ccp(xPos, yPos);
     [planet.sprite setScale:scale];
     planet.mass = 1;
     planet.number = planetCounter;
@@ -108,7 +106,7 @@ typedef struct {
 
 - (void)CreateLevel // paste level creation code here
 {
-    //[self CreateCoin:600 yPos:300];
+    [self CreateCoin:600 yPos:300];
     
     [self CreatePlanetAndZone:260 yPos:258 scale:1.01f];
     [self CreatePlanetAndZone:1016 yPos:411 scale:1.13f];
@@ -468,12 +466,13 @@ typedef struct {
     cameraLastFocusPosition=focusPosition;
 }
 
-- (void)ApplyGravity:(float)dt {
+- (void)ApplyGravity:(float)dt {    
     
     for (Coin* coin in coins) {
         CGPoint p = coin.sprite.position;
         if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius && coin.isAlive) {
-            player.coins++;
+            [[UserWallet sharedInstance] addCoins:1];
+            coin.sprite.visible = false;
             coin.isAlive = false;
         }
     }

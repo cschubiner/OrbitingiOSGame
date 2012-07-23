@@ -14,6 +14,7 @@
 #import "MainMenuLayer.h"
 #import "CCBReader.h"
 #import "FlurryAnalytics/FlurryAnalytics.h"
+#import "UserWallet.h"
 
 
 @interface GameplayLayer : CCLayer {
