@@ -10,7 +10,9 @@
 #import "StoreItem.h"
 #import "UserWallet.h"
 
-@implementation StoreManager
+@implementation StoreManager {
+    StoreItem *itemToBuy;
+}
 
 static StoreManager *sharedInstance = nil;
 
@@ -28,16 +30,15 @@ static StoreManager *sharedInstance = nil;
 - (id)init {
     if (self = [super init]) {
         storeItems = [[NSMutableArray alloc] init];
+        itemToBuy = nil;
     }
     return self;
 }
 
 - (void)purchaseItemWithID:(int)itemID {
-    StoreItem *itemToBuy = [storeItems objectAtIndex:itemID];
+    itemToBuy = [storeItems objectAtIndex:itemID];
     int itemPrice = [itemToBuy price];
     [[UserWallet sharedInstance] removeCoins:itemPrice];
-    [storeItems removeObject:itemToBuy];
-    [self callRefreshItemsView];
 }
 
 - (void)addItemToStore:(StoreItem *)item {
@@ -60,7 +61,9 @@ static StoreManager *sharedInstance = nil;
 }
 
 - (void)updatedWalletSuccess {
-    // handle successful addition or removal of coins
+    [storeItems removeObject:itemToBuy];
+    [self callRefreshItemsView];
+    itemToBuy = nil;
 }
 
 - (void)updatedWalletFailure:(NSString *)errorText {
