@@ -31,7 +31,7 @@
 // on "init" you need to initialize your instance
 - (id)init {
 	if (self = [super init]) {
-        layer = [CCBReader nodeGraphFromFile:@"MainMenuScrolling.ccb" owner:self];
+        layer = (CCLayer*)[CCBReader nodeGraphFromFile:@"MainMenuScrolling.ccb" owner:self];
         [self addChild:layer];
         [[CDAudioManager sharedManager] playBackgroundMusic:@"LLSDemo-Aegis-Guard.mp3" loop:YES];
 	}
