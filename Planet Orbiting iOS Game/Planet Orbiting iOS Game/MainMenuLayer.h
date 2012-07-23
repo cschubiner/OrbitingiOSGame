@@ -13,6 +13,7 @@
 
 
 @interface MainMenuLayer : CCLayer {
+    CCLayer* layer;
 }
 
 + (CCScene *) scene;

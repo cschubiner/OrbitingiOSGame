@@ -31,10 +31,8 @@
 // on "init" you need to initialize your instance
 - (id)init {
 	if (self = [super init]) {
-        //we may have custom menu logic here, but for now everything is just made with cocosbuilder 1.x (not 2.x!!)
-     //   CCLayer* mainMenuCocosBuilderLayer = ((CCLayer*)[CCBReader nodeGraphFromFile:@"example.ccb"]);
-       // [mainMenuCocosBuilderLayer setPosition:ccp(100,100)];
-      //  [self addChild:mainMenuCocosBuilderLayer];
+        layer = [CCBReader nodeGraphFromFile:@"MainMenuScrolling.ccb" owner:self];
+        [self addChild:layer];
         [[CDAudioManager sharedManager] playBackgroundMusic:@"LLSDemo-Aegis-Guard.mp3" loop:YES];
 	}
 	return self;
@@ -49,6 +47,24 @@
     CCLOG(@"gameplayLayer scene launched, game starting");
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
 }
+
+- (void)pressedBackButton: (id) sender
+{
+    [FlurryAnalytics logEvent:@"Went back to menu from store"];
+    id action = [CCMoveTo actionWithDuration:.8f position:ccp(0,0)];
+    id ease = [CCEaseInOut actionWithAction:action rate:2];
+    [layer runAction: ease];
+
+}
+
+- (void)pressedStoreButton: (id) sender
+{
+    [FlurryAnalytics logEvent:@"Opened Store"];
+    id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,0)];
+    id ease = [CCEaseInOut actionWithAction:action rate:2];
+    [layer runAction: ease];
+}
+
 
 - (void)pressedSendFeedback: (id) sender
 {

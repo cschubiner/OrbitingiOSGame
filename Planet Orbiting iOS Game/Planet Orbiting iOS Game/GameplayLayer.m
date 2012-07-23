@@ -873,8 +873,7 @@ typedef struct {
 }
 
 - (void)endGame {
-    CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"example.ccb"];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: scene]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

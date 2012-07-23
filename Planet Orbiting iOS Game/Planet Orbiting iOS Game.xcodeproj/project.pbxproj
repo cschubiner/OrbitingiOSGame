@@ -15,6 +15,7 @@
 		0C487AFB159471E000674AB9 /* CameraObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487AFA159471E000674AB9 /* CameraObject.m */; };
 		0C487B051594739600674AB9 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B041594739600674AB9 /* Player.m */; };
 		0C487B0E1594792C00674AB9 /* Planet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B0D1594792C00674AB9 /* Planet.m */; };
+		0C6EBD0D15BD08CD00EF2B1F /* MainMenuScrolling.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 0C6EBD0C15BD08CD00EF2B1F /* MainMenuScrolling.ccb */; };
 		0C7AA5F315946939000B58F2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F215946939000B58F2 /* QuartzCore.framework */; };
 		0C7AA5F515946939000B58F2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F415946939000B58F2 /* OpenGLES.framework */; };
 		0C7AA5F715946939000B58F2 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F615946939000B58F2 /* OpenAL.framework */; };
@@ -158,7 +159,6 @@
 		C445304A15A68880004F8F48 /* particle-snow.png in Resources */ = {isa = PBXBuildFile; fileRef = C445303C15A68880004F8F48 /* particle-snow.png */; };
 		C445304B15A68880004F8F48 /* particle-stars.png in Resources */ = {isa = PBXBuildFile; fileRef = C445303D15A68880004F8F48 /* particle-stars.png */; };
 		C445305115A688AD004F8F48 /* CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = C445305015A688AD004F8F48 /* CCBReader.m */; };
-		C445305315A68993004F8F48 /* example.ccb in Resources */ = {isa = PBXBuildFile; fileRef = C445305215A68993004F8F48 /* example.ccb */; };
 		C455064D159E337E00F362D1 /* CCLayerStreak.m in Sources */ = {isa = PBXBuildFile; fileRef = C455064C159E337E00F362D1 /* CCLayerStreak.m */; };
 		C47774F615A75CE2005D0AEB /* logo-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C47774EC15A75CE1005D0AEB /* logo-hd.png */; };
 		C47774F715A75CE2005D0AEB /* logo-icon-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C47774ED15A75CE1005D0AEB /* logo-icon-hd.png */; };
@@ -203,6 +203,7 @@
 		0C487B041594739600674AB9 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		0C487B0C1594792C00674AB9 /* Planet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Planet.h; sourceTree = "<group>"; };
 		0C487B0D1594792C00674AB9 /* Planet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Planet.m; sourceTree = "<group>"; };
+		0C6EBD0C15BD08CD00EF2B1F /* MainMenuScrolling.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MainMenuScrolling.ccb; sourceTree = "<group>"; };
 		0C7AA5EE15946939000B58F2 /* Planet Orbiting iOS Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Planet Orbiting iOS Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C7AA5F215946939000B58F2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0C7AA5F415946939000B58F2 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -467,7 +468,6 @@
 		C445303D15A68880004F8F48 /* particle-stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "particle-stars.png"; sourceTree = "<group>"; };
 		C445304F15A688AD004F8F48 /* CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBReader.h; sourceTree = "<group>"; };
 		C445305015A688AD004F8F48 /* CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBReader.m; sourceTree = "<group>"; };
-		C445305215A68993004F8F48 /* example.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = example.ccb; sourceTree = "<group>"; };
 		C455064B159E337E00F362D1 /* CCLayerStreak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLayerStreak.h; sourceTree = "<group>"; };
 		C455064C159E337E00F362D1 /* CCLayerStreak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLayerStreak.m; sourceTree = "<group>"; };
 		C47774EC15A75CE1005D0AEB /* logo-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-hd.png"; sourceTree = "<group>"; };
@@ -1037,7 +1037,7 @@
 				C445303115A68880004F8F48 /* btn-test-1.png */,
 				C445303215A68880004F8F48 /* btn-test-2.png */,
 				C445303315A68880004F8F48 /* burst.png */,
-				C445305215A68993004F8F48 /* example.ccb */,
+				0C6EBD0C15BD08CD00EF2B1F /* MainMenuScrolling.ccb */,
 				C445303515A68880004F8F48 /* jungle.png */,
 				C445303615A68880004F8F48 /* logo-icon.png */,
 				C445303715A68880004F8F48 /* logo.png */,
@@ -1163,7 +1163,6 @@
 				C445304915A68880004F8F48 /* particle-smoke.png in Resources */,
 				C445304A15A68880004F8F48 /* particle-snow.png in Resources */,
 				C445304B15A68880004F8F48 /* particle-stars.png in Resources */,
-				C445305315A68993004F8F48 /* example.ccb in Resources */,
 				C47774F615A75CE2005D0AEB /* logo-hd.png in Resources */,
 				C47774F715A75CE2005D0AEB /* logo-icon-hd.png in Resources */,
 				C47774F815A75CE2005D0AEB /* particle-fire-hd.png in Resources */,
@@ -1196,6 +1195,7 @@
 				0C8534E415B660FB0006EAC9 /* background-hd.pvr.ccz in Resources */,
 				0C8534E515B660FB0006EAC9 /* background.plist in Resources */,
 				0C8534E615B660FB0006EAC9 /* background.pvr.ccz in Resources */,
+				0C6EBD0D15BD08CD00EF2B1F /* MainMenuScrolling.ccb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
