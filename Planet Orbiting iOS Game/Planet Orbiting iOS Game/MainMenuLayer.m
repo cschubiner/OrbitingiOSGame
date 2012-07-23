@@ -40,7 +40,7 @@
 
 // this is called (magically??) by cocosbuilder when the start button is pressed
 - (void)startGame: (id)sender {
-    [FlurryAnalytics logEvent:@"Pressed Start Game"];
+    [Flurry logEvent:@"Pressed Start Game"];
 
     [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
 
@@ -50,16 +50,15 @@
 
 - (void)pressedBackButton: (id) sender
 {
-    [FlurryAnalytics logEvent:@"Went back to menu from store"];
+    [Flurry logEvent:@"Went back to menu from store"];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(0,0)];
     id ease = [CCEaseInOut actionWithAction:action rate:2];
     [layer runAction: ease];
-
 }
 
 - (void)pressedStoreButton: (id) sender
 {
-    [FlurryAnalytics logEvent:@"Opened Store"];
+    [Flurry logEvent:@"Opened Store"];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,0)];
     id ease = [CCEaseInOut actionWithAction:action rate:2];
     [layer runAction: ease];
@@ -68,7 +67,7 @@
 
 - (void)pressedSendFeedback: (id) sender
 {
-    [FlurryAnalytics logEvent:@"Pressed Send Feedback"];
+    [Flurry logEvent:@"Pressed Send Feedback"];
     [[UIApplication sharedApplication]setStatusBarOrientation:UIInterfaceOrientationPortrait];
     [TestFlight openFeedbackView];
 }

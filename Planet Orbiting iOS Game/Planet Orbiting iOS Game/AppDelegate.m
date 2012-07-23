@@ -43,7 +43,7 @@
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-    [FlurryAnalytics startSession:@"96GKYS7HQZHNKZJJN2CZ"];
+    [Flurry startSession:@"96GKYS7HQZHNKZJJN2CZ"];
     [TestFlight takeOff:@"d617a481887a5d2cf7db0f22b735c89f_MTExODYwMjAxMi0wNy0xOCAxOToxNToyNC43NzQ3NjA"];
     
 	// Init the window
@@ -130,7 +130,7 @@
 }
 
 void uncaughtExceptionHandler(NSException *exception) {
-    [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
+    [Flurry logError:@"Uncaught" message:@"Crash!" exception:exception];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

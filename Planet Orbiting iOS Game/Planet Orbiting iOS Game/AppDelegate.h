@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TestFlight.h"
-#import "FlurryAnalytics/FlurryAnalytics.h"
+#import "Flurry.h"
 
 @class RootViewController;
 

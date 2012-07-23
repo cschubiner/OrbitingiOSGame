@@ -13,7 +13,7 @@
 #import "SimpleAudioEngine.h"
 #import "MainMenuLayer.h"
 #import "CCBReader.h"
-#import "FlurryAnalytics/FlurryAnalytics.h"
+#import "Flurry.h"
 #import "UserWallet.h"
 
 
