@@ -19,15 +19,15 @@ const float timeDilationSteepness = 8;
 const float timeDilationLimit = 2.5;
 
 //changes how zoomed in the camera in. higher numbers mean more zoom (everything looks bigger)
-const float zoomMultiplier = .88;
+const float zoomMultiplier = .85;
 //changes how quickly the camera zooms in and out
-const float cameraZoomSpeed = .03;
+const float cameraZoomSpeed = .05;
 //changes how quickly the camera changes position
-const float cameraMovementSpeed = .06;
+const float cameraMovementSpeed = .07;
 
 //how quickly the player's spaceship rotates when the direction of his velocity changes
 const float playerRotationSpeed = .39f;
-const float playerSizeScale = 2;
+const float playerSizeScale = 3;
 
 const float anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees = 55;
 const float anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees = -35;
@@ -39,8 +39,8 @@ const float postExplosionShakeYMagnitude = 3;
 // this is purely visual and doesn't affect mass.
 const float planetSizeScale = .5;
 
-// the zone scale is the planet scale * this number
-const float zoneScaleRelativeToPlanet = 1.3;
+// the zone scale is the planet scale * this number. BE SURE TO REDUCE factorToPlaceGravFieldS (both of them) if you increase this
+const float zoneScaleRelativeToPlanet = 1.7;
 
 //the gravitational force. increase this to force the orbiting velocity to increase
 const float gravity = .45;
@@ -60,36 +60,52 @@ const float minAstVel = 0;
 //the asteroid's maximum velocity
 const float maxAstVel = .4;
 
-//percentage of gravity felt in free orbit mode
-const float initialPercentageOfGravityAfterSwipe = .3;
+//gravity strength when in orbit state 2
+const float freeGravityStrength = 700;
 
-//the rate at which gravity decreases. increase the number to increase the rate of decrease
-const float rateToDecreaseGravity = .01;
+//the rate at which gravity increases per update while in orbit state 2/3
+const float rateToIncreaseGravity = .015;
 
 //percentage to multiply swipe vector by to get the velocity vector you add to the player's velocity
 const float swipeStrength = .03;
 
 //the minimum swipe magnitude that will count as a swipe
-const float minSwipeStrength = 25;
+const float minSwipeStrength = 35;
 
 //how many updates pass while the player isn't in a zone until tie go will did
-const float deathAfterThisLong = 55*1.35f*1.1f*1.5f*5;
+const float deathAfterThisLong = 55*1.35f*1.1f*1.5f*1*2*.9;
 
 //the percent of the black hole's radius that triggers a collision
 const float blackHoleCollisionRadiusFactor = .2f;
 const float blackHoleSpeedFactor = .8f;
 
 //increase to make timeDilationFactor decrease more rapidly
-const float timeDilationReduceRate = .003;
+const float timeDilationReduceRate = .002;
+
+//1 means you lose no speed when you die, 0 means you lose it all
+const float factorToScaleTimeDilationByOnDeath = .69;
 
 //increase to increase timeDilationFactor by a larger amount everytime you get to a new zone
-const float timeDilationIncreaseRate = .3;
+const float timeDilationIncreaseRate = .25;
 
 //the smallest the time dilation factor can go
-const float absoluteMinTimeDilation = 1.1;
+const float absoluteMinTimeDilation = 1.2;
 
 //the highest the time dilation factor can go. this should probZ just be infinity. bitches will has c slow down if they're going too fast
 const float absoluteMaxTimeDilation = 9999;
 
 //0 = impossible/needs to match angle exactly, a higher number means your swipe timing can be off by that many degrees
-const float requiredAngleAccuracy = 30;
+//const float requiredAngleAccuracy = 0; //30
+
+//after this many updates, your velocity will go from what it was when you entered to perfect tangential orbital velocity
+const float updatesToMakeOrbitVelocityPerfect = 60;
+
+//if this is 1, you will always be at a perfect orbit distance, the smaller it goes the longer it takes to get to that perfect radius (but the smoother it looks)
+const float howFastOrbitPositionGetsFixed = .06;
+
+
+const float factorToPlaceGravFieldWhenCrossingOverTheMiddle = .84;
+
+const float factorToPlaceGravFieldWhenStayingOutside = .64;
+
+const float factorToIncreaseVelocityWhenExperiencingRegularGravity = 1.1;

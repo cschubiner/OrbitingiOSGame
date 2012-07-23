@@ -10,7 +10,7 @@
 
 @implementation Player
 
-@synthesize thrustEndPoint,thrustBeginPoint,mass,isInZone;
+@synthesize thrustEndPoint,thrustBeginPoint,mass,isInZone,coins;
 
 -(id) init
 {
@@ -18,6 +18,7 @@
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
         mass = 1;
+        coins = 0;
 	}
 	return self;
 }

@@ -22,6 +22,7 @@
     NSMutableArray *planets;
     NSMutableArray *zones;
     NSMutableArray *asteroids;
+    NSMutableArray *coins;
     NSMutableArray *cameraObjects;
     CCLabelTTF *scoreLabel;
     CCLabelTTF *zonesReachedLabel;
@@ -40,8 +41,18 @@
     
     bool isOnFirstRun;
     CGPoint initialVel;
+    float initialAccelMag;
+    
+    
+    
+    CGPoint spotGoingTo;
+    float swipeAccuracy;
+    float velSoftener;
+    float gravIncreaser;
+    
+    
 
-    int orbitState;
+    int orbitState; //0= orbiting, 1= just left orbit and deciding things for state 2; 3= flying to next planet
     Planet* targetPlanet;
     CGPoint swipeVector;
     

@@ -2,12 +2,24 @@
 //  Coin.m
 //  Planet Orbiting iOS Game
 //
-//  Created by Alex Blickenstaff on 7/22/12.
-//  Copyright (c) 2012 Stanford University. All rights reserved.
+//  Created by Clay Schubiner on 6/22/12.
+//  Copyright 2012 Stanford University. All rights reserved.
 //
 
 #import "Coin.h"
 
 @implementation Coin
+
+@synthesize isAlive;
+
+-(id) init {
+	// always call "super" init
+	// Apple recommends to re-assign "self" with the "super" return value
+	if( (self=[super init])) {
+        isAlive = true;
+	}
+	return self;
+}
+
 
 @end

@@ -2,12 +2,21 @@
 //  Coin.h
 //  Planet Orbiting iOS Game
 //
-//  Created by Alex Blickenstaff on 7/22/12.
-//  Copyright (c) 2012 Stanford University. All rights reserved.
+//  Created by Clay Schubiner on 6/22/12.
+//  Copyright 2012 Stanford University. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "cocos2d.h"
+#import "CameraObject.h"
 
-@interface Coin : NSObject
+@interface Coin : CameraObject {
+}
+
+-(id)init;
+
+
+
+@property (nonatomic) bool isAlive;
 
 @end
