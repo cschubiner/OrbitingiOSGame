@@ -209,7 +209,7 @@
 		0C487B0C1594792C00674AB9 /* Planet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Planet.h; sourceTree = "<group>"; };
 		0C487B0D1594792C00674AB9 /* Planet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Planet.m; sourceTree = "<group>"; };
 		0C6EBD0C15BD08CD00EF2B1F /* MainMenuScrolling.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MainMenuScrolling.ccb; sourceTree = "<group>"; };
-		0C7AA5EE15946939000B58F2 /* Planet Orbiting iOS Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Planet Orbiting iOS Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C7AA5EE15946939000B58F2 /* Star Dash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Star Dash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C7AA5F215946939000B58F2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0C7AA5F415946939000B58F2 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		0C7AA5F615946939000B58F2 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -607,7 +607,7 @@
 		0C7AA5EF15946939000B58F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0C7AA5EE15946939000B58F2 /* Planet Orbiting iOS Game.app */,
+				0C7AA5EE15946939000B58F2 /* Star Dash.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1100,7 +1100,7 @@
 			);
 			name = "Planet Orbiting iOS Game";
 			productName = "Planet Orbiting iOS Game";
-			productReference = 0C7AA5EE15946939000B58F2 /* Planet Orbiting iOS Game.app */;
+			productReference = 0C7AA5EE15946939000B58F2 /* Star Dash.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
