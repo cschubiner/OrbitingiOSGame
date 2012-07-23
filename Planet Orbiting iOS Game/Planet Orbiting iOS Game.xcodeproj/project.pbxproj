@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		012ED2F115BB882D008FDFBD /* UserWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 012ED2F015BB882D008FDFBD /* UserWallet.m */; };
+		012ED2F415BC7894008FDFBD /* StoreItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 012ED2F315BC7894008FDFBD /* StoreItem.m */; };
+		012ED2F715BC7922008FDFBD /* StoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 012ED2F615BC7922008FDFBD /* StoreManager.m */; };
 		0C2DEF02159C20BE0018F0FA /* Zone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2DEF01159C20BE0018F0FA /* Zone.m */; };
 		0C487AF815946E2300674AB9 /* GameplayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487AF715946E2300674AB9 /* GameplayLayer.m */; };
 		0C487AFB159471E000674AB9 /* CameraObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487AFA159471E000674AB9 /* CameraObject.m */; };
@@ -180,16 +183,22 @@
 		C4F11E2315B4D58E008168B0 /* TitleFont.png in Resources */ = {isa = PBXBuildFile; fileRef = C4F11E1F15B4D58E008168B0 /* TitleFont.png */; };
 		C4FDA2D615AE0143005E8D7B /* blackHoleParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4FDA2D515AE0143005E8D7B /* blackHoleParticle.plist */; };
 		CE30F28715AA972E00796589 /* Asteroid.m in Sources */ = {isa = PBXBuildFile; fileRef = CE30F28615AA972E00796589 /* Asteroid.m */; };
-		FA8909C715BBEFA0001289B0 /* Coin.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8909C615BBEFA0001289B0 /* Coin.m */; };
+		FAF1C64015BCF8A1001136E3 /* Coin.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF1C63F15BCF8A1001136E3 /* Coin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		012ED2EF15BB882D008FDFBD /* UserWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserWallet.h; sourceTree = "<group>"; };
+		012ED2F015BB882D008FDFBD /* UserWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserWallet.m; sourceTree = "<group>"; };
+		012ED2F215BC7894008FDFBD /* StoreItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreItem.h; sourceTree = "<group>"; };
+		012ED2F315BC7894008FDFBD /* StoreItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreItem.m; sourceTree = "<group>"; };
+		012ED2F515BC7922008FDFBD /* StoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreManager.h; sourceTree = "<group>"; };
+		012ED2F615BC7922008FDFBD /* StoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreManager.m; sourceTree = "<group>"; };
 		0C2DEF00159C20BE0018F0FA /* Zone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Zone.h; sourceTree = "<group>"; };
 		0C2DEF01159C20BE0018F0FA /* Zone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Zone.m; sourceTree = "<group>"; };
 		0C487AF615946E2300674AB9 /* GameplayLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameplayLayer.h; sourceTree = "<group>"; };
 		0C487AF715946E2300674AB9 /* GameplayLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameplayLayer.m; sourceTree = "<group>"; };
-		0C487AF9159471E000674AB9 /* CameraObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraObject.h; sourceTree = "<group>"; };
-		0C487AFA159471E000674AB9 /* CameraObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraObject.m; sourceTree = "<group>"; };
+		0C487AF9159471E000674AB9 /* CameraObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CameraObject.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		0C487AFA159471E000674AB9 /* CameraObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CameraObject.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0C487B031594739500674AB9 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		0C487B041594739600674AB9 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		0C487B0C1594792C00674AB9 /* Planet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Planet.h; sourceTree = "<group>"; };
@@ -422,13 +431,13 @@
 		0C7AA74F1594693C000B58F2 /* LICENSE_FontLabel.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE_FontLabel.txt; path = libs/LICENSE_FontLabel.txt; sourceTree = "<group>"; };
 		0C7AA7511594693C000B58F2 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		0C7AA7521594693C000B58F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		0C7AA7541594693D000B58F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		0C7AA7551594693D000B58F2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0C7AA7541594693D000B58F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		0C7AA7551594693D000B58F2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0C7AA7571594693D000B58F2 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		0C7AA7581594693D000B58F2 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		0C7AA75A1594693D000B58F2 /* MainMenuLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
 		0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
-		0C7AA75D1594693D000B58F2 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
+		0C7AA75D1594693D000B58F2 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GameConfig.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		0C8534BF15B64D5C0006EAC9 /* PlainFont-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlainFont-hd.png"; sourceTree = "<group>"; };
 		0C8534C015B64D5C0006EAC9 /* PlainFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlainFont.png; sourceTree = "<group>"; };
 		0C8534C115B64D5C0006EAC9 /* PlainFont-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "PlainFont-hd.fnt"; sourceTree = "<group>"; };
@@ -472,7 +481,7 @@
 		C47774F415A75CE2005D0AEB /* btn-test-2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-test-2-hd.png"; sourceTree = "<group>"; };
 		C47774F515A75CE2005D0AEB /* jungle-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jungle-hd.png"; sourceTree = "<group>"; };
 		C477750115A75D2C005D0AEB /* burst-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "burst-hd.png"; sourceTree = "<group>"; };
-		C49E914A159A48D700BC424D /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		C49E914A159A48D700BC424D /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Constants.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		C4B06C5515B9161D003C0183 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		C4B06C5615B9161D003C0183 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		C4B06C6715B919DA003C0183 /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
@@ -486,10 +495,10 @@
 		C4F11E1E15B4D58E008168B0 /* TitleFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TitleFont.fnt; sourceTree = "<group>"; };
 		C4F11E1F15B4D58E008168B0 /* TitleFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TitleFont.png; sourceTree = "<group>"; };
 		C4FDA2D515AE0143005E8D7B /* blackHoleParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = blackHoleParticle.plist; sourceTree = "<group>"; };
-		CE30F28515AA972E00796589 /* Asteroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asteroid.h; sourceTree = "<group>"; };
-		CE30F28615AA972E00796589 /* Asteroid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Asteroid.m; sourceTree = "<group>"; };
-		FA8909C515BBEFA0001289B0 /* Coin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coin.h; sourceTree = "<group>"; };
-		FA8909C615BBEFA0001289B0 /* Coin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coin.m; sourceTree = "<group>"; };
+		CE30F28515AA972E00796589 /* Asteroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Asteroid.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		CE30F28615AA972E00796589 /* Asteroid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Asteroid.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		FAF1C63E15BCF8A1001136E3 /* Coin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coin.h; sourceTree = "<group>"; };
+		FAF1C63F15BCF8A1001136E3 /* Coin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -513,6 +522,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		012ED2ED15BB87C1008FDFBD /* Commerce */ = {
+			isa = PBXGroup;
+			children = (
+				012ED2F215BC7894008FDFBD /* StoreItem.h */,
+				012ED2F315BC7894008FDFBD /* StoreItem.m */,
+				012ED2F515BC7922008FDFBD /* StoreManager.h */,
+				012ED2F615BC7922008FDFBD /* StoreManager.m */,
+				012ED2EF15BB882D008FDFBD /* UserWallet.h */,
+				012ED2F015BB882D008FDFBD /* UserWallet.m */,
+			);
+			name = Commerce;
+			sourceTree = "<group>";
+		};
 		0C487AFC159471E800674AB9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -528,8 +550,8 @@
 				0C2DEF01159C20BE0018F0FA /* Zone.m */,
 				CE30F28515AA972E00796589 /* Asteroid.h */,
 				CE30F28615AA972E00796589 /* Asteroid.m */,
-				FA8909C515BBEFA0001289B0 /* Coin.h */,
-				FA8909C615BBEFA0001289B0 /* Coin.m */,
+				FAF1C63E15BCF8A1001136E3 /* Coin.h */,
+				FAF1C63F15BCF8A1001136E3 /* Coin.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -612,6 +634,7 @@
 				0C487AF715946E2300674AB9 /* GameplayLayer.m */,
 				0C7AA75A1594693D000B58F2 /* MainMenuLayer.h */,
 				0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */,
+				012ED2ED15BB87C1008FDFBD /* Commerce */,
 				C4B06C6615B919DA003C0183 /* FlurryAnalytics */,
 				C4B06C5915B9161F003C0183 /* TestFlight */,
 				C445304D15A68888004F8F48 /* CocosBuilder  */,
@@ -1289,7 +1312,10 @@
 				C455064D159E337E00F362D1 /* CCLayerStreak.m in Sources */,
 				C445305115A688AD004F8F48 /* CCBReader.m in Sources */,
 				CE30F28715AA972E00796589 /* Asteroid.m in Sources */,
-				FA8909C715BBEFA0001289B0 /* Coin.m in Sources */,
+				012ED2F115BB882D008FDFBD /* UserWallet.m in Sources */,
+				012ED2F415BC7894008FDFBD /* StoreItem.m in Sources */,
+				012ED2F715BC7922008FDFBD /* StoreManager.m in Sources */,
+				FAF1C64015BCF8A1001136E3 /* Coin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

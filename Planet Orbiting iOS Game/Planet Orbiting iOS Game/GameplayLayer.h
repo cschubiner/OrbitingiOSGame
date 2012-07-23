@@ -3,7 +3,7 @@
 //  Planet Orbiting iOS Game
 //
 //  Created by Clay Schubiner on 6/22/12.
-//  Copyright 2012 Stanford University. All rights reserved.
+//  Copyright 2012 Clayton Schubiner. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -17,7 +17,6 @@
 
 
 @interface GameplayLayer : CCLayer {
-    
     Player *player;
     NSMutableArray *planets;
     NSMutableArray *zones;
@@ -62,8 +61,7 @@
     CCParticleSystemQuad * cometParticle;
     CCParticleSystemQuad * blackHoleParticle;
     CGPoint cometVelocity;
-    
-    float lastTakeoffAngleToNextPlanet;
+        float lastTakeoffAngleToNextPlanet;
     
     // is multiplied by the absoluteSpeedMult to cause time dilation
     float timeDilationCoefficient;

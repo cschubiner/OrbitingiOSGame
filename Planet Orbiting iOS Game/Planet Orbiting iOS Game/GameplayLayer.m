@@ -3,7 +3,7 @@
 //  Planet Orbiting iOS Game
 //
 //  Created by Clay Schubiner on 6/22/12.
-//  Copyright Stanford University 2012. All rights reserved.
+//  Copyright Clayton Schubiner 2012. All rights reserved.
 
 #import "GameplayLayer.h"
 #import "CameraObject.h"
@@ -37,10 +37,10 @@ typedef struct {
 	
 	// 'layer' is an autorelease object.
 	GameplayLayer *layer = [GameplayLayer node];
-	
+
 	// add layer as a child to scene
 	[scene addChild: layer];
-	
+    
 	// return the scene.
 	return scene;
 }
@@ -106,7 +106,7 @@ typedef struct {
     planetCounter++;
 }
 
-- (void)CreateLevel //paste level creation code here
+- (void)CreateLevel // paste level creation code here
 {
     //[self CreateCoin:600 yPos:300];
     
@@ -175,7 +175,6 @@ typedef struct {
     [self CreatePlanetAndZone:2385 yPos:1457 scale:0.5f];
     [self CreatePlanetAndZone:2399 yPos:1170 scale:0.5f];
     [self CreatePlanetAndZone:3341 yPos:865 scale:2.25675f];
-    
     
     [self CreateAsteroid:386 yPos:479 scale:0.2304f];
     [self CreateAsteroid:387 yPos:408 scale:0.2304f];
@@ -951,6 +950,14 @@ float lerpf(float a, float b, float t) {
 - (bool)IsPositionOnScreen:(CGPoint)position{
     return CGRectContainsPoint(CGRectMake(0, 0, size.width, size.height), [cameraLayer convertToWorldSpace:position]);
 }
+
+
+/**
+- (void)dealloc {
+    // before we add anything here we should talk about what will be retained vs. released vs. set to nil in certain situations
+    [super dealloc];
+}
+ **/
 
 
 #if !defined(MIN)

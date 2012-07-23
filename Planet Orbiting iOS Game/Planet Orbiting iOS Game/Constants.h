@@ -3,7 +3,7 @@
 //  Planet Orbiting iOS Game
 //
 //  Created by Clay Schubiner on 6/22/12.
-//  Copyright 2012 Stanford University. All rights reserved.
+//  Copyright 2012 Clayton Schubiner. All rights reserved.
 //
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
@@ -70,7 +70,7 @@ const float rateToIncreaseGravity = .015;
 const float swipeStrength = .03;
 
 //the minimum swipe magnitude that will count as a swipe
-const float minSwipeStrength = 35;
+const float minSwipeStrength = 30;
 
 //how many updates pass while the player isn't in a zone until tie go will did
 const float deathAfterThisLong = 55*1.35f*1.1f*1.5f*1*2*.9;

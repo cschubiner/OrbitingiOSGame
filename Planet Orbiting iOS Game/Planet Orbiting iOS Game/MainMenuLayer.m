@@ -3,7 +3,7 @@
 //  Planet Orbiting iOS Game
 //
 //  Created by Clay Schubiner on 6/22/12.
-//  Copyright Stanford University 2012. All rights reserved.
+//  Copyright Clayton Schubiner 2012. All rights reserved.
 //
 
 #import "MainMenuLayer.h"
@@ -40,7 +40,7 @@
 	return self;
 }
 
-//this is called (magically??) by cocosbuilder when the start button is pressed
+// this is called (magically??) by cocosbuilder when the start button is pressed
 - (void)startGame: (id)sender {
     [FlurryAnalytics logEvent:@"Pressed Start Game"];
 
@@ -50,7 +50,7 @@
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
 }
 
-- (void) pressedSendFeedback: (id) sender
+- (void)pressedSendFeedback: (id) sender
 {
     [FlurryAnalytics logEvent:@"Pressed Send Feedback"];
     [[UIApplication sharedApplication]setStatusBarOrientation:UIInterfaceOrientationPortrait];
@@ -60,4 +60,5 @@
 - (void)dealloc {
 	[super dealloc];
 }
+
 @end
