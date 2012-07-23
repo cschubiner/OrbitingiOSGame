@@ -106,6 +106,6 @@ const float howFastOrbitPositionGetsFixed = .06;
 
 const float factorToPlaceGravFieldWhenCrossingOverTheMiddle = .84;
 
-const float factorToPlaceGravFieldWhenStayingOutside = .64;
+const float factorToPlaceGravFieldWhenStayingOutside = .63;
 
 const float factorToIncreaseVelocityWhenExperiencingRegularGravity = 1.1;
