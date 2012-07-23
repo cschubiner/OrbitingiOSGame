@@ -49,10 +49,23 @@
 #endif // GAME_AUTOROTATION == kGameAutorotationUIViewController	
 }
 - (void) applicationDidFinishLaunching:(UIApplication*)application
-{
-    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-    [Flurry startSession:@"96GKYS7HQZHNKZJJN2CZ"];
+{   
+    // installs HandleExceptions as the Uncaught Exception Handler
+    NSSetUncaughtExceptionHandler(&HandleExceptions);
+    // create the signal action structure 
+    struct sigaction newSignalAction;
+    // initialize the signal action structure
+    memset(&newSignalAction, 0, sizeof(newSignalAction));
+    // set SignalHandler as the handler in the signal action structure
+    newSignalAction.sa_handler = &SignalHandler;
+    // set SignalHandler as the handlers for SIGABRT, SIGILL and SIGBUS
+    sigaction(SIGABRT, &newSignalAction, NULL);
+    sigaction(SIGILL, &newSignalAction, NULL);
+    sigaction(SIGBUS, &newSignalAction, NULL);
+    // Call takeOff after install your own unhandled exception and signal handlers
     [TestFlight takeOff:@"d617a481887a5d2cf7db0f22b735c89f_MTExODYwMjAxMi0wNy0xOCAxOToxNToyNC43NzQ3NjA"];
+
+    [Flurry startSession:@"96GKYS7HQZHNKZJJN2CZ"];
     
 	// Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -137,8 +150,20 @@
     [[CCDirector sharedDirector] runWithScene: [MainMenuLayer scene]];
 }
 
-void uncaughtExceptionHandler(NSException *exception) {
+/*
+ My Apps Custom uncaught exception catcher, we do special stuff here, and TestFlight takes care of the rest
+ **/
+void HandleExceptions(NSException *exception) {
     [Flurry logError:@"Uncaught" message:@"Crash!" exception:exception];
+    NSLog(@"This is where we save the application data during a exception");
+    // Save application data on crash (we're not doing this yet)
+}
+/*
+ My Apps Custom signal catcher, we do special stuff here, and TestFlight takes care of the rest
+ **/
+void SignalHandler(int sig) {
+    NSLog(@"This is where we save the application data during a signal");
+    // Save application data on crash
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

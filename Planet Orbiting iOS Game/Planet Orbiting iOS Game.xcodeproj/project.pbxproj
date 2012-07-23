@@ -1378,6 +1378,7 @@
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "Star Dash";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1408,6 +1409,7 @@
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "Star Dash";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

@@ -375,7 +375,7 @@ typedef struct {
         [self addChild:hudLayer];
         [self UpdateScore];
         
-        [Flurry logEvent:@"Started Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil] timed:YES];
+        [Flurry logEvent:@"Played Game" withParameters:nil timed:YES];
         
         [self schedule:@selector(Update:) interval:0]; //this makes the update loop loop!!!!        
 	}
@@ -655,7 +655,7 @@ typedef struct {
 }
 
 - (void)RespawnPlayerAtPlanetIndex:(int)planetIndex {
-    [Flurry logEvent:@"Player Died" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:lastPlanetVisited.number],@"Last planet reached", nil]];
+    [Flurry logEvent:@"Player Died" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:lastPlanetVisited.number],@"Last planet reached",[NSNumber numberWithInt:numZonesHitInARow],@"Pre-death combo", nil]];
     [self JumpPlayerToPlanet:planetIndex];
 }
 
@@ -782,7 +782,7 @@ typedef struct {
                 
                 if (zonesReached>=[zones count]) {
                     [TestFlight passCheckpoint:@"Reached All Zones"];
-                    [Flurry endTimedEvent:@"Started Game" withParameters:nil];
+                    [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
                 }
             }
         }
