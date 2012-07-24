@@ -1,7 +1,0 @@
-Content\iphone box.xnb
-Content\font.xnb
-Content\biggerFont.xnb
-Content\asteroid.xnb
-Content\Planet2.xnb
-Content\zone.xnb
-Content\coin.xnb
