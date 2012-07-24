@@ -63,6 +63,7 @@
     CCParticleSystemQuad * spaceBackgroundParticle;
     CCParticleSystemQuad * cometParticle;
     CCParticleSystemQuad * blackHoleParticle;
+    CCParticleSystemQuad * playerExplosionParticle;
     CGPoint cometVelocity;
         float lastTakeoffAngleToNextPlanet;
     

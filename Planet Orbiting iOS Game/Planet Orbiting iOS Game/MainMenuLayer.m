@@ -99,14 +99,16 @@
 - (void)pressedBackButton:(id)sender {
     [Flurry logEvent:@"Went back to menu from store"];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(0,0)];
-    id ease = [CCEaseInOut actionWithAction:action rate:2];
+    //id ease = [CCEaseInOut actionWithAction:action rate:2];
+    id ease = [CCEaseOut actionWithAction:action rate:2];
     [layer runAction: ease];
 }
 
 - (void)pressedStoreButton:(id)sender {
     [Flurry logEvent:@"Opened Store"];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,0)];
-    id ease = [CCEaseSineInOut actionWithAction:action]; //does this "CCEaseSineInOut" look better than the above "CCEaseInOut"???
+   // id ease = [CCEaseSineInOut actionWithAction:action]; //does this "CCEaseSineInOut" look better than the above "CCEaseInOut"???
+    id ease = [CCEaseOut actionWithAction:action rate:2];
     [layer runAction: ease];
 }
 

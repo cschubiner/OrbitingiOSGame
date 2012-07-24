@@ -22,6 +22,7 @@
 @property (nonatomic) float mass;
 @property (nonatomic) bool isInZone;
 @property (nonatomic) int coins;
+@property (nonatomic, retain) CCAction* moveAction;
 
 
 @end
