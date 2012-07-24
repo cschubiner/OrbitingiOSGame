@@ -39,6 +39,13 @@ const float postExplosionShakeYMagnitude = 3;
 // this is purely visual and doesn't affect mass.
 const float planetSizeScale = .5;
 
+//this is the time in seconds it takes before the player appears again and starts blinking and moving towards where he should spawn
+const float delayTimeAfterPlayerExplodes = .8f;
+//the time in seconds it takes the player to move towards his respawn point AFTER the delay time is over.
+const float respawnMoveTime = 1.4f;
+//increase this number to increase the rate at which the player blinks as he is spawning
+const float respawnBlinkFrequency = 2.5f;
+
 // the zone scale is the planet scale * this number. BE SURE TO REDUCE factorToPlaceGravFieldS (both of them) if you increase this
 const float zoneScaleRelativeToPlanet = 1.7;
 

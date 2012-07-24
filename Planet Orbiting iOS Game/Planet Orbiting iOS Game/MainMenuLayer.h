@@ -19,6 +19,5 @@
 
 + (CCScene *) scene;
 
-- (void)refreshItemsView;
 
 @end

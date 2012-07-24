@@ -20,6 +20,8 @@
 @property (nonatomic) CGPoint thrustBeginPoint;
 @property (nonatomic) CGPoint thrustEndPoint;
 @property (nonatomic) float mass;
+@property (nonatomic) float rotationAtLastThrust;
+@property (nonatomic) CGPoint positionAtLastThrust;
 @property (nonatomic) bool isInZone;
 @property (nonatomic) int coins;
 @property (nonatomic, retain) CCAction* moveAction;

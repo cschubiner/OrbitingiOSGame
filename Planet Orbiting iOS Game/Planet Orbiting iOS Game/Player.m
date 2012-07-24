@@ -10,7 +10,7 @@
 
 @implementation Player
 
-@synthesize thrustEndPoint,thrustBeginPoint,mass,isInZone,coins,moveAction;
+@synthesize thrustEndPoint,thrustBeginPoint,mass,isInZone,coins,moveAction,rotationAtLastThrust,positionAtLastThrust;
 
 -(id) init
 {

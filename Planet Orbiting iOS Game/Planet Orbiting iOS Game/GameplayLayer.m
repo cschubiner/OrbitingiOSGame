@@ -249,6 +249,7 @@ typedef struct {
         [self setGameConstants];
         self.isTouchEnabled= TRUE;
         isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate])getIsInTutorialMode];
+        [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444]; // add this line at the very beginning
         planetCounter = 0;
         cameraObjects = [[NSMutableArray alloc]init];
         planets = [[NSMutableArray alloc]init];
@@ -261,7 +262,10 @@ typedef struct {
         cometParticle = [CCParticleSystemQuad particleWithFile:@"cometParticle.plist"];
         planetExplosionParticle = [CCParticleSystemQuad particleWithFile:@"planetExplosion.plist"];
         [planetExplosionParticle stopSystem];
+        [cameraLayer addChild:planetExplosionParticle];
         playerExplosionParticle = [CCParticleSystemQuad particleWithFile:@"playerExplosionParticle.plist"];
+        [cameraLayer addChild:playerExplosionParticle];
+        [playerExplosionParticle setVisible:false];
         [playerExplosionParticle stopSystem];
         spaceBackgroundParticle = [CCParticleSystemQuad particleWithFile:@"spaceParticles.plist"];
         thrustParticle = [CCParticleSystemQuad particleWithFile:@"thrustParticle2.plist"];
@@ -443,7 +447,7 @@ typedef struct {
     
     for (Asteroid* asteroid in asteroids) {        
         CGPoint p = asteroid.sprite.position;
-        if (ccpLength(ccpSub(player.sprite.position, p)) <= asteroid.radius * asteroidRadiusCollisionZone && orbitState == 3) {
+        if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= asteroid.radius * asteroidRadiusCollisionZone && orbitState == 3) {
             [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
         }
     }
@@ -469,11 +473,9 @@ typedef struct {
                     player.sprite.position = ccpAdd(player.sprite.position, ccpMult(ccpNormalize(a), (planet.orbitRadius - ccpLength(a))*howFastOrbitPositionGetsFixed*timeDilationCoefficient/absoluteMinTimeDilation));
                 }
                 
-                
                 velSoftener += 1/updatesToMakeOrbitVelocityPerfect;
                 //velSoftener = 1;
-                velSoftener = clampf(velSoftener, 0, 1);
-                
+                velSoftener = clampf(velSoftener, 0, 1);                
                 
                 //CCLOG(@"cur: %f", velSoftener);
                 
@@ -633,29 +635,35 @@ typedef struct {
         [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
 }
 
-- (void)RespawnPlayerAtPlanetIndex:(int)planetIndex {
+//FIX you don't really need planetIndex passed in because it's just going to spawn at the position of the last thrust point anyway
+- (void)RespawnPlayerAtPlanetIndex:(int)planetIndex { 
     timeDilationCoefficient *= factorToScaleTimeDilationByOnDeath;
     numZonesHitInARow = 0;
-    player.velocity=CGPointZero;
-    player.acceleration=CGPointZero;
     orbitState = 0;
     
-    [playerExplosionParticle setPosition:player.sprite.position];
-    [cameraLayer addChild:playerExplosionParticle];
     [playerExplosionParticle resetSystem];
-    id moveAction = [CCEaseSineInOut actionWithAction:[CCMoveTo actionWithDuration:2 position:[self GetPositionForJumpingPlayerToPlanet:planetIndex]]];
-    id delay = [ CCDelayTime actionWithDuration:2];
-    player.moveAction = [CCSequence actionsWithArray:[NSArray arrayWithObjects:delay,moveAction, nil]];
+    [playerExplosionParticle setPosition:player.sprite.position];
+    [playerExplosionParticle setPositionType:kCCPositionTypeGrouped];
+    [playerExplosionParticle setVisible:true];
+    
+    float moveDuration = respawnMoveTime;
+    id moveAction = [CCEaseSineInOut actionWithAction:[CCMoveTo actionWithDuration:moveDuration position:player.positionAtLastThrust]];
+    id delay = [ CCDelayTime actionWithDuration:delayTimeAfterPlayerExplodes];
+    
+    id movingSpawnActions = [CCSpawn actions:moveAction,[CCBlink actionWithDuration:moveDuration-.05f blinks:moveDuration*respawnBlinkFrequency], [CCRotateTo actionWithDuration:moveDuration-.1f angle:player.rotationAtLastThrust+180], nil];
+    player.moveAction = [CCSequence actions:[CCHide action],delay,movingSpawnActions, [CCShow action], nil];
     
     [player.sprite runAction:player.moveAction];
     [thrustParticle stopSystem];
     streak.visible = false;
     player.alive = false;
+    player.velocity=CGPointZero;
+    player.acceleration=CGPointZero;
+
     [Flurry logEvent:@"Player Died" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:lastPlanetVisited.number],@"Last planet reached",[NSNumber numberWithInt:numZonesHitInARow],@"Pre-death combo", nil]];
 }
 
 - (void)UpdatePlayer:(float)dt {
-    bool isGoingCounterClockwise;
     if (player.alive) {
         [self ApplyGravity:dt];    
         //CCLOG(@"state: %d", orbitState);
@@ -678,8 +686,8 @@ typedef struct {
         } else {
             nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
         }
-        
-        
+
+        bool isGoingCounterClockwise;
         if (orbitState == 0) { //may want to keep on calculating lastAngle... not sure.
             float takeoffAngleToNextPlanet=CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(nextPlanet.sprite.position, lastPlanetVisited.sprite.position)))-CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(player.sprite.position, lastPlanetVisited.sprite.position)));        
             isGoingCounterClockwise = (takeoffAngleToNextPlanet-lastTakeoffAngleToNextPlanet<0);
@@ -693,22 +701,23 @@ typedef struct {
             }
             lastTakeoffAngleToNextPlanet = takeoffAngleToNextPlanet;
         }
+        
+        //spaceship rotating code follows --------------------
+        float targetRotation = -CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity));
+        if (isGoingCounterClockwise) {
+            if (targetRotation-player.sprite.rotation>=180)
+                player.sprite.rotation+=360;
+        }
+        else if (targetRotation-player.sprite.rotation<=-180)
+            player.sprite.rotation-=360;    
+        player.sprite.rotation = targetRotation;
+        //end spaceship rotating code --------------------
     }
     else if (player.moveAction.isDone){
         player.alive=true;
-        streak.visible = true;
+        [streak runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.8f],[CCShow action], nil]];
         [thrustParticle resetSystem];
     }
-    //spaceship rotating code follows --------------------
-    float targetRotation = -CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity));
-    if (isGoingCounterClockwise) {
-        if (targetRotation-player.sprite.rotation>=180)
-            player.sprite.rotation+=360;
-    }
-    else if (targetRotation-player.sprite.rotation<=-180)
-        player.sprite.rotation-=360;    
-    player.sprite.rotation = targetRotation;
-    //end spaceship rotating code --------------------
 }
 
 - (void)resetVariablesForNewGame {
@@ -789,7 +798,6 @@ typedef struct {
             if (zone.hasPlayerHitThisZone&&!zone.hasExploded){
                 Planet * planet = [planets objectAtIndex:zone.number];
                 planet.alive = false;
-                [cameraLayer addChild:planetExplosionParticle];                
                 [planetExplosionParticle setPosition:zone.sprite.position];
                 [planetExplosionParticle resetSystem];
                 [[SimpleAudioEngine sharedEngine]playEffect:@"bomb.wav"];
@@ -899,6 +907,9 @@ typedef struct {
             location = [[CCDirector sharedDirector] convertToGL:location];
             [player setThrustEndPoint:location];
             swipeVector = ccpAdd(ccp(-player.thrustBeginPoint.x,-player.thrustBeginPoint.y), player.thrustEndPoint);
+            player.positionAtLastThrust = player.sprite.position;
+            player.rotationAtLastThrust = player.sprite.rotation;
+            
         }
     }
     
