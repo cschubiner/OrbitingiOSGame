@@ -13,8 +13,6 @@
 		0C2AB0BB15BE8E54008822F1 /* UserWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2AB0B915BE8E54008822F1 /* UserWallet.m */; };
 		0C2AB0BD15BE8E60008822F1 /* MainMenuScrolling.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 0C2AB0BC15BE8E60008822F1 /* MainMenuScrolling.ccb */; };
 		0C2DEF02159C20BE0018F0FA /* Zone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2DEF01159C20BE0018F0FA /* Zone.m */; };
-		0C3F53CA15BD32B2009A5915 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C3F53C915BD32B2009A5915 /* Default@2x.png */; };
-		0C3F53CC15BD32B4009A5915 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C3F53CB15BD32B4009A5915 /* Default.png */; };
 		0C3F53CE15BD32CD009A5915 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C3F53CD15BD32CD009A5915 /* icon@2x.png */; };
 		0C3F53D015BD32CF009A5915 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C3F53CF15BD32CF009A5915 /* icon.png */; };
 		0C3F53D415BD3397009A5915 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3F53D315BD3397009A5915 /* libFlurry.a */; };
@@ -198,10 +196,9 @@
 		0C2AB0B815BE8E54008822F1 /* UserWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserWallet.h; sourceTree = "<group>"; };
 		0C2AB0B915BE8E54008822F1 /* UserWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserWallet.m; sourceTree = "<group>"; };
 		0C2AB0BC15BE8E60008822F1 /* MainMenuScrolling.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MainMenuScrolling.ccb; sourceTree = "<group>"; };
+		0C2AB0C315BE96D4008822F1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		0C2DEF00159C20BE0018F0FA /* Zone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Zone.h; sourceTree = "<group>"; };
 		0C2DEF01159C20BE0018F0FA /* Zone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Zone.m; sourceTree = "<group>"; };
-		0C3F53C915BD32B2009A5915 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
-		0C3F53CB15BD32B4009A5915 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		0C3F53CD15BD32CD009A5915 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
 		0C3F53CF15BD32CF009A5915 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
 		0C3F53D215BD3397009A5915 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
@@ -593,8 +590,6 @@
 				0C7AA60615946939000B58F2 /* fps_images.png */,
 				0C3F53CF15BD32CF009A5915 /* icon.png */,
 				0C3F53CD15BD32CD009A5915 /* icon@2x.png */,
-				0C3F53CB15BD32B4009A5915 /* Default.png */,
-				0C3F53C915BD32B2009A5915 /* Default@2x.png */,
 				0C7AA61415946939000B58F2 /* Info.plist */,
 				0C7AA61515946939000B58F2 /* iTunesArtwork */,
 			);
@@ -604,6 +599,7 @@
 		0C7AA5E315946938000B58F2 = {
 			isa = PBXGroup;
 			children = (
+				0C2AB0C315BE96D4008822F1 /* Default@2x.png */,
 				0C7AA60215946939000B58F2 /* Planet Orbiting iOS Game */,
 				0C7AA5F115946939000B58F2 /* Frameworks */,
 				0C7AA5EF15946939000B58F2 /* Products */,
@@ -1190,8 +1186,6 @@
 				0C8534E415B660FB0006EAC9 /* background-hd.pvr.ccz in Resources */,
 				0C8534E515B660FB0006EAC9 /* background.plist in Resources */,
 				0C8534E615B660FB0006EAC9 /* background.pvr.ccz in Resources */,
-				0C3F53CA15BD32B2009A5915 /* Default@2x.png in Resources */,
-				0C3F53CC15BD32B4009A5915 /* Default.png in Resources */,
 				0C3F53CE15BD32CD009A5915 /* icon@2x.png in Resources */,
 				0C3F53D015BD32CF009A5915 /* icon.png in Resources */,
 				0C8A19D715BDF6DD0010973F /* streak.png in Resources */,
