@@ -54,7 +54,7 @@
         immunity.itemID = 1;
         immunity.title = @"immunity";
         immunity.price = 50;
-        immunity.description = @"Become invincible to asteroids for a brief period.";
+        immunity.description = @"Become temporarily invincible to asteroids.";
         
         [storeManager.storeItems addObject:magnet]; 
         [storeManager.storeItems addObject:immunity]; 
