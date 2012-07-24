@@ -77,7 +77,7 @@ typedef struct {
 - (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale
 {
     Planet *planet = [[Planet alloc]init];
-    planet.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"planet2.png"]];//@"planet%d.png",[self RandomBetween:1 maxvalue:7]]];
+    planet.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"planet%d.png",[self RandomBetween:1 maxvalue:7]]];
     planet.sprite.position =  ccp(xPos, yPos);
     [planet.sprite setScale:scale];
     planet.mass = 1;
