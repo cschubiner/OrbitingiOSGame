@@ -86,10 +86,10 @@ const float timeDilationReduceRate = .002;
 const float factorToScaleTimeDilationByOnDeath = .69;
 
 //increase to increase timeDilationFactor by a larger amount everytime you get to a new zone
-const float timeDilationIncreaseRate = .22;
+const float timeDilationIncreaseRate = .2;
 
 //the smallest the time dilation factor can go
-const float absoluteMinTimeDilation = 1.2;
+const float absoluteMinTimeDilation = .8;
 
 //the highest the time dilation factor can go. this should probZ just be infinity. bitches will has c slow down if they're going too fast
 const float absoluteMaxTimeDilation = 9999;
@@ -107,6 +107,6 @@ const float factorToPlaceGravFieldWhenCrossingOverTheMiddle = .84;
 
 const float factorToPlaceGravFieldWhenStayingOutside = .63;
 
-const float factorToIncreaseVelocityWhenExperiencingRegularGravity = 1.1;
+const float factorToIncreaseVelocityWhenExperiencingRegularGravity = .9;
 
 const float zoneCollisionFactor = 1.01;
