@@ -417,15 +417,19 @@ typedef struct {
     cameraLastFocusPosition=focusPosition;
 }
 
-- (void)ApplyGravity:(float)dt {    
+- (void)UserTouchedCoin: (Coin*)coin {
+    [[UserWallet sharedInstance] addCoins:1];
+    coin.sprite.visible = false;
+    coin.isAlive = false;
+    [[SimpleAudioEngine sharedEngine]playEffect:@"buttonpress.mp3"];
+}
+
+- (void)ApplyGravity:(float)dt {
     
     for (Coin* coin in coins) {
         CGPoint p = coin.sprite.position;
         if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/1.3 && coin.isAlive) {
-            [[UserWallet sharedInstance] addCoins:1];
-            coin.sprite.visible = false;
-            coin.isAlive = false;
-            [[SimpleAudioEngine sharedEngine]playEffect:@"buttonpress.mp3"];
+            [self UserTouchedCoin:coin];
         }
     }
     
