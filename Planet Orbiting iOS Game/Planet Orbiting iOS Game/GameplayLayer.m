@@ -89,7 +89,7 @@ typedef struct {
     zone.number = planetCounter;
     zone.sprite.position = planet.sprite.position;
     
-    planet.orbitRadius = zone.radius*.99;
+    planet.orbitRadius = zone.radius*zoneCollisionFactor;
     
     [cameraObjects addObject:planet];
     [planets addObject:planet];
@@ -766,7 +766,7 @@ typedef struct {
             continue;
         if (zone.number>lastPlanetVisited.number+1)
             break;
-        if (zone.number<=lastPlanetVisited.number+1&& ccpDistance([[player sprite]position], [[zone sprite]position])<[zone radius]*.99)
+        if (zone.number<=lastPlanetVisited.number+1&& ccpDistance([[player sprite]position], [[zone sprite]position])<[zone radius]*zoneCollisionFactor)
         {
             player.isInZone = true;
             if (!zone.hasPlayerHitThisZone)
