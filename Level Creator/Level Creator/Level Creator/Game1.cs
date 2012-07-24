@@ -42,9 +42,9 @@ namespace Level_Creator
         string toDisplay;
         const float defaultPlanetScaleSize = 1;
         const float minPlanetScale = 1;
-        const float defaultAsteroidScaleSize =  .36f*.64f*2;
-        const float defaultCoinScaleSize = .6f*.6f;
-        const float minAsteroidScale = .36f * .64f * .7f*2;
+        const float defaultAsteroidScaleSize =  .36f*.64f*2*1.9f;
+        const float defaultCoinScaleSize = 1;
+        const float minAsteroidScale = .36f * .64f * .7f*2*1.5f;
         float currentAsteroidScale;
         float currentPlanetScale;
         float currentFrameScale;
