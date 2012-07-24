@@ -1597,7 +1597,7 @@
 									<key>scaleY</key>
 									<real>1</real>
 									<key>selector</key>
-									<string>beastButtonPressed</string>
+									<string>immunityButtonPressed</string>
 									<key>spriteFileDisabled</key>
 									<string>btn-test-2.png</string>
 									<key>spriteFileNormal</key>
@@ -1899,7 +1899,7 @@
 							<key>scaleY</key>
 							<real>1.1604297161102295</real>
 							<key>string</key>
-							<string>Beast</string>
+							<string>Immunity</string>
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>

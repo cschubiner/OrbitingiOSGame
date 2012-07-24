@@ -12,7 +12,7 @@
 
 @synthesize
 numberOfMagnet,
-numberOfBeast;
+numberOfImmunity;
 
 static PowerupManager *sharedInstance = nil;
 
@@ -28,7 +28,7 @@ static PowerupManager *sharedInstance = nil;
 - (id)init {
     if (self = [super init]) {
         numberOfMagnet = 0;
-        numberOfBeast = 0;
+        numberOfImmunity = 0;
     }
     return self;
 }
@@ -37,16 +37,24 @@ static PowerupManager *sharedInstance = nil;
     numberOfMagnet += 1;
 }
 
-- (void)addBeast {
-    numberOfBeast += 1;
+- (void)addImmunity {
+    numberOfImmunity += 1;
+}
+
+- (void)subtractMagnet {
+    numberOfMagnet -= 1;
+}
+
+- (void)subtractImmunity {
+    numberOfImmunity -= 1;
 }
 
 - (int)numMagnet {
     return numberOfMagnet;
 }
 
-- (int)numBeast {
-    return numberOfBeast;
+- (int)numImmunity {
+    return numberOfImmunity;
 }
 
 @end

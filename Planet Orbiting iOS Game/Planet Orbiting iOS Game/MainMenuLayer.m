@@ -50,14 +50,14 @@
         magnet.price = 20;
         magnet.description = @"Pull coins toward you as you fly.";
         
-        StoreItem *beast = [[StoreItem alloc] init];
-        beast.itemID = 1;
-        beast.title = @"Beast";
-        beast.price = 50;
-        beast.description = @"Become invincible to asteroids for a brief period.";
+        StoreItem *immunity = [[StoreItem alloc] init];
+        immunity.itemID = 1;
+        immunity.title = @"immunity";
+        immunity.price = 50;
+        immunity.description = @"Become invincible to asteroids for a brief period.";
         
         [storeManager.storeItems addObject:magnet]; 
-        [storeManager.storeItems addObject:beast]; 
+        [storeManager.storeItems addObject:immunity]; 
 	}
 	return self;
 }
@@ -72,13 +72,13 @@
     }
 }
 
-- (void)beastButtonPressed {
+- (void)immunityButtonPressed {
     int currCoins = [[UserWallet sharedInstance] getBalance];
-    CCLOG(@"beastButtonPressed");
+    CCLOG(@"immunityButtonPressed");
     [storeManager purchaseItemWithID:1];
     int newCoins = [[UserWallet sharedInstance] getBalance];
     if (currCoins - newCoins == [[storeManager.storeItems objectAtIndex:1] price]) {
-        [[PowerupManager sharedInstance] addBeast];
+        [[PowerupManager sharedInstance] addImmunity];
     }
 }
 

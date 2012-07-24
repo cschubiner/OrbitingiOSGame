@@ -10,17 +10,19 @@
 
 @interface PowerupManager : NSObject {
     int numberOfMagnet;
-    int numberOfBeast;
+    int numberOfImmunity;
 }
 
 @property (nonatomic) int numberOfMagnet;
-@property (nonatomic) int numberOfBeast;
+@property (nonatomic) int numberOfImmunity;
 
 + (id)sharedInstance;
 
 - (void)addMagnet;
-- (void)addBeast;
+- (void)addImmunity;
+- (void)subtractMagnet;
+- (void)subtractImmunity;
 - (int)numMagnet;
-- (int)numBeast;
+- (int)numImmunity;
 
 @end
