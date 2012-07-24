@@ -335,7 +335,7 @@ typedef struct {
     
     for (Coin* coin in coins) {
         CGPoint p = coin.sprite.position;
-        if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/1.5 && coin.isAlive) {
+        if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/1.3 && coin.isAlive) {
             [[UserWallet sharedInstance] addCoins:1];
             coin.sprite.visible = false;
             coin.isAlive = false;
