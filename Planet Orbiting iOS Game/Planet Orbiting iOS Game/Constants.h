@@ -27,7 +27,7 @@ const float cameraMovementSpeed = .07;
 
 //how quickly the player's spaceship rotates when the direction of his velocity changes
 const float playerRotationSpeed = .39f;
-const float playerSizeScale = 1;
+const float playerSizeScale = 1.5;
 
 const float anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees = 55;
 const float anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees = -35;
@@ -86,7 +86,7 @@ const float timeDilationReduceRate = .002;
 const float factorToScaleTimeDilationByOnDeath = .69;
 
 //increase to increase timeDilationFactor by a larger amount everytime you get to a new zone
-const float timeDilationIncreaseRate = .2;
+const float timeDilationIncreaseRate = .15;
 
 //the smallest the time dilation factor can go
 const float absoluteMinTimeDilation = .8;
