@@ -92,7 +92,7 @@ const float timeDilationIncreaseRate = .2;
 const float absoluteMinTimeDilation = .8;
 
 //the highest the time dilation factor can go. this should probZ just be infinity. bitches will has c slow down if they're going too fast
-const float absoluteMaxTimeDilation = 9999;
+const float absoluteMaxTimeDilation = 1.7;
 
 //0 = impossible/needs to match angle exactly, a higher number means your swipe timing can be off by that many degrees
 //const float requiredAngleAccuracy = 0; //30

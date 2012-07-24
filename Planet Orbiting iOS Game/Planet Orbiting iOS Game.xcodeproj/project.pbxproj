@@ -184,6 +184,7 @@
 		C4F11E2315B4D58E008168B0 /* TitleFont.png in Resources */ = {isa = PBXBuildFile; fileRef = C4F11E1F15B4D58E008168B0 /* TitleFont.png */; };
 		C4FDA2D615AE0143005E8D7B /* blackHoleParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4FDA2D515AE0143005E8D7B /* blackHoleParticle.plist */; };
 		CE30F28715AA972E00796589 /* Asteroid.m in Sources */ = {isa = PBXBuildFile; fileRef = CE30F28615AA972E00796589 /* Asteroid.m */; };
+		FA48C83715BE84DC00FA6F32 /* buttonpress.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA48C83615BE84DC00FA6F32 /* buttonpress.mp3 */; };
 		FAF1C64015BCF8A1001136E3 /* Coin.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF1C63F15BCF8A1001136E3 /* Coin.m */; };
 /* End PBXBuildFile section */
 
@@ -499,6 +500,7 @@
 		C4FDA2D515AE0143005E8D7B /* blackHoleParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = blackHoleParticle.plist; sourceTree = "<group>"; };
 		CE30F28515AA972E00796589 /* Asteroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Asteroid.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		CE30F28615AA972E00796589 /* Asteroid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Asteroid.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		FA48C83615BE84DC00FA6F32 /* buttonpress.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonpress.mp3; sourceTree = "<group>"; };
 		FAF1C63E15BCF8A1001136E3 /* Coin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coin.h; sourceTree = "<group>"; };
 		FAF1C63F15BCF8A1001136E3 /* Coin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1009,6 +1011,7 @@
 			isa = PBXGroup;
 			children = (
 				0CFB823815AE733800EADAF3 /* SWOOSH.WAV */,
+				FA48C83615BE84DC00FA6F32 /* buttonpress.mp3 */,
 				0CFB823615AE6E3000EADAF3 /* bomb.wav */,
 			);
 			name = Effects;
@@ -1200,6 +1203,7 @@
 				0C724DD015BE69170027E231 /* spriteSheetCamera-hd.pvr.ccz in Resources */,
 				0C724DD115BE69170027E231 /* spriteSheetCamera.plist in Resources */,
 				0C724DD215BE69170027E231 /* spriteSheetCamera.pvr.ccz in Resources */,
+				FA48C83715BE84DC00FA6F32 /* buttonpress.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

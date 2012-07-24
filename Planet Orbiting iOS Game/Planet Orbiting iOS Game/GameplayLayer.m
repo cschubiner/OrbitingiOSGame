@@ -277,6 +277,7 @@ typedef struct {
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"phasenwandler_-_Longing_for_Freedom.mp3" loop:YES];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"bomb.wav"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.wav"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"buttonpress.mp3"];
         
         spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"spriteSheetCamera.pvr.ccz"];
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spriteSheetCamera.plist"];
@@ -424,6 +425,7 @@ typedef struct {
             [[UserWallet sharedInstance] addCoins:1];
             coin.sprite.visible = false;
             coin.isAlive = false;
+            [[SimpleAudioEngine sharedEngine]playEffect:@"buttonpress.mp3"];
         }
     }
     
