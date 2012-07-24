@@ -428,6 +428,8 @@ typedef struct {
 - (void)ApplyGravity:(float)dt {
     
     //
+    //[PowerupManager sharedInstance]
+    
     
     for (Coin* coin in coins) {
         CGPoint p = coin.sprite.position;
@@ -563,9 +565,14 @@ typedef struct {
             if (orbitState == 3) {
                 //gravIncreaser += rateToIncreaseGravity;
                 
+                /*
                 if (ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) > ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)))
                     if (ccpLength(ccpSub(ccpAdd(player.sprite.position, player.velocity), targetPlanet.sprite.position)) < ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)))
                         CCLOG(@"DIFFERNCE Q: %f", ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) - ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)));
+                */
+                
+                
+                CCLOG(@"DIFFERNCE Q: %f", ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) - ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)));
                 
                 if (dangerLevel >= 1) {
                     [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];

@@ -15,6 +15,7 @@
 #import "CCBReader.h"
 #import "Flurry.h"
 #import "UserWallet.h"
+#import "PowerupManager.h"
 
 
 @interface GameplayLayer : CCLayer {
