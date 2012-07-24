@@ -474,7 +474,7 @@ typedef struct {
     
     for (Coin* coin in coins) {
         CGPoint p = coin.sprite.position;
-        if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/2 && coin.isAlive) {
+        if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/1.5 && coin.isAlive) {
             [[UserWallet sharedInstance] addCoins:1];
             coin.sprite.visible = false;
             coin.isAlive = false;
@@ -490,8 +490,11 @@ typedef struct {
     
     for (Planet* planet in planets)
     {
+        if (planet.number < lastPlanetVisited.number)
+            continue;
+        
         if (planet.number == lastPlanetVisited.number) {          
-            if (isOnFirstRun) {  
+            if (isOnFirstRun) {
                 initialVel = ccp(0, sqrtf(planet.orbitRadius*gravity));
                 isOnFirstRun = false;
                 player.velocity = initialVel;
@@ -583,7 +586,7 @@ typedef struct {
                     if (swipeAccuracy > 180)
                         swipeAccuracy = 360 - swipeAccuracy;
                     
-                    CCLOG(@"cur: %f", swipeAccuracy);
+                    //CCLOG(@"cur: %f", swipeAccuracy);
                     
                     
                     //HERE: TO USE!!!!!: if swipe accuracy is greater than a certain amount, t did a poor swipe and should q punished severely!!!!!
@@ -605,15 +608,15 @@ typedef struct {
             if (orbitState == 3) {
                 gravIncreaser += rateToIncreaseGravity;
                 
-                CCLOG(@"cur: %f", velSoftener);
+                if (ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) > ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)))
+                    if (ccpLength(ccpSub(ccpAdd(player.sprite.position, player.velocity), targetPlanet.sprite.position)) < ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)))
+                        CCLOG(@"DIFFERNCE Q: %f", ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) - ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)));
                 
                 //CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
                 //CGPoint accelToAdd = ccpMult(direction, gravity/**planet.sprite.scale*/);
                 CGPoint accelToAdd = CGPointZero;
                 CGPoint direction = ccpNormalize(ccpSub(spotGoingTo, player.sprite.position));
                 accelToAdd = ccpAdd(accelToAdd, ccpMult(direction, gravity/**targetPlanet.sprite.scale*/));
-                
-                
                 
                 //use 'dif' in method above but rename to 'accuracy' or something
                 
@@ -646,7 +649,7 @@ typedef struct {
             [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
         }
         
-        if (planet.number >lastPlanetVisited.number)
+        if (planet.number >lastPlanetVisited.number+1)
             break;
     }
 }
