@@ -24,10 +24,6 @@
 		0C6EBD0D15BD08CD00EF2B1F /* MainMenuScrolling.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 0C6EBD0C15BD08CD00EF2B1F /* MainMenuScrolling.ccb */; };
 		0C724DBF15BE5B930027E231 /* 69611__redhouse91__mix0786bpm.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 0C724DBE15BE5B930027E231 /* 69611__redhouse91__mix0786bpm.m4a */; };
 		0C724DC915BE65180027E231 /* streak-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C724DC815BE65180027E231 /* streak-hd.png */; };
-		0C724DCF15BE69170027E231 /* spriteSheetCamera-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C724DCB15BE69170027E231 /* spriteSheetCamera-hd.plist */; };
-		0C724DD015BE69170027E231 /* spriteSheetCamera-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C724DCC15BE69170027E231 /* spriteSheetCamera-hd.pvr.ccz */; };
-		0C724DD115BE69170027E231 /* spriteSheetCamera.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C724DCD15BE69170027E231 /* spriteSheetCamera.plist */; };
-		0C724DD215BE69170027E231 /* spriteSheetCamera.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C724DCE15BE69170027E231 /* spriteSheetCamera.pvr.ccz */; };
 		0C7AA5F315946939000B58F2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F215946939000B58F2 /* QuartzCore.framework */; };
 		0C7AA5F515946939000B58F2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F415946939000B58F2 /* OpenGLES.framework */; };
 		0C7AA5F715946939000B58F2 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F615946939000B58F2 /* OpenAL.framework */; };
@@ -185,6 +181,10 @@
 		C4FDA2D615AE0143005E8D7B /* blackHoleParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4FDA2D515AE0143005E8D7B /* blackHoleParticle.plist */; };
 		CE30F28715AA972E00796589 /* Asteroid.m in Sources */ = {isa = PBXBuildFile; fileRef = CE30F28615AA972E00796589 /* Asteroid.m */; };
 		FA48C83715BE84DC00FA6F32 /* buttonpress.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA48C83615BE84DC00FA6F32 /* buttonpress.mp3 */; };
+		FA48C83D15BE892D00FA6F32 /* spriteSheetCamera-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA48C83915BE892D00FA6F32 /* spriteSheetCamera-hd.plist */; };
+		FA48C83E15BE892D00FA6F32 /* spriteSheetCamera-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = FA48C83A15BE892D00FA6F32 /* spriteSheetCamera-hd.pvr.ccz */; };
+		FA48C83F15BE892D00FA6F32 /* spriteSheetCamera.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA48C83B15BE892D00FA6F32 /* spriteSheetCamera.plist */; };
+		FA48C84015BE892D00FA6F32 /* spriteSheetCamera.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = FA48C83C15BE892D00FA6F32 /* spriteSheetCamera.pvr.ccz */; };
 		FAF1C64015BCF8A1001136E3 /* Coin.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF1C63F15BCF8A1001136E3 /* Coin.m */; };
 /* End PBXBuildFile section */
 
@@ -215,10 +215,6 @@
 		0C6EBD0C15BD08CD00EF2B1F /* MainMenuScrolling.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MainMenuScrolling.ccb; sourceTree = "<group>"; };
 		0C724DBE15BE5B930027E231 /* 69611__redhouse91__mix0786bpm.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 69611__redhouse91__mix0786bpm.m4a; sourceTree = "<group>"; };
 		0C724DC815BE65180027E231 /* streak-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "streak-hd.png"; sourceTree = "<group>"; };
-		0C724DCB15BE69170027E231 /* spriteSheetCamera-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spriteSheetCamera-hd.plist"; sourceTree = "<group>"; };
-		0C724DCC15BE69170027E231 /* spriteSheetCamera-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "spriteSheetCamera-hd.pvr.ccz"; sourceTree = "<group>"; };
-		0C724DCD15BE69170027E231 /* spriteSheetCamera.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = spriteSheetCamera.plist; sourceTree = "<group>"; };
-		0C724DCE15BE69170027E231 /* spriteSheetCamera.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = spriteSheetCamera.pvr.ccz; sourceTree = "<group>"; };
 		0C7AA5EE15946939000B58F2 /* Star Dash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Star Dash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C7AA5F215946939000B58F2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0C7AA5F415946939000B58F2 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -501,6 +497,10 @@
 		CE30F28515AA972E00796589 /* Asteroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Asteroid.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		CE30F28615AA972E00796589 /* Asteroid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Asteroid.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		FA48C83615BE84DC00FA6F32 /* buttonpress.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonpress.mp3; sourceTree = "<group>"; };
+		FA48C83915BE892D00FA6F32 /* spriteSheetCamera-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spriteSheetCamera-hd.plist"; sourceTree = "<group>"; };
+		FA48C83A15BE892D00FA6F32 /* spriteSheetCamera-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "spriteSheetCamera-hd.pvr.ccz"; sourceTree = "<group>"; };
+		FA48C83B15BE892D00FA6F32 /* spriteSheetCamera.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = spriteSheetCamera.plist; sourceTree = "<group>"; };
+		FA48C83C15BE892D00FA6F32 /* spriteSheetCamera.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = spriteSheetCamera.pvr.ccz; sourceTree = "<group>"; };
 		FAF1C63E15BCF8A1001136E3 /* Coin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coin.h; sourceTree = "<group>"; };
 		FAF1C63F15BCF8A1001136E3 /* Coin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -662,10 +662,10 @@
 				0C8534E015B660FB0006EAC9 /* background-hd.pvr.ccz */,
 				0C8534E115B660FB0006EAC9 /* background.plist */,
 				0C8534E215B660FB0006EAC9 /* background.pvr.ccz */,
-				0C724DCB15BE69170027E231 /* spriteSheetCamera-hd.plist */,
-				0C724DCC15BE69170027E231 /* spriteSheetCamera-hd.pvr.ccz */,
-				0C724DCD15BE69170027E231 /* spriteSheetCamera.plist */,
-				0C724DCE15BE69170027E231 /* spriteSheetCamera.pvr.ccz */,
+				FA48C83915BE892D00FA6F32 /* spriteSheetCamera-hd.plist */,
+				FA48C83A15BE892D00FA6F32 /* spriteSheetCamera-hd.pvr.ccz */,
+				FA48C83B15BE892D00FA6F32 /* spriteSheetCamera.plist */,
+				FA48C83C15BE892D00FA6F32 /* spriteSheetCamera.pvr.ccz */,
 				0C724DC815BE65180027E231 /* streak-hd.png */,
 				0C8A19D615BDF6DD0010973F /* streak.png */,
 				0CFB823015AE61F300EADAF3 /* Audio */,
@@ -1199,11 +1199,11 @@
 				0C8A19D915BDF8150010973F /* thrustParticle2.plist in Resources */,
 				0C724DBF15BE5B930027E231 /* 69611__redhouse91__mix0786bpm.m4a in Resources */,
 				0C724DC915BE65180027E231 /* streak-hd.png in Resources */,
-				0C724DCF15BE69170027E231 /* spriteSheetCamera-hd.plist in Resources */,
-				0C724DD015BE69170027E231 /* spriteSheetCamera-hd.pvr.ccz in Resources */,
-				0C724DD115BE69170027E231 /* spriteSheetCamera.plist in Resources */,
-				0C724DD215BE69170027E231 /* spriteSheetCamera.pvr.ccz in Resources */,
 				FA48C83715BE84DC00FA6F32 /* buttonpress.mp3 in Resources */,
+				FA48C83D15BE892D00FA6F32 /* spriteSheetCamera-hd.plist in Resources */,
+				FA48C83E15BE892D00FA6F32 /* spriteSheetCamera-hd.pvr.ccz in Resources */,
+				FA48C83F15BE892D00FA6F32 /* spriteSheetCamera.plist in Resources */,
+				FA48C84015BE892D00FA6F32 /* spriteSheetCamera.pvr.ccz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
