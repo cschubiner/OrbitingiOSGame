@@ -43,8 +43,6 @@
 
         storeManager = [[StoreManager alloc] init];
         
-        [[UserWallet sharedInstance] addCoins:25];
-        
         StoreItem *upgrade0 = [[StoreItem alloc] init];
         upgrade0.itemID = 0;
         upgrade0.title = @"Upgrade 0";
