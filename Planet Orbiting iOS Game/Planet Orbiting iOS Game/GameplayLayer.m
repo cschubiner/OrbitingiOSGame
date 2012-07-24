@@ -467,7 +467,7 @@ typedef struct {
                 }
             
             if (orbitState == 3) {
-                gravIncreaser += rateToIncreaseGravity;
+                //gravIncreaser += rateToIncreaseGravity;
                 
                 if (ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) > ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)))
                     if (ccpLength(ccpSub(ccpAdd(player.sprite.position, player.velocity), targetPlanet.sprite.position)) < ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)))

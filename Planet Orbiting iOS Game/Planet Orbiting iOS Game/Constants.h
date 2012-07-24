@@ -60,11 +60,11 @@ const float minAstVel = 0;
 //the asteroid's maximum velocity
 const float maxAstVel = .4;
 
-//gravity strength when in orbit state 2
-const float freeGravityStrength = 700;
+//gravity strength when in orbit state 3
+const float freeGravityStrength = 1000;
 
 //the rate at which gravity increases per update while in orbit state 2/3
-const float rateToIncreaseGravity = .015;
+//const float rateToIncreaseGravity = .015;
 
 //percentage to multiply swipe vector by to get the velocity vector you add to the player's velocity
 const float swipeStrength = .03;
