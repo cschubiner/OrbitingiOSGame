@@ -61,7 +61,7 @@ const float minAstVel = 0;
 const float maxAstVel = .4;
 
 //gravity strength when in orbit state 3
-const float freeGravityStrength = 500;
+const float freeGravityStrength = 400;
 
 //the rate at which gravity increases per update while in orbit state 2/3
 //const float rateToIncreaseGravity = .015;
@@ -101,7 +101,7 @@ const float absoluteMaxTimeDilation = 1.7;
 const float updatesToMakeOrbitVelocityPerfect = 60;
 
 //if this is 1, you will always be at a perfect orbit distance, the smaller it goes the longer it takes to get to that perfect radius (but the smoother it looks)
-const float howFastOrbitPositionGetsFixed = .06;
+const float howFastOrbitPositionGetsFixed = .05;
 
 const float factorToPlaceGravFieldWhenCrossingOverTheMiddle = .84;
 
