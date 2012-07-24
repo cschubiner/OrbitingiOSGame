@@ -506,7 +506,7 @@ typedef struct {
             }
         }
         
-        if (ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) <= planet.radius * planetRadiusCollisionZone) {
+        if (ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) <= planet.radius * planetRadiusCollisionZone && planet.number >= lastPlanetVisited.number) {
             [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
         }
         
