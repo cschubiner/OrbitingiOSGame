@@ -428,7 +428,8 @@ typedef struct {
 - (void)ApplyGravity:(float)dt {
     
     //
-    //[PowerupManager sharedInstance]
+    //[[PowerupManager sharedInstance] numMagnet]; //get how many there are
+    //[[PowerupManager sharedInstance] subtractMagnet]; //numImmunity
     
     
     for (Coin* coin in coins) {
@@ -571,12 +572,10 @@ typedef struct {
                         CCLOG(@"DIFFERNCE Q: %f", ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) - ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)));
                 */
                 
+                //dangerLevel += .01;
+                //CCLOG(@"danger level: %f", dangerLevel);
                 
-                CCLOG(@"DIFFERNCE Q: %f", ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) - ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)));
-                
-                if (dangerLevel >= 1) {
-                    [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
-                }
+
                 
                 //CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
                 //CGPoint accelToAdd = ccpMult(direction, gravity/**planet.sprite.scale*/);
@@ -615,6 +614,10 @@ typedef struct {
             [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
         }
         
+        if (dangerLevel >= 1) {
+            //[self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
+        }
+        
         if (planet.number >lastPlanetVisited.number+2)
             break;
     }
@@ -640,7 +643,7 @@ typedef struct {
     
     timeDilationCoefficient = clampf(timeDilationCoefficient, absoluteMinTimeDilation, absoluteMaxTimeDilation);
     
-    CCLOG(@"thrust mag: %f", timeDilationCoefficient);
+    //CCLOG(@"thrust mag: %f", timeDilationCoefficient);
     
     [self KillIfEnoughTimeHasPassed];
     

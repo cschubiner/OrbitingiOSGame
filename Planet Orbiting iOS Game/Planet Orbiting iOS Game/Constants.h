@@ -77,7 +77,7 @@ const float deathAfterThisLong = 55*1.35f*1.1f*1.5f*1*2*.9;
 
 //the percent of the black hole's radius that triggers a collision
 const float blackHoleCollisionRadiusFactor = .2f;
-const float blackHoleSpeedFactor = .85;
+const float blackHoleSpeedFactor = 1.85;
 
 //increase to make timeDilationFactor decrease more rapidly
 const float timeDilationReduceRate = .002;
@@ -101,7 +101,7 @@ const float absoluteMaxTimeDilation = 1.7;
 const float updatesToMakeOrbitVelocityPerfect = 60;
 
 //if this is 1, you will always be at a perfect orbit distance, the smaller it goes the longer it takes to get to that perfect radius (but the smoother it looks)
-const float howFastOrbitPositionGetsFixed = .06;
+const float howFastOrbitPositionGetsFixed = .05;
 
 const float factorToPlaceGravFieldWhenCrossingOverTheMiddle = .84;
 
