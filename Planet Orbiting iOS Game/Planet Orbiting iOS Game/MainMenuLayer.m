@@ -40,7 +40,7 @@
 	return self;
 }
 
-// this is called (magically??) by cocosbuilder when the start button is pressed
+// this is called (magically?) by cocosbuilder when the start button is pressed
 - (void)startGame: (id)sender {
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,-320)];
     id ease = [CCEaseOut actionWithAction:action rate:2];
