@@ -474,7 +474,7 @@ typedef struct {
     
     for (Coin* coin in coins) {
         CGPoint p = coin.sprite.position;
-        if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius && coin.isAlive) {
+        if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/2 && coin.isAlive) {
             [[UserWallet sharedInstance] addCoins:1];
             coin.sprite.visible = false;
             coin.isAlive = false;
@@ -502,7 +502,7 @@ typedef struct {
                 if (ccpLength(a) != planet.orbitRadius) {
                     //float offset = planet.orbitRadius/ccpLength(a);
                     //player.sprite.position = ccpAdd(planet.sprite.position, ccpMult(a, offset));
-                    player.sprite.position = ccpAdd(player.sprite.position, ccpMult(ccpNormalize(a), (planet.orbitRadius - ccpLength(a))*howFastOrbitPositionGetsFixed));
+                    player.sprite.position = ccpAdd(player.sprite.position, ccpMult(ccpNormalize(a), (planet.orbitRadius - ccpLength(a))*howFastOrbitPositionGetsFixed*timeDilationCoefficient/absoluteMinTimeDilation));
                 }
                 
                 
@@ -605,6 +605,8 @@ typedef struct {
             if (orbitState == 3) {
                 gravIncreaser += rateToIncreaseGravity;
                 
+                CCLOG(@"cur: %f", velSoftener);
+                
                 //CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
                 //CGPoint accelToAdd = ccpMult(direction, gravity/**planet.sprite.scale*/);
                 CGPoint accelToAdd = CGPointZero;
@@ -624,7 +626,7 @@ typedef struct {
                 float scaler = (180/60) - swipeAccuracy / 60 + .5;
                 
                 float distToUse = ccpLength(ccpSub(player.sprite.position, spotGoingTo));
-                CCLOG(@"swipeAcc: %f, scaler: %f, increaser: %f", swipeAccuracy, scaler, gravIncreaser);
+                //CCLOG(@"swipeAcc: %f, scaler: %f, increaser: %f", swipeAccuracy, scaler, gravIncreaser);
                 
                 //perhaps dont use scaler/swipe accuracy, and just use it in (if orbitstate=1) for determining if it's good enough. btw scaler ranges from about 1 to 3.5
                 player.acceleration = ccpMult(accelToAdd, gravIncreaser*factorToIncreaseVelocityWhenExperiencingRegularGravity*freeGravityStrength*scaler/distToUse);

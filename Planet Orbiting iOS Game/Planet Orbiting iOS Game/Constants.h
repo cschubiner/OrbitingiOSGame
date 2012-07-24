@@ -86,7 +86,7 @@ const float timeDilationReduceRate = .002;
 const float factorToScaleTimeDilationByOnDeath = .69;
 
 //increase to increase timeDilationFactor by a larger amount everytime you get to a new zone
-const float timeDilationIncreaseRate = .25;
+const float timeDilationIncreaseRate = .22;
 
 //the smallest the time dilation factor can go
 const float absoluteMinTimeDilation = 1.2;
@@ -110,4 +110,4 @@ const float factorToPlaceGravFieldWhenStayingOutside = .63;
 
 const float factorToIncreaseVelocityWhenExperiencingRegularGravity = 1.1;
 
-const float zoneCollisionFactor = 1.00;
+const float zoneCollisionFactor = 1.01;
