@@ -159,7 +159,7 @@ typedef struct {
     [self CreateAsteroid:1070 yPos:-448 scale:1.28952];
     
     
-    [self CreateCoin:365 yPos:144 scale:0.332*2];
+    [self CreateCoin:365 yPos:160 scale:0.332*2];
     [self CreateCoin:410 yPos:178 scale:0.332*2];
     [self CreateCoin:458 yPos:212 scale:0.332*2];
     [self CreateCoin:350 yPos:262 scale:0.332*2];
