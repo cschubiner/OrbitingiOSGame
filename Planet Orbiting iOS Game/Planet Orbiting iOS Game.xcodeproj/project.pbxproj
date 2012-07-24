@@ -22,6 +22,7 @@
 		0C487B051594739600674AB9 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B041594739600674AB9 /* Player.m */; };
 		0C487B0E1594792C00674AB9 /* Planet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B0D1594792C00674AB9 /* Planet.m */; };
 		0C6EBD0D15BD08CD00EF2B1F /* MainMenuScrolling.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 0C6EBD0C15BD08CD00EF2B1F /* MainMenuScrolling.ccb */; };
+		0C724DBF15BE5B930027E231 /* 69611__redhouse91__mix0786bpm.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 0C724DBE15BE5B930027E231 /* 69611__redhouse91__mix0786bpm.m4a */; };
 		0C7AA5F315946939000B58F2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F215946939000B58F2 /* QuartzCore.framework */; };
 		0C7AA5F515946939000B58F2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F415946939000B58F2 /* OpenGLES.framework */; };
 		0C7AA5F715946939000B58F2 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F615946939000B58F2 /* OpenAL.framework */; };
@@ -144,7 +145,6 @@
 		0C8A19C915BDBB300010973F /* spriteSheetCamera.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A19C515BDBB300010973F /* spriteSheetCamera.pvr.ccz */; };
 		0C8A19D715BDF6DD0010973F /* streak.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A19D615BDF6DD0010973F /* streak.png */; };
 		0C8A19D915BDF8150010973F /* thrustParticle2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A19D815BDF8150010973F /* thrustParticle2.plist */; };
-		0CFB822D15AE61EC00EADAF3 /* LLSDemo-Aegis-Guard.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CFB822B15AE61EC00EADAF3 /* LLSDemo-Aegis-Guard.mp3 */; };
 		0CFB822E15AE61EC00EADAF3 /* phasenwandler_-_Longing_for_Freedom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CFB822C15AE61EC00EADAF3 /* phasenwandler_-_Longing_for_Freedom.mp3 */; };
 		0CFB823715AE6E3000EADAF3 /* bomb.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0CFB823615AE6E3000EADAF3 /* bomb.wav */; };
 		0CFB823915AE733800EADAF3 /* SWOOSH.WAV in Resources */ = {isa = PBXBuildFile; fileRef = 0CFB823815AE733800EADAF3 /* SWOOSH.WAV */; };
@@ -211,6 +211,7 @@
 		0C487B0C1594792C00674AB9 /* Planet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Planet.h; sourceTree = "<group>"; };
 		0C487B0D1594792C00674AB9 /* Planet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Planet.m; sourceTree = "<group>"; };
 		0C6EBD0C15BD08CD00EF2B1F /* MainMenuScrolling.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MainMenuScrolling.ccb; sourceTree = "<group>"; };
+		0C724DBE15BE5B930027E231 /* 69611__redhouse91__mix0786bpm.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 69611__redhouse91__mix0786bpm.m4a; sourceTree = "<group>"; };
 		0C7AA5EE15946939000B58F2 /* Star Dash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Star Dash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C7AA5F215946939000B58F2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0C7AA5F415946939000B58F2 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -453,7 +454,6 @@
 		0C8A19C515BDBB300010973F /* spriteSheetCamera.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = spriteSheetCamera.pvr.ccz; sourceTree = "<group>"; };
 		0C8A19D615BDF6DD0010973F /* streak.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = streak.png; sourceTree = "<group>"; };
 		0C8A19D815BDF8150010973F /* thrustParticle2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = thrustParticle2.plist; sourceTree = "<group>"; };
-		0CFB822B15AE61EC00EADAF3 /* LLSDemo-Aegis-Guard.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "LLSDemo-Aegis-Guard.mp3"; sourceTree = "<group>"; };
 		0CFB822C15AE61EC00EADAF3 /* phasenwandler_-_Longing_for_Freedom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "phasenwandler_-_Longing_for_Freedom.mp3"; sourceTree = "<group>"; };
 		0CFB823615AE6E3000EADAF3 /* bomb.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bomb.wav; sourceTree = "<group>"; };
 		0CFB823815AE733800EADAF3 /* SWOOSH.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SWOOSH.WAV; sourceTree = "<group>"; };
@@ -996,7 +996,7 @@
 		0CFB823115AE61F900EADAF3 /* Music */ = {
 			isa = PBXGroup;
 			children = (
-				0CFB822B15AE61EC00EADAF3 /* LLSDemo-Aegis-Guard.mp3 */,
+				0C724DBE15BE5B930027E231 /* 69611__redhouse91__mix0786bpm.m4a */,
 				0CFB822C15AE61EC00EADAF3 /* phasenwandler_-_Longing_for_Freedom.mp3 */,
 			);
 			name = Music;
@@ -1169,7 +1169,6 @@
 				C47774FF15A75CE2005D0AEB /* jungle-hd.png in Resources */,
 				C477750215A75D2D005D0AEB /* burst-hd.png in Resources */,
 				C4FDA2D615AE0143005E8D7B /* blackHoleParticle.plist in Resources */,
-				0CFB822D15AE61EC00EADAF3 /* LLSDemo-Aegis-Guard.mp3 in Resources */,
 				0CFB822E15AE61EC00EADAF3 /* phasenwandler_-_Longing_for_Freedom.mp3 in Resources */,
 				0CFB823715AE6E3000EADAF3 /* bomb.wav in Resources */,
 				0CFB823915AE733800EADAF3 /* SWOOSH.WAV in Resources */,
@@ -1196,6 +1195,7 @@
 				0C8A19C915BDBB300010973F /* spriteSheetCamera.pvr.ccz in Resources */,
 				0C8A19D715BDF6DD0010973F /* streak.png in Resources */,
 				0C8A19D915BDF8150010973F /* thrustParticle2.plist in Resources */,
+				0C724DBF15BE5B930027E231 /* 69611__redhouse91__mix0786bpm.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

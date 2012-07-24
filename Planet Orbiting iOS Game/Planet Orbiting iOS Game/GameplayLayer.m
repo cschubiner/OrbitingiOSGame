@@ -106,7 +106,6 @@ typedef struct {
 
 - (void)CreateLevel // paste level creation code here
 {
-    
     [self CreatePlanetAndZone:260 yPos:258 scale:1.01f];
     [self CreatePlanetAndZone:1016 yPos:411 scale:1.13f];
     [self CreatePlanetAndZone:2451 yPos:213 scale:1.49f];
