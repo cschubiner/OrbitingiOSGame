@@ -1527,17 +1527,77 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
-										<real>-99.9921875</real>
-										<real>68.41796875</real>
+										<real>-204.3046875</real>
+										<real>113.4375</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
 									<key>scaleX</key>
-									<real>2</real>
+									<real>1.1000000238418579</real>
 									<key>scaleY</key>
 									<real>1</real>
 									<key>selector</key>
-									<string>purchaseButtonPressed</string>
+									<string>magnetButtonPressed</string>
+									<key>spriteFileDisabled</key>
+									<string>btn-test-2.png</string>
+									<key>spriteFileNormal</key>
+									<string>btn-test-0.png</string>
+									<key>spriteFileSelected</key>
+									<string>btn-test-1.png</string>
+									<key>tag</key>
+									<integer>-1</integer>
+									<key>target</key>
+									<integer>2</integer>
+									<key>visible</key>
+									<true/>
+									<key>zOrder</key>
+									<integer>0</integer>
+								</dict>
+							</dict>
+							<dict>
+								<key>children</key>
+								<array/>
+								<key>class</key>
+								<string>CCMenuItemImage</string>
+								<key>properties</key>
+								<dict>
+									<key>anchorPoint</key>
+									<array>
+										<real>0.5</real>
+										<real>0.5</real>
+									</array>
+									<key>contentSize</key>
+									<array>
+										<real>150</real>
+										<real>48</real>
+									</array>
+									<key>customClass</key>
+									<string></string>
+									<key>isEnabled</key>
+									<true/>
+									<key>isExpanded</key>
+									<true/>
+									<key>isRelativeAnchorPoint</key>
+									<true/>
+									<key>lockedScaleRatio</key>
+									<true/>
+									<key>memberVarAssignmentName</key>
+									<string></string>
+									<key>memberVarAssignmentType</key>
+									<integer>1</integer>
+									<key>position</key>
+									<array>
+										<real>-16.3046875</real>
+										<real>114.4375</real>
+									</array>
+									<key>rotation</key>
+									<real>0.0</real>
+									<key>scaleX</key>
+									<real>1.1000000238418579</real>
+									<key>scaleY</key>
+									<real>1</real>
+									<key>selector</key>
+									<string>beastButtonPressed</string>
 									<key>spriteFileDisabled</key>
 									<string>btn-test-2.png</string>
 									<key>spriteFileNormal</key>
@@ -1688,7 +1748,7 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>135</real>
+								<real>67</real>
 								<real>22</real>
 							</array>
 							<key>customClass</key>
@@ -1709,8 +1769,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-108.52734375</real>
-								<real>67.15625</real>
+								<real>-206.77734375</real>
+								<real>113.171875</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1719,7 +1779,7 @@
 							<key>scaleY</key>
 							<real>1.1604297161102295</real>
 							<key>string</key>
-							<string>Buy Upgrade 0</string>
+							<string>Magnet</string>
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
@@ -1748,7 +1808,7 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>139</real>
+								<real>80</real>
 								<real>22</real>
 							</array>
 							<key>customClass</key>
@@ -1769,8 +1829,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-115.25390625</real>
-								<real>32.203125</real>
+								<real>-207.50390625</real>
+								<real>78.21875</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1779,7 +1839,127 @@
 							<key>scaleY</key>
 							<real>1.1604297161102295</real>
 							<key>string</key>
-							<string>Price: 20 Coins</string>
+							<string>20 Coins</string>
+							<key>tag</key>
+							<integer>-1</integer>
+							<key>visible</key>
+							<true/>
+							<key>zOrder</key>
+							<integer>0</integer>
+						</dict>
+					</dict>
+					<dict>
+						<key>children</key>
+						<array/>
+						<key>class</key>
+						<string>CCLabelBMFont</string>
+						<key>properties</key>
+						<dict>
+							<key>anchorPoint</key>
+							<array>
+								<real>0.5</real>
+								<real>0.5</real>
+							</array>
+							<key>color</key>
+							<array>
+								<integer>255</integer>
+								<integer>255</integer>
+								<integer>255</integer>
+							</array>
+							<key>contentSize</key>
+							<array>
+								<real>52</real>
+								<real>22</real>
+							</array>
+							<key>customClass</key>
+							<string></string>
+							<key>fontFile</key>
+							<string>PlainFont.fnt</string>
+							<key>isExpanded</key>
+							<true/>
+							<key>isRelativeAnchorPoint</key>
+							<true/>
+							<key>lockedScaleRatio</key>
+							<true/>
+							<key>memberVarAssignmentName</key>
+							<string></string>
+							<key>memberVarAssignmentType</key>
+							<integer>0</integer>
+							<key>opacity</key>
+							<integer>255</integer>
+							<key>position</key>
+							<array>
+								<real>-18.90234375</real>
+								<real>115.1796875</real>
+							</array>
+							<key>rotation</key>
+							<real>0.0</real>
+							<key>scaleX</key>
+							<real>1.1604297161102295</real>
+							<key>scaleY</key>
+							<real>1.1604297161102295</real>
+							<key>string</key>
+							<string>Beast</string>
+							<key>tag</key>
+							<integer>-1</integer>
+							<key>visible</key>
+							<true/>
+							<key>zOrder</key>
+							<integer>0</integer>
+						</dict>
+					</dict>
+					<dict>
+						<key>children</key>
+						<array/>
+						<key>class</key>
+						<string>CCLabelBMFont</string>
+						<key>properties</key>
+						<dict>
+							<key>anchorPoint</key>
+							<array>
+								<real>0.5</real>
+								<real>0.5</real>
+							</array>
+							<key>color</key>
+							<array>
+								<integer>255</integer>
+								<integer>255</integer>
+								<integer>255</integer>
+							</array>
+							<key>contentSize</key>
+							<array>
+								<real>80</real>
+								<real>22</real>
+							</array>
+							<key>customClass</key>
+							<string></string>
+							<key>fontFile</key>
+							<string>PlainFont.fnt</string>
+							<key>isExpanded</key>
+							<true/>
+							<key>isRelativeAnchorPoint</key>
+							<true/>
+							<key>lockedScaleRatio</key>
+							<true/>
+							<key>memberVarAssignmentName</key>
+							<string></string>
+							<key>memberVarAssignmentType</key>
+							<integer>0</integer>
+							<key>opacity</key>
+							<integer>255</integer>
+							<key>position</key>
+							<array>
+								<real>-21.609375</real>
+								<real>81.22265625</real>
+							</array>
+							<key>rotation</key>
+							<real>0.0</real>
+							<key>scaleX</key>
+							<real>1.1604297161102295</real>
+							<key>scaleY</key>
+							<real>1.1604297161102295</real>
+							<key>string</key>
+							<string>50 Coins</string>
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
@@ -2101,8 +2281,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>720.51953125</real>
-						<real>241.0546875</real>
+						<real>719.45703125</real>
+						<real>259.05859375</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>

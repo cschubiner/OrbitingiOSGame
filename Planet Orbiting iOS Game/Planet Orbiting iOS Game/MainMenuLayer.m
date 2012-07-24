@@ -11,6 +11,7 @@
 #import "StoreItem.h"
 #import "StoreManager.h"
 #import "UserWallet.h"
+#import "PowerupManager.h"
 
 // HelloWorldLayer implementation
 @implementation MainMenuLayer {
@@ -43,24 +44,42 @@
 
         storeManager = [[StoreManager alloc] init];
         
-        StoreItem *upgrade0 = [[StoreItem alloc] init];
-        upgrade0.itemID = 0;
-        upgrade0.title = @"Upgrade 0";
-        upgrade0.price = 20;
-        upgrade0.description = @"With this upgrade, you will be able to do lots of amazing shit. No refunds, bitch.";
+        StoreItem *magnet = [[StoreItem alloc] init];
+        magnet.itemID = 0;
+        magnet.title = @"Magnet";
+        magnet.price = 20;
+        magnet.description = @"Pull coins toward you as you fly.";
         
-        [storeManager.storeItems addObject:upgrade0]; 
+        StoreItem *beast = [[StoreItem alloc] init];
+        beast.itemID = 1;
+        beast.title = @"Beast";
+        beast.price = 50;
+        beast.description = @"Become invincible to asteroids for a brief period.";
+        
+        [storeManager.storeItems addObject:magnet]; 
+        [storeManager.storeItems addObject:beast]; 
 	}
 	return self;
 }
 
-- (void)purchaseButtonPressed {
-    CCLOG(@"purchaseButtonPressed");
+- (void)magnetButtonPressed {
+    int currCoins = [[UserWallet sharedInstance] getBalance];
+    CCLOG(@"magnetButtonPressed");
     [storeManager purchaseItemWithID:0];
+    int newCoins = [[UserWallet sharedInstance] getBalance];
+    if (currCoins - newCoins == [[storeManager.storeItems objectAtIndex:0] price]) {
+        [[PowerupManager sharedInstance] addMagnet];
+    }
 }
 
-- (void)refreshItemsView {
-    // do shit here
+- (void)beastButtonPressed {
+    int currCoins = [[UserWallet sharedInstance] getBalance];
+    CCLOG(@"beastButtonPressed");
+    [storeManager purchaseItemWithID:1];
+    int newCoins = [[UserWallet sharedInstance] getBalance];
+    if (currCoins - newCoins == [[storeManager.storeItems objectAtIndex:1] price]) {
+        [[PowerupManager sharedInstance] addBeast];
+    }
 }
 
 // this is called (magically?) by cocosbuilder when the start button is pressed

@@ -10,6 +10,7 @@
 
 @interface UserWallet : NSObject
 
+
 @property (nonatomic, assign) id userWalletDelegate;
 
 + (id)sharedInstance;
