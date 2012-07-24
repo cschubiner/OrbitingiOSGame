@@ -50,7 +50,7 @@
 
     [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
 
-    CCLOG(@"gameplayLayer scene launched, game starting");
+    CCLOG(@"GameplayLayerScene launched, game starting");
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
 }
 
@@ -69,7 +69,6 @@
     id ease = [CCEaseSineInOut actionWithAction:action]; //does this "CCEaseSineInOut" look better than the above "CCEaseInOut"???
     [layer runAction: ease];
 }
-
 
 - (void)pressedSendFeedback: (id) sender
 {

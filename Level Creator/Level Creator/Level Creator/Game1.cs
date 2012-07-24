@@ -40,11 +40,11 @@ namespace Level_Creator
         SpriteFont font;
         SpriteFont biggerFont;
         string toDisplay;
-        const float defaultPlanetScaleSize = .5f;
-        const float minPlanetScale = .5f * .7f;
-        const float defaultAsteroidScaleSize =  .36f*.64f;
-        const float defaultCoinScaleSize = .3f;
-        const float minAsteroidScale = .36f * .64f * .7f;
+        const float defaultPlanetScaleSize = 1;
+        const float minPlanetScale = 1;
+        const float defaultAsteroidScaleSize =  .36f*.64f*2;
+        const float defaultCoinScaleSize = .6f*.6f;
+        const float minAsteroidScale = .36f * .64f * .7f*2;
         float currentAsteroidScale;
         float currentPlanetScale;
         float currentFrameScale;
@@ -53,7 +53,7 @@ namespace Level_Creator
         KeyboardState lastKeyboardState;
         Vector2 offset;
         // the zone scale is the planet scale * this number
-        const float defaultZoneScaleRelativeToPlanet = 1.3f;
+        const float defaultZoneScaleRelativeToPlanet = 1.7f;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -99,13 +99,13 @@ namespace Level_Creator
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            asteroidTexture  = Content.Load<Texture2D>("asteroid");
-            planetTexture = Content.Load<Texture2D>("Planet2");
+            asteroidTexture  = Content.Load<Texture2D>("asteroidsmall");
+            planetTexture = Content.Load<Texture2D>("planet2small");
             coinTexture = Content.Load<Texture2D>("coin");
-            zoneTexture = Content.Load<Texture2D>("zone");
+            zoneTexture = Content.Load<Texture2D>("zonesmall");
             frameTexture = Content.Load<Texture2D>("iphone box");
             // TODO: use this.Content to load your game content here
-            lastMouseState = Mouse.GetState();
+            lastMouseState = Mouse.GetState();  
             lastKeyboardState = Keyboard.GetState();
             offset = Vector2.Zero;
 
@@ -181,7 +181,7 @@ namespace Level_Creator
                     string first = "[self CreatePlanetAndZone:";
                     string middle = " yPos:";
                     string middle2 = " scale:";
-                    string end = "f];\r\n";
+                    string end = "];\r\n";
 
                     string toCopy = "";
                     foreach (posScaleStruct pstruct in posArray)

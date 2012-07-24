@@ -173,8 +173,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>255</real>
-						<real>292</real>
+						<real>157</real>
+						<real>72</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -196,17 +196,17 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>506.96484375</real>
-						<real>590.03125</real>
+						<real>663.58984375</real>
+						<real>62.4609375</real>
 					</array>
 					<key>rotation</key>
-					<real>0.0</real>
+					<real>-23.3330078125</real>
 					<key>scaleX</key>
-					<real>1</real>
+					<real>2.277031421661377</real>
 					<key>scaleY</key>
-					<real>1</real>
+					<real>2.277031421661377</real>
 					<key>spriteFile</key>
-					<string>planet2-hd.png</string>
+					<string>planet3.png</string>
 					<key>spriteFramesFile</key>
 					<string>spriteSheetCamera.plist</string>
 					<key>tag</key>
@@ -242,8 +242,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>195</real>
-						<real>201</real>
+						<real>99</real>
+						<real>102</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -265,17 +265,17 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>761.125</real>
-						<real>285.90625</real>
+						<real>888.5234375</real>
+						<real>75.1640625</real>
 					</array>
 					<key>rotation</key>
 					<real>-197.986328125</real>
 					<key>scaleX</key>
-					<real>1.5057421922683716</real>
+					<real>2.2058203220367432</real>
 					<key>scaleY</key>
-					<real>1.5057421922683716</real>
+					<real>2.2058203220367432</real>
 					<key>spriteFile</key>
-					<string>planet1-hd.png</string>
+					<string>planet1.png</string>
 					<key>spriteFramesFile</key>
 					<string>spriteSheetCamera.plist</string>
 					<key>tag</key>
@@ -311,8 +311,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>195</real>
-						<real>152</real>
+						<real>97</real>
+						<real>76</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -334,17 +334,17 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>472.046875</real>
-						<real>164.45703125</real>
+						<real>445.671875</real>
+						<real>226.71484375</real>
 					</array>
 					<key>rotation</key>
 					<real>-37.3603515625</real>
 					<key>scaleX</key>
-					<real>0.94906246662139893</real>
+					<real>1.9708203077316284</real>
 					<key>scaleY</key>
-					<real>0.94906246662139893</real>
+					<real>1.9708203077316284</real>
 					<key>spriteFile</key>
-					<string>asteroid-hd.png</string>
+					<string>asteroid.png</string>
 					<key>spriteFramesFile</key>
 					<string>spriteSheetCamera.plist</string>
 					<key>tag</key>
@@ -380,8 +380,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>196</real>
-						<real>181</real>
+						<real>138</real>
+						<real>137</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -409,11 +409,11 @@
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>1.2073438167572021</real>
+					<real>2.0476171970367432</real>
 					<key>scaleY</key>
-					<real>1.2073438167572021</real>
+					<real>2.0476171970367432</real>
 					<key>spriteFile</key>
-					<string>planet4-hd.png</string>
+					<string>planet5.png</string>
 					<key>spriteFramesFile</key>
 					<string>spriteSheetCamera.plist</string>
 					<key>tag</key>
@@ -449,8 +449,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>276</real>
-						<real>274</real>
+						<real>128</real>
+						<real>146</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -472,17 +472,17 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>69.16796875</real>
-						<real>157.5703125</real>
+						<real>57.34375</real>
+						<real>39.57421875</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>0.31000000238418579</real>
+					<real>1.5125781297683716</real>
 					<key>scaleY</key>
-					<real>0.31000000238418579</real>
+					<real>1.5125781297683716</real>
 					<key>spriteFile</key>
-					<string>planet5-hd.png</string>
+					<string>planet2.png</string>
 					<key>spriteFramesFile</key>
 					<string>spriteSheetCamera.plist</string>
 					<key>tag</key>
@@ -538,7 +538,7 @@
 									<key>rotation</key>
 									<real>0.0</real>
 									<key>scaleX</key>
-									<real>2.9500000476837158</real>
+									<real>1.9500000476837158</real>
 									<key>scaleY</key>
 									<real>1</real>
 									<key>selector</key>
@@ -1255,7 +1255,7 @@
 									<key>spriteFileDisabled</key>
 									<string>btn-test-2.png</string>
 									<key>spriteFileNormal</key>
-									<string>btn-test-1.png</string>
+									<string>btn-test-0.png</string>
 									<key>spriteFileSelected</key>
 									<string>btn-test-1.png</string>
 									<key>tag</key>
@@ -2041,8 +2041,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>721.43359375</real>
-						<real>256.55859375</real>
+						<real>720.51953125</real>
+						<real>241.0546875</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>

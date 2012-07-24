@@ -1,9 +1,47 @@
-[self CreatePlanetAndZone:413 yPos:447 scale:0.5f];
-[self CreatePlanetAndZone:484 yPos:432 scale:0.5f];
-[self CreatePlanetAndZone:622 yPos:430 scale:0.5f];
-[self CreatePlanetAndZone:846 yPos:400 scale:0.5f];
-[self CreatePlanetAndZone:551 yPos:212 scale:0.5f];
-[self CreatePlanetAndZone:288 yPos:304 scale:0.5f];
+[self CreatePlanetAndZone:157 yPos:113 scale:1];
+[self CreatePlanetAndZone:585 yPos:335 scale:1];
+[self CreatePlanetAndZone:238 yPos:629 scale:1];
+[self CreatePlanetAndZone:632 yPos:856 scale:1];
+[self CreatePlanetAndZone:894 yPos:1098 scale:1];
+[self CreatePlanetAndZone:1346 yPos:852 scale:1];
+[self CreatePlanetAndZone:1513 yPos:1222 scale:1];
+[self CreatePlanetAndZone:1133 yPos:1501 scale:1];
 
 
+[self CreateAsteroid:382 yPos:177 scale:0.5528];
+[self CreateAsteroid:366 yPos:220 scale:0.4608];
+[self CreateAsteroid:1533 yPos:988 scale:0.4608];
+[self CreateAsteroid:1582 yPos:1015 scale:0.4608];
+[self CreateAsteroid:1555 yPos:943 scale:0.4608];
+[self CreateAsteroid:1542 yPos:1044 scale:0.4608];
+
+
+[self CreateCoin:343 yPos:100 scale:0.36];
+[self CreateCoin:397 yPos:119 scale:0.36];
+[self CreateCoin:453 yPos:144 scale:0.36];
+[self CreateCoin:514 yPos:173 scale:0.36];
+[self CreateCoin:506 yPos:505 scale:0.36];
+[self CreateCoin:414 yPos:495 scale:0.36];
+[self CreateCoin:303 yPos:459 scale:0.36];
+[self CreateCoin:420 yPos:413 scale:0.36];
+[self CreateCoin:421 yPos:565 scale:0.36];
+[self CreateCoin:475 yPos:683 scale:0.36];
+[self CreateCoin:430 yPos:733 scale:0.36];
+[self CreateCoin:429 yPos:734 scale:0.36];
+[self CreateCoin:391 yPos:798 scale:0.36];
+[self CreateCoin:364 yPos:833 scale:0.36];
+[self CreateCoin:1019 yPos:1033 scale:0.36];
+[self CreateCoin:1031 yPos:1092 scale:0.36];
+[self CreateCoin:1011 yPos:1173 scale:0.36];
+[self CreateCoin:958 yPos:1226 scale:0.36];
+[self CreateCoin:879 yPos:1241 scale:0.36];
+[self CreateCoin:792 yPos:1199 scale:0.36];
+[self CreateCoin:763 yPos:1133 scale:0.36];
+[self CreateCoin:767 yPos:1043 scale:0.36];
+[self CreateCoin:837 yPos:969 scale:0.36];
+[self CreateCoin:948 yPos:908 scale:0.36];
+[self CreateCoin:1044 yPos:858 scale:0.36];
+[self CreateCoin:1145 yPos:799 scale:0.36];
+[self CreateCoin:810 yPos:838 scale:0.36];
+[self CreateCoin:870 yPos:873 scale:0.36];
 

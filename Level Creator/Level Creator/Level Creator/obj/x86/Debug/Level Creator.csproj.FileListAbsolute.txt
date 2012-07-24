@@ -27,7 +27,7 @@ Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Cre
 C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\asteroid.xnb
 C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\Planet2.xnb
 C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\zone.xnb
-Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\asteroid.xnb
-Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\Planet2.xnb
-Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\zone.xnb
 Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\coin.xnb
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\planet2small.xnb
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\asteroidsmall.xnb
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\zonesmall.xnb
