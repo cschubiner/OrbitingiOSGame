@@ -50,12 +50,12 @@ typedef struct {
     size = [[CCDirector sharedDirector] winSize];
 }
 
-- (void)CreateCoin:(CGFloat)xPos yPos:(CGFloat)yPos
+- (void)CreateCoin:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale
 {
     Coin *coin = [[Coin alloc]init];
     coin.sprite = [CCSprite spriteWithSpriteFrameName:@"coin.png"];
     coin.sprite.position = ccp(xPos, yPos);
-    [coin.sprite setScale:.3f];
+    [coin.sprite setScale:scale];
     [cameraObjects addObject:coin];
     [coins addObject:coin];
     [spriteSheet addChild:coin.sprite];
@@ -106,7 +106,6 @@ typedef struct {
 
 - (void)CreateLevel // paste level creation code here
 {
-    [self CreateCoin:600 yPos:300];
     
     [self CreatePlanetAndZone:260 yPos:258 scale:1.01f];
     [self CreatePlanetAndZone:1016 yPos:411 scale:1.13f];

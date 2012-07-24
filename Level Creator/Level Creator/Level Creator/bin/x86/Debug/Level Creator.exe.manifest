@@ -93,24 +93,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Level Creator.exe" size="17408">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Level Creator.exe" size="18944">
       <assemblyIdentity name="Level Creator" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>irOP9D0cMD6ruRUGUMkJXQr6qLo=</dsig:DigestValue>
+        <dsig:DigestValue>hpXF/e06+p0dvUtfmsJsdMI6364=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Content\asteroid.xnb" size="231627">
+  <file name="Content\asteroid.xnb" size="181563">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>rvBG6EwSXra/xkY7kXUy9x0GZHw=</dsig:DigestValue>
+      <dsig:DigestValue>4ALcbc6VXm0vYbHu9k5jsOS7pZs=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\biggerFont.xnb" size="38062">
@@ -120,6 +120,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>KRlOEVyoHY152Ks6S2ruOa0fAGw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\coin.xnb" size="250187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>0O4bdcr0/fUG2kBh5m91mrgDen0=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\font.xnb" size="21678">
@@ -146,7 +155,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>63g4UdYz8tn3ZMQ1mYjMmLMRU7Q=</dsig:DigestValue>
+      <dsig:DigestValue>LtGKwEf6sv/abAUAMjQrNrzqezc=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\zone.xnb" size="451771">

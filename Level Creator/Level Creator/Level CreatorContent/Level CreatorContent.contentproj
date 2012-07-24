@@ -63,6 +63,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="zone.png">
+      <Name>zone</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="planet2.png">
+      <Name>planet2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="asteroid.png">
       <Name>asteroid</Name>
       <Importer>TextureImporter</Importer>
@@ -70,15 +84,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Planet2.png">
-      <Name>Planet2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="zone.png">
-      <Name>zone</Name>
+    <Compile Include="coin.png">
+      <Name>coin</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

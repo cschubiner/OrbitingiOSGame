@@ -23,6 +23,7 @@ namespace Level_Creator
         Texture2D zoneTexture;
         Texture2D frameTexture;
         Texture2D asteroidTexture;
+        Texture2D coinTexture;
         MouseState lastMouseState;
 
         public struct posScaleStruct
@@ -34,6 +35,7 @@ namespace Level_Creator
         List<posScaleStruct> posArray;
         List<posScaleStruct> posArrayForFrame;
         List<posScaleStruct> posArrayAsteroid;
+        List<posScaleStruct> posArrayCoin;
         Vector2 currPosToDraw;
         SpriteFont font;
         SpriteFont biggerFont;
@@ -41,11 +43,13 @@ namespace Level_Creator
         const float defaultPlanetScaleSize = .5f;
         const float minPlanetScale = .5f * .7f;
         const float defaultAsteroidScaleSize =  .36f*.64f;
+        const float defaultCoinScaleSize = .3f;
         const float minAsteroidScale = .36f * .64f * .7f;
         float currentAsteroidScale;
         float currentPlanetScale;
         float currentFrameScale;
         float currentZoneScale;
+        float currentCoinScale;
         KeyboardState lastKeyboardState;
         Vector2 offset;
         // the zone scale is the planet scale * this number
@@ -75,6 +79,7 @@ namespace Level_Creator
 
             posArray = new List<posScaleStruct>();
             posArrayAsteroid = new List<posScaleStruct>();
+            posArrayCoin = new List<posScaleStruct>();
             posArrayForFrame = new List<posScaleStruct>();
             base.Initialize();
             currPosToDraw = Vector2.Zero;
@@ -82,7 +87,7 @@ namespace Level_Creator
             currentAsteroidScale = defaultAsteroidScaleSize;
             currentPlanetScale = defaultPlanetScaleSize;
             currentZoneScale = defaultZoneScaleRelativeToPlanet;
-
+            currentCoinScale = defaultCoinScaleSize;
         }
 
         /// <summary>
@@ -96,6 +101,7 @@ namespace Level_Creator
 
             asteroidTexture  = Content.Load<Texture2D>("asteroid");
             planetTexture = Content.Load<Texture2D>("Planet2");
+            coinTexture = Content.Load<Texture2D>("coin");
             zoneTexture = Content.Load<Texture2D>("zone");
             frameTexture = Content.Load<Texture2D>("iphone box");
             // TODO: use this.Content to load your game content here
@@ -161,9 +167,16 @@ namespace Level_Creator
                     pstruct.scale = currentAsteroidScale;
                     posArrayAsteroid.Add(pstruct);
                 }
+                if (keyboardState.IsKeyUp(Keys.C) && lastKeyboardState.IsKeyDown(Keys.C))
+                {
+                    posScaleStruct pstruct;
+                    pstruct.pos = new Vector2(mouseState.X - offset.X, mouseState.Y - offset.Y);
+                    pstruct.scale = currentCoinScale;
+                    posArrayCoin.Add(pstruct);
+                }
                 currPosToDraw = new Vector2(mouseState.X, mouseState.Y);
 
-                if (keyboardState.IsKeyDown(Keys.C))
+                if (keyboardState.IsKeyDown(Keys.O) && lastKeyboardState.IsKeyUp(Keys.O))
                 {
                     string first = "[self CreatePlanetAndZone:";
                     string middle = " yPos:";
@@ -185,6 +198,19 @@ namespace Level_Creator
                     toCopy += "\r\n\r\n";
                     first = "[self CreateAsteroid:";
                     foreach (posScaleStruct pstruct in posArrayAsteroid)
+                    {
+                        toCopy += first;
+                        toCopy += pstruct.pos.X.ToString();
+                        toCopy += middle;
+                        toCopy += (graphics.GraphicsDevice.Viewport.Height - pstruct.pos.Y).ToString();
+                        toCopy += middle2;
+                        toCopy += pstruct.scale.ToString();
+                        toCopy += end;
+                    }
+
+                    toCopy += "\r\n\r\n";
+                    first = "[self CreateCoin:";
+                    foreach (posScaleStruct pstruct in posArrayCoin)
                     {
                         toCopy += first;
                         toCopy += pstruct.pos.X.ToString();
@@ -223,6 +249,17 @@ namespace Level_Creator
                             break;
                         }
                     }
+
+                    foreach (posScaleStruct pstruct in posArrayCoin)
+                    {
+                        Vector2 pos = pstruct.pos;
+                        if (mouseState.X >= (pos.X + offset.X) - coinTexture.Width * pstruct.scale / 2 && mouseState.X <= (pos.X + offset.X) + coinTexture.Width * pstruct.scale / 2
+                            && mouseState.Y >= (pos.Y + offset.Y) - coinTexture.Height * pstruct.scale / 2 && mouseState.Y <= (pos.Y + offset.Y) + coinTexture.Height * pstruct.scale / 2)
+                        {
+                            posArrayCoin.Remove(pstruct);
+                            break;
+                        }
+                    }
                 }
 
                 if (keyboardState.IsKeyDown(Keys.Z))
@@ -231,6 +268,8 @@ namespace Level_Creator
                     currentFrameScale += .06f * (mouseState.ScrollWheelValue - lastMouseState.ScrollWheelValue) / 120;
                 else if (mouseState.LeftButton == ButtonState.Pressed )
                     currentPlanetScale += .03f * (mouseState.ScrollWheelValue - lastMouseState.ScrollWheelValue) / 120;
+                else if (keyboardState.IsKeyDown(Keys.C))
+                    currentCoinScale += .023f * (mouseState.ScrollWheelValue - lastMouseState.ScrollWheelValue) / 120;
                 else if (mouseState.RightButton == ButtonState.Pressed )
                     currentAsteroidScale += .023f * (mouseState.ScrollWheelValue - lastMouseState.ScrollWheelValue) / 120;
 
@@ -277,7 +316,7 @@ namespace Level_Creator
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
 
-            spriteBatch.DrawString(font, "'C' outputs code to \"output.txt\" in the exe's directory.     'F' displays iPhone's frame size.     Middle click to delete.      Arrow keys scroll.\n"+toDisplay, new Vector2(10, 
+            spriteBatch.DrawString(font, "'O' outputs code to \"output.txt\" in the exe's directory.     'F' displays iPhone's frame size.     Middle click to delete.      Arrow keys scroll.\n"+toDisplay, new Vector2(10, 
                 graphics.GraphicsDevice.Viewport.Height - 45), Color.Red);
 
             int index = 0;
@@ -297,6 +336,14 @@ namespace Level_Creator
                 spriteBatch.DrawString(biggerFont, index.ToString(), pos + offset, new Color(97, 255, 110));
                 index++;
             }
+            index = 0;
+            foreach (posScaleStruct pstruct in posArrayCoin)
+            {
+                Vector2 pos = pstruct.pos;
+                spriteBatch.Draw(coinTexture, pos + offset, null, Color.White, 0, new Vector2(coinTexture.Width / 2, coinTexture.Height / 2), pstruct.scale, SpriteEffects.None, 0);
+                spriteBatch.DrawString(biggerFont, index.ToString(), pos + offset, new Color(97, 255, 110));
+                index++;
+            }
 
             foreach (posScaleStruct pstruct in posArrayForFrame)
                 spriteBatch.Draw(frameTexture, pstruct.pos + offset, null, Color.White, 0, new Vector2(frameTexture.Width / 2, frameTexture.Height / 2), pstruct.scale, SpriteEffects.None, 0);
@@ -311,6 +358,10 @@ namespace Level_Creator
                 spriteBatch.Draw(frameTexture, currPosToDraw, null, Color.White, 0, new Vector2(frameTexture.Width / 2, frameTexture.Height / 2), currentFrameScale, SpriteEffects.None, 0);
             if (mouseState.RightButton == ButtonState.Pressed)
                 spriteBatch.Draw(asteroidTexture, currPosToDraw, null, Color.White, 0, new Vector2(asteroidTexture.Width / 2, asteroidTexture.Height / 2), currentAsteroidScale, SpriteEffects.None, 0);
+            if (keyboardState.IsKeyDown(Keys.C))
+                spriteBatch.Draw(coinTexture, currPosToDraw, null, Color.White, 0, new Vector2(coinTexture.Width / 2, coinTexture.Height / 2), currentCoinScale, SpriteEffects.None, 0);
+            
+            
             spriteBatch.End();
             base.Draw(gameTime);
         }
