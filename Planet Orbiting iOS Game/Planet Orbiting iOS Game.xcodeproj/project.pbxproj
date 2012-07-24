@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		012ED2F115BB882D008FDFBD /* UserWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 012ED2F015BB882D008FDFBD /* UserWallet.m */; };
 		012ED2F415BC7894008FDFBD /* StoreItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 012ED2F315BC7894008FDFBD /* StoreItem.m */; };
-		012ED2F715BC7922008FDFBD /* StoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 012ED2F615BC7922008FDFBD /* StoreManager.m */; };
+		0C2AB0B515BE8E43008822F1 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */; };
+		0C2AB0BA15BE8E54008822F1 /* StoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2AB0B715BE8E54008822F1 /* StoreManager.m */; };
+		0C2AB0BB15BE8E54008822F1 /* UserWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2AB0B915BE8E54008822F1 /* UserWallet.m */; };
+		0C2AB0BD15BE8E60008822F1 /* MainMenuScrolling.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 0C2AB0BC15BE8E60008822F1 /* MainMenuScrolling.ccb */; };
 		0C2DEF02159C20BE0018F0FA /* Zone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2DEF01159C20BE0018F0FA /* Zone.m */; };
 		0C3F53CA15BD32B2009A5915 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C3F53C915BD32B2009A5915 /* Default@2x.png */; };
 		0C3F53CC15BD32B4009A5915 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C3F53CB15BD32B4009A5915 /* Default.png */; };
@@ -21,7 +23,6 @@
 		0C487AFB159471E000674AB9 /* CameraObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487AFA159471E000674AB9 /* CameraObject.m */; };
 		0C487B051594739600674AB9 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B041594739600674AB9 /* Player.m */; };
 		0C487B0E1594792C00674AB9 /* Planet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B0D1594792C00674AB9 /* Planet.m */; };
-		0C6EBD0D15BD08CD00EF2B1F /* MainMenuScrolling.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 0C6EBD0C15BD08CD00EF2B1F /* MainMenuScrolling.ccb */; };
 		0C724DBF15BE5B930027E231 /* 69611__redhouse91__mix0786bpm.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 0C724DBE15BE5B930027E231 /* 69611__redhouse91__mix0786bpm.m4a */; };
 		0C724DC915BE65180027E231 /* streak-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C724DC815BE65180027E231 /* streak-hd.png */; };
 		0C7AA5F315946939000B58F2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F215946939000B58F2 /* QuartzCore.framework */; };
@@ -131,7 +132,6 @@
 		0C7AA7531594693C000B58F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA7521594693C000B58F2 /* main.m */; };
 		0C7AA7561594693D000B58F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA7551594693D000B58F2 /* AppDelegate.m */; };
 		0C7AA7591594693D000B58F2 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA7581594693D000B58F2 /* RootViewController.m */; };
-		0C7AA75C1594693D000B58F2 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */; };
 		0C8534C315B64D5C0006EAC9 /* PlainFont-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534BF15B64D5C0006EAC9 /* PlainFont-hd.png */; };
 		0C8534C415B64D5C0006EAC9 /* PlainFont.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534C015B64D5C0006EAC9 /* PlainFont.png */; };
 		0C8534C515B64D5C0006EAC9 /* PlainFont-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534C115B64D5C0006EAC9 /* PlainFont-hd.fnt */; };
@@ -189,12 +189,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		012ED2EF15BB882D008FDFBD /* UserWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserWallet.h; sourceTree = "<group>"; };
-		012ED2F015BB882D008FDFBD /* UserWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserWallet.m; sourceTree = "<group>"; };
 		012ED2F215BC7894008FDFBD /* StoreItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreItem.h; sourceTree = "<group>"; };
 		012ED2F315BC7894008FDFBD /* StoreItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreItem.m; sourceTree = "<group>"; };
-		012ED2F515BC7922008FDFBD /* StoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreManager.h; sourceTree = "<group>"; };
-		012ED2F615BC7922008FDFBD /* StoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreManager.m; sourceTree = "<group>"; };
+		0C2AB0B315BE8E43008822F1 /* MainMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
+		0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
+		0C2AB0B615BE8E54008822F1 /* StoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreManager.h; sourceTree = "<group>"; };
+		0C2AB0B715BE8E54008822F1 /* StoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreManager.m; sourceTree = "<group>"; };
+		0C2AB0B815BE8E54008822F1 /* UserWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserWallet.h; sourceTree = "<group>"; };
+		0C2AB0B915BE8E54008822F1 /* UserWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserWallet.m; sourceTree = "<group>"; };
+		0C2AB0BC15BE8E60008822F1 /* MainMenuScrolling.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MainMenuScrolling.ccb; sourceTree = "<group>"; };
 		0C2DEF00159C20BE0018F0FA /* Zone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Zone.h; sourceTree = "<group>"; };
 		0C2DEF01159C20BE0018F0FA /* Zone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Zone.m; sourceTree = "<group>"; };
 		0C3F53C915BD32B2009A5915 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
@@ -212,7 +215,6 @@
 		0C487B041594739600674AB9 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		0C487B0C1594792C00674AB9 /* Planet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Planet.h; sourceTree = "<group>"; };
 		0C487B0D1594792C00674AB9 /* Planet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Planet.m; sourceTree = "<group>"; };
-		0C6EBD0C15BD08CD00EF2B1F /* MainMenuScrolling.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MainMenuScrolling.ccb; sourceTree = "<group>"; };
 		0C724DBE15BE5B930027E231 /* 69611__redhouse91__mix0786bpm.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 69611__redhouse91__mix0786bpm.m4a; sourceTree = "<group>"; };
 		0C724DC815BE65180027E231 /* streak-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "streak-hd.png"; sourceTree = "<group>"; };
 		0C7AA5EE15946939000B58F2 /* Star Dash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Star Dash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -440,8 +442,6 @@
 		0C7AA7551594693D000B58F2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0C7AA7571594693D000B58F2 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		0C7AA7581594693D000B58F2 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		0C7AA75A1594693D000B58F2 /* MainMenuLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
-		0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
 		0C7AA75D1594693D000B58F2 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GameConfig.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		0C8534BF15B64D5C0006EAC9 /* PlainFont-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlainFont-hd.png"; sourceTree = "<group>"; };
 		0C8534C015B64D5C0006EAC9 /* PlainFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlainFont.png; sourceTree = "<group>"; };
@@ -532,10 +532,10 @@
 			children = (
 				012ED2F215BC7894008FDFBD /* StoreItem.h */,
 				012ED2F315BC7894008FDFBD /* StoreItem.m */,
-				012ED2F515BC7922008FDFBD /* StoreManager.h */,
-				012ED2F615BC7922008FDFBD /* StoreManager.m */,
-				012ED2EF15BB882D008FDFBD /* UserWallet.h */,
-				012ED2F015BB882D008FDFBD /* UserWallet.m */,
+				0C2AB0B615BE8E54008822F1 /* StoreManager.h */,
+				0C2AB0B715BE8E54008822F1 /* StoreManager.m */,
+				0C2AB0B815BE8E54008822F1 /* UserWallet.h */,
+				0C2AB0B915BE8E54008822F1 /* UserWallet.m */,
 			);
 			name = Commerce;
 			sourceTree = "<group>";
@@ -642,8 +642,8 @@
 				C49E914A159A48D700BC424D /* Constants.h */,
 				0C487AF615946E2300674AB9 /* GameplayLayer.h */,
 				0C487AF715946E2300674AB9 /* GameplayLayer.m */,
-				0C7AA75A1594693D000B58F2 /* MainMenuLayer.h */,
-				0C7AA75B1594693D000B58F2 /* MainMenuLayer.m */,
+				0C2AB0B315BE8E43008822F1 /* MainMenuLayer.h */,
+				0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */,
 				0C3F53D115BD3397009A5915 /* Flurry */,
 				012ED2ED15BB87C1008FDFBD /* Commerce */,
 				C4B06C5915B9161F003C0183 /* TestFlight */,
@@ -1050,9 +1050,9 @@
 				0C8534C115B64D5C0006EAC9 /* PlainFont-hd.fnt */,
 				0C8534C215B64D5C0006EAC9 /* PlainFont.fnt */,
 				C445303115A68880004F8F48 /* btn-test-1.png */,
+				0C2AB0BC15BE8E60008822F1 /* MainMenuScrolling.ccb */,
 				C445303215A68880004F8F48 /* btn-test-2.png */,
 				C445303315A68880004F8F48 /* burst.png */,
-				0C6EBD0C15BD08CD00EF2B1F /* MainMenuScrolling.ccb */,
 				C445303515A68880004F8F48 /* jungle.png */,
 				C445303615A68880004F8F48 /* logo-icon.png */,
 				C445303715A68880004F8F48 /* logo.png */,
@@ -1190,7 +1190,6 @@
 				0C8534E415B660FB0006EAC9 /* background-hd.pvr.ccz in Resources */,
 				0C8534E515B660FB0006EAC9 /* background.plist in Resources */,
 				0C8534E615B660FB0006EAC9 /* background.pvr.ccz in Resources */,
-				0C6EBD0D15BD08CD00EF2B1F /* MainMenuScrolling.ccb in Resources */,
 				0C3F53CA15BD32B2009A5915 /* Default@2x.png in Resources */,
 				0C3F53CC15BD32B4009A5915 /* Default.png in Resources */,
 				0C3F53CE15BD32CD009A5915 /* icon@2x.png in Resources */,
@@ -1204,6 +1203,7 @@
 				FA48C83E15BE892D00FA6F32 /* spriteSheetCamera-hd.pvr.ccz in Resources */,
 				FA48C83F15BE892D00FA6F32 /* spriteSheetCamera.plist in Resources */,
 				FA48C84015BE892D00FA6F32 /* spriteSheetCamera.pvr.ccz in Resources */,
+				0C2AB0BD15BE8E60008822F1 /* MainMenuScrolling.ccb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1311,7 +1311,6 @@
 				0C7AA7531594693C000B58F2 /* main.m in Sources */,
 				0C7AA7561594693D000B58F2 /* AppDelegate.m in Sources */,
 				0C7AA7591594693D000B58F2 /* RootViewController.m in Sources */,
-				0C7AA75C1594693D000B58F2 /* MainMenuLayer.m in Sources */,
 				0C487AF815946E2300674AB9 /* GameplayLayer.m in Sources */,
 				0C487AFB159471E000674AB9 /* CameraObject.m in Sources */,
 				0C487B051594739600674AB9 /* Player.m in Sources */,
@@ -1320,10 +1319,11 @@
 				C455064D159E337E00F362D1 /* CCLayerStreak.m in Sources */,
 				C445305115A688AD004F8F48 /* CCBReader.m in Sources */,
 				CE30F28715AA972E00796589 /* Asteroid.m in Sources */,
-				012ED2F115BB882D008FDFBD /* UserWallet.m in Sources */,
 				012ED2F415BC7894008FDFBD /* StoreItem.m in Sources */,
-				012ED2F715BC7922008FDFBD /* StoreManager.m in Sources */,
 				FAF1C64015BCF8A1001136E3 /* Coin.m in Sources */,
+				0C2AB0B515BE8E43008822F1 /* MainMenuLayer.m in Sources */,
+				0C2AB0BA15BE8E54008822F1 /* StoreManager.m in Sources */,
+				0C2AB0BB15BE8E54008822F1 /* UserWallet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
