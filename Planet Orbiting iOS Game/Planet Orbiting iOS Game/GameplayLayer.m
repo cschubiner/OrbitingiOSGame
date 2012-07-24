@@ -344,14 +344,14 @@ typedef struct {
     
     for (Asteroid* asteroid in asteroids) {        
         CGPoint p = asteroid.sprite.position;
-        if (ccpLength(ccpSub(player.sprite.position, p)) <= asteroid.radius * asteroidRadiusCollisionZone) {
+        if (ccpLength(ccpSub(player.sprite.position, p)) <= asteroid.radius * asteroidRadiusCollisionZone && orbitState == 3) {
             [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number - 1];
         }
     }
     
     for (Planet* planet in planets)
     {
-        if (planet.number < lastPlanetVisited.number)
+        if (planet.number < lastPlanetVisited.number - 1)
             continue;
         
         if (planet.number == lastPlanetVisited.number) {          
@@ -510,7 +510,7 @@ typedef struct {
             [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
         }
         
-        if (planet.number >lastPlanetVisited.number+1)
+        if (planet.number >lastPlanetVisited.number+2)
             break;
     }
 }
@@ -535,7 +535,7 @@ typedef struct {
     
     timeDilationCoefficient = clampf(timeDilationCoefficient, absoluteMinTimeDilation, absoluteMaxTimeDilation);
     
-    //CCLOG(@"thrust mag: %f", timeDilationCoefficient);
+    CCLOG(@"thrust mag: %f", timeDilationCoefficient);
     
     [self KillIfEnoughTimeHasPassed];
     

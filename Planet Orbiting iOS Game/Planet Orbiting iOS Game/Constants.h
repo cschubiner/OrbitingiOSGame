@@ -103,7 +103,6 @@ const float updatesToMakeOrbitVelocityPerfect = 60;
 //if this is 1, you will always be at a perfect orbit distance, the smaller it goes the longer it takes to get to that perfect radius (but the smoother it looks)
 const float howFastOrbitPositionGetsFixed = .06;
 
-
 const float factorToPlaceGravFieldWhenCrossingOverTheMiddle = .84;
 
 const float factorToPlaceGravFieldWhenStayingOutside = .63;
