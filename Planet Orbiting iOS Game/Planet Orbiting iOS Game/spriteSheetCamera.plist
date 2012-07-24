@@ -20,15 +20,15 @@
             <key>coin.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,448},{49,57}}</string>
+                <string>{{2,448},{38,46}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{7,3},{49,57}}</string>
+                <string>{{6,2},{38,46}}</string>
                 <key>sourceSize</key>
-                <string>{49,57}</string>
+                <string>{38,46}</string>
             </dict>
             <key>planet1.png</key>
             <dict>
@@ -124,7 +124,7 @@
             <key>spaceship-hd.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{53,448},{51,30}}</string>
+                <string>{{42,448},{51,30}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -157,7 +157,7 @@
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:2529c22519626cd89e08747c0e95e6c5$</string>
+            <string>$TexturePacker:SmartUpdate:f7083c079e582aedf9c26e0348474ff7$</string>
             <key>textureFileName</key>
             <string>spriteSheetCamera.pvr.ccz</string>
         </dict>
