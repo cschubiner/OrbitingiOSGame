@@ -9,16 +9,18 @@
 #import <Foundation/Foundation.h>
 
 @interface PowerupManager : NSObject {
-    int numMagnet;
-    int numBeast;
+    int numberOfMagnet;
+    int numberOfBeast;
 }
 
-@property (nonatomic) int numMagnet;
-@property (nonatomic) int numBeast;
+@property (nonatomic) int numberOfMagnet;
+@property (nonatomic) int numberOfBeast;
 
 + (id)sharedInstance;
 
 - (void)addMagnet;
 - (void)addBeast;
+- (int)numMagnet;
+- (int)numBeast;
 
 @end

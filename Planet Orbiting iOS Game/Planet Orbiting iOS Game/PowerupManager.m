@@ -11,8 +11,8 @@
 @implementation PowerupManager
 
 @synthesize
-numMagnet,
-numBeast;
+numberOfMagnet,
+numberOfBeast;
 
 static PowerupManager *sharedInstance = nil;
 
@@ -27,18 +27,26 @@ static PowerupManager *sharedInstance = nil;
 
 - (id)init {
     if (self = [super init]) {
-        numMagnet = 0;
-        numBeast = 0;
+        numberOfMagnet = 0;
+        numberOfBeast = 0;
     }
     return self;
 }
 
 - (void)addMagnet {
-    numMagnet += 1;
+    numberOfMagnet += 1;
 }
 
 - (void)addBeast {
-    numBeast += 1;
+    numberOfBeast += 1;
+}
+
+- (int)numMagnet {
+    return numberOfMagnet;
+}
+
+- (int)numBeast {
+    return numberOfBeast;
 }
 
 @end
