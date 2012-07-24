@@ -124,34 +124,34 @@ typedef struct {
     [self CreateAsteroid:1542 yPos:1044 scale:0.4608];
     
     
-    [self CreateCoin:343 yPos:100 scale:0.36];
-    [self CreateCoin:397 yPos:119 scale:0.36];
-    [self CreateCoin:453 yPos:144 scale:0.36];
-    [self CreateCoin:514 yPos:173 scale:0.36];
-    [self CreateCoin:506 yPos:505 scale:0.36];
-    [self CreateCoin:414 yPos:495 scale:0.36];
-    [self CreateCoin:303 yPos:459 scale:0.36];
-    [self CreateCoin:420 yPos:413 scale:0.36];
-    [self CreateCoin:421 yPos:565 scale:0.36];
-    [self CreateCoin:475 yPos:683 scale:0.36];
-    [self CreateCoin:430 yPos:733 scale:0.36];
-    [self CreateCoin:429 yPos:734 scale:0.36];
-    [self CreateCoin:391 yPos:798 scale:0.36];
-    [self CreateCoin:364 yPos:833 scale:0.36];
-    [self CreateCoin:1019 yPos:1033 scale:0.36];
-    [self CreateCoin:1031 yPos:1092 scale:0.36];
-    [self CreateCoin:1011 yPos:1173 scale:0.36];
-    [self CreateCoin:958 yPos:1226 scale:0.36];
-    [self CreateCoin:879 yPos:1241 scale:0.36];
-    [self CreateCoin:792 yPos:1199 scale:0.36];
-    [self CreateCoin:763 yPos:1133 scale:0.36];
-    [self CreateCoin:767 yPos:1043 scale:0.36];
-    [self CreateCoin:837 yPos:969 scale:0.36];
-    [self CreateCoin:948 yPos:908 scale:0.36];
-    [self CreateCoin:1044 yPos:858 scale:0.36];
-    [self CreateCoin:1145 yPos:799 scale:0.36];
-    [self CreateCoin:810 yPos:838 scale:0.36];
-    [self CreateCoin:870 yPos:873 scale:0.36];
+    [self CreateCoin:343 yPos:100 scale:0.8];
+    [self CreateCoin:397 yPos:119 scale:0.8];
+    [self CreateCoin:453 yPos:144 scale:0.8];
+    [self CreateCoin:514 yPos:173 scale:0.8];
+    [self CreateCoin:506 yPos:505 scale:0.8];
+    [self CreateCoin:414 yPos:495 scale:0.8];
+    [self CreateCoin:303 yPos:459 scale:0.8];
+    [self CreateCoin:420 yPos:413 scale:0.8];
+    [self CreateCoin:421 yPos:565 scale:0.8];
+    [self CreateCoin:475 yPos:683 scale:0.8];
+    [self CreateCoin:430 yPos:733 scale:0.8];
+    [self CreateCoin:429 yPos:734 scale:0.8];
+    [self CreateCoin:391 yPos:798 scale:0.8];
+    [self CreateCoin:364 yPos:833 scale:0.8];
+    [self CreateCoin:1019 yPos:1033 scale:0.8];
+    [self CreateCoin:1031 yPos:1092 scale:0.8];
+    [self CreateCoin:1011 yPos:1173 scale:0.8];
+    [self CreateCoin:958 yPos:1226 scale:0.8];
+    [self CreateCoin:879 yPos:1241 scale:0.8];
+    [self CreateCoin:792 yPos:1199 scale:0.8];
+    [self CreateCoin:763 yPos:1133 scale:0.8];
+    [self CreateCoin:767 yPos:1043 scale:0.8];
+    [self CreateCoin:837 yPos:969 scale:0.8];
+    [self CreateCoin:948 yPos:908 scale:0.8];
+    [self CreateCoin:1044 yPos:858 scale:0.8];
+    [self CreateCoin:1145 yPos:799 scale:0.8];
+    [self CreateCoin:810 yPos:838 scale:0.8];
+    [self CreateCoin:870 yPos:873 scale:0.8];
     
 }
 
@@ -601,12 +601,12 @@ typedef struct {
     
     blackHoleParticle.position=ccp(-400,-400);
     [cameraLayer removeChild:blackHoleParticle cleanup:NO];
-    [cameraLayer addChild:blackHoleParticle z:3];
+    [cameraLayer addChild:blackHoleParticle z:1];
     
     [thrustParticle setPositionType:kCCPositionTypeRelative];
     [cameraLayer addChild:thrustParticle z:2];
     [cameraLayer addChild:streak z:0];
-    [spriteSheet addChild:player.sprite z:1];
+    [spriteSheet addChild:player.sprite z:3];
 }
 
 - (void)JumpPlayerToPlanet:(int)planetIndex {
@@ -699,7 +699,7 @@ typedef struct {
 - (void)UpdateParticles:(ccTime)dt {
     [thrustParticle setPosition:player.sprite.position];
     [thrustParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
-    [thrustParticle setEmissionRate:400];
+    [thrustParticle setEmissionRate:ccpLengthSQ(player.velocity)*ccpLength(player.velocity)/2.2f];
     
     if (cometParticle.position.y<0) {
         [cometParticle stopSystem];
