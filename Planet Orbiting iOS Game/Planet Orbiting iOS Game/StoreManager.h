@@ -10,26 +10,15 @@
 #import "StoreItem.h"
 #import "UserWallet.h"
 
-@protocol StoreManagerProtocol <NSObject>
-- (void)refreshItemsView;
-@end
 
-@interface StoreManager : NSObject <UserWalletProtocol> {
+@interface StoreManager : NSObject {
     NSMutableArray *storeItems;
-    id <StoreManagerProtocol> storeManagerDelegate;
 }
 
 @property (nonatomic, retain) NSMutableArray *storeItems;
 
-// class methods
-+ (id)sharedInstance;
-
-// instance methods
+- (void)purchaseItemWithID:(int)itemID;
 - (void)addItemToStore:(StoreItem *)item;
 - (void)removeItemFromStore:(StoreItem *)item;
-
-// delegate methods
-- (void)updatedWalletSuccess;
-- (void)updatedWalletFailure:(NSString *)errorText;
 
 @end

@@ -8,14 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol UserWalletProtocol <NSObject>
-- (void)updatedWalletSuccess;
-- (void)updatedWalletFailure:(NSString *)errorText;
-@end
+@interface UserWallet : NSObject
 
-@interface UserWallet : NSObject {
-    id <UserWalletProtocol> userWalletDelegate;
-}
+@property (nonatomic, assign) id userWalletDelegate;
 
 + (id)sharedInstance;
 

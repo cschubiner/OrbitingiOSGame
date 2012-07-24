@@ -11,12 +11,14 @@
 #import "TestFlight.h"
 #import "Flurry.h"
 #import "AppDelegate.h"
-
+#import "StoreManager.h"
 
 @interface MainMenuLayer : CCLayer {
     CCLayer* layer;
 }
 
 + (CCScene *) scene;
+
+- (void)refreshItemsView;
 
 @end

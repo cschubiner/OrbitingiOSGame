@@ -14,18 +14,7 @@
     StoreItem *itemToBuy;
 }
 
-static StoreManager *sharedInstance = nil;
-
 @synthesize storeItems;
-
-+ (id)sharedInstance {
-    @synchronized([StoreManager class]) {
-        if (sharedInstance == nil) {
-            sharedInstance = [[StoreManager alloc] init];
-        }
-    }
-    return sharedInstance;
-}
 
 - (id)init {
     if (self = [super init]) {
@@ -58,30 +47,6 @@ static StoreManager *sharedInstance = nil;
         itemsList = [itemsList stringByAppendingString:@", "];
     }
     return itemsList;
-}
-
-- (void)updatedWalletSuccess {
-    [storeItems removeObject:itemToBuy];
-    [self callRefreshItemsView];
-    itemToBuy = nil;
-}
-
-- (void)updatedWalletFailure:(NSString *)errorText {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Transaction Failed" message:errorText delegate:self cancelButtonTitle:@"Return" otherButtonTitles: nil];
-    [alertView show];
-    [alertView release];
-}
-
-// the delegate is a GUI class that displays the items, so its view must be updated after each transaction/change
-- (void)callRefreshItemsView {
-    NSLog(@"callRefreshItemsView");
-    if (storeManagerDelegate) {
-        if ([storeManagerDelegate respondsToSelector:@selector(refreshItemsView)]) {
-            [storeManagerDelegate refreshItemsView];
-        } else {
-            NSLog(@"delegate does not respond to callRefreshItemsView");
-        }
-    }
 }
 
 @end

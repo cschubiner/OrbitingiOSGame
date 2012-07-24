@@ -12,6 +12,8 @@
     int balance;
 }
 
+@synthesize userWalletDelegate;
+
 static UserWallet *sharedInstance = nil;
 static int MAX_BALANCE = 1000;
 
@@ -31,41 +33,24 @@ static int MAX_BALANCE = 1000;
 - (void)addCoins:(int)coinsToAdd {
     if (balance + coinsToAdd <= MAX_BALANCE) {
         balance += coinsToAdd;
-        [self callGotUserWalletSuccess];
     } else {
-        [self callGotUserWalletFailure:@"Coins exceed max balance"];
-    }
+        [self transactionMessageWithTitle:@"Can't Add Coins" andBody:[NSString stringWithFormat:@"Max coins reached.\n\nCurrent Balance: %i", [self getBalance]]];    }
 }
 
 - (void)removeCoins:(int)coinsToRemove {
     if (balance - coinsToRemove >= 0) {
         balance -= coinsToRemove;
-        [self callGotUserWalletSuccess];
+        [self transactionMessageWithTitle:@"Upgrade Purchased" andBody:[NSString stringWithFormat:@"You bought some shitty upgrade. Good riddance to it.\n\nRemaining Balance: %i", [self getBalance]]];
     } else {
-        [self callGotUserWalletFailure:@"Not enough coins"];
+        [self transactionMessageWithTitle:@"Transaction Failed" andBody:[NSString stringWithFormat:@"Not enough coins.\n\nCurrent Balance: %i", [self getBalance]]];
     }
 }
 
-- (void)callGotUserWalletSuccess {
-    NSLog(@"callGotUserWalletSuccess");
-    if (userWalletDelegate) {
-        if ([userWalletDelegate respondsToSelector:@selector(gotUserWalletSuccess)]) {
-            [userWalletDelegate updatedWalletSuccess];
-        } else {
-            NSLog(@"delegate does not respond to gotUserWalletSuccess");
-        }
-    }
-}
-
-- (void)callGotUserWalletFailure:(NSString *)errorText {
-    NSLog(@"callGotUserWalletFailure");
-    if (userWalletDelegate) {
-        if ([userWalletDelegate respondsToSelector:@selector(gotUserWalletFailure:)]) {
-            [userWalletDelegate updatedWalletFailure:errorText];
-        } else {
-            NSLog(@"delegate does not respond to gotUserWalletFailure");
-        }
-    }
+- (void)transactionMessageWithTitle:(NSString *)title andBody:(NSString *)body {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:body delegate:self cancelButtonTitle:@"Return" otherButtonTitles: nil];
+    [alertView show];
+    [alertView release];
 }
 
 @end
+

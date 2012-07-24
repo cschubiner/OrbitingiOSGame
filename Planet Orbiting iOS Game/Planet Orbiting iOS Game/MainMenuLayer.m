@@ -8,9 +8,14 @@
 
 #import "MainMenuLayer.h"
 #import "GameplayLayer.h"
+#import "StoreItem.h"
+#import "StoreManager.h"
+#import "UserWallet.h"
 
 // HelloWorldLayer implementation
-@implementation MainMenuLayer
+@implementation MainMenuLayer {
+    StoreManager *storeManager;
+}
 
 // returns a singleton scene
 + (CCScene *) scene {
@@ -36,12 +41,32 @@
         [[CDAudioManager sharedManager] playBackgroundMusic:@"69611__redhouse91__mix0786bpm.m4a" loop:YES];
         [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
 
+        storeManager = [[StoreManager alloc] init];
+        
+        [[UserWallet sharedInstance] addCoins:25];
+        
+        StoreItem *upgrade0 = [[StoreItem alloc] init];
+        upgrade0.itemID = 0;
+        upgrade0.title = @"Upgrade 0";
+        upgrade0.price = 20;
+        upgrade0.description = @"With this upgrade, you will be able to do lots of amazing shit. No refunds, bitch.";
+        
+        [storeManager.storeItems addObject:upgrade0]; 
 	}
 	return self;
 }
 
+- (void)purchaseButtonPressed {
+    CCLOG(@"purchaseButtonPressed");
+    [storeManager purchaseItemWithID:0];
+}
+
+- (void)refreshItemsView {
+    // do shit here
+}
+
 // this is called (magically?) by cocosbuilder when the start button is pressed
-- (void)startGame: (id)sender {
+- (void)startGame:(id)sender {
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,-320)];
     id ease = [CCEaseOut actionWithAction:action rate:2];
     [layer runAction: ease];
@@ -54,16 +79,14 @@
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
 }
 
-- (void)pressedBackButton: (id) sender
-{
+- (void)pressedBackButton:(id)sender {
     [Flurry logEvent:@"Went back to menu from store"];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(0,0)];
     id ease = [CCEaseInOut actionWithAction:action rate:2];
     [layer runAction: ease];
 }
 
-- (void)pressedStoreButton: (id) sender
-{
+- (void)pressedStoreButton:(id)sender {
     [Flurry logEvent:@"Opened Store"];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,0)];
     id ease = [CCEaseSineInOut actionWithAction:action]; //does this "CCEaseSineInOut" look better than the above "CCEaseInOut"???

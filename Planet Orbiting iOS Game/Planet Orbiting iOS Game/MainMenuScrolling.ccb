@@ -1467,8 +1467,8 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
-										<real>-109.40625</real>
-										<real>-36.0859375</real>
+										<real>-110.59765625</real>
+										<real>-57.08203125</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
@@ -1527,8 +1527,8 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
-										<real>-108.64453125</real>
-										<real>79.43359375</real>
+										<real>-99.9921875</real>
+										<real>68.41796875</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
@@ -1537,7 +1537,7 @@
 									<key>scaleY</key>
 									<real>1</real>
 									<key>selector</key>
-									<string>pressedBackButton:</string>
+									<string>purchaseButtonPressed</string>
 									<key>spriteFileDisabled</key>
 									<string>btn-test-2.png</string>
 									<key>spriteFileNormal</key>
@@ -1649,8 +1649,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-112.6875</real>
-								<real>-34.90625</real>
+								<real>-114.87890625</real>
+								<real>-56.90234375</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1709,8 +1709,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-108.1640625</real>
-								<real>81.1328125</real>
+								<real>-108.52734375</real>
+								<real>67.15625</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1719,7 +1719,67 @@
 							<key>scaleY</key>
 							<real>1.1604297161102295</real>
 							<key>string</key>
-							<string>Buy Upgrade 1</string>
+							<string>Buy Upgrade 0</string>
+							<key>tag</key>
+							<integer>-1</integer>
+							<key>visible</key>
+							<true/>
+							<key>zOrder</key>
+							<integer>0</integer>
+						</dict>
+					</dict>
+					<dict>
+						<key>children</key>
+						<array/>
+						<key>class</key>
+						<string>CCLabelBMFont</string>
+						<key>properties</key>
+						<dict>
+							<key>anchorPoint</key>
+							<array>
+								<real>0.5</real>
+								<real>0.5</real>
+							</array>
+							<key>color</key>
+							<array>
+								<integer>255</integer>
+								<integer>255</integer>
+								<integer>255</integer>
+							</array>
+							<key>contentSize</key>
+							<array>
+								<real>139</real>
+								<real>22</real>
+							</array>
+							<key>customClass</key>
+							<string></string>
+							<key>fontFile</key>
+							<string>PlainFont.fnt</string>
+							<key>isExpanded</key>
+							<true/>
+							<key>isRelativeAnchorPoint</key>
+							<true/>
+							<key>lockedScaleRatio</key>
+							<true/>
+							<key>memberVarAssignmentName</key>
+							<string></string>
+							<key>memberVarAssignmentType</key>
+							<integer>0</integer>
+							<key>opacity</key>
+							<integer>255</integer>
+							<key>position</key>
+							<array>
+								<real>-115.25390625</real>
+								<real>32.203125</real>
+							</array>
+							<key>rotation</key>
+							<real>0.0</real>
+							<key>scaleX</key>
+							<real>1.1604297161102295</real>
+							<key>scaleY</key>
+							<real>1.1604297161102295</real>
+							<key>string</key>
+							<string>Price: 20 Coins</string>
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
