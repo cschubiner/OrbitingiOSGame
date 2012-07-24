@@ -305,6 +305,7 @@ typedef struct {
         isOnFirstRun = true;
         timeDilationCoefficient = 1;
         gravIncreaser = 1;
+        dangerLevel = 0;
         
         background = [CCSprite spriteWithFile:@"background.pvr.ccz"];
         background.position = ccp(size.width/2+31,19);
@@ -426,6 +427,8 @@ typedef struct {
 
 - (void)ApplyGravity:(float)dt {
     
+    //
+    
     for (Coin* coin in coins) {
         CGPoint p = coin.sprite.position;
         if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/1.3 && coin.isAlive) {
@@ -453,6 +456,7 @@ typedef struct {
             }
             
             if (orbitState == 0) {
+                dangerLevel = 0;
                 CGPoint a = ccpSub(player.sprite.position, planet.sprite.position);
                 if (ccpLength(a) != planet.orbitRadius) {
                     //float offset = planet.orbitRadius/ccpLength(a);
@@ -484,8 +488,7 @@ typedef struct {
                 
                 CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
                 player.acceleration = ccpMult(direction, gravity);
-            } else 
-                if (orbitState == 1) 
+            } else if (orbitState == 1) 
                 {
                     velSoftener = 0;
                     gravIncreaser = 1;
@@ -563,6 +566,10 @@ typedef struct {
                 if (ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) > ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)))
                     if (ccpLength(ccpSub(ccpAdd(player.sprite.position, player.velocity), targetPlanet.sprite.position)) < ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)))
                         CCLOG(@"DIFFERNCE Q: %f", ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) - ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)));
+                
+                if (dangerLevel >= 1) {
+                    [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
+                }
                 
                 //CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
                 //CGPoint accelToAdd = ccpMult(direction, gravity/**planet.sprite.scale*/);

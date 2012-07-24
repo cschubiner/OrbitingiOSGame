@@ -49,6 +49,8 @@
     float velSoftener;
     float gravIncreaser;
     
+    float dangerLevel;
+    
     bool isInTutorialMode;
 
     int orbitState; //0 = orbiting, 1 = just left orbit and deciding things for state 2; 3 = flying to next planet
