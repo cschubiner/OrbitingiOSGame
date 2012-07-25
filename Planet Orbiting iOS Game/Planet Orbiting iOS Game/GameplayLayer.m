@@ -23,6 +23,7 @@
     int prevCurrentPtoPScore;
     int initialScoreConstant;
     float killer;
+    int startingCoins;
 }
 
 typedef struct {
@@ -254,6 +255,7 @@ typedef struct {
 	// always call "super" init.
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
+        startingCoins = [[UserWallet sharedInstance] getBalance];
         [self setGameConstants];
         self.isTouchEnabled= TRUE;
         isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate])getIsInTutorialMode];
@@ -289,7 +291,7 @@ typedef struct {
         [hudLayer addChild: scoreLabel];
         
         coinsLabel = [CCLabelTTF labelWithString:@"Coins: " fontName:@"Marker Felt" fontSize:24];
-        coinsLabel.position = ccp(100, [coinsLabel boundingBox].size.height);
+        coinsLabel.position = ccp(70, [coinsLabel boundingBox].size.height);
         [hudLayer addChild: coinsLabel];
         }
         else {
@@ -863,7 +865,8 @@ typedef struct {
         currentPtoPscore = newScore;
     [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score+currentPtoPscore]];
     int numCoins = [[UserWallet sharedInstance] getBalance];
-    [coinsLabel setString:[NSString stringWithFormat:@"Coins: %i",numCoins]];
+    int coinsDiff = numCoins - startingCoins;
+    [coinsLabel setString:[NSString stringWithFormat:@"Coins: %i",coinsDiff]];
 }
 
 - (void)UpdateParticles:(ccTime)dt {
