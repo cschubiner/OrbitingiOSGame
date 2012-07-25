@@ -13,6 +13,7 @@
 #import "Zone.h"
 #import "Constants.h"
 #import "Coin.h"
+#import "DataStorage.h"
 
 @implementation GameplayLayer {
     int planetCounter;
@@ -908,6 +909,7 @@ typedef struct {
 }
 
 - (void)endGame {
+    [DataStorage storeData];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
 }
 
@@ -1027,10 +1029,10 @@ float lerpf(float a, float b, float t) {
 
 /**
  - (void)dealloc {
- // before we add anything here we should talk about what will be retained vs. released vs. set to nil in certain situations
+ // before we add anything here, we should talk about what will be retained vs. released vs. set to nil in certain situations
  [super dealloc];
  }
- **/
+**/
 
 
 #if !defined(MIN)

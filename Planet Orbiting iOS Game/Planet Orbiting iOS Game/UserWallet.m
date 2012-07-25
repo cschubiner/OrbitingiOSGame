@@ -8,14 +8,12 @@
 
 #import "UserWallet.h"
 
-@implementation UserWallet {
-    int balance;
-}
+@implementation UserWallet
 
-@synthesize userWalletDelegate;
+@synthesize balance;
 
 static UserWallet *sharedInstance = nil;
-static int MAX_BALANCE = 1000;
+static int MAX_BALANCE = 100000000;
 
 + (id)sharedInstance {
     @synchronized([UserWallet class]) {
@@ -33,8 +31,7 @@ static int MAX_BALANCE = 1000;
 - (void)addCoins:(int)coinsToAdd {
     if (balance + coinsToAdd <= MAX_BALANCE) {
         balance += coinsToAdd;
-    } else {
-        [self transactionMessageWithTitle:@"Max Coins Reached" andBody:[NSString stringWithFormat:@"Current Balance: %i", [self getBalance]]];    }
+    }
 }
 
 - (void)removeCoins:(int)coinsToRemove {

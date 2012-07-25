@@ -9,6 +9,7 @@
 #import "StoreManager.h"
 #import "StoreItem.h"
 #import "UserWallet.h"
+#import "DataStorage.h"
 
 @implementation StoreManager {
     StoreItem *itemToBuy;
@@ -28,6 +29,7 @@
     itemToBuy = [storeItems objectAtIndex:itemID];
     int itemPrice = [itemToBuy price];
     [[UserWallet sharedInstance] removeCoins:itemPrice];
+    [DataStorage storeData];
 }
 
 - (void)addItemToStore:(StoreItem *)item {

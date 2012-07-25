@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UserWallet : NSObject
+@interface UserWallet : NSObject {
+    int balance;
+}
 
-
-@property (nonatomic, assign) id userWalletDelegate;
+@property (nonatomic) int balance;
 
 + (id)sharedInstance;
 

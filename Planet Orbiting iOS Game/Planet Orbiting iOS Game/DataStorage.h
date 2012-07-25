@@ -10,4 +10,7 @@
 
 @interface DataStorage : NSObject
 
++ (void)storeData;
++ (void)fetchData;
+
 @end

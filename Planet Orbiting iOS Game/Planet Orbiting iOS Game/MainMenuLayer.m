@@ -12,6 +12,7 @@
 #import "StoreManager.h"
 #import "UserWallet.h"
 #import "PowerupManager.h"
+#import "DataStorage.h"
 
 // HelloWorldLayer implementation
 @implementation MainMenuLayer {
@@ -19,7 +20,7 @@
 }
 
 // returns a singleton scene
-+ (CCScene *) scene {
++ (CCScene *)scene {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
@@ -33,7 +34,6 @@
 	return scene;
 }
 
-
 // on "init" you need to initialize your instance
 - (id)init {
 	if (self = [super init]) {
@@ -41,6 +41,8 @@
         [self addChild:layer];
         [[CDAudioManager sharedManager] playBackgroundMusic:@"69611__redhouse91__mix0786bpm.m4a" loop:YES];
         [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
+        
+        [DataStorage fetchData];
 
         storeManager = [[StoreManager alloc] init];
         
@@ -52,12 +54,12 @@
         
         StoreItem *immunity = [[StoreItem alloc] init];
         immunity.itemID = 1;
-        immunity.title = @"immunity";
+        immunity.title = @"Immunity";
         immunity.price = 50;
         immunity.description = @"Become temporarily invincible to asteroids.";
         
-        [storeManager.storeItems addObject:magnet]; 
-        [storeManager.storeItems addObject:immunity]; 
+        [storeManager.storeItems addObject:magnet];
+        [storeManager.storeItems addObject:immunity];
 	}
 	return self;
 }

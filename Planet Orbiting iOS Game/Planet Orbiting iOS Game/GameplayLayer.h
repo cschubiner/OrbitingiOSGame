@@ -17,7 +17,6 @@
 #import "UserWallet.h"
 #import "PowerupManager.h"
 
-
 @interface GameplayLayer : CCLayer {
     Player *player;
     NSMutableArray *planets;

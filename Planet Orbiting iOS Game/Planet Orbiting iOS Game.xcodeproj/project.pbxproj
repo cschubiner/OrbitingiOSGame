@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		012ED2F415BC7894008FDFBD /* StoreItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 012ED2F315BC7894008FDFBD /* StoreItem.m */; };
 		01FE9B2215BE94E9007512ED /* PowerupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B2115BE94E9007512ED /* PowerupManager.m */; };
+		01FE9B3015BFAAA1007512ED /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01FE9B2F15BFAAA1007512ED /* data.plist */; };
+		01FE9B3415BFAE70007512ED /* DataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B3315BFAE6F007512ED /* DataStorage.m */; };
 		0C2AB0B515BE8E43008822F1 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */; };
 		0C2AB0BA15BE8E54008822F1 /* StoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2AB0B715BE8E54008822F1 /* StoreManager.m */; };
 		0C2AB0BB15BE8E54008822F1 /* UserWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2AB0B915BE8E54008822F1 /* UserWallet.m */; };
@@ -195,6 +197,9 @@
 		012ED2F315BC7894008FDFBD /* StoreItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreItem.m; sourceTree = "<group>"; };
 		01FE9B2015BE94E9007512ED /* PowerupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PowerupManager.h; sourceTree = "<group>"; };
 		01FE9B2115BE94E9007512ED /* PowerupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PowerupManager.m; sourceTree = "<group>"; };
+		01FE9B2F15BFAAA1007512ED /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
+		01FE9B3215BFAE6F007512ED /* DataStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataStorage.h; sourceTree = "<group>"; };
+		01FE9B3315BFAE6F007512ED /* DataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataStorage.m; sourceTree = "<group>"; };
 		0C2AB0B315BE8E43008822F1 /* MainMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
 		0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
 		0C2AB0B615BE8E54008822F1 /* StoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreManager.h; sourceTree = "<group>"; };
@@ -535,6 +540,9 @@
 		012ED2ED15BB87C1008FDFBD /* Commerce */ = {
 			isa = PBXGroup;
 			children = (
+				01FE9B2F15BFAAA1007512ED /* data.plist */,
+				01FE9B3215BFAE6F007512ED /* DataStorage.h */,
+				01FE9B3315BFAE6F007512ED /* DataStorage.m */,
 				01FE9B2015BE94E9007512ED /* PowerupManager.h */,
 				01FE9B2115BE94E9007512ED /* PowerupManager.m */,
 				012ED2F215BC7894008FDFBD /* StoreItem.h */,
@@ -1213,6 +1221,7 @@
 				0C2AB0CB15BE9B08008822F1 /* Default@2x.png in Resources */,
 				0C2AB0CD15BE9B2A008822F1 /* Default.png in Resources */,
 				0C68283215BF0CCA00BF09C0 /* playerExplosionParticle.plist in Resources */,
+				01FE9B3015BFAAA1007512ED /* data.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1334,6 +1343,7 @@
 				0C2AB0BA15BE8E54008822F1 /* StoreManager.m in Sources */,
 				0C2AB0BB15BE8E54008822F1 /* UserWallet.m in Sources */,
 				01FE9B2215BE94E9007512ED /* PowerupManager.m in Sources */,
+				01FE9B3415BFAE70007512ED /* DataStorage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
