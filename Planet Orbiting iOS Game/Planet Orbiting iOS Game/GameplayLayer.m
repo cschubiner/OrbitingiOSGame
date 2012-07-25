@@ -257,6 +257,8 @@ typedef struct {
         [self setGameConstants];
         self.isTouchEnabled= TRUE;
         isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate])getIsInTutorialMode];
+        if ([[PlayerStats sharedInstance] totalPlays] <= 1)
+            isInTutorialMode = true;
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444]; // add this line at the very beginning
         planetCounter = 0;
         cameraObjects = [[NSMutableArray alloc]init];
