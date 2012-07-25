@@ -13,11 +13,6 @@ const float cometRespawnTimer = 1;
 const float cometMinYSpeed = 2;
 const float cometMaxYSpeed = 5;
 
-//as this goes up, the steepness goes DOWN
-const float timeDilationSteepness = 8;
-//the max factor by which the player's speed will be multiplied
-const float timeDilationLimit = 2.5;
-
 //changes how zoomed in the camera in. higher numbers mean more zoom (everything looks bigger)
 const float zoomMultiplier = .85;
 //changes how quickly the camera zooms in and out
@@ -90,13 +85,13 @@ const float blackHoleSpeedFactor = 1.85;
 const float timeDilationReduceRate = .002;
 
 //1 means you lose no speed when you die, 0 means you lose it all
-const float factorToScaleTimeDilationByOnDeath = .69;
+const float factorToScaleTimeDilationByOnDeath = .8;
 
 //increase to increase timeDilationFactor by a larger amount everytime you get to a new zone
 const float timeDilationIncreaseRate = .15;
 
 //the smallest the time dilation factor can go
-const float absoluteMinTimeDilation = .8;
+const float absoluteMinTimeDilation = .85;
 
 //the highest the time dilation factor can go. this should probZ just be infinity. bitches will has c slow down if they're going too fast
 const float absoluteMaxTimeDilation = 1.7;
