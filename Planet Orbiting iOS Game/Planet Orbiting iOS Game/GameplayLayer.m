@@ -344,6 +344,7 @@ typedef struct {
         timeDilationCoefficient = 1;
         dangerLevel = 0;
         isTutPaused = false;
+        swipeVector = ccp(0, -1);
         
         background = [CCSprite spriteWithFile:@"background.pvr.ccz"];
         background.position = ccp(size.width/2+31,19);
@@ -953,7 +954,7 @@ typedef struct {
         //CCLOG(@"ang: %f", ang);
         
         if (ang > -40 && ang < -20) {
-            [self JustSwiped];
+            //[self JustSwiped];
             [self AdvanceTutorial];
         }
         
@@ -1037,12 +1038,16 @@ typedef struct {
         playerIsTouchingScreen = true;
         if (!isInTutorialMode) {
             [self JustSwiped];
+        } else if (tutorialAdvanceMode == 2) {
+            [self AdvanceTutorial];
+            orbitState = 1;
         }
     }
     
-    if (ccpLength(swipeVector) >= minSwipeStrength && tutorialAdvanceMode == 2 && isInTutorialMode) {
-        [self AdvanceTutorial];
-    }
+    //CCLOG(@"num: %f, newAng: %f", ccpLength(swipeVector), minSwipeStrength);
+    //if (ccpLength(swipeVector) >= minSwipeStrength && tutorialAdvanceMode == 2 && isInTutorialMode) {
+    //    [self AdvanceTutorial];
+    //}
 }
 
 - (void)JustSwiped {
