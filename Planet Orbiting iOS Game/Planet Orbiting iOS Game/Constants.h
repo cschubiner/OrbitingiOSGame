@@ -20,6 +20,11 @@ const float cameraZoomSpeed = .05;
 //changes how quickly the camera changes position
 const float cameraMovementSpeed = .07;
 
+//This is the general direction the planet segments head in in degrees from 0. 
+const float directionPlanetSegmentsGoIn= 40;
+//The maximum number of degrees that the segment of planets can be rotated from the direction (see above)
+const float segmentRotationVariation = 80; 
+
 //how quickly the player's spaceship rotates when the direction of his velocity changes
 const float playerRotationSpeed = .39f;
 const float playerSizeScale = 1.5;
@@ -63,9 +68,7 @@ const float minAstVel = 0;
 const float maxAstVel = .4;
 
 //gravity strength when in orbit state 3
-const float freeGravityStrength = .4;
-
-const float multiplyGravityThisManyTimesOnPerfectSwipe = 4;
+const float freeGravityStrength = 1.3;
 
 //the rate at which gravity increases per update while in orbit state 2/3
 //const float rateToIncreaseGravity = .015;

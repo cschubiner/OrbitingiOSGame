@@ -16,6 +16,7 @@
 #import "Flurry.h"
 #import "UserWallet.h"
 #import "PowerupManager.h"
+#import "LevelObjectReturner.h"
 
 @interface GameplayLayer : CCLayer {
     Player *player;
