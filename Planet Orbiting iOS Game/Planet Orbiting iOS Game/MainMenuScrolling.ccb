@@ -654,8 +654,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-119.77734375</real>
-								<real>-3.69140625</real>
+								<real>-117.72265625</real>
+								<real>-5.52734375</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -880,8 +880,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-113.734375</real>
-								<real>-7.734375</real>
+								<real>-112.4453125</real>
+								<real>-8.390625</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1363,8 +1363,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-109.77734375</real>
-								<real>-13.69140625</real>
+								<real>-109.32421875</real>
+								<real>-15.453125</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -2124,7 +2124,7 @@
 							<key>memberVarAssignmentName</key>
 							<string>numImmunitiesLabel</string>
 							<key>memberVarAssignmentType</key>
-							<integer>0</integer>
+							<integer>2</integer>
 							<key>opacity</key>
 							<integer>255</integer>
 							<key>position</key>
