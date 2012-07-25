@@ -242,8 +242,8 @@ typedef struct {
         [self CreateCoin:2342 yPos:-132 scale:0.447*2];
     } else {
         [self CreatePlanetAndZone:163 yPos:159 scale:1];
-        [self CreatePlanetAndZone:914 yPos:387 scale:1];
-        [self CreatePlanetAndZone:1679 yPos:624 scale:1];
+        [self CreatePlanetAndZone:714 yPos:387 scale:1];
+        [self CreatePlanetAndZone:1279 yPos:624 scale:1];
     }
     
 }
@@ -293,7 +293,7 @@ typedef struct {
         else {
             tutorialState = 0;
             tutorialFader = 0;
-            tutorialCanAdvance = true;
+            tutorialAdvanceMode = 1;
             
             tutorialLabel1 = [CCLabelTTF labelWithString:@" " fontName:@"Marker Felt" fontSize:24];
             tutorialLabel1.position = ccp(240, 320-[tutorialLabel1 boundingBox].size.height/2);
@@ -625,11 +625,10 @@ typedef struct {
                 
                 float scaler = (180/60) - swipeAccuracy / 60 + .5;
                 
-                float distToUse = ccpLength(ccpSub(player.sprite.position, spotGoingTo));
                 //CCLOG(@"swipeAcc: %f, scaler: %f", swipeAccuracy, scaler);
                 
                 //perhaps dont use scaler/swipe accuracy, and just use it in (if orbitstate=1) for determining if it's good enough. btw scaler ranges from about 1 to 3.5 (now 0 to 2.5)
-                player.acceleration = ccpMult(accelToAdd, freeGravityStrength*scaler/distToUse - 1);
+                player.acceleration = ccpMult(accelToAdd, freeGravityStrength*scaler - 1);
                 
                 if (initialAccelMag == 0)
                     initialAccelMag = ccpLength(player.acceleration);
@@ -901,14 +900,16 @@ typedef struct {
 }
 
 - (void) Update:(ccTime)dt {
-    if (zonesReached<[planets count])
-        totalGameTime+=dt;
-    [self UpdatePlanets];    
-    [self UpdatePlayer: dt];
-    [self UpdateScore];
-    [self UpdateCamera:dt];
-    [self UpdateParticles:dt];
-    [self UpdateBlackhole];
+    if (!isTutPaused) {
+        if (zonesReached<[planets count])
+            totalGameTime+=dt;
+        [self UpdatePlanets];    
+        [self UpdatePlayer: dt];
+        [self UpdateScore];
+        [self UpdateCamera:dt];
+        [self UpdateParticles:dt];
+        [self UpdateBlackhole];
+    }
     if (isInTutorialMode)
         [self UpdateTutorial];
 }
@@ -935,13 +936,14 @@ typedef struct {
         
         [tutorialLabel1 setString:[NSString stringWithFormat:@"The object of the game is to swipe to get to"]];
         [tutorialLabel2 setString:[NSString stringWithFormat:@"the next planet. Tap to see when the best time"]];
-        [tutorialLabel3 setString:[NSString stringWithFormat:@"to swipe is.."]];
+        [tutorialLabel3 setString:[NSString stringWithFormat:@"to swipe is..."]];
         
     } else if (tutorialState == 2) {
         
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"We be paused yo"]];
-        tutorialCanAdvance = false;
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"Getting in position..."]];
+        tutorialAdvanceMode = 0;
         
+    
         
         float ang = CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity));
         
@@ -955,19 +957,26 @@ typedef struct {
 
         
     } else if (tutorialState == 3) {
+        isTutPaused = true;
+        tutorialAdvanceMode = 2;
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"Right now is when you'd want to swipe."]];
+        [tutorialLabel2 setString:[NSString stringWithFormat:@"Swipe towards the next planet to continue..."]];
+        
+    } else if (tutorialState == 4) {
+        isTutPaused = false;
         
         [tutorialLabel1 setString:[NSString stringWithFormat:@"BITCH I BE FLYING O SHIT."]];
-        tutorialCanAdvance = false;
+        tutorialAdvanceMode = 0;
         
         if (orbitState == 0) {
             [self AdvanceTutorial];
         }
 
-    } else if (tutorialState == 4) {
+    } else if (tutorialState == 5) {
         
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Just made it."]];
         
-    } else if (tutorialState == 5) {
+    } else if (tutorialState == 6) {
         
         [self startGame];
         
@@ -1026,7 +1035,10 @@ typedef struct {
         if (!isInTutorialMode) {
             [self JustSwiped];
         }
-        
+    }
+    
+    if (ccpLength(swipeVector) >= minSwipeStrength && tutorialAdvanceMode == 2 && isInTutorialMode) {
+        [self AdvanceTutorial];
     }
 }
 
@@ -1036,7 +1048,7 @@ typedef struct {
 }
 
 - (void)AdvanceTutorial {
-    tutorialCanAdvance = true;
+    tutorialAdvanceMode = 1;
     tutorialFader = 0;
     tutorialState++;
     [tutorialLabel1 setString:[NSString stringWithFormat:@""]];
@@ -1047,7 +1059,7 @@ typedef struct {
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {    
     playerIsTouchingScreen = false;
     
-    if (isInTutorialMode && tutorialCanAdvance) {
+    if (isInTutorialMode && tutorialAdvanceMode == 1) {
         [self AdvanceTutorial];
     }
     
