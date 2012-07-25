@@ -354,6 +354,10 @@ typedef struct {
             tutorialLabel3 = [CCLabelTTF labelWithString:@" " fontName:@"Marker Felt" fontSize:24];
             tutorialLabel3.position = ccp(240, 320-[tutorialLabel3 boundingBox].size.height*2.5);
             [hudLayer addChild: tutorialLabel3];
+            
+            tutorialLabel0 = [CCLabelTTF labelWithString:@" " fontName:@"Marker Felt" fontSize:20];
+            tutorialLabel0.position = ccp(400, [tutorialLabel0 boundingBox].size.height);
+            [hudLayer addChild: tutorialLabel0];
         }
         
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"phasenwandler_-_Longing_for_Freedom.mp3" loop:YES];
@@ -974,24 +978,31 @@ typedef struct {
 }
 
 - (void)UpdateTutorial {
+    int tutorialCounter = 0;
     tutorialFader+= 6;
     tutorialFader = clampf(tutorialFader, 0, 255);
     [tutorialLabel1 setOpacity:tutorialFader];
     [tutorialLabel2 setOpacity:tutorialFader];
     [tutorialLabel3 setOpacity:tutorialFader];
-    
-    if (tutorialState == 0) {
+    [tutorialLabel0 setOpacity:tutorialFader];
+        
+    if (tutorialState == tutorialCounter++) {
+
         
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Welcome to Star Dash!"]];
         [tutorialLabel2 setString:[NSString stringWithFormat:@"Tap to begin the tutorial..."]];
+        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
         
-    } else if (tutorialState == 1) {
+        
+        
+    } else if (tutorialState == tutorialCounter++) {
         
         [tutorialLabel1 setString:[NSString stringWithFormat:@"The object of the game is to swipe to get to"]];
         [tutorialLabel2 setString:[NSString stringWithFormat:@"the next planet. Tap to see when the best time"]];
         [tutorialLabel3 setString:[NSString stringWithFormat:@"to swipe is..."]];
+        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
         
-    } else if (tutorialState == 2) {
+    } else if (tutorialState == tutorialCounter++) {
         
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Getting in position..."]];
         tutorialAdvanceMode = 0;
@@ -1007,13 +1018,13 @@ typedef struct {
         
         
         
-    } else if (tutorialState == 3) {
+    } else if (tutorialState == tutorialCounter++) {
         isTutPaused = true;
         tutorialAdvanceMode = 2;
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Right now is when you'd want to swipe."]];
         [tutorialLabel2 setString:[NSString stringWithFormat:@"Swipe towards the next planet to continue..."]];
         
-    } else if (tutorialState == 4) {
+    } else if (tutorialState == tutorialCounter++) {
         isTutPaused = false;
         
         [tutorialLabel1 setString:[NSString stringWithFormat:@"BITCH I BE FLYING O SHIT."]];
@@ -1022,12 +1033,14 @@ typedef struct {
         if (orbitState == 0) {
             [self AdvanceTutorial];
         }
+
+    } else if (tutorialState == tutorialCounter++) {
         
-    } else if (tutorialState == 5) {
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"Success!!!"]];
+        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
+
         
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Just made it."]];
-        
-    } else if (tutorialState == 6) {
+    } else if (tutorialState == tutorialCounter++) {
         
         [self startGame];
         
@@ -1086,8 +1099,10 @@ typedef struct {
         if (!isInTutorialMode) {
             [self JustSwiped];
         } else if (tutorialAdvanceMode == 2) {
+
+            [self JustSwiped];
             [self AdvanceTutorial];
-            orbitState = 1;
+
         }
     }
     
@@ -1109,6 +1124,7 @@ typedef struct {
     [tutorialLabel1 setString:[NSString stringWithFormat:@""]];
     [tutorialLabel2 setString:[NSString stringWithFormat:@""]];
     [tutorialLabel3 setString:[NSString stringWithFormat:@""]];
+    [tutorialLabel0 setString:[NSString stringWithFormat:@""]];
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {    

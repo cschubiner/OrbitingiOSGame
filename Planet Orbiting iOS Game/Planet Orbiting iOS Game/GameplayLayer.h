@@ -55,6 +55,7 @@
     CCLabelTTF *tutorialLabel1;
     CCLabelTTF *tutorialLabel2;
     CCLabelTTF *tutorialLabel3;
+    CCLabelTTF *tutorialLabel0;
     int tutorialState;
     float tutorialFader;
     int tutorialAdvanceMode;
