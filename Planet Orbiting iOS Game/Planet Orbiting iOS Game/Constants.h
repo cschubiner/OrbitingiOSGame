@@ -63,9 +63,9 @@ const float minAstVel = 0;
 const float maxAstVel = .4;
 
 //gravity strength when in orbit state 3
-const float freeGravityStrength = .7;
+const float freeGravityStrength = .4;
 
-const float multiplyGravityThisManyTimesOnPerfectSwipe = 3;
+const float multiplyGravityThisManyTimesOnPerfectSwipe = 4;
 
 //the rate at which gravity increases per update while in orbit state 2/3
 //const float rateToIncreaseGravity = .015;

@@ -956,7 +956,7 @@ typedef struct {
         
         //CCLOG(@"ang: %f", ang);
         
-        if (ang > -10 && ang < 0) {
+        if (ang > 0 && ang < 10) {
             //[self JustSwiped];
             [self AdvanceTutorial];
         }
@@ -981,7 +981,7 @@ typedef struct {
 
     } else if (tutorialState == 5) {
         
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Just made it."]];
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"Success!!!"]];
         
     } else if (tutorialState == 6) {
         
