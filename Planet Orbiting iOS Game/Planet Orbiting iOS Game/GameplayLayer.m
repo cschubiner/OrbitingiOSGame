@@ -860,8 +860,8 @@ typedef struct {
     float firstToPlayerDistance = ccpDistance(lastPlanetVisited.sprite.position, player.sprite.position);    
     
     prevCurrentPtoPScore = currentPtoPscore;
-    int newScore= ((int)((float)firstToPlayerDistance*cosf(firstToPlayerAngle)));
-    if (newScore>prevCurrentPtoPScore)
+    int newScore = ((int)((float)firstToPlayerDistance*cosf(firstToPlayerAngle)));
+    if (newScore > prevCurrentPtoPScore)
         currentPtoPscore = newScore;
     [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score+currentPtoPscore]];
     int numCoins = [[UserWallet sharedInstance] getBalance];
