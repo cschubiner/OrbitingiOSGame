@@ -628,12 +628,12 @@ typedef struct {
                 
                 player.velocity = ccpMult(ccpNormalize(player.velocity), ccpLength(initialVel));
                 
-                float scaler = (180/60) - swipeAccuracy / 60;
-                
+                float scaler = multiplyGravityThisManyTimesOnPerfectSwipe - swipeAccuracy * multiplyGravityThisManyTimesOnPerfectSwipe / 180;
+                scaler = clampf(scaler, 0, 99999999);
                 //CCLOG(@"swipeAcc: %f, scaler: %f", swipeAccuracy, scaler);
                 
                 //perhaps dont use scaler/swipe accuracy, and just use it in (if orbitstate=1) for determining if it's good enough. btw scaler ranges from about 1 to 3.5 (now 0 to 2.5)
-                player.acceleration = ccpMult(accelToAdd, freeGravityStrength*scaler - 1);
+                player.acceleration = ccpMult(accelToAdd, freeGravityStrength*scaler);
                 
                 if (initialAccelMag == 0)
                     initialAccelMag = ccpLength(player.acceleration);
@@ -956,7 +956,7 @@ typedef struct {
         
         //CCLOG(@"ang: %f", ang);
         
-        if (ang > -40 && ang < -20) {
+        if (ang > -10 && ang < 0) {
             //[self JustSwiped];
             [self AdvanceTutorial];
         }
@@ -975,7 +975,7 @@ typedef struct {
         [tutorialLabel1 setString:[NSString stringWithFormat:@"BITCH I BE FLYING O SHIT."]];
         tutorialAdvanceMode = 0;
         
-        if (orbitState == 0) {
+        if (lastPlanetVisited.number == 1) {
             [self AdvanceTutorial];
         }
 
@@ -1043,7 +1043,7 @@ typedef struct {
             [self JustSwiped];
         } else if (tutorialAdvanceMode == 2) {
             [self AdvanceTutorial];
-            orbitState = 1;
+            [self JustSwiped];
         }
     }
     
