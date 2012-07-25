@@ -625,7 +625,7 @@ typedef struct {
                 
                 player.velocity = ccpMult(ccpNormalize(player.velocity), ccpLength(initialVel));
                 
-                float scaler = (180/90) - swipeAccuracy / 90;
+                float scaler = (180/60) - swipeAccuracy / 60;
                 
                 //CCLOG(@"swipeAcc: %f, scaler: %f", swipeAccuracy, scaler);
                 
