@@ -291,6 +291,7 @@ typedef struct {
         }
         else {
             tutorialState = 0;
+            tutorialFader = 0;
             
             tutorialLabel1 = [CCLabelTTF labelWithString:@" " fontName:@"Marker Felt" fontSize:24];
             tutorialLabel1.position = ccp(240, 320-[tutorialLabel1 boundingBox].size.height/2);
@@ -914,6 +915,11 @@ typedef struct {
 }
 
 - (void)UpdateTutorial {
+    tutorialFader+= 3;
+    tutorialFader = clampf(tutorialFader, 0, 255);
+    [tutorialLabel1 setOpacity:tutorialFader];
+    [tutorialLabel2 setOpacity:tutorialFader];
+    [tutorialLabel3 setOpacity:tutorialFader];
     if (tutorialState == 0) {
         
         [tutorialLabel1 setString:[NSString stringWithFormat:@"weclome you fucking whore"]];
@@ -931,11 +937,27 @@ typedef struct {
         
     } else if (tutorialState == 3) {
         
-        [self endGame];
+        //[self endGame];
+        
+        [self startGame];
         
         tutorialState++;
         
     }
+}
+
+- (void)startGame {
+	MainMenuLayer *layer = [MainMenuLayer node];
+    id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,-320)];
+    id ease = [CCEaseOut actionWithAction:action rate:2];
+    [layer runAction: ease];
+    
+    [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:FALSE];
+    
+    [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
+    
+    CCLOG(@"GameplayLayerScene launched, game starting");
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -981,6 +1003,7 @@ typedef struct {
     playerIsTouchingScreen = false;
     
     if (isInTutorialMode) {
+        tutorialFader = 0;
         tutorialState++;
         [tutorialLabel1 setString:[NSString stringWithFormat:@""]];
         [tutorialLabel2 setString:[NSString stringWithFormat:@""]];
