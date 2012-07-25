@@ -25,7 +25,7 @@
     NSMutableArray *coins;
     NSMutableArray *cameraObjects;
     CCLabelTTF *scoreLabel;
-    CCLabelTTF *zonesReachedLabel;
+    CCLabelTTF *coinsLabel;
     CGSize size;
     CCLayer *hudLayer;
     CCLayer *cameraLayer;

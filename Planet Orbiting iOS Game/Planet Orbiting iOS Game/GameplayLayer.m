@@ -288,9 +288,9 @@ typedef struct {
         scoreLabel.position = ccp(400, [scoreLabel boundingBox].size.height);
         [hudLayer addChild: scoreLabel];
         
-        zonesReachedLabel = [CCLabelTTF labelWithString:@"Zones Reached: " fontName:@"Marker Felt" fontSize:24];
-        zonesReachedLabel.position = ccp(100, [zonesReachedLabel boundingBox].size.height);
-        [hudLayer addChild: zonesReachedLabel];
+        coinsLabel = [CCLabelTTF labelWithString:@"Coins: " fontName:@"Marker Felt" fontSize:24];
+        coinsLabel.position = ccp(100, [coinsLabel boundingBox].size.height);
+        [hudLayer addChild: coinsLabel];
         }
         else {
             tutorialState = 0;
@@ -861,7 +861,8 @@ typedef struct {
     if (newScore>prevCurrentPtoPScore)
         currentPtoPscore = newScore;
     [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score+currentPtoPscore]];
-    [zonesReachedLabel setString:[NSString stringWithFormat:@"Zones: %d Time: %1.0fs",zonesReached,totalGameTime]];
+    int numCoins = [[UserWallet sharedInstance] getBalance];
+    [coinsLabel setString:[NSString stringWithFormat:@"Coins: %i",numCoins]];
 }
 
 - (void)UpdateParticles:(ccTime)dt {
