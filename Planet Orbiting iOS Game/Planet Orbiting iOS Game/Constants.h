@@ -109,6 +109,4 @@ const float factorToPlaceGravFieldWhenCrossingOverTheMiddle = .84;
 
 const float factorToPlaceGravFieldWhenStayingOutside = .63;
 
-const float factorToIncreaseVelocityWhenExperiencingRegularGravity = .9;
-
 const float zoneCollisionFactor = 1.01;

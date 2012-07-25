@@ -292,6 +292,7 @@ typedef struct {
         else {
             tutorialState = 0;
             tutorialFader = 0;
+            tutorialCanAdvance = true;
             
             tutorialLabel1 = [CCLabelTTF labelWithString:@" " fontName:@"Marker Felt" fontSize:24];
             tutorialLabel1.position = ccp(240, 320-[tutorialLabel1 boundingBox].size.height/2);
@@ -338,8 +339,8 @@ typedef struct {
         initialAccelMag = 0;
         isOnFirstRun = true;
         timeDilationCoefficient = 1;
-        gravIncreaser = 1;
         dangerLevel = 0;
+        isTutPaused = false;
         
         background = [CCSprite spriteWithFile:@"background.pvr.ccz"];
         background.position = ccp(size.width/2+31,19);
@@ -525,7 +526,6 @@ typedef struct {
             } else if (orbitState == 1) 
             {
                 velSoftener = 0;
-                gravIncreaser = 1;
                 //if in position
                 //justSwiped = false;
                 [[SimpleAudioEngine sharedEngine]playEffect:@"SWOOSH.WAV"];
@@ -575,7 +575,7 @@ typedef struct {
                 if (swipeAccuracy > 180)
                     swipeAccuracy = 360 - swipeAccuracy;
                 
-                //CCLOG(@"cur: %f", swipeAccuracy);
+                CCLOG(@"cur: %f", swipeAccuracy);
                 
                 
                 //HERE: TO USE!!!!!: if swipe accuracy is greater than a certain amount, t did a poor swipe and should q punished severely!!!!!
@@ -620,15 +620,15 @@ typedef struct {
                 //B = G * clampf((G(angleToStartCreatingGravity-x)*factorToScaleGravityForPerfectSwipe)/angleToStartCreatingGravity, 0, factorToScaleGravityForPerfectSwipe)
                 
                 
-                player.velocity = ccpMult(ccpNormalize(player.velocity), ccpLength(initialVel)*factorToIncreaseVelocityWhenExperiencingRegularGravity);
+                player.velocity = ccpMult(ccpNormalize(player.velocity), ccpLength(initialVel));
                 
                 float scaler = (180/60) - swipeAccuracy / 60 + .5;
                 
                 float distToUse = ccpLength(ccpSub(player.sprite.position, spotGoingTo));
-                //CCLOG(@"swipeAcc: %f, scaler: %f, increaser: %f", swipeAccuracy, scaler, gravIncreaser);
+                //CCLOG(@"swipeAcc: %f, scaler: %f", swipeAccuracy, scaler);
                 
                 //perhaps dont use scaler/swipe accuracy, and just use it in (if orbitstate=1) for determining if it's good enough. btw scaler ranges from about 1 to 3.5 (now 0 to 2.5)
-                player.acceleration = ccpMult(accelToAdd, gravIncreaser*factorToIncreaseVelocityWhenExperiencingRegularGravity*freeGravityStrength*scaler/distToUse - 1);
+                player.acceleration = ccpMult(accelToAdd, freeGravityStrength*scaler/distToUse - 1);
                 
                 if (initialAccelMag == 0)
                     initialAccelMag = ccpLength(player.acceleration);
@@ -674,7 +674,10 @@ typedef struct {
     [playerExplosionParticle setVisible:true];
     
     float moveDuration = respawnMoveTime;
-    id moveAction = [CCEaseSineInOut actionWithAction:[CCMoveTo actionWithDuration:moveDuration position:player.positionAtLastThrust]];
+    CGPoint curPlanetPos = lastPlanetVisited.sprite.position;
+    CGPoint nextPlanetPos = [[[planets objectAtIndex:(lastPlanetVisited.number+1)] sprite] position];
+    CGPoint pToGoTo = ccpAdd(curPlanetPos, ccpMult(ccpNormalize(ccpSub(nextPlanetPos, curPlanetPos)), lastPlanetVisited.orbitRadius));
+    id moveAction = [CCEaseSineInOut actionWithAction:[CCMoveTo actionWithDuration:moveDuration position:pToGoTo]];
     id delay = [ CCDelayTime actionWithDuration:delayTimeAfterPlayerExplodes];
     
     id movingSpawnActions = [CCSpawn actions:moveAction,[CCBlink actionWithDuration:moveDuration-.05f blinks:moveDuration*respawnBlinkFrequency], [CCRotateTo actionWithDuration:moveDuration-.1f angle:player.rotationAtLastThrust+180], nil];
@@ -698,7 +701,7 @@ typedef struct {
         
         timeDilationCoefficient = clampf(timeDilationCoefficient, absoluteMinTimeDilation, absoluteMaxTimeDilation);
         
-        CCLOG(@"thrust mag: %f", timeDilationCoefficient);
+        //CCLOG(@"thrust mag: %f", timeDilationCoefficient);
         
         [self KillIfEnoughTimeHasPassed];
         
@@ -915,29 +918,55 @@ typedef struct {
 }
 
 - (void)UpdateTutorial {
-    tutorialFader+= 3;
+    tutorialFader+= 6;
     tutorialFader = clampf(tutorialFader, 0, 255);
     [tutorialLabel1 setOpacity:tutorialFader];
     [tutorialLabel2 setOpacity:tutorialFader];
     [tutorialLabel3 setOpacity:tutorialFader];
+    
+        
     if (tutorialState == 0) {
         
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"weclome you fucking whore"]];
-        [tutorialLabel2 setString:[NSString stringWithFormat:@"tap to continue the tutorial..."]];
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"Welcome to Star Dash!"]];
+        [tutorialLabel2 setString:[NSString stringWithFormat:@"Tap to begin the tutorial..."]];
         
     } else if (tutorialState == 1) {
         
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"this game is called star dash"]];
-        [tutorialLabel2 setString:[NSString stringWithFormat:@"swipe to go to the next planet"]];
-        [tutorialLabel3 setString:[NSString stringWithFormat:@"where you swipe matters"]];
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"The object of the game is to swipe to get to"]];
+        [tutorialLabel2 setString:[NSString stringWithFormat:@"the next planet. Tap to see when the best time"]];
+        [tutorialLabel3 setString:[NSString stringWithFormat:@"to swipe is.."]];
         
     } else if (tutorialState == 2) {
         
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"glhf"]];
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"We be paused yo"]];
+        tutorialCanAdvance = false;
+        
+        
+        float ang = CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity));
+        
+        //CCLOG(@"ang: %f", ang);
+        
+        if (ang > -40 && ang < -20) {
+            [self JustSwiped];
+            [self AdvanceTutorial];
+        }
+        
+
         
     } else if (tutorialState == 3) {
         
-        //[self endGame];
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"BITCH I BE FLYING O SHIT."]];
+        tutorialCanAdvance = false;
+        
+        if (orbitState == 0) {
+            [self AdvanceTutorial];
+        }
+
+    } else if (tutorialState == 4) {
+        
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"Just made it."]];
+        
+    } else if (tutorialState == 5) {
         
         [self startGame];
         
@@ -992,22 +1021,31 @@ typedef struct {
     if (ccpLength(swipeVector) >= minSwipeStrength && orbitState == 0 && !playerIsTouchingScreen) {
         playerIsTouchingScreen = true;
         if (!isInTutorialMode) {
-            orbitState = 1;
-            targetPlanet = [planets objectAtIndex: (lastPlanetVisited.number + 1)];
+            [self JustSwiped];
         }
         
     }
 }
 
+- (void)JustSwiped {
+    orbitState = 1;
+    targetPlanet = [planets objectAtIndex: (lastPlanetVisited.number + 1)];
+}
+
+- (void)AdvanceTutorial {
+    tutorialCanAdvance = true;
+    tutorialFader = 0;
+    tutorialState++;
+    [tutorialLabel1 setString:[NSString stringWithFormat:@""]];
+    [tutorialLabel2 setString:[NSString stringWithFormat:@""]];
+    [tutorialLabel3 setString:[NSString stringWithFormat:@""]];
+}
+
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {    
     playerIsTouchingScreen = false;
     
-    if (isInTutorialMode) {
-        tutorialFader = 0;
-        tutorialState++;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@""]];
-        [tutorialLabel2 setString:[NSString stringWithFormat:@""]];
-        [tutorialLabel3 setString:[NSString stringWithFormat:@""]];
+    if (isInTutorialMode && tutorialCanAdvance) {
+        [self AdvanceTutorial];
     }
     
     if (orbitState == 0) {
