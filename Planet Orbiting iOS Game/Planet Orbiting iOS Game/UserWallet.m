@@ -37,18 +37,7 @@ static int MAX_BALANCE = 100000000;
 - (void)removeCoins:(int)coinsToRemove {
     if (balance - coinsToRemove >= 0) {
         balance -= coinsToRemove;
-        [self transactionMessageWithTitle:@"Upgrade Purchased" andBody:[NSString stringWithFormat:@"Remaining Balance: %i", [self getBalance]]];
-    } else {
-        [self transactionMessageWithTitle:@"Not Enough Coins" andBody:[NSString stringWithFormat:@"Current Balance: %i", [self getBalance]]];
     }
-}
-
-- (void)transactionMessageWithTitle:(NSString *)title andBody:(NSString *)body {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:body delegate:self cancelButtonTitle:@"Return" otherButtonTitles:nil];
-    CGAffineTransform rot = CGAffineTransformMakeRotation(3.1415f * 0.5f); 
-    CGAffineTransformScale(rot, 0.5f, 0.5f);
-    [alertView show];
-    [alertView release];
 }
 
 @end

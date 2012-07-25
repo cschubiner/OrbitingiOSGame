@@ -14,6 +14,7 @@
 #import "Constants.h"
 #import "Coin.h"
 #import "DataStorage.h"
+#import "PlayerStats.h"
 
 @implementation GameplayLayer {
     int planetCounter;
@@ -947,6 +948,8 @@ typedef struct {
 }
 
 - (void)startGame {
+    int plays = [[PlayerStats sharedInstance] totalPlays];
+    [[PlayerStats sharedInstance] setTotalPlays:plays + 1];
 	MainMenuLayer *layer = [MainMenuLayer node];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,-320)];
     id ease = [CCEaseOut actionWithAction:action rate:2];

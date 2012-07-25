@@ -13,6 +13,7 @@
 #import "UserWallet.h"
 #import "PowerupManager.h"
 #import "DataStorage.h"
+#import "PlayerStats.h"
 
 // HelloWorldLayer implementation
 @implementation MainMenuLayer {
@@ -34,15 +35,34 @@
 	return scene;
 }
 
+- (void)updateLabels {
+    int coins = [[UserWallet sharedInstance] getBalance];
+    NSString *coinsBalance = [NSString stringWithFormat:@"Balance: %i coins", coins];
+    NSLog(@"%@", coinsBalance);
+    [coinBalanceLabel setString:coinsBalance];
+    
+    int magnets = [[PowerupManager sharedInstance] numMagnet];
+    NSString *magnetsBought = [NSString stringWithFormat:@"x%i", magnets];
+    NSLog(@"%@", magnetsBought);
+    [numMagnetsLabel setString:magnetsBought];
+    
+    int immunities = [[PowerupManager sharedInstance] numImmunity];
+    NSString *immunitiesBought = [NSString stringWithFormat:@"x%i", immunities];
+    NSLog(@"%@", immunitiesBought);
+    [numImmunitiesLabel setString:immunitiesBought];
+}
+
 // on "init" you need to initialize your instance
 - (id)init {
 	if (self = [super init]) {
+        [DataStorage fetchData];
+        [self updateLabels];
+        
         layer = (CCLayer*)[CCBReader nodeGraphFromFile:@"MainMenuScrolling.ccb" owner:self];
         [self addChild:layer];
+        
         [[CDAudioManager sharedManager] playBackgroundMusic:@"69611__redhouse91__mix0786bpm.m4a" loop:YES];
         [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
-        
-        [DataStorage fetchData];
 
         storeManager = [[StoreManager alloc] init];
         
@@ -72,6 +92,7 @@
     if (currCoins - newCoins == [[storeManager.storeItems objectAtIndex:0] price]) {
         [[PowerupManager sharedInstance] addMagnet];
     }
+    [self updateLabels];
 }
 
 - (void)immunityButtonPressed {
@@ -82,10 +103,14 @@
     if (currCoins - newCoins == [[storeManager.storeItems objectAtIndex:1] price]) {
         [[PowerupManager sharedInstance] addImmunity];
     }
+    [self updateLabels];
 }
 
 // this is called (magically?) by cocosbuilder when the start button is pressed
 - (void)startGame:(id)sender {
+    int plays = [[PlayerStats sharedInstance] totalPlays];
+    [[PlayerStats sharedInstance] setTotalPlays:plays + 1];
+    
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,-320)];
     id ease = [CCEaseOut actionWithAction:action rate:2];
     [layer runAction: ease];
@@ -106,21 +131,20 @@
 }
 
 - (void)pressedStoreButton:(id)sender {
+    [self updateLabels];
     [Flurry logEvent:@"Opened Store"];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,0)];
     id ease = [CCEaseSineInOut actionWithAction:action]; //does this "CCEaseSineInOut" look better than the above "CCEaseInOut"???
     [layer runAction: ease];
 }
 
-- (void)pressedSendFeedback: (id) sender
-{
+- (void)pressedSendFeedback: (id) sender {
     [Flurry logEvent:@"Pressed Send Feedback"];
     [[UIApplication sharedApplication]setStatusBarOrientation:UIInterfaceOrientationPortrait];
     [TestFlight openFeedbackView];
 }
 
-- (void)pressedTutorialButton: (id) sender
-{
+- (void)pressedTutorialButton: (id) sender {
     [Flurry logEvent:@"Pressed Tutorial Button"];
     [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:TRUE];
     [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];

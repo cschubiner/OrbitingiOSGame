@@ -1102,7 +1102,7 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>396</real>
+						<real>485</real>
 						<real>137</real>
 					</array>
 					<key>customClass</key>
@@ -1133,7 +1133,7 @@
 					<key>scaleY</key>
 					<real>0.82660156488418579</real>
 					<key>string</key>
-					<string>Star Dash</string>
+					<string>Planet Dash</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
@@ -1829,8 +1829,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-207.50390625</real>
-								<real>78.21875</real>
+								<real>-237.0390625</real>
+								<real>80.0390625</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1868,7 +1868,7 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>52</real>
+								<real>83</real>
 								<real>22</real>
 							</array>
 							<key>customClass</key>
@@ -1949,8 +1949,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-21.609375</real>
-								<real>81.22265625</real>
+								<real>-49.04296875</real>
+								<real>82.1640625</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1960,6 +1960,186 @@
 							<real>1.1604297161102295</real>
 							<key>string</key>
 							<string>50 Coins</string>
+							<key>tag</key>
+							<integer>-1</integer>
+							<key>visible</key>
+							<true/>
+							<key>zOrder</key>
+							<integer>0</integer>
+						</dict>
+					</dict>
+					<dict>
+						<key>children</key>
+						<array/>
+						<key>class</key>
+						<string>CCLabelBMFont</string>
+						<key>properties</key>
+						<dict>
+							<key>anchorPoint</key>
+							<array>
+								<real>0.5</real>
+								<real>0.5</real>
+							</array>
+							<key>color</key>
+							<array>
+								<integer>255</integer>
+								<integer>255</integer>
+								<integer>255</integer>
+							</array>
+							<key>contentSize</key>
+							<array>
+								<real>149</real>
+								<real>22</real>
+							</array>
+							<key>customClass</key>
+							<string></string>
+							<key>fontFile</key>
+							<string>PlainFont.fnt</string>
+							<key>isExpanded</key>
+							<true/>
+							<key>isRelativeAnchorPoint</key>
+							<true/>
+							<key>lockedScaleRatio</key>
+							<true/>
+							<key>memberVarAssignmentName</key>
+							<string>coinBalanceLabel</string>
+							<key>memberVarAssignmentType</key>
+							<integer>2</integer>
+							<key>opacity</key>
+							<integer>255</integer>
+							<key>position</key>
+							<array>
+								<real>-113.48828125</real>
+								<real>-12.8671875</real>
+							</array>
+							<key>rotation</key>
+							<real>0.0</real>
+							<key>scaleX</key>
+							<real>1.1604297161102295</real>
+							<key>scaleY</key>
+							<real>1.1604297161102295</real>
+							<key>string</key>
+							<string>Balance: 0 coins</string>
+							<key>tag</key>
+							<integer>-1</integer>
+							<key>visible</key>
+							<true/>
+							<key>zOrder</key>
+							<integer>0</integer>
+						</dict>
+					</dict>
+					<dict>
+						<key>children</key>
+						<array/>
+						<key>class</key>
+						<string>CCLabelBMFont</string>
+						<key>properties</key>
+						<dict>
+							<key>anchorPoint</key>
+							<array>
+								<real>0.5</real>
+								<real>0.5</real>
+							</array>
+							<key>color</key>
+							<array>
+								<integer>255</integer>
+								<integer>255</integer>
+								<integer>255</integer>
+							</array>
+							<key>contentSize</key>
+							<array>
+								<real>21</real>
+								<real>22</real>
+							</array>
+							<key>customClass</key>
+							<string></string>
+							<key>fontFile</key>
+							<string>PlainFont.fnt</string>
+							<key>isExpanded</key>
+							<true/>
+							<key>isRelativeAnchorPoint</key>
+							<true/>
+							<key>lockedScaleRatio</key>
+							<true/>
+							<key>memberVarAssignmentName</key>
+							<string>numMagnetsLabel</string>
+							<key>memberVarAssignmentType</key>
+							<integer>2</integer>
+							<key>opacity</key>
+							<integer>255</integer>
+							<key>position</key>
+							<array>
+								<real>-144.2109375</real>
+								<real>80.86328125</real>
+							</array>
+							<key>rotation</key>
+							<real>0.0</real>
+							<key>scaleX</key>
+							<real>1.1604297161102295</real>
+							<key>scaleY</key>
+							<real>1.1604297161102295</real>
+							<key>string</key>
+							<string>x0</string>
+							<key>tag</key>
+							<integer>-1</integer>
+							<key>visible</key>
+							<true/>
+							<key>zOrder</key>
+							<integer>0</integer>
+						</dict>
+					</dict>
+					<dict>
+						<key>children</key>
+						<array/>
+						<key>class</key>
+						<string>CCLabelBMFont</string>
+						<key>properties</key>
+						<dict>
+							<key>anchorPoint</key>
+							<array>
+								<real>0.5</real>
+								<real>0.5</real>
+							</array>
+							<key>color</key>
+							<array>
+								<integer>255</integer>
+								<integer>255</integer>
+								<integer>255</integer>
+							</array>
+							<key>contentSize</key>
+							<array>
+								<real>21</real>
+								<real>22</real>
+							</array>
+							<key>customClass</key>
+							<string></string>
+							<key>fontFile</key>
+							<string>PlainFont.fnt</string>
+							<key>isExpanded</key>
+							<true/>
+							<key>isRelativeAnchorPoint</key>
+							<true/>
+							<key>lockedScaleRatio</key>
+							<true/>
+							<key>memberVarAssignmentName</key>
+							<string>numImmunitiesLabel</string>
+							<key>memberVarAssignmentType</key>
+							<integer>0</integer>
+							<key>opacity</key>
+							<integer>255</integer>
+							<key>position</key>
+							<array>
+								<real>41.171875</real>
+								<real>81.71484375</real>
+							</array>
+							<key>rotation</key>
+							<real>0.0</real>
+							<key>scaleX</key>
+							<real>1.1604297161102295</real>
+							<key>scaleY</key>
+							<real>1.1604297161102295</real>
+							<key>string</key>
+							<string>x0</string>
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>

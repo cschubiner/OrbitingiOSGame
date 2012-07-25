@@ -15,9 +15,11 @@
 
 @interface MainMenuLayer : CCLayer {
     CCLayer* layer;
+    CCLabelBMFont *coinBalanceLabel;
+    CCLabelBMFont *numMagnetsLabel;
+    CCLabelBMFont *numImmunitiesLabel;
 }
 
-+ (CCScene *) scene;
-
++ (CCScene *)scene;
 
 @end
