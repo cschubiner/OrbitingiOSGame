@@ -1011,8 +1011,7 @@ typedef struct {
         
         //CCLOG(@"ang: %f", ang);
         
-        if (ang > -40 && ang < -20) {
-            //[self JustSwiped];
+        if (ang > 0 && ang < 10) {
             [self AdvanceTutorial];
         }
         
@@ -1099,10 +1098,8 @@ typedef struct {
         if (!isInTutorialMode) {
             [self JustSwiped];
         } else if (tutorialAdvanceMode == 2) {
-
             [self JustSwiped];
             [self AdvanceTutorial];
-
         }
     }
     
