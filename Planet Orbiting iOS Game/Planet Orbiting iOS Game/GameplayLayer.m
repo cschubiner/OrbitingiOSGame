@@ -376,7 +376,7 @@ typedef struct {
             [hudLayer addChild: tutorialLabel0];
         }
         
-        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"phasenwandler_-_Longing_for_Freedom.mp3" loop:YES];
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"a_song.mp3" loop:YES];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"bomb.wav"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.wav"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"buttonpress.mp3"];
