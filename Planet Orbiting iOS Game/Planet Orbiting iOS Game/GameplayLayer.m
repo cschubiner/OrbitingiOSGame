@@ -334,6 +334,15 @@ typedef struct {
         blackHoleParticle = [CCParticleSystemQuad particleWithFile:@"blackHoleParticle.plist"];
         [blackHoleParticle setPositionType:kCCPositionTypeGrouped];
         
+        
+        
+        CCMenuItem  *pauseButton = [CCMenuItemImage 
+                                    itemFromNormalImage:@"pauseButton4.png" selectedImage:@"pauseButton4.png" 
+                                    target:self selector:@selector(togglePause)];
+        pauseButton.position = ccp(440, 280);
+        pauseMenu = [CCMenu menuWithItems:pauseButton, nil];
+        pauseMenu.position = CGPointZero;
+        
         if (!isInTutorialMode) {
             scoreLabel = [CCLabelTTF labelWithString:@"Score: " fontName:@"Marker Felt" fontSize:24];
             scoreLabel.position = ccp(400, [scoreLabel boundingBox].size.height);
@@ -343,12 +352,7 @@ typedef struct {
             coinsLabel.position = ccp(70, [coinsLabel boundingBox].size.height);
             [hudLayer addChild: coinsLabel];
             
-            CCMenuItem  *pauseButton = [CCMenuItemImage 
-                                        itemFromNormalImage:@"pauseButton4.png" selectedImage:@"pauseButton4.png" 
-                                        target:self selector:@selector(togglePause)];
-            pauseButton.position = ccp(440, 280);
-            pauseMenu = [CCMenu menuWithItems:pauseButton, nil];
-            pauseMenu.position = CGPointZero;
+
             //[hudLayer addChild:pauseButton];
         } else {
             tutorialState = 0;
