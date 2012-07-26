@@ -27,6 +27,7 @@
 		0C487AFB159471E000674AB9 /* CameraObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487AFA159471E000674AB9 /* CameraObject.m */; };
 		0C487B051594739600674AB9 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B041594739600674AB9 /* Player.m */; };
 		0C487B0E1594792C00674AB9 /* Planet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B0D1594792C00674AB9 /* Planet.m */; };
+		0C49E19015C0FE44007957E9 /* thrustParticle3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */; };
 		0C68283215BF0CCA00BF09C0 /* playerExplosionParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */; };
 		0C724DBF15BE5B930027E231 /* 69611__redhouse91__mix0786bpm.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 0C724DBE15BE5B930027E231 /* 69611__redhouse91__mix0786bpm.m4a */; };
 		0C724DC915BE65180027E231 /* streak-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C724DC815BE65180027E231 /* streak-hd.png */; };
@@ -228,6 +229,7 @@
 		0C487B041594739600674AB9 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		0C487B0C1594792C00674AB9 /* Planet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Planet.h; sourceTree = "<group>"; };
 		0C487B0D1594792C00674AB9 /* Planet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Planet.m; sourceTree = "<group>"; };
+		0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = thrustParticle3.plist; sourceTree = "<group>"; };
 		0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = playerExplosionParticle.plist; sourceTree = "<group>"; };
 		0C724DBE15BE5B930027E231 /* 69611__redhouse91__mix0786bpm.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 69611__redhouse91__mix0786bpm.m4a; sourceTree = "<group>"; };
 		0C724DC815BE65180027E231 /* streak-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "streak-hd.png"; sourceTree = "<group>"; };
@@ -568,6 +570,8 @@
 		0C487AFC159471E800674AB9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				01FE9B3215BFAE6F007512ED /* DataStorage.h */,
+				01FE9B3315BFAE6F007512ED /* DataStorage.m */,
 				0C487AF9159471E000674AB9 /* CameraObject.h */,
 				0C487AFA159471E000674AB9 /* CameraObject.m */,
 				0C48318F15BFEB4E00311FB1 /* LevelObjectReturner.h */,
@@ -658,8 +662,6 @@
 				0C487AFD159471FF00674AB9 /* Basic Stuff - Ignore */,
 				0C487AFC159471E800674AB9 /* Classes */,
 				C49E914A159A48D700BC424D /* Constants.h */,
-				01FE9B3215BFAE6F007512ED /* DataStorage.h */,
-				01FE9B3315BFAE6F007512ED /* DataStorage.m */,
 				0C487AF615946E2300674AB9 /* GameplayLayer.h */,
 				0C487AF715946E2300674AB9 /* GameplayLayer.m */,
 				0C2AB0B315BE8E43008822F1 /* MainMenuLayer.h */,
@@ -1113,6 +1115,7 @@
 				C4E994B015A435E600C7009D /* spaceParticles.plist */,
 				C4E994B115A435E600C7009D /* thrustParticle.plist */,
 				0C8A19D815BDF8150010973F /* thrustParticle2.plist */,
+				0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */,
 				0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */,
 			);
 			name = Particles;
@@ -1228,6 +1231,7 @@
 				0C2AB0CB15BE9B08008822F1 /* Default@2x.png in Resources */,
 				0C2AB0CD15BE9B2A008822F1 /* Default.png in Resources */,
 				0C68283215BF0CCA00BF09C0 /* playerExplosionParticle.plist in Resources */,
+				0C49E19015C0FE44007957E9 /* thrustParticle3.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

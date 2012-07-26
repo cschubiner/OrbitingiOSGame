@@ -267,7 +267,7 @@ typedef struct {
                          nil];
     
     CGPoint indicatorPos = CGPointZero;
-    for (int j = 0 ; j < 7; j++) {
+    for (int j = 0 ; j < 30; j++) {
         float rotationOfSegment = CC_DEGREES_TO_RADIANS([self RandomBetween:-segmentRotationVariation+directionPlanetSegmentsGoIn maxvalue:segmentRotationVariation+directionPlanetSegmentsGoIn]);
         NSArray *chosenSegment = [segments objectAtIndex:[self RandomBetween:0 maxvalue:[segments count]-1]];
         for (int i = 0 ; i < [chosenSegment count]; i++) {
@@ -318,13 +318,13 @@ typedef struct {
         cometParticle = [CCParticleSystemQuad particleWithFile:@"cometParticle.plist"];
         planetExplosionParticle = [CCParticleSystemQuad particleWithFile:@"planetExplosion.plist"];
         [planetExplosionParticle stopSystem];
-        [cameraLayer addChild:planetExplosionParticle];
+      //  [cameraLayer addChild:planetExplosionParticle];
         playerExplosionParticle = [CCParticleSystemQuad particleWithFile:@"playerExplosionParticle.plist"];
-        [cameraLayer addChild:playerExplosionParticle];
+      //  [cameraLayer addChild:playerExplosionParticle];
         [playerExplosionParticle setVisible:false];
         [playerExplosionParticle stopSystem];
         spaceBackgroundParticle = [CCParticleSystemQuad particleWithFile:@"spaceParticles.plist"];
-        thrustParticle = [CCParticleSystemQuad particleWithFile:@"thrustParticle2.plist"];
+        thrustParticle = [CCParticleSystemQuad particleWithFile:@"thrustParticle3.plist"];
         blackHoleParticle = [CCParticleSystemQuad particleWithFile:@"blackHoleParticle.plist"];
         [blackHoleParticle setPositionType:kCCPositionTypeGrouped];
         
@@ -404,8 +404,8 @@ typedef struct {
         [self addChild:background];
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888]; // add this line at the very beginning
         
-        [self addChild:spaceBackgroundParticle];
-        [self addChild:cometParticle];
+    //    [self addChild:spaceBackgroundParticle];
+      //  [self addChild:cometParticle];
         cometParticle.position = ccp([self RandomBetween:0 maxvalue:390],325);
         cometVelocity = ccp([self RandomBetween:-10 maxvalue:10]/5,-[self RandomBetween:1 maxvalue:23]/5);
         [self resetVariablesForNewGame];  
@@ -833,11 +833,11 @@ typedef struct {
     
     blackHoleParticle.position=ccp(-400,-400);
     [cameraLayer removeChild:blackHoleParticle cleanup:NO];
-    [cameraLayer addChild:blackHoleParticle z:1];
+   // [cameraLayer addChild:blackHoleParticle z:1];
     
     [thrustParticle setPositionType:kCCPositionTypeRelative];
     [cameraLayer addChild:thrustParticle z:2];
-    [cameraLayer addChild:streak z:0];
+    [cameraLayer addChild:streak z:1];
     [spriteSheet addChild:player.sprite z:3];
 }
 
