@@ -36,7 +36,6 @@
     bool justReachedNewPlanet;
     ccTime totalGameTime;
     float timeSinceCometLeftScreen;
-    float timeSincePlanetExplosion;
     bool planetJustExploded;
     bool playerIsTouchingScreen;
     
@@ -73,7 +72,6 @@
     CGPoint swipeVector;
     
     CCParticleSystemQuad * thrustParticle;
-    CCParticleSystemQuad * planetExplosionParticle;
     CCParticleSystemQuad * spaceBackgroundParticle;
     CCParticleSystemQuad * cometParticle;
     CCParticleSystemQuad * blackHoleParticle;

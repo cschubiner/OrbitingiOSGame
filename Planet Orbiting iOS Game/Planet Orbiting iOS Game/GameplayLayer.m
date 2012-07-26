@@ -322,8 +322,6 @@ typedef struct {
         cameraLayer = [[CCLayer alloc] init];
         
         cometParticle = [CCParticleSystemQuad particleWithFile:@"cometParticle.plist"];
-        planetExplosionParticle = [CCParticleSystemQuad particleWithFile:@"planetExplosion.plist"];
-        [planetExplosionParticle stopSystem];
       //  [cameraLayer addChild:planetExplosionParticle];
         playerExplosionParticle = [CCParticleSystemQuad particleWithFile:@"playerExplosionParticle.plist"];
       //  [cameraLayer addChild:playerExplosionParticle];
@@ -425,8 +423,7 @@ typedef struct {
       //  [self addChild:cometParticle];
         cometParticle.position = ccp([self RandomBetween:0 maxvalue:390],325);
         cometVelocity = ccp([self RandomBetween:-10 maxvalue:10]/5,-[self RandomBetween:1 maxvalue:23]/5);
-        [self resetVariablesForNewGame];  
-        timeSincePlanetExplosion=400000;
+        [self resetVariablesForNewGame];
         
         hand = [CCSprite spriteWithFile:@"edit(84759).png"];
         hand.position = ccp(-1000, -1000);
@@ -846,7 +843,6 @@ typedef struct {
     totalGameTime = 0 ;
     lastPlanetVisited = [planets objectAtIndex:0];
     timeSinceCometLeftScreen=0;
-    timeSincePlanetExplosion=40000; //some arbitrarily high number
     prevCurrentPtoPScore=0;
     
     //this is where the player is on screen (240,160 is center of screen)
@@ -911,16 +907,12 @@ typedef struct {
             if (zone.hasPlayerHitThisZone&&!zone.hasExploded){
                 Planet * planet = [planets objectAtIndex:zone.number];
                 planet.alive = false;
-                [planetExplosionParticle setPosition:zone.sprite.position];
-                [planetExplosionParticle resetSystem];
-                [[SimpleAudioEngine sharedEngine]playEffect:@"bomb.wav"];
                 zone.hasExploded=true;
                 planet.hasExploded=true;
                 zone.isBeingDrawn=FALSE;
                 [spriteSheet removeChild:planet.sprite cleanup:YES];
                 [spriteSheet removeChild:zone.sprite cleanup:YES];
                 planet.isBeingDrawn=FALSE;
-                timeSincePlanetExplosion=0;
                 planetJustExploded=true;
             }
         }
@@ -965,15 +957,6 @@ typedef struct {
     }
     [cometParticle setPosition:ccpAdd(cometParticle.position, cometVelocity)];
     
-    if (planetJustExploded) {
-        timeSincePlanetExplosion+=dt;
-        if (timeSincePlanetExplosion<= durationOfPostExplosionScreenShake) {
-            [self setPosition:ccp([self RandomBetween:-postExplosionShakeXMagnitude maxvalue:postExplosionShakeXMagnitude],[self RandomBetween:-postExplosionShakeYMagnitude maxvalue:postExplosionShakeYMagnitude])];
-        } else {
-            planetJustExploded =false;
-        }
-    }
-    else [self setPosition:CGPointZero];
 }
 
 - (void)UpdateBlackhole {
