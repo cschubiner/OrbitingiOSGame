@@ -967,7 +967,7 @@ typedef struct {
         if (zonesReached<[planets count])
             totalGameTime+=dt;
         if (player.alive)
-            [self UpdatePlanets];    
+            [self UpdatePlanets];
         [self UpdatePlayer: dt];
         [self UpdateScore];
         [self UpdateCamera:dt];
@@ -984,28 +984,26 @@ typedef struct {
 }
 
 - (void)UpdateTutorial {
+    
     int tutorialCounter = 0;
-    tutorialFader+= 6;
+    tutorialFader+= 4;
     tutorialFader = clampf(tutorialFader, 0, 255);
     [tutorialLabel1 setOpacity:tutorialFader];
     [tutorialLabel2 setOpacity:tutorialFader];
     [tutorialLabel3 setOpacity:tutorialFader];
-    [tutorialLabel0 setOpacity:tutorialFader];
+    [tutorialLabel0 setOpacity:clampf(((sinf(totalGameTime*5)+1)/2)*300, 0, 255)];
         
     if (tutorialState == tutorialCounter++) {
 
-        
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Welcome to Star Dash!"]];
         [tutorialLabel2 setString:[NSString stringWithFormat:@"Tap to begin the tutorial..."]];
         [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
         
-        
-        
     } else if (tutorialState == tutorialCounter++) {
         
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"The object of the game is to swipe to get to"]];
-        [tutorialLabel2 setString:[NSString stringWithFormat:@"the next planet. Tap to see when the best time"]];
-        [tutorialLabel3 setString:[NSString stringWithFormat:@"to swipe is..."]];
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"The objective of the game is to swipe to get the"]];
+        [tutorialLabel2 setString:[NSString stringWithFormat:@"rocket ship to the next planet. Tap to see when"]];
+        [tutorialLabel3 setString:[NSString stringWithFormat:@"the best time to swipe is..."]];
         [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
         
     } else if (tutorialState == tutorialCounter++) {
