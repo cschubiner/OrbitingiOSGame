@@ -291,12 +291,12 @@ typedef struct {
     for (int j = 0 ; j < numberOfSegmentsAtATime; j++) {
         [self CreateSegment];
     }
-   /* for (int i = 0 ; i < [segments count]-1; i++){
-        NSArray *chosenSegment = [segments objectAtIndex:i];
-        for (int j = 0 ; j < [chosenSegment count]-1;j++) {
-               [[chosenSegment objectAtIndex:j] release];
-        }
-    }*/
+    /* for (int i = 0 ; i < [segments count]-1; i++){
+     NSArray *chosenSegment = [segments objectAtIndex:i];
+     for (int j = 0 ; j < [chosenSegment count]-1;j++) {
+     [[chosenSegment objectAtIndex:j] release];
+     }
+     }*/
 }
 
 /* On "init," initialize the instance */
@@ -861,7 +861,6 @@ typedef struct {
 - (void)DisposeAllContentsOfArray:(NSMutableArray*)array shouldRemoveFromArray:(bool)shouldRemove{
     for (int i = 0 ; i < [array count]; i++) {
         CameraObject * object = [array objectAtIndex:i];
-        object.number = i;
         object.segmentNumber--;
         if (object.segmentNumber == -1 ) {
             if ([[spriteSheet children]containsObject:object.sprite])
@@ -870,6 +869,8 @@ typedef struct {
                 [array removeObject:object];
         }
     }
+    for (int i = 0 ; i < [array count]; i++)
+        ((CameraObject*)[array objectAtIndex:i]).number = i;
 }
 
 - (void)UpdatePlanets {    
@@ -934,7 +935,7 @@ typedef struct {
         [self DisposeAllContentsOfArray:zones shouldRemoveFromArray:false];
         [self DisposeAllContentsOfArray:asteroids shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:coins shouldRemoveFromArray:true];
-
+        
         makingSegmentNumber--;
         [self CreateSegment];
         CCLOG(@"Planet Count: %d",[planets count]);
