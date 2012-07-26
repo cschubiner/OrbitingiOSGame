@@ -191,6 +191,7 @@
 		FA48C83E15BE892D00FA6F32 /* spriteSheetCamera-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = FA48C83A15BE892D00FA6F32 /* spriteSheetCamera-hd.pvr.ccz */; };
 		FA48C83F15BE892D00FA6F32 /* spriteSheetCamera.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA48C83B15BE892D00FA6F32 /* spriteSheetCamera.plist */; };
 		FA48C84015BE892D00FA6F32 /* spriteSheetCamera.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = FA48C83C15BE892D00FA6F32 /* spriteSheetCamera.pvr.ccz */; };
+		FA908BEE15C105C0008ACC50 /* edit(84759).png in Resources */ = {isa = PBXBuildFile; fileRef = FA908BED15C105C0008ACC50 /* edit(84759).png */; };
 		FAF1C64015BCF8A1001136E3 /* Coin.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF1C63F15BCF8A1001136E3 /* Coin.m */; };
 /* End PBXBuildFile section */
 
@@ -517,6 +518,7 @@
 		FA48C83A15BE892D00FA6F32 /* spriteSheetCamera-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "spriteSheetCamera-hd.pvr.ccz"; sourceTree = "<group>"; };
 		FA48C83B15BE892D00FA6F32 /* spriteSheetCamera.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = spriteSheetCamera.plist; sourceTree = "<group>"; };
 		FA48C83C15BE892D00FA6F32 /* spriteSheetCamera.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = spriteSheetCamera.pvr.ccz; sourceTree = "<group>"; };
+		FA908BED15C105C0008ACC50 /* edit(84759).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit(84759).png"; sourceTree = "<group>"; };
 		FAF1C63E15BCF8A1001136E3 /* Coin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coin.h; sourceTree = "<group>"; };
 		FAF1C63F15BCF8A1001136E3 /* Coin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -605,6 +607,7 @@
 		0C487B02159472AC00674AB9 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				FA908BED15C105C0008ACC50 /* edit(84759).png */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -1232,6 +1235,7 @@
 				0C2AB0CD15BE9B2A008822F1 /* Default.png in Resources */,
 				0C68283215BF0CCA00BF09C0 /* playerExplosionParticle.plist in Resources */,
 				0C49E19015C0FE44007957E9 /* thrustParticle3.plist in Resources */,
+				FA908BEE15C105C0008ACC50 /* edit(84759).png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
