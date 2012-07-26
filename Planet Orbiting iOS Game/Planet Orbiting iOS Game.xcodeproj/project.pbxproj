@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		012ED2F415BC7894008FDFBD /* StoreItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 012ED2F315BC7894008FDFBD /* StoreItem.m */; };
+		014B371315C12F6B002EDBCA /* playButton4.png in Resources */ = {isa = PBXBuildFile; fileRef = 014B371115C12F6B002EDBCA /* playButton4.png */; };
+		014B371415C12F6B002EDBCA /* pauseButton4.png in Resources */ = {isa = PBXBuildFile; fileRef = 014B371215C12F6B002EDBCA /* pauseButton4.png */; };
 		01FE9B2215BE94E9007512ED /* PowerupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B2115BE94E9007512ED /* PowerupManager.m */; };
 		01FE9B3415BFAE70007512ED /* DataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B3315BFAE6F007512ED /* DataStorage.m */; };
 		01FE9B3C15BFC2C9007512ED /* PlayerStats.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B3B15BFC2C9007512ED /* PlayerStats.m */; };
@@ -198,6 +200,8 @@
 /* Begin PBXFileReference section */
 		012ED2F215BC7894008FDFBD /* StoreItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreItem.h; sourceTree = "<group>"; };
 		012ED2F315BC7894008FDFBD /* StoreItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreItem.m; sourceTree = "<group>"; };
+		014B371115C12F6B002EDBCA /* playButton4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playButton4.png; sourceTree = "<group>"; };
+		014B371215C12F6B002EDBCA /* pauseButton4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pauseButton4.png; sourceTree = "<group>"; };
 		01FE9B2015BE94E9007512ED /* PowerupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PowerupManager.h; sourceTree = "<group>"; };
 		01FE9B2115BE94E9007512ED /* PowerupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PowerupManager.m; sourceTree = "<group>"; };
 		01FE9B3215BFAE6F007512ED /* DataStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataStorage.h; sourceTree = "<group>"; };
@@ -1056,6 +1060,8 @@
 		C445304E15A68890004F8F48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				014B371115C12F6B002EDBCA /* playButton4.png */,
+				014B371215C12F6B002EDBCA /* pauseButton4.png */,
 				C477750115A75D2C005D0AEB /* burst-hd.png */,
 				C47774EC15A75CE1005D0AEB /* logo-hd.png */,
 				C47774ED15A75CE1005D0AEB /* logo-icon-hd.png */,
@@ -1236,6 +1242,8 @@
 				0C68283215BF0CCA00BF09C0 /* playerExplosionParticle.plist in Resources */,
 				0C49E19015C0FE44007957E9 /* thrustParticle3.plist in Resources */,
 				FA908BEE15C105C0008ACC50 /* edit(84759).png in Resources */,
+				014B371315C12F6B002EDBCA /* playButton4.png in Resources */,
+				014B371415C12F6B002EDBCA /* pauseButton4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
