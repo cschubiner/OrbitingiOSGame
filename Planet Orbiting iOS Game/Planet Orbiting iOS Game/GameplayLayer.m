@@ -347,15 +347,15 @@ typedef struct {
             tutorialAdvanceMode = 1;
             
             tutorialLabel1 = [CCLabelTTF labelWithString:@" " fontName:@"Marker Felt" fontSize:24];
-            tutorialLabel1.position = ccp(240, 320-[tutorialLabel1 boundingBox].size.height/2);
+            tutorialLabel1.position = ccp(240, 320-[tutorialLabel1 boundingBox].size.height*.6);
             [hudLayer addChild: tutorialLabel1];
             
             tutorialLabel2 = [CCLabelTTF labelWithString:@" " fontName:@"Marker Felt" fontSize:24];
-            tutorialLabel2.position = ccp(240, 320-[tutorialLabel2 boundingBox].size.height*1.5);
+            tutorialLabel2.position = ccp(240, 320-[tutorialLabel2 boundingBox].size.height*1.6);
             [hudLayer addChild: tutorialLabel2];
             
             tutorialLabel3 = [CCLabelTTF labelWithString:@" " fontName:@"Marker Felt" fontSize:24];
-            tutorialLabel3.position = ccp(240, 320-[tutorialLabel3 boundingBox].size.height*2.5);
+            tutorialLabel3.position = ccp(240, 320-[tutorialLabel3 boundingBox].size.height*2.6);
             [hudLayer addChild: tutorialLabel3];
             
             tutorialLabel0 = [CCLabelTTF labelWithString:@" " fontName:@"Marker Felt" fontSize:20];
@@ -1004,75 +1004,77 @@ typedef struct {
     [tutorialLabel3 setOpacity:tutorialFader];
     [tutorialLabel0 setOpacity:clampf(((sinf(totalGameTime*5)+1)/2)*300, 0, 255)];
         
-    if (tutorialState == tutorialCounter++) {
-
+    if (tutorialState == tutorialCounter++) { //tap
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Welcome to Star Dash!"]];
         [tutorialLabel2 setString:[NSString stringWithFormat:@"Tap to begin the tutorial..."]];
         [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
         
-    } else if (tutorialState == tutorialCounter++) {
-        
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"The objective of the game is to swipe to get the"]];
-        [tutorialLabel2 setString:[NSString stringWithFormat:@"rocket ship to the next planet. Tap to see when"]];
-        [tutorialLabel3 setString:[NSString stringWithFormat:@"the best time to swipe is..."]];
+    } else if (tutorialState == tutorialCounter++) { //tap
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"Our game is simple - just jump from"]];
+        [tutorialLabel2 setString:[NSString stringWithFormat:@"planet to planet."]];
         [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
         
-    } else if (tutorialState == tutorialCounter++) {
+    } else if (tutorialState == tutorialCounter++) { //tap
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"Tap to see when a good time to swipe is."]];
+        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
         
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Getting in position..."]];
+    } else if (tutorialState == tutorialCounter++) { //good angle
+        //[tutorialLabel1 setString:[NSString stringWithFormat:@"Getting into position..."]];
         tutorialAdvanceMode = 0;
-        
         float ang = CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity));
-        
         // CCLOG(@"ang: %f", ang);
-        
         if (ang > 0 && ang < 10) {
             [self AdvanceTutorial];
         }
-    } else if (tutorialState == tutorialCounter++) {
+        
+    } else if (tutorialState == tutorialCounter++) { //swipe
         isTutPaused = true;
         tutorialAdvanceMode = 2;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Right now is when you'd want to swipe."]];
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"About now is when you'd want to swipe."]];
         [tutorialLabel2 setString:[NSString stringWithFormat:@"Swipe towards the next planet to continue..."]];
+        [self updateHandFrom:ccp(230, 20) to:ccp(450, 150) fadeInUpdates:20 moveUpdates:50 fadeOutUpdates:20 goneUpdates:30];
         
-        [self updateHandFrom:ccp(230, 20) to:ccp(450, 150) fadeInUpdates:20 moveUpdates:50 fadeOutUpdates:20];
-        
-        
-    } else if (tutorialState == tutorialCounter++) {
-        isTutPaused = false;
-        
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"SUCK A FAT CHODE BITCH"]];
+    } else if (tutorialState == tutorialCounter++) { //hit the next zone
         tutorialAdvanceMode = 0;
-        
         if (orbitState == 0) {
-            [self AdvanceTutorial];
+            if (lastPlanetVisited.number == tutorialPlanetIndex + 1)
+                [self AdvanceTutorial];
+            else
+                tutorialState--;
         }
-    } else if (tutorialState == tutorialCounter++) {
         
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Success!!! You made it!"]];
+    } else if (tutorialState == tutorialCounter++) { //tap
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"Nice job!"]];
         [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
         
-    } else if (tutorialState == tutorialCounter++) {
+    } else if (tutorialState == tutorialCounter++) { //good angle
+        tutorialAdvanceMode = 0;
+        float ang = CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity));
+        // CCLOG(@"ang: %f", ang);
+        if (ang > -10 && ang < 0) {
+            [self AdvanceTutorial];
+        }
+        
+    } else if (tutorialState == tutorialCounter++) { //swipe
+        isTutPaused = true;
         tutorialAdvanceMode = 2;
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Swipe again for more practice."]];
-        
-        [self updateHandFrom:ccp(230, 20) to:ccp(450, 150) fadeInUpdates:20 moveUpdates:45 fadeOutUpdates:20];
-        
-        
-    } else if (tutorialState == tutorialCounter++) {
-        
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"SUCK A FAT CHODE BITCH"]];
+        [self updateHandFrom:ccp(150, 50) to:ccp(350, 50) fadeInUpdates:20 moveUpdates:45 fadeOutUpdates:20 goneUpdates:30];
+                
+    } else if (tutorialState == tutorialCounter++) { //hit the next zone
         tutorialAdvanceMode = 0;
-        
         if (orbitState == 0) {
-            [self AdvanceTutorial];
+            if (lastPlanetVisited.number == tutorialPlanetIndex + 1)
+                [self AdvanceTutorial];
+            else
+                tutorialState--;
         }
-    } else if (tutorialState == tutorialCounter++) {
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Good job! Push to start the game"]];
+        
+    } else if (tutorialState == tutorialCounter++) { //tap
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"Well done."]];
         [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
         
-        
-    } else if (tutorialState == tutorialCounter++) {
+    } else if (tutorialState == tutorialCounter++) { //end the game
         if ([[PlayerStats sharedInstance] getTutorialOverride]) {
             [[PlayerStats sharedInstance] addPlay];
             [DataStorage storeData];
@@ -1081,10 +1083,11 @@ typedef struct {
         else
             [self startGame];
         tutorialState++;
+    
     }
 }
 
-- (void)updateHandFrom:(CGPoint)pos1 to:(CGPoint)pos2 fadeInUpdates:(int)fadeInUpdates moveUpdates:(int)moveUpdates fadeOutUpdates:(int)fadeOutUpdates {
+- (void)updateHandFrom:(CGPoint)pos1 to:(CGPoint)pos2 fadeInUpdates:(int)fadeInUpdates moveUpdates:(int)moveUpdates fadeOutUpdates:(int)fadeOutUpdates goneUpdates:(int)goneUpdates {
     
     if (handCounter == 0)
         hand.position = pos1;
@@ -1095,7 +1098,7 @@ typedef struct {
         hand.position = ccpAdd(pos1, ccpMult(vec, (handCounter-fadeInUpdates)/moveUpdates));
     } else if (handCounter <= fadeInUpdates + moveUpdates + fadeOutUpdates)
         hand.opacity -= 255/fadeOutUpdates;
-    else
+    else if (handCounter > fadeInUpdates + moveUpdates + fadeOutUpdates + goneUpdates)
         handCounter = -1;
         
     
@@ -1158,6 +1161,7 @@ typedef struct {
         if (!isInTutorialMode) {
             [self JustSwiped];
         } else if (tutorialAdvanceMode == 2) {
+            tutorialPlanetIndex = lastPlanetVisited.number;
             [self JustSwiped];
             [self AdvanceTutorial];
         }
@@ -1177,6 +1181,7 @@ typedef struct {
 - (void)AdvanceTutorial {
     tutorialAdvanceMode = 1;
     hand.position = ccp(-1000, 1000);
+    isTutPaused = false;
     hand.opacity = 0;
     handCounter = 0;
     tutorialFader = 0;
