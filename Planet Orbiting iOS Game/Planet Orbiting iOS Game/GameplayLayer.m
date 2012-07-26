@@ -59,6 +59,7 @@ typedef struct {
     coin.sprite = [CCSprite spriteWithSpriteFrameName:@"coin.png"];
     coin.sprite.position = ccp(xPos, yPos);
     [coin.sprite setScale:scale];
+    coin.segmentNumber = makingSegmentNumber;
     [cameraObjects addObject:coin];
     [coins addObject:coin];
     [spriteSheet addChild:coin.sprite];
@@ -70,6 +71,7 @@ typedef struct {
     asteroid.sprite = [CCSprite spriteWithSpriteFrameName:@"asteroid.png"];
     asteroid.sprite.position = ccp(xPos, yPos);
     [asteroid.sprite setScale:scale];
+    asteroid.segmentNumber = makingSegmentNumber;
     [cameraObjects addObject:asteroid];
     [asteroids addObject:asteroid];
     [spriteSheet addChild:asteroid.sprite];
@@ -83,13 +85,14 @@ typedef struct {
     [planet.sprite setScale:scale];
     planet.mass = 1;
     planet.number = planetCounter;
+    planet.segmentNumber = makingSegmentNumber;
     
     Zone *zone = [[Zone alloc]init];
     zone.sprite = [CCSprite spriteWithSpriteFrameName:@"zone.png"];
     [zone.sprite setScale:scale*zoneScaleRelativeToPlanet];
     zone.number = planetCounter;
     zone.sprite.position = planet.sprite.position;
-    
+    zone.segmentNumber = makingSegmentNumber;
     planet.orbitRadius = zone.radius*zoneCollisionFactor;
     
     [cameraObjects addObject:planet];
@@ -105,6 +108,29 @@ typedef struct {
     planetCounter++;
 }
 
+- (void)CreateSegment
+{
+    float rotationOfSegment = CC_DEGREES_TO_RADIANS([self RandomBetween:-segmentRotationVariation+directionPlanetSegmentsGoIn maxvalue:segmentRotationVariation+directionPlanetSegmentsGoIn]);
+    NSArray *chosenSegment = [segments objectAtIndex:[self RandomBetween:0 maxvalue:[segments count]-1]];
+    for (int i = 0 ; i < [chosenSegment count]; i++) {
+        LevelObjectReturner * returner = [chosenSegment objectAtIndex:i];
+        CGPoint newPos = ccpRotateByAngle(ccp(returner.pos.x+(indicatorPos).x,returner.pos.y+(indicatorPos).y), indicatorPos, rotationOfSegment);
+        if (i==[chosenSegment count]-1) {
+            (indicatorPos) = newPos;
+            break;
+        }
+        
+        if (returner.type == kplanet) {
+            [self CreatePlanetAndZone:newPos.x yPos:newPos.y scale:returner.scale];
+        }
+        if (returner.type == kcoin)
+            [self CreateCoin:newPos.x yPos:newPos.y scale:returner.scale];
+        if (returner.type == kasteroid)
+            [self CreateAsteroid:newPos.x yPos:newPos.y scale:returner.scale];
+    }
+    makingSegmentNumber++;
+}
+
 - (void)CreateLevel // paste level creation code here
 {
     if (isInTutorialMode) {
@@ -115,7 +141,7 @@ typedef struct {
         return;
     }
     
-    NSArray *segments = [NSArray arrayWithObjects:
+    segments = [[NSArray alloc ]initWithObjects:
                          [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(188,219) scale:0.87552],
                           [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(151,289) scale:0.87552],
                           [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1260,34) scale:0.87552],
@@ -263,31 +289,14 @@ typedef struct {
                           nil],
                          nil];
     
-    CGPoint indicatorPos = CGPointZero;
+    indicatorPos = CGPointZero;
     for (int j = 0 ; j < numberOfSegmentsAtATime; j++) {
-        float rotationOfSegment = CC_DEGREES_TO_RADIANS([self RandomBetween:-segmentRotationVariation+directionPlanetSegmentsGoIn maxvalue:segmentRotationVariation+directionPlanetSegmentsGoIn]);
-        NSArray *chosenSegment = [segments objectAtIndex:[self RandomBetween:0 maxvalue:[segments count]-1]];
-        for (int i = 0 ; i < [chosenSegment count]; i++) {
-            LevelObjectReturner * returner = [chosenSegment objectAtIndex:i];
-            CGPoint newPos = ccpRotateByAngle(ccp(returner.pos.x+indicatorPos.x,returner.pos.y+indicatorPos.y), indicatorPos, rotationOfSegment);
-            if (i==[chosenSegment count]-1) {
-                indicatorPos = newPos;
-                break;
-            }
-            
-            if (returner.type == kplanet) {
-                [self CreatePlanetAndZone:newPos.x yPos:newPos.y scale:returner.scale];
-            }
-            if (returner.type == kcoin)
-                [self CreateCoin:newPos.x yPos:newPos.y scale:returner.scale];
-            if (returner.type == kasteroid)
-                [self CreateAsteroid:newPos.x yPos:newPos.y scale:returner.scale];
-        }
+        [self CreateSegment];
     }
     for (int i = 0 ; i < [segments count]-1; i++){
         NSArray *chosenSegment = [segments objectAtIndex:i];
         for (int j = 0 ; j < [chosenSegment count]-1;j++) {
-            [[chosenSegment objectAtIndex:j] release];
+        //    [[chosenSegment objectAtIndex:j] release];
         }
     }
 }
@@ -390,6 +399,7 @@ typedef struct {
         player.sprite = [CCSprite spriteWithSpriteFrameName:@"spaceship-hd.png"];
         player.alive=true;
         [player.sprite setScale:playerSizeScale];
+        player.segmentNumber = -10;
         [cameraObjects addObject:player];         
         
         streak=[CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak.png" width:31 length:32 color:// ccc4(153,102,0, 255)  //orange
@@ -436,7 +446,6 @@ typedef struct {
         [self UpdateScore];
         
         [Flurry logEvent:@"Played Game" withParameters:nil timed:YES];
-        
         [self schedule:@selector(Update:) interval:0]; // this makes the update loop loop!!!!        
 	}
 	return self;
@@ -453,16 +462,6 @@ typedef struct {
         if (object.alive) {
             object.velocity = ccpAdd(object.velocity, object.acceleration);
             object.sprite.position = ccpAdd(ccpMult(object.velocity, 60*dt*timeDilationCoefficient), object.sprite.position);
-            
-            /* if (object.isBeingDrawn == FALSE)
-             if (object.hasExploded==FALSE&&CGRectIntersectsRect([object rectOnScreen:cameraLayer], CGRectMake(0, 0, size.width, size.height))) {
-             object.sprite.visible=true;
-             object.isBeingDrawn = true;
-             }
-             else {
-             object.visible = false;
-             object.isBeingDrawn = false;
-             } */
         }
     }
     // camera code follows -----------------------------
@@ -652,7 +651,7 @@ typedef struct {
                 if (swipeAccuracy > 180)
                     swipeAccuracy = 360 - swipeAccuracy;
                 
-                CCLOG(@"cur: %f", swipeAccuracy);
+               // CCLOG(@"cur: %f", swipeAccuracy);
                 
                 
                 //HERE: TO USE!!!!!: if swipe accuracy is greater than a certain amount, t did a poor swipe and should q punished severely!!!!!
@@ -708,7 +707,7 @@ typedef struct {
                 
                 
                 player.acceleration = ccpMult(accelToAdd, gravIncreaser*freeGravityStrength*scaler);
-                CCLOG(@"swipeAcc: %f", ccpLength(player.acceleration));
+              //  CCLOG(@"swipeAcc: %f", ccpLength(player.acceleration));
                 
                 if (initialAccelMag == 0)
                     initialAccelMag = ccpLength(player.acceleration);
@@ -910,13 +909,51 @@ typedef struct {
                 zone.hasExploded=true;
                 planet.hasExploded=true;
                 zone.isBeingDrawn=FALSE;
+                if ([[spriteSheet children]containsObject:planet.sprite])
                 [spriteSheet removeChild:planet.sprite cleanup:YES];
+                if ([[spriteSheet children]containsObject:zone.sprite])
                 [spriteSheet removeChild:zone.sprite cleanup:YES];
                 planet.isBeingDrawn=FALSE;
                 planetJustExploded=true;
             }
         }
     } // end collision detection code-----------------
+    
+    if (lastPlanetVisited.segmentNumber == numberOfSegmentsAtATime-2) {
+        CCLOG(@"Planet Count: %d",[planets count]);
+        for (int i = 0 ; i < [cameraObjects count]; i++) {
+            CameraObject* object = [cameraObjects objectAtIndex:i];
+            object.segmentNumber--;
+            if (object.segmentNumber == -1 ) {
+                if ([[spriteSheet children]containsObject:object.sprite])
+                [spriteSheet removeChild:object.sprite cleanup:YES];
+                [coins removeObject:object];
+               // [cameraObjects removeObjectAtIndex:i];
+               // i--;
+                //[planets removeObject:object];
+                [asteroids removeObject:object];
+            }
+        }
+        for (int i = 0 ; i < [planets count]; i++) {
+            CameraObject * object = [planets objectAtIndex:i];
+            object.number = i;
+        }
+        for (int i = 0 ; i < [zones count]; i++) {
+            CameraObject * object = [zones objectAtIndex:i];
+            object.number = i;
+        }
+        for (int i = 0 ; i < [coins count]; i++) {
+            CameraObject * object = [coins objectAtIndex:i];
+            object.number = i;
+        }
+        for (int i = 0 ; i < [asteroids count]; i++) {
+            CameraObject * object = [asteroids objectAtIndex:i];
+            object.number = i;
+        }
+        makingSegmentNumber--;
+        [self CreateSegment];
+        CCLOG(@"Planet Count: %d",[planets count]);
+    }
 }
 
 /* Your score goes up as you move along the vector between the current and next planet. Your score will also never go down, as the user doesn't like to see his score go down.*/
