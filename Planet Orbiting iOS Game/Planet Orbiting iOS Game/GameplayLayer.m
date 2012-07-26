@@ -395,6 +395,7 @@ typedef struct {
         dangerLevel = 0;
         isTutPaused = false;
         swipeVector = ccp(0, -1);
+        gravIncreaser = 1;
         
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444]; // add this line at the very beginning
         background = [CCSprite spriteWithFile:@"background.pvr.ccz"];
@@ -582,6 +583,7 @@ typedef struct {
             } else if (orbitState == 1) 
             {
                 velSoftener = 0;
+                gravIncreaser = 1;
                 //if in position
                 //justSwiped = false;
                 [[SimpleAudioEngine sharedEngine]playEffect:@"SWOOSH.WAV"];
@@ -651,7 +653,7 @@ typedef struct {
             }
             
             if (orbitState == 3) {
-                //gravIncreaser += rateToIncreaseGravity;
+                gravIncreaser += increaseGravStrengthByThisMuchEveryUpdate;
                 
                 /*
                  if (ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) > ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)))
@@ -678,12 +680,16 @@ typedef struct {
                 
                 player.velocity = ccpMult(ccpNormalize(player.velocity), ccpLength(initialVel));
                 
-                float scaler = (180/60) - swipeAccuracy / 60;
+                float scaler = multiplyGravityThisManyTimesOnPerfectSwipe - swipeAccuracy * multiplyGravityThisManyTimesOnPerfectSwipe / 180;
+                scaler = clampf(scaler, 0, 99999999);
                 
                 //CCLOG(@"swipeAcc: %f, scaler: %f", swipeAccuracy, scaler);
                 
-                //perhaps dont use scaler/swipe accuracy, and just use it in (if orbitstate=1) for determining if it's good enough. btw scaler ranges from about 1 to 3.5 (now 0 to 2.5)
-                player.acceleration = ccpMult(accelToAdd, freeGravityStrength*scaler - 1);
+                //perhaps dont use scaler/swipe accuracy, and just use it in (if orbitstate=1) for determining if it's good enough. btw scaler ranges from about 1to 3.5 (now 0 to 2.5)
+                
+                
+                player.acceleration = ccpMult(accelToAdd, gravIncreaser*freeGravityStrength*scaler);
+                CCLOG(@"swipeAcc: %f", ccpLength(player.acceleration));
                 
                 if (initialAccelMag == 0)
                     initialAccelMag = ccpLength(player.acceleration);

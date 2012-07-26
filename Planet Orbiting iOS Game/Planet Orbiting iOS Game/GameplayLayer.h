@@ -48,6 +48,7 @@
     CGPoint spotGoingTo;
     float swipeAccuracy;
     float velSoftener;
+    float gravIncreaser;
     
     float dangerLevel;
     
