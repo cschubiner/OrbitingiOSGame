@@ -52,6 +52,8 @@
     
     float dangerLevel;
     
+    CCSprite * hand;
+    
     bool isInTutorialMode;
     CCLabelTTF *tutorialLabel1;
     CCLabelTTF *tutorialLabel2;
@@ -61,6 +63,7 @@
     float tutorialFader;
     int tutorialAdvanceMode;
     bool isTutPaused;
+    float handCounter;
 
     int orbitState; //0 = orbiting, 1 = just left orbit and deciding things for state 2; 3 = flying to next planet
     Planet* targetPlanet;

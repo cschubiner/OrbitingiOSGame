@@ -396,6 +396,7 @@ typedef struct {
         isTutPaused = false;
         swipeVector = ccp(0, -1);
         gravIncreaser = 1;
+        handCounter = 0;
         
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444]; // add this line at the very beginning
         background = [CCSprite spriteWithFile:@"background.pvr.ccz"];
@@ -411,8 +412,12 @@ typedef struct {
         [self resetVariablesForNewGame];  
         timeSincePlanetExplosion=400000;
         
+        hand = [CCSprite spriteWithFile:@"edit(84759).png"];
+        hand.position = ccp(-1000, -1000);
+        
         [self addChild:cameraLayer];
         [cameraLayer addChild:spriteSheet];
+        [hudLayer addChild:hand];
         [self addChild:hudLayer];
         [self UpdateScore];
         
@@ -984,6 +989,9 @@ typedef struct {
 }
 
 - (void)UpdateTutorial {
+    hand.scale = .5;
+    
+    
     
     int tutorialCounter = 0;
     tutorialFader+= 4;
@@ -1027,6 +1035,9 @@ typedef struct {
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Right now is when you'd want to swipe."]];
         [tutorialLabel2 setString:[NSString stringWithFormat:@"Swipe towards the next planet to continue..."]];
         
+        [self updateHandFrom:ccp(250, 50) to:ccp(350, 100)];
+        
+        
     } else if (tutorialState == tutorialCounter++) {
         isTutPaused = false;
         
@@ -1050,6 +1061,18 @@ typedef struct {
         tutorialState++;
         
     }
+}
+
+- (void)updateHandFrom:(CGPoint)pos1 to:(CGPoint)pos2 {
+    if (handCounter <= 50)
+        hand.opacity += 255/50;
+    //else if (handCounter <= 150)
+        
+    
+    hand.position = ccp(250, 50);
+    hand.opacity = 100;
+    
+    handCounter++;
 }
 
 - (void)startGame {
@@ -1120,6 +1143,9 @@ typedef struct {
 
 - (void)AdvanceTutorial {
     tutorialAdvanceMode = 1;
+    hand.position = ccp(-1000, 1000);
+    hand.opacity = 0;
+    handCounter = 0;
     tutorialFader = 0;
     tutorialState++;
     [tutorialLabel1 setString:[NSString stringWithFormat:@""]];
