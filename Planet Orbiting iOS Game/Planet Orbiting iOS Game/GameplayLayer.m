@@ -1073,6 +1073,10 @@ typedef struct {
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Well done."]];
         [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
         
+    } else if (tutorialState == tutorialCounter++) { //tap
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"Now you're ready to play!"]];
+        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
+        
     } else if (tutorialState == tutorialCounter++) { //end the game
         if ([[PlayerStats sharedInstance] getTutorialOverride]) {
             [[PlayerStats sharedInstance] addPlay];
