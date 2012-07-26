@@ -1073,7 +1073,13 @@ typedef struct {
         
         
     } else if (tutorialState == tutorialCounter++) {
-        [self startGame];
+        if ([[PlayerStats sharedInstance] getTutorialOverride]) {
+            [[PlayerStats sharedInstance] addPlay];
+            [DataStorage storeData];
+            [self endGame];
+        }
+        else
+            [self startGame];
         tutorialState++;
     }
 }
