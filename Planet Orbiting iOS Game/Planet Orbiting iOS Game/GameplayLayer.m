@@ -993,8 +993,6 @@ typedef struct {
 - (void)UpdateTutorial {
     hand.scale = .5;
     
-    
-    
     int tutorialCounter = 0;
     tutorialFader+= 4;
     tutorialFader = clampf(tutorialFader, 0, 255);
@@ -1032,7 +1030,6 @@ typedef struct {
         [tutorialLabel1 setString:[NSString stringWithFormat:@"About now is when you'd want to swipe."]];
         [tutorialLabel2 setString:[NSString stringWithFormat:@"Swipe towards the next planet to continue..."]];
         [self updateHandFrom:ccp(230, 20) to:ccp(450, 150) fadeInUpdates:20 moveUpdates:50 fadeOutUpdates:20 goneUpdates:30];
-        
     } else if (tutorialState == tutorialCounter++) { //hit the next zone
         tutorialAdvanceMode = 0;
         if (orbitState == 0) {
@@ -1099,10 +1096,8 @@ typedef struct {
         hand.opacity -= 255/fadeOutUpdates;
     else if (handCounter > fadeInUpdates + moveUpdates + fadeOutUpdates + goneUpdates)
         handCounter = -1;
-        
-    
 
-    //hand.opacity = 100;
+    // hand.opacity = 100;
     
     handCounter++;
 }
@@ -1166,10 +1161,10 @@ typedef struct {
         }
     }
     
-    //CCLOG(@"num: %f, newAng: %f", ccpLength(swipeVector), minSwipeStrength);
-    //if (ccpLength(swipeVector) >= minSwipeStrength && tutorialAdvanceMode == 2 && isInTutorialMode) {
+    // CCLOG(@"num: %f, newAng: %f", ccpLength(swipeVector), minSwipeStrength);
+    // if (ccpLength(swipeVector) >= minSwipeStrength && tutorialAdvanceMode == 2 && isInTutorialMode) {
     //    [self AdvanceTutorial];
-    //}
+    // }
 }
 
 - (void)JustSwiped {
