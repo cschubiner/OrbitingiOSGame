@@ -108,9 +108,8 @@ typedef struct {
     if (isInTutorialMode) {
         [self CreatePlanetAndZone:163 yPos:159 scale:1];
         [self CreatePlanetAndZone:714 yPos:387 scale:1];
-        [self CreatePlanetAndZone:914 yPos:387 scale:1];
-        [self CreatePlanetAndZone:1114 yPos:387 scale:1];
-        [self CreatePlanetAndZone:1314 yPos:387 scale:1];
+        [self CreatePlanetAndZone:1214 yPos:387 scale:1];
+        [self CreatePlanetAndZone:1914 yPos:387 scale:1];
         return;
     }
     
@@ -1052,6 +1051,26 @@ typedef struct {
         
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Success!!! You made it!"]];
         [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
+        
+    } else if (tutorialState == tutorialCounter++) {
+        tutorialAdvanceMode = 2;
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"Swipe again for more practice."]];
+        
+        [self updateHandFrom:ccp(230, 20) to:ccp(450, 150) fadeInUpdates:20 moveUpdates:45 fadeOutUpdates:20];
+        
+        
+    } else if (tutorialState == tutorialCounter++) {
+        
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"SUCK A FAT CHODE BITCH"]];
+        tutorialAdvanceMode = 0;
+        
+        if (orbitState == 0) {
+            [self AdvanceTutorial];
+        }
+    } else if (tutorialState == tutorialCounter++) {
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"Good job! Push to start the game"]];
+        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
+        
         
     } else if (tutorialState == tutorialCounter++) {
         [self startGame];
