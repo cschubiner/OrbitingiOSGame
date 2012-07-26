@@ -50,6 +50,8 @@
     float velSoftener;
     float gravIncreaser;
     
+    int planetNumToRespawnSegments; 
+    
     float dangerLevel;
     
     CCSprite * hand;

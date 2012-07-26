@@ -261,7 +261,7 @@ typedef struct {
                          nil];
     
     CGPoint indicatorPos = CGPointZero;
-    for (int j = 0 ; j < 30; j++) {
+    for (int j = 0 ; j < numberOfSegmentsAtATime; j++) {
         float rotationOfSegment = CC_DEGREES_TO_RADIANS([self RandomBetween:-segmentRotationVariation+directionPlanetSegmentsGoIn maxvalue:segmentRotationVariation+directionPlanetSegmentsGoIn]);
         NSArray *chosenSegment = [segments objectAtIndex:[self RandomBetween:0 maxvalue:[segments count]-1]];
         for (int i = 0 ; i < [chosenSegment count]; i++) {
@@ -272,8 +272,10 @@ typedef struct {
                 break;
             }
             
-            if (returner.type == kplanet)
+            if (returner.type == kplanet) {
+                if (j == numberOfSegmentsAtATime-1&&returner.pos.x==0&&returner.pos.y==0)
                 [self CreatePlanetAndZone:newPos.x yPos:newPos.y scale:returner.scale];
+            }
             if (returner.type == kcoin)
                 [self CreateCoin:newPos.x yPos:newPos.y scale:returner.scale];
             if (returner.type == kasteroid)
