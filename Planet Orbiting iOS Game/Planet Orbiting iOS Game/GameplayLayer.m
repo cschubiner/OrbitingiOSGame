@@ -919,7 +919,7 @@ typedef struct {
         }
     } // end collision detection code-----------------
     
-    if (lastPlanetVisited.segmentNumber == numberOfSegmentsAtATime-2) {
+    if (lastPlanetVisited.segmentNumber == numberOfSegmentsAtATime-1) {
         CCLOG(@"Planet Count: %d",[planets count]);
         for (int i = 0 ; i < [cameraObjects count]; i++) {
             CameraObject* object = [cameraObjects objectAtIndex:i];
