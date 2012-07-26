@@ -21,7 +21,7 @@
 @property (nonatomic) bool isBeingDrawn;
 @property (nonatomic) bool hasExploded;
 @property (nonatomic) int segmentNumber;
-
+@property (nonatomic) int whichSegmentThisObjectIsOriginallyFrom;
 
 -(CGPoint)position;
 -(void)setPosition:(CGPoint)position;

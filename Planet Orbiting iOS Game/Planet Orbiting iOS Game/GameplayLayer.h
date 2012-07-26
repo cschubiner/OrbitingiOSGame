@@ -24,7 +24,6 @@
     NSMutableArray *zones;
     NSMutableArray *asteroids;
     NSMutableArray *coins;
-    NSMutableArray *cameraObjects;
     CCLabelTTF *scoreLabel;
     CCLabelTTF *coinsLabel;
     CGSize size;
@@ -58,6 +57,7 @@
     
     CCSprite * hand;
     
+    int originalSegmentNumber;
     
     bool isInTutorialMode;
     CCLabelTTF *tutorialLabel1;
