@@ -97,6 +97,8 @@
 
 - (int)RandomBetween:(int)minvalue maxvalue:(int)maxvalue;
 
+- (void)togglePause;
+
 double lerpd(double a, double b, double t);
 float lerpf(float a, float b, float t);
 

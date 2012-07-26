@@ -24,6 +24,8 @@
     int initialScoreConstant;
     float killer;
     int startingCoins;
+    BOOL paused;
+    CCMenu *pauseMenu;
 }
 
 typedef struct {
@@ -291,10 +293,10 @@ typedef struct {
 }
 
 /* On "init," initialize the instance */
-- (id) init {
+- (id)init {
 	// always call "super" init.
 	// Apple recommends to re-assign "self" with the "super" return value
-	if((self = [super init])) {
+	if ((self = [super init])) {
         startingCoins = [[UserWallet sharedInstance] getBalance];
         [self setGameConstants];
         self.isTouchEnabled= TRUE;
@@ -332,7 +334,6 @@ typedef struct {
         blackHoleParticle = [CCParticleSystemQuad particleWithFile:@"blackHoleParticle.plist"];
         [blackHoleParticle setPositionType:kCCPositionTypeGrouped];
         
-        
         if (!isInTutorialMode) {
             scoreLabel = [CCLabelTTF labelWithString:@"Score: " fontName:@"Marker Felt" fontSize:24];
             scoreLabel.position = ccp(400, [scoreLabel boundingBox].size.height);
@@ -341,6 +342,14 @@ typedef struct {
             coinsLabel = [CCLabelTTF labelWithString:@"Coins: " fontName:@"Marker Felt" fontSize:24];
             coinsLabel.position = ccp(70, [coinsLabel boundingBox].size.height);
             [hudLayer addChild: coinsLabel];
+            
+            CCMenuItem  *pauseButton = [CCMenuItemImage 
+                                        itemFromNormalImage:@"pauseButton4.png" selectedImage:@"pauseButton4.png" 
+                                        target:self selector:@selector(togglePause)];
+            pauseButton.position = ccp(440, 280);
+            pauseMenu = [CCMenu menuWithItems:pauseButton, nil];
+            pauseMenu.position = CGPointZero;
+            //[hudLayer addChild:pauseButton];
         } else {
             tutorialState = 0;
             tutorialFader = 0;
@@ -408,7 +417,7 @@ typedef struct {
         [self addChild:background];
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888]; // add this line at the very beginning
         
-    //    [self addChild:spaceBackgroundParticle];
+      //  [self addChild:spaceBackgroundParticle];
       //  [self addChild:cometParticle];
         cometParticle.position = ccp([self RandomBetween:0 maxvalue:390],325);
         cometVelocity = ccp([self RandomBetween:-10 maxvalue:10]/5,-[self RandomBetween:1 maxvalue:23]/5);
@@ -422,6 +431,7 @@ typedef struct {
         [cameraLayer addChild:spriteSheet];
         [hudLayer addChild:hand];
         [self addChild:hudLayer];
+        [self addChild:pauseMenu];
         [self UpdateScore];
         
         [Flurry logEvent:@"Played Game" withParameters:nil timed:YES];
@@ -731,7 +741,7 @@ typedef struct {
         [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
 }
 
-//FIX you don't really need planetIndex passed in because it's just going to spawn at the position of the last thrust point anyway
+// FIX you don't really need planetIndex passed in because it's just going to spawn at the position of the last thrust point anyway
 - (void)RespawnPlayerAtPlanetIndex:(int)planetIndex { 
     timeDilationCoefficient *= factorToScaleTimeDilationByOnDeath;
     numZonesHitInARow = 0;
@@ -972,15 +982,17 @@ typedef struct {
 
 - (void) Update:(ccTime)dt {
     if (!isTutPaused) {
-        if (zonesReached<[planets count])
-            totalGameTime+=dt;
-        if (player.alive)
-            [self UpdatePlanets];
-        [self UpdatePlayer: dt];
-        [self UpdateScore];
-        [self UpdateCamera:dt];
-        [self UpdateParticles:dt];
-        [self UpdateBlackhole];
+        if (!paused) {
+            if (zonesReached<[planets count])
+                totalGameTime+=dt;
+            if (player.alive)
+                [self UpdatePlanets];
+            [self UpdatePlayer: dt];
+            [self UpdateScore];
+            [self UpdateCamera:dt];
+            [self UpdateParticles:dt];
+            [self UpdateBlackhole];
+        }
     }
     if (isInTutorialMode)
         [self UpdateTutorial];
@@ -1231,6 +1243,10 @@ float lerpf(float a, float b, float t) {
 
 - (bool)IsPositionOnScreen:(CGPoint)position{
     return CGRectContainsPoint(CGRectMake(0, 0, size.width, size.height), [cameraLayer convertToWorldSpace:position]);
+}
+
+- (void)togglePause {
+    paused = !paused;
 }
 
 
