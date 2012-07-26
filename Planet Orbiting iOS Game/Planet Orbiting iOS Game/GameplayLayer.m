@@ -275,7 +275,6 @@ typedef struct {
             }
             
             if (returner.type == kplanet) {
-                if (j == numberOfSegmentsAtATime-1&&returner.pos.x==0&&returner.pos.y==0)
                 [self CreatePlanetAndZone:newPos.x yPos:newPos.y scale:returner.scale];
             }
             if (returner.type == kcoin)
