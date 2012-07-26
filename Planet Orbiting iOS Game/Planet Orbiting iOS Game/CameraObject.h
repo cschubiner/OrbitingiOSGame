@@ -20,6 +20,7 @@
 @property (nonatomic) bool alive;
 @property (nonatomic) bool isBeingDrawn;
 @property (nonatomic) bool hasExploded;
+@property (nonatomic) int segmentNumber;
 
 
 -(CGPoint)position;

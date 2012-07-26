@@ -49,11 +49,15 @@
     float velSoftener;
     float gravIncreaser;
     
-    int planetNumToRespawnSegments; 
+    NSArray *segments;
+    int planetNumToRespawnSegments;
+    int makingSegmentNumber;
+    CGPoint indicatorPos;
     
     float dangerLevel;
     
     CCSprite * hand;
+    
     
     bool isInTutorialMode;
     CCLabelTTF *tutorialLabel1;
