@@ -108,7 +108,9 @@ typedef struct {
     if (isInTutorialMode) {
         [self CreatePlanetAndZone:163 yPos:159 scale:1];
         [self CreatePlanetAndZone:714 yPos:387 scale:1];
-        [self CreatePlanetAndZone:1279 yPos:624 scale:1];
+        [self CreatePlanetAndZone:914 yPos:387 scale:1];
+        [self CreatePlanetAndZone:1114 yPos:387 scale:1];
+        [self CreatePlanetAndZone:1314 yPos:387 scale:1];
         return;
     }
     
@@ -1031,7 +1033,7 @@ typedef struct {
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Right now is when you'd want to swipe."]];
         [tutorialLabel2 setString:[NSString stringWithFormat:@"Swipe towards the next planet to continue..."]];
         
-        [self updateHandFrom:ccp(250, 50) to:ccp(350, 100)];
+        [self updateHandFrom:ccp(230, 20) to:ccp(450, 150) fadeInUpdates:20 moveUpdates:50 fadeOutUpdates:20];
         
         
     } else if (tutorialState == tutorialCounter++) {
@@ -1044,22 +1046,33 @@ typedef struct {
             [self AdvanceTutorial];
         }
     } else if (tutorialState == tutorialCounter++) {
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Success!!!"]];
+        
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"Success!!! You made it!"]];
         [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
+        
     } else if (tutorialState == tutorialCounter++) {
         [self startGame];
         tutorialState++;
     }
 }
 
-- (void)updateHandFrom:(CGPoint)pos1 to:(CGPoint)pos2 {
-    if (handCounter <= 50)
-        hand.opacity += 255/50;
-    //else if (handCounter <= 150)
+- (void)updateHandFrom:(CGPoint)pos1 to:(CGPoint)pos2 fadeInUpdates:(int)fadeInUpdates moveUpdates:(int)moveUpdates fadeOutUpdates:(int)fadeOutUpdates {
+    
+    if (handCounter == 0)
+        hand.position = pos1;
+    else if (handCounter <= fadeInUpdates)
+        hand.opacity += 255/fadeInUpdates;
+    else if (handCounter <= fadeInUpdates + moveUpdates) {
+        CGPoint vec = ccpSub(pos2, pos1);
+        hand.position = ccpAdd(pos1, ccpMult(vec, (handCounter-fadeInUpdates)/moveUpdates));
+    } else if (handCounter <= fadeInUpdates + moveUpdates + fadeOutUpdates)
+        hand.opacity -= 255/fadeOutUpdates;
+    else
+        handCounter = -1;
         
     
-    hand.position = ccp(250, 50);
-    hand.opacity = 100;
+
+    //hand.opacity = 100;
     
     handCounter++;
 }
