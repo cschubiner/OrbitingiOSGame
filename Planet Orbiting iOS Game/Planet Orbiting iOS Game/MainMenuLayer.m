@@ -111,6 +111,10 @@
     [[PlayerStats sharedInstance] addPlay];
     CCLOG(@"number of plays ever: %i", [[PlayerStats sharedInstance] getPlays]);
     
+    if ([[PlayerStats sharedInstance] getPlays] != 1) {
+        [[PlayerStats sharedInstance] setTutorialOverride:NO];
+    }
+    
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,-320)];
     id ease = [CCEaseOut actionWithAction:action rate:2];
     [layer runAction: ease];
@@ -145,6 +149,7 @@
 }
 
 - (void)pressedTutorialButton: (id) sender {
+    [[PlayerStats sharedInstance] setTutorialOverride:YES];
     [Flurry logEvent:@"Pressed Tutorial Button"];
     [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:TRUE];
     [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];

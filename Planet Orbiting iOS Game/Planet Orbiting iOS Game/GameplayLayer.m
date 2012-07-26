@@ -307,6 +307,10 @@ typedef struct {
             isInTutorialMode = NO;
         }
         
+        if ([[PlayerStats sharedInstance] getTutorialOverride]) {
+            isInTutorialMode = YES;
+        }
+        
         planetCounter = 0;
         cameraObjects = [[NSMutableArray alloc] init];
         planets = [[NSMutableArray alloc] init];
