@@ -108,8 +108,8 @@
 
 // this is called (magically?) by cocosbuilder when the start button is pressed
 - (void)startGame:(id)sender {
-    int plays = [[PlayerStats sharedInstance] totalPlays];
-    [[PlayerStats sharedInstance] setTotalPlays:plays + 1];
+    [[PlayerStats sharedInstance] addPlay];
+    CCLOG(@"number of plays ever: %i", [[PlayerStats sharedInstance] getPlays]);
     
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,-320)];
     id ease = [CCEaseOut actionWithAction:action rate:2];

@@ -9,6 +9,7 @@
 #import "DataStorage.h"
 #import "UserWallet.h"
 #import "PowerupManager.h"
+#import "PlayerStats.h"
 
 @implementation DataStorage
 
@@ -16,6 +17,7 @@
     int coins = [[UserWallet sharedInstance] getBalance];
     int numMagnet = [[PowerupManager sharedInstance] numMagnet];
     int numImmunity = [[PowerupManager sharedInstance] numImmunity];
+    int numPlays = [[PlayerStats sharedInstance] getPlays];
     
     // Store the data
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -23,6 +25,7 @@
     [defaults setInteger:coins forKey:@"coin"];
     [defaults setInteger:numMagnet forKey:@"magnet"];
     [defaults setInteger:numImmunity forKey:@"immunity"];
+    [defaults setInteger:numPlays forKey:@"plays"];
     
     [defaults synchronize];
 }
@@ -33,12 +36,12 @@
     int coins = [defaults integerForKey:@"coin"];
     int numMagnet = [defaults integerForKey:@"magnet"];
     int numImmunity = [defaults integerForKey:@"immunity"];
+    int numPlays = [defaults integerForKey:@"plays"];
     
     [[UserWallet sharedInstance] setBalance:coins];
-    
     [[PowerupManager sharedInstance] setNumberOfMagnet:numMagnet];
-    
     [[PowerupManager sharedInstance] setNumberOfImmunity:numImmunity];
+    [[PlayerStats sharedInstance] setPlays:numPlays];
 }
 
 @end

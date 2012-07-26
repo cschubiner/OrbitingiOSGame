@@ -47,14 +47,12 @@ typedef struct {
 	return scene;
 }
 
-- (void)setGameConstants
-{
+- (void)setGameConstants {
     // ask director the the window size
     size = [[CCDirector sharedDirector] winSize];
 }
 
-- (void)CreateCoin:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale
-{
+- (void)CreateCoin:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
     Coin *coin = [[Coin alloc]init];
     coin.sprite = [CCSprite spriteWithSpriteFrameName:@"coin.png"];
     coin.sprite.position = ccp(xPos, yPos);
@@ -65,8 +63,7 @@ typedef struct {
     [coin release];
 }
 
-- (void)CreateAsteroid:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale
-{
+- (void)CreateAsteroid:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
     Asteroid *asteroid = [[Asteroid alloc]init];
     asteroid.sprite = [CCSprite spriteWithSpriteFrameName:@"asteroid.png"];
     asteroid.sprite.position = ccp(xPos, yPos);
@@ -77,8 +74,7 @@ typedef struct {
     [asteroid release];
 }
 
-- (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale
-{
+- (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
     Planet *planet = [[Planet alloc]init];
     planet.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"planet%d.png",[self RandomBetween:1 maxvalue:7]]];
     planet.sprite.position =  ccp(xPos, yPos);
@@ -262,8 +258,6 @@ typedef struct {
                           [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(986,1740) scale:1],
                           [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1463,1652) scale:1],
                           nil],
-                         
-                         
                          nil];
     
     CGPoint indicatorPos = CGPointZero;
@@ -295,25 +289,29 @@ typedef struct {
 }
 
 /* On "init," initialize the instance */
-- (id) init
-{
+- (id) init {
 	// always call "super" init.
 	// Apple recommends to re-assign "self" with the "super" return value
-	if( (self=[super init])) {
+	if((self = [super init])) {
         startingCoins = [[UserWallet sharedInstance] getBalance];
         [self setGameConstants];
         self.isTouchEnabled= TRUE;
-        isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate])getIsInTutorialMode];
-        if ([[PlayerStats sharedInstance] totalPlays] <= 1)
-            isInTutorialMode = true;
+        
+        isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsInTutorialMode];
+        if ([[PlayerStats sharedInstance] getPlays] == 1) {
+            isInTutorialMode = YES;
+        } else {
+            isInTutorialMode = NO;
+        }
+        
         planetCounter = 0;
-        cameraObjects = [[NSMutableArray alloc]init];
-        planets = [[NSMutableArray alloc]init];
-        asteroids = [[NSMutableArray alloc]init];
-        zones = [[NSMutableArray alloc]init];
-        coins = [[NSMutableArray alloc]init];
-        hudLayer = [[CCLayer alloc]init];
-        cameraLayer = [[CCLayer alloc]init];
+        cameraObjects = [[NSMutableArray alloc] init];
+        planets = [[NSMutableArray alloc] init];
+        asteroids = [[NSMutableArray alloc] init];
+        zones = [[NSMutableArray alloc] init];
+        coins = [[NSMutableArray alloc] init];
+        hudLayer = [[CCLayer alloc] init];
+        cameraLayer = [[CCLayer alloc] init];
         
         cometParticle = [CCParticleSystemQuad particleWithFile:@"cometParticle.plist"];
         planetExplosionParticle = [CCParticleSystemQuad particleWithFile:@"planetExplosion.plist"];
@@ -337,8 +335,7 @@ typedef struct {
             coinsLabel = [CCLabelTTF labelWithString:@"Coins: " fontName:@"Marker Felt" fontSize:24];
             coinsLabel.position = ccp(70, [coinsLabel boundingBox].size.height);
             [hudLayer addChild: coinsLabel];
-        }
-        else {
+        } else {
             tutorialState = 0;
             tutorialFader = 0;
             tutorialAdvanceMode = 1;
@@ -378,16 +375,16 @@ typedef struct {
         [player.sprite setScale:playerSizeScale];
         [cameraObjects addObject:player];         
         
-        streak=[CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak.png" width:31 length:32 color://ccc4(153,102,0, 255)  //orange
-                ccc4(255,255,255, 255) //white
-                // ccc4(255,255,0,255) //yellow
-                // ccc4(0,0,255,0) //blue
+        streak=[CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak.png" width:31 length:32 color:// ccc4(153,102,0, 255)  //orange
+                ccc4(255,255,255, 255) // white
+                // ccc4(255,255,0,255) // yellow
+                // ccc4(0,0,255,0) // blue
                                       target:player.sprite];
         
         cameraFocusNode = [[CCSprite alloc]init];
         
         killer = 0;
-        orbitState = 0; //0= orbiting, 1= just left orbit and deciding things for state 3; 3= flying to next planet
+        orbitState = 0; // 0 = orbiting, 1 = just left orbit and deciding things for state 3; 3 = flying to next planet
         velSoftener = 1;
         initialAccelMag = 0;
         isOnFirstRun = true;
@@ -423,12 +420,12 @@ typedef struct {
         
         [Flurry logEvent:@"Played Game" withParameters:nil timed:YES];
         
-        [self schedule:@selector(Update:) interval:0]; //this makes the update loop loop!!!!        
+        [self schedule:@selector(Update:) interval:0]; // this makes the update loop loop!!!!        
 	}
 	return self;
 }
 
--(void)ZoomLayer:(CCLayer*)layer withScale:(CGFloat)scale toPosition:(CGPoint)position{
+- (void)ZoomLayer:(CCLayer*)layer withScale:(CGFloat)scale toPosition:(CGPoint)position{
     [layer setScale:scale];
     cameraFocusNode.position = ccp(scale*position.x,scale*position.y);
     [cameraFocusNode setPosition:ccpAdd(cameraFocusNode.position, ccp(-((-.5+.5*scale)*size.width),(-(-.5+.5*scale)*size.height)))];
@@ -440,7 +437,7 @@ typedef struct {
             object.velocity = ccpAdd(object.velocity, object.acceleration);
             object.sprite.position = ccpAdd(ccpMult(object.velocity, 60*dt*timeDilationCoefficient), object.sprite.position);
             
-            /*     if (object.isBeingDrawn == FALSE)
+            /* if (object.isBeingDrawn == FALSE)
              if (object.hasExploded==FALSE&&CGRectIntersectsRect([object rectOnScreen:cameraLayer], CGRectMake(0, 0, size.width, size.height))) {
              object.sprite.visible=true;
              object.isBeingDrawn = true;
@@ -448,10 +445,10 @@ typedef struct {
              else {
              object.visible = false;
              object.isBeingDrawn = false;
-             }*/
+             } */
         }
     }
-    //camera code follows -----------------------------
+    // camera code follows -----------------------------
     Planet * nextPlanet;
     float distToUse;
     if (lastPlanetVisited.number +1 < [planets count])
@@ -1021,14 +1018,11 @@ typedef struct {
         
         float ang = CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity));
         
-        //CCLOG(@"ang: %f", ang);
+        // CCLOG(@"ang: %f", ang);
         
         if (ang > 0 && ang < 10) {
             [self AdvanceTutorial];
         }
-        
-        
-        
     } else if (tutorialState == tutorialCounter++) {
         isTutPaused = true;
         tutorialAdvanceMode = 2;
@@ -1041,25 +1035,18 @@ typedef struct {
     } else if (tutorialState == tutorialCounter++) {
         isTutPaused = false;
         
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"BITCH I BE FLYING O SHIT."]];
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"SUCK A FAT CHODE BITCH"]];
         tutorialAdvanceMode = 0;
         
         if (orbitState == 0) {
             [self AdvanceTutorial];
         }
-
     } else if (tutorialState == tutorialCounter++) {
-        
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Success!!!"]];
         [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
-
-        
     } else if (tutorialState == tutorialCounter++) {
-        
         [self startGame];
-        
         tutorialState++;
-        
     }
 }
 
@@ -1076,8 +1063,11 @@ typedef struct {
 }
 
 - (void)startGame {
-    int plays = [[PlayerStats sharedInstance] totalPlays];
-    [[PlayerStats sharedInstance] setTotalPlays:plays + 1];
+    if ([[PlayerStats sharedInstance] getPlays] == 1) {
+        [[PlayerStats sharedInstance] addPlay];
+    }
+    [DataStorage storeData];
+    CCLOG(@"number of plays ever: %i", [[PlayerStats sharedInstance] getPlays]);
 	MainMenuLayer *layer = [MainMenuLayer node];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,-320)];
     id ease = [CCEaseOut actionWithAction:action rate:2];

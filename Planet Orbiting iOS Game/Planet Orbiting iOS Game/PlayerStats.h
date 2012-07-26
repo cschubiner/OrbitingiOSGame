@@ -8,13 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PlayerStats : NSObject {
-    int totalPlays;
-    // in the future, add other useful metrics here
-}
-
-@property (nonatomic) int totalPlays;
+@interface PlayerStats : NSObject
 
 + (id)sharedInstance;
+
+- (void)addPlay;
+- (int)getPlays;
+- (void)setPlays:(int)plays;
 
 @end

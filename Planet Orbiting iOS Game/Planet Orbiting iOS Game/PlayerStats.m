@@ -8,9 +8,9 @@
 
 #import "PlayerStats.h"
 
-@implementation PlayerStats
-
-@synthesize totalPlays;
+@implementation PlayerStats {
+    int totalPlays;
+}
 
 static PlayerStats *sharedInstance = nil;
 
@@ -21,6 +21,18 @@ static PlayerStats *sharedInstance = nil;
         }
     }
     return sharedInstance;
+}
+
+- (void)addPlay {
+    totalPlays += 1;
+}
+
+- (int)getPlays {
+    return totalPlays;
+}
+
+- (void)setPlays:(int)plays {
+    totalPlays = plays;
 }
 
 @end
