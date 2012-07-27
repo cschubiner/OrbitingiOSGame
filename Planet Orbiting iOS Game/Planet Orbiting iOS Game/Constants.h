@@ -23,7 +23,7 @@ const float cameraMovementSpeed = .07;
 //For optimization, whenever more segments than this are present, the oldest one will be deleted
 const int numberOfSegmentsAtATime = 3;
 //This is the general direction the planet segments head in in degrees from 0. 
-const float directionPlanetSegmentsGoIn= 40;
+const float directionPlanetSegmentsGoIn= 33.3910034413;
 //The maximum number of degrees that the segment of planets can be rotated from the direction (see above)
 const float segmentRotationVariation = 30;
 
