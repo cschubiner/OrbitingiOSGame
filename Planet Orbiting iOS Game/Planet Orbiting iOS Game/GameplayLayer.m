@@ -472,11 +472,11 @@ typedef struct {
     Planet* planetForZoom = nextPlanet;
     if (orbitState == 0 || nextPlanet.number + 1 >= [planets count]) {
         focusPosition= ccpMidpoint(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
-        focusPosition = ccpLerp(focusPosition, ccpMidpoint(focusPosition, player.sprite.position), .25f) ;
+        focusPosition = ccpLerp(focusPosition, ccpMidpoint(focusPosition, player.sprite.position), .25f);
         distToUse = ccpDistance(lastPlanetVisited.sprite.position, planetForZoom.sprite.position) + ((Zone*)[zones objectAtIndex:lastPlanetVisited.number]).radius + ((Zone*)[zones objectAtIndex:planetForZoom.number]).radius;
     }
     else {
-        focusPosition = ccpMidpoint(player.sprite.position, nextPlanet.sprite.position);
+        //CCLOG(@"Total Planets: %d Total Zones: %d Last planet visited num: %d",[planets count],[zones count],lastPlanetVisited.number);
         Planet* nextNextPlanet = [planets objectAtIndex:(nextPlanet.number+1)];
         planetForZoom=nextNextPlanet;
         focusPosition = ccpMidpoint(player.sprite.position, nextNextPlanet.sprite.position);
@@ -493,18 +493,7 @@ typedef struct {
     if (newAng > 90)
         newAng = 180 - newAng;
     
-    //float vals [] = {240,240.5,243,246.5,252,262,273,287,254,231,212,197,185,177,170,165,162,160.5,160};
-    
-    //int indexToUse = (int)clampf((newAng/5 + 0.5), 0, 18);
-    //float numerator = vals[indexToUse];
-    
-    
-    
-    //0 to 35: 240-(3.1/10)x+(4.6/100)x^2
-    //35 to 90: 499-8.1x+(4.9/100)x^2
-    
     float numerator;
-    
     if (newAng < 35)
         numerator = 240-(3.1/10)*newAng+(4.6/100)*powf(newAng, 2);
     else
@@ -868,8 +857,10 @@ typedef struct {
         if (object.segmentNumber == -1 ) {
             if ([[spriteSheet children]containsObject:object.sprite])
                 [spriteSheet removeChild:object.sprite cleanup:YES];
-            if (shouldRemove)
+            if (shouldRemove) {
                 [array removeObject:object];
+                i--;
+            }
         }
     }
     for (int i = 0 ; i < [array count]; i++)
@@ -934,13 +925,14 @@ typedef struct {
     if (lastPlanetVisited.segmentNumber == numberOfSegmentsAtATime-1) {
         CCLOG(@"Planet Count: %d",[planets count]);
         
-        [self DisposeAllContentsOfArray:planets shouldRemoveFromArray:false];
-        [self DisposeAllContentsOfArray:zones shouldRemoveFromArray:false];
+        [self DisposeAllContentsOfArray:planets shouldRemoveFromArray:true];
+        [self DisposeAllContentsOfArray:zones shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:asteroids shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:coins shouldRemoveFromArray:true];
         
-        makingSegmentNumber--;
         [self CreateSegment];
+        makingSegmentNumber--;
+
         CCLOG(@"Planet Count: %d",[planets count]);
     }
 }

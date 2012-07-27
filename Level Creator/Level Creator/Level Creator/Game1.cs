@@ -178,51 +178,52 @@ namespace Level_Creator
 
                 if (keyboardState.IsKeyDown(Keys.O) && lastKeyboardState.IsKeyUp(Keys.O))
                 {
-                    string first = "[self CreatePlanetAndZone:";
-                    string middle = " yPos:";
-                    string middle2 = " scale:";
-                    string end = "];\r\n";
+                    //[[LevelObjectReturner alloc]initWithType:kplanet position:ccp(0,0) scale:1],
+
+                    string first = "[[LevelObjectReturner alloc]initWithType:";
+                    string middle = "  position:ccp(";
+                    string middle2 = ") scale:";
+                    string end = "],\r\n";
 
                     string toCopy = "";
-                    foreach (posScaleStruct pstruct in posArray)
-                    {
-                        toCopy += first;
-                        toCopy += pstruct.pos.X.ToString();
-                        toCopy += middle;
-                        toCopy += (graphics.GraphicsDevice.Viewport.Height - pstruct.pos.Y).ToString();
-                        toCopy += middle2;
-                        toCopy += pstruct.scale.ToString();
-                        toCopy += end;
-                    }
-
-                    toCopy += "\r\n\r\n";
-                    first = "[self CreateAsteroid:";
+                    Vector2 firstPlanetPos = posArray[0].pos;
                     foreach (posScaleStruct pstruct in posArrayAsteroid)
                     {
                         toCopy += first;
-                        toCopy += pstruct.pos.X.ToString();
+                        toCopy += "kasteroid";
                         toCopy += middle;
-                        toCopy += (graphics.GraphicsDevice.Viewport.Height - pstruct.pos.Y).ToString();
+                        toCopy += (pstruct.pos.X - firstPlanetPos.X).ToString() + "," + (-(pstruct.pos.Y - firstPlanetPos.Y)).ToString();
                         toCopy += middle2;
                         toCopy += pstruct.scale.ToString();
                         toCopy += end;
                     }
 
-                    toCopy += "\r\n\r\n";
-                    first = "[self CreateCoin:";
+                 //   toCopy += "\r\n\r\n";
                     foreach (posScaleStruct pstruct in posArrayCoin)
                     {
                         toCopy += first;
-                        toCopy += pstruct.pos.X.ToString();
+                        toCopy += "kcoin";
                         toCopy += middle;
-                        toCopy += (graphics.GraphicsDevice.Viewport.Height - pstruct.pos.Y).ToString();
+                        toCopy += (pstruct.pos.X - firstPlanetPos.X).ToString() + "," + (-(pstruct.pos.Y - firstPlanetPos.Y)).ToString();
+                        toCopy += middle2;
+                        toCopy += pstruct.scale.ToString();
+                        toCopy += end;
+                    }
+
+                    // toCopy += "\r\n\r\n";
+                    foreach (posScaleStruct pstruct in posArray)
+                    {
+                        toCopy += first;
+                        toCopy += "kplanet";
+                        toCopy += middle;
+                        toCopy += (pstruct.pos.X - firstPlanetPos.X).ToString() + "," + (-(pstruct.pos.Y - firstPlanetPos.Y)).ToString();
                         toCopy += middle2;
                         toCopy += pstruct.scale.ToString();
                         toCopy += end;
                     }
 
                     StreamWriter textOut = new StreamWriter(new FileStream("output.txt", FileMode.Create, FileAccess.Write));
-                    textOut.WriteLine(toCopy);
+                    textOut.WriteLine("[NSArray arrayWithObjects: "+ toCopy + " nil],");
                     textOut.Close();
                 }
 
