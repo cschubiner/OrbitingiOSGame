@@ -21,11 +21,11 @@ const float cameraZoomSpeed = .05;
 const float cameraMovementSpeed = .07;
 
 //For optimization, whenever more segments than this are present, the oldest one will be deleted
-const int numberOfSegmentsAtATime = 2;
+const int numberOfSegmentsAtATime = 3;
 //This is the general direction the planet segments head in in degrees from 0. 
-const float directionPlanetSegmentsGoIn= 33.3910034413;
+const float directionPlanetSegmentsGoIn= 0;//33.3910034413;
 //The maximum number of degrees that the segment of planets can be rotated from the direction (see above)
-const float segmentRotationVariation = 30;
+const float segmentRotationVariation = 0;//30;
 
 //how quickly the player's spaceship rotates when the direction of his velocity changes
 const float playerRotationSpeed = .39f;

@@ -154,7 +154,7 @@ typedef struct {
     }
     
     segments = [[NSArray alloc ]initWithObjects:
-                [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(188,219) scale:0.87552],
+                /*  [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(188,219) scale:0.87552],
                  [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(151,289) scale:0.87552],
                  [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1260,34) scale:0.87552],
                  [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1162,11) scale:0.87552],
@@ -176,8 +176,8 @@ typedef struct {
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1986,-249) scale:1.539999],
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2498,139) scale:1],
                  nil],
-                
-                [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(712,158) scale:0.87552],
+                 
+                 [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(712,158) scale:0.87552],
                  [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(658,17) scale:0.87552],
                  [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(678,90) scale:0.87552],
                  [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(345,210) scale:0.87552],
@@ -223,8 +223,8 @@ typedef struct {
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1176,137) scale:1],
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1609,-83) scale:1],
                  nil],
-                
-                [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(195,199) scale:0.87552],
+                 
+                 [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(195,199) scale:0.87552],
                  [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(192,16) scale:0.87552],
                  [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(565,368) scale:1.61152],
                  [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(968,349) scale:0.87552],
@@ -298,6 +298,10 @@ typedef struct {
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(525,1546) scale:1],
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(986,1740) scale:1],
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1463,1652) scale:1],
+                 nil],*/
+                [NSArray arrayWithObjects:[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(700,0) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1400,0) scale:1],
                  nil],
                 nil];
     
@@ -469,8 +473,7 @@ typedef struct {
 
 - (void)ZoomLayer:(CCLayer*)layer withScale:(CGFloat)scale toPosition:(CGPoint)position{
     [layer setScale:scale];
-    cameraFocusNode.position = ccp(scale*position.x,scale*position.y);
-    [cameraFocusNode setPosition:ccpAdd(cameraFocusNode.position, ccp(-((-.5+.5*scale)*size.width),(-(-.5+.5*scale)*size.height)))];
+    [cameraFocusNode setPosition:ccpLerp(cameraFocusNode.position, ccpAdd(ccp(scale*position.x,scale*position.y), ccp(-((-.5+.5*scale)*size.width),(-(-.5+.5*scale)*size.height))),cameraMovementSpeed)];
 }
 
 - (void)UpdateCamera:(float)dt {
@@ -494,9 +497,13 @@ typedef struct {
     }
     else {
         //CCLOG(@"Total Planets: %d Total Zones: %d Last planet visited num: %d",[planets count],[zones count],lastPlanetVisited.number);
-        Planet* nextNextPlanet = [planets objectAtIndex:(nextPlanet.number+1)];
+        Planet* nextNextPlanet;
+        if (lastPlanetVisited.number +1 < [planets count])
+        nextNextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+2)];
+        else nextNextPlanet = nextPlanet;
         planetForZoom=nextNextPlanet;
-        focusPosition = ccpMidpoint(player.sprite.position, nextNextPlanet.sprite.position);
+       // focusPosition = ccpMidpoint(player.sprite.position, nextNextPlanet.sprite.position);
+        focusPosition = ccpMidpoint(ccpMidpoint(nextPlanet.sprite.position, nextNextPlanet.sprite.position),lastPlanetVisited.sprite.position);
         distToUse = ccpDistance(player.sprite.position, nextNextPlanet.sprite.position) +player.radius + ((Zone*)[zones objectAtIndex:planetForZoom.number]).radius;
     }
     
@@ -522,7 +529,6 @@ typedef struct {
     
     float scale = zoomMultiplier*horizontalScale*scalerToUse;
     
-    cameraFocusNode.position = ccpLerp(cameraFocusNode.position, focusPosition, cameraMovementSpeed);
     focusPosition =ccpLerp(cameraLastFocusPosition, focusPosition, cameraMovementSpeed);
     [self ZoomLayer:cameraLayer withScale:lerpf([cameraLayer scale], scale, cameraZoomSpeed) toPosition: focusPosition];
     id followAction = [CCFollow actionWithTarget:cameraFocusNode];
