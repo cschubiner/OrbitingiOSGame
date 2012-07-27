@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>font.spritefont</Source>
+      <Name>font</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\font.xnb</Output>
+      <Time>2012-07-25T02:01:26-07:00</Time>
+    </Item>
+    <Item>
+      <Source>biggerFont.spritefont</Source>
+      <Name>biggerFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\biggerFont.xnb</Output>
+      <Time>2012-07-25T02:01:26-07:00</Time>
+    </Item>
+    <Item>
+      <Source>iphone box.png</Source>
+      <Name>iphone box</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\iphone box.xnb</Output>
+      <Time>2012-07-25T02:01:26-07:00</Time>
+    </Item>
+    <Item>
+      <Source>planet2small.png</Source>
+      <Name>planet2small</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\planet2small.xnb</Output>
+      <Time>2012-07-25T02:01:26-07:00</Time>
+    </Item>
+    <Item>
+      <Source>coin.png</Source>
+      <Name>coin</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\coin.xnb</Output>
+      <Time>2012-07-25T02:01:26-07:00</Time>
+    </Item>
+    <Item>
+      <Source>asteroidsmall.png</Source>
+      <Name>asteroidsmall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\asteroidsmall.xnb</Output>
+      <Time>2012-07-25T02:01:26-07:00</Time>
+    </Item>
+    <Item>
+      <Source>zonesmall.png</Source>
+      <Name>zonesmall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\zonesmall.xnb</Output>
+      <Time>2012-07-25T02:01:26-07:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <ContentProjectGUID>{F8C7456D-2EF7-47D0-A8DA-9F101E48B569}</ContentProjectGUID>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>Reach</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level CreatorContent\</RootDirectory>
+      <LoggerRootDirectory>Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\</LoggerRootDirectory>
+      <IntermediateDirectory>Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2011-09-01T16:22:30-07:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2011-09-01T16:22:30-07:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2011-09-01T16:22:30-07:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2011-09-01T16:22:30-07:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2011-09-01T16:22:30-07:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2011-09-01T16:22:30-07:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2012-07-15T02:57:10.4359767-07:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>
