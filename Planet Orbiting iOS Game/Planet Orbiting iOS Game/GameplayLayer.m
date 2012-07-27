@@ -399,9 +399,10 @@ typedef struct {
         player.segmentNumber = -10;
         
         streak=[CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak2.png" width:31 length:32 color:// ccc4(153,102,0, 255)  //orange
-                ccc4(255,255,255, 255) // white
+                //ccc4(255,255,255, 255) // white
                 // ccc4(255,255,0,255) // yellow
-                // ccc4(0,0,255,0) // blue
+                // ccc4(0,0,255,255) // blue
+                 ccc4(0,255,0,255) // green
                                       target:player.sprite];
         
         cameraFocusNode = [[CCSprite alloc]init];
