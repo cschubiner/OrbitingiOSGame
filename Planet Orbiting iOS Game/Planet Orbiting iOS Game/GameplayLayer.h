@@ -24,7 +24,6 @@
     NSMutableArray *zones;
     NSMutableArray *asteroids;
     NSMutableArray *coins;
-    NSMutableArray *cameraObjects;
     CCLabelTTF *scoreLabel;
     CCLabelTTF *coinsLabel;
     CGSize size;
@@ -49,11 +48,16 @@
     float velSoftener;
     float gravIncreaser;
     
-    int planetNumToRespawnSegments; 
+    NSArray *segments;
+    int planetNumToRespawnSegments;
+    int makingSegmentNumber;
+    CGPoint indicatorPos;
     
     float dangerLevel;
     
     CCSprite * hand;
+    
+    int originalSegmentNumber;
     
     bool isInTutorialMode;
     CCLabelTTF *tutorialLabel1;

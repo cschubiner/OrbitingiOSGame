@@ -61,7 +61,7 @@
         layer = (CCLayer*)[CCBReader nodeGraphFromFile:@"MainMenuScrolling.ccb" owner:self];
         [self addChild:layer];
         
-        [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic.mp3" loop:YES];
+        [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic_new.mp3" loop:YES];
         [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
         
         storeManager = [[StoreManager alloc] init];
