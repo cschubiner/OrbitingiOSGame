@@ -63,6 +63,7 @@ typedef struct {
     [coin.sprite setScale:scale];
     coin.whichSegmentThisObjectIsOriginallyFrom = originalSegmentNumber;
     coin.segmentNumber = makingSegmentNumber;
+    coin.number = coins.count;
     [coins addObject:coin];
     [spriteSheet addChild:coin.sprite];
     [coin release];
@@ -75,6 +76,7 @@ typedef struct {
     [asteroid.sprite setScale:scale];
     asteroid.whichSegmentThisObjectIsOriginallyFrom = originalSegmentNumber;
     asteroid.segmentNumber = makingSegmentNumber;
+    asteroid.number = asteroids.count;
     [asteroids addObject:asteroid];
     [spriteSheet addChild:asteroid.sprite];
     [asteroid release];
@@ -86,18 +88,18 @@ typedef struct {
     planet.sprite.position =  ccp(xPos, yPos);
     [planet.sprite setScale:scale];
     planet.mass = 1;
-    planet.number = planetCounter;
     planet.segmentNumber = makingSegmentNumber;
     planet.whichSegmentThisObjectIsOriginallyFrom = originalSegmentNumber;
     Zone *zone = [[Zone alloc]init];
     zone.sprite = [CCSprite spriteWithSpriteFrameName:@"zone.png"];
     [zone.sprite setScale:scale*zoneScaleRelativeToPlanet];
-    zone.number = planetCounter;
     zone.sprite.position = planet.sprite.position;
     zone.segmentNumber = makingSegmentNumber;
     zone.whichSegmentThisObjectIsOriginallyFrom = originalSegmentNumber;
     planet.orbitRadius = zone.radius*zoneCollisionFactor;
     
+    planet.number = [planets count];
+    zone.number = [zones count];
     [planets addObject:planet];
     [zones addObject:zone];
     
@@ -866,6 +868,7 @@ typedef struct {
 }
 
 - (void)DisposeAllContentsOfArray:(NSMutableArray*)array shouldRemoveFromArray:(bool)shouldRemove{
+    
     for (int i = 0 ; i < [array count]; i++) {
         CameraObject * object = [array objectAtIndex:i];
         object.segmentNumber--;
@@ -945,8 +948,8 @@ typedef struct {
         [self DisposeAllContentsOfArray:asteroids shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:coins shouldRemoveFromArray:true];
         
-        [self CreateSegment];
         makingSegmentNumber--;
+        [self CreateSegment];
 
         CCLOG(@"Planet Count: %d",[planets count]);
     }
