@@ -42,12 +42,12 @@
     [coinBalanceLabel setString:coinsBalance];
     
     int magnets = [[PowerupManager sharedInstance] numMagnet];
-    NSString *magnetsBought = [NSString stringWithFormat:@"x%i", magnets];
+    NSString *magnetsBought = [NSString stringWithFormat:@"%i", magnets];
     NSLog(@"%@", magnetsBought);
     [numMagnetsLabel setString:magnetsBought];
     
     int immunities = [[PowerupManager sharedInstance] numImmunity];
-    NSString *immunitiesBought = [NSString stringWithFormat:@"x%i", immunities];
+    NSString *immunitiesBought = [NSString stringWithFormat:@"%i", immunities];
     NSLog(@"%@", immunitiesBought);
     [numImmunitiesLabel setString:immunitiesBought];
 }
