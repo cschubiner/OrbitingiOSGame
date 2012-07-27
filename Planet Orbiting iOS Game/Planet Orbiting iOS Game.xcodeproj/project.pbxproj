@@ -149,6 +149,8 @@
 		0C8534E615B660FB0006EAC9 /* background.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534E215B660FB0006EAC9 /* background.pvr.ccz */; };
 		0C8A19D715BDF6DD0010973F /* streak.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A19D615BDF6DD0010973F /* streak.png */; };
 		0C8A19D915BDF8150010973F /* thrustParticle2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A19D815BDF8150010973F /* thrustParticle2.plist */; };
+		0C9D124015C2513900C3495A /* streak2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D123E15C2513900C3495A /* streak2-hd.png */; };
+		0C9D124115C2513900C3495A /* streak2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D123F15C2513900C3495A /* streak2.png */; };
 		0CFB823915AE733800EADAF3 /* SWOOSH.WAV in Resources */ = {isa = PBXBuildFile; fileRef = 0CFB823815AE733800EADAF3 /* SWOOSH.WAV */; };
 		C445303E15A68880004F8F48 /* btn-test-0.png in Resources */ = {isa = PBXBuildFile; fileRef = C445303015A68880004F8F48 /* btn-test-0.png */; };
 		C445303F15A68880004F8F48 /* btn-test-1.png in Resources */ = {isa = PBXBuildFile; fileRef = C445303115A68880004F8F48 /* btn-test-1.png */; };
@@ -472,6 +474,8 @@
 		0C8534E215B660FB0006EAC9 /* background.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = background.pvr.ccz; sourceTree = "<group>"; };
 		0C8A19D615BDF6DD0010973F /* streak.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = streak.png; sourceTree = "<group>"; };
 		0C8A19D815BDF8150010973F /* thrustParticle2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = thrustParticle2.plist; sourceTree = "<group>"; };
+		0C9D123E15C2513900C3495A /* streak2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "streak2-hd.png"; sourceTree = "<group>"; };
+		0C9D123F15C2513900C3495A /* streak2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = streak2.png; sourceTree = "<group>"; };
 		0CFB823815AE733800EADAF3 /* SWOOSH.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SWOOSH.WAV; sourceTree = "<group>"; };
 		C445303015A68880004F8F48 /* btn-test-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-test-0.png"; sourceTree = "<group>"; };
 		C445303115A68880004F8F48 /* btn-test-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-test-1.png"; sourceTree = "<group>"; };
@@ -695,6 +699,8 @@
 				FA48C83A15BE892D00FA6F32 /* spriteSheetCamera-hd.pvr.ccz */,
 				FA48C83B15BE892D00FA6F32 /* spriteSheetCamera.plist */,
 				FA48C83C15BE892D00FA6F32 /* spriteSheetCamera.pvr.ccz */,
+				0C9D123E15C2513900C3495A /* streak2-hd.png */,
+				0C9D123F15C2513900C3495A /* streak2.png */,
 				0C724DC815BE65180027E231 /* streak-hd.png */,
 				0C8A19D615BDF6DD0010973F /* streak.png */,
 				0CFB823015AE61F300EADAF3 /* Audio */,
@@ -1240,6 +1246,8 @@
 				014B371415C12F6B002EDBCA /* pauseButton4.png in Resources */,
 				FA9C241515C137FD00139706 /* a_song.mp3 in Resources */,
 				FA9C241715C13AD600139706 /* menumusic.mp3 in Resources */,
+				0C9D124015C2513900C3495A /* streak2-hd.png in Resources */,
+				0C9D124115C2513900C3495A /* streak2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
