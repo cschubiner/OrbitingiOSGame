@@ -50,6 +50,8 @@
     NSString *immunitiesBought = [NSString stringWithFormat:@"%i", immunities];
     NSLog(@"%@", immunitiesBought);
     [numImmunitiesLabel setString:immunitiesBought];
+    
+    [DataStorage storeData];
 }
 
 // on "init" you need to initialize your instance
