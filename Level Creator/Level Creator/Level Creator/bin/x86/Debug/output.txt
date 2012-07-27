@@ -1,3 +1,4 @@
-[NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],
-[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(271,-39) scale:1],
+[NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(555,301) scale:0.87552],
+[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(741,303) scale:1],
+[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(300,300) scale:1],
  nil],
