@@ -134,15 +134,15 @@ typedef struct {
 - (void)CreateLevel // paste level creation code here
 {
     if (isInTutorialMode) {
-        [self CreatePlanetAndZone:163 yPos:159 scale:1];
-        [self CreatePlanetAndZone:714 yPos:387 scale:1];
-        [self CreatePlanetAndZone:1214 yPos:387 scale:1];
-        [self CreatePlanetAndZone:1914 yPos:827 scale:1];
-        [self CreatePlanetAndZone:2300 yPos:527 scale:1.2];
-        [self CreatePlanetAndZone:2800 yPos:507 scale:1];
-        [self CreatePlanetAndZone:2850 yPos:987 scale:1];
-        [self CreatePlanetAndZone:3300 yPos:987 scale:.8];
-        [self CreatePlanetAndZone:3900 yPos:607 scale:1.1];
+        [self CreatePlanetAndZone:206 yPos:308 scale:1];
+        [self CreatePlanetAndZone:1127 yPos:631 scale:1];
+        [self CreatePlanetAndZone:1965 yPos:632 scale:1];
+        [self CreatePlanetAndZone:2890 yPos:1116 scale:1];
+        [self CreatePlanetAndZone:3312 yPos:760 scale:1.51];
+        [self CreatePlanetAndZone:4069 yPos:693 scale:1];
+        [self CreatePlanetAndZone:4213 yPos:1346 scale:1.12];
+        [self CreatePlanetAndZone:5039 yPos:1436 scale:1.27];
+        [self CreatePlanetAndZone:5716 yPos:724 scale:1];
         return;
     }
     
@@ -1037,7 +1037,7 @@ typedef struct {
         
     } else if (tutorialState == tutorialCounter++) { //tap
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Tap to see when a good time"]];
-        [tutorialLabel2 setString:[NSString stringWithFormat:@"to swipe is.="]];
+        [tutorialLabel2 setString:[NSString stringWithFormat:@"to swipe is."]];
         [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue...                                    Tap to continue..."]];
         
     } else if (tutorialState == tutorialCounter++) { //good angle
