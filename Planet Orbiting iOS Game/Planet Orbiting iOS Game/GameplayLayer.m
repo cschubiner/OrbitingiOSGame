@@ -105,8 +105,8 @@ typedef struct {
     
     [spriteSheet addChild:planet.sprite];
     [spriteSheet addChild:zone.sprite];
-    [zone release];
-    [planet release];
+   // [zone release];
+   // [planet release];
     planetCounter++;
 }
 
@@ -300,8 +300,8 @@ typedef struct {
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1463,1652) scale:1],
                  nil],*/
                 [NSArray arrayWithObjects:[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(700,0) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1400,0) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(-500,0) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(-1000,0) scale:1],
                  nil],
                 nil];
     
@@ -473,7 +473,8 @@ typedef struct {
 
 - (void)ZoomLayer:(CCLayer*)layer withScale:(CGFloat)scale toPosition:(CGPoint)position{
     [layer setScale:scale];
-    [cameraFocusNode setPosition:ccpLerp(cameraFocusNode.position, ccpAdd(ccp(scale*position.x,scale*position.y), ccp(-((-.5+.5*scale)*size.width),(-(-.5+.5*scale)*size.height))),cameraMovementSpeed)];
+    [cameraFocusNode setPosition:ccpAdd(ccp(scale*position.x,scale*position.y), ccp(-((-.5+.5*scale)*size.width),(-(-.5+.5*scale)*size.height)))];
+     // [cameraFocusNode setPosition:ccpLerp(cameraFocusNode.position, ccpAdd(ccp(scale*position.x,scale*position.y), ccp(-((-.5+.5*scale)*size.width),(-(-.5+.5*scale)*size.height))),cameraMovementSpeed)];
 }
 
 - (void)UpdateCamera:(float)dt {
@@ -490,25 +491,25 @@ typedef struct {
     
     CGPoint focusPosition;
     Planet* planetForZoom = nextPlanet;
-    if (orbitState == 0 || nextPlanet.number + 1 >= [planets count]) {
+   /* if (orbitState == 0 || nextPlanet.number + 1 >= [planets count]) {
         focusPosition= ccpMidpoint(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
         focusPosition = ccpLerp(focusPosition, ccpMidpoint(focusPosition, player.sprite.position), .25f);
         distToUse = ccpDistance(lastPlanetVisited.sprite.position, planetForZoom.sprite.position) + ((Zone*)[zones objectAtIndex:lastPlanetVisited.number]).radius + ((Zone*)[zones objectAtIndex:planetForZoom.number]).radius;
     }
-    else {
+    else {*/
         //CCLOG(@"Total Planets: %d Total Zones: %d Last planet visited num: %d",[planets count],[zones count],lastPlanetVisited.number);
         Planet* nextNextPlanet;
-        if (lastPlanetVisited.number +1 < [planets count])
+        if (lastPlanetVisited.number +2 < [planets count])
         nextNextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+2)];
         else nextNextPlanet = nextPlanet;
         planetForZoom=nextNextPlanet;
-       // focusPosition = ccpMidpoint(player.sprite.position, nextNextPlanet.sprite.position);
-        focusPosition = ccpMidpoint(ccpMidpoint(nextPlanet.sprite.position, nextNextPlanet.sprite.position),lastPlanetVisited.sprite.position);
+        focusPosition = ccpMidpoint(player.sprite.position, nextNextPlanet.sprite.position);
+        //focusPosition = ccpMidpoint(ccpMidpoint(nextPlanet.sprite.position, nextNextPlanet.sprite.position),lastPlanetVisited.sprite.position);
         distToUse = ccpDistance(player.sprite.position, nextNextPlanet.sprite.position) +player.radius + ((Zone*)[zones objectAtIndex:planetForZoom.number]).radius;
-    }
+        NSLog(@"distance between planets: %f dist to use: %f focus pos: %f,%f",ccpDistance(player.sprite.position, nextNextPlanet.sprite.position),distToUse,focusPosition.x,focusPosition.y);
+  //  }
     
     float horizontalScale = 294.388933833*pow(distToUse,-.94226344467);
-    
     float newAng = CC_RADIANS_TO_DEGREES(fabs(ccpToAngle(ccpSub(planetForZoom.sprite.position, focusPosition))));
     if (newAng > 270)
         newAng = 360 - newAng;
@@ -516,24 +517,24 @@ typedef struct {
         newAng = newAng - 180;
     if (newAng > 90)
         newAng = 180 - newAng;
-    
     float numerator;
     if (newAng < 35)
         numerator = 240-(3.1/10)*newAng+(4.6/100)*powf(newAng, 2);
-    else
-        numerator = 499-8.1*newAng + (4.9/100)*powf(newAng, 2);
-    
-    float scalerToUse = numerator/240;
-    
-    //CCLOG(@"num: %f, newAng: %f", numerator, newAng);
+    else numerator = 499-8.1*newAng + (4.9/100)*powf(newAng, 2);
+    float scalerToUse = numerator/240; //CCLOG(@"num: %f, newAng: %f", numerator, newAng);
     
     float scale = zoomMultiplier*horizontalScale*scalerToUse;
     
-    focusPosition =ccpLerp(cameraLastFocusPosition, focusPosition, cameraMovementSpeed);
-    [self ZoomLayer:cameraLayer withScale:lerpf([cameraLayer scale], scale, cameraZoomSpeed) toPosition: focusPosition];
+ //   focusPosition =ccpLerp(cameraLastFocusPosition, focusPosition, cameraMovementSpeed);
+    cameraLastFocusPosition = ccpLerp(cameraLastFocusPosition, focusPosition, cameraMovementSpeed);
+   // [self ZoomLayer:cameraLayer withScale:lerpf([cameraLayer scale], scale, cameraZoomSpeed) toPosition: cameraLastFocusPosition];
+  //  if (lastPlanetVisited.number +1 < [planets count])
+         [self ZoomLayer:cameraLayer withScale:lerpf([cameraLayer scale], scale, cameraZoomSpeed) toPosition: cameraLastFocusPosition];
+//else
+   // [self ZoomLayer:cameraLayer withScale:lerpf([cameraLayer scale],.3,cameraZoomSpeed) toPosition:cameraLastFocusPosition];
     id followAction = [CCFollow actionWithTarget:cameraFocusNode];
     [cameraLayer runAction: followAction];
-    cameraLastFocusPosition=focusPosition;
+    //cameraLastFocusPosition=focusPosition;
 }
 
 - (void)UserTouchedCoin: (Coin*)coin {
@@ -922,11 +923,11 @@ typedef struct {
                 numZonesHitInARow++;
                 timeDilationCoefficient += timeDilationIncreaseRate;
                 
-                if (zonesReached>=[zones count]) {
+              /*  if (zonesReached>=[zones count]) {
                     [[UIApplication sharedApplication]setStatusBarOrientation:UIInterfaceOrientationPortrait];
                     [TestFlight passCheckpoint:@"Reached All Zones"];
                     [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
-                }
+                }*/
             }
         }
         else if (i<[zones count]-1&&((Zone*)[zones objectAtIndex:i+1]).hasPlayerHitThisZone) { //if player has hit the next zone and it hasn't exploded yet
