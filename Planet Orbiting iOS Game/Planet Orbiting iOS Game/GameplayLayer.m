@@ -16,6 +16,8 @@
 #import "DataStorage.h"
 #import "PlayerStats.h"
 
+#define pauseLayerTag 100
+
 @implementation GameplayLayer {
     int planetCounter;
     int score;
@@ -1234,6 +1236,13 @@ float lerpf(float a, float b, float t) {
 
 - (void)togglePause {
     paused = !paused;
+    if (paused) {
+        pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"PauseMenuLayer.ccb" owner:self];
+        [pauseLayer setTag:pauseLayerTag];
+        [self addChild:pauseLayer];
+    } else {
+        [self removeChildByTag:pauseLayerTag cleanup:NO];
+    }
 }
 
 

@@ -1,5 +1,5 @@
 //
-//  HelloWorldLayer.h
+//  MainMenuLayer.h
 //  Planet Orbiting iOS Game
 //
 //  Created by Clay Schubiner on 6/22/12.
