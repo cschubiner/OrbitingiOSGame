@@ -343,9 +343,9 @@ typedef struct {
         
         
         CCMenuItem  *pauseButton = [CCMenuItemImage 
-                                    itemFromNormalImage:@"pauseButton4.png" selectedImage:@"pauseButton4.png" 
+                                    itemFromNormalImage:@"pauseButton7.png" selectedImage:@"pauseButton7.png" 
                                     target:self selector:@selector(togglePause)];
-        pauseButton.position = ccp(440, 280);
+        pauseButton.position = ccp(457, 298);
         pauseMenu = [CCMenu menuWithItems:pauseButton, nil];
         pauseMenu.position = CGPointZero;
         
@@ -1159,6 +1159,11 @@ typedef struct {
         if (location.x <= size.width/6 && location.y >= 4*size.height/5) {
             [self endGame];
         }
+        
+        if (location.x >= 7 * size.width/8 && location.y >= 5*size.height/6) {
+            [self togglePause];
+        }
+        
         else if (orbitState == 0) {
             [player setThrustBeginPoint:location];
             //playerIsTouchingScreen=true;
