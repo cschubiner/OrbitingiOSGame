@@ -55,7 +55,6 @@
     
     float dangerLevel;
     
-    CCSprite * hand;
     
     int originalSegmentNumber;
     
@@ -68,7 +67,10 @@
     float tutorialFader;
     int tutorialAdvanceMode;
     bool isTutPaused;
+    CCSprite * hand;
     float handCounter;
+    CCSprite * hand2;
+    float handCounter2;
     int tutorialPlanetIndex;
     bool shouldDisplayWaiting;
 

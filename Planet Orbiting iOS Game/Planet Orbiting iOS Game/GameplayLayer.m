@@ -134,15 +134,16 @@ typedef struct {
 - (void)CreateLevel // paste level creation code here
 {
     if (isInTutorialMode) {
-        [self CreatePlanetAndZone:206 yPos:308 scale:1];
-        [self CreatePlanetAndZone:1127 yPos:631 scale:1];
-        [self CreatePlanetAndZone:1965 yPos:632 scale:1];
-        [self CreatePlanetAndZone:2890 yPos:1116 scale:1];
-        [self CreatePlanetAndZone:3312 yPos:760 scale:1.51];
-        [self CreatePlanetAndZone:4069 yPos:693 scale:1];
-        [self CreatePlanetAndZone:4213 yPos:1346 scale:1.12];
-        [self CreatePlanetAndZone:5039 yPos:1436 scale:1.27];
-        [self CreatePlanetAndZone:5716 yPos:724 scale:1];
+        [self CreatePlanetAndZone:493 yPos:394 scale:1];
+        [self CreatePlanetAndZone:1059 yPos:685 scale:1];
+        [self CreatePlanetAndZone:1666 yPos:670 scale:1];
+        [self CreatePlanetAndZone:2042 yPos:1008 scale:1];
+        [self CreatePlanetAndZone:2640 yPos:663 scale:1.629999];
+        [self CreatePlanetAndZone:3460 yPos:355 scale:1];
+        [self CreatePlanetAndZone:3718 yPos:927 scale:1];
+        [self CreatePlanetAndZone:4271 yPos:953 scale:1];
+        [self CreatePlanetAndZone:5299 yPos:948 scale:1];
+        [self CreatePlanetAndZone:5899 yPos:948 scale:1];
         return;
     }
     
@@ -426,6 +427,7 @@ typedef struct {
         swipeVector = ccp(0, -1);
         gravIncreaser = 1;
         handCounter = 0;
+        handCounter2 = 0;
         
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444]; // add this line at the very beginning
         background = [CCSprite spriteWithFile:@"background.pvr.ccz"];
@@ -442,10 +444,13 @@ typedef struct {
         
         hand = [CCSprite spriteWithFile:@"edit(84759).png"];
         hand.position = ccp(-1000, -1000);
+        hand2 = [CCSprite spriteWithFile:@"edit(84759).png"];
+        hand2.position = ccp(-1000, -1000);
         
         [self addChild:cameraLayer];
         [cameraLayer addChild:spriteSheet];
         [hudLayer addChild:hand];
+        [hudLayer addChild:hand2];
         [self addChild:hudLayer];
         [self addChild:pauseMenu];
         [self UpdateScore];
@@ -1016,6 +1021,7 @@ typedef struct {
 
 - (void)UpdateTutorial {
     hand.scale = .5;
+    hand2.scale = .5;
     
     int tutorialCounter = 0;
     tutorialFader+= 4;
@@ -1031,7 +1037,7 @@ typedef struct {
         [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue...                                    Tap to continue..."]];
         
     } else if (tutorialState == tutorialCounter++) { //tap
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Our game is simple - just jump from"]];
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"It's simple - just jump from"]];
         [tutorialLabel2 setString:[NSString stringWithFormat:@"planet to planet."]];
         [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue...                                    Tap to continue..."]];
         
@@ -1190,12 +1196,32 @@ typedef struct {
         }
         
     } else if (tutorialState == tutorialCounter++) { //tap
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"You made it to three planets on your own!"]];
-        [tutorialLabel3 setString:[NSString stringWithFormat:@"I have to poop \\(>.<)/"]];
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"You're getting the hang of this!"]];
         [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue...                                    Tap to continue..."]];
         
+    } else if (tutorialState == tutorialCounter++) { //tap
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"The direction you swipe determines your"]];
+        [tutorialLabel2 setString:[NSString stringWithFormat:@"flight path towards the next planet."]];
+        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue...                                    Tap to continue..."]];
         
+    } else if (tutorialState == tutorialCounter++) { //swipe
+        tutorialAdvanceMode = 2;
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"This next planet is a bit higher."]];
+        [self updateHandFrom:ccp(180, 140) to:ccp(400, 240) fadeInUpdates:20 moveUpdates:70 fadeOutUpdates:20 goneUpdates:30];
+        [self updateHand2From:ccp(180, 140) to:ccp(400, 40) fadeInUpdates:20 moveUpdates:70 fadeOutUpdates:20 goneUpdates:30];
         
+    } else if (tutorialState == tutorialCounter++) { //hit the next zone
+        tutorialAdvanceMode = 0;
+        if (orbitState == 0) {
+            if (lastPlanetVisited.number == tutorialPlanetIndex + 1)
+                [self AdvanceTutorial];
+            else
+                tutorialState--;
+        }
+        
+    } else if (tutorialState == tutorialCounter++) { //tap
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"You learned about both paths!!!"]];
+        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue...                                    Tap to continue..."]];
         
         
         
@@ -1237,6 +1263,25 @@ typedef struct {
     // hand.opacity = 100;
     
     handCounter++;
+}
+
+- (void)updateHand2From:(CGPoint)pos1 to:(CGPoint)pos2 fadeInUpdates:(int)fadeInUpdates moveUpdates:(int)moveUpdates fadeOutUpdates:(int)fadeOutUpdates goneUpdates:(int)goneUpdates {
+    
+    if (handCounter2 == 0)
+        hand2.position = pos1;
+    else if (handCounter2 <= fadeInUpdates)
+        hand2.opacity += 255/fadeInUpdates;
+    else if (handCounter2 <= fadeInUpdates + moveUpdates) {
+        CGPoint vec = ccpSub(pos2, pos1);
+        hand2.position = ccpAdd(pos1, ccpMult(vec, (handCounter2-fadeInUpdates)/moveUpdates));
+    } else if (handCounter2 <= fadeInUpdates + moveUpdates + fadeOutUpdates)
+        hand2.opacity -= 255/fadeOutUpdates;
+    else if (handCounter2 > fadeInUpdates + moveUpdates + fadeOutUpdates + goneUpdates)
+        handCounter2 = -1;
+    
+    // hand2.opacity = 100;
+    
+    handCounter2++;
 }
 
 - (void)startGame {
@@ -1317,10 +1362,13 @@ typedef struct {
 - (void)AdvanceTutorial {
     shouldDisplayWaiting = false;
     tutorialAdvanceMode = 1;
-    hand.position = ccp(-1000, 1000);
     isTutPaused = false;
+    hand.position = ccp(-1000, 1000);
     hand.opacity = 0;
     handCounter = 0;
+    hand2.position = ccp(-1000, 1000);
+    hand2.opacity = 0;
+    handCounter2 = 0;
     tutorialFader = 0;
     tutorialState++;
     [tutorialLabel1 setString:[NSString stringWithFormat:@""]];
