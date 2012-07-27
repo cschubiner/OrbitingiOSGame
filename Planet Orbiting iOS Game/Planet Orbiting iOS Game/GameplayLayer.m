@@ -375,8 +375,8 @@ typedef struct {
             tutorialLabel3.position = ccp(240, 320-[tutorialLabel3 boundingBox].size.height*2.6);
             [hudLayer addChild: tutorialLabel3];
             
-            tutorialLabel0 = [CCLabelTTF labelWithString:@" " fontName:@"Marker Felt" fontSize:20];
-            tutorialLabel0.position = ccp(400, [tutorialLabel0 boundingBox].size.height);
+            tutorialLabel0 = [CCLabelTTF labelWithString:@" " fontName:@"Marker Felt" fontSize:21];
+            tutorialLabel0.position = ccp(240, [tutorialLabel0 boundingBox].size.height*.7);
             [hudLayer addChild: tutorialLabel0];
         }
         
@@ -1028,16 +1028,16 @@ typedef struct {
     if (tutorialState == tutorialCounter++) { //tap
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Welcome to Star Dash!"]];
         [tutorialLabel2 setString:[NSString stringWithFormat:@"Tap to begin the tutorial..."]];
-        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
+        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue...                                    Tap to continue..."]];
         
     } else if (tutorialState == tutorialCounter++) { //tap
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Our game is simple - just jump from"]];
         [tutorialLabel2 setString:[NSString stringWithFormat:@"planet to planet."]];
-        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
+        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue...                                    Tap to continue..."]];
         
     } else if (tutorialState == tutorialCounter++) { //tap
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Tap to see when a good time to swipe is."]];
-        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
+        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue...                                    Tap to continue..."]];
         
     } else if (tutorialState == tutorialCounter++) { //good angle
         //[tutorialLabel1 setString:[NSString stringWithFormat:@"Getting into position..."]];
@@ -1065,7 +1065,7 @@ typedef struct {
         
     } else if (tutorialState == tutorialCounter++) { //tap
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Nice job!"]];
-        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
+        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue...                                    Tap to continue..."]];
         
     } else if (tutorialState == tutorialCounter++) { //good angle
         tutorialAdvanceMode = 0;
@@ -1092,11 +1092,11 @@ typedef struct {
         
     } else if (tutorialState == tutorialCounter++) { //tap
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Well done."]];
-        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
+        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue...                                    Tap to continue..."]];
         
     } else if (tutorialState == tutorialCounter++) { //tap
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Now you're ready to play!"]];
-        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue..."]];
+        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue...                                    Tap to continue..."]];
         
     } else if (tutorialState == tutorialCounter++) { //end the game
         if ([[PlayerStats sharedInstance] getTutorialOverride]) {
