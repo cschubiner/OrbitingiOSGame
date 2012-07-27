@@ -434,6 +434,7 @@ typedef struct {
         gravIncreaser = 1;
         handCounter = 0;
         handCounter2 = 0;
+        updatesSinceLastPlanet = 0;
         
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444]; // add this line at the very beginning
         background = [CCSprite spriteWithFile:@"background.pvr.ccz"];
@@ -452,6 +453,10 @@ typedef struct {
         hand.position = ccp(-1000, -1000);
         hand2 = [CCSprite spriteWithFile:@"edit(84759).png"];
         hand2.position = ccp(-1000, -1000);
+        
+        nextPlanetIndicator = [CCSprite spriteWithFile:@"nextPlanetIndicator.png"];
+
+        [cameraLayer addChild:nextPlanetIndicator];
         
         [self addChild:cameraLayer];
         [cameraLayer addChild:spriteSheet];
@@ -484,6 +489,11 @@ typedef struct {
     if (lastPlanetVisited.number +1 < [planets count])
         nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
     else     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
+    
+    nextPlanetIndicator.position = nextPlanet.sprite.position;
+    [nextPlanetIndicator setOpacity:((-cosf(updatesSinceLastPlanet*.1)+1)/2)*(255-50)+50];
+    nextPlanetIndicator.scale = nextPlanet.sprite.scale*.7+((cosf(updatesSinceLastPlanet*.1)+1)/2)*.3;
+    [cameraLayer reorderChild:nextPlanetIndicator z:20];
     
     CGPoint focusPosition;
     Planet* planetForZoom = nextPlanet;
@@ -905,6 +915,7 @@ typedef struct {
                 if (i == 0);
                 else if ([[zones objectAtIndex:i - 1]hasPlayerHitThisZone]) {
                     lastPlanetVisited = [planets objectAtIndex:zone.number];
+                    updatesSinceLastPlanet = 0;
                 }
                 
                 [zone.sprite setColor:ccc3(255, 80, 180)];
@@ -1015,6 +1026,7 @@ typedef struct {
             [self UpdateCamera:dt];
             [self UpdateParticles:dt];
             [self UpdateBlackhole];
+            updatesSinceLastPlanet++;
         }
     }
     if (isInTutorialMode)

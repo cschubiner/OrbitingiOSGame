@@ -55,6 +55,11 @@
     
     float dangerLevel;
     
+    CCSprite* nextPlanetIndicator;
+    float nextPlanetScale;
+    float nextPlanetOpacity;
+    int updatesSinceLastPlanet;
+    
     
     int originalSegmentNumber;
     
