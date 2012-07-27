@@ -14,11 +14,11 @@ const float cometMinYSpeed = 2;
 const float cometMaxYSpeed = 5;
 
 //changes how zoomed in the camera in. higher numbers mean more zoom (everything looks bigger)
-const float zoomMultiplier = .85;
+const float zoomMultiplier = .85*.8f;
 //changes how quickly the camera zooms in and out
-const float cameraZoomSpeed = .05;
+const float cameraZoomSpeed = .025;
 //changes how quickly the camera changes position
-const float cameraMovementSpeed = .07;
+const float cameraMovementSpeed = .06;
 
 //For optimization, whenever more segments than this are present, the oldest one will be deleted
 const int numberOfSegmentsAtATime = 2;

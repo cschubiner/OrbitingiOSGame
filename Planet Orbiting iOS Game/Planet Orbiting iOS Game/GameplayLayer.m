@@ -105,8 +105,8 @@ typedef struct {
     
     [spriteSheet addChild:planet.sprite];
     [spriteSheet addChild:zone.sprite];
-    [zone release];
-    [planet release];
+    // [zone release];
+    // [planet release];
     planetCounter++;
 }
 
@@ -224,80 +224,11 @@ typedef struct {
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1609,-83) scale:1],
                  nil],
                 
-                [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(195,199) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(192,16) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(565,368) scale:1.61152],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(968,349) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1035,418) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1067,495) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1073,570) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(836,831) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(652,967) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(669,1048) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(693,1131) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(764,1062) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(876,904) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(709,1617) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(807,1653) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(177,-62) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(242,-37) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(308,-4) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(367,23) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(139,116) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(218,85) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(292,55) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(401,372) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(442,424) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(480,487) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(510,541) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(631,195) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(692,244) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(741,287) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(793,328) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(623,815) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(669,860) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(728,909) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(943,1055) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(889,1019) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(832,985) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(784,953) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(986,752) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(991,827) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(994,896) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(998,966) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1001,1086) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(999,1029) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(798,1392) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(728,1389) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(662,1389) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(600,1389) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(631,1723) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(687,1748) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(745,1779) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(805,1809) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1149,1848) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1210,1830) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1283,1810) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1347,1805) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1089,1590) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1161,1570) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1227,1558) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1299,1542) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1272,1603) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1248,1652) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1214,1703) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1169,1775) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1137,1637) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1182,1673) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1262,1735) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1312,1763) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(440,187) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(762,581) scale:1.54],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(882,1222) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(525,1546) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(986,1740) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1463,1652) scale:1],
+                [NSArray arrayWithObjects:[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(500,0) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1000,0) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1200,300) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1500,0) scale:1],
                  nil],
                 nil];
     
@@ -305,12 +236,7 @@ typedef struct {
     for (int j = 0 ; j < numberOfSegmentsAtATime; j++) {
         [self CreateSegment];
     }
-    /* for (int i = 0 ; i < [segments count]-1; i++){
-     NSArray *chosenSegment = [segments objectAtIndex:i];
-     for (int j = 0 ; j < [chosenSegment count]-1;j++) {
-     [[chosenSegment objectAtIndex:j] release];
-     }
-     }*/
+
 }
 
 /* On "init," initialize the instance */
@@ -340,6 +266,7 @@ typedef struct {
         coins = [[NSMutableArray alloc] init];
         hudLayer = [[CCLayer alloc] init];
         cameraLayer = [[CCLayer alloc] init];
+        [cameraLayer setAnchorPoint:CGPointZero];
         
         cometParticle = [CCParticleSystemQuad particleWithFile:@"cometParticle.plist"];
         //  [cameraLayer addChild:planetExplosionParticle];
@@ -416,8 +343,9 @@ typedef struct {
         streak=[CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak2.png" width:31 length:32 color:// ccc4(153,102,0, 255)  //orange
                 //ccc4(255,255,255, 255) // white
                 // ccc4(255,255,0,255) // yellow
-                // ccc4(0,0,255,255) // blue
-                 ccc4(0,255,0,255) // green
+               //  ccc4(0,0,255,255) // blue
+                ccc4(0,255,153,255) // blue green
+               // ccc4(0,255,0,255) // green
                                       target:player.sprite];
         
         cameraFocusNode = [[CCSprite alloc]init];
@@ -466,6 +394,8 @@ typedef struct {
         [self addChild:pauseMenu];
         [self UpdateScore];
         
+        lastPlanetVisited = [planets objectAtIndex:0];
+        
         [Flurry logEvent:@"Played Game" withParameters:nil timed:YES];
         [self schedule:@selector(Update:) interval:0]; // this makes the update loop loop!!!!        
 	}
@@ -474,8 +404,8 @@ typedef struct {
 
 - (void)ZoomLayer:(CCLayer*)layer withScale:(CGFloat)scale toPosition:(CGPoint)position{
     [layer setScale:scale];
-    cameraFocusNode.position = ccp(scale*position.x,scale*position.y);
-    [cameraFocusNode setPosition:ccpAdd(cameraFocusNode.position, ccp(-((-.5+.5*scale)*size.width),(-(-.5+.5*scale)*size.height)))];
+    [cameraFocusNode setPosition:ccpAdd(ccp(scale*position.x,scale*position.y), ccp(-((-.5+.5*scale)*size.width),(-(-.5+.5*scale)*size.height)))];
+    // [cameraFocusNode setPosition:ccpLerp(cameraFocusNode.position, ccpAdd(ccp(scale*position.x,scale*position.y), ccp(-((-.5+.5*scale)*size.width),(-(-.5+.5*scale)*size.height))),cameraMovementSpeed)];
 }
 
 - (void)UpdateCamera:(float)dt {
@@ -485,7 +415,6 @@ typedef struct {
     }
     // camera code follows -----------------------------
     Planet * nextPlanet;
-    float distToUse;
     if (lastPlanetVisited.number +1 < [planets count])
         nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
     else     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
@@ -496,48 +425,84 @@ typedef struct {
     [cameraLayer reorderChild:nextPlanetIndicator z:20];
     
     CGPoint focusPosition;
-    Planet* planetForZoom = nextPlanet;
-    if (orbitState == 0 || nextPlanet.number + 1 >= [planets count]) {
-        focusPosition= ccpMidpoint(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
-        focusPosition = ccpLerp(focusPosition, ccpMidpoint(focusPosition, player.sprite.position), .25f);
-        distToUse = ccpDistance(lastPlanetVisited.sprite.position, planetForZoom.sprite.position) + ((Zone*)[zones objectAtIndex:lastPlanetVisited.number]).radius + ((Zone*)[zones objectAtIndex:planetForZoom.number]).radius;
-    }
-    else {
-        //CCLOG(@"Total Planets: %d Total Zones: %d Last planet visited num: %d",[planets count],[zones count],lastPlanetVisited.number);
-        Planet* nextNextPlanet = [planets objectAtIndex:(nextPlanet.number+1)];
-        planetForZoom=nextNextPlanet;
-        focusPosition = ccpMidpoint(player.sprite.position, nextNextPlanet.sprite.position);
-        distToUse = ccpDistance(player.sprite.position, nextNextPlanet.sprite.position) +player.radius + ((Zone*)[zones objectAtIndex:planetForZoom.number]).radius;
-    }
+    /*   Planet* planetForZoom = nextPlanet;
+      if (orbitState == 0 || nextPlanet.number + 1 >= [planets count]) {
+     focusPosition= ccpMidpoint(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
+     focusPosition = ccpLerp(focusPosition, ccpMidpoint(focusPosition, player.sprite.position), .25f);
+     distToUse = ccpDistance(lastPlanetVisited.sprite.position, planetForZoom.sprite.position) + ((Zone*)[zones objectAtIndex:lastPlanetVisited.number]).radius + ((Zone*)[zones objectAtIndex:planetForZoom.number]).radius;
+     }
+     else {
+     //CCLOG(@"Total Planets: %d Total Zones: %d Last planet visited num: %d",[planets count],[zones count],lastPlanetVisited.number);
+     Planet* nextNextPlanet;
+     if (lastPlanetVisited.number +2 < [planets count])
+     nextNextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+2)];
+     else nextNextPlanet = nextPlanet;
+     planetForZoom=nextNextPlanet;
+     focusPosition = ccpMidpoint(player.sprite.position, nextNextPlanet.sprite.position);
+     //focusPosition = ccpMidpoint(ccpMidpoint(nextPlanet.sprite.position, nextNextPlanet.sprite.position),lastPlanetVisited.sprite.position);
+     distToUse = ccpDistance(player.sprite.position, nextNextPlanet.sprite.position) +player.radius + ((Zone*)[zones objectAtIndex:planetForZoom.number]).radius;
+     NSLog(@"distance between planets: %f dist to use: %f focus pos: %f,%f",ccpDistance(player.sprite.position, nextNextPlanet.sprite.position),distToUse,focusPosition.x,focusPosition.y);
+     //  }
+     */
+    float firsttoplayer = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, player.sprite.position));
+    float planetAngle = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, nextPlanet.sprite.position));
+    float firstToPlayerAngle = firsttoplayer-planetAngle;
+    float firstToPlayerDistance = 0;
+    firstToPlayerDistance = ccpDistance(lastPlanetVisited.sprite.position, player.sprite.position)*cosf(firstToPlayerAngle);  
+    //  if (orbitState == 0 || nextPlanet.number + 1 >= [planets count]) 
+    //    firstToPlayerDistance = lerpf(firstToPlayerDistance,0,cameraMovementSpeed);//MIN(firstToPlayerDistance,0);
+    float firsttonextDistance = ccpDistance(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
+    float percentofthewaytonext = firstToPlayerDistance/firsttonextDistance;
+    if (orbitState == 0 || nextPlanet.number + 1 >= [planets count]) 
+        percentofthewaytonext*=.4f;
+
+    Planet * planet1 = lastPlanetVisited;
+    Planet * planet2 = nextPlanet;
     
-    float horizontalScale = 294.388933833*pow(distToUse,-.94226344467);
+    CGPoint sub = ccpSub(planet2.sprite.position, planet1.sprite.position);
+    CGPoint mult = ccpMult(sub, percentofthewaytonext);
+    CGPoint focusPointOne = ccpAdd(mult ,planet1.sprite.position);
+    planet1 = [planets objectAtIndex:lastPlanetVisited.number+2];    
+    planet2 = [planets objectAtIndex:lastPlanetVisited.number+3];
+    CGPoint focusPointTwo = ccpAdd(ccpMult(ccpSub(planet2.sprite.position, planet1.sprite.position), percentofthewaytonext) ,planet1.sprite.position);
+    focusPosition = ccpMidpoint(focusPointOne, focusPointTwo);
+   // cameraDistToUse = lerpf(cameraDistToUse, ccpDistance(focusPointOne, focusPointTwo)+ ((Zone*)[zones objectAtIndex:lastPlanetVisited.number]).radius + ((Zone*)[zones objectAtIndex:planet1.number]).radius,cameraZoomSpeed);
+    cameraDistToUse= lerpf(cameraDistToUse,ccpDistance(focusPointOne, focusPointTwo),cameraZoomSpeed);
     
-    float newAng = CC_RADIANS_TO_DEGREES(fabs(ccpToAngle(ccpSub(planetForZoom.sprite.position, focusPosition))));
+    float horizontalScale = 294.388933833*pow(cameraDistToUse,-.94226344467);
+    float newAng = CC_RADIANS_TO_DEGREES(fabs(ccpToAngle(ccpSub(focusPointTwo, focusPointOne))));
     if (newAng > 270)
         newAng = 360 - newAng;
     if (newAng > 180)
         newAng = newAng - 180;
     if (newAng > 90)
         newAng = 180 - newAng;
-    
     float numerator;
     if (newAng < 35)
         numerator = 240-(3.1/10)*newAng+(4.6/100)*powf(newAng, 2);
-    else
-        numerator = 499-8.1*newAng + (4.9/100)*powf(newAng, 2);
-    
-    float scalerToUse = numerator/240;
-    
-    //CCLOG(@"num: %f, newAng: %f", numerator, newAng);
+    else numerator = 499-8.1*newAng + (4.9/100)*powf(newAng, 2);
+    float scalerToUse = numerator/240; //CCLOG(@"num: %f, newAng: %f", numerator, newAng);
     
     float scale = zoomMultiplier*horizontalScale*scalerToUse;
-    
-    cameraFocusNode.position = ccpLerp(cameraFocusNode.position, focusPosition, cameraMovementSpeed);
-    focusPosition =ccpLerp(cameraLastFocusPosition, focusPosition, cameraMovementSpeed);
-    [self ZoomLayer:cameraLayer withScale:lerpf([cameraLayer scale], scale, cameraZoomSpeed) toPosition: focusPosition];
+    cameraLastFocusPosition = ccpLerp(cameraLastFocusPosition, focusPosition, cameraMovementSpeed);
+    [self scaleLayer:cameraLayer scaleToZoomTo:lerpf([cameraLayer scale], scale, cameraZoomSpeed) scaleCenter:cameraLastFocusPosition];
     id followAction = [CCFollow actionWithTarget:cameraFocusNode];
     [cameraLayer runAction: followAction];
-    cameraLastFocusPosition=focusPosition;
+
+}
+
+- (void) scaleLayer:(CCLayer*)layerToScale scaleToZoomTo:(CGFloat) newScale scaleCenter:(CGPoint) scaleCenter {
+    // Get the original center point.
+    CGPoint oldCenterPoint = ccp(scaleCenter.x * layerToScale.scale, scaleCenter.y * layerToScale.scale); 
+    // Set the scale.
+    layerToScale.scale = newScale;
+    // Get the new center point.
+    CGPoint newCenterPoint = ccp(scaleCenter.x * layerToScale.scale, scaleCenter.y * layerToScale.scale); 
+    cameraFocusNode.position = newCenterPoint;
+    // Then calculate the delta.
+    CGPoint centerPointDelta  = ccpSub(oldCenterPoint, newCenterPoint);
+    // Now adjust layer by the delta.
+    layerToScale.position = ccpAdd(layerToScale.position, centerPointDelta);
 }
 
 - (void)UserTouchedCoin: (Coin*)coin {
@@ -639,20 +604,20 @@ typedef struct {
                 CGPoint vel = CGPointZero;
                 if (ccpLength(ccpSub(ccpAdd(player.sprite.position, swipeVector), left)) <= ccpLength(ccpSub(ccpAdd(player.sprite.position, swipeVector), right))) { //closer to the left
                     
-                    float distToUse = factorToPlaceGravFieldWhenCrossingOverTheMiddle; //crossing over the middle
+                    float distToUse2 = factorToPlaceGravFieldWhenCrossingOverTheMiddle; //crossing over the middle
                     if (ccpLength(ccpSub(player.sprite.position, spot1)) < ccpLength(ccpSub(player.sprite.position, spot2)))
-                        distToUse = factorToPlaceGravFieldWhenStayingOutside; //staying outside
+                        cameraDistToUse = factorToPlaceGravFieldWhenStayingOutside; //staying outside
                     
-                    spotGoingTo = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius*distToUse), targetPlanet.sprite.position);
+                    spotGoingTo = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius*distToUse2), targetPlanet.sprite.position);
                     newAng = ccpToAngle(ccpSub(left, player.sprite.position));
                     vel = ccpSub(left, player.sprite.position);
                 } else {
                     
-                    float distToUse = factorToPlaceGravFieldWhenCrossingOverTheMiddle; //crossing over the middle
+                    float distToUse2 = factorToPlaceGravFieldWhenCrossingOverTheMiddle; //crossing over the middle
                     if (ccpLength(ccpSub(player.sprite.position, spot1)) > ccpLength(ccpSub(player.sprite.position, spot2)))
-                        distToUse = factorToPlaceGravFieldWhenStayingOutside; //staying outside
+                        distToUse2 = factorToPlaceGravFieldWhenStayingOutside; //staying outside
                     
-                    spotGoingTo = ccpAdd(ccpMult(dir3, targetPlanet.orbitRadius*distToUse), targetPlanet.sprite.position);
+                    spotGoingTo = ccpAdd(ccpMult(dir3, targetPlanet.orbitRadius*distToUse2), targetPlanet.sprite.position);
                     newAng = ccpToAngle(ccpSub(right, player.sprite.position));
                     vel = ccpSub(right, player.sprite.position);
                 }
@@ -927,11 +892,11 @@ typedef struct {
                 numZonesHitInARow++;
                 timeDilationCoefficient += timeDilationIncreaseRate;
                 
-                if (zonesReached>=[zones count]) {
-                    [[UIApplication sharedApplication]setStatusBarOrientation:UIInterfaceOrientationPortrait];
-                    [TestFlight passCheckpoint:@"Reached All Zones"];
-                    [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
-                }
+                /*  if (zonesReached>=[zones count]) {
+                 [[UIApplication sharedApplication]setStatusBarOrientation:UIInterfaceOrientationPortrait];
+                 [TestFlight passCheckpoint:@"Reached All Zones"];
+                 [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
+                 }*/
             }
         }
         else if (i<[zones count]-1&&((Zone*)[zones objectAtIndex:i+1]).hasPlayerHitThisZone) { //if player has hit the next zone and it hasn't exploded yet
@@ -961,7 +926,7 @@ typedef struct {
         
         makingSegmentNumber--;
         [self CreateSegment];
-
+        
         CCLOG(@"Planet Count: %d",[planets count]);
     }
 }
@@ -1545,12 +1510,19 @@ float lerpf(float a, float b, float t) {
 }
 
 
-/**
- - (void)dealloc {
- // before we add anything here, we should talk about what will be retained vs. released vs. set to nil in certain situations
- [super dealloc];
- }
- **/
+
+- (void)dealloc {
+    // before we add anything here, we should talk about what will be retained vs. released vs. set to nil in certain situations
+    //LOL 
+    for (int i = 0 ; i < [segments count]-1; i++){
+        NSArray *chosenSegment = [segments objectAtIndex:i];
+        for (int j = 0 ; j < [chosenSegment count]-1;j++) {
+            [[chosenSegment objectAtIndex:j] release];
+        }
+    }
+    [super dealloc];
+}
+
 
 
 #if !defined(MIN)
