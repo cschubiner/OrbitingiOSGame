@@ -31,6 +31,7 @@
     CCLayer *cameraLayer;
     CCNode * cameraFocusNode;
     CGPoint cameraLastFocusPosition;
+    float cameraDistToUse;
     Planet * lastPlanetVisited;
     bool justReachedNewPlanet;
     ccTime totalGameTime;
