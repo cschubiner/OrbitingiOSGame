@@ -1,12 +1,12 @@
-[self CreatePlanetAndZone:206 yPos:308 scale:1];
-[self CreatePlanetAndZone:1127 yPos:631 scale:1];
-[self CreatePlanetAndZone:1965 yPos:632 scale:1];
-[self CreatePlanetAndZone:2890 yPos:1116 scale:1];
-[self CreatePlanetAndZone:3312 yPos:760 scale:1.51];
-[self CreatePlanetAndZone:4069 yPos:693 scale:1];
-[self CreatePlanetAndZone:4213 yPos:1346 scale:1.12];
-[self CreatePlanetAndZone:5039 yPos:1436 scale:1.27];
-[self CreatePlanetAndZone:5716 yPos:724 scale:1];
+[self CreatePlanetAndZone:493 yPos:394 scale:1];
+[self CreatePlanetAndZone:1059 yPos:685 scale:1];
+[self CreatePlanetAndZone:1666 yPos:670 scale:1];
+[self CreatePlanetAndZone:2042 yPos:1008 scale:1];
+[self CreatePlanetAndZone:2640 yPos:663 scale:1.629999];
+[self CreatePlanetAndZone:3460 yPos:355 scale:1];
+[self CreatePlanetAndZone:3718 yPos:927 scale:1];
+[self CreatePlanetAndZone:4271 yPos:953 scale:1];
+[self CreatePlanetAndZone:4658 yPos:1548 scale:1];
 
 
 
