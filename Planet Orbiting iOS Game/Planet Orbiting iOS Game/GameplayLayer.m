@@ -651,6 +651,20 @@ typedef struct {
             if (orbitState == 3) {
                 gravIncreaser += increaseGravStrengthByThisMuchEveryUpdate;
                 
+                //Danger Level Code
+                CGPoint playerToTarget = ccpSub(targetPlanet.sprite.position, player.sprite.position);
+                float anglePlayToTarg = ccpToAngle(playerToTarget);
+                
+                if (ccpToAngle(player.velocity) > (anglePlayToTarg + (45 * M_PI/180)) || ccpToAngle(player.velocity) < (anglePlayToTarg - (45 * M_PI/180)))
+                {
+                    dangerLevel += .02;
+                    //CCLOG(@"Added to DangerLevel: %f", dangerLevel);
+                }
+                else if (dangerLevel >= .02){
+                    dangerLevel -= .02;
+                    //CCLOG(@"Subtracted from DangerLevel: %f", dangerLevel);
+                }
+                
                 /*
                  if (ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) > ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)))
                  if (ccpLength(ccpSub(ccpAdd(player.sprite.position, player.velocity), targetPlanet.sprite.position)) < ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)))
