@@ -1,8 +1,14 @@
-[self CreatePlanetAndZone:619 yPos:698 scale:1];
+[self CreatePlanetAndZone:493 yPos:394 scale:1];
+[self CreatePlanetAndZone:1059 yPos:685 scale:1];
+[self CreatePlanetAndZone:1666 yPos:670 scale:1];
+[self CreatePlanetAndZone:2042 yPos:1008 scale:1];
+[self CreatePlanetAndZone:2640 yPos:663 scale:1.629999];
+[self CreatePlanetAndZone:3460 yPos:355 scale:1];
+[self CreatePlanetAndZone:3718 yPos:927 scale:1];
+[self CreatePlanetAndZone:4271 yPos:953 scale:1];
+[self CreatePlanetAndZone:4658 yPos:1548 scale:1];
 
 
-[self CreateAsteroid:874 yPos:699 scale:0.87552];
 
 
-[self CreateCoin:1060 yPos:701 scale:1];
 

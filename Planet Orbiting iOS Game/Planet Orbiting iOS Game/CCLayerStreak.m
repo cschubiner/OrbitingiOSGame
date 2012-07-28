@@ -41,6 +41,14 @@
 	[ribbon_ update:delta];
 }
 
+-(void)setColor:(ccColor4B)colorToSet {
+    [ribbon_ setColor:colorToSet];
+}
+
+-(ccColor4B)getColor {
+    return [ribbon_ color];
+}
+
 -(void)dealloc
 {
 	[super dealloc];

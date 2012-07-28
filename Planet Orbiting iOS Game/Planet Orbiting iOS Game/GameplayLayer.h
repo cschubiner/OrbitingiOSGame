@@ -31,6 +31,7 @@
     CCLayer *cameraLayer;
     CCNode * cameraFocusNode;
     CGPoint cameraLastFocusPosition;
+    float cameraDistToUse;
     Planet * lastPlanetVisited;
     bool justReachedNewPlanet;
     ccTime totalGameTime;
@@ -55,7 +56,11 @@
     
     float dangerLevel;
     
-    CCSprite * hand;
+    CCSprite* nextPlanetIndicator;
+    float nextPlanetScale;
+    float nextPlanetOpacity;
+    int updatesSinceLastPlanet;
+    
     
     int originalSegmentNumber;
     
@@ -68,7 +73,10 @@
     float tutorialFader;
     int tutorialAdvanceMode;
     bool isTutPaused;
+    CCSprite * hand;
     float handCounter;
+    CCSprite * hand2;
+    float handCounter2;
     int tutorialPlanetIndex;
     bool shouldDisplayWaiting;
 
