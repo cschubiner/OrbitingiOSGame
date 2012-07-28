@@ -38,6 +38,12 @@ const float durationOfPostExplosionScreenShake = .40f;
 const float postExplosionShakeXMagnitude = 4;
 const float postExplosionShakeYMagnitude = 3;
 
+//this changes the color the streak is when the player is moving at different speeds
+const GLubyte slowStreakColor[] = {0,255,153,255};
+const GLubyte slowParticleColor[] = {0,41,255,255};
+const GLubyte fastStreakColor[] = {255,255,255,255};
+const GLubyte fastParticleColor[] = {255,255,255,255};
+
 // this is purely visual and doesn't affect mass.
 const float planetSizeScale = .5;
 
@@ -88,7 +94,7 @@ const float deathAfterThisLong = 55*1.35f*1.1f*1.5f*1*2*.9;
 
 //the percent of the black hole's radius that triggers a collision
 const float blackHoleCollisionRadiusFactor = .2f;
-const float blackHoleSpeedFactor = 1.85;
+const float blackHoleSpeedFactor = 1.85*.6f*.6f;
 
 //increase to make timeDilationFactor decrease more rapidly
 const float timeDilationReduceRate = .002;
@@ -104,9 +110,6 @@ const float absoluteMinTimeDilation = .85;
 
 //the highest the time dilation factor can go. this should probZ just be infinity. bitches will has c slow down if they're going too fast
 const float absoluteMaxTimeDilation = 1.7;
-
-//0 = impossible/needs to match angle exactly, a higher number means your swipe timing can be off by that many degrees
-//const float requiredAngleAccuracy = 0; //30
 
 //after this many updates, your velocity will go from what it was when you entered to perfect tangential orbital velocity
 const float updatesToMakeOrbitVelocityPerfect = 60;

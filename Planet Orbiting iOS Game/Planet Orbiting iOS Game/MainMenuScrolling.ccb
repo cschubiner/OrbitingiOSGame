@@ -31,8 +31,8 @@
 					</array>
 					<key>color</key>
 					<array>
-						<integer>255</integer>
-						<integer>255</integer>
+						<integer>105</integer>
+						<integer>140</integer>
 						<integer>255</integer>
 					</array>
 					<key>contentSize</key>
@@ -580,8 +580,8 @@
 							<key>color</key>
 							<array>
 								<integer>255</integer>
-								<integer>255</integer>
-								<integer>255</integer>
+								<integer>246</integer>
+								<integer>252</integer>
 							</array>
 							<key>contentSize</key>
 							<array>
@@ -1029,8 +1029,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-106.203125</real>
-								<real>63.53125</real>
+								<real>-107.6640625</real>
+								<real>74.51953125</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>

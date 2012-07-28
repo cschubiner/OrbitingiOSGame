@@ -26,4 +26,7 @@
 
 -(void)update:(ccTime)delta;
 
+-(void)setColor:(ccColor4B)colorToSet;
+-(ccColor4B)getColor;
+
 @end
