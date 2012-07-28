@@ -627,15 +627,19 @@ typedef struct {
                 CGPoint playerToTarget = ccpSub(targetPlanet.sprite.position, player.sprite.position);
                 float anglePlayToTarg = ccpToAngle(playerToTarget);
                 
-                if (ccpToAngle(player.velocity) > (anglePlayToTarg + (45 * M_PI/180)) || ccpToAngle(player.velocity) < (anglePlayToTarg - (45 * M_PI/180)))
-                {
-                    dangerLevel += .02;
-                    //CCLOG(@"Added to DangerLevel: %f", dangerLevel);
-                }
-                else if (dangerLevel >= .02){
-                    dangerLevel -= .02;
-                    //CCLOG(@"Subtracted from DangerLevel: %f", dangerLevel);
-                }
+                if (ccpLength(playerToTarget) > ccpLength(ccpAdd(playerToTarget, player.velocity)))
+                    {
+                        //CCLOG(@"Inside");
+                        if (ccpToAngle(player.velocity) > (anglePlayToTarg + (45 * M_PI/180)) || ccpToAngle(player.velocity) < (anglePlayToTarg - (45 * M_PI/180)))
+                        {
+                            dangerLevel += .02;
+                            //CCLOG(@"Added to DangerLevel: %f", dangerLevel);
+                        }
+                        else if (dangerLevel >= .02){
+                            dangerLevel -= .02;
+                            //CCLOG(@"Subtracted from DangerLevel: %f", dangerLevel);
+                        }
+                    }
                 
                 /*
                  if (ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) > ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)))
@@ -686,6 +690,7 @@ typedef struct {
         }
         
         if (dangerLevel >= 1) {
+            dangerLevel = 0;
             [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
         }
         
