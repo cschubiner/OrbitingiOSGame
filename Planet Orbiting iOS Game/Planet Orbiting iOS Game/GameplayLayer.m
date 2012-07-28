@@ -580,7 +580,7 @@ typedef struct {
                 if (ccpLength(ccpSub(ccpAdd(player.sprite.position, swipeVector), left)) <= ccpLength(ccpSub(ccpAdd(player.sprite.position, swipeVector), right))) { //closer to the left
                     float distToUse2 = factorToPlaceGravFieldWhenCrossingOverTheMiddle; //crossing over the middle
                     if (ccpLength(ccpSub(player.sprite.position, spot1)) < ccpLength(ccpSub(player.sprite.position, spot2)))
-                        cameraDistToUse = factorToPlaceGravFieldWhenStayingOutside; //staying outside
+                        distToUse2 = factorToPlaceGravFieldWhenStayingOutside; //staying outside
                     spotGoingTo = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius*distToUse2), targetPlanet.sprite.position);
                     newAng = ccpToAngle(ccpSub(left, player.sprite.position));
                     vel = ccpSub(left, player.sprite.position);
@@ -644,8 +644,6 @@ typedef struct {
                 //dangerLevel += .01;
                 //CCLOG(@"danger level: %f", dangerLevel);
                 
-                
-                
                 //CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
                 //CGPoint accelToAdd = ccpMult(direction, gravity/**planet.sprite.scale*/);
                 CGPoint accelToAdd = CGPointZero;
@@ -665,8 +663,7 @@ typedef struct {
                 
                 //CCLOG(@"swipeAcc: %f, scaler: %f", swipeAccuracy, scaler);
                 
-                //perhaps dont use scaler/swipe accuracy, and just use it in (if orbitstate=1) for determining if it's good enough. btw scaler ranges from about 1to 3.5 (now 0 to 2.5)
-                
+                //perhaps dont use scaler/swipe accuracy, and just use it in (if orbitstate==1) for determining if it's good enough. btw scaler ranges from about 1to 3.5 (now 0 to 2.5)
                 
                 player.acceleration = ccpMult(accelToAdd, gravIncreaser*freeGravityStrength*scaler);
                 //  CCLOG(@"swipeAcc: %f", ccpLength(player.acceleration));
