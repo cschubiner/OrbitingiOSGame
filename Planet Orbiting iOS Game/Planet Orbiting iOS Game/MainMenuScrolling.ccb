@@ -702,7 +702,7 @@
 					<key>duration</key>
 					<real>-1</real>
 					<key>emissionRate</key>
-					<real>70</real>
+					<real>75</real>
 					<key>emitterMode</key>
 					<integer>0</integer>
 					<key>endColor</key>
@@ -801,7 +801,7 @@
 					<key>tangentialAccelVar</key>
 					<integer>1</integer>
 					<key>totalParticles</key>
-					<integer>70</integer>
+					<integer>75</integer>
 					<key>visible</key>
 					<true/>
 					<key>zOrder</key>
@@ -847,78 +847,8 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
-<<<<<<< HEAD
 										<real>370.3125</real>
 										<real>20.53125</real>
-=======
-<<<<<<< HEAD
-										<real>-110.59765625</real>
-										<real>-57.08203125</real>
-=======
-										<real>370.3125</real>
-										<real>20.53125</real>
->>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
-									</array>
-									<key>rotation</key>
-									<real>0.0</real>
-									<key>scaleX</key>
-									<real>1</real>
-									<key>scaleY</key>
-									<real>1</real>
-									<key>selector</key>
-									<string>pressedBackButton:</string>
-									<key>spriteFileDisabled</key>
-									<string>btn-test-2.png</string>
-									<key>spriteFileNormal</key>
-									<string>btn-test-0.png</string>
-									<key>spriteFileSelected</key>
-									<string>btn-test-1.png</string>
-									<key>tag</key>
-									<integer>-1</integer>
-									<key>target</key>
-									<integer>2</integer>
-									<key>visible</key>
-									<true/>
-									<key>zOrder</key>
-									<integer>0</integer>
-								</dict>
-							</dict>
-							<dict>
-								<key>children</key>
-								<array/>
-								<key>class</key>
-								<string>CCMenuItemImage</string>
-								<key>properties</key>
-								<dict>
-									<key>anchorPoint</key>
-									<array>
-										<real>0.5</real>
-										<real>0.5</real>
-									</array>
-									<key>contentSize</key>
-									<array>
-										<real>150</real>
-										<real>48</real>
-									</array>
-									<key>customClass</key>
-									<string></string>
-									<key>isEnabled</key>
-									<true/>
-									<key>isExpanded</key>
-									<true/>
-									<key>isRelativeAnchorPoint</key>
-									<true/>
-									<key>lockedScaleRatio</key>
-									<true/>
-									<key>memberVarAssignmentName</key>
-									<string></string>
-									<key>memberVarAssignmentType</key>
-									<integer>1</integer>
-									<key>position</key>
-									<array>
-										<real>-204.3046875</real>
-										<real>113.4375</real>
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
@@ -1099,18 +1029,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-<<<<<<< HEAD
 								<real>367.00390625</real>
 								<real>24.28125</real>
-=======
-<<<<<<< HEAD
-								<real>-114.87890625</real>
-								<real>-56.90234375</real>
-=======
-								<real>367.00390625</real>
-								<real>24.28125</real>
->>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1169,18 +1089,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-<<<<<<< HEAD
 								<real>364.99609375</real>
 								<real>103.33984375</real>
-=======
-<<<<<<< HEAD
-								<real>-206.77734375</real>
-								<real>113.171875</real>
-=======
-								<real>364.99609375</real>
-								<real>103.33984375</real>
->>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1218,15 +1128,7 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-<<<<<<< HEAD
 								<real>583</real>
-=======
-<<<<<<< HEAD
-								<real>324</real>
-=======
-								<real>583</real>
->>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 								<real>145</real>
 							</array>
 							<key>customClass</key>
@@ -1247,18 +1149,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-<<<<<<< HEAD
 								<real>902.6171875</real>
 								<real>132.20703125</real>
-=======
-<<<<<<< HEAD
-								<real>-237.32421875</real>
-								<real>77.62109375</real>
-=======
-								<real>902.6171875</real>
-								<real>132.20703125</real>
->>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1267,12 +1159,6 @@
 							<key>scaleY</key>
 							<real>0.44999998807907104</real>
 							<key>string</key>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-							<string>20 Coins</string>
-=======
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 							<string>Upgrades Store</string>
 							<key>tag</key>
 							<integer>-1</integer>
@@ -1394,10 +1280,6 @@
 							<real>0.40000000596046448</real>
 							<key>string</key>
 							<string>High Scores</string>
-<<<<<<< HEAD
-=======
->>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
@@ -1406,11 +1288,6 @@
 							<integer>0</integer>
 						</dict>
 					</dict>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 				</array>
 				<key>class</key>
 				<string>CCNode</string>
@@ -1757,10 +1634,6 @@
 							<integer>0</integer>
 						</dict>
 					</dict>
-<<<<<<< HEAD
-=======
->>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 					<dict>
 						<key>children</key>
 						<array/>
@@ -1802,18 +1675,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-<<<<<<< HEAD
 								<real>336.47265625</real>
 								<real>-57.26953125</real>
-=======
-<<<<<<< HEAD
-								<real>-18.90234375</real>
-								<real>115.1796875</real>
-=======
-								<real>336.47265625</real>
-								<real>-57.26953125</real>
->>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1872,18 +1735,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-<<<<<<< HEAD
 								<real>317.83203125</real>
 								<real>107.171875</real>
-=======
-<<<<<<< HEAD
-								<real>-52.35546875</real>
-								<real>77.68359375</real>
-=======
-								<real>317.83203125</real>
-								<real>107.171875</real>
->>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1942,18 +1795,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-<<<<<<< HEAD
 								<real>287.46484375</real>
 								<real>62.26953125</real>
-=======
-<<<<<<< HEAD
-								<real>-107.109375</real>
-								<real>-14.99609375</real>
-=======
-								<real>287.46484375</real>
-								<real>62.26953125</real>
->>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -2012,18 +1855,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-<<<<<<< HEAD
 								<real>471.81640625</real>
 								<real>107.1640625</real>
-=======
-<<<<<<< HEAD
-								<real>-143.421875</real>
-								<real>76.125</real>
-=======
-								<real>471.81640625</real>
-								<real>107.1640625</real>
->>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -2082,18 +1915,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-<<<<<<< HEAD
 								<real>459.10546875</real>
 								<real>70.53515625</real>
-=======
-<<<<<<< HEAD
-								<real>44.29296875</real>
-								<real>76.375</real>
-=======
-								<real>459.10546875</real>
-								<real>70.53515625</real>
->>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -2102,12 +1925,6 @@
 							<key>scaleY</key>
 							<real>0.25</real>
 							<key>string</key>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-							<string>0</string>
-=======
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 							<string>50 Coins</string>
 							<key>tag</key>
 							<integer>-1</integer>
@@ -2169,10 +1986,6 @@
 							<real>0.30000001192092896</real>
 							<key>string</key>
 							<string>Balance: 0 coins</string>
-<<<<<<< HEAD
-=======
->>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
@@ -2222,18 +2035,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-<<<<<<< HEAD
 								<real>387.234375</real>
 								<real>55.3671875</real>
-=======
-<<<<<<< HEAD
-								<real>0.0</real>
-								<real>0.0</real>
-=======
-								<real>387.234375</real>
-								<real>55.3671875</real>
->>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -2292,18 +2095,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-<<<<<<< HEAD
 								<real>536.68359375</real>
 								<real>69.8125</real>
-=======
-<<<<<<< HEAD
-								<real>-121.953125</real>
-								<real>-8.734375</real>
-=======
-								<real>536.68359375</real>
-								<real>69.8125</real>
->>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -2466,18 +2259,8 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
-<<<<<<< HEAD
 										<real>364.8984375</real>
 										<real>-44.17578125</real>
-=======
-<<<<<<< HEAD
-										<real>-104.82421875</real>
-										<real>-16.4765625</real>
-=======
-										<real>364.8984375</real>
-										<real>-44.17578125</real>
->>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
@@ -2486,15 +2269,7 @@
 									<key>scaleY</key>
 									<real>1</real>
 									<key>selector</key>
-<<<<<<< HEAD
 									<string>pressedSendFeedback:</string>
-=======
-<<<<<<< HEAD
-									<string>startGame:</string>
-=======
-									<string>pressedSendFeedback:</string>
->>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 									<key>spriteFileDisabled</key>
 									<string>btn-test-2.png</string>
 									<key>spriteFileNormal</key>
@@ -2585,15 +2360,7 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-<<<<<<< HEAD
 								<real>356</real>
-=======
-<<<<<<< HEAD
-								<real>182</real>
-=======
-								<real>356</real>
->>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 								<real>145</real>
 							</array>
 							<key>customClass</key>
@@ -2614,18 +2381,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-<<<<<<< HEAD
 								<real>362.1640625</real>
 								<real>-44.328125</real>
-=======
-<<<<<<< HEAD
-								<real>-109.32421875</real>
-								<real>-15.453125</real>
-=======
-								<real>362.1640625</real>
-								<real>-44.328125</real>
->>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -2634,15 +2391,7 @@
 							<key>scaleY</key>
 							<real>0.23000000417232513</real>
 							<key>string</key>
-<<<<<<< HEAD
 							<string>Feedback</string>
-=======
-<<<<<<< HEAD
-							<string>Start</string>
-=======
-							<string>Feedback</string>
->>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
->>>>>>> c752a7929724231c573e904de89c67df3e6e07b6
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
