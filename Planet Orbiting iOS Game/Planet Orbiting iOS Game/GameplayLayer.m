@@ -717,7 +717,7 @@ typedef struct {
         }
         
         if (dangerLevel >= 1) {
-            //[self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
+            [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
         }
         
         if (planet.number >lastPlanetVisited.number+2)
