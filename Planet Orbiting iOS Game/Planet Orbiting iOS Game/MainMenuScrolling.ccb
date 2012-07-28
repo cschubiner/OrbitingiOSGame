@@ -60,15 +60,15 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>540.51171875</real>
-						<real>313.44140625</real>
+						<real>701.51953125</real>
+						<real>295.34765625</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>2.4159765243530273</real>
+					<real>3.0849609375</real>
 					<key>scaleY</key>
-					<real>2.4159765243530273</real>
+					<real>3.0849609375</real>
 					<key>spriteFile</key>
 					<string>background2clay.png</string>
 					<key>spriteFramesFile</key>
@@ -129,8 +129,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>921.84765625</real>
-						<real>78.32421875</real>
+						<real>1399.98046875</real>
+						<real>50.57421875</real>
 					</array>
 					<key>rotation</key>
 					<real>-197.986328125</real>
@@ -258,17 +258,17 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
-										<real>-110.6484375</real>
-										<real>-6.4765625</real>
+										<real>272.671875</real>
+										<real>8.71484375</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
 									<key>scaleX</key>
-									<real>1.9500000476837158</real>
+									<real>1</real>
 									<key>scaleY</key>
 									<real>1</real>
 									<key>selector</key>
-									<string>pressedSendFeedback:</string>
+									<string>pressedTutorialButton:</string>
 									<key>spriteFileDisabled</key>
 									<string>btn-test-2.png</string>
 									<key>spriteFileNormal</key>
@@ -359,7 +359,7 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>682</real>
+								<real>284</real>
 								<real>145</real>
 							</array>
 							<key>customClass</key>
@@ -380,8 +380,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-117.72265625</real>
-								<real>-5.52734375</real>
+								<real>271.04296875</real>
+								<real>10.7421875</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -390,7 +390,7 @@
 							<key>scaleY</key>
 							<real>0.23000000417232513</real>
 							<key>string</key>
-							<string>Send us feedback!</string>
+							<string>Tutorial</string>
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
@@ -484,8 +484,8 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
-										<real>-107.78125</real>
-										<real>-10.51953125</real>
+										<real>521.51171875</real>
+										<real>9.140625</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
@@ -585,7 +585,7 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>201</real>
+								<real>361</real>
 								<real>145</real>
 							</array>
 							<key>customClass</key>
@@ -606,8 +606,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-112.4453125</real>
-								<real>-8.390625</real>
+								<real>515.05078125</real>
+								<real>16.71484375</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -616,7 +616,7 @@
 							<key>scaleY</key>
 							<real>0.23000000417232513</real>
 							<key>string</key>
-							<string>Store</string>
+							<string>Upgrades</string>
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
@@ -702,7 +702,7 @@
 					<key>duration</key>
 					<real>-1</real>
 					<key>emissionRate</key>
-					<real>20</real>
+					<real>100</real>
 					<key>emitterMode</key>
 					<integer>0</integer>
 					<key>endColor</key>
@@ -748,13 +748,13 @@
 					<integer>0</integer>
 					<key>posVar</key>
 					<array>
-						<real>275</real>
+						<real>720</real>
 						<real>0.0</real>
 					</array>
 					<key>position</key>
 					<array>
-						<real>499.4375</real>
-						<real>-11.13671875</real>
+						<real>720.1719970703125</real>
+						<real>5.06640625</real>
 					</array>
 					<key>radialAccel</key>
 					<integer>0</integer>
@@ -763,9 +763,9 @@
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>1.7568359375</real>
+					<real>1</real>
 					<key>scaleY</key>
-					<real>1.7568359375</real>
+					<real>1</real>
 					<key>speed</key>
 					<integer>80</integer>
 					<key>speedVar</key>
@@ -801,7 +801,7 @@
 					<key>tangentialAccelVar</key>
 					<integer>1</integer>
 					<key>totalParticles</key>
-					<integer>1000</integer>
+					<integer>100</integer>
 					<key>visible</key>
 					<true/>
 					<key>zOrder</key>
@@ -847,8 +847,13 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
+<<<<<<< HEAD
 										<real>-110.59765625</real>
 										<real>-57.08203125</real>
+=======
+										<real>370.3125</real>
+										<real>20.53125</real>
+>>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
@@ -994,6 +999,66 @@
 									<integer>0</integer>
 								</dict>
 							</dict>
+							<dict>
+								<key>children</key>
+								<array/>
+								<key>class</key>
+								<string>CCMenuItemImage</string>
+								<key>properties</key>
+								<dict>
+									<key>anchorPoint</key>
+									<array>
+										<real>0.5</real>
+										<real>0.5</real>
+									</array>
+									<key>contentSize</key>
+									<array>
+										<real>150</real>
+										<real>48</real>
+									</array>
+									<key>customClass</key>
+									<string></string>
+									<key>isEnabled</key>
+									<true/>
+									<key>isExpanded</key>
+									<true/>
+									<key>isRelativeAnchorPoint</key>
+									<true/>
+									<key>lockedScaleRatio</key>
+									<true/>
+									<key>memberVarAssignmentName</key>
+									<string></string>
+									<key>memberVarAssignmentType</key>
+									<integer>1</integer>
+									<key>position</key>
+									<array>
+										<real>279.6015625</real>
+										<real>-40.625</real>
+									</array>
+									<key>rotation</key>
+									<real>0.0</real>
+									<key>scaleX</key>
+									<real>1</real>
+									<key>scaleY</key>
+									<real>1</real>
+									<key>selector</key>
+									<string>pressedScoresButton:</string>
+									<key>spriteFileDisabled</key>
+									<string>btn-test-2.png</string>
+									<key>spriteFileNormal</key>
+									<string>btn-test-0.png</string>
+									<key>spriteFileSelected</key>
+									<string>btn-test-1.png</string>
+									<key>tag</key>
+									<integer>-1</integer>
+									<key>target</key>
+									<integer>2</integer>
+									<key>visible</key>
+									<true/>
+									<key>zOrder</key>
+									<integer>0</integer>
+								</dict>
+							</dict>
 						</array>
 						<key>class</key>
 						<string>CCMenu</string>
@@ -1089,8 +1154,13 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
+<<<<<<< HEAD
 								<real>-114.87890625</real>
 								<real>-56.90234375</real>
+=======
+								<real>367.00390625</real>
+								<real>24.28125</real>
+>>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1149,8 +1219,13 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
+<<<<<<< HEAD
 								<real>-206.77734375</real>
 								<real>113.171875</real>
+=======
+								<real>364.99609375</real>
+								<real>103.33984375</real>
+>>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1188,7 +1263,11 @@
 							</array>
 							<key>contentSize</key>
 							<array>
+<<<<<<< HEAD
 								<real>324</real>
+=======
+								<real>583</real>
+>>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
 								<real>145</real>
 							</array>
 							<key>customClass</key>
@@ -1209,8 +1288,13 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
+<<<<<<< HEAD
 								<real>-237.32421875</real>
 								<real>77.62109375</real>
+=======
+								<real>902.6171875</real>
+								<real>132.20703125</real>
+>>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1219,7 +1303,10 @@
 							<key>scaleY</key>
 							<real>0.25</real>
 							<key>string</key>
+<<<<<<< HEAD
 							<string>20 Coins</string>
+=======
+							<string>Upgrades Store</string>
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
@@ -1228,6 +1315,476 @@
 							<integer>0</integer>
 						</dict>
 					</dict>
+					<dict>
+						<key>children</key>
+						<array/>
+						<key>class</key>
+						<string>CCLabelBMFont</string>
+						<key>properties</key>
+						<dict>
+							<key>anchorPoint</key>
+							<array>
+								<real>0.5</real>
+								<real>0.5</real>
+							</array>
+							<key>color</key>
+							<array>
+								<integer>255</integer>
+								<integer>255</integer>
+								<integer>255</integer>
+							</array>
+							<key>contentSize</key>
+							<array>
+								<real>440</real>
+								<real>145</real>
+							</array>
+							<key>customClass</key>
+							<string></string>
+							<key>fontFile</key>
+							<string>titleFontGreen.fnt</string>
+							<key>isExpanded</key>
+							<true/>
+							<key>isRelativeAnchorPoint</key>
+							<true/>
+							<key>lockedScaleRatio</key>
+							<true/>
+							<key>memberVarAssignmentName</key>
+							<string></string>
+							<key>memberVarAssignmentType</key>
+							<integer>0</integer>
+							<key>opacity</key>
+							<integer>255</integer>
+							<key>position</key>
+							<array>
+								<real>274.0546875</real>
+								<real>-37.87890625</real>
+							</array>
+							<key>rotation</key>
+							<real>0.0</real>
+							<key>scaleX</key>
+							<real>0.23000000417232513</real>
+							<key>scaleY</key>
+							<real>0.23000000417232513</real>
+							<key>string</key>
+							<string>High Scores</string>
+							<key>tag</key>
+							<integer>-1</integer>
+							<key>visible</key>
+							<true/>
+							<key>zOrder</key>
+							<integer>0</integer>
+						</dict>
+					</dict>
+					<dict>
+						<key>children</key>
+						<array/>
+						<key>class</key>
+						<string>CCLabelBMFont</string>
+						<key>properties</key>
+						<dict>
+							<key>anchorPoint</key>
+							<array>
+								<real>0.5</real>
+								<real>0.5</real>
+							</array>
+							<key>color</key>
+							<array>
+								<integer>255</integer>
+								<integer>255</integer>
+								<integer>255</integer>
+							</array>
+							<key>contentSize</key>
+							<array>
+								<real>440</real>
+								<real>145</real>
+							</array>
+							<key>customClass</key>
+							<string></string>
+							<key>fontFile</key>
+							<string>titleFontGreen.fnt</string>
+							<key>isExpanded</key>
+							<true/>
+							<key>isRelativeAnchorPoint</key>
+							<true/>
+							<key>lockedScaleRatio</key>
+							<true/>
+							<key>memberVarAssignmentName</key>
+							<string></string>
+							<key>memberVarAssignmentType</key>
+							<integer>0</integer>
+							<key>opacity</key>
+							<integer>255</integer>
+							<key>position</key>
+							<array>
+								<real>-154.38671875</real>
+								<real>129.73046875</real>
+							</array>
+							<key>rotation</key>
+							<real>0.0</real>
+							<key>scaleX</key>
+							<real>0.40000000596046448</real>
+							<key>scaleY</key>
+							<real>0.40000000596046448</real>
+							<key>string</key>
+							<string>High Scores</string>
+>>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
+							<key>tag</key>
+							<integer>-1</integer>
+							<key>visible</key>
+							<true/>
+							<key>zOrder</key>
+							<integer>0</integer>
+						</dict>
+					</dict>
+<<<<<<< HEAD
+=======
+				</array>
+				<key>class</key>
+				<string>CCNode</string>
+				<key>properties</key>
+				<dict>
+					<key>anchorPoint</key>
+					<array>
+						<real>0.0</real>
+						<real>0.0</real>
+					</array>
+					<key>contentSize</key>
+					<array>
+						<real>0.0</real>
+						<real>0.0</real>
+					</array>
+					<key>customClass</key>
+					<string></string>
+					<key>isExpanded</key>
+					<true/>
+					<key>isRelativeAnchorPoint</key>
+					<true/>
+					<key>lockedScaleRatio</key>
+					<true/>
+					<key>memberVarAssignmentName</key>
+					<string></string>
+					<key>memberVarAssignmentType</key>
+					<integer>0</integer>
+					<key>position</key>
+					<array>
+						<real>339.8671875</real>
+						<real>138.8515625</real>
+					</array>
+					<key>rotation</key>
+					<real>0.0</real>
+					<key>scaleX</key>
+					<real>1</real>
+					<key>scaleY</key>
+					<real>1</real>
+					<key>tag</key>
+					<integer>-1</integer>
+					<key>visible</key>
+					<true/>
+					<key>zOrder</key>
+					<integer>0</integer>
+				</dict>
+			</dict>
+			<dict>
+				<key>children</key>
+				<array>
+					<dict>
+						<key>children</key>
+						<array>
+							<dict>
+								<key>children</key>
+								<array/>
+								<key>class</key>
+								<string>CCMenuItemImage</string>
+								<key>properties</key>
+								<dict>
+									<key>anchorPoint</key>
+									<array>
+										<real>0.5</real>
+										<real>0.5</real>
+									</array>
+									<key>contentSize</key>
+									<array>
+										<real>150</real>
+										<real>48</real>
+									</array>
+									<key>customClass</key>
+									<string></string>
+									<key>isEnabled</key>
+									<true/>
+									<key>isExpanded</key>
+									<true/>
+									<key>isRelativeAnchorPoint</key>
+									<true/>
+									<key>lockedScaleRatio</key>
+									<true/>
+									<key>memberVarAssignmentName</key>
+									<string></string>
+									<key>memberVarAssignmentType</key>
+									<integer>1</integer>
+									<key>position</key>
+									<array>
+										<real>339.37890625</real>
+										<real>-53.64453125</real>
+									</array>
+									<key>rotation</key>
+									<real>0.0</real>
+									<key>scaleX</key>
+									<real>1</real>
+									<key>scaleY</key>
+									<real>1</real>
+									<key>selector</key>
+									<string>pressedBackButton:</string>
+									<key>spriteFileDisabled</key>
+									<string>btn-test-2.png</string>
+									<key>spriteFileNormal</key>
+									<string>btn-test-0.png</string>
+									<key>spriteFileSelected</key>
+									<string>btn-test-1.png</string>
+									<key>tag</key>
+									<integer>-1</integer>
+									<key>target</key>
+									<integer>2</integer>
+									<key>visible</key>
+									<true/>
+									<key>zOrder</key>
+									<integer>0</integer>
+								</dict>
+							</dict>
+							<dict>
+								<key>children</key>
+								<array/>
+								<key>class</key>
+								<string>CCMenuItemImage</string>
+								<key>properties</key>
+								<dict>
+									<key>anchorPoint</key>
+									<array>
+										<real>0.5</real>
+										<real>0.5</real>
+									</array>
+									<key>contentSize</key>
+									<array>
+										<real>150</real>
+										<real>48</real>
+									</array>
+									<key>customClass</key>
+									<string></string>
+									<key>isEnabled</key>
+									<true/>
+									<key>isExpanded</key>
+									<true/>
+									<key>isRelativeAnchorPoint</key>
+									<true/>
+									<key>lockedScaleRatio</key>
+									<true/>
+									<key>memberVarAssignmentName</key>
+									<string></string>
+									<key>memberVarAssignmentType</key>
+									<integer>1</integer>
+									<key>position</key>
+									<array>
+										<real>319.6875</real>
+										<real>105.21875</real>
+									</array>
+									<key>rotation</key>
+									<real>0.0</real>
+									<key>scaleX</key>
+									<real>1.1000000238418579</real>
+									<key>scaleY</key>
+									<real>1</real>
+									<key>selector</key>
+									<string>magnetButtonPressed</string>
+									<key>spriteFileDisabled</key>
+									<string>btn-test-2.png</string>
+									<key>spriteFileNormal</key>
+									<string>btn-test-0.png</string>
+									<key>spriteFileSelected</key>
+									<string>btn-test-1.png</string>
+									<key>tag</key>
+									<integer>-1</integer>
+									<key>target</key>
+									<integer>2</integer>
+									<key>visible</key>
+									<true/>
+									<key>zOrder</key>
+									<integer>0</integer>
+								</dict>
+							</dict>
+							<dict>
+								<key>children</key>
+								<array/>
+								<key>class</key>
+								<string>CCMenuItemImage</string>
+								<key>properties</key>
+								<dict>
+									<key>anchorPoint</key>
+									<array>
+										<real>0.5</real>
+										<real>0.5</real>
+									</array>
+									<key>contentSize</key>
+									<array>
+										<real>150</real>
+										<real>48</real>
+									</array>
+									<key>customClass</key>
+									<string></string>
+									<key>isEnabled</key>
+									<true/>
+									<key>isExpanded</key>
+									<true/>
+									<key>isRelativeAnchorPoint</key>
+									<true/>
+									<key>lockedScaleRatio</key>
+									<true/>
+									<key>memberVarAssignmentName</key>
+									<string></string>
+									<key>memberVarAssignmentType</key>
+									<integer>1</integer>
+									<key>position</key>
+									<array>
+										<real>486.46875</real>
+										<real>109.9765625</real>
+									</array>
+									<key>rotation</key>
+									<real>0.0</real>
+									<key>scaleX</key>
+									<real>1.1000000238418579</real>
+									<key>scaleY</key>
+									<real>1</real>
+									<key>selector</key>
+									<string>immunityButtonPressed</string>
+									<key>spriteFileDisabled</key>
+									<string>btn-test-2.png</string>
+									<key>spriteFileNormal</key>
+									<string>btn-test-0.png</string>
+									<key>spriteFileSelected</key>
+									<string>btn-test-1.png</string>
+									<key>tag</key>
+									<integer>-1</integer>
+									<key>target</key>
+									<integer>2</integer>
+									<key>visible</key>
+									<true/>
+									<key>zOrder</key>
+									<integer>0</integer>
+								</dict>
+							</dict>
+							<dict>
+								<key>children</key>
+								<array/>
+								<key>class</key>
+								<string>CCMenuItemImage</string>
+								<key>properties</key>
+								<dict>
+									<key>anchorPoint</key>
+									<array>
+										<real>0.5</real>
+										<real>0.5</real>
+									</array>
+									<key>contentSize</key>
+									<array>
+										<real>150</real>
+										<real>48</real>
+									</array>
+									<key>customClass</key>
+									<string></string>
+									<key>isEnabled</key>
+									<true/>
+									<key>isExpanded</key>
+									<true/>
+									<key>isRelativeAnchorPoint</key>
+									<true/>
+									<key>lockedScaleRatio</key>
+									<true/>
+									<key>memberVarAssignmentName</key>
+									<string></string>
+									<key>memberVarAssignmentType</key>
+									<integer>1</integer>
+									<key>position</key>
+									<array>
+										<real>-579.87890625</real>
+										<real>-27.44921875</real>
+									</array>
+									<key>rotation</key>
+									<real>0.0</real>
+									<key>scaleX</key>
+									<real>1</real>
+									<key>scaleY</key>
+									<real>1</real>
+									<key>selector</key>
+									<string>pressedBackButton:</string>
+									<key>spriteFileDisabled</key>
+									<string>btn-test-2.png</string>
+									<key>spriteFileNormal</key>
+									<string>btn-test-0.png</string>
+									<key>spriteFileSelected</key>
+									<string>btn-test-1.png</string>
+									<key>tag</key>
+									<integer>-1</integer>
+									<key>target</key>
+									<integer>2</integer>
+									<key>visible</key>
+									<true/>
+									<key>zOrder</key>
+									<integer>0</integer>
+								</dict>
+							</dict>
+						</array>
+						<key>class</key>
+						<string>CCMenu</string>
+						<key>properties</key>
+						<dict>
+							<key>accelerometerEnabled</key>
+							<integer>0</integer>
+							<key>anchorPoint</key>
+							<array>
+								<real>0.0</real>
+								<real>0.0</real>
+							</array>
+							<key>contentSize</key>
+							<array>
+								<real>0.0</real>
+								<real>0.0</real>
+							</array>
+							<key>customClass</key>
+							<string></string>
+							<key>isExpanded</key>
+							<true/>
+							<key>isRelativeAnchorPoint</key>
+							<false/>
+							<key>keyboardEnabled</key>
+							<integer>0</integer>
+							<key>lockedScaleRatio</key>
+							<true/>
+							<key>memberVarAssignmentName</key>
+							<string></string>
+							<key>memberVarAssignmentType</key>
+							<integer>0</integer>
+							<key>mouseEnabled</key>
+							<integer>1</integer>
+							<key>position</key>
+							<array>
+								<real>0.0</real>
+								<real>0.0</real>
+							</array>
+							<key>rotation</key>
+							<real>0.0</real>
+							<key>scaleX</key>
+							<real>1</real>
+							<key>scaleY</key>
+							<real>1</real>
+							<key>tag</key>
+							<integer>-1</integer>
+							<key>touchEnabled</key>
+							<integer>1</integer>
+							<key>visible</key>
+							<true/>
+							<key>zOrder</key>
+							<integer>0</integer>
+						</dict>
+					</dict>
+>>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
 					<dict>
 						<key>children</key>
 						<array/>
@@ -1269,8 +1826,13 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
+<<<<<<< HEAD
 								<real>-18.90234375</real>
 								<real>115.1796875</real>
+=======
+								<real>336.47265625</real>
+								<real>-57.26953125</real>
+>>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1329,8 +1891,13 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
+<<<<<<< HEAD
 								<real>-52.35546875</real>
 								<real>77.68359375</real>
+=======
+								<real>317.83203125</real>
+								<real>107.171875</real>
+>>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1389,8 +1956,13 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
+<<<<<<< HEAD
 								<real>-107.109375</real>
 								<real>-14.99609375</real>
+=======
+								<real>287.46484375</real>
+								<real>62.26953125</real>
+>>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1449,8 +2021,13 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
+<<<<<<< HEAD
 								<real>-143.421875</real>
 								<real>76.125</real>
+=======
+								<real>471.81640625</real>
+								<real>107.1640625</real>
+>>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1509,8 +2086,13 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
+<<<<<<< HEAD
 								<real>44.29296875</real>
 								<real>76.375</real>
+=======
+								<real>459.10546875</real>
+								<real>70.53515625</real>
+>>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1519,7 +2101,71 @@
 							<key>scaleY</key>
 							<real>0.25</real>
 							<key>string</key>
+<<<<<<< HEAD
 							<string>0</string>
+=======
+							<string>50 Coins</string>
+							<key>tag</key>
+							<integer>-1</integer>
+							<key>visible</key>
+							<true/>
+							<key>zOrder</key>
+							<integer>0</integer>
+						</dict>
+					</dict>
+					<dict>
+						<key>children</key>
+						<array/>
+						<key>class</key>
+						<string>CCLabelBMFont</string>
+						<key>properties</key>
+						<dict>
+							<key>anchorPoint</key>
+							<array>
+								<real>0.5</real>
+								<real>0.5</real>
+							</array>
+							<key>color</key>
+							<array>
+								<integer>255</integer>
+								<integer>255</integer>
+								<integer>255</integer>
+							</array>
+							<key>contentSize</key>
+							<array>
+								<real>601</real>
+								<real>145</real>
+							</array>
+							<key>customClass</key>
+							<string></string>
+							<key>fontFile</key>
+							<string>titleFontGreen.fnt</string>
+							<key>isExpanded</key>
+							<true/>
+							<key>isRelativeAnchorPoint</key>
+							<true/>
+							<key>lockedScaleRatio</key>
+							<true/>
+							<key>memberVarAssignmentName</key>
+							<string>coinBalanceLabel</string>
+							<key>memberVarAssignmentType</key>
+							<integer>2</integer>
+							<key>opacity</key>
+							<integer>255</integer>
+							<key>position</key>
+							<array>
+								<real>338.4375</real>
+								<real>-6.89453125</real>
+							</array>
+							<key>rotation</key>
+							<real>0.0</real>
+							<key>scaleX</key>
+							<real>0.30000001192092896</real>
+							<key>scaleY</key>
+							<real>0.30000001192092896</real>
+							<key>string</key>
+							<string>Balance: 0 coins</string>
+>>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
@@ -1675,8 +2321,13 @@
 							<integer>1</integer>
 							<key>position</key>
 							<array>
+<<<<<<< HEAD
 								<real>0.0</real>
 								<real>0.0</real>
+=======
+								<real>387.234375</real>
+								<real>55.3671875</real>
+>>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1735,8 +2386,13 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
+<<<<<<< HEAD
 								<real>-121.953125</real>
 								<real>-8.734375</real>
+=======
+								<real>536.68359375</real>
+								<real>69.8125</real>
+>>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1746,6 +2402,66 @@
 							<real>0.23000000417232513</real>
 							<key>string</key>
 							<string>Tutorial</string>
+							<key>tag</key>
+							<integer>-1</integer>
+							<key>visible</key>
+							<true/>
+							<key>zOrder</key>
+							<integer>0</integer>
+						</dict>
+					</dict>
+					<dict>
+						<key>children</key>
+						<array/>
+						<key>class</key>
+						<string>CCLabelBMFont</string>
+						<key>properties</key>
+						<dict>
+							<key>anchorPoint</key>
+							<array>
+								<real>0.5</real>
+								<real>0.5</real>
+							</array>
+							<key>color</key>
+							<array>
+								<integer>255</integer>
+								<integer>255</integer>
+								<integer>255</integer>
+							</array>
+							<key>contentSize</key>
+							<array>
+								<real>174</real>
+								<real>145</real>
+							</array>
+							<key>customClass</key>
+							<string></string>
+							<key>fontFile</key>
+							<string>titleFontGreen.fnt</string>
+							<key>isExpanded</key>
+							<true/>
+							<key>isRelativeAnchorPoint</key>
+							<true/>
+							<key>lockedScaleRatio</key>
+							<true/>
+							<key>memberVarAssignmentName</key>
+							<string></string>
+							<key>memberVarAssignmentType</key>
+							<integer>0</integer>
+							<key>opacity</key>
+							<integer>255</integer>
+							<key>position</key>
+							<array>
+								<real>-583.61328125</real>
+								<real>-28.10546875</real>
+							</array>
+							<key>rotation</key>
+							<real>0.0</real>
+							<key>scaleX</key>
+							<real>0.23000000417232513</real>
+							<key>scaleY</key>
+							<real>0.23000000417232513</real>
+							<key>string</key>
+							<string>Back</string>
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
@@ -1977,8 +2693,13 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
+<<<<<<< HEAD
 										<real>-104.82421875</real>
 										<real>-16.4765625</real>
+=======
+										<real>364.8984375</real>
+										<real>-44.17578125</real>
+>>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
@@ -1987,7 +2708,11 @@
 									<key>scaleY</key>
 									<real>1</real>
 									<key>selector</key>
+<<<<<<< HEAD
 									<string>startGame:</string>
+=======
+									<string>pressedSendFeedback:</string>
+>>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
 									<key>spriteFileDisabled</key>
 									<string>btn-test-2.png</string>
 									<key>spriteFileNormal</key>
@@ -2078,7 +2803,11 @@
 							</array>
 							<key>contentSize</key>
 							<array>
+<<<<<<< HEAD
 								<real>182</real>
+=======
+								<real>356</real>
+>>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
 								<real>145</real>
 							</array>
 							<key>customClass</key>
@@ -2099,8 +2828,13 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
+<<<<<<< HEAD
 								<real>-109.32421875</real>
 								<real>-15.453125</real>
+=======
+								<real>362.1640625</real>
+								<real>-44.328125</real>
+>>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -2109,7 +2843,11 @@
 							<key>scaleY</key>
 							<real>0.23000000417232513</real>
 							<key>string</key>
+<<<<<<< HEAD
 							<string>Start</string>
+=======
+							<string>Feedback</string>
+>>>>>>> fea3de5dfa8e36036fd47799885e828c269faa82
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
@@ -2284,6 +3022,204 @@
 					<integer>2</integer>
 				</dict>
 			</dict>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>class</key>
+				<string>CCLabelBMFont</string>
+				<key>properties</key>
+				<dict>
+					<key>anchorPoint</key>
+					<array>
+						<real>0.5</real>
+						<real>0.5</real>
+					</array>
+					<key>color</key>
+					<array>
+						<integer>255</integer>
+						<integer>255</integer>
+						<integer>255</integer>
+					</array>
+					<key>contentSize</key>
+					<array>
+						<real>500</real>
+						<real>145</real>
+					</array>
+					<key>customClass</key>
+					<string></string>
+					<key>fontFile</key>
+					<string>titleFontGreen.fnt</string>
+					<key>isExpanded</key>
+					<true/>
+					<key>isRelativeAnchorPoint</key>
+					<true/>
+					<key>lockedScaleRatio</key>
+					<true/>
+					<key>memberVarAssignmentName</key>
+					<string></string>
+					<key>memberVarAssignmentType</key>
+					<integer>0</integer>
+					<key>opacity</key>
+					<integer>255</integer>
+					<key>position</key>
+					<array>
+						<real>197.78515625</real>
+						<real>208.56640625</real>
+					</array>
+					<key>rotation</key>
+					<real>0.0</real>
+					<key>scaleX</key>
+					<real>0.25</real>
+					<key>scaleY</key>
+					<real>0.25</real>
+					<key>string</key>
+					<string>high scores...</string>
+					<key>tag</key>
+					<integer>-1</integer>
+					<key>visible</key>
+					<true/>
+					<key>zOrder</key>
+					<integer>0</integer>
+				</dict>
+			</dict>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>class</key>
+				<string>CCSprite</string>
+				<key>properties</key>
+				<dict>
+					<key>anchorPoint</key>
+					<array>
+						<real>0.5</real>
+						<real>0.5</real>
+					</array>
+					<key>blendFunc</key>
+					<array>
+						<integer>770</integer>
+						<integer>771</integer>
+					</array>
+					<key>color</key>
+					<array>
+						<integer>255</integer>
+						<integer>255</integer>
+						<integer>255</integer>
+					</array>
+					<key>contentSize</key>
+					<array>
+						<real>128</real>
+						<real>146</real>
+					</array>
+					<key>customClass</key>
+					<string></string>
+					<key>flipX</key>
+					<false/>
+					<key>flipY</key>
+					<false/>
+					<key>isExpanded</key>
+					<true/>
+					<key>isRelativeAnchorPoint</key>
+					<true/>
+					<key>lockedScaleRatio</key>
+					<true/>
+					<key>memberVarAssignmentName</key>
+					<string></string>
+					<key>memberVarAssignmentType</key>
+					<integer>0</integer>
+					<key>opacity</key>
+					<integer>255</integer>
+					<key>position</key>
+					<array>
+						<real>975.4609375</real>
+						<real>145.08203125</real>
+					</array>
+					<key>rotation</key>
+					<real>0.0</real>
+					<key>scaleX</key>
+					<real>1.0636718273162842</real>
+					<key>scaleY</key>
+					<real>1.0636718273162842</real>
+					<key>spriteFile</key>
+					<string>planet2.png</string>
+					<key>spriteFramesFile</key>
+					<string>spriteSheetCamera.plist</string>
+					<key>tag</key>
+					<integer>-1</integer>
+					<key>visible</key>
+					<true/>
+					<key>zOrder</key>
+					<integer>0</integer>
+				</dict>
+			</dict>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>class</key>
+				<string>CCSprite</string>
+				<key>properties</key>
+				<dict>
+					<key>anchorPoint</key>
+					<array>
+						<real>0.5</real>
+						<real>0.5</real>
+					</array>
+					<key>blendFunc</key>
+					<array>
+						<integer>770</integer>
+						<integer>771</integer>
+					</array>
+					<key>color</key>
+					<array>
+						<integer>255</integer>
+						<integer>255</integer>
+						<integer>255</integer>
+					</array>
+					<key>contentSize</key>
+					<array>
+						<real>99</real>
+						<real>102</real>
+					</array>
+					<key>customClass</key>
+					<string></string>
+					<key>flipX</key>
+					<false/>
+					<key>flipY</key>
+					<false/>
+					<key>isExpanded</key>
+					<true/>
+					<key>isRelativeAnchorPoint</key>
+					<true/>
+					<key>lockedScaleRatio</key>
+					<true/>
+					<key>memberVarAssignmentName</key>
+					<string></string>
+					<key>memberVarAssignmentType</key>
+					<integer>0</integer>
+					<key>opacity</key>
+					<integer>255</integer>
+					<key>position</key>
+					<array>
+						<real>397.24609375</real>
+						<real>177.07421875</real>
+					</array>
+					<key>rotation</key>
+					<real>-221.6787109375</real>
+					<key>scaleX</key>
+					<real>1.7914843559265137</real>
+					<key>scaleY</key>
+					<real>1.7914843559265137</real>
+					<key>spriteFile</key>
+					<string>planet1.png</string>
+					<key>spriteFramesFile</key>
+					<string>spriteSheetCamera.plist</string>
+					<key>tag</key>
+					<integer>0</integer>
+					<key>visible</key>
+					<true/>
+					<key>zOrder</key>
+					<integer>0</integer>
+				</dict>
+			</dict>
 		</array>
 		<key>class</key>
 		<string>CCLayer</string>
@@ -2298,8 +3234,8 @@
 			</array>
 			<key>contentSize</key>
 			<array>
-				<real>960</real>
-				<real>640</real>
+				<real>1440</real>
+				<real>320</real>
 			</array>
 			<key>customClass</key>
 			<string></string>
@@ -2339,8 +3275,8 @@
 		</dict>
 	</dict>
 	<key>stageHeight</key>
-	<integer>640</integer>
+	<integer>320</integer>
 	<key>stageWidth</key>
-	<integer>960</integer>
+	<integer>1440</integer>
 </dict>
 </plist>

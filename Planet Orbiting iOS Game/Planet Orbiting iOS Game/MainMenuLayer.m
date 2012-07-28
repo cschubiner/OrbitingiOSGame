@@ -61,6 +61,7 @@
         [self updateLabels];
         
         layer = (CCLayer*)[CCBReader nodeGraphFromFile:@"MainMenuScrolling.ccb" owner:self];
+        [layer setPosition:ccp(-480, 0)];
         [self addChild:layer];
         
         [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic_new.mp3" loop:YES];
@@ -131,7 +132,7 @@
 
 - (void)pressedBackButton:(id)sender {
     [Flurry logEvent:@"Went back to menu from store"];
-    id action = [CCMoveTo actionWithDuration:.8f position:ccp(0,0)];
+    id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,0)];
     id ease = [CCEaseInOut actionWithAction:action rate:2];
     [layer runAction: ease];
 }
@@ -139,8 +140,16 @@
 - (void)pressedStoreButton:(id)sender {
     [self updateLabels];
     [Flurry logEvent:@"Opened Store"];
-    id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,0)];
+    id action = [CCMoveTo actionWithDuration:.8f position:ccp(-960,0)];
     id ease = [CCEaseSineInOut actionWithAction:action]; //does this "CCEaseSineInOut" look better than the above "CCEaseInOut"???
+    [layer runAction: ease];
+}
+
+- (void)pressedScoresButton:(id)sender {
+    [self updateLabels];
+    [Flurry logEvent:@"Opened High Scores"];
+    id action = [CCMoveTo actionWithDuration:.8f position:ccp(0,0)];
+    id ease = [CCEaseSineInOut actionWithAction:action];
     [layer runAction: ease];
 }
 
