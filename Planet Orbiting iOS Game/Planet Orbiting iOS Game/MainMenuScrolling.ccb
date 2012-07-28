@@ -106,8 +106,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>151</real>
-						<real>147</real>
+						<real>142</real>
+						<real>173</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -139,9 +139,9 @@
 					<key>scaleY</key>
 					<real>2.2058203220367432</real>
 					<key>spriteFile</key>
-					<string>planet1.png</string>
+					<string>planet4.png</string>
 					<key>spriteFramesFile</key>
-					<string>spriteSheetCamera.plist</string>
+					<string>spriteSheet.plist</string>
 					<key>tag</key>
 					<integer>0</integer>
 					<key>visible</key>
@@ -2566,7 +2566,7 @@
 					<key>spriteFile</key>
 					<string>planet2.png</string>
 					<key>spriteFramesFile</key>
-					<string>spriteSheetCamera.plist</string>
+					<string>spriteSheet.plist</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
@@ -2635,7 +2635,7 @@
 					<key>spriteFile</key>
 					<string>planet1.png</string>
 					<key>spriteFramesFile</key>
-					<string>spriteSheetCamera.plist</string>
+					<string>spriteSheet.plist</string>
 					<key>tag</key>
 					<integer>0</integer>
 					<key>visible</key>
