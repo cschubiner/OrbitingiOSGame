@@ -84,7 +84,7 @@ typedef struct {
 
 - (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
     Planet *planet = [[Planet alloc]init];
-    planet.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"planet%d.png",[self RandomBetween:1 maxvalue:7]]];
+    planet.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"planet%d.png",[self RandomBetween:1 maxvalue:6]]];
     planet.sprite.position =  ccp(xPos, yPos);
     [planet.sprite setScale:scale];
     planet.mass = 1;
@@ -578,27 +578,23 @@ typedef struct {
                 float newAng = 0;
                 CGPoint vel = CGPointZero;
                 if (ccpLength(ccpSub(ccpAdd(player.sprite.position, swipeVector), left)) <= ccpLength(ccpSub(ccpAdd(player.sprite.position, swipeVector), right))) { //closer to the left
-                    
                     float distToUse2 = factorToPlaceGravFieldWhenCrossingOverTheMiddle; //crossing over the middle
                     if (ccpLength(ccpSub(player.sprite.position, spot1)) < ccpLength(ccpSub(player.sprite.position, spot2)))
                         cameraDistToUse = factorToPlaceGravFieldWhenStayingOutside; //staying outside
-                    
                     spotGoingTo = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius*distToUse2), targetPlanet.sprite.position);
                     newAng = ccpToAngle(ccpSub(left, player.sprite.position));
                     vel = ccpSub(left, player.sprite.position);
-                } else {
-                    
+                }
+                else {
                     float distToUse2 = factorToPlaceGravFieldWhenCrossingOverTheMiddle; //crossing over the middle
                     if (ccpLength(ccpSub(player.sprite.position, spot1)) > ccpLength(ccpSub(player.sprite.position, spot2)))
                         distToUse2 = factorToPlaceGravFieldWhenStayingOutside; //staying outside
-                    
                     spotGoingTo = ccpAdd(ccpMult(dir3, targetPlanet.orbitRadius*distToUse2), targetPlanet.sprite.position);
                     newAng = ccpToAngle(ccpSub(right, player.sprite.position));
                     vel = ccpSub(right, player.sprite.position);
                 }
                 
                 float curAng = ccpToAngle(player.velocity);
-                
                 swipeAccuracy = fabsf(CC_RADIANS_TO_DEGREES(curAng) - CC_RADIANS_TO_DEGREES(newAng));;
                 
                 if (swipeAccuracy > 180)
@@ -608,7 +604,6 @@ typedef struct {
                 
                 
                 //HERE: TO USE!!!!!: if swipe accuracy is greater than a certain amount, t did a poor swipe and should q punished severely!!!!!
-                
                 
                 //if (swipeAccuracy <= requiredAngleAccuracy) {
                 //orbitState = 2;
