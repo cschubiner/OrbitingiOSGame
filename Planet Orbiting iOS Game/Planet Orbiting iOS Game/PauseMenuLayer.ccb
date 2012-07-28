@@ -371,8 +371,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-190.71484375</real>
-								<real>-51.19140625</real>
+								<real>-194.97265625</real>
+								<real>-50.7578125</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -491,8 +491,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-113.90625</real>
-								<real>29.65234375</real>
+								<real>-113.4765625</real>
+								<real>37.0703125</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
