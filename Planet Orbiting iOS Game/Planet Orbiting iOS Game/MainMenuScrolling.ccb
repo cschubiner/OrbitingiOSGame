@@ -129,8 +129,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>1399.98046875</real>
-						<real>50.57421875</real>
+						<real>1418.63671875</real>
+						<real>26.76171875</real>
 					</array>
 					<key>rotation</key>
 					<real>-197.986328125</real>
@@ -2313,66 +2313,6 @@
 				<key>children</key>
 				<array/>
 				<key>class</key>
-				<string>CCLabelBMFont</string>
-				<key>properties</key>
-				<dict>
-					<key>anchorPoint</key>
-					<array>
-						<real>0.5</real>
-						<real>0.5</real>
-					</array>
-					<key>color</key>
-					<array>
-						<integer>255</integer>
-						<integer>255</integer>
-						<integer>255</integer>
-					</array>
-					<key>contentSize</key>
-					<array>
-						<real>500</real>
-						<real>145</real>
-					</array>
-					<key>customClass</key>
-					<string></string>
-					<key>fontFile</key>
-					<string>titleFontGreen.fnt</string>
-					<key>isExpanded</key>
-					<true/>
-					<key>isRelativeAnchorPoint</key>
-					<true/>
-					<key>lockedScaleRatio</key>
-					<true/>
-					<key>memberVarAssignmentName</key>
-					<string></string>
-					<key>memberVarAssignmentType</key>
-					<integer>0</integer>
-					<key>opacity</key>
-					<integer>255</integer>
-					<key>position</key>
-					<array>
-						<real>197.78515625</real>
-						<real>208.56640625</real>
-					</array>
-					<key>rotation</key>
-					<real>0.0</real>
-					<key>scaleX</key>
-					<real>0.25</real>
-					<key>scaleY</key>
-					<real>0.25</real>
-					<key>string</key>
-					<string>high scores...</string>
-					<key>tag</key>
-					<integer>-1</integer>
-					<key>visible</key>
-					<true/>
-					<key>zOrder</key>
-					<integer>0</integer>
-				</dict>
-			</dict>
-			<dict>
-				<key>children</key>
-				<array/>
-				<key>class</key>
 				<string>CCSprite</string>
 				<key>properties</key>
 				<dict>
@@ -2417,8 +2357,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>975.4609375</real>
-						<real>145.08203125</real>
+						<real>969.7734375</real>
+						<real>172.70703125</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
@@ -2486,15 +2426,15 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>397.24609375</real>
-						<real>177.07421875</real>
+						<real>450.87109375</real>
+						<real>15.55859375</real>
 					</array>
 					<key>rotation</key>
 					<real>-221.6787109375</real>
 					<key>scaleX</key>
-					<real>1.7914843559265137</real>
+					<real>1.5811327695846558</real>
 					<key>scaleY</key>
-					<real>1.7914843559265137</real>
+					<real>1.5811327695846558</real>
 					<key>spriteFile</key>
 					<string>planet1.png</string>
 					<key>spriteFramesFile</key>
@@ -2637,7 +2577,7 @@
 					<key>tangentialAccelVar</key>
 					<integer>1</integer>
 					<key>totalParticles</key>
-					<integer>100</integer>
+					<integer>110</integer>
 					<key>visible</key>
 					<true/>
 					<key>zOrder</key>
