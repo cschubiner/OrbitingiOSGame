@@ -60,8 +60,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>701.51953125</real>
-						<real>295.34765625</real>
+						<real>710.66796875</real>
+						<real>179.13671875</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
@@ -686,7 +686,7 @@
 					<key>angle</key>
 					<integer>90</integer>
 					<key>angleVar</key>
-					<integer>5</integer>
+					<integer>15</integer>
 					<key>blendFunc</key>
 					<array>
 						<integer>1</integer>
@@ -737,7 +737,7 @@
 					<key>isRelativeAnchorPoint</key>
 					<true/>
 					<key>life</key>
-					<real>4.5</real>
+					<real>10</real>
 					<key>lifeVar</key>
 					<real>0.0</real>
 					<key>lockedScaleRatio</key>
@@ -753,8 +753,8 @@
 					</array>
 					<key>position</key>
 					<array>
-						<real>720.1719970703125</real>
-						<real>5.06640625</real>
+						<real>711.4141845703125</real>
+						<real>-118.72265625</real>
 					</array>
 					<key>radialAccel</key>
 					<integer>0</integer>
@@ -801,7 +801,7 @@
 					<key>tangentialAccelVar</key>
 					<integer>1</integer>
 					<key>totalParticles</key>
-					<integer>75</integer>
+					<integer>2000</integer>
 					<key>visible</key>
 					<true/>
 					<key>zOrder</key>

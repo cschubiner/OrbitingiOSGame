@@ -880,21 +880,6 @@ typedef struct {
                  }*/
             }
         }
-        else if (i<[zones count]-1&&((Zone*)[zones objectAtIndex:i+1]).hasPlayerHitThisZone) { //if player has hit the next zone and it hasn't exploded yet
-            if (zone.hasPlayerHitThisZone&&!zone.hasExploded){
-                Planet * planet = [planets objectAtIndex:zone.number];
-                planet.alive = false;
-                zone.hasExploded=true;
-                planet.hasExploded=true;
-                zone.isBeingDrawn=FALSE;
-                if ([[spriteSheet children]containsObject:planet.sprite])
-                    [spriteSheet removeChild:planet.sprite cleanup:YES];
-                if ([[spriteSheet children]containsObject:zone.sprite])
-                    [spriteSheet removeChild:zone.sprite cleanup:YES];
-                planet.isBeingDrawn=FALSE;
-                planetJustExploded=true;
-            }
-        }
     } // end collision detection code-----------------
     
     if (lastPlanetVisited.segmentNumber == numberOfSegmentsAtATime-1) {
