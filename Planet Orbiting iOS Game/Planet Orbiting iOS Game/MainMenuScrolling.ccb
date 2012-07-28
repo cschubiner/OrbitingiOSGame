@@ -106,8 +106,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>99</real>
-						<real>102</real>
+						<real>151</real>
+						<real>147</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -175,8 +175,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>128</real>
 						<real>146</real>
+						<real>183</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -702,7 +702,7 @@
 					<key>duration</key>
 					<real>-1</real>
 					<key>emissionRate</key>
-					<real>100</real>
+					<real>70</real>
 					<key>emitterMode</key>
 					<integer>0</integer>
 					<key>endColor</key>
@@ -801,7 +801,7 @@
 					<key>tangentialAccelVar</key>
 					<integer>1</integer>
 					<key>totalParticles</key>
-					<integer>100</integer>
+					<integer>70</integer>
 					<key>visible</key>
 					<true/>
 					<key>zOrder</key>
@@ -2531,8 +2531,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>128</real>
 						<real>146</real>
+						<real>183</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -2600,8 +2600,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>99</real>
-						<real>102</real>
+						<real>151</real>
+						<real>147</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
