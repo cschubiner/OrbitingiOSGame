@@ -102,9 +102,9 @@
 					</array>
 					<key>color</key>
 					<array>
-						<integer>22</integer>
-						<integer>84</integer>
-						<integer>33</integer>
+						<integer>2</integer>
+						<integer>122</integer>
+						<integer>149</integer>
 					</array>
 					<key>contentSize</key>
 					<array>
@@ -266,6 +266,66 @@
 									<string>btn-test-0.png</string>
 									<key>spriteFileSelected</key>
 									<string>btn-test-1.png</string>
+									<key>tag</key>
+									<integer>1</integer>
+									<key>target</key>
+									<integer>2</integer>
+									<key>visible</key>
+									<true/>
+									<key>zOrder</key>
+									<integer>0</integer>
+								</dict>
+							</dict>
+							<dict>
+								<key>children</key>
+								<array/>
+								<key>class</key>
+								<string>CCMenuItemImage</string>
+								<key>properties</key>
+								<dict>
+									<key>anchorPoint</key>
+									<array>
+										<real>0.5</real>
+										<real>0.5</real>
+									</array>
+									<key>contentSize</key>
+									<array>
+										<real>50</real>
+										<real>50</real>
+									</array>
+									<key>customClass</key>
+									<string></string>
+									<key>isEnabled</key>
+									<true/>
+									<key>isExpanded</key>
+									<true/>
+									<key>isRelativeAnchorPoint</key>
+									<true/>
+									<key>lockedScaleRatio</key>
+									<true/>
+									<key>memberVarAssignmentName</key>
+									<string></string>
+									<key>memberVarAssignmentType</key>
+									<integer>1</integer>
+									<key>position</key>
+									<array>
+										<real>33.42578125</real>
+										<real>102.12109375</real>
+									</array>
+									<key>rotation</key>
+									<real>0.0</real>
+									<key>scaleX</key>
+									<real>1.1882030963897705</real>
+									<key>scaleY</key>
+									<real>1.1882030963897705</real>
+									<key>selector</key>
+									<string>toggleMute</string>
+									<key>spriteFileDisabled</key>
+									<string>soundButton.png</string>
+									<key>spriteFileNormal</key>
+									<string>soundButton.png</string>
+									<key>spriteFileSelected</key>
+									<string>soundButton.png</string>
 									<key>tag</key>
 									<integer>1</integer>
 									<key>target</key>
@@ -491,15 +551,15 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-113.4765625</real>
-								<real>37.0703125</real>
+								<real>-109.6875</real>
+								<real>29.30078125</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>0.48371094465255737</real>
+							<real>0.36152344942092896</real>
 							<key>scaleY</key>
-							<real>0.48371094465255737</real>
+							<real>0.36152344942092896</real>
 							<key>string</key>
 							<string>Game Paused</string>
 							<key>tag</key>

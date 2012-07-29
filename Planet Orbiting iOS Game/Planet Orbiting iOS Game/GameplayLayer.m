@@ -18,6 +18,9 @@
 
 #define pauseLayerTag 100
 
+const float musicVolumeGameplay = 1;
+const float effectsVolumeGameplay = 1;
+
 @implementation GameplayLayer {
     int planetCounter;
     int score;
@@ -27,6 +30,8 @@
     float killer;
     int startingCoins;
     BOOL paused;
+    BOOL muted;
+
     CCMenu *pauseMenu;
 }
 
@@ -324,6 +329,8 @@ typedef struct {
         }
         
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"a_song.mp3" loop:YES];
+        float tester99 = [[SimpleAudioEngine sharedEngine] backgroundMusicVolume];
+        CCLOG(@"volume is %f", tester99);
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"bomb.wav"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.wav"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"buttonpress.mp3"];
@@ -1520,7 +1527,16 @@ float lerpf(float a, float b, float t) {
     }
 }
 
-
+- (void)toggleMute {
+    muted = !muted;
+    if (muted) {
+        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:musicVolumeGameplay];
+        [[SimpleAudioEngine sharedEngine] setEffectsVolume:effectsVolumeGameplay];
+    } else {
+        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0];
+        [[SimpleAudioEngine sharedEngine] setEffectsVolume:0];
+    }
+}
 
 - (void)dealloc {
     // before we add anything here, we should talk about what will be retained vs. released vs. set to nil in certain situations

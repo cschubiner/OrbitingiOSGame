@@ -15,9 +15,13 @@
 #import "DataStorage.h"
 #import "PlayerStats.h"
 
+const float musicVolumeMainMenu = 1;
+const float effectsVolumeMainMenu = 1;
+
 // HelloWorldLayer implementation
 @implementation MainMenuLayer {
     StoreManager *storeManager;
+    BOOL muted;
 }
 
 // returns a singleton scene
@@ -166,6 +170,17 @@
     [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
     CCLOG(@"gameplayLayer scene launched, game starting");
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
+}
+
+- (void)toggleMute {
+    muted = !muted;
+    if (muted) {
+        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:musicVolumeMainMenu];
+        [[SimpleAudioEngine sharedEngine] setEffectsVolume:effectsVolumeMainMenu];
+    } else {
+        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0];
+        [[SimpleAudioEngine sharedEngine] setEffectsVolume:0];
+    }
 }
 
 - (void)dealloc {
