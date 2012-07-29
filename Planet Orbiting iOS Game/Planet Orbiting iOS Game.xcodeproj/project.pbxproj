@@ -36,7 +36,6 @@
 		0C49E19015C0FE44007957E9 /* thrustParticle3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */; };
 		0C5400B915C50C4000AF9AA9 /* edit(84759).png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5400B815C50C4000AF9AA9 /* edit(84759).png */; };
 		0C68283215BF0CCA00BF09C0 /* playerExplosionParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */; };
-		0C724DC915BE65180027E231 /* streak-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C724DC815BE65180027E231 /* streak-hd.png */; };
 		0C7AA5F315946939000B58F2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F215946939000B58F2 /* QuartzCore.framework */; };
 		0C7AA5F515946939000B58F2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F415946939000B58F2 /* OpenGLES.framework */; };
 		0C7AA5F715946939000B58F2 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F615946939000B58F2 /* OpenAL.framework */; };
@@ -148,9 +147,6 @@
 		0C8534C415B64D5C0006EAC9 /* PlainFont.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534C015B64D5C0006EAC9 /* PlainFont.png */; };
 		0C8534C515B64D5C0006EAC9 /* PlainFont-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534C115B64D5C0006EAC9 /* PlainFont-hd.fnt */; };
 		0C8534C615B64D5C0006EAC9 /* PlainFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534C215B64D5C0006EAC9 /* PlainFont.fnt */; };
-		0C8A19D715BDF6DD0010973F /* streak.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A19D615BDF6DD0010973F /* streak.png */; };
-		0C8A19D915BDF8150010973F /* thrustParticle2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A19D815BDF8150010973F /* thrustParticle2.plist */; };
-		0C9D124015C2513900C3495A /* streak2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D123E15C2513900C3495A /* streak2-hd.png */; };
 		0C9D124115C2513900C3495A /* streak2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D123F15C2513900C3495A /* streak2.png */; };
 		0C9D124B15C25A1C00C3495A /* titleFontGreen-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D124715C25A1C00C3495A /* titleFontGreen-hd.fnt */; };
 		0C9D124C15C25A1C00C3495A /* titleFontGreen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D124815C25A1C00C3495A /* titleFontGreen-hd.png */; };
@@ -193,14 +189,10 @@
 		C4B732F415C383650042A5DD /* spriteSheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4B732F015C383650042A5DD /* spriteSheet.plist */; };
 		C4B732F515C383650042A5DD /* spriteSheet.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C4B732F115C383650042A5DD /* spriteSheet.pvr.ccz */; };
 		C4E994B215A435E600C7009D /* cometParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4E994AE15A435E600C7009D /* cometParticle.plist */; };
-		C4E994B315A435E600C7009D /* planetExplosion.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4E994AF15A435E600C7009D /* planetExplosion.plist */; };
-		C4E994B415A435E600C7009D /* spaceParticles.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4E994B015A435E600C7009D /* spaceParticles.plist */; };
-		C4E994B515A435E600C7009D /* thrustParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4E994B115A435E600C7009D /* thrustParticle.plist */; };
 		C4F11E2015B4D58E008168B0 /* TitleFont-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = C4F11E1C15B4D58E008168B0 /* TitleFont-hd.fnt */; };
 		C4F11E2115B4D58E008168B0 /* TitleFont-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C4F11E1D15B4D58E008168B0 /* TitleFont-hd.png */; };
 		C4F11E2215B4D58E008168B0 /* TitleFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = C4F11E1E15B4D58E008168B0 /* TitleFont.fnt */; };
 		C4F11E2315B4D58E008168B0 /* TitleFont.png in Resources */ = {isa = PBXBuildFile; fileRef = C4F11E1F15B4D58E008168B0 /* TitleFont.png */; };
-		C4FDA2D615AE0143005E8D7B /* blackHoleParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4FDA2D515AE0143005E8D7B /* blackHoleParticle.plist */; };
 		CE30F28715AA972E00796589 /* Asteroid.m in Sources */ = {isa = PBXBuildFile; fileRef = CE30F28615AA972E00796589 /* Asteroid.m */; };
 		FA48C83715BE84DC00FA6F32 /* buttonpress.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA48C83615BE84DC00FA6F32 /* buttonpress.mp3 */; };
 		FA895CD415C51D2E00FA4EC3 /* OneByOne.png in Resources */ = {isa = PBXBuildFile; fileRef = FA895CD315C51D2E00FA4EC3 /* OneByOne.png */; };
@@ -259,7 +251,6 @@
 		0C5400C515C5124400AF9AA9 /* soundButtonMain-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "soundButtonMain-hd.png"; sourceTree = "<group>"; };
 		0C5400C615C5124400AF9AA9 /* soundButtonMain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soundButtonMain.png; sourceTree = "<group>"; };
 		0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = playerExplosionParticle.plist; sourceTree = "<group>"; };
-		0C724DC815BE65180027E231 /* streak-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "streak-hd.png"; sourceTree = "<group>"; };
 		0C7AA5EE15946939000B58F2 /* Star Dash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Star Dash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C7AA5F215946939000B58F2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0C7AA5F415946939000B58F2 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -490,9 +481,6 @@
 		0C8534C015B64D5C0006EAC9 /* PlainFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlainFont.png; sourceTree = "<group>"; };
 		0C8534C115B64D5C0006EAC9 /* PlainFont-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "PlainFont-hd.fnt"; sourceTree = "<group>"; };
 		0C8534C215B64D5C0006EAC9 /* PlainFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PlainFont.fnt; sourceTree = "<group>"; };
-		0C8A19D615BDF6DD0010973F /* streak.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = streak.png; sourceTree = "<group>"; };
-		0C8A19D815BDF8150010973F /* thrustParticle2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = thrustParticle2.plist; sourceTree = "<group>"; };
-		0C9D123E15C2513900C3495A /* streak2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "streak2-hd.png"; sourceTree = "<group>"; };
 		0C9D123F15C2513900C3495A /* streak2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = streak2.png; sourceTree = "<group>"; };
 		0C9D124715C25A1C00C3495A /* titleFontGreen-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "titleFontGreen-hd.fnt"; sourceTree = "<group>"; };
 		0C9D124815C25A1C00C3495A /* titleFontGreen-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleFontGreen-hd.png"; sourceTree = "<group>"; };
@@ -539,14 +527,10 @@
 		C4B732F015C383650042A5DD /* spriteSheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = spriteSheet.plist; sourceTree = "<group>"; };
 		C4B732F115C383650042A5DD /* spriteSheet.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = spriteSheet.pvr.ccz; sourceTree = "<group>"; };
 		C4E994AE15A435E600C7009D /* cometParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cometParticle.plist; sourceTree = "<group>"; };
-		C4E994AF15A435E600C7009D /* planetExplosion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = planetExplosion.plist; sourceTree = "<group>"; };
-		C4E994B015A435E600C7009D /* spaceParticles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = spaceParticles.plist; sourceTree = "<group>"; };
-		C4E994B115A435E600C7009D /* thrustParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = thrustParticle.plist; sourceTree = "<group>"; };
 		C4F11E1C15B4D58E008168B0 /* TitleFont-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "TitleFont-hd.fnt"; sourceTree = "<group>"; };
 		C4F11E1D15B4D58E008168B0 /* TitleFont-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TitleFont-hd.png"; sourceTree = "<group>"; };
 		C4F11E1E15B4D58E008168B0 /* TitleFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TitleFont.fnt; sourceTree = "<group>"; };
 		C4F11E1F15B4D58E008168B0 /* TitleFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TitleFont.png; sourceTree = "<group>"; };
-		C4FDA2D515AE0143005E8D7B /* blackHoleParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = blackHoleParticle.plist; sourceTree = "<group>"; };
 		CE30F28515AA972E00796589 /* Asteroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Asteroid.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		CE30F28615AA972E00796589 /* Asteroid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Asteroid.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		FA48C83615BE84DC00FA6F32 /* buttonpress.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonpress.mp3; sourceTree = "<group>"; };
@@ -734,10 +718,7 @@
 				0C9D125115C25A9700C3495A /* background-hd.pvr.ccz */,
 				0C9D125215C25A9700C3495A /* background.plist */,
 				0C9D125315C25A9700C3495A /* background.pvr.ccz */,
-				0C9D123E15C2513900C3495A /* streak2-hd.png */,
 				0C9D123F15C2513900C3495A /* streak2.png */,
-				0C724DC815BE65180027E231 /* streak-hd.png */,
-				0C8A19D615BDF6DD0010973F /* streak.png */,
 				0CFB823015AE61F300EADAF3 /* Audio */,
 				C4E994B715A435EA00C7009D /* Particles */,
 				0C487B02159472AC00674AB9 /* Sprites */,
@@ -1170,12 +1151,7 @@
 		C4E994B715A435EA00C7009D /* Particles */ = {
 			isa = PBXGroup;
 			children = (
-				C4FDA2D515AE0143005E8D7B /* blackHoleParticle.plist */,
 				C4E994AE15A435E600C7009D /* cometParticle.plist */,
-				C4E994AF15A435E600C7009D /* planetExplosion.plist */,
-				C4E994B015A435E600C7009D /* spaceParticles.plist */,
-				C4E994B115A435E600C7009D /* thrustParticle.plist */,
-				0C8A19D815BDF8150010973F /* thrustParticle2.plist */,
 				0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */,
 				0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */,
 			);
@@ -1236,9 +1212,6 @@
 				0C7AA60715946939000B58F2 /* fps_images.png in Resources */,
 				0C7AA61615946939000B58F2 /* iTunesArtwork in Resources */,
 				C4E994B215A435E600C7009D /* cometParticle.plist in Resources */,
-				C4E994B315A435E600C7009D /* planetExplosion.plist in Resources */,
-				C4E994B415A435E600C7009D /* spaceParticles.plist in Resources */,
-				C4E994B515A435E600C7009D /* thrustParticle.plist in Resources */,
 				C445303E15A68880004F8F48 /* btn-test-0.png in Resources */,
 				C445303F15A68880004F8F48 /* btn-test-1.png in Resources */,
 				C445304015A68880004F8F48 /* btn-test-2.png in Resources */,
@@ -1261,7 +1234,6 @@
 				C47774FE15A75CE2005D0AEB /* btn-test-2-hd.png in Resources */,
 				C47774FF15A75CE2005D0AEB /* jungle-hd.png in Resources */,
 				C477750215A75D2D005D0AEB /* burst-hd.png in Resources */,
-				C4FDA2D615AE0143005E8D7B /* blackHoleParticle.plist in Resources */,
 				0CFB823915AE733800EADAF3 /* SWOOSH.WAV in Resources */,
 				C4F11E2015B4D58E008168B0 /* TitleFont-hd.fnt in Resources */,
 				C4F11E2115B4D58E008168B0 /* TitleFont-hd.png in Resources */,
@@ -1273,16 +1245,12 @@
 				0C8534C615B64D5C0006EAC9 /* PlainFont.fnt in Resources */,
 				0C3F53CE15BD32CD009A5915 /* icon@2x.png in Resources */,
 				0C3F53D015BD32CF009A5915 /* icon.png in Resources */,
-				0C8A19D715BDF6DD0010973F /* streak.png in Resources */,
-				0C8A19D915BDF8150010973F /* thrustParticle2.plist in Resources */,
-				0C724DC915BE65180027E231 /* streak-hd.png in Resources */,
 				FA48C83715BE84DC00FA6F32 /* buttonpress.mp3 in Resources */,
 				0C68283215BF0CCA00BF09C0 /* playerExplosionParticle.plist in Resources */,
 				0C49E19015C0FE44007957E9 /* thrustParticle3.plist in Resources */,
 				FA908BEE15C105C0008ACC50 /* edit(84759)-hd.png in Resources */,
 				FA9C241515C137FD00139706 /* a_song.mp3 in Resources */,
 				014B372215C25C93002EDBCA /* PauseMenuLayer.ccb in Resources */,
-				0C9D124015C2513900C3495A /* streak2-hd.png in Resources */,
 				0C9D124115C2513900C3495A /* streak2.png in Resources */,
 				FA9C246F15C2595000139706 /* menumusic_new.mp3 in Resources */,
 				0C9D124B15C25A1C00C3495A /* titleFontGreen-hd.fnt in Resources */,
