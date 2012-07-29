@@ -961,12 +961,6 @@ typedef struct {
 }
 
 - (void)UpdateLight {
-    [blackHoleParticle setPosition:ccpLerp(blackHoleParticle.position, player.sprite.position, .009f*blackHoleSpeedFactor)];
-    if (ccpDistance(player.sprite.position, blackHoleParticle.position)<blackHoleParticle.startRadius*blackHoleCollisionRadiusFactor)
-    {
-        // [self endGame];
-        [self GameOver];
-    }
 
     float distance = ccpDistance(light.position, player.sprite.position);
     float maxDistance = size.width*1.2f;
