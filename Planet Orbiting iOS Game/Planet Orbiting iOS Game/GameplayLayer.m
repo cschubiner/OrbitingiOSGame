@@ -1319,7 +1319,6 @@ typedef struct {
         if ([[PlayerStats sharedInstance] getPlays]>1)
         {
             [[PlayerStats sharedInstance] addPlay];
-            [DataStorage storeData];
             [self endGame];
         }
         else
