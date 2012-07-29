@@ -17,6 +17,7 @@
 #import "UserWallet.h"
 #import "PowerupManager.h"
 #import "LevelObjectReturner.h"
+#import "Light.h"
 
 @interface GameplayLayer : CCLayer {
     Player *player;
@@ -59,6 +60,7 @@
     float nextPlanetOpacity;
     int updatesSinceLastPlanet;
     
+    Light* light;
     
     int originalSegmentNumber;
     

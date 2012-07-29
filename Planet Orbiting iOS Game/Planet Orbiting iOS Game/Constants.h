@@ -22,12 +22,15 @@ const float cameraMovementSpeed = .06;
 //how much more times the camera focuses on the first focus node compared to the second
 const float cameraScaleFocusedOnFocusPosOne = 1.6f;
 
+const float streakWidthOnRetinaDisplay = 31;
+const float streakWidthWITHOUTRetinaDisplay = streakWidthOnRetinaDisplay/2;
+
 //For optimization, whenever more segments than this are present, the oldest one will be deleted
 const int numberOfSegmentsAtATime = 3;
 //This is the general direction the planet segments head in in degrees from 0. 
 const float directionPlanetSegmentsGoIn= 33.3910034413;
 //The maximum number of degrees that the segment of planets can be rotated from the direction (see above)
-const float segmentRotationVariation = 30;
+const float segmentRotationVariation = 0;//30;
 
 //how quickly the player's spaceship rotates when the direction of his velocity changes
 const float playerRotationSpeed = .39f;
@@ -124,3 +127,5 @@ const float factorToPlaceGravFieldWhenCrossingOverTheMiddle = .84;
 const float factorToPlaceGravFieldWhenStayingOutside = .66;
 
 const float zoneCollisionFactor = 1.01;
+
+const float negativeLightStartingXPos = 10000;

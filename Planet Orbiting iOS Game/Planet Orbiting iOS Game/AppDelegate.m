@@ -96,10 +96,13 @@
 	// attach the openglView to the director
 	[director setOpenGLView:glView];
 	
+    isRetinaDisplay = true;
 //	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
-	if( ! [director enableRetinaDisplay:YES] )
+	if( ! [director enableRetinaDisplay:YES] ) {
 		CCLOG(@"Retina Display Not supported");
-	
+        isRetinaDisplay = false;
+	}
+    
 	//
 	// VERY IMPORTANT:
 	// If the rotation is going to be controlled by a UIViewController
@@ -164,6 +167,10 @@ void HandleExceptions(NSException *exception) {
 void SignalHandler(int sig) {
     NSLog(@"This is where we save the application data during a signal");
     // Save application data on crash
+}
+
+-(bool)getIsRetinaDisplay {
+    return isRetinaDisplay;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

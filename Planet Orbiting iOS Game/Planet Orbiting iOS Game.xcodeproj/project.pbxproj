@@ -202,6 +202,8 @@
 		C4FDA2D615AE0143005E8D7B /* blackHoleParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4FDA2D515AE0143005E8D7B /* blackHoleParticle.plist */; };
 		CE30F28715AA972E00796589 /* Asteroid.m in Sources */ = {isa = PBXBuildFile; fileRef = CE30F28615AA972E00796589 /* Asteroid.m */; };
 		FA48C83715BE84DC00FA6F32 /* buttonpress.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA48C83615BE84DC00FA6F32 /* buttonpress.mp3 */; };
+		FA895CD415C51D2E00FA4EC3 /* OneByOne.png in Resources */ = {isa = PBXBuildFile; fileRef = FA895CD315C51D2E00FA4EC3 /* OneByOne.png */; };
+		FA895CDB15C525B400FA4EC3 /* Light.m in Sources */ = {isa = PBXBuildFile; fileRef = FA895CDA15C525B400FA4EC3 /* Light.m */; };
 		FA908BEE15C105C0008ACC50 /* edit(84759)-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA908BED15C105C0008ACC50 /* edit(84759)-hd.png */; };
 		FA9C241515C137FD00139706 /* a_song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA9C241415C137FD00139706 /* a_song.mp3 */; };
 		FA9C246F15C2595000139706 /* menumusic_new.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA9C246E15C2595000139706 /* menumusic_new.mp3 */; };
@@ -546,6 +548,9 @@
 		CE30F28515AA972E00796589 /* Asteroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Asteroid.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		CE30F28615AA972E00796589 /* Asteroid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Asteroid.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		FA48C83615BE84DC00FA6F32 /* buttonpress.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonpress.mp3; sourceTree = "<group>"; };
+		FA895CD315C51D2E00FA4EC3 /* OneByOne.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OneByOne.png; sourceTree = "<group>"; };
+		FA895CD915C525B400FA4EC3 /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Light.h; sourceTree = "<group>"; };
+		FA895CDA15C525B400FA4EC3 /* Light.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Light.m; sourceTree = "<group>"; };
 		FA908BED15C105C0008ACC50 /* edit(84759)-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit(84759)-hd.png"; sourceTree = "<group>"; };
 		FA9C241415C137FD00139706 /* a_song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = a_song.mp3; sourceTree = "<group>"; };
 		FA9C246E15C2595000139706 /* menumusic_new.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = menumusic_new.mp3; sourceTree = "<group>"; };
@@ -618,6 +623,8 @@
 				CE30F28615AA972E00796589 /* Asteroid.m */,
 				FAF1C63E15BCF8A1001136E3 /* Coin.h */,
 				FAF1C63F15BCF8A1001136E3 /* Coin.m */,
+				FA895CD915C525B400FA4EC3 /* Light.h */,
+				FA895CDA15C525B400FA4EC3 /* Light.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -637,6 +644,7 @@
 		0C487B02159472AC00674AB9 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				FA895CD315C51D2E00FA4EC3 /* OneByOne.png */,
 				0C5400B815C50C4000AF9AA9 /* edit(84759).png */,
 				FA908BED15C105C0008ACC50 /* edit(84759)-hd.png */,
 			);
@@ -1296,6 +1304,11 @@
 				010B1F2B15C50DCF00C18E0F /* soundButtonGame.png in Resources */,
 				010B1F2D15C50DD500C18E0F /* soundButtonMain.png in Resources */,
 				0C5400B915C50C4000AF9AA9 /* edit(84759).png in Resources */,
+				0C5400C715C5124400AF9AA9 /* soundButtonGame-hd.png in Resources */,
+				0C5400C815C5124400AF9AA9 /* soundButtonGame.png in Resources */,
+				0C5400C915C5124400AF9AA9 /* soundButtonMain-hd.png in Resources */,
+				0C5400CA15C5124400AF9AA9 /* soundButtonMain.png in Resources */,
+				FA895CD415C51D2E00FA4EC3 /* OneByOne.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1420,6 +1433,7 @@
 				01FE9B3415BFAE70007512ED /* DataStorage.m in Sources */,
 				01FE9B3C15BFC2C9007512ED /* PlayerStats.m in Sources */,
 				0C48319115BFEB4E00311FB1 /* LevelObjectReturner.m in Sources */,
+				FA895CDB15C525B400FA4EC3 /* Light.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

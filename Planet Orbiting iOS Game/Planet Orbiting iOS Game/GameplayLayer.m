@@ -56,10 +56,6 @@ typedef struct {
 	return scene;
 }
 
-- (void)setGameConstants {
-    // ask director the the window size
-    size = [[CCDirector sharedDirector] winSize];
-}
 
 - (void)CreateCoin:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
     Coin *coin = [[Coin alloc]init];
@@ -253,7 +249,7 @@ typedef struct {
 	// Apple recommends to re-assign "self" with the "super" return value
 	if ((self = [super init])) {
         startingCoins = [[UserWallet sharedInstance] getBalance];
-        [self setGameConstants];
+        size = [[CCDirector sharedDirector] winSize];
         self.isTouchEnabled= TRUE;
         
         isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsInTutorialMode];
@@ -339,8 +335,12 @@ typedef struct {
         player.alive=true;
         [player.sprite setScale:playerSizeScale];
         player.segmentNumber = -10;
-        
-        streak=[CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak2.png" width:31 length:32 color:// ccc4(153,102,0, 255)  //orange
+        player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
+
+        float streakWidth = streakWidthWITHOUTRetinaDisplay;
+        if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsRetinaDisplay])
+            streakWidth = streakWidthOnRetinaDisplay;
+        streak=[CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak2.png" width:streakWidth length:32 color:// ccc4(153,102,0, 255)  //orange
                 //ccc4(255,255,255, 255) // white
                 // ccc4(255,255,0,255) // yellow
                 //  ccc4(0,0,255,255) // blue
@@ -381,24 +381,32 @@ typedef struct {
         hand2 = [CCSprite spriteWithFile:@"edit(84759).png"];
         hand2.position = ccp(-1000, -1000);
         
-        [self addChild:cameraLayer];
+        
+        light = [[Light alloc] init];
+        light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
+        [light.sprite setOpacity:0];
+        light.sprite.position = ccp(240, 160);
+        [light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
+        light.position = ccp(-negativeLightStartingXPos, 0);
+        [hudLayer reorderChild:light.sprite z:-1];
+
+        
         [cameraLayer addChild:spriteSheet];
         [hudLayer addChild:hand];
         [hudLayer addChild:hand2];
+        
+        cameraDistToUse = 1005.14;
+        [cameraLayer setScale:.43608];
+        [cameraLayer setPosition:ccp(98.4779,67.6401)];
+        cameraLastFocusPosition = ccp(325.808,213.3);
+        [cameraFocusNode setPosition:ccp(142.078,93.0159)];
+        
+        lastPlanetVisited = [planets objectAtIndex:0];
+        [self addChild:cameraLayer];
         [self addChild:hudLayer];
         [self addChild:pauseMenu];
         [self UpdateScore];
-        
-    /*    cameraDistToUse= ccpDistance(((Planet*)[planets objectAtIndex:0]).sprite.position, ((Planet*)[planets objectAtIndex:1]).sprite.position);
-        float horizontalScale = 294.388933833*pow(cameraDistToUse,-.94226344467);
-        [self scaleLayer:cameraLayer scaleToZoomTo:lerpf([cameraLayer scale], horizontalScale, cameraZoomSpeed) scaleCenter:player.sprite.position];
-        id followAction = [CCFollow actionWithTarget:cameraFocusNode];
-        [cameraLayer runAction: followAction];*/
-        [cameraLayer setScale:2.0f];
-        
-        lastPlanetVisited = [planets objectAtIndex:0];
 
-        
         [Flurry logEvent:@"Played Game" withParameters:nil timed:YES];
         [self schedule:@selector(Update:) interval:0]; // this makes the update loop loop!!!!        
 	}
@@ -630,9 +638,9 @@ typedef struct {
                 
                 if (ccpLength(playerToTarget) > ccpLength(ccpAdd(playerToTarget, player.velocity)))
                     {
-                        if (ccpToAngle(player.velocity) > (anglePlayToTarg + (55 * M_PI/180)) || ccpToAngle(player.velocity) < (anglePlayToTarg - (55 * M_PI/180)))
+                        if (ccpToAngle(player.velocity) > (anglePlayToTarg + (80 * M_PI/180)) || ccpToAngle(player.velocity) < (anglePlayToTarg - (80 * M_PI/180)))
                         {
-                            dangerLevel += .03;
+                            dangerLevel += .02;
                             //CCLOG(@"Added to DangerLevel: %f", dangerLevel);
                         }
                     }
@@ -795,7 +803,6 @@ typedef struct {
 }
 
 - (void)resetVariablesForNewGame {
-    player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
     [cameraLayer removeChild:thrustParticle cleanup:NO];
     
     CGPoint focusPosition= ccpMidpoint(((Planet*)[planets objectAtIndex:0]).sprite.position, ((Planet*)[planets objectAtIndex:1]).sprite.position);
@@ -953,22 +960,41 @@ typedef struct {
     
 }
 
-- (void)UpdateBlackhole {
+- (void)GameOver {
+    
+}
+
+- (void)UpdateLight {
     [blackHoleParticle setPosition:ccpLerp(blackHoleParticle.position, player.sprite.position, .009f*blackHoleSpeedFactor)];
     if (ccpDistance(player.sprite.position, blackHoleParticle.position)<blackHoleParticle.startRadius*blackHoleCollisionRadiusFactor)
     {
         //[self endGame];
+        [self GameOver];
     }
 
-    float distance = ccpDistance(blackHoleParticle.position, player.sprite.position);
+    float distance = ccpDistance(light.position, player.sprite.position);
     float maxDistance = size.width*1.2f;
+    
+    light.velocity = ccp(30, 0);
+    
+    
+    
+    CCLOG(@"DIST: %f", distance);
+    
+    //[light setTextureRect:CGRectMake(0, 0, 50, 50)];
+    //[light.sprite setOpacity:((negativeLightStartingXPos - distance)/negativeLightStartingXPos)*255];
+    
     if (distance <= maxDistance ) {
-        float percentOfMax = distance / maxDistance;
-        GLubyte red   = lerpf(0, 255, percentOfMax);
-        GLubyte green = lerpf(88, 255, percentOfMax);
-        [background setColor:ccc3(red, green, 255)];
+        //float percentOfMax = distance / maxDistance;
+        //GLubyte red   = lerpf(0, 255, percentOfMax);
+        //GLubyte green = lerpf(88, 255, percentOfMax);
+        //[background setColor:ccc3(red, green, 255)];
+        //[background setColor:ccBLUE];
     }
-    else [background setColor:ccWHITE];
+    //else [background setColor:ccWHITE];
+   // [background setTextureRect:<#(CGRect)#>];
+    
+    light.position = ccpAdd(light.position, light.velocity);
 }
 
 - (void) Update:(ccTime)dt {
@@ -985,7 +1011,7 @@ typedef struct {
             [self UpdateScore];
             [self UpdateCamera:dt];
             [self UpdateParticles:dt];
-            [self UpdateBlackhole];
+            [self UpdateLight];
             updatesSinceLastPlanet++;
         }
     }
@@ -1301,14 +1327,7 @@ typedef struct {
     } else if (tutorialState == tutorialCounter++) { //tap
         [tutorialLabel1 setString:[NSString stringWithFormat:@"You've got it! But now we'll have"]];
         [tutorialLabel2 setString:[NSString stringWithFormat:@"to start worrying about asteroids."]];
-        
-        
-        
-        
-        
-        
-        
-        
+
         
         
         
@@ -1326,7 +1345,6 @@ typedef struct {
         tutorialState++;
         
     }
-    
     
     if (tutorialAdvanceMode == 1)
         [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue...                                    Tap to continue..."]];
@@ -1466,7 +1484,7 @@ typedef struct {
     if (isInTutorialMode && tutorialAdvanceMode == 1) {
         [self AdvanceTutorial];
     }
-    
+
     if (orbitState == 0) {
         for (UITouch *touch in touches) {
             CGPoint location = [touch locationInView:[touch view]];
@@ -1531,9 +1549,9 @@ float lerpf(float a, float b, float t) {
 - (void)dealloc {
     // before we add anything here, we should talk about what will be retained vs. released vs. set to nil in certain situations
     //LOL 
-    for (int i = 0 ; i < [segments count]-1; i++){
+    for (int i = 0 ; i < [segments count]; i++){
         NSArray *chosenSegment = [segments objectAtIndex:i];
-        for (int j = 0 ; j < [chosenSegment count]-1;j++) {
+        for (int j = 0 ; j < [chosenSegment count];j++) {
             [[chosenSegment objectAtIndex:j] release];
         }
     }
