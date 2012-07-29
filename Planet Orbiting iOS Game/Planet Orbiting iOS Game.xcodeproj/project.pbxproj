@@ -30,6 +30,10 @@
 		0C487B0E1594792C00674AB9 /* Planet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B0D1594792C00674AB9 /* Planet.m */; };
 		0C49E19015C0FE44007957E9 /* thrustParticle3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */; };
 		0C5400B915C50C4000AF9AA9 /* edit(84759).png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5400B815C50C4000AF9AA9 /* edit(84759).png */; };
+		0C5400C715C5124400AF9AA9 /* soundButtonGame-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5400C315C5124400AF9AA9 /* soundButtonGame-hd.png */; };
+		0C5400C815C5124400AF9AA9 /* soundButtonGame.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5400C415C5124400AF9AA9 /* soundButtonGame.png */; };
+		0C5400C915C5124400AF9AA9 /* soundButtonMain-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5400C515C5124400AF9AA9 /* soundButtonMain-hd.png */; };
+		0C5400CA15C5124400AF9AA9 /* soundButtonMain.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5400C615C5124400AF9AA9 /* soundButtonMain.png */; };
 		0C68283215BF0CCA00BF09C0 /* playerExplosionParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */; };
 		0C724DC915BE65180027E231 /* streak-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C724DC815BE65180027E231 /* streak-hd.png */; };
 		0C7AA5F315946939000B58F2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F215946939000B58F2 /* QuartzCore.framework */; };
@@ -242,6 +246,10 @@
 		0C487B0D1594792C00674AB9 /* Planet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Planet.m; sourceTree = "<group>"; };
 		0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = thrustParticle3.plist; sourceTree = "<group>"; };
 		0C5400B815C50C4000AF9AA9 /* edit(84759).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit(84759).png"; sourceTree = "<group>"; };
+		0C5400C315C5124400AF9AA9 /* soundButtonGame-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "soundButtonGame-hd.png"; sourceTree = "<group>"; };
+		0C5400C415C5124400AF9AA9 /* soundButtonGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soundButtonGame.png; sourceTree = "<group>"; };
+		0C5400C515C5124400AF9AA9 /* soundButtonMain-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "soundButtonMain-hd.png"; sourceTree = "<group>"; };
+		0C5400C615C5124400AF9AA9 /* soundButtonMain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soundButtonMain.png; sourceTree = "<group>"; };
 		0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = playerExplosionParticle.plist; sourceTree = "<group>"; };
 		0C724DC815BE65180027E231 /* streak-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "streak-hd.png"; sourceTree = "<group>"; };
 		0C7AA5EE15946939000B58F2 /* Star Dash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Star Dash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1114,6 +1122,10 @@
 				C445303B15A68880004F8F48 /* particle-smoke.png */,
 				C445303C15A68880004F8F48 /* particle-snow.png */,
 				C445303D15A68880004F8F48 /* particle-stars.png */,
+				0C5400C315C5124400AF9AA9 /* soundButtonGame-hd.png */,
+				0C5400C415C5124400AF9AA9 /* soundButtonGame.png */,
+				0C5400C515C5124400AF9AA9 /* soundButtonMain-hd.png */,
+				0C5400C615C5124400AF9AA9 /* soundButtonMain.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1272,6 +1284,10 @@
 				0C2E4D1315C4F70B00AB28FC /* pauseButton7-hd.png in Resources */,
 				0C2E4D1415C4F70B00AB28FC /* pauseButton7.png in Resources */,
 				0C5400B915C50C4000AF9AA9 /* edit(84759).png in Resources */,
+				0C5400C715C5124400AF9AA9 /* soundButtonGame-hd.png in Resources */,
+				0C5400C815C5124400AF9AA9 /* soundButtonGame.png in Resources */,
+				0C5400C915C5124400AF9AA9 /* soundButtonMain-hd.png in Resources */,
+				0C5400CA15C5124400AF9AA9 /* soundButtonMain.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
