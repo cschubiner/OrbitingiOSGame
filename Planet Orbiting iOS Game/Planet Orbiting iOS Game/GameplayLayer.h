@@ -62,6 +62,8 @@
     
     Light* light;
     
+    float tempScore;
+    
     int originalSegmentNumber;
     
     bool isInTutorialMode;

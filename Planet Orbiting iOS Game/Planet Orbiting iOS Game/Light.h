@@ -12,10 +12,9 @@
 @interface Light : CCNode
 
 @property (nonatomic, assign) CCSprite* sprite;
-@property (nonatomic) CGPoint position;
-@property (nonatomic) CGPoint velocity;
-@property (nonatomic) CGPoint acceleration;
 @property (nonatomic) int stage; //0=far away, 1=close, 2=wraping
 @property (nonatomic) bool hasPutOnLight;
+@property (nonatomic) float score;
+@property (nonatomic) float scoreVelocity;
 
 @end

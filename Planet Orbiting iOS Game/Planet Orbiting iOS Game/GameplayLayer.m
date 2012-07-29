@@ -850,8 +850,8 @@ typedef struct {
         
         
         light = [[Light alloc] init];
-        light.position = ccp(-negativeLightStartingXPos, 0);
-        light.velocity = ccp(initialLightVelocity, 0);
+        light.score = -negativeLightStartingScore;
+        light.scoreVelocity = initialLightScoreVelocity;
         glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         light.hasPutOnLight = false;
 
@@ -1380,7 +1380,7 @@ typedef struct {
 
 /* Your score goes up as you move along the vector between the current and next planet. Your score will also never go down, as the user doesn't like to see his score go down.*/
 - (void)UpdateScore {
-    Planet * nextPlanet;
+    /*Planet * nextPlanet;
     if (lastPlanetVisited.number +1 < [planets count])
         nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
     else     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
@@ -1392,7 +1392,13 @@ typedef struct {
     int newScore = ((int)((float)firstToPlayerDistance*cosf(firstToPlayerAngle)));
     if (newScore > prevCurrentPtoPScore)
         currentPtoPscore = newScore;
-    [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score+currentPtoPscore]];
+    [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score+currentPtoPscore]];*/
+    
+    tempScore = ccpDistance(CGPointZero, player.sprite.position);
+    if (tempScore > score)
+        score = tempScore;
+    [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score]];
+    
     int numCoins = [[UserWallet sharedInstance] getBalance];
     int coinsDiff = numCoins - startingCoins;
     [coinsLabel setString:[NSString stringWithFormat:@"Coins: %i",coinsDiff]];
@@ -1439,21 +1445,16 @@ typedef struct {
 
 - (void)UpdateLight {
     
-    float distance = ccpDistance(light.position, player.sprite.position);
-    //float maxDistance = size.width*1.2f;
+    float distance = score - light.score;
     
+    light.scoreVelocity += amountToIncreaseLightScoreVelocityEachUpdate;
     
-    light.velocity = ccpMult(ccpNormalize(ccpSub(player.sprite.position, light.position)), ccpLength(light.velocity)+amountToIncreaseLightVelEachUpdate);
+    CCLOG(@"DIST: %f, VEL: %f", distance, light.scoreVelocity);
     
-    float opac;
-    
-    CCLOG(@"DIST: %f, OPAC: %f, VEL: %f", distance, opac, ccpLength(light.velocity));
-    
-
-    if (distance < 3500) {
-        [background setOpacity:clampf(((distance)/3500)*255, 0, 255)];
-    }
-    if (distance < 500) {
+    if (distance <= 100) {
+        [light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];        
+        [self GameOver];
+    } else if (distance <= 500) {
         if (!light.hasPutOnLight) {
             light.hasPutOnLight = true;
             light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
@@ -1463,12 +1464,11 @@ typedef struct {
             [hudLayer reorderChild:light.sprite z:-1];
         }
         [light.sprite setOpacity:clampf(((600-distance)/500)*255, 0, 255)];
+    } else if (distance <= 3500) {
+        [background setOpacity:clampf(((distance)/3500)*255, 0, 255)];
     }
     
-    if (distance <= 100) {
-        [light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];        
-        [self GameOver];
-    }
+
     
     //[light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
     
@@ -1482,7 +1482,7 @@ typedef struct {
     //else [background setColor:ccWHITE];
     // [background setTextureRect:<#(CGRect)#>];
     
-    light.position = ccpAdd(light.position, light.velocity);
+    light.score += light.scoreVelocity;
 }
 
 - (void) Update:(ccTime)dt {
