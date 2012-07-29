@@ -56,10 +56,6 @@ typedef struct {
 	return scene;
 }
 
-- (void)setGameConstants {
-    // ask director the the window size
-    size = [[CCDirector sharedDirector] winSize];
-}
 
 - (void)CreateCoin:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
     Coin *coin = [[Coin alloc]init];
@@ -253,7 +249,7 @@ typedef struct {
 	// Apple recommends to re-assign "self" with the "super" return value
 	if ((self = [super init])) {
         startingCoins = [[UserWallet sharedInstance] getBalance];
-        [self setGameConstants];
+        size = [[CCDirector sharedDirector] winSize];
         self.isTouchEnabled= TRUE;
         
         isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsInTutorialMode];
@@ -339,8 +335,12 @@ typedef struct {
         player.alive=true;
         [player.sprite setScale:playerSizeScale];
         player.segmentNumber = -10;
-        
-        streak=[CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak2.png" width:31 length:32 color:// ccc4(153,102,0, 255)  //orange
+        player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
+
+        float streakWidth = streakWidthWITHOUTRetinaDisplay;
+        if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsRetinaDisplay])
+            streakWidth = streakWidthOnRetinaDisplay;
+        streak=[CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak2.png" width:streakWidth length:32 color:// ccc4(153,102,0, 255)  //orange
                 //ccc4(255,255,255, 255) // white
                 // ccc4(255,255,0,255) // yellow
                 //  ccc4(0,0,255,255) // blue
@@ -389,25 +389,24 @@ typedef struct {
         [light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
         light.position = ccp(-negativeLightStartingXPos, 0);
         [hudLayer reorderChild:light.sprite z:-1];
+
         
-        [self addChild:cameraLayer];
         [cameraLayer addChild:spriteSheet];
         [hudLayer addChild:hand];
         [hudLayer addChild:hand2];
+        
+        cameraDistToUse = 1005.14;
+        [cameraLayer setScale:.43608];
+        [cameraLayer setPosition:ccp(98.4779,67.6401)];
+        cameraLastFocusPosition = ccp(325.808,213.3);
+        [cameraFocusNode setPosition:ccp(142.078,93.0159)];
+        
+        lastPlanetVisited = [planets objectAtIndex:0];
+        [self addChild:cameraLayer];
         [self addChild:hudLayer];
         [self addChild:pauseMenu];
         [self UpdateScore];
-        
-    /*    cameraDistToUse= ccpDistance(((Planet*)[planets objectAtIndex:0]).sprite.position, ((Planet*)[planets objectAtIndex:1]).sprite.position);
-        float horizontalScale = 294.388933833*pow(cameraDistToUse,-.94226344467);
-        [self scaleLayer:cameraLayer scaleToZoomTo:lerpf([cameraLayer scale], horizontalScale, cameraZoomSpeed) scaleCenter:player.sprite.position];
-        id followAction = [CCFollow actionWithTarget:cameraFocusNode];
-        [cameraLayer runAction: followAction];*/
-        [cameraLayer setScale:2.0f];
-        
-        lastPlanetVisited = [planets objectAtIndex:0];
 
-        
         [Flurry logEvent:@"Played Game" withParameters:nil timed:YES];
         [self schedule:@selector(Update:) interval:0]; // this makes the update loop loop!!!!        
 	}
@@ -804,7 +803,6 @@ typedef struct {
 }
 
 - (void)resetVariablesForNewGame {
-    player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
     [cameraLayer removeChild:thrustParticle cleanup:NO];
     
     CGPoint focusPosition= ccpMidpoint(((Planet*)[planets objectAtIndex:0]).sprite.position, ((Planet*)[planets objectAtIndex:1]).sprite.position);
@@ -1486,7 +1484,7 @@ typedef struct {
     if (isInTutorialMode && tutorialAdvanceMode == 1) {
         [self AdvanceTutorial];
     }
-    
+
     if (orbitState == 0) {
         for (UITouch *touch in touches) {
             CGPoint location = [touch locationInView:[touch view]];
