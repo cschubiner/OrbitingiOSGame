@@ -22,6 +22,9 @@ const float cameraMovementSpeed = .06;
 //how much more times the camera focuses on the first focus node compared to the second
 const float cameraScaleFocusedOnFocusPosOne = 1.6f;
 
+const float streakWidthOnRetinaDisplay = 31;
+const float streakWidthWITHOUTRetinaDisplay = streakWidthOnRetinaDisplay/2;
+
 //For optimization, whenever more segments than this are present, the oldest one will be deleted
 const int numberOfSegmentsAtATime = 3;
 //This is the general direction the planet segments head in in degrees from 0. 

@@ -337,7 +337,10 @@ typedef struct {
         player.segmentNumber = -10;
         player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
 
-        streak=[CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak2.png" width:31 length:32 color:// ccc4(153,102,0, 255)  //orange
+        float streakWidth = streakWidthWITHOUTRetinaDisplay;
+        if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsRetinaDisplay])
+            streakWidth = streakWidthOnRetinaDisplay;
+        streak=[CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak2.png" width:streakWidth length:32 color:// ccc4(153,102,0, 255)  //orange
                 //ccc4(255,255,255, 255) // white
                 // ccc4(255,255,0,255) // yellow
                 //  ccc4(0,0,255,255) // blue

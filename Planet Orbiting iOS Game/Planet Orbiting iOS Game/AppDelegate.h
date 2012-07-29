@@ -16,9 +16,12 @@
 	UIWindow			*window;
 	RootViewController	*viewController;
     bool isInTutorialMode;
+    bool isRetinaDisplay;
 }
 
 @property (nonatomic, retain) UIWindow *window;
 -(void)setIsInTutorialMode:(bool)mode;
 -(bool)getIsInTutorialMode;
+-(bool)getIsRetinaDisplay;
+
 @end
