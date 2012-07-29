@@ -262,11 +262,7 @@ typedef struct {
         } else {
             isInTutorialMode = NO;
         }
-        
-        if ([[PlayerStats sharedInstance] getTutorialOverride]) {
-            isInTutorialMode = YES;
-        }
-        
+
         planetCounter = 0;
         planets = [[NSMutableArray alloc] init];
         asteroids = [[NSMutableArray alloc] init];
@@ -1321,7 +1317,7 @@ typedef struct {
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Now you're ready to play!"]];
         
     } else if (tutorialState == tutorialCounter++) { //end the game
-        if ([[PlayerStats sharedInstance] getTutorialOverride])
+        if ([[PlayerStats sharedInstance] getPlays]>1)
         {
             [[PlayerStats sharedInstance] addPlay];
             [DataStorage storeData];

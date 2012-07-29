@@ -10,7 +10,6 @@
 
 @implementation PlayerStats {
     int totalPlays;
-    BOOL tutorialOverride;
 }
 
 static PlayerStats *sharedInstance = nil;
@@ -34,14 +33,6 @@ static PlayerStats *sharedInstance = nil;
 
 - (void)setPlays:(int)plays {
     totalPlays = plays;
-}
-
-- (void)setTutorialOverride:(BOOL)override {
-    tutorialOverride = override;
-}
-    
-- (BOOL)getTutorialOverride {
-    return tutorialOverride;
 }
 
 @end
