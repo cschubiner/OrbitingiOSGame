@@ -67,11 +67,6 @@ const float effectsVolumeMainMenu = 1;
         
         layer = (CCLayer*)[CCBReader nodeGraphFromFile:@"MainMenuScrolling.ccb" owner:self];
         
-        [[PlayerStats sharedInstance] addScore:90];
-        [[PlayerStats sharedInstance] addScore:60];
-        [[PlayerStats sharedInstance] addScore:45];
-        [[PlayerStats sharedInstance] addScore:30];
-        
         [DataStorage storeData];
         
         NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];

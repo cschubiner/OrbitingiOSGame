@@ -18,7 +18,7 @@
     int numMagnet = [[PowerupManager sharedInstance] numMagnet];
     int numImmunity = [[PowerupManager sharedInstance] numImmunity];
     int numPlays = [[PlayerStats sharedInstance] getPlays];
-    NSArray *highScores = [[PlayerStats sharedInstance] getScores];
+    NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
     
     // Store the data
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -39,12 +39,13 @@
     int numMagnet = [defaults integerForKey:@"magnet"];
     int numImmunity = [defaults integerForKey:@"immunity"];
     int numPlays = [defaults integerForKey:@"plays"];
-    NSArray *highScores = [defaults objectForKey:@"highscores"];
+    NSMutableArray *highScores = [defaults objectForKey:@"highscores"];
 
     [[UserWallet sharedInstance] setBalance:coins];
     [[PowerupManager sharedInstance] setNumberOfMagnet:numMagnet];
     [[PowerupManager sharedInstance] setNumberOfImmunity:numImmunity];
     [[PlayerStats sharedInstance] setPlays:numPlays];
+    if (highScores)
     [[PlayerStats sharedInstance] setScores:highScores];
 }
 

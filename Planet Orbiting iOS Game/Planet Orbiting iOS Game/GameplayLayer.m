@@ -1008,6 +1008,8 @@ typedef struct {
 }
 
 - (void)endGame {
+    [[PlayerStats sharedInstance] addScore:score+prevCurrentPtoPScore];
+
     [DataStorage storeData];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
 }
