@@ -379,9 +379,9 @@ typedef struct {
         hand2 = [CCSprite spriteWithFile:@"edit(84759).png"];
         hand2.position = ccp(-1000, -1000);
         
-      //  nextPlanetIndicator = [CCSprite spriteWithFile:@"nextPlanetIndicator.png"];
-      //  [cameraLayer addChild:nextPlanetIndicator];
-     //   [cameraLayer reorderChild:nextPlanetIndicator z:20];
+        nextPlanetIndicator = [CCSprite spriteWithFile:@"nextPlanetIndicator.png"];
+        [cameraLayer addChild:nextPlanetIndicator];
+        [cameraLayer reorderChild:nextPlanetIndicator z:20];
         
         [self addChild:cameraLayer];
         [cameraLayer addChild:spriteSheet];
@@ -417,9 +417,9 @@ typedef struct {
         nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
     else     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
     
-   /* nextPlanetIndicator.position = nextPlanet.sprite.position;
+    nextPlanetIndicator.position = nextPlanet.sprite.position;
     [nextPlanetIndicator setOpacity:((-cosf(updatesSinceLastPlanet*.1)+1)/2)*(255-50)+50];
-    nextPlanetIndicator.scale = nextPlanet.sprite.scale*.7+((cosf(updatesSinceLastPlanet*.1)+1)/2)*.3;*/
+    nextPlanetIndicator.scale = nextPlanet.sprite.scale*.7+((cosf(updatesSinceLastPlanet*.1)+1)/2)*.3;
     
     float firsttoplayer = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, player.sprite.position));
     float planetAngle = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, nextPlanet.sprite.position));
