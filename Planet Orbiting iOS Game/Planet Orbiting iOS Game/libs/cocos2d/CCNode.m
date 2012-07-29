@@ -238,9 +238,9 @@
 
 -(float) scale
 {
-	//NSAssert( scaleX_ == scaleY_, @"CCNode#scale. ScaleX != ScaleY. Don't know which one to return");
-    if (scaleX_ != scaleY_) 
-        NSLog(@"THIS SHOULD BE AN ERROR BUT I COMMENTED IT OUT. ScaleX != ScaleY. SEE CCNODE.m:241");
+	NSAssert( scaleX_ == scaleY_, @"CCNode#scale. ScaleX != ScaleY. Don't know which one to return");
+    //if (scaleX_ != scaleY_)
+   //     NSLog(@"THIS SHOULD BE AN ERROR BUT I COMMENTED IT OUT. ScaleX != ScaleY. SEE CCNODE.m:241");
 	return scaleX_;
 }
 

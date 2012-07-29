@@ -328,7 +328,7 @@ typedef struct {
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"buttonpress.mp3"];
         
         spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"spriteSheet.pvr.ccz"];
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spriteSheet-hd.plist"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spriteSheet.plist"];
         
         [self CreateLevel];
         
@@ -379,10 +379,6 @@ typedef struct {
         hand2 = [CCSprite spriteWithFile:@"edit(84759).png"];
         hand2.position = ccp(-1000, -1000);
         
-        nextPlanetIndicator = [CCSprite spriteWithFile:@"nextPlanetIndicator.png"];
-        [cameraLayer addChild:nextPlanetIndicator];
-        [cameraLayer reorderChild:nextPlanetIndicator z:20];
-        
         [self addChild:cameraLayer];
         [cameraLayer addChild:spriteSheet];
         [hudLayer addChild:hand];
@@ -391,17 +387,15 @@ typedef struct {
         [self addChild:pauseMenu];
         [self UpdateScore];
         
-        cameraDistToUse= ccpDistance(((Planet*)[planets objectAtIndex:0]).sprite.position, ((Planet*)[planets objectAtIndex:1]).sprite.position);
+    /*    cameraDistToUse= ccpDistance(((Planet*)[planets objectAtIndex:0]).sprite.position, ((Planet*)[planets objectAtIndex:1]).sprite.position);
         float horizontalScale = 294.388933833*pow(cameraDistToUse,-.94226344467);
         [self scaleLayer:cameraLayer scaleToZoomTo:lerpf([cameraLayer scale], horizontalScale, cameraZoomSpeed) scaleCenter:player.sprite.position];
         id followAction = [CCFollow actionWithTarget:cameraFocusNode];
-        [cameraLayer runAction: followAction];
-        
+        [cameraLayer runAction: followAction];*/
+        [cameraLayer setScale:2.0f];
         
         lastPlanetVisited = [planets objectAtIndex:0];
-        
-        initDateAlive = [NSDate date];
-        
+                
         [Flurry logEvent:@"Played Game" withParameters:nil timed:YES];
         [self schedule:@selector(Update:) interval:0]; // this makes the update loop loop!!!!        
 	}
@@ -418,11 +412,7 @@ typedef struct {
     if (lastPlanetVisited.number +1 < [planets count])
         nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
     else     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
-    
-    nextPlanetIndicator.position = nextPlanet.sprite.position;
-    [nextPlanetIndicator setOpacity:((-cosf(updatesSinceLastPlanet*.1)+1)/2)*(255-50)+50];
-    nextPlanetIndicator.scale = nextPlanet.sprite.scale*.7+((cosf(updatesSinceLastPlanet*.1)+1)/2)*.3;
-    
+        
     float firsttoplayer = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, player.sprite.position));
     float planetAngle = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, nextPlanet.sprite.position));
     float firstToPlayerAngle = firsttoplayer-planetAngle;
@@ -461,6 +451,11 @@ typedef struct {
         numerator = 240-(3.1/10)*newAng+(4.6/100)*powf(newAng, 2);
     else numerator = 499-8.1*newAng + (4.9/100)*powf(newAng, 2);
     float scalerToUse = numerator/240; //CCLOG(@"num: %f, newAng: %f", numerator, newAng);
+    
+    if ([cameraLayer scale]<.1) {
+        NSLog(@"cameraLayer scale should be bigger this this, we prob has an error");
+        [cameraLayer setScale:.1];
+    }
     
     float scale = zoomMultiplier*horizontalScale*scalerToUse;
     cameraLastFocusPosition = ccpLerp(cameraLastFocusPosition, focusPosition, cameraMovementSpeed);
@@ -896,7 +891,7 @@ typedef struct {
         }
     } // end collision detection code-----------------
     
-    if (lastPlanetVisited.segmentNumber == numberOfSegmentsAtATime-1) {
+    if (lastPlanetVisited.segmentNumber == numberOfSegmentsAtATime-1&&isInTutorialMode==false) {
         CCLOG(@"Planet Count: %d",[planets count]);
         
         [self DisposeAllContentsOfArray:planets shouldRemoveFromArray:true];
@@ -984,6 +979,7 @@ typedef struct {
         if (!paused) {
             if (zonesReached<[planets count])
                 totalGameTime+=dt;
+            NSLog(@"hi");
             if (player.alive)
                 [self UpdatePlanets];
             [self UpdatePlayer: dt];
