@@ -1253,9 +1253,9 @@
 							<key>lockedScaleRatio</key>
 							<true/>
 							<key>memberVarAssignmentName</key>
-							<string></string>
+							<string>highScore1</string>
 							<key>memberVarAssignmentType</key>
-							<integer>0</integer>
+							<integer>2</integer>
 							<key>opacity</key>
 							<integer>255</integer>
 							<key>position</key>
@@ -1313,9 +1313,9 @@
 							<key>lockedScaleRatio</key>
 							<true/>
 							<key>memberVarAssignmentName</key>
-							<string></string>
+							<string>highScore2</string>
 							<key>memberVarAssignmentType</key>
-							<integer>0</integer>
+							<integer>2</integer>
 							<key>opacity</key>
 							<integer>255</integer>
 							<key>position</key>
@@ -1373,9 +1373,9 @@
 							<key>lockedScaleRatio</key>
 							<true/>
 							<key>memberVarAssignmentName</key>
-							<string></string>
+							<string>highScore3</string>
 							<key>memberVarAssignmentType</key>
-							<integer>0</integer>
+							<integer>2</integer>
 							<key>opacity</key>
 							<integer>255</integer>
 							<key>position</key>
@@ -1433,9 +1433,9 @@
 							<key>lockedScaleRatio</key>
 							<true/>
 							<key>memberVarAssignmentName</key>
-							<string></string>
+							<string>highScore4</string>
 							<key>memberVarAssignmentType</key>
-							<integer>0</integer>
+							<integer>2</integer>
 							<key>opacity</key>
 							<integer>255</integer>
 							<key>position</key>
@@ -1962,11 +1962,11 @@
 									<key>selector</key>
 									<string>toggleMute</string>
 									<key>spriteFileDisabled</key>
-									<string>soundButton.png</string>
+									<string>soundButtonMain.png</string>
 									<key>spriteFileNormal</key>
 									<string>soundButtonMain.png</string>
 									<key>spriteFileSelected</key>
-									<string>soundButton.png</string>
+									<string>soundButtonMain.png</string>
 									<key>tag</key>
 									<integer>-1</integer>
 									<key>target</key>
@@ -2254,8 +2254,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>456.30078125</real>
-						<real>81.51171875</real>
+						<real>471.05859375</real>
+						<real>89.99609375</real>
 					</array>
 					<key>rotation</key>
 					<real>-221.6787109375</real>

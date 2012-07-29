@@ -16,6 +16,7 @@
 - (int)getPlays;
 - (void)setPlays:(int)plays;
 - (void)addScore:(int)score;
-- (NSArray *)getScores;
+- (NSMutableArray *)getScores;
+- (void)setScores:(NSMutableArray *)scores;
 
 @end

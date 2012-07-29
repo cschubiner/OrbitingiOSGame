@@ -22,6 +22,7 @@ const float effectsVolumeMainMenu = 1;
 @implementation MainMenuLayer {
     StoreManager *storeManager;
     BOOL muted;
+
 }
 
 // returns a singleton scene
@@ -65,6 +66,26 @@ const float effectsVolumeMainMenu = 1;
         [self updateLabels];
         
         layer = (CCLayer*)[CCBReader nodeGraphFromFile:@"MainMenuScrolling.ccb" owner:self];
+        
+        [[PlayerStats sharedInstance] addScore:90];
+        [[PlayerStats sharedInstance] addScore:60];
+        [[PlayerStats sharedInstance] addScore:45];
+        [[PlayerStats sharedInstance] addScore:30];
+        
+        [DataStorage storeData];
+        
+        NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
+        
+        int highScore1Int = [[highScores objectAtIndex:0] intValue];
+        int highScore2Int = [[highScores objectAtIndex:1] intValue];
+        int highScore3Int = [[highScores objectAtIndex:2] intValue];
+        int highScore4Int = [[highScores objectAtIndex:3] intValue];
+        
+        [highScore1 setString:[NSString stringWithFormat:@"%i", highScore1Int]];
+        [highScore2 setString:[NSString stringWithFormat:@"%i", highScore2Int]];
+        [highScore3 setString:[NSString stringWithFormat:@"%i", highScore3Int]];
+        [highScore4 setString:[NSString stringWithFormat:@"%i", highScore4Int]];
+        
         [layer setPosition:ccp(-480, 0)];
         [self addChild:layer];
         

@@ -321,11 +321,11 @@
 									<key>selector</key>
 									<string>toggleMute</string>
 									<key>spriteFileDisabled</key>
-									<string>soundButton.png</string>
+									<string>soundButtonGame.png</string>
 									<key>spriteFileNormal</key>
 									<string>soundButtonGame.png</string>
 									<key>spriteFileSelected</key>
-									<string>soundButton.png</string>
+									<string>soundButtonGame.png</string>
 									<key>tag</key>
 									<integer>1</integer>
 									<key>target</key>

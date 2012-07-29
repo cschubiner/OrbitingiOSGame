@@ -34,10 +34,6 @@
 		0C487B0E1594792C00674AB9 /* Planet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B0D1594792C00674AB9 /* Planet.m */; };
 		0C49E19015C0FE44007957E9 /* thrustParticle3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */; };
 		0C5400B915C50C4000AF9AA9 /* edit(84759).png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5400B815C50C4000AF9AA9 /* edit(84759).png */; };
-		0C5400C715C5124400AF9AA9 /* soundButtonGame-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5400C315C5124400AF9AA9 /* soundButtonGame-hd.png */; };
-		0C5400C815C5124400AF9AA9 /* soundButtonGame.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5400C415C5124400AF9AA9 /* soundButtonGame.png */; };
-		0C5400C915C5124400AF9AA9 /* soundButtonMain-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5400C515C5124400AF9AA9 /* soundButtonMain-hd.png */; };
-		0C5400CA15C5124400AF9AA9 /* soundButtonMain.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5400C615C5124400AF9AA9 /* soundButtonMain.png */; };
 		0C68283215BF0CCA00BF09C0 /* playerExplosionParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */; };
 		0C724DC915BE65180027E231 /* streak-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C724DC815BE65180027E231 /* streak-hd.png */; };
 		0C7AA5F315946939000B58F2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F215946939000B58F2 /* QuartzCore.framework */; };
@@ -1300,10 +1296,6 @@
 				010B1F2B15C50DCF00C18E0F /* soundButtonGame.png in Resources */,
 				010B1F2D15C50DD500C18E0F /* soundButtonMain.png in Resources */,
 				0C5400B915C50C4000AF9AA9 /* edit(84759).png in Resources */,
-				0C5400C715C5124400AF9AA9 /* soundButtonGame-hd.png in Resources */,
-				0C5400C815C5124400AF9AA9 /* soundButtonGame.png in Resources */,
-				0C5400C915C5124400AF9AA9 /* soundButtonMain-hd.png in Resources */,
-				0C5400CA15C5124400AF9AA9 /* soundButtonMain.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1484,7 +1476,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Planet Orbiting iOS Game/Prefix.pch";
-				GCC_THUMB_SUPPORT = YES;
+				GCC_THUMB_SUPPORT = NO;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = NO;
 				"GCC_THUMB_SUPPORT[arch=armv7]" = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1516,7 +1508,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Planet Orbiting iOS Game/Prefix.pch";
-				GCC_THUMB_SUPPORT = YES;
+				GCC_THUMB_SUPPORT = NO;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = NO;
 				"GCC_THUMB_SUPPORT[arch=armv7]" = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
