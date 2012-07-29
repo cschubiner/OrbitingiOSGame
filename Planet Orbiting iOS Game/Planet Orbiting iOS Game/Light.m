@@ -10,6 +10,6 @@
 
 @implementation Light
 
-@synthesize sprite, stage, hasPutOnLight, score, scoreVelocity;
+@synthesize sprite, stage, hasPutOnLight, score, scoreVelocity, distanceFromPlayer;
 
 @end

@@ -16,5 +16,6 @@
 @property (nonatomic) bool hasPutOnLight;
 @property (nonatomic) float score;
 @property (nonatomic) float scoreVelocity;
+@property (nonatomic) float distanceFromPlayer;
 
 @end

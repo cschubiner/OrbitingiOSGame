@@ -81,6 +81,9 @@
     float handCounter2;
     int tutorialPlanetIndex;
     bool shouldDisplayWaiting;
+    float tutorialPauseTimer;
+    float updatesToAdvanceTutorial;
+    bool tutorialIsTryingToAdvance;
 
     int orbitState; // 0 = orbiting; 1 = just left orbit and deciding things for state 2; 3 = flying to next planet
     Planet* targetPlanet;
