@@ -326,7 +326,8 @@ typedef struct {
         
         [self CreateLevel];
         
-        player = [[Player alloc]init];        
+        player = [[Player alloc]init];
+        [player retain];
         player.sprite = [CCSprite spriteWithSpriteFrameName:@"spaceship-hd.png"];
         player.alive=true;
         [player.sprite setScale:playerSizeScale];
@@ -413,6 +414,13 @@ typedef struct {
         player.velocity = ccpAdd(player.velocity, player.acceleration);
         player.sprite.position = ccpAdd(ccpMult(player.velocity, 60*dt*timeDilationCoefficient), player.sprite.position);
     }
+    
+    if (isnan(player.sprite.position.x)) {
+        player.velocity = CGPointZero;
+        player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:lastPlanetVisited.number];
+        player.acceleration = CGPointZero;
+    }
+    
     // camera code follows -----------------------------
     Planet * nextPlanet;
     if (lastPlanetVisited.number +1 < [planets count])
@@ -731,7 +739,7 @@ typedef struct {
     [thrustParticle stopSystem];
     streak.visible = false;
     player.alive = false;
-    player.velocity=CGPointZero;
+    player.velocity=ccp(0,.05);
     player.acceleration=CGPointZero;
     
     [Flurry logEvent:@"Player Died" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom],@"Segment Player Died On",[NSNumber numberWithInt:numZonesHitInARow],@"Pre-death combo",[NSNumber numberWithFloat:totalSecondsAlive],@"Time Alive",[NSNumber numberWithInt: [[UserWallet sharedInstance] getBalance]],@"Total Coins", nil]];
@@ -1002,6 +1010,7 @@ typedef struct {
             [self UpdateParticles:dt];
             [self UpdateLight];
             updatesSinceLastPlanet++;
+            
         }
     }
     if (isInTutorialMode)
