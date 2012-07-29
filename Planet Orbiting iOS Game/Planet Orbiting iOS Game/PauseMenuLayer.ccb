@@ -290,8 +290,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>50</real>
-										<real>50</real>
+										<real>25</real>
+										<real>25</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -309,15 +309,15 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
-										<real>34.2734375</real>
-										<real>104.421875</real>
+										<real>38.83984375</real>
+										<real>108.1015625</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
 									<key>scaleX</key>
-									<real>0.728515625</real>
+									<real>1.2910547256469727</real>
 									<key>scaleY</key>
-									<real>0.728515625</real>
+									<real>1.2910547256469727</real>
 									<key>selector</key>
 									<string>toggleMute</string>
 									<key>spriteFileDisabled</key>
