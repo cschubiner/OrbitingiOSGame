@@ -437,7 +437,8 @@ typedef struct {
     planet1 = [planets objectAtIndex:lastPlanetVisited.number+2];    
     planet2 = [planets objectAtIndex:lastPlanetVisited.number+3];
     CGPoint focusPointTwo = ccpAdd(ccpMult(ccpSub(planet2.sprite.position, planet1.sprite.position), percentofthewaytonext) ,planet1.sprite.position);
-    CGPoint focusPosition = ccpMidpoint(focusPointOne, focusPointTwo);
+    //CGPoint focusPosition = ccpMult(ccpAdd(focusPointOne, ccpSub(focusPointTwo, focusPointOne)), .5f);
+    CGPoint focusPosition = ccpMult(ccpAdd(ccpMult(focusPointOne, cameraScaleFocusedOnFocusPosOne), focusPointTwo), 1.0f/(cameraScaleFocusedOnFocusPosOne+1.0f));
     // cameraDistToUse = lerpf(cameraDistToUse, ccpDistance(focusPointOne, focusPointTwo)+ ((Zone*)[zones objectAtIndex:lastPlanetVisited.number]).radius + ((Zone*)[zones objectAtIndex:planet1.number]).radius,cameraZoomSpeed);
     cameraDistToUse= lerpf(cameraDistToUse,ccpDistance(focusPointOne, focusPointTwo),cameraZoomSpeed);
     
@@ -1318,7 +1319,6 @@ typedef struct {
         if ([[PlayerStats sharedInstance] getPlays]>1)
         {
             [[PlayerStats sharedInstance] addPlay];
-            [DataStorage storeData];
             [self endGame];
         }
         else
