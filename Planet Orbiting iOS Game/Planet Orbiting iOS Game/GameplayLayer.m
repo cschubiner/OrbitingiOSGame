@@ -851,6 +851,7 @@ typedef struct {
         
         light = [[Light alloc] init];
         light.position = ccp(-negativeLightStartingXPos, 0);
+        light.velocity = ccp(initialLightVelocity, 0);
         glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         light.hasPutOnLight = false;
 
@@ -1441,17 +1442,18 @@ typedef struct {
     float distance = ccpDistance(light.position, player.sprite.position);
     //float maxDistance = size.width*1.2f;
     
-    light.velocity = ccpMult(ccpNormalize(ccpSub(player.sprite.position, light.position)), 8);
+    
+    light.velocity = ccpMult(ccpNormalize(ccpSub(player.sprite.position, light.position)), ccpLength(light.velocity)+amountToIncreaseLightVelEachUpdate);
     
     float opac;
     
-    CCLOG(@"DIST: %f, OPAC: %f", distance, opac);
+    CCLOG(@"DIST: %f, OPAC: %f, VEL: %f", distance, opac, ccpLength(light.velocity));
     
 
-    if (distance < 4000) {
-        [background setOpacity:clampf((distance/4000)*255, 0, 255)];
+    if (distance < 3500) {
+        [background setOpacity:clampf(((distance)/3500)*255, 0, 255)];
     }
-    if (distance < 600) {
+    if (distance < 500) {
         if (!light.hasPutOnLight) {
             light.hasPutOnLight = true;
             light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
@@ -1460,10 +1462,10 @@ typedef struct {
             [light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
             [hudLayer reorderChild:light.sprite z:-1];
         }
-        [light.sprite setOpacity:clampf(((600-distance)/600)*255, 0, 255)];
+        [light.sprite setOpacity:clampf(((600-distance)/500)*255, 0, 255)];
     }
     
-    if (distance <= 50) {
+    if (distance <= 100) {
         [light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];        
         [self GameOver];
     }
