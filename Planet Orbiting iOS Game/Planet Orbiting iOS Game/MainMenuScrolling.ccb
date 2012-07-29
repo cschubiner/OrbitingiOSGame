@@ -1253,22 +1253,22 @@
 							<key>lockedScaleRatio</key>
 							<true/>
 							<key>memberVarAssignmentName</key>
-							<string>highScore1</string>
+							<string>highScore1Label</string>
 							<key>memberVarAssignmentType</key>
 							<integer>2</integer>
 							<key>opacity</key>
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-93.89453125</real>
-								<real>94.291015625</real>
+								<real>-95.55859375</real>
+								<real>82.548828125</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>0.30000001192092896</real>
+							<real>0.25</real>
 							<key>scaleY</key>
-							<real>0.30000001192092896</real>
+							<real>0.25</real>
 							<key>string</key>
 							<string>Score #1</string>
 							<key>tag</key>
@@ -1313,22 +1313,22 @@
 							<key>lockedScaleRatio</key>
 							<true/>
 							<key>memberVarAssignmentName</key>
-							<string>highScore2</string>
+							<string>highScore2Label</string>
 							<key>memberVarAssignmentType</key>
 							<integer>2</integer>
 							<key>opacity</key>
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-97.30078125</real>
-								<real>51.283203125</real>
+								<real>-96.96484375</real>
+								<real>45.541015625</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>0.30000001192092896</real>
+							<real>0.25</real>
 							<key>scaleY</key>
-							<real>0.30000001192092896</real>
+							<real>0.25</real>
 							<key>string</key>
 							<string>Score #2</string>
 							<key>tag</key>
@@ -1373,7 +1373,7 @@
 							<key>lockedScaleRatio</key>
 							<true/>
 							<key>memberVarAssignmentName</key>
-							<string>highScore3</string>
+							<string>highScore3Label</string>
 							<key>memberVarAssignmentType</key>
 							<integer>2</integer>
 							<key>opacity</key>
@@ -1386,9 +1386,9 @@
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>0.30000001192092896</real>
+							<real>0.25</real>
 							<key>scaleY</key>
-							<real>0.30000001192092896</real>
+							<real>0.25</real>
 							<key>string</key>
 							<string>Score #3</string>
 							<key>tag</key>
@@ -1433,22 +1433,22 @@
 							<key>lockedScaleRatio</key>
 							<true/>
 							<key>memberVarAssignmentName</key>
-							<string>highScore4</string>
+							<string>highScore4Label</string>
 							<key>memberVarAssignmentType</key>
 							<integer>2</integer>
 							<key>opacity</key>
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-98.50390625</real>
-								<real>-36.341796875</real>
+								<real>-98.08203125</real>
+								<real>-30.169921875</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>0.30000001192092896</real>
+							<real>0.25</real>
 							<key>scaleY</key>
-							<real>0.30000001192092896</real>
+							<real>0.25</real>
 							<key>string</key>
 							<string>Score #4</string>
 							<key>tag</key>
@@ -1950,8 +1950,8 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
-										<real>514.953125</real>
-										<real>-61.6640625</real>
+										<real>508.4921875</real>
+										<real>-61.48046875</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>

@@ -1008,8 +1008,8 @@ typedef struct {
 }
 
 - (void)endGame {
-    [[PlayerStats sharedInstance] addScore:score+prevCurrentPtoPScore];
-
+    int finalScore = score + prevCurrentPtoPScore;
+    [[PlayerStats sharedInstance] addScore:finalScore];
     [DataStorage storeData];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
 }
@@ -1381,10 +1381,11 @@ typedef struct {
 }
 
 - (void)startGame {
+    [DataStorage fetchData];
     if ([[PlayerStats sharedInstance] getPlays] == 1) {
         [[PlayerStats sharedInstance] addPlay];
     }
-    [DataStorage storeData];
+    //[DataStorage storeData];
     CCLOG(@"number of plays ever: %i", [[PlayerStats sharedInstance] getPlays]);
     [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:FALSE];
     
@@ -1398,10 +1399,6 @@ typedef struct {
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
-        
-        if (location.x <= size.width/6 && location.y >= 4*size.height/5) {
-            [self endGame];
-        }
         
         if (location.x >= 7 * size.width/8 && location.y >= 5*size.height/6) {
             [self togglePause];

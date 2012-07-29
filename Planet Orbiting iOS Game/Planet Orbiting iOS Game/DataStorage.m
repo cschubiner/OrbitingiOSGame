@@ -20,7 +20,6 @@
     int numPlays = [[PlayerStats sharedInstance] getPlays];
     NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
     
-    // Store the data
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     [defaults setInteger:coins forKey:@"coin"];
@@ -45,8 +44,9 @@
     [[PowerupManager sharedInstance] setNumberOfMagnet:numMagnet];
     [[PowerupManager sharedInstance] setNumberOfImmunity:numImmunity];
     [[PlayerStats sharedInstance] setPlays:numPlays];
-    if (highScores)
-    [[PlayerStats sharedInstance] setScores:highScores];
+    if (highScores) {
+        [[PlayerStats sharedInstance] setScores:highScores];
+    }
 }
 
 @end

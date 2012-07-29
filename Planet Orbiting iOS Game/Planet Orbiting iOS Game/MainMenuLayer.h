@@ -18,10 +18,10 @@
     CCLabelBMFont *coinBalanceLabel;
     CCLabelBMFont *numMagnetsLabel;
     CCLabelBMFont *numImmunitiesLabel;
-    CCLabelBMFont *highScore1;
-    CCLabelBMFont *highScore2;
-    CCLabelBMFont *highScore3;
-    CCLabelBMFont *highScore4;
+    CCLabelBMFont *highScore1Label;
+    CCLabelBMFont *highScore2Label;
+    CCLabelBMFont *highScore3Label;
+    CCLabelBMFont *highScore4Label;
 }
 
 + (CCScene *)scene;

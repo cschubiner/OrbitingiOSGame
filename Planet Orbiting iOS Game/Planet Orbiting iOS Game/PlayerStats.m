@@ -51,10 +51,10 @@ static PlayerStats *sharedInstance = nil;
 - (void)addScore:(int)score {
     NSNumber *newScore = [[NSNumber alloc] initWithInt:score];
     [highScores addObject:newScore];
-        [newScore release];
+    [newScore release];
     
     NSSortDescriptor *highestToLowest = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:NO];
-    [highScores sortUsingDescriptors:[NSMutableArray arrayWithObject:highestToLowest]];
+    [highScores sortUsingDescriptors:[NSArray arrayWithObject:highestToLowest]];
     
     if ([highScores count] > highScoreLimit) {
         [highScores removeObjectAtIndex:[highScores count] - 1];

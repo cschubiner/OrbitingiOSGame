@@ -55,8 +55,6 @@ const float effectsVolumeMainMenu = 1;
     NSString *immunitiesBought = [NSString stringWithFormat:@"%i", immunities];
     NSLog(@"%@", immunitiesBought);
     [numImmunitiesLabel setString:immunitiesBought];
-    
-    [DataStorage storeData];
 }
 
 // on "init" you need to initialize your instance
@@ -67,27 +65,30 @@ const float effectsVolumeMainMenu = 1;
         
         layer = (CCLayer*)[CCBReader nodeGraphFromFile:@"MainMenuScrolling.ccb" owner:self];
         
-        [DataStorage storeData];
-        
         NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
         
-        int highScore1Int = [[highScores objectAtIndex:0] intValue];
-        int highScore2Int = [[highScores objectAtIndex:1] intValue];
-        int highScore3Int = [[highScores objectAtIndex:2] intValue];
-        int highScore4Int = [[highScores objectAtIndex:3] intValue];
+        int highScore1Int;
+        int highScore2Int;
+        int highScore3Int;
+        int highScore4Int;
         
-        if (highScore1Int != 0) {
-            [highScore1 setString:[NSString stringWithFormat:@"%i", highScore1Int]];
+        if (highScores && [highScores count] > 0) {
+            highScore1Int = [[highScores objectAtIndex:0] intValue];
         }
-        if (highScore2Int != 0) {
-            [highScore2 setString:[NSString stringWithFormat:@"%i", highScore2Int]];
+        if (highScores && [highScores count] > 1) {
+            highScore2Int = [[highScores objectAtIndex:1] intValue];
         }
-        if (highScore3Int != 0) {
-            [highScore3 setString:[NSString stringWithFormat:@"%i", highScore3Int]];
+        if (highScores && [highScores count] > 2) {
+            highScore3Int = [[highScores objectAtIndex:2] intValue];
         }
-        if (highScore4Int != 0) {
-            [highScore4 setString:[NSString stringWithFormat:@"%i", highScore4Int]];
+        if (highScores && [highScores count] > 3) {
+            highScore4Int = [[highScores objectAtIndex:3] intValue];
         }
+        
+        [highScore1Label setString:[NSString stringWithFormat:@"%i", highScore1Int]];
+        [highScore2Label setString:[NSString stringWithFormat:@"%i", highScore2Int]];
+        [highScore3Label setString:[NSString stringWithFormat:@"%i", highScore3Int]];
+        [highScore4Label setString:[NSString stringWithFormat:@"%i", highScore4Int]];
         
         [layer setPosition:ccp(-480, 0)];
         [self addChild:layer];
