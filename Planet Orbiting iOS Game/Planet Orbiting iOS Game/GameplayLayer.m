@@ -630,9 +630,9 @@ typedef struct {
                 
                 if (ccpLength(playerToTarget) > ccpLength(ccpAdd(playerToTarget, player.velocity)))
                     {
-                        if (ccpToAngle(player.velocity) > (anglePlayToTarg + (55 * M_PI/180)) || ccpToAngle(player.velocity) < (anglePlayToTarg - (55 * M_PI/180)))
+                        if (ccpToAngle(player.velocity) > (anglePlayToTarg + (80 * M_PI/180)) || ccpToAngle(player.velocity) < (anglePlayToTarg - (80 * M_PI/180)))
                         {
-                            dangerLevel += .03;
+                            dangerLevel += .02;
                             //CCLOG(@"Added to DangerLevel: %f", dangerLevel);
                         }
                     }
@@ -953,22 +953,30 @@ typedef struct {
     
 }
 
+- (void)GameOver {
+    
+}
+
 - (void)UpdateBlackhole {
     [blackHoleParticle setPosition:ccpLerp(blackHoleParticle.position, player.sprite.position, .009f*blackHoleSpeedFactor)];
     if (ccpDistance(player.sprite.position, blackHoleParticle.position)<blackHoleParticle.startRadius*blackHoleCollisionRadiusFactor)
     {
         //[self endGame];
+        [self GameOver];
     }
 
     float distance = ccpDistance(blackHoleParticle.position, player.sprite.position);
     float maxDistance = size.width*1.2f;
+    
+    CCLOG(@"DIST: %f", distance);
+    
     if (distance <= maxDistance ) {
         float percentOfMax = distance / maxDistance;
         GLubyte red   = lerpf(0, 255, percentOfMax);
         GLubyte green = lerpf(88, 255, percentOfMax);
-        [background setColor:ccc3(red, green, 255)];
+        //[background setColor:ccc3(red, green, 255)];
     }
-    else [background setColor:ccWHITE];
+    //else [background setColor:ccWHITE];
 }
 
 - (void) Update:(ccTime)dt {
