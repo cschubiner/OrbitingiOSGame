@@ -1511,7 +1511,6 @@ float lerpf(float a, float b, float t) {
 - (void)togglePause {
     paused = !paused;
     if (paused) {
-        //runningCounter += -[initDateAlive timeIntervalSinceNow];
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"PauseMenuLayer.ccb" owner:self];
         [pauseLayer setTag:pauseLayerTag];
         [self addChild:pauseLayer];
