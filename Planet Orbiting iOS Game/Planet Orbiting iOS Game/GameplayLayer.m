@@ -736,7 +736,7 @@ typedef struct {
     player.velocity=CGPointZero;
     player.acceleration=CGPointZero;
     
-    runningCounter += -[initDateAlive timeIntervalSinceNow];
+    //runningCounter += -[initDateAlive timeIntervalSinceNow];
     
     [Flurry logEvent:@"Player Died" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom],@"Segment Player Died On",[NSNumber numberWithInt:numZonesHitInARow],@"Pre-death combo",[NSNumber numberWithDouble:runningCounter],@"Time Alive",[NSNumber numberWithInt: [[UserWallet sharedInstance] getBalance]],@"Total Coins", nil]];
     
@@ -1519,7 +1519,7 @@ float lerpf(float a, float b, float t) {
 - (void)togglePause {
     paused = !paused;
     if (paused) {
-        runningCounter += -[initDateAlive timeIntervalSinceNow];
+        //runningCounter += -[initDateAlive timeIntervalSinceNow];
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"PauseMenuLayer.ccb" owner:self];
         [pauseLayer setTag:pauseLayerTag];
         [self addChild:pauseLayer];
