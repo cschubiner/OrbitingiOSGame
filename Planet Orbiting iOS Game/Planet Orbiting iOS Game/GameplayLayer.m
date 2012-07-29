@@ -259,8 +259,6 @@ typedef struct {
         isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsInTutorialMode];
         if ([[PlayerStats sharedInstance] getPlays] == 1) {
             isInTutorialMode = YES;
-        } else {
-            isInTutorialMode = NO;
         }
 
         planetCounter = 0;
