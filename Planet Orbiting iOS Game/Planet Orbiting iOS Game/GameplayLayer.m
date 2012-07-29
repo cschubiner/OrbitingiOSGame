@@ -382,13 +382,13 @@ typedef struct {
         hand2.position = ccp(-1000, -1000);
         
         
-        float hi;
-        
-        //light = [[Light alloc] init];
-        //light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
-        //light.position = ccp(240, 160);
-        //[light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
-        //[hudLayer reorderChild:light.sprite z:-1];
+        light = [[Light alloc] init];
+        light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
+        [light.sprite setOpacity:0];
+        light.sprite.position = ccp(240, 160);
+        [light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
+        light.position = ccp(-negativeLightStartingXPos, 0);
+        [hudLayer reorderChild:light.sprite z:-1];
         
         [self addChild:cameraLayer];
         [cameraLayer addChild:spriteSheet];
@@ -966,7 +966,7 @@ typedef struct {
     
 }
 
-- (void)UpdateBlackhole {
+- (void)UpdateLight {
     [blackHoleParticle setPosition:ccpLerp(blackHoleParticle.position, player.sprite.position, .009f*blackHoleSpeedFactor)];
     if (ccpDistance(player.sprite.position, blackHoleParticle.position)<blackHoleParticle.startRadius*blackHoleCollisionRadiusFactor)
     {
@@ -974,23 +974,29 @@ typedef struct {
         [self GameOver];
     }
 
-    float distance = ccpDistance(blackHoleParticle.position, player.sprite.position);
+    float distance = ccpDistance(light.position, player.sprite.position);
     float maxDistance = size.width*1.2f;
     
-    //CCLOG(@"DIST: %f", distance);
+    light.velocity = ccp(30, 0);
+    
+    
+    
+    CCLOG(@"DIST: %f", distance);
     
     //[light setTextureRect:CGRectMake(0, 0, 50, 50)];
-    //[light.sprite setOpacity:100];
+    //[light.sprite setOpacity:((negativeLightStartingXPos - distance)/negativeLightStartingXPos)*255];
     
     if (distance <= maxDistance ) {
-        float percentOfMax = distance / maxDistance;
-        GLubyte red   = lerpf(0, 255, percentOfMax);
-        GLubyte green = lerpf(88, 255, percentOfMax);
+        //float percentOfMax = distance / maxDistance;
+        //GLubyte red   = lerpf(0, 255, percentOfMax);
+        //GLubyte green = lerpf(88, 255, percentOfMax);
         //[background setColor:ccc3(red, green, 255)];
         //[background setColor:ccBLUE];
     }
     //else [background setColor:ccWHITE];
    // [background setTextureRect:<#(CGRect)#>];
+    
+    light.position = ccpAdd(light.position, light.velocity);
 }
 
 - (void) Update:(ccTime)dt {
@@ -1007,7 +1013,7 @@ typedef struct {
             [self UpdateScore];
             [self UpdateCamera:dt];
             [self UpdateParticles:dt];
-            [self UpdateBlackhole];
+            [self UpdateLight];
             updatesSinceLastPlanet++;
         }
     }
