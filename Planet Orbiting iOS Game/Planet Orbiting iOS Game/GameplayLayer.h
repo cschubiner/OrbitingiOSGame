@@ -92,6 +92,10 @@
     CGPoint cometVelocity;
         float lastTakeoffAngleToNextPlanet;
     
+    //Used to keep track of how long the player is alive
+    NSDate * initDateAlive;
+    double runningCounter;
+    
     // is multiplied by the absoluteSpeedMult to cause time dilation
     float timeDilationCoefficient;
     

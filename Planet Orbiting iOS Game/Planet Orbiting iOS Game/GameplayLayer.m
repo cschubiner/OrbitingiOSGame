@@ -400,6 +400,8 @@ typedef struct {
         
         lastPlanetVisited = [planets objectAtIndex:0];
         
+        initDateAlive = [NSDate date];
+        
         [Flurry logEvent:@"Played Game" withParameters:nil timed:YES];
         [self schedule:@selector(Update:) interval:0]; // this makes the update loop loop!!!!        
 	}
@@ -629,7 +631,6 @@ typedef struct {
                 
                 if (ccpLength(playerToTarget) > ccpLength(ccpAdd(playerToTarget, player.velocity)))
                     {
-                        //CCLOG(@"Inside");
                         if (ccpToAngle(player.velocity) > (anglePlayToTarg + (45 * M_PI/180)) || ccpToAngle(player.velocity) < (anglePlayToTarg - (45 * M_PI/180)))
                         {
                             dangerLevel += .02;
@@ -735,7 +736,13 @@ typedef struct {
     player.velocity=CGPointZero;
     player.acceleration=CGPointZero;
     
-    [Flurry logEvent:@"Player Died" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom],@"Segment Player Died On",[NSNumber numberWithInt:numZonesHitInARow],@"Pre-death combo", nil]];
+    runningCounter += -[initDateAlive timeIntervalSinceNow];
+    
+    [Flurry logEvent:@"Player Died" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom],@"Segment Player Died On",[NSNumber numberWithInt:numZonesHitInARow],@"Pre-death combo",[NSNumber numberWithDouble:runningCounter],@"Time Alive",[NSNumber numberWithInt: [[UserWallet sharedInstance] getBalance]],@"Total Coins", nil]];
+    
+    initDateAlive = [NSDate date];
+    runningCounter = 0;
+    
 }
 
 - (void)UpdatePlayer:(float)dt {
@@ -1512,10 +1519,12 @@ float lerpf(float a, float b, float t) {
 - (void)togglePause {
     paused = !paused;
     if (paused) {
+        runningCounter += -[initDateAlive timeIntervalSinceNow];
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"PauseMenuLayer.ccb" owner:self];
         [pauseLayer setTag:pauseLayerTag];
         [self addChild:pauseLayer];
     } else {
+        initDateAlive = [NSDate date];
         [self removeChildByTag:pauseLayerTag cleanup:NO];
     }
 }
