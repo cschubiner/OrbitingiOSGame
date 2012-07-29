@@ -8,8 +8,11 @@
 
 #import "PlayerStats.h"
 
+const int highScoreLimit = 4;
+
 @implementation PlayerStats {
     int totalPlays;
+    NSMutableArray *highScores;
 }
 
 static PlayerStats *sharedInstance = nil;
@@ -33,6 +36,20 @@ static PlayerStats *sharedInstance = nil;
 
 - (void)setPlays:(int)plays {
     totalPlays = plays;
+}
+
+- (void)addScore:(int)score {
+    NSNumber *newScore = [[NSNumber alloc] initWithInt:score];
+    [highScores addObject:newScore];
+    NSArray *sortedHighScores = [highScores sortedArrayUsingSelector:@selector(intValue)];
+    highScores = [[NSMutableArray alloc] initWithArray:sortedHighScores];
+    while ([highScores count] > highScoreLimit) {
+        [highScores removeObjectAtIndex:[highScores count] - 1];
+    }
+}
+
+- (NSArray *)getScores {
+    return highScores;
 }
 
 @end

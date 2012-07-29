@@ -290,8 +290,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>25</real>
-										<real>25</real>
+										<real>35</real>
+										<real>35</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -309,8 +309,8 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
-										<real>38.83984375</real>
-										<real>108.1015625</real>
+										<real>33.68359375</real>
+										<real>104.16015625</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
@@ -323,7 +323,7 @@
 									<key>spriteFileDisabled</key>
 									<string>soundButton.png</string>
 									<key>spriteFileNormal</key>
-									<string>soundButton.png</string>
+									<string>soundButtonGame.png</string>
 									<key>spriteFileSelected</key>
 									<string>soundButton.png</string>
 									<key>tag</key>
