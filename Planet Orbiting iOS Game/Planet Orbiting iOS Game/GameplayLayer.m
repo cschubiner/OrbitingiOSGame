@@ -381,7 +381,7 @@ typedef struct {
         light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
         [light.sprite setOpacity:0];
         light.sprite.position = ccp(240, 160);
-        [light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
+        [light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];
         light.position = ccp(-negativeLightStartingXPos, 0);
         [hudLayer reorderChild:light.sprite z:-1];
 
@@ -961,26 +961,27 @@ typedef struct {
 }
 
 - (void)UpdateLight {
-
+    
     float distance = ccpDistance(light.position, player.sprite.position);
     float maxDistance = size.width*1.2f;
     
     light.velocity = ccp(30, 0);
     
-  //  CCLOG(@"DIST: %f", distance);
+    //  CCLOG(@"DIST: %f", distance);
     
-    //[light setTextureRect:CGRectMake(0, 0, 50, 50)];
+    //[light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
     //[light.sprite setOpacity:((negativeLightStartingXPos - distance)/negativeLightStartingXPos)*255];
     
-    if (distance <= maxDistance ) {
+    //if (distance <= maxDistance ) {
         //float percentOfMax = distance / maxDistance;
         //GLubyte red   = lerpf(0, 255, percentOfMax);
         //GLubyte green = lerpf(88, 255, percentOfMax);
+        [background setColor:ccc3(255, 255, 255)];
         //[background setColor:ccc3(red, green, 255)];
         //[background setColor:ccBLUE];
-    }
+    //}
     //else [background setColor:ccWHITE];
-   // [background setTextureRect:<#(CGRect)#>];
+    // [background setTextureRect:<#(CGRect)#>];
     
     light.position = ccpAdd(light.position, light.velocity);
 }
