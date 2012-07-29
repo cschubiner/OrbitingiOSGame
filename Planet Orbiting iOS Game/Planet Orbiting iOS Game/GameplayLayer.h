@@ -62,7 +62,6 @@
     
     Light* light;
     
-    
     int originalSegmentNumber;
     
     bool isInTutorialMode;
