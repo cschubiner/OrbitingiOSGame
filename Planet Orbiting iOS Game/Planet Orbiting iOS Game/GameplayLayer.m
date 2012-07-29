@@ -1321,7 +1321,8 @@ typedef struct {
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Now you're ready to play!"]];
         
     } else if (tutorialState == tutorialCounter++) { //end the game
-        if ([[PlayerStats sharedInstance] getTutorialOverride]) {
+        if ([[PlayerStats sharedInstance] getTutorialOverride])
+        {
             [[PlayerStats sharedInstance] addPlay];
             [DataStorage storeData];
             [self endGame];
@@ -1383,11 +1384,6 @@ typedef struct {
     }
     [DataStorage storeData];
     CCLOG(@"number of plays ever: %i", [[PlayerStats sharedInstance] getPlays]);
-	MainMenuLayer *layer = [MainMenuLayer node];
-    id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,-320)];
-    id ease = [CCEaseOut actionWithAction:action rate:2];
-    [layer runAction: ease];
-    
     [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:FALSE];
     
     [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
