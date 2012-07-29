@@ -10,6 +10,6 @@
 
 @implementation Light
 
-@synthesize sprite, position, velocity, acceleration, stage;
+@synthesize sprite, position, velocity, acceleration, stage, hasPutOnLight;
 
 @end

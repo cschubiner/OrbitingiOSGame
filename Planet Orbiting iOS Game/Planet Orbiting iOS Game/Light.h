@@ -16,5 +16,6 @@
 @property (nonatomic) CGPoint velocity;
 @property (nonatomic) CGPoint acceleration;
 @property (nonatomic) int stage; //0=far away, 1=close, 2=wraping
+@property (nonatomic) bool hasPutOnLight;
 
 @end

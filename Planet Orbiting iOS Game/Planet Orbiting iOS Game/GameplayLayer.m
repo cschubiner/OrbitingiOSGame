@@ -850,12 +850,9 @@ typedef struct {
         
         
         light = [[Light alloc] init];
-        light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
-        [light.sprite setOpacity:0];
-        light.sprite.position = ccp(240, 160);
-        [light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];
         light.position = ccp(-negativeLightStartingXPos, 0);
-        [hudLayer reorderChild:light.sprite z:-1];
+        glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+        light.hasPutOnLight = false;
 
         
         [cameraLayer addChild:spriteSheet];
@@ -1442,20 +1439,41 @@ typedef struct {
 - (void)UpdateLight {
     
     float distance = ccpDistance(light.position, player.sprite.position);
-    float maxDistance = size.width*1.2f;
+    //float maxDistance = size.width*1.2f;
     
-    light.velocity = ccp(30, 0);
+    light.velocity = ccpMult(ccpNormalize(ccpSub(player.sprite.position, light.position)), 8);
     
-    //  CCLOG(@"DIST: %f", distance);
+    float opac;
+    
+    CCLOG(@"DIST: %f, OPAC: %f", distance, opac);
+    
+
+    if (distance < 4000) {
+        [background setOpacity:clampf((distance/4000)*255, 0, 255)];
+    }
+    if (distance < 600) {
+        if (!light.hasPutOnLight) {
+            light.hasPutOnLight = true;
+            light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
+            [light.sprite setOpacity:0];
+            light.sprite.position = ccp(240, 160);
+            [light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
+            [hudLayer reorderChild:light.sprite z:-1];
+        }
+        [light.sprite setOpacity:clampf(((600-distance)/600)*255, 0, 255)];
+    }
+    
+    if (distance <= 50) {
+        [light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];        
+        [self GameOver];
+    }
     
     //[light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
-    //[light.sprite setOpacity:((negativeLightStartingXPos - distance)/negativeLightStartingXPos)*255];
     
     //if (distance <= maxDistance ) {
         //float percentOfMax = distance / maxDistance;
         //GLubyte red   = lerpf(0, 255, percentOfMax);
         //GLubyte green = lerpf(88, 255, percentOfMax);
-        [background setColor:ccc3(255, 255, 255)];
         //[background setColor:ccc3(red, green, 255)];
         //[background setColor:ccBLUE];
     //}
