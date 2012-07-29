@@ -388,6 +388,7 @@ typedef struct {
         [hudLayer addChild:hand];
         [hudLayer addChild:hand2];
         
+        cameraDistToUse = 1005.14;
         [cameraLayer setScale:.43608];
         [cameraLayer setPosition:ccp(98.4779,67.6401)];
         cameraLastFocusPosition = ccp(325.808,213.3);
