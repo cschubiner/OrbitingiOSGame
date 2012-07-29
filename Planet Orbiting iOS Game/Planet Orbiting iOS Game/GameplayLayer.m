@@ -152,6 +152,7 @@ typedef struct {
         [self CreatePlanetAndZone:8999 yPos:948 scale:1];
         [self CreatePlanetAndZone:9599 yPos:948 scale:1];
         [self CreatePlanetAndZone:10399 yPos:948 scale:1];
+        [self CreatePlanetAndZone:11399 yPos:948 scale:1];
         return;
     }
     
