@@ -961,9 +961,7 @@ typedef struct {
     
     light.velocity = ccp(30, 0);
     
-    
-    
-    CCLOG(@"DIST: %f", distance);
+  //  CCLOG(@"DIST: %f", distance);
     
     //[light setTextureRect:CGRectMake(0, 0, 50, 50)];
     //[light.sprite setOpacity:((negativeLightStartingXPos - distance)/negativeLightStartingXPos)*255];
