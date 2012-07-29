@@ -1898,9 +1898,9 @@ typedef struct {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
         
-        if (location.x <= size.width/6 && location.y >= 4*size.height/5) {
+        /*if (location.x <= size.width/6 && location.y >= 4*size.height/5) {
             [self endGame];
-        }
+        }*/
         
         if (location.x >= 7 * size.width/8 && location.y >= 5*size.height/6) {
             [self togglePause];
