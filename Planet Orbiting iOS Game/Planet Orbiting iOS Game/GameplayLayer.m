@@ -1533,9 +1533,9 @@ float lerpf(float a, float b, float t) {
 - (void)dealloc {
     // before we add anything here, we should talk about what will be retained vs. released vs. set to nil in certain situations
     //LOL 
-    for (int i = 0 ; i < [segments count]-1; i++){
+    for (int i = 0 ; i < [segments count]; i++){
         NSArray *chosenSegment = [segments objectAtIndex:i];
-        for (int j = 0 ; j < [chosenSegment count]-1;j++) {
+        for (int j = 0 ; j < [chosenSegment count];j++) {
             [[chosenSegment objectAtIndex:j] release];
         }
     }
