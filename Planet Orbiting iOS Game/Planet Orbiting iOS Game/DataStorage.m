@@ -45,7 +45,7 @@
     NSData *arrayData = [defaults objectForKey:@"highscores"];
     if (arrayData != nil)
     {
-        NSArray *oldSavedArray = [NSKeyedUnarchiver unarchiveObjectWithData:arrayData];
+   //     NSArray *oldSavedArray = [NSKeyedUnarchiver unarchiveObjectWithData:arrayData];
         //if (oldSavedArray != nil)
             //objectArray = [[NSMutableArray alloc] initWithArray:oldSavedArray];
         //else
