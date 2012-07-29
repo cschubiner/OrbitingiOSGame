@@ -7,7 +7,13 @@
 //
 
 #import "CCNode.h"
+#import "cocos2d.h"
 
 @interface Light : CCNode
+
+@property (nonatomic, assign) CCSprite* sprite;
+@property (nonatomic) CGPoint position;
+@property (nonatomic) CGPoint velocity;
+@property (nonatomic) CGPoint acceleration;
 
 @end

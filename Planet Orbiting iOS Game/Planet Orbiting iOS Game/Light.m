@@ -10,4 +10,6 @@
 
 @implementation Light
 
+@synthesize sprite, position, velocity, acceleration;
+
 @end

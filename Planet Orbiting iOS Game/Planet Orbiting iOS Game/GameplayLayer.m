@@ -381,6 +381,15 @@ typedef struct {
         hand2 = [CCSprite spriteWithFile:@"edit(84759).png"];
         hand2.position = ccp(-1000, -1000);
         
+        
+        float hi;
+        
+        //light = [[Light alloc] init];
+        //light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
+        //light.position = ccp(240, 160);
+        //[light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
+        //[hudLayer reorderChild:light.sprite z:-1];
+        
         [self addChild:cameraLayer];
         [cameraLayer addChild:spriteSheet];
         [hudLayer addChild:hand];
@@ -968,14 +977,17 @@ typedef struct {
     float distance = ccpDistance(blackHoleParticle.position, player.sprite.position);
     float maxDistance = size.width*1.2f;
     
-    CCLOG(@"DIST: %f", distance);
+    //CCLOG(@"DIST: %f", distance);
+    
+    //[light setTextureRect:CGRectMake(0, 0, 50, 50)];
+    //[light.sprite setOpacity:100];
     
     if (distance <= maxDistance ) {
         float percentOfMax = distance / maxDistance;
         GLubyte red   = lerpf(0, 255, percentOfMax);
         GLubyte green = lerpf(88, 255, percentOfMax);
         //[background setColor:ccc3(red, green, 255)];
-        [background setColor:ccBLACK];
+        //[background setColor:ccBLUE];
     }
     //else [background setColor:ccWHITE];
    // [background setTextureRect:<#(CGRect)#>];
