@@ -975,8 +975,10 @@ typedef struct {
         GLubyte red   = lerpf(0, 255, percentOfMax);
         GLubyte green = lerpf(88, 255, percentOfMax);
         //[background setColor:ccc3(red, green, 255)];
+        [background setColor:ccBLACK];
     }
     //else [background setColor:ccWHITE];
+   // [background setTextureRect:<#(CGRect)#>];
 }
 
 - (void) Update:(ccTime)dt {
