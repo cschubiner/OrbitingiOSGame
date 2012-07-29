@@ -1301,14 +1301,7 @@ typedef struct {
     } else if (tutorialState == tutorialCounter++) { //tap
         [tutorialLabel1 setString:[NSString stringWithFormat:@"You've got it! But now we'll have"]];
         [tutorialLabel2 setString:[NSString stringWithFormat:@"to start worrying about asteroids."]];
-        
-        
-        
-        
-        
-        
-        
-        
+
         
         
         
@@ -1326,7 +1319,6 @@ typedef struct {
         tutorialState++;
         
     }
-    
     
     if (tutorialAdvanceMode == 1)
         [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue...                                    Tap to continue..."]];
