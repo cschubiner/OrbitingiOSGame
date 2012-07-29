@@ -395,7 +395,8 @@ typedef struct {
         [cameraLayer setScale:2.0f];
         
         lastPlanetVisited = [planets objectAtIndex:0];
-                
+
+        
         [Flurry logEvent:@"Played Game" withParameters:nil timed:YES];
         [self schedule:@selector(Update:) interval:0]; // this makes the update loop loop!!!!        
 	}
@@ -626,14 +627,10 @@ typedef struct {
                 
                 if (ccpLength(playerToTarget) > ccpLength(ccpAdd(playerToTarget, player.velocity)))
                     {
-                        if (ccpToAngle(player.velocity) > (anglePlayToTarg + (45 * M_PI/180)) || ccpToAngle(player.velocity) < (anglePlayToTarg - (45 * M_PI/180)))
+                        if (ccpToAngle(player.velocity) > (anglePlayToTarg + (55 * M_PI/180)) || ccpToAngle(player.velocity) < (anglePlayToTarg - (55 * M_PI/180)))
                         {
-                            dangerLevel += .02;
+                            dangerLevel += .03;
                             //CCLOG(@"Added to DangerLevel: %f", dangerLevel);
-                        }
-                        else if (dangerLevel >= .02){
-                            dangerLevel -= .02;
-                            //CCLOG(@"Subtracted from DangerLevel: %f", dangerLevel);
                         }
                     }
                 
@@ -731,12 +728,9 @@ typedef struct {
     player.velocity=CGPointZero;
     player.acceleration=CGPointZero;
     
-    //runningCounter += -[initDateAlive timeIntervalSinceNow];
+    [Flurry logEvent:@"Player Died" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom],@"Segment Player Died On",[NSNumber numberWithInt:numZonesHitInARow],@"Pre-death combo",[NSNumber numberWithFloat:totalSecondsAlive],@"Time Alive",[NSNumber numberWithInt: [[UserWallet sharedInstance] getBalance]],@"Total Coins", nil]];
     
-    [Flurry logEvent:@"Player Died" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom],@"Segment Player Died On",[NSNumber numberWithInt:numZonesHitInARow],@"Pre-death combo",[NSNumber numberWithDouble:runningCounter],@"Time Alive",[NSNumber numberWithInt: [[UserWallet sharedInstance] getBalance]],@"Total Coins", nil]];
-    
-    initDateAlive = [NSDate date];
-    runningCounter = 0;
+    totalSecondsAlive = 0;
     
 }
 
@@ -977,9 +971,11 @@ typedef struct {
 - (void) Update:(ccTime)dt {
     if (!isTutPaused) {
         if (!paused) {
-            if (zonesReached<[planets count])
+            if (zonesReached<[planets count]) {
                 totalGameTime+=dt;
-            NSLog(@"hi");
+                totalSecondsAlive+=dt;
+            }
+                
             if (player.alive)
                 [self UpdatePlanets];
             [self UpdatePlayer: dt];
@@ -1520,7 +1516,6 @@ float lerpf(float a, float b, float t) {
         [pauseLayer setTag:pauseLayerTag];
         [self addChild:pauseLayer];
     } else {
-        initDateAlive = [NSDate date];
         [self removeChildByTag:pauseLayerTag cleanup:NO];
     }
 }

@@ -82,17 +82,15 @@
     Planet* targetPlanet;
     CGPoint swipeVector;
     
+    float totalSecondsAlive;
+    
     CCParticleSystemQuad * thrustParticle;
     CCParticleSystemQuad * spaceBackgroundParticle;
     CCParticleSystemQuad * cometParticle;
     CCParticleSystemQuad * blackHoleParticle;
     CCParticleSystemQuad * playerExplosionParticle;
     CGPoint cometVelocity;
-        float lastTakeoffAngleToNextPlanet;
-    
-    //Used to keep track of how long the player is alive
-    NSDate * initDateAlive;
-    double runningCounter;
+    float lastTakeoffAngleToNextPlanet;
     
     // is multiplied by the absoluteSpeedMult to cause time dilation
     float timeDilationCoefficient;
