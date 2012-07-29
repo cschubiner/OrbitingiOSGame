@@ -14,14 +14,16 @@ const float cometMinYSpeed = 2;
 const float cometMaxYSpeed = 5;
 
 //changes how zoomed in the camera in. higher numbers mean more zoom (everything looks bigger)
-const float zoomMultiplier = .85*.8f;
+const float zoomMultiplier = .85*.95f*1.06f;
 //changes how quickly the camera zooms in and out
 const float cameraZoomSpeed = .025;
 //changes how quickly the camera changes position
 const float cameraMovementSpeed = .06;
+//how much more times the camera focuses on the first focus node compared to the second
+const float cameraScaleFocusedOnFocusPosOne = 1.6f;
 
 //For optimization, whenever more segments than this are present, the oldest one will be deleted
-const int numberOfSegmentsAtATime = 2;
+const int numberOfSegmentsAtATime = 3;
 //This is the general direction the planet segments head in in degrees from 0. 
 const float directionPlanetSegmentsGoIn= 33.3910034413;
 //The maximum number of degrees that the segment of planets can be rotated from the direction (see above)
@@ -90,7 +92,7 @@ const float swipeStrength = .03;
 const float minSwipeStrength = 30;
 
 //how many updates pass while the player isn't in a zone until tie go will did
-const float deathAfterThisLong = 55*1.35f*1.1f*1.5f*1*2*.9;
+const float deathAfterThisLong = 55*1.35f*1.1f*1.5f*1*2*.9*2;
 
 //the percent of the black hole's radius that triggers a collision
 const float blackHoleCollisionRadiusFactor = .2f;
