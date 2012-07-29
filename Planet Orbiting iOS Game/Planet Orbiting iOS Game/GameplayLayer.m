@@ -16,7 +16,8 @@
 #import "DataStorage.h"
 #import "PlayerStats.h"
 
-#define pauseLayerTag 100
+#define pauseLayerTag       100
+#define gameOverLayerTag    200
 
 const float musicVolumeGameplay = 1;
 const float effectsVolumeGameplay = 1;
@@ -961,6 +962,11 @@ typedef struct {
 }
 
 - (void)GameOver {
+    pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"GameOverLayer.ccb" owner:self];
+    [pauseLayer setTag:gameOverLayerTag];
+    [self addChild:pauseLayer];
+    [[PlayerStats sharedInstance] addScore:score];
+    [DataStorage storeData];
     
 }
 
@@ -968,7 +974,7 @@ typedef struct {
     [blackHoleParticle setPosition:ccpLerp(blackHoleParticle.position, player.sprite.position, .009f*blackHoleSpeedFactor)];
     if (ccpDistance(player.sprite.position, blackHoleParticle.position)<blackHoleParticle.startRadius*blackHoleCollisionRadiusFactor)
     {
-        //[self endGame];
+        // [self endGame];
         [self GameOver];
     }
 

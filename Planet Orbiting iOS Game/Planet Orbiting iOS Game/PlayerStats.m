@@ -29,6 +29,9 @@ static PlayerStats *sharedInstance = nil;
 - (id)init {
 	if (self = [super init]) {
         highScores = [[NSMutableArray alloc] init];
+        for (int i = 0; i < highScoreLimit; i++) {
+            [highScores addObject:[NSNumber numberWithInt:0]];
+        }
     }
     return self;
 }

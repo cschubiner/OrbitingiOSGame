@@ -81,10 +81,18 @@ const float effectsVolumeMainMenu = 1;
         int highScore3Int = [[highScores objectAtIndex:2] intValue];
         int highScore4Int = [[highScores objectAtIndex:3] intValue];
         
-        [highScore1 setString:[NSString stringWithFormat:@"%i", highScore1Int]];
-        [highScore2 setString:[NSString stringWithFormat:@"%i", highScore2Int]];
-        [highScore3 setString:[NSString stringWithFormat:@"%i", highScore3Int]];
-        [highScore4 setString:[NSString stringWithFormat:@"%i", highScore4Int]];
+        if (highScore1Int != 0) {
+            [highScore1 setString:[NSString stringWithFormat:@"%i", highScore1Int]];
+        }
+        if (highScore2Int != 0) {
+            [highScore2 setString:[NSString stringWithFormat:@"%i", highScore2Int]];
+        }
+        if (highScore3Int != 0) {
+            [highScore3 setString:[NSString stringWithFormat:@"%i", highScore3Int]];
+        }
+        if (highScore4Int != 0) {
+            [highScore4 setString:[NSString stringWithFormat:@"%i", highScore4Int]];
+        }
         
         [layer setPosition:ccp(-480, 0)];
         [self addChild:layer];

@@ -130,7 +130,7 @@
 									<key>scaleY</key>
 									<real>1</real>
 									<key>selector</key>
-									<string>togglePause</string>
+									<string>startGame</string>
 									<key>spriteFileDisabled</key>
 									<string>btn-test-2.png</string>
 									<key>spriteFileNormal</key>
@@ -432,7 +432,7 @@
 							<key>scaleY</key>
 							<real>0.36152344942092896</real>
 							<key>string</key>
-							<string>Suck my massive testicles</string>
+							<string></string>
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
@@ -482,8 +482,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-114.68359375</real>
-								<real>64.765625</real>
+								<real>-108.63671875</real>
+								<real>44.79296875</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>

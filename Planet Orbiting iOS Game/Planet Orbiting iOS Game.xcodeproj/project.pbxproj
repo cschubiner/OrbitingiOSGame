@@ -13,6 +13,7 @@
 		010B1F2D15C50DD500C18E0F /* soundButtonMain.png in Resources */ = {isa = PBXBuildFile; fileRef = 010B1F2C15C50DD500C18E0F /* soundButtonMain.png */; };
 		012ED2F415BC7894008FDFBD /* StoreItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 012ED2F315BC7894008FDFBD /* StoreItem.m */; };
 		014B372215C25C93002EDBCA /* PauseMenuLayer.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 014B372115C25C93002EDBCA /* PauseMenuLayer.ccb */; };
+		019A361415C539BF00572B68 /* GameOverLayer.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 019A361315C539BF00572B68 /* GameOverLayer.ccb */; };
 		019F158D15C3BA85005F7908 /* MainMenuScrolling.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 019F158C15C3BA85005F7908 /* MainMenuScrolling.ccb */; };
 		01FE9B2215BE94E9007512ED /* PowerupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B2115BE94E9007512ED /* PowerupManager.m */; };
 		01FE9B3415BFAE70007512ED /* DataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B3315BFAE6F007512ED /* DataStorage.m */; };
@@ -218,6 +219,7 @@
 		012ED2F215BC7894008FDFBD /* StoreItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreItem.h; sourceTree = "<group>"; };
 		012ED2F315BC7894008FDFBD /* StoreItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreItem.m; sourceTree = "<group>"; };
 		014B372115C25C93002EDBCA /* PauseMenuLayer.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PauseMenuLayer.ccb; sourceTree = "<group>"; };
+		019A361315C539BF00572B68 /* GameOverLayer.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GameOverLayer.ccb; sourceTree = "<group>"; };
 		019F158C15C3BA85005F7908 /* MainMenuScrolling.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MainMenuScrolling.ccb; sourceTree = "<group>"; };
 		01FE9B2015BE94E9007512ED /* PowerupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PowerupManager.h; sourceTree = "<group>"; };
 		01FE9B2115BE94E9007512ED /* PowerupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PowerupManager.m; sourceTree = "<group>"; };
@@ -1129,6 +1131,7 @@
 				C445303115A68880004F8F48 /* btn-test-1.png */,
 				019F158C15C3BA85005F7908 /* MainMenuScrolling.ccb */,
 				014B372115C25C93002EDBCA /* PauseMenuLayer.ccb */,
+				019A361315C539BF00572B68 /* GameOverLayer.ccb */,
 				C445303215A68880004F8F48 /* btn-test-2.png */,
 				C445303315A68880004F8F48 /* burst.png */,
 				C445303515A68880004F8F48 /* jungle.png */,
@@ -1304,11 +1307,8 @@
 				010B1F2B15C50DCF00C18E0F /* soundButtonGame.png in Resources */,
 				010B1F2D15C50DD500C18E0F /* soundButtonMain.png in Resources */,
 				0C5400B915C50C4000AF9AA9 /* edit(84759).png in Resources */,
-				0C5400C715C5124400AF9AA9 /* soundButtonGame-hd.png in Resources */,
-				0C5400C815C5124400AF9AA9 /* soundButtonGame.png in Resources */,
-				0C5400C915C5124400AF9AA9 /* soundButtonMain-hd.png in Resources */,
-				0C5400CA15C5124400AF9AA9 /* soundButtonMain.png in Resources */,
 				FA895CD415C51D2E00FA4EC3 /* OneByOne.png in Resources */,
+				019A361415C539BF00572B68 /* GameOverLayer.ccb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
