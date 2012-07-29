@@ -1710,15 +1710,15 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
-										<real>503.7890625</real>
-										<real>-54.58203125</real>
+										<real>478.51953125</real>
+										<real>-61.95703125</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
 									<key>scaleX</key>
-									<real>1.8068749904632568</real>
+									<real>0.69378900527954102</real>
 									<key>scaleY</key>
-									<real>1.8068749904632568</real>
+									<real>0.69378900527954102</real>
 									<key>selector</key>
 									<string>toggleMute</string>
 									<key>spriteFileDisabled</key>
