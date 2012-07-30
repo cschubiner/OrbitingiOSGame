@@ -59,7 +59,7 @@
 					<key>mouseEnabled</key>
 					<integer>1</integer>
 					<key>opacity</key>
-					<integer>158</integer>
+					<integer>79</integer>
 					<key>position</key>
 					<array>
 						<real>216.484375</real>
@@ -401,8 +401,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>966</real>
-								<real>145</real>
+								<real>0.0</real>
+								<real>0.0</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
