@@ -1448,8 +1448,6 @@ typedef struct {
 }
 
 - (void)UpdateLight {
-    float distance = ccpDistance(light.position, player.sprite.position);
-    // float maxDistance = size.width*1.2f;
     light.distanceFromPlayer = score - light.score;
     
     if (light.distanceFromPlayer > negativeLightStartingScore)
@@ -1488,10 +1486,10 @@ typedef struct {
     
     if (light.hasPutOnLight) {
         light.sprite.position = ccp(light.sprite.position.x+480/10, light.sprite.position.y);
-        [light.sprite setOpacity:(light.sprite.position.x+240)*255/480];
+        [light.sprite setOpacity:clampf((light.sprite.position.x+240)*255/480, 0, 255)];
     }
     if (light.sprite.position.x > 240) {
-        [light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];        
+        //[light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];        
         [self GameOver];
     }
     
