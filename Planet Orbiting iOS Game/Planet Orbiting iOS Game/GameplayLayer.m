@@ -1543,7 +1543,6 @@ typedef struct {
         if (!isInTutorialMode && !scoreAlreadySaved) {
             [[PlayerStats sharedInstance] addScore:finalScore];
         }
-        //[DataStorage storeData];
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
     }
 }
