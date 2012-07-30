@@ -51,22 +51,22 @@
 					<key>isRelativeAnchorPoint</key>
 					<true/>
 					<key>lockedScaleRatio</key>
-					<true/>
+					<false/>
 					<key>memberVarAssignmentName</key>
 					<string></string>
 					<key>memberVarAssignmentType</key>
 					<integer>0</integer>
 					<key>opacity</key>
-					<integer>255</integer>
+					<integer>180</integer>
 					<key>position</key>
 					<array>
-						<real>240.61328125</real>
-						<real>294.7421875</real>
+						<real>11.2578125</real>
+						<real>161.70703125</real>
 					</array>
 					<key>rotation</key>
-					<real>0.0</real>
+					<real>-90</real>
 					<key>scaleX</key>
-					<real>1</real>
+					<real>0.5</real>
 					<key>scaleY</key>
 					<real>1</real>
 					<key>spriteFile</key>
@@ -98,9 +98,9 @@
 					</array>
 					<key>color</key>
 					<array>
-						<integer>165</integer>
-						<integer>242</integer>
+						<integer>248</integer>
 						<integer>255</integer>
+						<integer>247</integer>
 					</array>
 					<key>contentSize</key>
 					<array>
@@ -127,11 +127,11 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>28.62890625</real>
-						<real>294.8359375</real>
+						<real>11.354999542236328</real>
+						<real>268.703125</real>
 					</array>
 					<key>rotation</key>
-					<real>0.0</real>
+					<real>-90</real>
 					<key>scaleX</key>
 					<real>1</real>
 					<key>scaleY</key>

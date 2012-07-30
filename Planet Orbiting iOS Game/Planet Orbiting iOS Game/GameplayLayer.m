@@ -531,11 +531,12 @@ typedef struct {
         [cameraFocusNode setPosition:ccp(142.078,93.0159)];
         
         lastPlanetVisited = [planets objectAtIndex:0];
-        CCLayer* layerHud = (CCLayer*)[CCBReader nodeGraphFromFile:@"hudLayer.ccb" owner:self];
+        layerHudSlider = (CCLayer*)[CCBReader nodeGraphFromFile:@"hudLayer.ccb" owner:self];
 
         [self addChild:cameraLayer];
         [self addChild:hudLayer];
-        [self addChild:layerHud];
+        if (!isInTutorialMode)
+        [self addChild:layerHudSlider];
         [self addChild:pauseMenu];
         [self UpdateScore];
 
@@ -1105,6 +1106,8 @@ typedef struct {
 - (void)GameOver {
     if (!isGameOver) { //this ensures it only runs once
         isGameOver = true;
+        if ([[self children]containsObject:layerHudSlider])
+        [self removeChild:layerHudSlider cleanup:YES];
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"GameOverLayer.ccb" owner:self];
         [pauseLayer setTag:gameOverLayerTag];
         [self addChild:pauseLayer];
@@ -1123,7 +1126,7 @@ typedef struct {
     
     
     light.scoreVelocity += amountToIncreaseLightScoreVelocityEachUpdate;
-    [slidingSelector setPosition:ccp(lerpf(28.629,454.078,1-light.distanceFromPlayer/negativeLightStartingScore),slidingSelector.position.y)];
+    [slidingSelector setPosition:ccp(slidingSelector.position.x,lerpf(50.453,269.848,1-light.distanceFromPlayer/negativeLightStartingScore))];
     
 //    CCLOG(@"DIST: %f, VEL: %f, LIGHSCORE: %f", light.distanceFromPlayer, light.scoreVelocity, light.score);
 
