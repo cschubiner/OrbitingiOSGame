@@ -1447,9 +1447,6 @@ typedef struct {
 }
 
 - (void)UpdateLight {
-    
-    float distance = ccpDistance(light.position, player.sprite.position);
-    // float maxDistance = size.width*1.2f;
     light.distanceFromPlayer = score - light.score;
     
     if (light.distanceFromPlayer > negativeLightStartingScore)
@@ -1481,7 +1478,7 @@ typedef struct {
             [hudLayer reorderChild:light.sprite z:-1];
             [light.sprite setOpacity:0];
         }
-    } else if (light.distanceFromPlayer <= 2500) {
+    } else if (light.distanceFromPlayer <= 300) {
         [background setOpacity:clampf(((light.distanceFromPlayer)/2500)*255, 0, 255)];
     }
     
