@@ -723,7 +723,8 @@ typedef struct {
         self.isTouchEnabled= TRUE;
         
         isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsInTutorialMode];
-
+        isInTutorialMode = false;
+        
         planetCounter = 0;
         planets = [[NSMutableArray alloc] init];
         asteroids = [[NSMutableArray alloc] init];
