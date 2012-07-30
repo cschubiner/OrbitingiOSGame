@@ -170,8 +170,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>150</real>
-										<real>48</real>
+										<real>103</real>
+										<real>103</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -189,23 +189,23 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
-										<real>-191.5</real>
-										<real>-53.5234375</real>
+										<real>-175.859375</real>
+										<real>3.52734375</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
 									<key>scaleX</key>
-									<real>1</real>
+									<real>0.89503908157348633</real>
 									<key>scaleY</key>
-									<real>1</real>
+									<real>0.89503908157348633</real>
 									<key>selector</key>
 									<string>togglePause</string>
 									<key>spriteFileDisabled</key>
-									<string>btn-test-2.png</string>
+									<string>play.png</string>
 									<key>spriteFileNormal</key>
-									<string>btn-test-0.png</string>
+									<string>play.png</string>
 									<key>spriteFileSelected</key>
-									<string>btn-test-1.png</string>
+									<string>play.png</string>
 									<key>tag</key>
 									<integer>1</integer>
 									<key>target</key>
@@ -230,8 +230,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>150</real>
-										<real>48</real>
+										<real>94</real>
+										<real>94</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -249,8 +249,8 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
-										<real>-31.36328125</real>
-										<real>-53.609375</real>
+										<real>-43.3671875</real>
+										<real>3.08203125</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
@@ -261,11 +261,11 @@
 									<key>selector</key>
 									<string>endGame</string>
 									<key>spriteFileDisabled</key>
-									<string>btn-test-2.png</string>
+									<string>upgrade.png</string>
 									<key>spriteFileNormal</key>
-									<string>btn-test-0.png</string>
+									<string>upgrade.png</string>
 									<key>spriteFileSelected</key>
-									<string>btn-test-1.png</string>
+									<string>upgrade.png</string>
 									<key>tag</key>
 									<integer>1</integer>
 									<key>target</key>
@@ -410,13 +410,13 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>75</real>
-								<real>22</real>
+								<real>307</real>
+								<real>145</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
 							<key>fontFile</key>
-							<string>PlainFont.fnt</string>
+							<string>titleFontGreen.fnt</string>
 							<key>isExpanded</key>
 							<true/>
 							<key>isRelativeAnchorPoint</key>
@@ -431,15 +431,15 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-194.97265625</real>
-								<real>-50.7578125</real>
+								<real>-178.5390625</real>
+								<real>-55.94921875</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>1.1604297161102295</real>
+							<real>0.29964843392372131</real>
 							<key>scaleY</key>
-							<real>1.1604297161102295</real>
+							<real>0.29964843392372131</real>
 							<key>string</key>
 							<string>Resume</string>
 							<key>tag</key>
@@ -470,13 +470,13 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>38</real>
-								<real>22</real>
+								<real>155</real>
+								<real>145</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
 							<key>fontFile</key>
-							<string>PlainFont.fnt</string>
+							<string>titleFontGreen.fnt</string>
 							<key>isExpanded</key>
 							<true/>
 							<key>isRelativeAnchorPoint</key>
@@ -491,15 +491,15 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-36.05859375</real>
-								<real>-51.96875</real>
+								<real>-44.4140625</real>
+								<real>-56.78125</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>1.1604297161102295</real>
+							<real>0.30000001192092896</real>
 							<key>scaleY</key>
-							<real>1.1604297161102295</real>
+							<real>0.30000001192092896</real>
 							<key>string</key>
 							<string>Quit</string>
 							<key>tag</key>
@@ -551,15 +551,15 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-109.6875</real>
-								<real>29.30078125</real>
+								<real>-112.3828125</real>
+								<real>92.89453125</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>0.36152344942092896</real>
+							<real>0.40937498211860657</real>
 							<key>scaleY</key>
-							<real>0.36152344942092896</real>
+							<real>0.40937498211860657</real>
 							<key>string</key>
 							<string>Game Paused</string>
 							<key>tag</key>

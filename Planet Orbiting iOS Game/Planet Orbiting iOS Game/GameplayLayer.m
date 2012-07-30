@@ -757,7 +757,7 @@ typedef struct {
             
             coinsLabel = [CCLabelTTF labelWithString:@"Coins: " fontName:@"Marker Felt" fontSize:24];
             coinsLabel.position = ccp(70, [coinsLabel boundingBox].size.height);
-            [hudLayer addChild: coinsLabel];
+            // [hudLayer addChild: coinsLabel];
         } 
         else {
             tutorialState = 0;
@@ -1399,9 +1399,9 @@ typedef struct {
         score = tempScore;
     [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score]];
     
-    int numCoins = [[UserWallet sharedInstance] getBalance];
-    int coinsDiff = numCoins - startingCoins;
-    [coinsLabel setString:[NSString stringWithFormat:@"Coins: %i",coinsDiff]];
+    // int numCoins = [[UserWallet sharedInstance] getBalance];
+    // int coinsDiff = numCoins - startingCoins;
+    //[coinsLabel setString:[NSString stringWithFormat:@"Coins: %i",coinsDiff]];
 }
 
 - (void)UpdateParticles:(ccTime)dt {
@@ -1444,6 +1444,10 @@ typedef struct {
         [[PlayerStats sharedInstance] addScore:finalScore];
         scoreAlreadySaved = YES;
         [DataStorage storeData];
+        if ([[PlayerStats sharedInstance] getPlays] == 10) {
+            NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/PBD9L5H"];
+            [[UIApplication sharedApplication] openURL:url];
+        }
     }
 }
 
@@ -1453,7 +1457,7 @@ typedef struct {
     light.distanceFromPlayer = score - light.score;
     
     if (light.distanceFromPlayer > negativeLightStartingScore)
-        light.score = score-negativeLightStartingScore;
+        light.score = score - negativeLightStartingScore;
     
     
     light.scoreVelocity += amountToIncreaseLightScoreVelocityEachUpdate;
@@ -1545,6 +1549,10 @@ typedef struct {
         }
         //[DataStorage storeData];
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
+        if ([[PlayerStats sharedInstance] getPlays] == 10) {
+            NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/PBD9L5H"];
+            [[UIApplication sharedApplication] openURL:url];
+        }
     }
 }
 
@@ -2038,7 +2046,7 @@ float lerpf(float a, float b, float t) {
     return a + (b - a) * t;
 }
 
--(float) randomValueBetween:(float)low andValue:(float)high {
+- (float) randomValueBetween:(float)low andValue:(float)high {
     return (((float) arc4random() / 0xFFFFFFFFu) * (high - low)) + low;
 }
 

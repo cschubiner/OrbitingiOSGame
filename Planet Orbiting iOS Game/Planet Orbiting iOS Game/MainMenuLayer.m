@@ -44,7 +44,7 @@ const float effectsVolumeMainMenu = 1;
     int coins = [[UserWallet sharedInstance] getBalance];
     NSString *coinsBalance = [NSString stringWithFormat:@"Balance: %i coins", coins];
     NSLog(@"%@", coinsBalance);
-    [coinBalanceLabel setString:coinsBalance];
+    //[coinBalanceLabel setString:coinsBalance];
     
     int magnets = [[PowerupManager sharedInstance] numMagnet];
     NSString *magnetsBought = [NSString stringWithFormat:@"%i", magnets];
@@ -185,8 +185,8 @@ const float effectsVolumeMainMenu = 1;
 
 - (void)pressedSendFeedback: (id) sender {
     [Flurry logEvent:@"Pressed Send Feedback"];
-    [[UIApplication sharedApplication]setStatusBarOrientation:UIInterfaceOrientationPortrait];
-    [TestFlight openFeedbackView];
+    NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/PBD9L5H"];
+    [[UIApplication sharedApplication] openURL:url];
 }
 
 - (void)pressedTutorialButton: (id) sender {
