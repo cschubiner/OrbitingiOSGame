@@ -1438,6 +1438,7 @@ typedef struct {
 }
 
 - (void)GameOver {
+    isGameOver = true;
     pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"GameOverLayer.ccb" owner:self];
     [pauseLayer setTag:gameOverLayerTag];
     [self addChild:pauseLayer];
@@ -1513,7 +1514,7 @@ typedef struct {
 
 - (void) Update:(ccTime)dt {
     if (!isTutPaused) {
-        if (!paused) {
+        if (!paused&&isGameOver==false) {
             if (zonesReached<[planets count]) {
                 totalGameTime+=dt;
                 totalSecondsAlive+=dt;
