@@ -1237,7 +1237,7 @@ typedef struct {
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Welcome to Star Dash!"]];
         [tutorialLabel2 setString:[NSString stringWithFormat:@"Fuck you bitch :D"]];
         
-        [self updateHandFrom:ccp(230, 20) to:ccp(450, 150) fadeInUpdates:20 moveUpdates:50 fadeOutUpdates:20 goneUpdates:0];
+        [self updateHandFrom:ccp(230, 20) to:ccp(450, 150) fadeInUpdates:20 moveUpdates:50 fadeOutUpdates:20 goneUpdates:30];
 
         
         CGPoint cameraLastFocusPosition2 = ccp(611, 400);
@@ -1308,21 +1308,33 @@ typedef struct {
 
 - (void)updateHandFrom:(CGPoint)pos1 to:(CGPoint)pos2 fadeInUpdates:(int)fadeInUpdates moveUpdates:(int)moveUpdates fadeOutUpdates:(int)fadeOutUpdates goneUpdates:(int)goneUpdates {
     
+    
+    
     if (handCounter == 0)
         hand.position = pos1;
-    else if (handCounter <= fadeInUpdates)
+    else if (handCounter <= fadeInUpdates) {
         hand.opacity += 255/fadeInUpdates;
+    }
     else if (handCounter <= fadeInUpdates + moveUpdates) {
         CGPoint vec = ccpSub(pos2, pos1);
         hand.position = ccpAdd(pos1, ccpMult(vec, (handCounter-fadeInUpdates)/moveUpdates));
-    } else if (handCounter <= fadeInUpdates + moveUpdates + fadeOutUpdates)
+    } else if (handCounter <= fadeInUpdates + moveUpdates + fadeOutUpdates) {
+        if (hand.opacity < 20)
+            hand.opacity = 0;
+        else
         hand.opacity -= 255/fadeOutUpdates;
-    else
+        
+    }
+    else if (handCounter > fadeInUpdates + moveUpdates + fadeOutUpdates + goneUpdates) {
         handCounter = -1;
+        hand.opacity = 0;
+    }
+    
+    if (hand.position.x == pos2.x&&handCounter > fadeInUpdates + moveUpdates + fadeOutUpdates)
+        hand.opacity = 0 ; 
     
     
-    
-    //CCLOG(@"Dcounter: %f", handCounter);
+    CCLOG(@"opac: %f", (float)hand.opacity);
     
     // hand.opacity = 100;
     
