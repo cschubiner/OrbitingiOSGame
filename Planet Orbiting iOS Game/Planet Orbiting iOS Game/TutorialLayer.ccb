@@ -673,8 +673,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>154.43359375</real>
-						<real>158.94140625</real>
+						<real>154.2890625</real>
+						<real>161.57421875</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
@@ -772,7 +772,7 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>452</real>
+						<real>820</real>
 						<real>67</real>
 					</array>
 					<key>customClass</key>
@@ -793,8 +793,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>189.3125</real>
-						<real>71.61328125</real>
+						<real>228.71875</real>
+						<real>68.55859375</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
@@ -803,7 +803,7 @@
 					<key>scaleY</key>
 					<real>0.49000000953674316</real>
 					<key>string</key>
-					<string>Text about white thing</string>
+					<string>Fly as far as you can before the timer bar</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
@@ -848,8 +848,8 @@
 							<integer>1</integer>
 							<key>position</key>
 							<array>
-								<real>445.037109375</real>
-								<real>34.97265625</real>
+								<real>450.900390625</real>
+								<real>30.5078125</real>
 							</array>
 							<key>rotation</key>
 							<real>90</real>
@@ -923,6 +923,66 @@
 					<integer>-1</integer>
 					<key>touchEnabled</key>
 					<integer>1</integer>
+					<key>visible</key>
+					<true/>
+					<key>zOrder</key>
+					<integer>0</integer>
+				</dict>
+			</dict>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>class</key>
+				<string>CCLabelBMFont</string>
+				<key>properties</key>
+				<dict>
+					<key>anchorPoint</key>
+					<array>
+						<real>0.5</real>
+						<real>0.5</real>
+					</array>
+					<key>color</key>
+					<array>
+						<integer>255</integer>
+						<integer>255</integer>
+						<integer>255</integer>
+					</array>
+					<key>contentSize</key>
+					<array>
+						<real>324</real>
+						<real>67</real>
+					</array>
+					<key>customClass</key>
+					<string></string>
+					<key>fontFile</key>
+					<string>betaFont2.fnt</string>
+					<key>isExpanded</key>
+					<true/>
+					<key>isRelativeAnchorPoint</key>
+					<true/>
+					<key>lockedScaleRatio</key>
+					<true/>
+					<key>memberVarAssignmentName</key>
+					<string></string>
+					<key>memberVarAssignmentType</key>
+					<integer>0</integer>
+					<key>opacity</key>
+					<integer>255</integer>
+					<key>position</key>
+					<array>
+						<real>106.609375</real>
+						<real>42.875</real>
+					</array>
+					<key>rotation</key>
+					<real>0.0</real>
+					<key>scaleX</key>
+					<real>0.49000000953674316</real>
+					<key>scaleY</key>
+					<real>0.49000000953674316</real>
+					<key>string</key>
+					<string>reaches the top!</string>
+					<key>tag</key>
+					<integer>-1</integer>
 					<key>visible</key>
 					<true/>
 					<key>zOrder</key>

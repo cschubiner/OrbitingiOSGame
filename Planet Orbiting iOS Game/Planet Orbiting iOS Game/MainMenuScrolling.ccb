@@ -622,7 +622,7 @@
 									<key>scaleY</key>
 									<real>0.63679689168930054</real>
 									<key>selector</key>
-									<string>pressedStoreButton:</string>
+									<string>pressedBackButton:</string>
 									<key>spriteFileDisabled</key>
 									<string>upgrade.png</string>
 									<key>spriteFileNormal</key>
@@ -682,7 +682,7 @@
 									<key>scaleY</key>
 									<real>0.63679689168930054</real>
 									<key>selector</key>
-									<string>pressedStoreButton:</string>
+									<string>pressedBackButton:</string>
 									<key>spriteFileDisabled</key>
 									<string>upgrade.png</string>
 									<key>spriteFileNormal</key>
