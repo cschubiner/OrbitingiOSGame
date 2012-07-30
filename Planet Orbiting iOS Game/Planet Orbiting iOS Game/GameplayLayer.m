@@ -1868,6 +1868,11 @@ float lerpf(float a, float b, float t) {
     return CGRectContainsPoint(CGRectMake(0, 0, size.width, size.height), [cameraLayer convertToWorldSpace:position]);
 }
 
+- (void)pauseGame {
+    paused = NO;
+    [self togglePause];
+}
+
 - (void)togglePause {
     paused = !paused;
     if (paused) {
