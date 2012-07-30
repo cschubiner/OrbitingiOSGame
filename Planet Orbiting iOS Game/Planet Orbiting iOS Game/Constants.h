@@ -114,7 +114,7 @@ const float timeDilationIncreaseRate = .15;
 const float absoluteMinTimeDilation = .85;
 
 //the highest the time dilation factor can go. this should probZ just be infinity. bitches will has c slow down if they're going too fast
-const float absoluteMaxTimeDilation = 1.65;
+const float absoluteMaxTimeDilation = 1.65*1.05;
 
 //after this many updates, your velocity will go from what it was when you entered to perfect tangential orbital velocity
 const float updatesToMakeOrbitVelocityPerfect = 60;
@@ -132,4 +132,4 @@ const float negativeLightStartingScore = 8000;
 
 const float initialLightScoreVelocity = 4;
 
-const float amountToIncreaseLightScoreVelocityEachUpdate = .0007;
+const float amountToIncreaseLightScoreVelocityEachUpdate = .0007*1.04;
