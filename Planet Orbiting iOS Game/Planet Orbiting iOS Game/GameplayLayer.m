@@ -1440,7 +1440,8 @@ typedef struct {
     pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"GameOverLayer.ccb" owner:self];
     [pauseLayer setTag:gameOverLayerTag];
     [self addChild:pauseLayer];
-    [[PlayerStats sharedInstance] addScore:score];
+        int finalScore = score + prevCurrentPtoPScore;
+    [[PlayerStats sharedInstance] addScore:finalScore];
     [DataStorage storeData];
     }
     

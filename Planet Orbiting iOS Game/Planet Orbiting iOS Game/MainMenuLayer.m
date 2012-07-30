@@ -192,7 +192,7 @@ const float effectsVolumeMainMenu = 1;
 
 - (void)toggleMute {
     muted = !muted;
-    if (muted) {
+    if (!muted) {
         [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:musicVolumeMainMenu];
         [[SimpleAudioEngine sharedEngine] setEffectsVolume:effectsVolumeMainMenu];
     } else {
