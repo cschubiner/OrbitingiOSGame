@@ -4,10 +4,10 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>asteroid.png</key>
+            <key>asteroid1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{354,2},{98,76}}</string>
+                <string>{{285,80},{98,76}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -16,6 +16,19 @@
                 <string>{{6,14},{98,76}}</string>
                 <key>sourceSize</key>
                 <string>{110,104}</string>
+            </dict>
+            <key>asteroid2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{354,2},{100,76}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{6,4},{100,76}}</string>
+                <key>sourceSize</key>
+                <string>{112,84}</string>
             </dict>
             <key>asteroidbreakercoin.png</key>
             <dict>
@@ -46,13 +59,13 @@
             <key>coin.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{218,124},{41,41}}</string>
+                <string>{{218,124},{39,39}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{0,1}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{41,41}}</string>
+                <string>{{1,0},{39,39}}</string>
                 <key>sourceSize</key>
                 <string>{41,41}</string>
             </dict>
@@ -124,7 +137,7 @@
             <key>planet3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{258,167},{104,94}}</string>
+                <string>{{258,165},{104,94}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -222,7 +235,7 @@
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:618eedecc484fe4990500fab5e86af61$</string>
+            <string>$TexturePacker:SmartUpdate:abca2504bf28dade2fad8cfc002c6f1a$</string>
             <key>textureFileName</key>
             <string>spriteSheet.pvr.ccz</string>
         </dict>
