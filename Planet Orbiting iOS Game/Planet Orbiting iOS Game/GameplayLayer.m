@@ -32,7 +32,7 @@ const float effectsVolumeGameplay = 1;
     int startingCoins;
     BOOL paused;
     BOOL muted;
-
+    BOOL scoreAlreadySaved;
     CCMenu *pauseMenu;
 }
 
@@ -1436,18 +1436,20 @@ typedef struct {
 
 - (void)GameOver {
     if (!isGameOver) { //this ensures it only runs once
-    isGameOver = true;
-    pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"GameOverLayer.ccb" owner:self];
-    [pauseLayer setTag:gameOverLayerTag];
-    [self addChild:pauseLayer];
-        int finalScore = score + prevCurrentPtoPScore;
-    [[PlayerStats sharedInstance] addScore:finalScore];
-    [DataStorage storeData];
+        isGameOver = true;
+        pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"GameOverLayer.ccb" owner:self];
+        [pauseLayer setTag:gameOverLayerTag];
+        [self addChild:pauseLayer];
+            int finalScore = score + prevCurrentPtoPScore;
+        [[PlayerStats sharedInstance] addScore:finalScore];
+        scoreAlreadySaved = YES;
+        [DataStorage storeData];
     }
 }
 
 - (void)UpdateLight {
-    
+    float distance = ccpDistance(light.position, player.sprite.position);
+    // float maxDistance = size.width*1.2f;
     light.distanceFromPlayer = score - light.score;
     
     if (light.distanceFromPlayer > negativeLightStartingScore)
@@ -1538,7 +1540,9 @@ typedef struct {
     if (!didEndGameAlready) {
         didEndGameAlready = true;
         int finalScore = score + prevCurrentPtoPScore;
-        [[PlayerStats sharedInstance] addScore:finalScore]; 
+        if (!isInTutorialMode && !scoreAlreadySaved) {
+            [[PlayerStats sharedInstance] addScore:finalScore];
+        }
         //[DataStorage storeData];
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
     }
@@ -1921,6 +1925,7 @@ typedef struct {
 }
 
 - (void)restartGame {
+    scoreAlreadySaved = NO;
     if ([[PlayerStats sharedInstance] getPlays] == 1) {
         [[PlayerStats sharedInstance] addPlay];
     }
