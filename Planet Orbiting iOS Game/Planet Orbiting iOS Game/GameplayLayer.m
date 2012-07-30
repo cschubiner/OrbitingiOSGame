@@ -1753,6 +1753,7 @@ typedef struct {
 }
 
 - (void)restartGame {
+    [Flurry logEvent:@"restarted game"];
     scoreAlreadySaved = NO;
     if ([[PlayerStats sharedInstance] getPlays] == 1) {
         [[PlayerStats sharedInstance] addPlay];
