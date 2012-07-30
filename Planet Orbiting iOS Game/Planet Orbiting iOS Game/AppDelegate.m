@@ -14,6 +14,7 @@
 #import "RootViewController.h"
 #import "GameplayLayer.h"
 #import "CCBReader.h"
+#import "DataStorage.h"
 
 @implementation AppDelegate
 
@@ -150,7 +151,11 @@
 	
 	// Run the intro Scene
 	//[[CCDirector sharedDirector] runWithScene: [GameplayLayer scene]];
+    
+    [DataStorage fetchData];
+    
     [[CCDirector sharedDirector] runWithScene: [MainMenuLayer scene]];
+    
 }
 
 /*
@@ -186,6 +191,7 @@ void SignalHandler(int sig) {
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application {
+    [DataStorage storeData];
 	[[CCDirector sharedDirector] stopAnimation];
 }
 
@@ -194,7 +200,8 @@ void SignalHandler(int sig) {
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-	CCDirector *director = [CCDirector sharedDirector];
+	[DataStorage storeData];
+    CCDirector *director = [CCDirector sharedDirector];
 	[[director openGLView] removeFromSuperview];
 	[viewController release];
 	[window release];

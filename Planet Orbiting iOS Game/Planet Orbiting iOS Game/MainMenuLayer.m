@@ -60,7 +60,6 @@ const float effectsVolumeMainMenu = 1;
 // on "init" you need to initialize your instance
 - (id)init {
 	if (self = [super init]) {
-        [DataStorage fetchData];
         [self updateLabels];
         
         layer = (CCLayer*)[CCBReader nodeGraphFromFile:@"MainMenuScrolling.ccb" owner:self];

@@ -1436,6 +1436,7 @@ typedef struct {
 
 - (void)GameOver {
     if (!isGameOver) { //this ensures it only runs once
+//<<<<<<< HEAD
     isGameOver = true;
     pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"GameOverLayer.ccb" owner:self];
     [pauseLayer setTag:gameOverLayerTag];
@@ -1443,8 +1444,15 @@ typedef struct {
         int finalScore = score + prevCurrentPtoPScore;
     [[PlayerStats sharedInstance] addScore:finalScore];
     [DataStorage storeData];
+//=======
+        isGameOver = true;
+        pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"GameOverLayer.ccb" owner:self];
+        [pauseLayer setTag:gameOverLayerTag];
+        [self addChild:pauseLayer];
+        [[PlayerStats sharedInstance] addScore:score];
+        //[DataStorage storeData];
+//>>>>>>> Fixed high scores crashing issue!
     }
-    
 }
 
 - (void)UpdateLight {
@@ -1538,12 +1546,12 @@ typedef struct {
 }
 
 - (void)endGame {
-    if (!didEndGameAlready) { //this ensures it only runs once
-    didEndGameAlready = true;
-    int finalScore = score + prevCurrentPtoPScore;
-    [[PlayerStats sharedInstance] addScore:finalScore]; 
-    [DataStorage storeData];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
+    if (!didEndGameAlready) {
+        didEndGameAlready = true;
+        int finalScore = score + prevCurrentPtoPScore;
+        [[PlayerStats sharedInstance] addScore:finalScore]; 
+        //[DataStorage storeData];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
     }
 }
 
@@ -1924,7 +1932,6 @@ typedef struct {
 }
 
 - (void)restartGame {
-    [DataStorage fetchData];
     if ([[PlayerStats sharedInstance] getPlays] == 1) {
         [[PlayerStats sharedInstance] addPlay];
     }
