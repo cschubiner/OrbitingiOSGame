@@ -1464,7 +1464,6 @@ typedef struct {
     if (light.distanceFromPlayer > negativeLightStartingScore)
         light.score = score-negativeLightStartingScore;
     
-    
     light.scoreVelocity += amountToIncreaseLightScoreVelocityEachUpdate;
     
     CCLOG(@"DIST: %f, VEL: %f, LIGHSCORE: %f", light.distanceFromPlayer, light.scoreVelocity, light.score);
