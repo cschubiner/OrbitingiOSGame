@@ -29,6 +29,7 @@
     CCLabelTTF *coinsLabel;
     CGSize size;
     CCLayer *hudLayer;
+    CCSprite* slidingSelector;
     CCLayer *cameraLayer;
     CCNode * cameraFocusNode;
     CGPoint cameraLastFocusPosition;

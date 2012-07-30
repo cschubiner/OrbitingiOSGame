@@ -541,8 +541,11 @@ typedef struct {
         [cameraFocusNode setPosition:ccp(142.078,93.0159)];
         
         lastPlanetVisited = [planets objectAtIndex:0];
+        CCLayer* layerHud = (CCLayer*)[CCBReader nodeGraphFromFile:@"hudLayer.ccb" owner:self];
+
         [self addChild:cameraLayer];
         [self addChild:hudLayer];
+        [self addChild:layerHud];
         [self addChild:pauseMenu];
         [self UpdateScore];
 
@@ -1129,6 +1132,8 @@ typedef struct {
     
     
     light.scoreVelocity += amountToIncreaseLightScoreVelocityEachUpdate;
+    
+    [slidingSelector setPosition:ccp(lerpf(28.629,454.078,1-light.distanceFromPlayer/negativeLightStartingScore),slidingSelector.position.y)];
     
     CCLOG(@"DIST: %f, VEL: %f, LIGHSCORE: %f", light.distanceFromPlayer, light.scoreVelocity, light.score);
     
