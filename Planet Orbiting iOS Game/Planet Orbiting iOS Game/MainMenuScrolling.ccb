@@ -1239,7 +1239,7 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>350</real>
+								<real>1537</real>
 								<real>145</real>
 							</array>
 							<key>customClass</key>
@@ -1270,7 +1270,7 @@
 							<key>scaleY</key>
 							<real>0.25</real>
 							<key>string</key>
-							<string>Score #1</string>
+							<string>Play your first game to earn a high score!</string>
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
@@ -1330,7 +1330,7 @@
 							<key>scaleY</key>
 							<real>0.25</real>
 							<key>string</key>
-							<string>Score #2</string>
+							<string></string>
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
@@ -1390,7 +1390,7 @@
 							<key>scaleY</key>
 							<real>0.25</real>
 							<key>string</key>
-							<string>Score #3</string>
+							<string></string>
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
@@ -1450,7 +1450,7 @@
 							<key>scaleY</key>
 							<real>0.25</real>
 							<key>string</key>
-							<string>Score #4</string>
+							<string></string>
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
@@ -2189,7 +2189,7 @@
 						<real>159.83984375</real>
 					</array>
 					<key>rotation</key>
-					<real>26.6357421875</real>
+					<real>36.6279296875</real>
 					<key>scaleX</key>
 					<real>1.0757030248641968</real>
 					<key>scaleY</key>
