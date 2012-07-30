@@ -1131,7 +1131,7 @@ typedef struct {
     /*if (distance <= 100) {
      [light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];        
      [self GameOver];
-     } else*/ if (light.distanceFromPlayer <= 1000) {
+     } else*/ if (light.distanceFromPlayer <= 0) {
          /*if (!light.hasPutOnLight) {
           light.hasPutOnLight = true;
           light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
@@ -1150,15 +1150,13 @@ typedef struct {
              [hudLayer reorderChild:light.sprite z:-1];
              [light.sprite setOpacity:0];
          }
-     } else if (light.distanceFromPlayer <= 3000) {
-         [background setOpacity:clampf(((light.distanceFromPlayer)/2500)*255, 0, 255)];
      }
     
     if (light.hasPutOnLight) {
         light.sprite.position = ccp(light.sprite.position.x+480/10, light.sprite.position.y);
         [light.sprite setOpacity:clampf((light.sprite.position.x+240)*255/480, 0, 255)];
     }
-    if (light.sprite.position.x > 240) {
+    if (light.sprite.position.x >= 240) {
         //[light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];        
         [self GameOver];
     }
