@@ -4,16 +4,16 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>background2clay.png</key>
+            <key>backgrounddark.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{960,640}}</string>
+                <string>{{2,2},{806,540}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{960,640}}</string>
+                <string>{{77,50},{806,540}}</string>
                 <key>sourceSize</key>
                 <string>{960,640}</string>
             </dict>
@@ -27,7 +27,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:6615c727d4bfcfa5fd261ce6f70e3f62$</string>
+            <string>$TexturePacker:SmartUpdate:1a2dd8a22c4e235f4438730d94612b0b$</string>
             <key>textureFileName</key>
             <string>background-hd.pvr.ccz</string>
         </dict>
