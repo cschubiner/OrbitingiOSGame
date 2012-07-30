@@ -143,7 +143,11 @@ const float effectsVolumeMainMenu = 1;
     [[PlayerStats sharedInstance] addPlay];
     CCLOG(@"number of plays ever: %i", [[PlayerStats sharedInstance] getPlays]);
 
-    [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:FALSE];
+    if ([[PlayerStats sharedInstance] getPlays] == 1) {
+        [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:TRUE];
+    }
+    else [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:FALSE];
+
     [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
     CCLOG(@"GameplayLayerScene launched, game starting");
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];

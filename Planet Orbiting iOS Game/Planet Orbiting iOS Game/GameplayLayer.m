@@ -725,9 +725,6 @@ typedef struct {
         self.isTouchEnabled= TRUE;
         
         isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsInTutorialMode];
-        if ([[PlayerStats sharedInstance] getPlays] == 1) {
-            isInTutorialMode = YES;
-        }
 
         planetCounter = 0;
         planets = [[NSMutableArray alloc] init];
@@ -1438,12 +1435,14 @@ typedef struct {
 }
 
 - (void)GameOver {
+    if (!isGameOver) { //this ensures it only runs once
     isGameOver = true;
     pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"GameOverLayer.ccb" owner:self];
     [pauseLayer setTag:gameOverLayerTag];
     [self addChild:pauseLayer];
     [[PlayerStats sharedInstance] addScore:score];
     [DataStorage storeData];
+    }
     
 }
 
@@ -1538,16 +1537,18 @@ typedef struct {
 }
 
 - (void)endGame {
+    if (!didEndGameAlready) { //this ensures it only runs once
+    didEndGameAlready = true;
     int finalScore = score + prevCurrentPtoPScore;
-    [[PlayerStats sharedInstance] addScore:finalScore];
+    [[PlayerStats sharedInstance] addScore:finalScore]; 
     [DataStorage storeData];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
+    }
 }
 
 - (void)UpdateTutorial {
     hand.scale = .5;
     hand2.scale = .5;
-    
     tutorialPauseTimer++;
     int tutorialCounter = 0;
     tutorialFader+= 4;
@@ -1868,7 +1869,7 @@ typedef struct {
             [self endGame];
         }
         else
-            [self startGame];
+            [self restartGame];
         tutorialState++;
         
     }
@@ -1921,7 +1922,7 @@ typedef struct {
     handCounter2++;
 }
 
-- (void)startGame {
+- (void)restartGame {
     [DataStorage fetchData];
     if ([[PlayerStats sharedInstance] getPlays] == 1) {
         [[PlayerStats sharedInstance] addPlay];

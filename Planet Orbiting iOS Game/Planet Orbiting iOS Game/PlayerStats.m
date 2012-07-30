@@ -50,7 +50,7 @@ static PlayerStats *sharedInstance = nil;
 
 - (void)addScore:(int)score {
     NSNumber *newScore = [[NSNumber alloc] initWithInt:score];
-    [highScores addObject:newScore];
+    [highScores addObject:newScore]; //THIS LINE CRASHES WHEN YOU PRESS QUIT AFTER THE TUTORIAL/REGULAR GAME HAS ALREADY RAN AND QUIT ONCE!!! JEFFFFF
     [newScore release];
     
     NSSortDescriptor *highestToLowest = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:NO];
