@@ -73,7 +73,7 @@ typedef struct {
 
 - (void)CreateAsteroid:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
     Asteroid *asteroid = [[Asteroid alloc]init];
-    asteroid.sprite = [CCSprite spriteWithSpriteFrameName:@"asteroid.png"];
+    asteroid.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"asteroid%d.png",[self RandomBetween:1 maxvalue:2]]];
     asteroid.sprite.position = ccp(xPos, yPos);
     [asteroid.sprite setScale:scale];
     asteroid.whichSegmentThisObjectIsOriginallyFrom = originalSegmentNumber;
@@ -86,7 +86,7 @@ typedef struct {
 
 - (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
     Planet *planet = [[Planet alloc]init];
-    planet.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"planet%d.png",[self RandomBetween:1 maxvalue:6]]];
+    planet.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"planet%d.png",[self RandomBetween:1 maxvalue:8]]];
     planet.sprite.position =  ccp(xPos, yPos);
     [planet.sprite setScale:scale];
     planet.mass = 1;
@@ -138,23 +138,17 @@ typedef struct {
 - (void)CreateLevel // paste level creation code here
 {
     if (isInTutorialMode) {
-        [self CreatePlanetAndZone:493 yPos:394 scale:1];
-        [self CreatePlanetAndZone:1059 yPos:685 scale:1];
-        [self CreatePlanetAndZone:1666 yPos:670 scale:1];
-        [self CreatePlanetAndZone:2042 yPos:1008 scale:1];
-        [self CreatePlanetAndZone:2640 yPos:663 scale:1.629999];
-        [self CreatePlanetAndZone:3460 yPos:355 scale:1];
-        [self CreatePlanetAndZone:3718 yPos:927 scale:1];
-        [self CreatePlanetAndZone:4271 yPos:953 scale:1];
-        [self CreatePlanetAndZone:5299 yPos:948 scale:1];
-        [self CreatePlanetAndZone:5999 yPos:948 scale:1];
-        [self CreatePlanetAndZone:6799 yPos:948 scale:1];
-        [self CreatePlanetAndZone:7599 yPos:948 scale:1];
-        [self CreatePlanetAndZone:8399 yPos:948 scale:2];
-        [self CreatePlanetAndZone:8999 yPos:948 scale:1];
-        [self CreatePlanetAndZone:9599 yPos:948 scale:1];
-        [self CreatePlanetAndZone:10399 yPos:948 scale:1];
-        [self CreatePlanetAndZone:11399 yPos:948 scale:1];
+        [self CreatePlanetAndZone:288 yPos:364 scale:1];
+        [self CreatePlanetAndZone:934 yPos:352 scale:1];
+        
+        [self CreatePlanetAndZone:288+2000 yPos:364 scale:1];
+        [self CreatePlanetAndZone:934+2000 yPos:352 scale:1];
+        [self CreateAsteroid:610+2000 yPos:460 scale:1.33552];
+
+        
+        [self CreatePlanetAndZone:288+4000 yPos:364 scale:1];
+        [self CreatePlanetAndZone:934+4000 yPos:352 scale:1];
+        [self CreateAsteroid:604+4000 yPos:239 scale:1.26652];
         return;
     }
     
@@ -182,98 +176,41 @@ typedef struct {
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2498,139) scale:1],
                  nil],
                 
-                [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(712,158) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(658,17) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(678,90) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(345,210) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(425,294) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(518,361) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1393,59) scale:1.26652],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(144,-119) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(197,-118) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(249,-117) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(305,-118) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(283,-54) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(233,-55) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(177,-58) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(178,-6) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(231,-2) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(279,-1) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(277,53) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(227,51) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(171,50) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(148,106) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(205,106) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(259,107) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(314,108) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(651,322) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(664,375) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(700,429) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(748,461) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(812,467) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(888,447) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(936,401) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(961,334) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(978,252) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(993,190) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1017,99) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1038,40) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1078,-5) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1133,-22) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1191,-31) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1247,-19) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(460,9) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(810,309) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1176,137) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1609,-83) scale:1],
-                 nil],
                 
                 [NSArray arrayWithObjects:[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(500,0) scale:1],
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1000,0) scale:1],
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1200,300) scale:1],
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1500,0) scale:1],
-                 nil],
-                [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(187,-130) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(250,-53) scale:1.15152],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(852,34) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(698,-172) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1201,-22) scale:0.99052],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1366,-455) scale:1.84152],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1996,-173) scale:0.48384],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1979,-107) scale:1.24352],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1670,247) scale:1.24352],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(489,442) scale:0.92152],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1929,325) scale:0.50752],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(83,-164) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(128,-205) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(186,-214) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(240,-207) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(309,-186) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(748,-114) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(786,-65) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(819,-21) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(979,-346) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1033,-355) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1083,-343) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1423,-96) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1467,-47) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1520,-13) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1581,7) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1651,9) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1714,-11) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1144,-312) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1201,-275) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1257,-240) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1311,-200) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1363,-153) scale:1],
+                 nil],// Craig's 1-SpeedOne
+                [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1262,-252) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1778,418) scale:1.08252],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1317,467) scale:0.96752],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(479,406) scale:1.22052],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1034,38) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1110,61) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1179,81) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1671,103) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1752,92) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1843,78) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1056,88) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1131,115) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1810,135) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1702,42) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(232,-33) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(277,-32) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(234,18) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(275,19) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(230,-85) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(275,-84) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(234,66) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(277,68) scale:1],
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(557,149) scale:1.39],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1032,-212) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1621,-218) scale:1.599999],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2083,160) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(644,23) scale:1.749999],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1437,137) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2129,37) scale:1],
                  nil],
+                // Craig's 2-HappyTrail
                 [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1440,-228) scale:1.12852],
                  [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1494,-311) scale:0.87552],
                  [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(837,-282) scale:0.87552],
@@ -323,6 +260,160 @@ typedef struct {
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1724,-98) scale:1.27],
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2168,356) scale:1],
                  nil],
+                // Craig's 2-Simple1
+                [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(294,-224) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(373,-187) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(303,-159) scale:0.66852],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1655,-73) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(838,213) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2287,-43) scale:1.19752],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(583,-101) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(583,-47) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(585,8) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(588,57) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(552,30) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(548,-24) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(545,-78) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1335,14) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1385,22) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1359,66) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1119,126) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1171,132) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1146,83) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1512,177) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1564,181) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1542,126) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2098,13) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2147,0) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2186,-49) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2207,0) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2352,-100) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2371,-45) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2405,-87) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2449,-103) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(755,-8) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1826,109) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2787,-127) scale:1],
+                 nil],
+                // Craig's 3-CrossStraightCross
+                [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(368,-195) scale:1.10552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(316,214) scale:1.01352],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(423,184) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1392,75) scale:1.15152],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1368,146) scale:0.69152],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1301,106) scale:0.48384],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1299,153) scale:0.71452],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2291,-66) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2326,-3) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2428,239) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2434,303) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(369,74) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(367,19) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(367,-36) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(366,-94) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1414,-52) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1469,-30) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1427,1) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1249,200) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1304,210) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1267,247) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2364,185) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2431,165) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2310,66) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2384,43) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2340,126) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2411,101) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(858,-53) scale:1.21],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1839,246) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2902,57) scale:1],
+                 nil],
+                // Craig's 3-FourCrosses
+                [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(568,-11) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(622,-106) scale:1.19752],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(453,252) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(388,387) scale:1.28952],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1533,209) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1486,283) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1303,563) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1252,631) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1875,142) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1947,199) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2166,379) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2235,438) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(3018,-170) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(3011,-73) scale:1.17452],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(3005,198) scale:1.17452],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(3005,282) scale:0.94452],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(415,91) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(456,105) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(498,123) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(538,135) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1315,395) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1357,417) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1399,439) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1396,394) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1357,367) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1357,368) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1318,439) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1355,461) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2034,269) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2091,268) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2066,319) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2949,109) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3061,15) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2948,16) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3059,110) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3003,62) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(900,230) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1752,551) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2427,67) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(3526,56) scale:1],
+                 nil],
+                
+                // Craig's 4-Basic1
+                [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(187,-130) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(250,-53) scale:1.15152],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(852,34) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(698,-172) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1201,-22) scale:0.99052],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1366,-455) scale:1.84152],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1996,-173) scale:0.48384],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1979,-107) scale:1.24352],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1670,247) scale:1.24352],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(489,442) scale:0.92152],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1929,325) scale:0.50752],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(83,-164) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(128,-205) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(186,-214) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(240,-207) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(309,-186) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(748,-114) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(786,-65) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(819,-21) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(979,-346) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1033,-355) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1083,-343) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1423,-96) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1467,-47) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1520,-13) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1581,7) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1651,9) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1714,-11) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1144,-312) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1201,-275) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1257,-240) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1311,-200) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1363,-153) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(557,149) scale:1.39],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1032,-212) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1621,-218) scale:1.599999],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2083,160) scale:1],
+                 nil],
+                // Craig's 4-CancelCoinSign
                 [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(91,-217) scale:0.87552],
                  [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(190,-221) scale:0.87552],
                  [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(316,-223) scale:0.87552],
@@ -439,6 +530,8 @@ typedef struct {
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2520,-1125) scale:1],
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(3276,-673) scale:1],
                  nil],
+                
+                // Craig's 5-TripletCoins
                 [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(-15,227) scale:0.87552],
                  [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(270,-41) scale:0.87552],
                  [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(270,48) scale:0.87552],
@@ -504,207 +597,112 @@ typedef struct {
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1944,-277) scale:1.15],
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2673,-207) scale:1],
                  nil],
-                [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1492,-190) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1454,-75) scale:1.61152],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1247,-315) scale:1.91052],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1183,-199) scale:0.99052],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1290,-43) scale:1.10552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1416,-351) scale:1.19752],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(745,-399) scale:1.38152],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2217,-327) scale:1.63452],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(23,-217) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(95,-179) scale:0.66852],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(157,-135) scale:0.69152],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(231,-81) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(266,20) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(325,3) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(354,-50) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(-96,-182) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(-93,-237) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(-53,-288) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(667,-180) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(665,-238) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(616,-180) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(720,-183) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(669,-122) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1211,-109) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1261,-138) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1270,-201) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1300,-154) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1326,-112) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1368,-139) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1342,-187) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1317,-231) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1360,-254) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1388,-208) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1417,-161) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1440,-242) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2184,-436) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2232,-435) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2189,-223) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2238,-225) scale:1],
+
+                //Clay Level
+                [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(688,-64) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(740,4) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(763,87) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(751,173) scale:1.22052],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(519,466) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(574,559) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(659,616) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(772,637) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1454,422) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1537,367) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1443,525) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1354,593) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1210,616) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1301,195) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1346,105) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1809,269) scale:1.24352],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(147,-115) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(171,-71) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(183,-16) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(175,49) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(144,98) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(212,102) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(243,48) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(239,-22) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(230,-87) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(219,-138) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(347,-143) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(280,-142) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(304,-93) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(289,-23) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(292,49) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(296,109) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(444,207) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(485,254) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(535,300) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(575,346) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(931,512) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(994,511) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1052,509) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(616,397) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(652,441) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(705,486) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(770,510) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(856,513) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1224,512) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1301,503) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1348,439) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1111,511) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1170,519) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1372,373) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1381,316) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1393,246) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1415,170) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1442,104) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1705,27) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1755,72) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1802,112) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1843,161) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1889,201) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1772,16) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1946,13) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1828,17) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1888,11) scale:1],
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(289,-335) scale:1.27],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1004,-22) scale:1.03],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1792,-328) scale:1.51],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2660,-323) scale:1.39],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(468,9) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(779,380) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1226,378) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1575,147) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2041,147) scale:1],
                  nil],
-                [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(283,2) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(284,-62) scale:0.78352],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(283,64) scale:0.78352],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(864,35) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(796,190) scale:1.45052],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2287,76) scale:1.12852],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2283,157) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2257,222) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2386,606) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2533,588) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2682,546) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2230,-145) scale:1.17452],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2264,-73) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2287,-3) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2055,593) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2231,613) scale:0.87552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1333,-9) scale:1.08252],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(3314,309) scale:1.10552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(3311,174) scale:1.17452],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(3305,-3) scale:1.10552],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(3305,-137) scale:1.03652],
-                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(607,275) scale:0.78352],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(136,-146) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(225,-148) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(324,-148) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(430,-152) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(136,149) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(230,149) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(312,149) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(397,148) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(684,240) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(853,100) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1380,214) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1423,183) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1424,235) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1514,194) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1508,244) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1549,223) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(483,240) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(504,300) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(532,343) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(564,383) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(607,420) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(906,-73) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(955,-49) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(852,-96) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(996,-11) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1042,36) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1085,78) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1123,121) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1156,164) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1188,206) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1213,251) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(650,449) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(696,479) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(740,505) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(786,527) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(831,544) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3308,87) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3282,244) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3340,243) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3270,-72) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3333,-72) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1783,-166) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1861,-249) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1826,-211) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2197,399) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2249,396) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2303,388) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2350,381) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2395,371) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2433,367) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2485,355) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2528,347) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2576,333) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2622,319) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2672,304) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2714,289) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2766,267) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2811,249) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2855,232) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2154,398) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2111,396) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2064,393) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2016,387) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1968,379) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1921,369) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1881,352) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1841,323) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1807,288) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1775,252) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3664,305) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3701,260) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2078,-347) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2129,-357) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2178,-358) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2221,-358) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2270,-354) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2320,-348) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2037,-340) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1997,-329) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1951,-311) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1908,-286) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2450,-338) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2364,-347) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2408,-342) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2839,-79) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2804,-110) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2766,-139) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2731,-167) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2694,-194) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2651,-223) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2616,-249) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2583,-279) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2540,-303) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2496,-323) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3071,-303) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3122,-307) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3177,-312) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3230,-313) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3281,-313) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3333,-310) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3383,-309) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3436,-300) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3485,-288) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3026,-290) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2974,-266) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2924,-230) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2889,-191) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3211,399) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3253,403) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3295,404) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3349,404) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3394,400) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3445,394) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3485,384) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3541,371) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3590,352) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3626,331) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3167,394) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3120,386) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3074,366) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3035,344) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2993,318) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2951,291) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2912,264) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3532,-261) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3567,-227) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(3604,-199) scale:1],
+
+                //coin trail happy
+                [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(224,-138) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(760,78) scale:0.87552],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1182,10) scale:1.19752],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1683,-77) scale:0.76052],
+                 [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1708,-28) scale:0.48384],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(593,91) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(618,42) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(643,-4) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(668,-51) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(694,-98) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(724,-147) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(556,127) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1130,-202) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1175,-171) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1215,-136) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1252,-101) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1277,-56) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(757,-180) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(794,-209) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(834,-233) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(882,-250) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(935,-261) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(983,-260) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1027,-252) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1075,-236) scale:1],
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(567,9) scale:1.09],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1083,439) scale:1.33],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1884,95) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2921,69) scale:1],
-                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(3698,59) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(479,6) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(952,-132) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1428,-29) scale:1],
+                 [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1948,-107) scale:1],
                  nil],
+
 
                 nil];
     
@@ -825,7 +823,6 @@ typedef struct {
         swipeVector = ccp(0, -1);
         gravIncreaser = 1;
         handCounter = 0;
-        handCounter2 = 0;
         updatesSinceLastPlanet = 0;
         tutorialPauseTimer = 0;
         updatesToAdvanceTutorial = 0;
@@ -845,8 +842,6 @@ typedef struct {
         
         hand = [CCSprite spriteWithFile:@"edit(84759).png"];
         hand.position = ccp(-1000, -1000);
-        hand2 = [CCSprite spriteWithFile:@"edit(84759).png"];
-        hand2.position = ccp(-1000, -1000);
         
         
         light = [[Light alloc] init];
@@ -858,7 +853,6 @@ typedef struct {
         
         [cameraLayer addChild:spriteSheet];
         [hudLayer addChild:hand];
-        [hudLayer addChild:hand2];
         
         cameraDistToUse = 1005.14;
         [cameraLayer setScale:.43608];
@@ -867,8 +861,12 @@ typedef struct {
         [cameraFocusNode setPosition:ccp(142.078,93.0159)];
         
         lastPlanetVisited = [planets objectAtIndex:0];
+        layerHudSlider = (CCLayer*)[CCBReader nodeGraphFromFile:@"hudLayer.ccb" owner:self];
+
         [self addChild:cameraLayer];
         [self addChild:hudLayer];
+        if (!isInTutorialMode)
+        [self addChild:layerHudSlider];
         [self addChild:pauseMenu];
         [self UpdateScore];
 
@@ -941,12 +939,13 @@ typedef struct {
         [cameraLayer setScale:.1];
     }
     
-    float scale = zoomMultiplier*horizontalScale*scalerToUse;
-    cameraLastFocusPosition = ccpLerp(cameraLastFocusPosition, focusPosition, cameraMovementSpeed);
-    [self scaleLayer:cameraLayer scaleToZoomTo:lerpf([cameraLayer scale], scale, cameraZoomSpeed) scaleCenter:cameraLastFocusPosition];
-    id followAction = [CCFollow actionWithTarget:cameraFocusNode];
-    [cameraLayer runAction: followAction];
-    
+    if (!isInTutorialMode) {
+        float scale = zoomMultiplier*horizontalScale*scalerToUse;
+        cameraLastFocusPosition = ccpLerp(cameraLastFocusPosition, focusPosition, cameraMovementSpeed);
+        [self scaleLayer:cameraLayer scaleToZoomTo:lerpf([cameraLayer scale], scale, cameraZoomSpeed) scaleCenter:cameraLastFocusPosition];
+        id followAction = [CCFollow actionWithTarget:cameraFocusNode];
+        [cameraLayer runAction: followAction];
+    }
 }
 
 - (void) scaleLayer:(CCLayer*)layerToScale scaleToZoomTo:(CGFloat) newScale scaleCenter:(CGPoint) scaleCenter {
@@ -1437,6 +1436,8 @@ typedef struct {
 - (void)GameOver {
     if (!isGameOver) { //this ensures it only runs once
         isGameOver = true;
+        if ([[self children]containsObject:layerHudSlider])
+        [self removeChild:layerHudSlider cleanup:YES];
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"GameOverLayer.ccb" owner:self];
         [pauseLayer setTag:gameOverLayerTag];
         [self addChild:pauseLayer];
@@ -1452,8 +1453,6 @@ typedef struct {
 }
 
 - (void)UpdateLight {
-    float distance = ccpDistance(light.position, player.sprite.position);
-    // float maxDistance = size.width*1.2f;
     light.distanceFromPlayer = score - light.score;
     
     if (light.distanceFromPlayer > negativeLightStartingScore)
@@ -1461,13 +1460,15 @@ typedef struct {
     
     
     light.scoreVelocity += amountToIncreaseLightScoreVelocityEachUpdate;
+    [slidingSelector setPosition:ccp(slidingSelector.position.x,lerpf(50.453,269.848,1-light.distanceFromPlayer/negativeLightStartingScore))];
     
-    CCLOG(@"DIST: %f, VEL: %f, LIGHSCORE: %f", light.distanceFromPlayer, light.scoreVelocity, light.score);
+//    CCLOG(@"DIST: %f, VEL: %f, LIGHSCORE: %f", light.distanceFromPlayer, light.scoreVelocity, light.score);
+
     
     /*if (distance <= 100) {
      [light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];        
      [self GameOver];
-     } else*/ if (light.distanceFromPlayer <= 1000) {
+     } else*/ if (light.distanceFromPlayer <= 0) {
          /*if (!light.hasPutOnLight) {
           light.hasPutOnLight = true;
           light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
@@ -1486,16 +1487,14 @@ typedef struct {
              [hudLayer reorderChild:light.sprite z:-1];
              [light.sprite setOpacity:0];
          }
-     } else if (light.distanceFromPlayer <= 3000) {
-         [background setOpacity:clampf(((light.distanceFromPlayer)/2500)*255, 0, 255)];
      }
     
     if (light.hasPutOnLight) {
         light.sprite.position = ccp(light.sprite.position.x+480/10, light.sprite.position.y);
-        [light.sprite setOpacity:(light.sprite.position.x+240)*255/480];
+        [light.sprite setOpacity:clampf((light.sprite.position.x+240)*255/480, 0, 255)];
     }
-    if (light.sprite.position.x > 240) {
-        [light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];        
+    if (light.sprite.position.x >= 240) {
+        //[light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];        
         [self GameOver];
     }
     
@@ -1547,7 +1546,6 @@ typedef struct {
         if (!isInTutorialMode && !scoreAlreadySaved) {
             [[PlayerStats sharedInstance] addScore:finalScore];
         }
-        //[DataStorage storeData];
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
         if ([[PlayerStats sharedInstance] getPlays] == 10) {
             NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/PBD9L5H"];
@@ -1557,8 +1555,8 @@ typedef struct {
 }
 
 - (void)UpdateTutorial {
+    
     hand.scale = .5;
-    hand2.scale = .5;
     tutorialPauseTimer++;
     int tutorialCounter = 0;
     tutorialFader+= 4;
@@ -1573,299 +1571,54 @@ typedef struct {
         [tutorialLabel0 setOpacity:0];
 
     
+    
+    float scale = .4;
+    
     if (tutorialState == tutorialCounter++) { //tap
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Welcome to Star Dash!"]];
-        [tutorialLabel2 setString:[NSString stringWithFormat:@"Tap to begin the tutorial..."]];
+        [tutorialLabel2 setString:[NSString stringWithFormat:@"Fuck you bitch :D"]];
+        
+        [self updateHandFrom:ccp(230, 20) to:ccp(450, 150) fadeInUpdates:20 moveUpdates:50 fadeOutUpdates:20 goneUpdates:30];
+
+        
+        CGPoint cameraLastFocusPosition2 = ccp(611, 400);
+        [self scaleLayer:cameraLayer scaleToZoomTo:scale scaleCenter:cameraLastFocusPosition2];
+        id followAction = [CCFollow actionWithTarget:cameraFocusNode];
+        [cameraLayer runAction: followAction];
+        
         
     } else if (tutorialState == tutorialCounter++) { //tap
         updatesToAdvanceTutorial = 70;
         [tutorialLabel1 setString:[NSString stringWithFormat:@"It's simple - just jump from"]];
         [tutorialLabel2 setString:[NSString stringWithFormat:@"planet to planet."]];
         
+        
+        
+        
+        
+        CGPoint cameraLastFocusPosition2 = ccp(611+2000, 400);
+        [self scaleLayer:cameraLayer scaleToZoomTo:scale scaleCenter:cameraLastFocusPosition2];
+        id followAction = [CCFollow actionWithTarget:cameraFocusNode];
+        [cameraLayer runAction: followAction];
+        
+        
+        
+        
     } else if (tutorialState == tutorialCounter++) { //tap
-        updatesToAdvanceTutorial = 20;
+        updatesToAdvanceTutorial = 5000;
         [tutorialLabel1 setString:[NSString stringWithFormat:@"Tap to see when a good time"]];
         [tutorialLabel2 setString:[NSString stringWithFormat:@"to swipe is."]];
         
-    } else if (tutorialState == tutorialCounter++) { //good angle
-        //[tutorialLabel1 setString:[NSString stringWithFormat:@"Getting into position..."]];
-        tutorialAdvanceMode = 0;
-        float ang = CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity));
-        if (!(ang > -90 && ang < 0)) {
-            shouldDisplayWaiting = true;
-        }
-        if (shouldDisplayWaiting)
-            [tutorialLabel1 setString:[NSString stringWithFormat:@"Getting into position..."]];
         
-        if (ang > 0 && ang < 10) {
-            [self AdvanceTutorial];
-        }
         
-    } else if (tutorialState == tutorialCounter++) { //swipe
-        isTutPaused = true;
-        tutorialAdvanceMode = 2;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"About now is when you'd want to"]];
-        [tutorialLabel2 setString:[NSString stringWithFormat:@"swipe. Swipe towards the next"]];
-        [tutorialLabel3 setString:[NSString stringWithFormat:@"planet to continue..."]];
-        [self updateHandFrom:ccp(230, 20) to:ccp(450, 150) fadeInUpdates:20 moveUpdates:50 fadeOutUpdates:20 goneUpdates:30];
-    } else if (tutorialState == tutorialCounter++) { //hit the next zone
-        tutorialAdvanceMode = 0;
-        if (orbitState == 0) {
-            if (lastPlanetVisited.number == tutorialPlanetIndex + 1)
-                [self AdvanceTutorial];
-            else
-                tutorialState--;
-        }
         
-    } else if (tutorialState == tutorialCounter++) { //tap
-        updatesToAdvanceTutorial = 30;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Nice job!"]];
+        CGPoint cameraLastFocusPosition2 = ccp(611+4000, 400);
+        [self scaleLayer:cameraLayer scaleToZoomTo:scale scaleCenter:cameraLastFocusPosition2];
+        id followAction = [CCFollow actionWithTarget:cameraFocusNode];
+        [cameraLayer runAction: followAction];
         
-        // CCLOG(@"ang: %f", ang);
-    } else if (tutorialState == tutorialCounter++) { //good angle
-        tutorialAdvanceMode = 0;
-        float ang = CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity));
-        if (!(ang > -100 && ang < -10)) {
-            shouldDisplayWaiting = true;
-        }
-        if (shouldDisplayWaiting)
-            [tutorialLabel1 setString:[NSString stringWithFormat:@"Getting into position..."]];
-        if (ang > -10 && ang < 0) {
-            [self AdvanceTutorial];
-        }
         
-    } else if (tutorialState == tutorialCounter++) { //swipe
-        isTutPaused = true;
-        tutorialAdvanceMode = 2;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Swipe again for more practice."]];
-        [self updateHandFrom:ccp(150, 50) to:ccp(350, 50) fadeInUpdates:20 moveUpdates:45 fadeOutUpdates:20 goneUpdates:30];
-        
-    } else if (tutorialState == tutorialCounter++) { //hit the next zone
-        tutorialAdvanceMode = 0;
-        if (orbitState == 0) {
-            if (lastPlanetVisited.number == tutorialPlanetIndex + 1)
-                [self AdvanceTutorial];
-            else
-                tutorialState--;
-        }
-        
-    } else if (tutorialState == tutorialCounter++) { //tap
-        updatesToAdvanceTutorial = 30;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Well done."]];
-        
-    } else if (tutorialState == tutorialCounter++) { //good angle
-        float ang = CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity));
-        if (!(ang > -60 && ang < 30)) {
-            shouldDisplayWaiting = true;
-        }
-        if (shouldDisplayWaiting)
-            [tutorialLabel1 setString:[NSString stringWithFormat:@"Getting into position..."]];
-        if (ang > 30 && ang < 40) {
-            [self AdvanceTutorial];
-        }
-        
-    } else if (tutorialState == tutorialCounter++) { //swipe
-        isTutPaused = true;
-        tutorialAdvanceMode = 2;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"This next planet is a bit higher."]];
-        [self updateHandFrom:ccp(250, 50) to:ccp(400, 200) fadeInUpdates:20 moveUpdates:55 fadeOutUpdates:20 goneUpdates:30];
-        
-    } else if (tutorialState == tutorialCounter++) { //hit the next zone
-        if (orbitState == 0) {
-            if (lastPlanetVisited.number == tutorialPlanetIndex + 1)
-                [self AdvanceTutorial];
-            else
-                tutorialState--;
-        }
-        
-    } else if (tutorialState == tutorialCounter++) { //tap
-        updatesToAdvanceTutorial = 30;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Nice swipe!"]];
-        
-    } else if (tutorialState == tutorialCounter++) { //swipe
-        tutorialAdvanceMode = 2;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Try one on your own now - just"]];
-        [tutorialLabel2 setString:[NSString stringWithFormat:@"swipe when you're ready."]];
-        
-    } else if (tutorialState == tutorialCounter++) { //hit the next zone
-        tutorialAdvanceMode = 0;
-        if (orbitState == 0) {
-            if (lastPlanetVisited.number == tutorialPlanetIndex + 1)
-                [self AdvanceTutorial];
-            else
-                tutorialState--;
-        }
-        
-    } else if (tutorialState == tutorialCounter++) { //swipe
-        tutorialAdvanceMode = 2;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Good one! Try a few more times"]];
-        [tutorialLabel2 setString:[NSString stringWithFormat:@"to get a feel for it."]];
-        
-    } else if (tutorialState == tutorialCounter++) { //hit the next zone
-        tutorialAdvanceMode = 0;
-        if (orbitState == 0) {
-            if (lastPlanetVisited.number == tutorialPlanetIndex + 1)
-                [self AdvanceTutorial];
-            else
-                tutorialState--;
-        }
-        
-    } else if (tutorialState == tutorialCounter++) { //swipe
-        tutorialAdvanceMode = 2;
-        
-    } else if (tutorialState == tutorialCounter++) { //hit the next zone
-        tutorialAdvanceMode = 0;
-        if (orbitState == 0) {
-            if (lastPlanetVisited.number == tutorialPlanetIndex + 1)
-                [self AdvanceTutorial];
-            else
-                tutorialState--;
-        }
-        
-    } else if (tutorialState == tutorialCounter++) { //swipe
-        tutorialAdvanceMode = 2;
-        
-    } else if (tutorialState == tutorialCounter++) { //hit the next zone
-        tutorialAdvanceMode = 0;
-        if (orbitState == 0) {
-            if (lastPlanetVisited.number == tutorialPlanetIndex + 1)
-                [self AdvanceTutorial];
-            else
-                tutorialState--;
-        }
-        
-    } else if (tutorialState == tutorialCounter++) { //tap
-        updatesToAdvanceTutorial = 30;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"You're getting the hang of this!"]];
-        
-    } else if (tutorialState == tutorialCounter++) { //tap
-        updatesToAdvanceTutorial = 180;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"The direction you swipe determines"]];
-        [tutorialLabel2 setString:[NSString stringWithFormat:@"your flight path towards the next"]];
-        [tutorialLabel3 setString:[NSString stringWithFormat:@"planet."]];
-        
-    } else if (tutorialState == tutorialCounter++) { //good angle
-        tutorialAdvanceMode = 0;
-        float ang = CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity));
-        if (!(ang > -90 && ang < 0)) {
-            shouldDisplayWaiting = true;
-        }
-        if (shouldDisplayWaiting)
-            [tutorialLabel1 setString:[NSString stringWithFormat:@"Getting into position..."]];
-        
-        if (ang > 0 && ang < 10) {
-            [self AdvanceTutorial];
-        }
-        
-    } else if (tutorialState == tutorialCounter++) { //swipe
-        isTutPaused = true;
-        tutorialAdvanceMode = 2;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Swipe towards one side or the other"]];
-        [tutorialLabel2 setString:[NSString stringWithFormat:@"of the next planet to determine your"]];
-        [tutorialLabel3 setString:[NSString stringWithFormat:@"orbit direction."]];
-        [self updateHandFrom:ccp(180, 140) to:ccp(400, 240) fadeInUpdates:20 moveUpdates:70 fadeOutUpdates:20 goneUpdates:30];
-        [self updateHand2From:ccp(180, 140) to:ccp(400, 40) fadeInUpdates:20 moveUpdates:70 fadeOutUpdates:20 goneUpdates:30];
-        
-    } else if (tutorialState == tutorialCounter++) { //hit the next zone
-        tutorialAdvanceMode = 0;
-        if (orbitState == 0) {
-            if (lastPlanetVisited.number == tutorialPlanetIndex + 1)
-                [self AdvanceTutorial];
-            else
-                tutorialState--;
-        }
-        
-    } else if (tutorialState == tutorialCounter++) { //tap
-        updatesToAdvanceTutorial = 120;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Notice how you flew to the side of the"]];
-        [tutorialLabel2 setString:[NSString stringWithFormat:@"planet that you swiped towards?"]];
-        
-    } else if (tutorialState == tutorialCounter++) { //good angle
-        //[tutorialLabel1 setString:[NSString stringWithFormat:@"Getting into position..."]];
-        tutorialAdvanceMode = 0;
-        float ang = CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity));
-        if (!(ang > -90 && ang < 0)) {
-            shouldDisplayWaiting = true;
-        }
-        if (shouldDisplayWaiting)
-            [tutorialLabel1 setString:[NSString stringWithFormat:@"Getting into position..."]];
-        
-        if (ang > 0 && ang < 10) {
-            [self AdvanceTutorial];
-        }
-        
-    } else if (tutorialState == tutorialCounter++) { //swipe
-        isTutPaused = true;
-        tutorialAdvanceMode = 2;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Try going the other way this time."]];
-        [self updateHandFrom:ccp(180, 140) to:ccp(400, 240) fadeInUpdates:20 moveUpdates:70 fadeOutUpdates:20 goneUpdates:30];
-        [self updateHand2From:ccp(180, 140) to:ccp(400, 40) fadeInUpdates:20 moveUpdates:70 fadeOutUpdates:20 goneUpdates:30];
-        
-    } else if (tutorialState == tutorialCounter++) { //hit the next zone
-        if (orbitState == 0) {
-            if (lastPlanetVisited.number == tutorialPlanetIndex + 1)
-                [self AdvanceTutorial];
-            else
-                tutorialState--;
-        }
-        
-    } else if (tutorialState == tutorialCounter++) { //swipe
-        tutorialAdvanceMode = 2;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"There you go! Try going in different"]];
-        [tutorialLabel2 setString:[NSString stringWithFormat:@"directions a few more times to get"]];
-        [tutorialLabel3 setString:[NSString stringWithFormat:@"a feel for it."]];
-        
-    } else if (tutorialState == tutorialCounter++) { //hit the next zone
-        tutorialAdvanceMode = 0;
-        if (orbitState == 0) {
-            if (lastPlanetVisited.number == tutorialPlanetIndex + 1)
-                [self AdvanceTutorial];
-            else
-                tutorialState--;
-        }
-        
-    } else if (tutorialState == tutorialCounter++) { //swipe
-        tutorialAdvanceMode = 2;
-        
-    } else if (tutorialState == tutorialCounter++) { //hit the next zone
-        tutorialAdvanceMode = 0;
-        if (orbitState == 0) {
-            if (lastPlanetVisited.number == tutorialPlanetIndex + 1)
-                [self AdvanceTutorial];
-            else
-                tutorialState--;
-        }
-        
-    } else if (tutorialState == tutorialCounter++) { //swipe
-        tutorialAdvanceMode = 2;
-        
-    } else if (tutorialState == tutorialCounter++) { //hit the next zone
-        tutorialAdvanceMode = 0;
-        if (orbitState == 0) {
-            if (lastPlanetVisited.number == tutorialPlanetIndex + 1)
-                [self AdvanceTutorial];
-            else
-                tutorialState--;
-        }
-        
-    } else if (tutorialState == tutorialCounter++) { //swipe
-        tutorialAdvanceMode = 2;
-        
-    } else if (tutorialState == tutorialCounter++) { //hit the next zone
-        tutorialAdvanceMode = 0;
-        if (orbitState == 0) {
-            if (lastPlanetVisited.number == tutorialPlanetIndex + 1)
-                [self AdvanceTutorial];
-            else
-                tutorialState--;
-        }
-        
-    } else if (tutorialState == tutorialCounter++) { //tap
-        updatesToAdvanceTutorial = 120;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"You've got it! But now we'll have"]];
-        [tutorialLabel2 setString:[NSString stringWithFormat:@"to start worrying about asteroids."]];
-
-        
+      
         
         
     } else if (tutorialState == tutorialCounter++) { //tap
@@ -1896,40 +1649,37 @@ typedef struct {
 
 - (void)updateHandFrom:(CGPoint)pos1 to:(CGPoint)pos2 fadeInUpdates:(int)fadeInUpdates moveUpdates:(int)moveUpdates fadeOutUpdates:(int)fadeOutUpdates goneUpdates:(int)goneUpdates {
     
+    
+    
     if (handCounter == 0)
         hand.position = pos1;
-    else if (handCounter <= fadeInUpdates)
+    else if (handCounter <= fadeInUpdates) {
         hand.opacity += 255/fadeInUpdates;
+    }
     else if (handCounter <= fadeInUpdates + moveUpdates) {
         CGPoint vec = ccpSub(pos2, pos1);
         hand.position = ccpAdd(pos1, ccpMult(vec, (handCounter-fadeInUpdates)/moveUpdates));
-    } else if (handCounter <= fadeInUpdates + moveUpdates + fadeOutUpdates)
+    } else if (handCounter <= fadeInUpdates + moveUpdates + fadeOutUpdates) {
+        if (hand.opacity < 20)
+            hand.opacity = 0;
+        else
         hand.opacity -= 255/fadeOutUpdates;
-    else if (handCounter > fadeInUpdates + moveUpdates + fadeOutUpdates + goneUpdates)
+        
+    }
+    else if (handCounter > fadeInUpdates + moveUpdates + fadeOutUpdates + goneUpdates) {
         handCounter = -1;
+        hand.opacity = 0;
+    }
+    
+    if (hand.position.x == pos2.x&&handCounter > fadeInUpdates + moveUpdates + fadeOutUpdates)
+        hand.opacity = 0 ; 
+    
+    
+    CCLOG(@"opac: %f", (float)hand.opacity);
     
     // hand.opacity = 100;
     
     handCounter++;
-}
-
-- (void)updateHand2From:(CGPoint)pos1 to:(CGPoint)pos2 fadeInUpdates:(int)fadeInUpdates moveUpdates:(int)moveUpdates fadeOutUpdates:(int)fadeOutUpdates goneUpdates:(int)goneUpdates {
-    
-    if (handCounter2 == 0)
-        hand2.position = pos1;
-    else if (handCounter2 <= fadeInUpdates)
-        hand2.opacity += 255/fadeInUpdates;
-    else if (handCounter2 <= fadeInUpdates + moveUpdates) {
-        CGPoint vec = ccpSub(pos2, pos1);
-        hand2.position = ccpAdd(pos1, ccpMult(vec, (handCounter2-fadeInUpdates)/moveUpdates));
-    } else if (handCounter2 <= fadeInUpdates + moveUpdates + fadeOutUpdates)
-        hand2.opacity -= 255/fadeOutUpdates;
-    else if (handCounter2 > fadeInUpdates + moveUpdates + fadeOutUpdates + goneUpdates)
-        handCounter2 = -1;
-    
-    // hand2.opacity = 100;
-    
-    handCounter2++;
 }
 
 - (void)restartGame {
@@ -2009,9 +1759,6 @@ typedef struct {
         hand.position = ccp(-1000, 1000);
         hand.opacity = 0;
         handCounter = 0;
-        hand2.position = ccp(-1000, 1000);
-        hand2.opacity = 0;
-        handCounter2 = 0;
         tutorialFader = 0;
         tutorialState++;
         [tutorialLabel1 setString:[NSString stringWithFormat:@""]];

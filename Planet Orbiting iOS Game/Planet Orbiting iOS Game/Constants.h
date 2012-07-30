@@ -30,7 +30,7 @@ const int numberOfSegmentsAtATime = 3;
 //This is the general direction the planet segments head in in degrees from 0. 
 const float directionPlanetSegmentsGoIn= 33.3910034413;
 //The maximum number of degrees that the segment of planets can be rotated from the direction (see above)
-const float segmentRotationVariation = 0;//30;
+const float segmentRotationVariation = 20;//30;
 
 //how quickly the player's spaceship rotates when the direction of his velocity changes
 const float playerRotationSpeed = .39f;
@@ -114,7 +114,7 @@ const float timeDilationIncreaseRate = .15;
 const float absoluteMinTimeDilation = .85;
 
 //the highest the time dilation factor can go. this should probZ just be infinity. bitches will has c slow down if they're going too fast
-const float absoluteMaxTimeDilation = 1.65;
+const float absoluteMaxTimeDilation = 1.65*1.05;
 
 //after this many updates, your velocity will go from what it was when you entered to perfect tangential orbital velocity
 const float updatesToMakeOrbitVelocityPerfect = 60;
@@ -132,4 +132,4 @@ const float negativeLightStartingScore = 8000;
 
 const float initialLightScoreVelocity = 4;
 
-const float amountToIncreaseLightScoreVelocityEachUpdate = .0007;
+const float amountToIncreaseLightScoreVelocityEachUpdate = .0007*1.04;
