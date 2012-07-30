@@ -31,9 +31,9 @@
 					</array>
 					<key>color</key>
 					<array>
-						<integer>6</integer>
-						<integer>0</integer>
-						<integer>129</integer>
+						<integer>82</integer>
+						<integer>95</integer>
+						<integer>255</integer>
 					</array>
 					<key>contentSize</key>
 					<array>
@@ -60,17 +60,17 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>710.66796875</real>
+						<real>720</real>
 						<real>179.13671875</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>3.0849609375</real>
+					<real>3.6130468845367432</real>
 					<key>scaleY</key>
-					<real>3.0849609375</real>
+					<real>3.6130468845367432</real>
 					<key>spriteFile</key>
-					<string>background2clay.png</string>
+					<string>backgrounddark.png</string>
 					<key>spriteFramesFile</key>
 					<string>background.plist</string>
 					<key>tag</key>
@@ -962,7 +962,7 @@
 										<real>16.6875</real>
 									</array>
 									<key>rotation</key>
-									<real>0.0</real>
+									<real>-1.8193359375</real>
 									<key>scaleX</key>
 									<real>1.1091797351837158</real>
 									<key>scaleY</key>

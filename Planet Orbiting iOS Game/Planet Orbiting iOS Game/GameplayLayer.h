@@ -42,6 +42,9 @@
     bool planetJustExploded;
     bool playerIsTouchingScreen;
     
+    int segmentsSpawnedFlurry;
+    int planetsHitFlurry;
+    
     bool isOnFirstRun;
     CGPoint initialVel;
     float initialAccelMag;
@@ -110,6 +113,7 @@
     CCSprite * background;
     CCSpriteBatchNode* spriteSheet;
     CCLayer *pauseLayer;
+    CCLabelBMFont * gameOverScoreLabel;
 }
 
 + (CCScene *) scene;

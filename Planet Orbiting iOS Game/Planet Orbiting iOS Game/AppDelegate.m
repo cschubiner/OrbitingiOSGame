@@ -49,6 +49,18 @@
 	
 #endif // GAME_AUTOROTATION == kGameAutorotationUIViewController	
 }
+
+-(UIViewController*)getViewController{
+    return viewController;
+}
+
+-(bool)getWasJustBackgrounded {
+    return wasJustBackgrounded;
+}
+
+-(void)setWasJustBackgrounded:(bool)isItBackgrounded{
+    wasJustBackgrounded = isItBackgrounded;
+}
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {   
     // installs HandleExceptions as the Uncaught Exception Handler
@@ -191,6 +203,7 @@ void SignalHandler(int sig) {
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application {
+    wasJustBackgrounded = true;
     [DataStorage storeData];
 	[[CCDirector sharedDirector] stopAnimation];
 }

@@ -17,11 +17,15 @@
 	RootViewController	*viewController;
     bool isInTutorialMode;
     bool isRetinaDisplay;
+    bool wasJustBackgrounded;
 }
 
 @property (nonatomic, retain) UIWindow *window;
 -(void)setIsInTutorialMode:(bool)mode;
 -(bool)getIsInTutorialMode;
 -(bool)getIsRetinaDisplay;
+-(UIViewController*)getViewController;
+-(bool)getWasJustBackgrounded;
+-(void)setWasJustBackgrounded:(bool)isItBackgrounded;
 
 @end

@@ -129,8 +129,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>710.66796875</real>
-						<real>179.13671875</real>
+						<real>442.9453125</real>
+						<real>298.28515625</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
@@ -139,7 +139,7 @@
 					<key>scaleY</key>
 					<real>3.0849609375</real>
 					<key>spriteFile</key>
-					<string>background2clay.png</string>
+					<string>backgrounddark.png</string>
 					<key>spriteFramesFile</key>
 					<string>background.plist</string>
 					<key>tag</key>

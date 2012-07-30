@@ -13,7 +13,7 @@
 #import "AppDelegate.h"
 #import "StoreManager.h"
 
-@interface MainMenuLayer : CCLayer {
+@interface MainMenuLayer : CCLayer <UIAlertViewDelegate>{
     CCLayer* layer;
     CCLabelBMFont *coinBalanceLabel;
     CCLabelBMFont *numMagnetsLabel;

@@ -185,10 +185,25 @@ const float effectsVolumeMainMenu = 1;
     [layer runAction: ease];
 }
 
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/PBD9L5H"];
+        [[UIApplication sharedApplication] openURL:url];
+        [Flurry logEvent:@"Launched survey from main menu"];
+    }
+}
+
 - (void)pressedSendFeedback: (id) sender {
-    [Flurry logEvent:@"Pressed Send Feedback"];
-    NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/PBD9L5H"];
-    [[UIApplication sharedApplication] openURL:url];
+    [Flurry logEvent:@"Pressed Survey Button on main menu"];
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle: @"Entering survey"
+                          message: @"Thanks for taking the time to answer our survey! ANY input is helpful. -Clay, Alex, Jeff, Michael, and Craig."
+                          delegate: self
+                          cancelButtonTitle:@"Cancel"
+                          otherButtonTitles:@"Continue",nil];
+    [alert show];
+    [alert release];
+   
 }
 
 - (void)pressedTutorialButton: (id) sender {

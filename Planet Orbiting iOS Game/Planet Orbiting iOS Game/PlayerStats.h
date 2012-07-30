@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DDGameKitHelper.h"
 
 @interface PlayerStats : NSObject
 

@@ -66,8 +66,9 @@ typedef struct {
     coin.whichSegmentThisObjectIsOriginallyFrom = originalSegmentNumber;
     coin.segmentNumber = makingSegmentNumber;
     coin.number = coins.count;
-    [coins addObject:coin];
+     [coins addObject:coin];
     [spriteSheet addChild:coin.sprite];
+    [spriteSheet reorderChild:coin.sprite z:5];
     [coin release];
 }
 
@@ -114,6 +115,7 @@ typedef struct {
 
 - (void)CreateSegment
 {
+    segmentsSpawnedFlurry++;
     float rotationOfSegment = CC_DEGREES_TO_RADIANS([self RandomBetween:-segmentRotationVariation+directionPlanetSegmentsGoIn maxvalue:segmentRotationVariation+directionPlanetSegmentsGoIn]);
     originalSegmentNumber = [self RandomBetween:0 maxvalue:[segments count]-1];
     NSArray *chosenSegment = [segments objectAtIndex:originalSegmentNumber];
@@ -144,7 +146,7 @@ typedef struct {
         [self CreatePlanetAndZone:288+2000 yPos:364 scale:1];
         [self CreatePlanetAndZone:934+2000 yPos:352 scale:1];
         [self CreateAsteroid:610+2000 yPos:460 scale:1.33552];
-
+        
         
         [self CreatePlanetAndZone:288+4000 yPos:364 scale:1];
         [self CreatePlanetAndZone:934+4000 yPos:352 scale:1];
@@ -597,7 +599,7 @@ typedef struct {
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1944,-277) scale:1.15],
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2673,-207) scale:1],
                  nil],
-
+                
                 //Clay Level
                 [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(688,-64) scale:0.87552],
                  [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(740,4) scale:0.87552],
@@ -669,7 +671,7 @@ typedef struct {
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1575,147) scale:1],
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2041,147) scale:1],
                  nil],
-
+                
                 //coin trail happy
                 [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(224,-138) scale:0.87552],
                  [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(760,78) scale:0.87552],
@@ -702,8 +704,8 @@ typedef struct {
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1428,-29) scale:1],
                  [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1948,-107) scale:1],
                  nil],
-
-
+                
+                
                 nil];
     
     indicatorPos = CGPointZero;
@@ -756,7 +758,7 @@ typedef struct {
             
             coinsLabel = [CCLabelTTF labelWithString:@"Coins: " fontName:@"Marker Felt" fontSize:24];
             coinsLabel.position = ccp(70, [coinsLabel boundingBox].size.height);
-            // [hudLayer addChild: coinsLabel];
+            [hudLayer addChild: coinsLabel];
         } 
         else {
             tutorialState = 0;
@@ -798,7 +800,7 @@ typedef struct {
         [player.sprite setScale:playerSizeScale];
         player.segmentNumber = -10;
         player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
-
+        
         float streakWidth = streakWidthWITHOUTRetinaDisplay;
         if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsRetinaDisplay])
             streakWidth = streakWidthOnRetinaDisplay;
@@ -829,8 +831,11 @@ typedef struct {
         
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444]; // add this line at the very beginning
         background = [CCSprite spriteWithFile:@"background.pvr.ccz"];
-        background.position = ccp(size.width/2+31,19);
-        background.scale *=1.3f;
+        background.position = ccp(size.width/2+61,14);
+        background.scale *=1.28f;
+      //  [background setAnchorPoint:CGPointZero];
+       // [background setPosition:CGPointZero];
+      //  [background setPosition:ccp(size.width/2,size.height/2)];
         [self addChild:background];
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888]; // add this line at the very beginning
         
@@ -848,7 +853,7 @@ typedef struct {
         light.scoreVelocity = initialLightScoreVelocity;
         glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         light.hasPutOnLight = false;
-
+        
         
         [cameraLayer addChild:spriteSheet];
         [hudLayer addChild:hand];
@@ -861,15 +866,15 @@ typedef struct {
         
         lastPlanetVisited = [planets objectAtIndex:0];
         layerHudSlider = (CCLayer*)[CCBReader nodeGraphFromFile:@"hudLayer.ccb" owner:self];
-
+        
         [self addChild:cameraLayer];
         [self addChild:hudLayer];
         if (!isInTutorialMode)
-        [self addChild:layerHudSlider];
+            [self addChild:layerHudSlider];
         [self addChild:pauseMenu];
         [self UpdateScore];
-
-        [Flurry logEvent:@"Played Game" withParameters:nil timed:YES];
+        
+        [Flurry logEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:(int)isInTutorialMode],@"isInTutorialMode",nil]  timed:YES];
         [self schedule:@selector(Update:) interval:0]; // this makes the update loop loop!!!!        
 	}
 	return self;
@@ -892,7 +897,7 @@ typedef struct {
     if (lastPlanetVisited.number +1 < [planets count])
         nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
     else     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
-        
+    
     float firsttoplayer = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, player.sprite.position));
     float planetAngle = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, nextPlanet.sprite.position));
     float firstToPlayerAngle = firsttoplayer-planetAngle;
@@ -1107,13 +1112,13 @@ typedef struct {
                 float anglePlayToTarg = ccpToAngle(playerToTarget);
                 
                 if (ccpLength(playerToTarget) > ccpLength(ccpAdd(playerToTarget, player.velocity)))
+                {
+                    if (ccpToAngle(player.velocity) > (anglePlayToTarg + (80 * M_PI/180)) || ccpToAngle(player.velocity) < (anglePlayToTarg - (80 * M_PI/180)))
                     {
-                        if (ccpToAngle(player.velocity) > (anglePlayToTarg + (80 * M_PI/180)) || ccpToAngle(player.velocity) < (anglePlayToTarg - (80 * M_PI/180)))
-                        {
-                            dangerLevel += .02;
-                            //CCLOG(@"Added to DangerLevel: %f", dangerLevel);
-                        }
+                        dangerLevel += .02;
+                        //CCLOG(@"Added to DangerLevel: %f", dangerLevel);
                     }
+                }
                 
                 /*
                  if (ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) > ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)))
@@ -1289,7 +1294,7 @@ typedef struct {
     //this is where the player is on screen (240,160 is center of screen)
     [player setVelocity:ccp(0,0)];
     justReachedNewPlanet = true;
-        
+    
     [thrustParticle setPositionType:kCCPositionTypeRelative];
     [cameraLayer addChild:thrustParticle z:2];
     [cameraLayer addChild:streak z:1];
@@ -1351,11 +1356,12 @@ typedef struct {
                 prevCurrentPtoPScore=0;
                 numZonesHitInARow++;
                 timeDilationCoefficient += timeDilationIncreaseRate;
-                
+                planetsHitFlurry++;
                 /*  if (zonesReached>=[zones count]) {
                  [[UIApplication sharedApplication]setStatusBarOrientation:UIInterfaceOrientationPortrait];
                  [TestFlight passCheckpoint:@"Reached All Zones"];
                  [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
+                 [Flurry logEvent:@"Player Died" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom],@"Segment Player Died On",[NSNumber numberWithInt:numZonesHitInARow],@"Pre-death combo",[NSNumber numberWithFloat:totalSecondsAlive],@"Time Alive",[NSNumber numberWithInt: [[UserWallet sharedInstance] getBalance]],@"Total Coins", nil]];
                  }*/
             }
         }
@@ -1379,33 +1385,33 @@ typedef struct {
 /* Your score goes up as you move along the vector between the current and next planet. Your score will also never go down, as the user doesn't like to see his score go down.*/
 - (void)UpdateScore {
     /*Planet * nextPlanet;
-    if (lastPlanetVisited.number +1 < [planets count])
-        nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
-    else     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
-    
-    float firstToPlayerAngle = ccpAngle(lastPlanetVisited.sprite.position, player.sprite.position)-ccpAngle(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
-    float firstToPlayerDistance = ccpDistance(lastPlanetVisited.sprite.position, player.sprite.position);    
-    
-    prevCurrentPtoPScore = currentPtoPscore;
-    int newScore = ((int)((float)firstToPlayerDistance*cosf(firstToPlayerAngle)));
-    if (newScore > prevCurrentPtoPScore)
-        currentPtoPscore = newScore;
-    [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score+currentPtoPscore]];*/
+     if (lastPlanetVisited.number +1 < [planets count])
+     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
+     else     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
+     
+     float firstToPlayerAngle = ccpAngle(lastPlanetVisited.sprite.position, player.sprite.position)-ccpAngle(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
+     float firstToPlayerDistance = ccpDistance(lastPlanetVisited.sprite.position, player.sprite.position);    
+     
+     prevCurrentPtoPScore = currentPtoPscore;
+     int newScore = ((int)((float)firstToPlayerDistance*cosf(firstToPlayerAngle)));
+     if (newScore > prevCurrentPtoPScore)
+     currentPtoPscore = newScore;
+     [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score+currentPtoPscore]];*/
     
     tempScore = ccpDistance(CGPointZero, player.sprite.position);
     if (tempScore > score)
         score = tempScore;
     [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score]];
     
-    // int numCoins = [[UserWallet sharedInstance] getBalance];
-    // int coinsDiff = numCoins - startingCoins;
-    //[coinsLabel setString:[NSString stringWithFormat:@"Coins: %i",coinsDiff]];
+     int numCoins = [[UserWallet sharedInstance] getBalance];
+     int coinsDiff = numCoins - startingCoins;
+    [coinsLabel setString:[NSString stringWithFormat:@"Coins: %i",coinsDiff]];
 }
 
 - (void)UpdateParticles:(ccTime)dt {
     [thrustParticle setPosition:player.sprite.position];
     [thrustParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
-   // [thrustParticle setEmissionRate:ccpLengthSQ(player.velocity)*ccpLength(player.velocity)/2.2f];
+    // [thrustParticle setEmissionRate:ccpLengthSQ(player.velocity)*ccpLength(player.velocity)/2.2f];
     float speedPercent = (timeDilationCoefficient-absoluteMinTimeDilation)/(absoluteMaxTimeDilation-absoluteMinTimeDilation);
     [thrustParticle setEndColor:ccc4FFromccc4B(
                                                ccc4(lerpf(slowParticleColor[0], fastParticleColor[0], speedPercent),
@@ -1436,15 +1442,19 @@ typedef struct {
     if (!isGameOver) { //this ensures it only runs once
         isGameOver = true;
         if ([[self children]containsObject:layerHudSlider])
-        [self removeChild:layerHudSlider cleanup:YES];
+            [self removeChild:layerHudSlider cleanup:YES];
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"GameOverLayer.ccb" owner:self];
+        [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
+        [Flurry logEvent:@"Game over" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned", [NSNumber numberWithInt:(int)isInTutorialMode],@"isInTutorialMode",nil]];
         [pauseLayer setTag:gameOverLayerTag];
         [self addChild:pauseLayer];
-            int finalScore = score + prevCurrentPtoPScore;
+        int finalScore = score + prevCurrentPtoPScore;
+        [gameOverScoreLabel setString:[NSString stringWithFormat:@"Score: %d",finalScore]];
         [[PlayerStats sharedInstance] addScore:finalScore];
         scoreAlreadySaved = YES;
         [DataStorage storeData];
         if ([[PlayerStats sharedInstance] getPlays] == 10) {
+            [Flurry logEvent:@"forced user to launch survey on gameplaylayer"];
             [self launchSurvey];
         }
     }
@@ -1459,10 +1469,10 @@ typedef struct {
     
     light.scoreVelocity += amountToIncreaseLightScoreVelocityEachUpdate;
     if (!isInTutorialMode)
-    [slidingSelector setPosition:ccp(slidingSelector.position.x,lerpf(50.453,269.848,1-light.distanceFromPlayer/negativeLightStartingScore))];
+        [slidingSelector setPosition:ccp(slidingSelector.position.x,lerpf(50.453,269.848,1-light.distanceFromPlayer/negativeLightStartingScore))];
     
-//    CCLOG(@"DIST: %f, VEL: %f, LIGHSCORE: %f", light.distanceFromPlayer, light.scoreVelocity, light.score);
-
+    //    CCLOG(@"DIST: %f, VEL: %f, LIGHSCORE: %f", light.distanceFromPlayer, light.scoreVelocity, light.score);
+    
     
     /*if (distance <= 100) {
      [light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];        
@@ -1522,7 +1532,7 @@ typedef struct {
                 totalGameTime+=dt;
                 totalSecondsAlive+=dt;
             }
-                
+            
             if (player.alive)
                 [self UpdatePlanets];
             [self UpdatePlayer: dt];
@@ -1531,28 +1541,36 @@ typedef struct {
             [self UpdateParticles:dt];
             [self UpdateLight];
             updatesSinceLastPlanet++;
-            
         }
     }
     if (isInTutorialMode)
         [self UpdateTutorial];
+    if (!paused&&[((AppDelegate*)[[UIApplication sharedApplication]delegate])getWasJustBackgrounded])
+    {
+        [((AppDelegate*)[[UIApplication sharedApplication]delegate])setWasJustBackgrounded:false];
+        [self togglePause];
+    }
 }
 
 - (void)endGame {
     if (!didEndGameAlready) {
         didEndGameAlready = true;
+        [Flurry logEvent:@"Game ended" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned", [NSNumber numberWithInt:(int)isInTutorialMode],@"isInTutorialMode", nil]];
+        
         int finalScore = score + prevCurrentPtoPScore;
         if (!isInTutorialMode && !scoreAlreadySaved) {
             [[PlayerStats sharedInstance] addScore:finalScore];
         }
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
         if ([[PlayerStats sharedInstance] getPlays] == 10) {
+            [Flurry logEvent:@"forced user to launch survey on gameplaylayer"];
             [self launchSurvey];
         }
     }
 }
 
 - (void)launchSurvey {
+    [Flurry logEvent:@"Launched survey from gameplaylayer"];
     NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/PBD9L5H"];
     [[UIApplication sharedApplication] openURL:url];
 }
@@ -1570,7 +1588,7 @@ typedef struct {
     
     
     [tutorialLabel0 setOpacity:clampf(((sinf(totalGameTime*5)+1)/2)*300, 0, 255)];
-
+    
     //CCLOG(@"countuh: %d", tutorialState);
     
     float scale = .4;
@@ -1584,7 +1602,7 @@ typedef struct {
         
         
         float ang = CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity));
-
+        
         
         if (ang > 0 && ang < 10) {
             [self AdvanceTutorial];
@@ -1620,14 +1638,14 @@ typedef struct {
         
     } else if (tutorialState == tutorialCounter++) { //good angle
         updatesToAdvanceTutorial = 300;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"BITCH"]];
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"test"]];
         
         [self updateHandFrom:ccp(100, 40) to:ccp(380, 40) fadeInUpdates:20 moveUpdates:50 fadeOutUpdates:20 goneUpdates:20];
         
         
         
         float ang = CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity));
-
+        
         
         if (ang > 0 && ang < 10) {
             [self AdvanceTutorial];
@@ -1639,7 +1657,7 @@ typedef struct {
         [cameraLayer runAction: followAction];
     } else if (tutorialState == tutorialCounter++) {
         [self updateHandFrom:ccp(100, 40) to:ccp(380, 40) fadeInUpdates:20 moveUpdates:50 fadeOutUpdates:20 goneUpdates:20];
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"BITCH."]];
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"test."]];
         
         swipeVector = ccp(0, 1);
         
@@ -1648,7 +1666,7 @@ typedef struct {
         [self AdvanceTutorial];
     } else if (tutorialState == tutorialCounter++) { //hit the next zone
         [self updateHandFrom:ccp(100, 40) to:ccp(380, 40) fadeInUpdates:20 moveUpdates:50 fadeOutUpdates:20 goneUpdates:20];
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"BITCH."]];
+        [tutorialLabel1 setString:[NSString stringWithFormat:@"test."]];
         if (orbitState == 0) {
             lastPlanetVisited = [planets objectAtIndex:2];
             //            player.sprite.position = ccp(400, 364);
@@ -1674,7 +1692,7 @@ typedef struct {
         [cameraLayer runAction: followAction];
         
         
-      
+        
         
         
     } else if (tutorialState == tutorialCounter++) { //tap
@@ -1715,7 +1733,7 @@ typedef struct {
         if (hand.opacity < 20)
             hand.opacity = 0;
         else
-        hand.opacity -= 255/fadeOutUpdates;
+            hand.opacity -= 255/fadeOutUpdates;
         
     }
     else if (handCounter > fadeInUpdates + moveUpdates + fadeOutUpdates + goneUpdates) {
@@ -1802,11 +1820,11 @@ typedef struct {
 }
 
 - (void)AdvanceTutorial {
-//    if (tutorialPauseTimer >= updatesToAdvanceTutorial) {
-        shouldDisplayWaiting = false;
-        tutorialFader = 0;
-        tutorialState++;
-//    }
+    //    if (tutorialPauseTimer >= updatesToAdvanceTutorial) {
+    shouldDisplayWaiting = false;
+    tutorialFader = 0;
+    tutorialState++;
+    //    }
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {    
@@ -1828,7 +1846,7 @@ typedef struct {
         }
         
     }
-
+    
     if (orbitState == 0) {
         for (UITouch *touch in touches) {
             CGPoint location = [touch locationInView:[touch view]];
@@ -1877,6 +1895,8 @@ float lerpf(float a, float b, float t) {
     paused = !paused;
     if (paused) {
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"PauseMenuLayer.ccb" owner:self];
+        int finalScore = score + prevCurrentPtoPScore;
+        [gameOverScoreLabel setString:[NSString stringWithFormat:@"Score: %d",finalScore]];
         [pauseLayer setTag:pauseLayerTag];
         [self addChild:pauseLayer];
     } else {

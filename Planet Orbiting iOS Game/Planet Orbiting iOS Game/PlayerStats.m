@@ -53,6 +53,9 @@ static PlayerStats *sharedInstance = nil;
     [highScores addObject:newScore]; //THIS LINE CRASHES WHEN YOU PRESS QUIT AFTER THE TUTORIAL/REGULAR GAME HAS ALREADY RAN AND QUIT ONCE!!! JEFFFFF
     [newScore release];
     
+    [[DDGameKitHelper sharedGameKitHelper] submitScore:score category:@"Star_Dash_Leaderboard"];
+
+    
     NSSortDescriptor *highestToLowest = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:NO];
     [highScores sortUsingDescriptors:[NSArray arrayWithObject:highestToLowest]];
     

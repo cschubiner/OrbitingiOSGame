@@ -120,8 +120,8 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
-										<real>-228.48828125</real>
-										<real>20.73828125</real>
+										<real>-229.6796875</real>
+										<real>-34.55859375</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
@@ -180,8 +180,8 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
-										<real>-100.73828125</real>
-										<real>26.69140625</real>
+										<real>-96.87109375</real>
+										<real>-18.125</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
@@ -240,8 +240,8 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
-										<real>26.8046875</real>
-										<real>18.94140625</real>
+										<real>32.5625</real>
+										<real>-36.52734375</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
@@ -362,8 +362,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-232.51171875</real>
-								<real>-38.328125</real>
+								<real>-231.48828125</real>
+								<real>-85.71875</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -422,8 +422,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>24.734375</real>
-								<real>-39.72265625</real>
+								<real>31.796875</real>
+								<real>-91.71875</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -482,8 +482,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-102.1484375</real>
-								<real>-44.6171875</real>
+								<real>-100.45703125</real>
+								<real>-90.2734375</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -493,6 +493,66 @@
 							<real>0.46296876668930054</real>
 							<key>string</key>
 							<string>Survey</string>
+							<key>tag</key>
+							<integer>-1</integer>
+							<key>visible</key>
+							<true/>
+							<key>zOrder</key>
+							<integer>0</integer>
+						</dict>
+					</dict>
+					<dict>
+						<key>children</key>
+						<array/>
+						<key>class</key>
+						<string>CCLabelBMFont</string>
+						<key>properties</key>
+						<dict>
+							<key>anchorPoint</key>
+							<array>
+								<real>0.5</real>
+								<real>0.5</real>
+							</array>
+							<key>color</key>
+							<array>
+								<integer>255</integer>
+								<integer>252</integer>
+								<integer>0</integer>
+							</array>
+							<key>contentSize</key>
+							<array>
+								<real>0.0</real>
+								<real>0.0</real>
+							</array>
+							<key>customClass</key>
+							<string></string>
+							<key>fontFile</key>
+							<string>titleFontGreen.fnt</string>
+							<key>isExpanded</key>
+							<true/>
+							<key>isRelativeAnchorPoint</key>
+							<true/>
+							<key>lockedScaleRatio</key>
+							<true/>
+							<key>memberVarAssignmentName</key>
+							<string>gameOverScoreLabel</string>
+							<key>memberVarAssignmentType</key>
+							<integer>2</integer>
+							<key>opacity</key>
+							<integer>255</integer>
+							<key>position</key>
+							<array>
+								<real>-101.37109375</real>
+								<real>66.70703125</real>
+							</array>
+							<key>rotation</key>
+							<real>0.0</real>
+							<key>scaleX</key>
+							<real>0.40507814288139343</real>
+							<key>scaleY</key>
+							<real>0.40507814288139343</real>
+							<key>string</key>
+							<string></string>
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
