@@ -130,7 +130,7 @@
 									<key>scaleY</key>
 									<real>1</real>
 									<key>selector</key>
-									<string>startGame</string>
+									<string>restartGame</string>
 									<key>spriteFileDisabled</key>
 									<string>btn-test-2.png</string>
 									<key>spriteFileNormal</key>
