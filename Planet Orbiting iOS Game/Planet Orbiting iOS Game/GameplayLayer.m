@@ -1440,16 +1440,14 @@ typedef struct {
 - (void)UpdateLight {
     
     float distance = ccpDistance(light.position, player.sprite.position);
-    //float maxDistance = size.width*1.2f;
-    
+    // float maxDistance = size.width*1.2f;
     
     light.velocity = ccpMult(ccpNormalize(ccpSub(player.sprite.position, light.position)), ccpLength(light.velocity)+amountToIncreaseLightVelEachUpdate);
     
     float opac;
     
-    CCLOG(@"DIST: %f, OPAC: %f, VEL: %f", distance, opac, ccpLength(light.velocity));
+    // CCLOG(@"DIST: %f, OPAC: %f, VEL: %f", distance, opac, ccpLength(light.velocity));
     
-
     if (distance < 3500) {
         [background setOpacity:clampf(((distance)/3500)*255, 0, 255)];
     }
