@@ -1436,7 +1436,6 @@ typedef struct {
 
 - (void)GameOver {
     if (!isGameOver) { //this ensures it only runs once
-//<<<<<<< HEAD
     isGameOver = true;
     pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"GameOverLayer.ccb" owner:self];
     [pauseLayer setTag:gameOverLayerTag];
@@ -1444,14 +1443,6 @@ typedef struct {
         int finalScore = score + prevCurrentPtoPScore;
     [[PlayerStats sharedInstance] addScore:finalScore];
     [DataStorage storeData];
-//=======
-        isGameOver = true;
-        pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"GameOverLayer.ccb" owner:self];
-        [pauseLayer setTag:gameOverLayerTag];
-        [self addChild:pauseLayer];
-        [[PlayerStats sharedInstance] addScore:score];
-        //[DataStorage storeData];
-//>>>>>>> Fixed high scores crashing issue!
     }
 }
 
