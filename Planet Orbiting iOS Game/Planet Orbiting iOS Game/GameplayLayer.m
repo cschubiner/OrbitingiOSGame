@@ -1447,40 +1447,42 @@ typedef struct {
 }
 
 - (void)UpdateLight {
+    
     light.distanceFromPlayer = score - light.score;
     
     if (light.distanceFromPlayer > negativeLightStartingScore)
         light.score = score-negativeLightStartingScore;
+    
     
     light.scoreVelocity += amountToIncreaseLightScoreVelocityEachUpdate;
     
     CCLOG(@"DIST: %f, VEL: %f, LIGHSCORE: %f", light.distanceFromPlayer, light.scoreVelocity, light.score);
     
     /*if (distance <= 100) {
-        [light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];        
-        [self GameOver];
-    } else*/ if (light.distanceFromPlayer <= 1000) {
-        /*if (!light.hasPutOnLight) {
-            light.hasPutOnLight = true;
-            light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
-            [light.sprite setOpacity:0];
-            light.sprite.position = ccp(240, 160);
-            [light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
-            [hudLayer reorderChild:light.sprite z:-1];
-        }
-        [light.sprite setOpacity:clampf(((600-distance)/500)*255, 0, 255)];*/
-        if (!light.hasPutOnLight) {
-            light.hasPutOnLight = true;
-            light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
-            [light.sprite setOpacity:0];
-            light.sprite.position = ccp(-240, 160);
-            [light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
-            [hudLayer reorderChild:light.sprite z:-1];
-            [light.sprite setOpacity:0];
-        }
-    } else if (light.distanceFromPlayer <= 300) {
-        [background setOpacity:clampf(((light.distanceFromPlayer)/2500)*255, 0, 255)];
-    }
+     [light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];        
+     [self GameOver];
+     } else*/ if (light.distanceFromPlayer <= 1000) {
+         /*if (!light.hasPutOnLight) {
+          light.hasPutOnLight = true;
+          light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
+          [light.sprite setOpacity:0];
+          light.sprite.position = ccp(240, 160);
+          [light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
+          [hudLayer reorderChild:light.sprite z:-1];
+          }
+          [light.sprite setOpacity:clampf(((600-distance)/500)*255, 0, 255)];*/
+         if (!light.hasPutOnLight) {
+             light.hasPutOnLight = true;
+             light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
+             [light.sprite setOpacity:0];
+             light.sprite.position = ccp(-240, 160);
+             [light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
+             [hudLayer reorderChild:light.sprite z:-1];
+             [light.sprite setOpacity:0];
+         }
+     } else if (light.distanceFromPlayer <= 3000) {
+         [background setOpacity:clampf(((light.distanceFromPlayer)/2500)*255, 0, 255)];
+     }
     
     if (light.hasPutOnLight) {
         light.sprite.position = ccp(light.sprite.position.x+480/10, light.sprite.position.y);
@@ -1491,16 +1493,16 @@ typedef struct {
         [self GameOver];
     }
     
-
+    
     
     //[light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
     
     //if (distance <= maxDistance ) {
-        //float percentOfMax = distance / maxDistance;
-        //GLubyte red   = lerpf(0, 255, percentOfMax);
-        //GLubyte green = lerpf(88, 255, percentOfMax);
-        //[background setColor:ccc3(red, green, 255)];
-        //[background setColor:ccBLUE];
+    //float percentOfMax = distance / maxDistance;
+    //GLubyte red   = lerpf(0, 255, percentOfMax);
+    //GLubyte green = lerpf(88, 255, percentOfMax);
+    //[background setColor:ccc3(red, green, 255)];
+    //[background setColor:ccBLUE];
     //}
     //else [background setColor:ccWHITE];
     // [background setTextureRect:<#(CGRect)#>];
@@ -2012,7 +2014,6 @@ typedef struct {
     if (isInTutorialMode && tutorialAdvanceMode == 1) {
         [self AdvanceTutorial];
     }
-    float hi;
 
     if (orbitState == 0) {
         for (UITouch *touch in touches) {
