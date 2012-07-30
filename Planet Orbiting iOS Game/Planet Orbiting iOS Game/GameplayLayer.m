@@ -1446,8 +1446,7 @@ typedef struct {
         scoreAlreadySaved = YES;
         [DataStorage storeData];
         if ([[PlayerStats sharedInstance] getPlays] == 10) {
-            NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/PBD9L5H"];
-            [[UIApplication sharedApplication] openURL:url];
+            [self launchSurvey];
         }
     }
 }
@@ -1548,10 +1547,14 @@ typedef struct {
         }
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
         if ([[PlayerStats sharedInstance] getPlays] == 10) {
-            NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/PBD9L5H"];
-            [[UIApplication sharedApplication] openURL:url];
+            [self launchSurvey];
         }
     }
+}
+
+- (void)launchSurvey {
+    NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/PBD9L5H"];
+    [[UIApplication sharedApplication] openURL:url];
 }
 
 - (void)UpdateTutorial {
@@ -1827,7 +1830,7 @@ float lerpf(float a, float b, float t) {
 
 - (void)toggleMute {
     muted = !muted;
-    if (muted) {
+    if (!muted) {
         [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:musicVolumeGameplay];
         [[SimpleAudioEngine sharedEngine] setEffectsVolume:effectsVolumeGameplay];
     } else {

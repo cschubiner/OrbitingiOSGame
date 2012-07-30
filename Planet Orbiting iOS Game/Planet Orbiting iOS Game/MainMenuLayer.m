@@ -15,6 +15,8 @@
 #import "DataStorage.h"
 #import "PlayerStats.h"
 
+#define tutorialLayerTag    300
+
 const float musicVolumeMainMenu = 1;
 const float effectsVolumeMainMenu = 1;
 
@@ -194,7 +196,16 @@ const float effectsVolumeMainMenu = 1;
     [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:TRUE];
     [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
     CCLOG(@"gameplayLayer scene launched, game starting");
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
+    
+    tutorialLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"TutorialLayer.ccb" owner:self];
+    [tutorialLayer setTag:tutorialLayerTag];
+    [self addChild:tutorialLayer];
+    
+    // [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
+}
+
+- (void)removeTutorialLayer {
+    [self removeChildByTag:tutorialLayerTag cleanup:NO];
 }
 
 - (void)toggleMute {

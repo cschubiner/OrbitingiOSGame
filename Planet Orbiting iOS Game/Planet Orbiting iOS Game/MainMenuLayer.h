@@ -22,6 +22,7 @@
     CCLabelBMFont *highScore2Label;
     CCLabelBMFont *highScore3Label;
     CCLabelBMFont *highScore4Label;
+    CCLayer *tutorialLayer;
 }
 
 + (CCScene *)scene;

@@ -109,7 +109,7 @@
     
     CCSprite * background;
     CCSpriteBatchNode* spriteSheet;
-        CCLayer *pauseLayer;
+    CCLayer *pauseLayer;
 }
 
 + (CCScene *) scene;
