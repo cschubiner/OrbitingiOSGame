@@ -197,7 +197,7 @@ const float effectsVolumeMainMenu = 1;
     [Flurry logEvent:@"Pressed Survey Button on main menu"];
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle: @"Entering survey"
-                          message: @"Thanks for taking the time to answer our survey! ANY input is helpful. -Clay, Alex, Jeff, Michael, and Craig."
+                          message: @"Thanks for taking the time to answer our survey! Any input is helpful. \n-Clay, Alex, Jeff, Michael, and Craig."
                           delegate: self
                           cancelButtonTitle:@"Cancel"
                           otherButtonTitles:@"Continue",nil];
