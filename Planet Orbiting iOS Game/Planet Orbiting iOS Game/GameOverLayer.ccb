@@ -120,6 +120,66 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
+										<real>-257.6015625</real>
+										<real>71.45703125</real>
+									</array>
+									<key>rotation</key>
+									<real>0.0</real>
+									<key>scaleX</key>
+									<real>0.68000000715255737</real>
+									<key>scaleY</key>
+									<real>0.68000000715255737</real>
+									<key>selector</key>
+									<string>showRecording</string>
+									<key>spriteFileDisabled</key>
+									<string>play.png</string>
+									<key>spriteFileNormal</key>
+									<string>play.png</string>
+									<key>spriteFileSelected</key>
+									<string>play.png</string>
+									<key>tag</key>
+									<integer>1</integer>
+									<key>target</key>
+									<integer>2</integer>
+									<key>visible</key>
+									<true/>
+									<key>zOrder</key>
+									<integer>0</integer>
+								</dict>
+							</dict>
+							<dict>
+								<key>children</key>
+								<array/>
+								<key>class</key>
+								<string>CCMenuItemImage</string>
+								<key>properties</key>
+								<dict>
+									<key>anchorPoint</key>
+									<array>
+										<real>0.5</real>
+										<real>0.5</real>
+									</array>
+									<key>contentSize</key>
+									<array>
+										<real>103</real>
+										<real>103</real>
+									</array>
+									<key>customClass</key>
+									<string></string>
+									<key>isEnabled</key>
+									<true/>
+									<key>isExpanded</key>
+									<true/>
+									<key>isRelativeAnchorPoint</key>
+									<true/>
+									<key>lockedScaleRatio</key>
+									<true/>
+									<key>memberVarAssignmentName</key>
+									<string></string>
+									<key>memberVarAssignmentType</key>
+									<integer>1</integer>
+									<key>position</key>
+									<array>
 										<real>-229.6796875</real>
 										<real>-34.55859375</real>
 									</array>

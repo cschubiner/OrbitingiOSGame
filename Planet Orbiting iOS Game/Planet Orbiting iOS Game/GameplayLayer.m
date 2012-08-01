@@ -783,7 +783,7 @@ typedef struct {
             [hudLayer addChild: tutorialLabel0];
         }
         
-        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"a_song.mp3" loop:YES];
+        [self playSound:@"a_song.mp3" shouldLoop:YES];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"bomb.wav"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.wav"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"buttonpress.mp3"];
@@ -971,7 +971,15 @@ typedef struct {
     [[UserWallet sharedInstance] addCoins:1];
     coin.sprite.visible = false;
     coin.isAlive = false;
-    [[SimpleAudioEngine sharedEngine]playEffect:@"buttonpress.mp3"];
+    [self playSound:@"buttonpress.mp3" shouldLoop:false];
+}
+
+- (void)playSound:(NSString*)soundFile shouldLoop:(bool)shouldLoop {
+    [Kamcord playSound:soundFile loop:shouldLoop];
+    if (shouldLoop)
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:soundFile loop:YES];
+    else
+    [[SimpleAudioEngine sharedEngine]playEffect:soundFile];
 }
 
 - (void)ApplyGravity:(float)dt {
@@ -1042,9 +1050,7 @@ typedef struct {
             {
                 velSoftener = 0;
                 gravIncreaser = 1;
-                //if in position
-                //justSwiped = false;
-                [[SimpleAudioEngine sharedEngine]playEffect:@"SWOOSH.WAV"];
+                [self playSound:@"SWOOSH.wav" shouldLoop:false];
                 player.acceleration = CGPointZero;
                 //set velocity
                 //player.velocity = ccpMult(swipeVector, .55);
@@ -1444,6 +1450,7 @@ typedef struct {
         isGameOver = true;
         if ([[self children]containsObject:layerHudSlider])
             [self removeChild:layerHudSlider cleanup:YES];
+        [Kamcord stopRecording];
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"GameOverLayer.ccb" owner:self];
         
         [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
@@ -1894,17 +1901,24 @@ float lerpf(float a, float b, float t) {
     [self togglePause];
 }
 
+-(void)showRecording {
+    muted = false;
+    [self toggleMute];
+    [Kamcord stopRecording];
+    [Kamcord showView];
+}
+
 - (void)togglePause {
     paused = !paused;
     if (paused) {
+        [Kamcord pause];
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"PauseMenuLayer.ccb" owner:self];
-        [Kamcord stopRecording];
-        [Kamcord showView];
         int finalScore = score + prevCurrentPtoPScore;
         [gameOverScoreLabel setString:[NSString stringWithFormat:@"Score: %d",finalScore]];
         [pauseLayer setTag:pauseLayerTag];
         [self addChild:pauseLayer];
     } else {
+        [Kamcord resume];
         [self removeChildByTag:pauseLayerTag cleanup:NO];
     }
 }

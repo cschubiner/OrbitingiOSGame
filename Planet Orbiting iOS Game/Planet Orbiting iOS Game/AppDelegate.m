@@ -96,24 +96,18 @@
 	CCDirector *director = [CCDirector sharedDirector];
 	
 	// Init the View Controller
-	viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-	viewController.wantsFullScreenLayout = YES;
+//	viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
+	//viewController.wantsFullScreenLayout = YES;
 	
-	//
-	// Create the EAGLView manually
-	//  1. Create a RGB565 format. Alternative: RGBA8
-	//	2. depth format of 0 bit. Use 16 or 24 bit for 3d effects, like CCPageTurnTransition
-	//
-	//
-	KCGLView *glView = [KCGLView viewWithFrame:[window bounds]
-								   pixelFormat:kEAGLColorFormatRGB565	// kEAGLColorFormatRGBA8
-								   depthFormat:0						// GL_DEPTH_COMPONENT16_OES
-						];
+
+    KCGLView * glView = [KCGLView viewWithFrame:[window bounds]
+                                    pixelFormat:kEAGLColorFormatRGB565
+                                    depthFormat:0];
     
-    window.rootViewController = [[KCViewController alloc]initWithNibName:nil bundle:nil];
-    window.rootViewController.view = glView;
+    viewController = [[KCViewController alloc]initWithNibName:nil bundle:nil];
+    viewController.view = glView;
     
-    [Kamcord setParentViewController:window.rootViewController];
+    [Kamcord setParentViewController:viewController];
 	
 	// attach the openglView to the director
 	[Kamcord setOpenGLView:glView];
@@ -125,37 +119,25 @@
         isRetinaDisplay = false;
 	}
     
-	//
-	// VERY IMPORTANT:
-	// If the rotation is going to be controlled by a UIViewController
-	// then the device orientation should be "Portrait".
-	//
-	// IMPORTANT:
-	// By default, this template only supports Landscape orientations.
-	// Edit the RootViewController.m file to edit the supported orientations.
-	//
+
 #if GAME_AUTOROTATION == kGameAutorotationUIViewController
-	[Kamcord setDeviceOrientation:kCCDeviceOrientationPortrait];
+	[Kamcord setDeviceOrientation:CCDeviceOrientationPortrait];
     
 #else
-	[Kamcord setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
-#endif
     [Kamcord setDeviceOrientation:CCDeviceOrientationLandscapeLeft];
-   // [director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
-  // [[UIApplication sharedApplication]setStatusBarOrientation:UIInterfaceOrientationLandscapeLeft];
-
-	
+#endif
+    
+	[Kamcord setVideoResolution:TRAILER_VIDEO_RESOLUTION];
 	[director setAnimationInterval:1.0/60];
-	[director setDisplayFPS:NO];
+	[director setDisplayFPS:YES];
     
     [CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
 
-	
 	// make the OpenGLView a child of the view controller
-//	[viewController setView:glView];
+ 	[viewController setView:glView];
 	
 	// make the View Controller a child of the main window
-	//[window addSubview: viewController.view];
+	[window addSubview: viewController.view];
 	
 	[window makeKeyAndVisible];
 	

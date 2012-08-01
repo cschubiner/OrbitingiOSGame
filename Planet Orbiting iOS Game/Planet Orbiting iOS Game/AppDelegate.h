@@ -15,7 +15,7 @@
 
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
 	UIWindow			*window;
-	RootViewController	*viewController;
+	KCViewController	*viewController;
     bool isInTutorialMode;
     bool isRetinaDisplay;
     bool wasJustBackgrounded;
@@ -25,7 +25,7 @@
 -(void)setIsInTutorialMode:(bool)mode;
 -(bool)getIsInTutorialMode;
 -(bool)getIsRetinaDisplay;
--(UIViewController*)getViewController;
+-(KCViewController*)getViewController;
 -(bool)getWasJustBackgrounded;
 -(void)setWasJustBackgrounded:(bool)isItBackgrounded;
 

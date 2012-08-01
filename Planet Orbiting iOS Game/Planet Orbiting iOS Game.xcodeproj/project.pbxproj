@@ -724,8 +724,6 @@
 		0C487AFD159471FF00674AB9 /* Basic Stuff - Ignore */ = {
 			isa = PBXGroup;
 			children = (
-				0C7AA7541594693D000B58F2 /* AppDelegate.h */,
-				0C7AA7551594693D000B58F2 /* AppDelegate.m */,
 				0C7AA7571594693D000B58F2 /* RootViewController.h */,
 				0C7AA7581594693D000B58F2 /* RootViewController.m */,
 				0C7AA75D1594693D000B58F2 /* GameConfig.h */,
@@ -792,8 +790,6 @@
 		0C7AA5E315946938000B58F2 = {
 			isa = PBXGroup;
 			children = (
-				0C62B1B715C8DDE800318B66 /* Security.framework */,
-				0C62B1B515C8DD9300318B66 /* libz.dylib */,
 				0C7AA60215946939000B58F2 /* Planet Orbiting iOS Game */,
 				0C7AA5F115946939000B58F2 /* Frameworks */,
 				0C7AA5EF15946939000B58F2 /* Products */,
@@ -811,6 +807,8 @@
 		0C7AA5F115946939000B58F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C62B1B715C8DDE800318B66 /* Security.framework */,
+				0C62B1B515C8DD9300318B66 /* libz.dylib */,
 				0C62B1B315C8DA7E00318B66 /* Twitter.framework */,
 				0C62B1B115C8DA4800318B66 /* MessageUI.framework */,
 				0C62B1AF15C8DA4200318B66 /* MediaPlayer.framework */,
@@ -838,6 +836,8 @@
 			children = (
 				0C487AFD159471FF00674AB9 /* Basic Stuff - Ignore */,
 				0C487AFC159471E800674AB9 /* Classes */,
+				0C7AA7541594693D000B58F2 /* AppDelegate.h */,
+				0C7AA7551594693D000B58F2 /* AppDelegate.m */,
 				C49E914A159A48D700BC424D /* Constants.h */,
 				0C487AF615946E2300674AB9 /* GameplayLayer.h */,
 				0C487AF715946E2300674AB9 /* GameplayLayer.m */,

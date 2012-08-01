@@ -16,6 +16,8 @@
 #import "PlayerStats.h"
 
 #define tutorialLayerTag    300
+#define levelLayerTag    400
+
 
 const float musicVolumeMainMenu = 1;
 const float effectsVolumeMainMenu = 1;
@@ -193,6 +195,21 @@ const float effectsVolumeMainMenu = 1;
     }
 }
 
+- (void)pressedLevelsButton: (id) sender {
+    [Flurry logEvent:@"Pressed Levels Button"];
+    [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
+    CCLOG(@"gameplayLayer scene launched, game starting");
+    
+    CCLayer* levelLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"LevelsLayer.ccb" owner:self];
+    [levelLayer setTag:levelLayerTag];
+    [self addChild:levelLayer];
+    
+}
+
+- (void)removeLevelsLayer {
+    [self removeChildByTag:levelLayerTag cleanup:NO];
+}
+
 - (void)pressedSendFeedback: (id) sender {
     [Flurry logEvent:@"Pressed Survey Button on main menu"];
     UIAlertView *alert = [[UIAlertView alloc]
@@ -210,7 +227,7 @@ const float effectsVolumeMainMenu = 1;
     [Flurry logEvent:@"Pressed Tutorial Button"];
     [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:TRUE];
     [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
-    CCLOG(@"gameplayLayer scene launched, game starting");
+    CCLOG(@"tutorial scene launched, game starting");
     
     tutorialLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"TutorialLayer.ccb" owner:self];
     [tutorialLayer setTag:tutorialLayerTag];
