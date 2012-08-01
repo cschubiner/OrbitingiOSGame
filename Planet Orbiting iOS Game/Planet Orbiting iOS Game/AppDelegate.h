@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TestFlight.h"
 #import "Flurry.h"
+#import <Kamcord/Kamcord.h>
 
 @class RootViewController;
 

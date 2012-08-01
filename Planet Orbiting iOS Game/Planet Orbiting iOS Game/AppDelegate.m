@@ -80,6 +80,10 @@
 
     [Flurry startSession:@"96GKYS7HQZHNKZJJN2CZ"];
     
+    [Kamcord setDeveloperKey:@"d05f73399ff3c1755bd97ec94cb5fdda"
+             developerSecret:@"prcU7MltdajQ1YVTSeFDtPtywe2zABOmzzpSB5pGP79"
+                     appName:@"Star Dash"];
+    
 	// Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
@@ -101,13 +105,18 @@
 	//	2. depth format of 0 bit. Use 16 or 24 bit for 3d effects, like CCPageTurnTransition
 	//
 	//
-	EAGLView *glView = [EAGLView viewWithFrame:[window bounds]
+	KCGLView *glView = [KCGLView viewWithFrame:[window bounds]
 								   pixelFormat:kEAGLColorFormatRGB565	// kEAGLColorFormatRGBA8
 								   depthFormat:0						// GL_DEPTH_COMPONENT16_OES
 						];
+    
+    window.rootViewController = [[KCViewController alloc]initWithNibName:nil bundle:nil];
+    window.rootViewController.view = glView;
+    
+    [Kamcord setParentViewController:window.rootViewController];
 	
 	// attach the openglView to the director
-	[director setOpenGLView:glView];
+	[Kamcord setOpenGLView:glView];
 	
     isRetinaDisplay = true;
 //	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
@@ -126,10 +135,15 @@
 	// Edit the RootViewController.m file to edit the supported orientations.
 	//
 #if GAME_AUTOROTATION == kGameAutorotationUIViewController
-	[director setDeviceOrientation:kCCDeviceOrientationPortrait];
+	[Kamcord setDeviceOrientation:kCCDeviceOrientationPortrait];
+    
 #else
-	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
+	[Kamcord setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
 #endif
+    [Kamcord setDeviceOrientation:CCDeviceOrientationLandscapeLeft];
+   // [director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
+  // [[UIApplication sharedApplication]setStatusBarOrientation:UIInterfaceOrientationLandscapeLeft];
+
 	
 	[director setAnimationInterval:1.0/60];
 	[director setDisplayFPS:NO];
@@ -138,10 +152,10 @@
 
 	
 	// make the OpenGLView a child of the view controller
-	[viewController setView:glView];
+//	[viewController setView:glView];
 	
 	// make the View Controller a child of the main window
-	[window addSubview: viewController.view];
+	//[window addSubview: viewController.view];
 	
 	[window makeKeyAndVisible];
 	
