@@ -875,7 +875,8 @@ typedef struct {
         [self UpdateScore];
         
         [Flurry logEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:(int)isInTutorialMode],@"isInTutorialMode",nil]  timed:YES];
-        [self schedule:@selector(Update:) interval:0]; // this makes the update loop loop!!!!        
+        [self schedule:@selector(Update:) interval:0]; // this makes the update loop loop!!!!
+        [Kamcord startRecording];
 	}
 	return self;
 }
@@ -1444,6 +1445,7 @@ typedef struct {
         if ([[self children]containsObject:layerHudSlider])
             [self removeChild:layerHudSlider cleanup:YES];
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"GameOverLayer.ccb" owner:self];
+        
         [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
         [Flurry logEvent:@"Game over" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned", [NSNumber numberWithInt:(int)isInTutorialMode],@"isInTutorialMode",nil]];
         [pauseLayer setTag:gameOverLayerTag];
@@ -1896,6 +1898,8 @@ float lerpf(float a, float b, float t) {
     paused = !paused;
     if (paused) {
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"PauseMenuLayer.ccb" owner:self];
+        [Kamcord stopRecording];
+        [Kamcord showView];
         int finalScore = score + prevCurrentPtoPScore;
         [gameOverScoreLabel setString:[NSString stringWithFormat:@"Score: %d",finalScore]];
         [pauseLayer setTag:pauseLayerTag];

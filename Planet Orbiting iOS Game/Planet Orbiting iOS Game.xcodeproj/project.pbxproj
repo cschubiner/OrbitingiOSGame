@@ -50,14 +50,32 @@
 		0C487B0E1594792C00674AB9 /* Planet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B0D1594792C00674AB9 /* Planet.m */; };
 		0C49E19015C0FE44007957E9 /* thrustParticle3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */; };
 		0C5400B915C50C4000AF9AA9 /* edit(84759).png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5400B815C50C4000AF9AA9 /* edit(84759).png */; };
+		0C62B19215C8D9CB00318B66 /* Kamcord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B19115C8D9CB00318B66 /* Kamcord.framework */; };
+		0C62B19515C8D9D600318B66 /* AWSiOSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B19415C8D9D600318B66 /* AWSiOSSDK.framework */; };
+		0C62B19F15C8D9FA00318B66 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C62B19715C8D9FA00318B66 /* FBDialog.bundle */; };
+		0C62B1A015C8D9FA00318B66 /* GTMOAuth2ViewTouch.nib in Resources */ = {isa = PBXBuildFile; fileRef = 0C62B19815C8D9FA00318B66 /* GTMOAuth2ViewTouch.nib */; };
+		0C62B1A115C8D9FA00318B66 /* Kamcord.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C62B19915C8D9FA00318B66 /* Kamcord.bundle */; };
+		0C62B1A215C8D9FA00318B66 /* KCVideoTracker.mom in Resources */ = {isa = PBXBuildFile; fileRef = 0C62B19B15C8D9FA00318B66 /* KCVideoTracker.mom */; };
+		0C62B1A315C8D9FA00318B66 /* KCVideoTracker.omo in Resources */ = {isa = PBXBuildFile; fileRef = 0C62B19C15C8D9FA00318B66 /* KCVideoTracker.omo */; };
+		0C62B1A415C8D9FA00318B66 /* VersionInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C62B19D15C8D9FA00318B66 /* VersionInfo.plist */; };
+		0C62B1A515C8D9FA00318B66 /* ShareKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C62B19E15C8D9FA00318B66 /* ShareKit.bundle */; };
+		0C62B1A815C8DA2700318B66 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1A715C8DA2700318B66 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0C62B1AC15C8DA3700318B66 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1A915C8DA3700318B66 /* CoreData.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0C62B1AD15C8DA3700318B66 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1AA15C8DA3700318B66 /* CoreMedia.framework */; };
+		0C62B1AE15C8DA3700318B66 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1AB15C8DA3700318B66 /* CoreVideo.framework */; };
+		0C62B1B015C8DA4200318B66 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1AF15C8DA4200318B66 /* MediaPlayer.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0C62B1B215C8DA4900318B66 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1B115C8DA4800318B66 /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0C62B1B415C8DA7E00318B66 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1B315C8DA7E00318B66 /* Twitter.framework */; };
+		0C62B1B615C8DD9300318B66 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1B515C8DD9300318B66 /* libz.dylib */; };
+		0C62B1B815C8DDE800318B66 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1B715C8DDE800318B66 /* Security.framework */; };
 		0C68283215BF0CCA00BF09C0 /* playerExplosionParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */; };
 		0C7AA5F315946939000B58F2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F215946939000B58F2 /* QuartzCore.framework */; };
 		0C7AA5F515946939000B58F2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F415946939000B58F2 /* OpenGLES.framework */; };
 		0C7AA5F715946939000B58F2 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F615946939000B58F2 /* OpenAL.framework */; };
 		0C7AA5F915946939000B58F2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F815946939000B58F2 /* AudioToolbox.framework */; };
-		0C7AA5FB15946939000B58F2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5FA15946939000B58F2 /* AVFoundation.framework */; };
+		0C7AA5FB15946939000B58F2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5FA15946939000B58F2 /* AVFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0C7AA5FD15946939000B58F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5FC15946939000B58F2 /* UIKit.framework */; };
-		0C7AA5FF15946939000B58F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5FE15946939000B58F2 /* Foundation.framework */; };
+		0C7AA5FF15946939000B58F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5FE15946939000B58F2 /* Foundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0C7AA60115946939000B58F2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA60015946939000B58F2 /* CoreGraphics.framework */; };
 		0C7AA60715946939000B58F2 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7AA60615946939000B58F2 /* fps_images.png */; };
 		0C7AA61615946939000B58F2 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 0C7AA61515946939000B58F2 /* iTunesArtwork */; };
@@ -290,6 +308,24 @@
 		0C487B0D1594792C00674AB9 /* Planet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Planet.m; sourceTree = "<group>"; };
 		0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = thrustParticle3.plist; sourceTree = "<group>"; };
 		0C5400B815C50C4000AF9AA9 /* edit(84759).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit(84759).png"; sourceTree = "<group>"; };
+		0C62B19115C8D9CB00318B66 /* Kamcord.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kamcord.framework; sourceTree = "<group>"; };
+		0C62B19415C8D9D600318B66 /* AWSiOSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSiOSSDK.framework; sourceTree = "<group>"; };
+		0C62B19715C8D9FA00318B66 /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
+		0C62B19815C8D9FA00318B66 /* GTMOAuth2ViewTouch.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = GTMOAuth2ViewTouch.nib; sourceTree = "<group>"; };
+		0C62B19915C8D9FA00318B66 /* Kamcord.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Kamcord.bundle; sourceTree = "<group>"; };
+		0C62B19B15C8D9FA00318B66 /* KCVideoTracker.mom */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = KCVideoTracker.mom; sourceTree = "<group>"; };
+		0C62B19C15C8D9FA00318B66 /* KCVideoTracker.omo */ = {isa = PBXFileReference; lastKnownFileType = file; path = KCVideoTracker.omo; sourceTree = "<group>"; };
+		0C62B19D15C8D9FA00318B66 /* VersionInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VersionInfo.plist; sourceTree = "<group>"; };
+		0C62B19E15C8D9FA00318B66 /* ShareKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareKit.bundle; sourceTree = "<group>"; };
+		0C62B1A715C8DA2700318B66 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		0C62B1A915C8DA3700318B66 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		0C62B1AA15C8DA3700318B66 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		0C62B1AB15C8DA3700318B66 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		0C62B1AF15C8DA4200318B66 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		0C62B1B115C8DA4800318B66 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		0C62B1B315C8DA7E00318B66 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		0C62B1B515C8DD9300318B66 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		0C62B1B715C8DDE800318B66 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = playerExplosionParticle.plist; sourceTree = "<group>"; };
 		0C7AA5EE15946939000B58F2 /* Star Dash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Star Dash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C7AA5F215946939000B58F2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -607,6 +643,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C62B1B815C8DDE800318B66 /* Security.framework in Frameworks */,
+				0C62B1B615C8DD9300318B66 /* libz.dylib in Frameworks */,
+				0C62B1B415C8DA7E00318B66 /* Twitter.framework in Frameworks */,
+				0C7AA5FD15946939000B58F2 /* UIKit.framework in Frameworks */,
+				0C62B1B215C8DA4900318B66 /* MessageUI.framework in Frameworks */,
+				0C62B1B015C8DA4200318B66 /* MediaPlayer.framework in Frameworks */,
+				0C62B1AC15C8DA3700318B66 /* CoreData.framework in Frameworks */,
+				0C62B1AD15C8DA3700318B66 /* CoreMedia.framework in Frameworks */,
+				0C62B1AE15C8DA3700318B66 /* CoreVideo.framework in Frameworks */,
+				0C7AA60115946939000B58F2 /* CoreGraphics.framework in Frameworks */,
+				0C62B1A815C8DA2700318B66 /* Accounts.framework in Frameworks */,
 				C43F5E7315C7043F003BDF73 /* GameKit.framework in Frameworks */,
 				0C3F53D615BD3533009A5915 /* SystemConfiguration.framework in Frameworks */,
 				0C7AA5F315946939000B58F2 /* QuartzCore.framework in Frameworks */,
@@ -614,11 +661,11 @@
 				0C7AA5F715946939000B58F2 /* OpenAL.framework in Frameworks */,
 				0C7AA5F915946939000B58F2 /* AudioToolbox.framework in Frameworks */,
 				0C7AA5FB15946939000B58F2 /* AVFoundation.framework in Frameworks */,
-				0C7AA5FD15946939000B58F2 /* UIKit.framework in Frameworks */,
 				0C7AA5FF15946939000B58F2 /* Foundation.framework in Frameworks */,
-				0C7AA60115946939000B58F2 /* CoreGraphics.framework in Frameworks */,
 				C4B06C5715B9161D003C0183 /* libTestFlight.a in Frameworks */,
 				0C3F53D415BD3397009A5915 /* libFlurry.a in Frameworks */,
+				0C62B19215C8D9CB00318B66 /* Kamcord.framework in Frameworks */,
+				0C62B19515C8D9D600318B66 /* AWSiOSSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,9 +757,43 @@
 			name = "Icons and Launch Images";
 			sourceTree = "<group>";
 		};
+		0C62B19615C8D9DA00318B66 /* Kamcord */ = {
+			isa = PBXGroup;
+			children = (
+				0C62B19415C8D9D600318B66 /* AWSiOSSDK.framework */,
+				0C62B19115C8D9CB00318B66 /* Kamcord.framework */,
+			);
+			name = Kamcord;
+			sourceTree = "<group>";
+		};
+		0C62B19A15C8D9FA00318B66 /* KCVideoTracker.momd */ = {
+			isa = PBXGroup;
+			children = (
+				0C62B19B15C8D9FA00318B66 /* KCVideoTracker.mom */,
+				0C62B19C15C8D9FA00318B66 /* KCVideoTracker.omo */,
+				0C62B19D15C8D9FA00318B66 /* VersionInfo.plist */,
+			);
+			path = KCVideoTracker.momd;
+			sourceTree = "<group>";
+		};
+		0C62B1A615C8D9FF00318B66 /* Kamcord */ = {
+			isa = PBXGroup;
+			children = (
+				0C62B19715C8D9FA00318B66 /* FBDialog.bundle */,
+				0C62B19815C8D9FA00318B66 /* GTMOAuth2ViewTouch.nib */,
+				0C62B19915C8D9FA00318B66 /* Kamcord.bundle */,
+				0C62B19A15C8D9FA00318B66 /* KCVideoTracker.momd */,
+				0C62B19E15C8D9FA00318B66 /* ShareKit.bundle */,
+			);
+			name = Kamcord;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		0C7AA5E315946938000B58F2 = {
 			isa = PBXGroup;
 			children = (
+				0C62B1B715C8DDE800318B66 /* Security.framework */,
+				0C62B1B515C8DD9300318B66 /* libz.dylib */,
 				0C7AA60215946939000B58F2 /* Planet Orbiting iOS Game */,
 				0C7AA5F115946939000B58F2 /* Frameworks */,
 				0C7AA5EF15946939000B58F2 /* Products */,
@@ -730,6 +811,14 @@
 		0C7AA5F115946939000B58F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C62B1B315C8DA7E00318B66 /* Twitter.framework */,
+				0C62B1B115C8DA4800318B66 /* MessageUI.framework */,
+				0C62B1AF15C8DA4200318B66 /* MediaPlayer.framework */,
+				0C62B1A915C8DA3700318B66 /* CoreData.framework */,
+				0C62B1AA15C8DA3700318B66 /* CoreMedia.framework */,
+				0C62B1AB15C8DA3700318B66 /* CoreVideo.framework */,
+				0C62B1A715C8DA2700318B66 /* Accounts.framework */,
+				0C62B19615C8D9DA00318B66 /* Kamcord */,
 				C43F5E7215C7043F003BDF73 /* GameKit.framework */,
 				0C3F53D515BD3533009A5915 /* SystemConfiguration.framework */,
 				0C7AA5F215946939000B58F2 /* QuartzCore.framework */,
@@ -756,6 +845,7 @@
 				0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */,
 				01FE9B3A15BFC2C9007512ED /* PlayerStats.h */,
 				01FE9B3B15BFC2C9007512ED /* PlayerStats.m */,
+				0C62B1A615C8D9FF00318B66 /* Kamcord */,
 				C43F5E7115C70356003BDF73 /* Achievements and Online Highscores */,
 				012ED2ED15BB87C1008FDFBD /* Commerce */,
 				0C3F53D115BD3397009A5915 /* Flurry */,
@@ -1405,6 +1495,13 @@
 				C43F5E9E15C715AE003BDF73 /* spriteSheet-hd.pvr.ccz in Resources */,
 				C43F5E9F15C715AE003BDF73 /* spriteSheet.plist in Resources */,
 				C43F5EA015C715AE003BDF73 /* spriteSheet.pvr.ccz in Resources */,
+				0C62B19F15C8D9FA00318B66 /* FBDialog.bundle in Resources */,
+				0C62B1A015C8D9FA00318B66 /* GTMOAuth2ViewTouch.nib in Resources */,
+				0C62B1A115C8D9FA00318B66 /* Kamcord.bundle in Resources */,
+				0C62B1A215C8D9FA00318B66 /* KCVideoTracker.mom in Resources */,
+				0C62B1A315C8D9FA00318B66 /* KCVideoTracker.omo in Resources */,
+				0C62B1A415C8D9FA00318B66 /* VersionInfo.plist in Resources */,
+				0C62B1A515C8D9FA00318B66 /* ShareKit.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1588,6 +1685,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Planet Orbiting iOS Game/Prefix.pch";
@@ -1603,7 +1704,12 @@
 					"\"$(SRCROOT)/Planet Orbiting iOS Game/FlurryAnalytics\"",
 					"\"$(SRCROOT)/Planet Orbiting iOS Game/Flurry\"",
 				);
-				OTHER_LDFLAGS = "-lz";
+				OTHER_LDFLAGS = (
+					"-lz",
+					"-lxml2",
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "Star Dash";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -1623,6 +1729,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Planet Orbiting iOS Game/Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
@@ -1637,7 +1747,12 @@
 					"\"$(SRCROOT)/Planet Orbiting iOS Game/FlurryAnalytics\"",
 					"\"$(SRCROOT)/Planet Orbiting iOS Game/Flurry\"",
 				);
-				OTHER_LDFLAGS = "-lz";
+				OTHER_LDFLAGS = (
+					"-lz",
+					"-lxml2",
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "Star Dash";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
