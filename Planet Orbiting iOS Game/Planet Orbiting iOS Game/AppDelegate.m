@@ -127,7 +127,8 @@
     [Kamcord setDeviceOrientation:CCDeviceOrientationLandscapeLeft];
 #endif
     
-	[Kamcord setVideoResolution:TRAILER_VIDEO_RESOLUTION];
+	//[Kamcord setVideoResolution:TRAILER_VIDEO_RESOLUTION];
+    
 	[director setAnimationInterval:1.0/60];
 	[director setDisplayFPS:YES];
     
@@ -164,6 +165,13 @@
     
     [[CCDirector sharedDirector] runWithScene: [MainMenuLayer scene]];
     
+}
+
+-(void)setChosenLevelNumber:(int)num {
+    chosenLevelNumber = num;
+}
+-(int)getChosenLevelNumber {
+    return chosenLevelNumber;
 }
 
 /*

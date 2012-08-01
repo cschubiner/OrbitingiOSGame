@@ -65,16 +65,16 @@
 		0C62B1AE15C8DA3700318B66 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1AB15C8DA3700318B66 /* CoreVideo.framework */; };
 		0C62B1B015C8DA4200318B66 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1AF15C8DA4200318B66 /* MediaPlayer.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0C62B1B215C8DA4900318B66 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1B115C8DA4800318B66 /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		0C62B1B415C8DA7E00318B66 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1B315C8DA7E00318B66 /* Twitter.framework */; };
+		0C62B1B415C8DA7E00318B66 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1B315C8DA7E00318B66 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0C62B1B615C8DD9300318B66 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1B515C8DD9300318B66 /* libz.dylib */; };
-		0C62B1B815C8DDE800318B66 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1B715C8DDE800318B66 /* Security.framework */; };
+		0C62B1B815C8DDE800318B66 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1B715C8DDE800318B66 /* Security.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0C68283215BF0CCA00BF09C0 /* playerExplosionParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */; };
 		0C7AA5F315946939000B58F2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F215946939000B58F2 /* QuartzCore.framework */; };
 		0C7AA5F515946939000B58F2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F415946939000B58F2 /* OpenGLES.framework */; };
 		0C7AA5F715946939000B58F2 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F615946939000B58F2 /* OpenAL.framework */; };
 		0C7AA5F915946939000B58F2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F815946939000B58F2 /* AudioToolbox.framework */; };
 		0C7AA5FB15946939000B58F2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5FA15946939000B58F2 /* AVFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		0C7AA5FD15946939000B58F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5FC15946939000B58F2 /* UIKit.framework */; };
+		0C7AA5FD15946939000B58F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5FC15946939000B58F2 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0C7AA5FF15946939000B58F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5FE15946939000B58F2 /* Foundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0C7AA60115946939000B58F2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA60015946939000B58F2 /* CoreGraphics.framework */; };
 		0C7AA60715946939000B58F2 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7AA60615946939000B58F2 /* fps_images.png */; };
@@ -1677,6 +1677,7 @@
 		0C7AA7611594693D000B58F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALTERNATE_GROUP = "$(INSTALL_GROUP)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = (
 					armv7,
@@ -1721,6 +1722,7 @@
 		0C7AA7621594693D000B58F2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALTERNATE_GROUP = "$(INSTALL_GROUP)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = (
 					armv7,

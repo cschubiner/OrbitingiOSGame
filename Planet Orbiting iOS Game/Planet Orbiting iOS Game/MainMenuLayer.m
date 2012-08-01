@@ -101,7 +101,7 @@ const float effectsVolumeMainMenu = 1;
             [highScore4Label setString:[NSString stringWithFormat:@"%i", highScore4Int]];
         }
         
-        [layer setPosition:ccp(-480, 0)];
+        [layer setPosition:ccp(-480, -320)];
         [self addChild:layer];
         
         [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic_new.mp3" loop:YES];
@@ -153,6 +153,7 @@ const float effectsVolumeMainMenu = 1;
 - (void)startGame:(id)sender {
     [[PlayerStats sharedInstance] addPlay];
     CCLOG(@"number of plays ever: %i", [[PlayerStats sharedInstance] getPlays]);
+    [((AppDelegate*)[[UIApplication sharedApplication]delegate])setChosenLevelNumber:0];
 
     if ([[PlayerStats sharedInstance] getPlays] == 1) {
         [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:TRUE];
@@ -166,7 +167,7 @@ const float effectsVolumeMainMenu = 1;
 
 - (void)pressedBackButton:(id)sender {
     [Flurry logEvent:@"Went back to menu from store"];
-    id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,0)];
+    id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,-320)];
     id ease = [CCEaseInOut actionWithAction:action rate:2];
     [layer runAction: ease];
 }
@@ -174,7 +175,7 @@ const float effectsVolumeMainMenu = 1;
 - (void)pressedStoreButton:(id)sender {
     [self updateLabels];
     [Flurry logEvent:@"Opened Store"];
-    id action = [CCMoveTo actionWithDuration:.8f position:ccp(-960,0)];
+    id action = [CCMoveTo actionWithDuration:.8f position:ccp(-960,-320)];
     id ease = [CCEaseSineInOut actionWithAction:action]; //does this "CCEaseSineInOut" look better than the above "CCEaseInOut"???
     [layer runAction: ease];
 }
@@ -182,7 +183,7 @@ const float effectsVolumeMainMenu = 1;
 - (void)pressedScoresButton:(id)sender {
     [self updateLabels];
     [Flurry logEvent:@"Opened High Scores"];
-    id action = [CCMoveTo actionWithDuration:.8f position:ccp(0,0)];
+    id action = [CCMoveTo actionWithDuration:.8f position:ccp(0,-320)];
     id ease = [CCEaseSineInOut actionWithAction:action];
     [layer runAction: ease];
 }
@@ -198,17 +199,41 @@ const float effectsVolumeMainMenu = 1;
 - (void)pressedLevelsButton: (id) sender {
     [Flurry logEvent:@"Pressed Levels Button"];
     [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
-    CCLOG(@"gameplayLayer scene launched, game starting");
-    
-    CCLayer* levelLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"LevelsLayer.ccb" owner:self];
-    [levelLayer setTag:levelLayerTag];
-    [self addChild:levelLayer];
+    CCLOG(@"levels layer launched");
+    id action = [CCMoveTo actionWithDuration:.8f position:ccp(0,0)];
+    id ease = [CCEaseSineInOut actionWithAction:action];
+    [layer runAction: ease];
     
 }
 
-- (void)removeLevelsLayer {
-    [self removeChildByTag:levelLayerTag cleanup:NO];
+
+-(void)moveLevelsLayerRight {
+    id action = [CCMoveTo actionWithDuration:.8f position:ccp(layer.position.x-480,0)];
+    id ease = [CCEaseSineInOut actionWithAction:action];
+    [layer runAction: ease];
 }
+-(void)moveLevelsLayerLeft {
+    id action = [CCMoveTo actionWithDuration:.8f position:ccp(layer.position.x+480,0)];
+    id ease = [CCEaseSineInOut actionWithAction:action];
+    [layer runAction: ease];
+}
+
+- (void)startLevelNumber:(int)levelNum {
+    [((AppDelegate*)[[UIApplication sharedApplication]delegate])setChosenLevelNumber:levelNum];
+    [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
+    CCLOG(@"started level %d",levelNum);
+    [Flurry logEvent:[NSString stringWithFormat:@"Started Level %d",levelNum]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
+}
+
+-(void)startLevel1{
+    [self startLevelNumber:1];
+}
+-(void)startLevel2{
+    [self startLevelNumber:2];
+}
+
+
 
 - (void)pressedSendFeedback: (id) sender {
     [Flurry logEvent:@"Pressed Survey Button on main menu"];

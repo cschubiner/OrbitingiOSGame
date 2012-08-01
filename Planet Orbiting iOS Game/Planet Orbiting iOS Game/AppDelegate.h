@@ -17,6 +17,7 @@
 	UIWindow			*window;
 	KCViewController	*viewController;
     bool isInTutorialMode;
+    int chosenLevelNumber;
     bool isRetinaDisplay;
     bool wasJustBackgrounded;
 }
@@ -25,6 +26,8 @@
 -(void)setIsInTutorialMode:(bool)mode;
 -(bool)getIsInTutorialMode;
 -(bool)getIsRetinaDisplay;
+-(void)setChosenLevelNumber:(int)num;
+-(int)getChosenLevelNumber;
 -(KCViewController*)getViewController;
 -(bool)getWasJustBackgrounded;
 -(void)setWasJustBackgrounded:(bool)isItBackgrounded;

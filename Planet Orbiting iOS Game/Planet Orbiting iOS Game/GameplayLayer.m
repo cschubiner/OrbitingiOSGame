@@ -153,6 +153,34 @@ typedef struct {
         [self CreateAsteroid:604+4000 yPos:239 scale:1.26652];
         return;
     }
+    if (levelNumber == 1) {
+        [self CreatePlanetAndZone:288 yPos:364 scale:1];
+        [self CreatePlanetAndZone:934 yPos:352 scale:1];
+        
+        [self CreatePlanetAndZone:288+2000 yPos:364 scale:1];
+        [self CreatePlanetAndZone:934+2000 yPos:352 scale:1];
+        [self CreateAsteroid:610+2000 yPos:460 scale:1.33552];
+        
+        
+        [self CreatePlanetAndZone:288+4000 yPos:364 scale:1];
+        [self CreatePlanetAndZone:934+4000 yPos:352 scale:1];
+        [self CreateAsteroid:604+4000 yPos:239 scale:1.26652];
+        return;
+    }
+    if (levelNumber == 2) {
+        [self CreatePlanetAndZone:-288 yPos:364 scale:1];
+        [self CreatePlanetAndZone:-934 yPos:352 scale:1];
+        
+        [self CreatePlanetAndZone:-288-2000 yPos:364 scale:1];
+        [self CreatePlanetAndZone:-934-2000 yPos:352 scale:1];
+        [self CreateAsteroid:-610-2000 yPos:460 scale:1.33552];
+        
+        
+        [self CreatePlanetAndZone:-288-4000 yPos:364 scale:1];
+        [self CreatePlanetAndZone:-934-4000 yPos:352 scale:1];
+        [self CreateAsteroid:-604-4000 yPos:239 scale:1.26652];
+        return;
+    }
     
     segments = [[NSArray alloc ]initWithObjects:
                 [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(188,219) scale:0.87552],
@@ -726,6 +754,7 @@ typedef struct {
         
         isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsInTutorialMode];
         isInTutorialMode = false;
+        levelNumber = [((AppDelegate*)[[UIApplication sharedApplication]delegate])getChosenLevelNumber];
         
         planetCounter = 0;
         planets = [[NSMutableArray alloc] init];
@@ -869,7 +898,7 @@ typedef struct {
         
         [self addChild:cameraLayer];
         [self addChild:hudLayer];
-        if (!isInTutorialMode)
+        if (!isInTutorialMode&&levelNumber == 0)
             [self addChild:layerHudSlider];
         [self addChild:pauseMenu];
         [self UpdateScore];
@@ -917,8 +946,8 @@ typedef struct {
     CGPoint sub = ccpSub(planet2.sprite.position, planet1.sprite.position);
     CGPoint mult = ccpMult(sub, percentofthewaytonext);
     CGPoint focusPointOne = ccpAdd(mult ,planet1.sprite.position);
-    planet1 = [planets objectAtIndex:lastPlanetVisited.number+2];    
-    planet2 = [planets objectAtIndex:lastPlanetVisited.number+3];
+    planet1 = [planets objectAtIndex:MIN([planets count]-1, lastPlanetVisited.number+2)];
+    planet2 = [planets objectAtIndex:MIN([planets count]-1, lastPlanetVisited.number+3)];
     CGPoint focusPointTwo = ccpAdd(ccpMult(ccpSub(planet2.sprite.position, planet1.sprite.position), percentofthewaytonext) ,planet1.sprite.position);
     //CGPoint focusPosition = ccpMult(ccpAdd(focusPointOne, ccpSub(focusPointTwo, focusPointOne)), .5f);
     CGPoint focusPosition = ccpMult(ccpAdd(ccpMult(focusPointOne, cameraScaleFocusedOnFocusPosOne), focusPointTwo), 1.0f/(cameraScaleFocusedOnFocusPosOne+1.0f));
@@ -1374,9 +1403,13 @@ typedef struct {
         }
     } // end collision detection code-----------------
     
-    if (lastPlanetVisited.segmentNumber == numberOfSegmentsAtATime-1&&isInTutorialMode==false) {
+    if (levelNumber !=0) {
+        if (planetsHitFlurry >= [planets count]) {
+            [self GameOver];
+        }
+    }
+    else if (lastPlanetVisited.segmentNumber == numberOfSegmentsAtATime-1&&isInTutorialMode==false) {
         //CCLOG(@"Planet Count: %d",[planets count]);
-        
         [self DisposeAllContentsOfArray:planets shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:zones shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:asteroids shouldRemoveFromArray:true];
@@ -1384,7 +1417,6 @@ typedef struct {
         
         makingSegmentNumber--;
         [self CreateSegment];
-        
         //CCLOG(@"Planet Count: %d",[planets count]);
     }
 }
@@ -1477,7 +1509,7 @@ typedef struct {
     
     
     light.scoreVelocity += amountToIncreaseLightScoreVelocityEachUpdate;
-    if (!isInTutorialMode)
+    if (!isInTutorialMode&&levelNumber==0)
         [slidingSelector setPosition:ccp(slidingSelector.position.x,lerpf(50.453,269.848,1-light.distanceFromPlayer/negativeLightStartingScore))];
     
     //    CCLOG(@"DIST: %f, VEL: %f, LIGHSCORE: %f", light.distanceFromPlayer, light.scoreVelocity, light.score);
@@ -1516,20 +1548,6 @@ typedef struct {
         [self GameOver];
     }
     
-    
-    
-    //[light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
-    
-    //if (distance <= maxDistance ) {
-    //float percentOfMax = distance / maxDistance;
-    //GLubyte red   = lerpf(0, 255, percentOfMax);
-    //GLubyte green = lerpf(88, 255, percentOfMax);
-    //[background setColor:ccc3(red, green, 255)];
-    //[background setColor:ccBLUE];
-    //}
-    //else [background setColor:ccWHITE];
-    // [background setTextureRect:<#(CGRect)#>];
-    
     if (!isInTutorialMode)
         light.score += light.scoreVelocity;
 }
@@ -1548,6 +1566,7 @@ typedef struct {
             [self UpdateScore];
             [self UpdateCamera:dt];
             [self UpdateParticles:dt];
+            if (levelNumber==0)
             [self UpdateLight];
             updatesSinceLastPlanet++;
         }
