@@ -50,7 +50,7 @@
 #endif // GAME_AUTOROTATION == kGameAutorotationUIViewController	
 }
 
--(UIViewController*)getViewController{
+-(KCViewController*)getViewController{
     return viewController;
 }
 

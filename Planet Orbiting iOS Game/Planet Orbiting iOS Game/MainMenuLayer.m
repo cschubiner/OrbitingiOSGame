@@ -221,7 +221,7 @@ const float effectsVolumeMainMenu = 1;
 - (void)startLevelNumber:(int)levelNum {
     [((AppDelegate*)[[UIApplication sharedApplication]delegate])setChosenLevelNumber:levelNum];
     [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
-    CCLOG(@"started level %d",levelNum);
+    NSLog(@"started level %d",levelNum);
     [Flurry logEvent:[NSString stringWithFormat:@"Started Level %d",levelNum]];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
 }
