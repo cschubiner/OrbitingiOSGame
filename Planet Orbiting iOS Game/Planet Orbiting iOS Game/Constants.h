@@ -133,3 +133,5 @@ const float negativeLightStartingScore = 9000;
 const float initialLightScoreVelocity = 4;
 
 const float amountToIncreaseLightScoreVelocityEachUpdate = .00065;
+
+const int howMuchCoinsAddToScore = 10;

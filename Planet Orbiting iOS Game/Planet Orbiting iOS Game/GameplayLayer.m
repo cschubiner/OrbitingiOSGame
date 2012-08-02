@@ -814,7 +814,7 @@ typedef struct {
         
         [self playSound:@"a_song.mp3" shouldLoop:YES];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"bomb.wav"];
-        [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.wav"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.WAV"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"buttonpress.mp3"];
         
         spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"spriteSheet.pvr.ccz"];
@@ -998,6 +998,7 @@ typedef struct {
 
 - (void)UserTouchedCoin: (Coin*)coin {
     [[UserWallet sharedInstance] addCoins:1];
+    score += howMuchCoinsAddToScore;
     coin.sprite.visible = false;
     coin.isAlive = false;
     [self playSound:@"buttonpress.mp3" shouldLoop:false];
@@ -1082,7 +1083,7 @@ typedef struct {
             {
                 velSoftener = 0;
                 gravIncreaser = 1;
-                [self playSound:@"SWOOSH.wav" shouldLoop:false];
+                [self playSound:@"SWOOSH.WAV" shouldLoop:false];
                 player.acceleration = CGPointZero;
                 //set velocity
                 //player.velocity = ccpMult(swipeVector, .55);
