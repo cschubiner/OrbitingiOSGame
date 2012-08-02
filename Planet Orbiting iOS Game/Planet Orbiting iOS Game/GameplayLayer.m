@@ -66,7 +66,7 @@ typedef struct {
     coin.whichSegmentThisObjectIsOriginallyFrom = originalSegmentNumber;
     coin.segmentNumber = makingSegmentNumber;
     coin.number = coins.count;
-     [coins addObject:coin];
+    [coins addObject:coin];
     [spriteSheet addChild:coin.sprite];
     [spriteSheet reorderChild:coin.sprite z:5];
     [coin release];
@@ -1423,20 +1423,6 @@ typedef struct {
 
 /* Your score goes up as you move along the vector between the current and next planet. Your score will also never go down, as the user doesn't like to see his score go down.*/
 - (void)UpdateScore {
-    /*Planet * nextPlanet;
-     if (lastPlanetVisited.number +1 < [planets count])
-     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
-     else     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
-     
-     float firstToPlayerAngle = ccpAngle(lastPlanetVisited.sprite.position, player.sprite.position)-ccpAngle(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
-     float firstToPlayerDistance = ccpDistance(lastPlanetVisited.sprite.position, player.sprite.position);    
-     
-     prevCurrentPtoPScore = currentPtoPscore;
-     int newScore = ((int)((float)firstToPlayerDistance*cosf(firstToPlayerAngle)));
-     if (newScore > prevCurrentPtoPScore)
-     currentPtoPscore = newScore;
-     [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score+currentPtoPscore]];*/
-    
     tempScore = ccpDistance(CGPointZero, player.sprite.position);
     if (tempScore > score)
         score = tempScore;
