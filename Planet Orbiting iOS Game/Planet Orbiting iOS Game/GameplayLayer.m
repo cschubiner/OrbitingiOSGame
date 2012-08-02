@@ -913,7 +913,7 @@ typedef struct {
 - (void)UpdateCamera:(float)dt {
     if (player.alive) {
         player.velocity = ccpAdd(player.velocity, player.acceleration);
-        player.sprite.position = ccpAdd(ccpMult(player.velocity, 60*dt*timeDilationCoefficient), player.sprite.position);
+        player.sprite.position = ccpAdd(ccpMult(player.velocity, 60*dt*timeDilationCoefficient*asteroidSlower), player.sprite.position);
     }
     
     if (isnan(player.sprite.position.x)) {
@@ -1013,11 +1013,6 @@ typedef struct {
 
 - (void)ApplyGravity:(float)dt {
     
-    //
-    //[[PowerupManager sharedInstance] numMagnet]; //get how many there are
-    //[[PowerupManager sharedInstance] subtractMagnet]; //numImmunity
-    
-    
     for (Coin* coin in coins) {
         CGPoint p = coin.sprite.position;
         if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/1.3 && coin.isAlive) {
@@ -1025,12 +1020,20 @@ typedef struct {
         }
     }
     
+    bool isHittingAsteroid = false;
     for (Asteroid* asteroid in asteroids) {        
         CGPoint p = asteroid.sprite.position;
         if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= asteroid.radius * asteroidRadiusCollisionZone && orbitState == 3) {
-            [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
+            //[self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
+            isHittingAsteroid = true;
         }
     }
+    if (isHittingAsteroid)
+        asteroidSlower -= .09;
+    else
+        asteroidSlower += .02;
+    asteroidSlower = clampf(asteroidSlower, .15, 1);
+    
     
     for (Planet* planet in planets)
     {
@@ -1791,10 +1794,10 @@ typedef struct {
             [self togglePause];
         }
         
-        else if (orbitState == 0) {
+        //else if (orbitState == 0) {
             [player setThrustBeginPoint:location];
             //playerIsTouchingScreen=true;
-        }
+        //}
     }
 }
 
@@ -1808,7 +1811,6 @@ typedef struct {
             swipeVector = ccpAdd(ccp(-player.thrustBeginPoint.x,-player.thrustBeginPoint.y), player.thrustEndPoint);
             player.positionAtLastThrust = player.sprite.position;
             player.rotationAtLastThrust = player.sprite.rotation;
-            
         }
     }
     

@@ -72,7 +72,7 @@ const float planetRadiusCollisionZone = .01;
 const float asteroidSizeScale = .36*.64f;
 
 //radius percentage at which you will collide with a asteroid
-const float asteroidRadiusCollisionZone = .82;
+const float asteroidRadiusCollisionZone = .9;
 
 //the asteroid's minimum velocity
 const float minAstVel = 0;
@@ -105,7 +105,7 @@ const float blackHoleSpeedFactor = 1.85*.6f*.6f;
 const float timeDilationReduceRate = .002;
 
 //1 means you lose no speed when you die, 0 means you lose it all
-const float factorToScaleTimeDilationByOnDeath = .85;
+const float factorToScaleTimeDilationByOnDeath = .95;
 
 //increase to increase timeDilationFactor by a larger amount everytime you get to a new zone
 const float timeDilationIncreaseRate = .15;

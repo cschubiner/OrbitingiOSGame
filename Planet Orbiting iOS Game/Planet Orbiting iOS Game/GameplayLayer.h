@@ -41,6 +41,7 @@
     float timeSinceCometLeftScreen;
     bool planetJustExploded;
     bool playerIsTouchingScreen;
+    float asteroidSlower;
     
     int segmentsSpawnedFlurry;
     int planetsHitFlurry;
