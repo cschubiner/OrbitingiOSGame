@@ -66,7 +66,7 @@ const float zoneScaleRelativeToPlanet = 1.7;
 const float gravity = .45;
 
 //radius percentage at which you will collide with a planet
-const float planetRadiusCollisionZone = .9;
+const float planetRadiusCollisionZone = .01;
 
 // this is purely visual and doesn't affect mass.
 const float asteroidSizeScale = .36*.64f;
@@ -105,7 +105,7 @@ const float blackHoleSpeedFactor = 1.85*.6f*.6f;
 const float timeDilationReduceRate = .002;
 
 //1 means you lose no speed when you die, 0 means you lose it all
-const float factorToScaleTimeDilationByOnDeath = .8;
+const float factorToScaleTimeDilationByOnDeath = .85;
 
 //increase to increase timeDilationFactor by a larger amount everytime you get to a new zone
 const float timeDilationIncreaseRate = .15;
@@ -114,7 +114,7 @@ const float timeDilationIncreaseRate = .15;
 const float absoluteMinTimeDilation = .85;
 
 //the highest the time dilation factor can go. this should probZ just be infinity. bitches will has c slow down if they're going too fast
-const float absoluteMaxTimeDilation = 1.65*1.05;
+const float absoluteMaxTimeDilation = 1.7;
 
 //after this many updates, your velocity will go from what it was when you entered to perfect tangential orbital velocity
 const float updatesToMakeOrbitVelocityPerfect = 60;
