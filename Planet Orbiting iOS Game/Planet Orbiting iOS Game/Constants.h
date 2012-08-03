@@ -74,6 +74,8 @@ const float asteroidSizeScale = .36*.64f;
 //radius percentage at which you will collide with a asteroid
 const float asteroidRadiusCollisionZone = .9;
 
+const float powerupRadiusCollisionZone = 10;
+
 //the asteroid's minimum velocity
 const float minAstVel = 0;
 
@@ -135,3 +137,5 @@ const float initialLightScoreVelocity = 4;
 const float amountToIncreaseLightScoreVelocityEachUpdate = .00065;
 
 const int howMuchCoinsAddToScore = 10;
+
+const float asteroidImmunityDurationInUpdates = 500;

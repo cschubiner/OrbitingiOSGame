@@ -15,7 +15,7 @@
 #import "Coin.h"
 #import "DataStorage.h"
 #import "PlayerStats.h"
-#import "Powerups.h"
+#import "Powerup.h"
 
 #define pauseLayerTag       100
 #define gameOverLayerTag    200
@@ -71,6 +71,16 @@ typedef struct {
     [spriteSheet addChild:coin.sprite];
     [spriteSheet reorderChild:coin.sprite z:5];
     [coin release];
+}
+
+- (void)CreatePowerup:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
+    Powerup *powerup = [[Powerup alloc]init];
+    powerup.sprite = [CCSprite spriteWithFile:@"upgradecoin.png"];
+    powerup.sprite.position = ccp(xPos, yPos);
+    [powerup.sprite setScale:scale];
+    [powerups addObject:powerup];
+    [cameraLayer addChild:powerup.sprite];
+    [powerup release];
 }
 
 - (void)CreateAsteroid:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
@@ -141,6 +151,9 @@ typedef struct {
 
 - (void)CreateLevel // paste level creation code here
 {
+    
+    [self CreatePowerup:1000 yPos:700 scale:.2];
+    
     if (isInTutorialMode) {
         [self CreatePlanetAndZone:288 yPos:364 scale:1];
         [self CreatePlanetAndZone:934 yPos:352 scale:1];
@@ -490,6 +503,7 @@ typedef struct {
         planets = [[NSMutableArray alloc] init];
         asteroids = [[NSMutableArray alloc] init];
         zones = [[NSMutableArray alloc] init];
+        powerups = [[NSMutableArray alloc] init];
         coins = [[NSMutableArray alloc] init];
         hudLayer = [[CCLayer alloc] init];
         cameraLayer = [[CCLayer alloc] init];
@@ -588,6 +602,12 @@ typedef struct {
         updatesToAdvanceTutorial = 0;
         tutorialIsTryingToAdvance = false;
         asteroidSlower = 1;
+        powerupCounter = 0;
+        
+        asteroidImmunityHUD = [CCSprite spriteWithFile:@"asteroidhudicon.png"];
+        [hudLayer addChild:asteroidImmunityHUD];
+        asteroidImmunityHUD.position = ccp(30, 290);
+        asteroidImmunityHUD.scale = .4;
         
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444]; // add this line at the very beginning
         background = [CCSprite spriteWithFile:@"background.pvr.ccz"];
@@ -761,12 +781,50 @@ typedef struct {
         }
     }
     
-    if (![[Powerups sharedInstance] hasAsteroidImmunity]) {
+    if (player.hasAsteroidImmunity) {
+        [asteroidImmunityHUD setVisible:true];
+        
+        int updatesLeft = asteroidImmunityDurationInUpdates - powerupCounter;
+        
+        
+        if (updatesLeft <= 30) {
+            int mod = fmodf(powerupCounter, 8);
+            if (mod >= 0 && mod <= 4)
+                [asteroidImmunityHUD setVisible:false];
+        } else if (updatesLeft <= 100) {
+            int mod = fmodf(powerupCounter, 17);
+            if (mod >= 0 && mod <= 4)
+                [asteroidImmunityHUD setVisible:false];
+        } else if (updatesLeft <= 300) {
+            int mod = fmodf(powerupCounter, 25);
+            if (mod >= 0 && mod <= 4)
+                [asteroidImmunityHUD setVisible:false];
+        }
+        
+        if (powerupCounter >= asteroidImmunityDurationInUpdates)
+            player.hasAsteroidImmunity = false;
+    } else {
+        [asteroidImmunityHUD setVisible:false];
         if (isHittingAsteroid)
             asteroidSlower -= .09;
         else
             asteroidSlower += .01;
         asteroidSlower = clampf(asteroidSlower, .15, 1);
+    }
+    
+    
+    powerupCounter++;
+    
+    
+    for (Powerup* powerup in powerups) {
+        CGPoint p = powerup.sprite.position;
+        if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= powerup.radius * powerupRadiusCollisionZone) {
+            //[self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
+            [cameraLayer removeChild:powerup.sprite cleanup:true];
+            [powerups removeObject:powerup];
+            player.hasAsteroidImmunity = true;
+            powerupCounter = 0;
+        }
     }
     
     

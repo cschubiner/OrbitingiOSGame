@@ -24,6 +24,7 @@
 @property (nonatomic) CGPoint positionAtLastThrust;
 @property (nonatomic) bool isInZone;
 @property (nonatomic) int coins;
+@property (nonatomic) bool hasAsteroidImmunity;
 @property (nonatomic, retain) CCAction* moveAction;
 
 

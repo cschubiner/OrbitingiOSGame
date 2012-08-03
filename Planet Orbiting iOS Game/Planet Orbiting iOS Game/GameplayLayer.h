@@ -25,6 +25,7 @@
     NSMutableArray *planets;
     NSMutableArray *zones;
     NSMutableArray *asteroids;
+    NSMutableArray *powerups;
     NSMutableArray *coins;
     CCLabelTTF *scoreLabel;
     CCLabelTTF *coinsLabel;
@@ -44,6 +45,8 @@
     bool playerIsTouchingScreen;
     float asteroidSlower;
     
+    float powerupCounter;
+    
     NSArray * galaxies;
     int currentGalaxy;
     int planetsHitSinceNewGalaxy;
@@ -54,6 +57,8 @@
     CGPoint initialVel;
     float initialAccelMag;
     CCLayerStreak * streak;
+    
+    CCSprite* asteroidImmunityHUD;
     
     CGPoint spotGoingTo;
     float swipeAccuracy;

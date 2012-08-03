@@ -248,7 +248,9 @@
 		FA908BEE15C105C0008ACC50 /* edit(84759)-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA908BED15C105C0008ACC50 /* edit(84759)-hd.png */; };
 		FA9C241515C137FD00139706 /* a_song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA9C241415C137FD00139706 /* a_song.mp3 */; };
 		FA9C246F15C2595000139706 /* menumusic_new.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA9C246E15C2595000139706 /* menumusic_new.mp3 */; };
-		FACE0CDE15CB8ADA0055B5DF /* Powerups.m in Sources */ = {isa = PBXBuildFile; fileRef = FACE0CDD15CB8ADA0055B5DF /* Powerups.m */; };
+		FACE0CE715CB93F90055B5DF /* upgradecoin.png in Resources */ = {isa = PBXBuildFile; fileRef = FACE0CE615CB93F90055B5DF /* upgradecoin.png */; };
+		FACE0CED15CB963B0055B5DF /* Powerup.m in Sources */ = {isa = PBXBuildFile; fileRef = FACE0CEC15CB963B0055B5DF /* Powerup.m */; };
+		FACE0CEF15CB9F650055B5DF /* asteroidhudicon.png in Resources */ = {isa = PBXBuildFile; fileRef = FACE0CEE15CB9F650055B5DF /* asteroidhudicon.png */; };
 		FAF1C64015BCF8A1001136E3 /* Coin.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF1C63F15BCF8A1001136E3 /* Coin.m */; };
 /* End PBXBuildFile section */
 
@@ -638,8 +640,10 @@
 		FA908BED15C105C0008ACC50 /* edit(84759)-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit(84759)-hd.png"; sourceTree = "<group>"; };
 		FA9C241415C137FD00139706 /* a_song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = a_song.mp3; sourceTree = "<group>"; };
 		FA9C246E15C2595000139706 /* menumusic_new.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = menumusic_new.mp3; sourceTree = "<group>"; };
-		FACE0CDC15CB8ADA0055B5DF /* Powerups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Powerups.h; sourceTree = "<group>"; };
-		FACE0CDD15CB8ADA0055B5DF /* Powerups.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Powerups.m; sourceTree = "<group>"; };
+		FACE0CE615CB93F90055B5DF /* upgradecoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgradecoin.png; sourceTree = "<group>"; };
+		FACE0CEB15CB963B0055B5DF /* Powerup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Powerup.h; sourceTree = "<group>"; };
+		FACE0CEC15CB963B0055B5DF /* Powerup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Powerup.m; sourceTree = "<group>"; };
+		FACE0CEE15CB9F650055B5DF /* asteroidhudicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroidhudicon.png; sourceTree = "<group>"; };
 		FAF1C63E15BCF8A1001136E3 /* Coin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coin.h; sourceTree = "<group>"; };
 		FAF1C63F15BCF8A1001136E3 /* Coin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -723,8 +727,8 @@
 				FAF1C63F15BCF8A1001136E3 /* Coin.m */,
 				FA895CD915C525B400FA4EC3 /* Light.h */,
 				FA895CDA15C525B400FA4EC3 /* Light.m */,
-				FACE0CDC15CB8ADA0055B5DF /* Powerups.h */,
-				FACE0CDD15CB8ADA0055B5DF /* Powerups.m */,
+				FACE0CEB15CB963B0055B5DF /* Powerup.h */,
+				FACE0CEC15CB963B0055B5DF /* Powerup.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -842,28 +846,29 @@
 		0C7AA60215946939000B58F2 /* Planet Orbiting iOS Game */ = {
 			isa = PBXGroup;
 			children = (
-				0C487AFD159471FF00674AB9 /* Basic Stuff - Ignore */,
-				0C487AFC159471E800674AB9 /* Classes */,
+				C43F5E7115C70356003BDF73 /* Achievements and Online Highscores */,
 				0C7AA7541594693D000B58F2 /* AppDelegate.h */,
 				0C7AA7551594693D000B58F2 /* AppDelegate.m */,
+				0C487AFD159471FF00674AB9 /* Basic Stuff - Ignore */,
+				0C487AFC159471E800674AB9 /* Classes */,
+				C445304D15A68888004F8F48 /* CocosBuilder  */,
+				012ED2ED15BB87C1008FDFBD /* Commerce */,
 				C49E914A159A48D700BC424D /* Constants.h */,
+				0C3F53D115BD3397009A5915 /* Flurry */,
 				0C60EC5815CB8C42005FE434 /* Galaxy.h */,
 				0C60EC5915CB8C42005FE434 /* Galaxy.m */,
 				0C487AF615946E2300674AB9 /* GameplayLayer.h */,
 				0C487AF715946E2300674AB9 /* GameplayLayer.m */,
+				0C62B1A615C8D9FF00318B66 /* Kamcord */,
+				0C7AA61715946939000B58F2 /* libs */,
 				0C2AB0B315BE8E43008822F1 /* MainMenuLayer.h */,
 				0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */,
 				01FE9B3A15BFC2C9007512ED /* PlayerStats.h */,
 				01FE9B3B15BFC2C9007512ED /* PlayerStats.m */,
-				0C62B1A615C8D9FF00318B66 /* Kamcord */,
-				C43F5E7115C70356003BDF73 /* Achievements and Online Highscores */,
-				012ED2ED15BB87C1008FDFBD /* Commerce */,
-				0C3F53D115BD3397009A5915 /* Flurry */,
-				C4B06C5915B9161F003C0183 /* TestFlight */,
-				C445304D15A68888004F8F48 /* CocosBuilder  */,
 				0C7AA60315946939000B58F2 /* Resources */,
-				0C7AA61715946939000B58F2 /* libs */,
 				0C7AA7501594693C000B58F2 /* Supporting Files */,
+				C4B06C5915B9161F003C0183 /* TestFlight */,
+				FACE0CE415CB93B70055B5DF /* Powerups */,
 			);
 			path = "Planet Orbiting iOS Game";
 			sourceTree = "<group>";
@@ -1362,6 +1367,15 @@
 			name = Particles;
 			sourceTree = "<group>";
 		};
+		FACE0CE415CB93B70055B5DF /* Powerups */ = {
+			isa = PBXGroup;
+			children = (
+				FACE0CEE15CB9F650055B5DF /* asteroidhudicon.png */,
+				FACE0CE615CB93F90055B5DF /* upgradecoin.png */,
+			);
+			name = Powerups;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1512,6 +1526,8 @@
 				0C62B1A315C8D9FA00318B66 /* KCVideoTracker.omo in Resources */,
 				0C62B1A415C8D9FA00318B66 /* VersionInfo.plist in Resources */,
 				0C62B1A515C8D9FA00318B66 /* ShareKit.bundle in Resources */,
+				FACE0CE715CB93F90055B5DF /* upgradecoin.png in Resources */,
+				FACE0CEF15CB9F650055B5DF /* asteroidhudicon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1641,8 +1657,8 @@
 				C43F5E6E15C70352003BDF73 /* DDGameKitHelperDelegate.m in Sources */,
 				C43F5E8715C70589003BDF73 /* GKAchievementHandler.m in Sources */,
 				C43F5E8815C70589003BDF73 /* GKAchievementNotification.m in Sources */,
-				FACE0CDE15CB8ADA0055B5DF /* Powerups.m in Sources */,
 				0C60EC5A15CB8C42005FE434 /* Galaxy.m in Sources */,
+				FACE0CED15CB963B0055B5DF /* Powerup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
