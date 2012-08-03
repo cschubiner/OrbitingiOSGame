@@ -68,6 +68,9 @@ const float gravity = .45;
 //radius percentage at which you will collide with a planet
 const float planetRadiusCollisionZone = .01;
 
+//percent of the planet orbiting radius that you will respawn at
+const float respawnOrbitRadius = .88;
+
 // this is purely visual and doesn't affect mass.
 const float asteroidSizeScale = .36*.64f;
 

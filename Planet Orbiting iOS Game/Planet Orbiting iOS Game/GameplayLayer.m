@@ -1163,8 +1163,7 @@ typedef struct {
     timeSinceCometLeftScreen=0;
     prevCurrentPtoPScore=0;
     
-    //this is where the player is on screen (240,160 is center of screen)
-    [player setVelocity:ccp(0,0)];
+    [player setVelocity:CGPointZero];
     justReachedNewPlanet = true;
     
     [thrustParticle setPositionType:kCCPositionTypeRelative];
@@ -1176,7 +1175,7 @@ typedef struct {
 - (CGPoint)GetPositionForJumpingPlayerToPlanet:(int)planetIndex {
     //CCLOG([NSString stringWithFormat:@"thrust mag:"]);
     CGPoint dir = ccpNormalize(ccpSub(((Planet*)[planets objectAtIndex:planetIndex+1]).sprite.position,((Planet*)[planets objectAtIndex:planetIndex]).sprite.position));
-    return ccpAdd(((Planet*)[planets objectAtIndex:planetIndex]).sprite.position, ccpMult(dir, ((Planet*)[planets objectAtIndex:planetIndex]).orbitRadius));
+    return ccpAdd(((Planet*)[planets objectAtIndex:planetIndex]).sprite.position, ccpMult(dir, ((Planet*)[planets objectAtIndex:planetIndex]).orbitRadius*respawnOrbitRadius));
 }
 
 - (void)DisposeAllContentsOfArray:(NSMutableArray*)array shouldRemoveFromArray:(bool)shouldRemove{
