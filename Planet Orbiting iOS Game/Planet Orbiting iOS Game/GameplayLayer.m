@@ -1262,7 +1262,7 @@ typedef struct {
 
 - (void)UpdatePlayer:(float)dt {
     if (player.alive) {
-        [self ApplyGravity:dt];    
+        [self ApplyGravity:dt];
         //CCLOG(@"state: %d", orbitState);
         timeDilationCoefficient -= timeDilationReduceRate;
         
