@@ -252,6 +252,10 @@
 		FACE0CED15CB963B0055B5DF /* Powerup.m in Sources */ = {isa = PBXBuildFile; fileRef = FACE0CEC15CB963B0055B5DF /* Powerup.m */; };
 		FACE0CEF15CB9F650055B5DF /* asteroidhudicon.png in Resources */ = {isa = PBXBuildFile; fileRef = FACE0CEE15CB9F650055B5DF /* asteroidhudicon.png */; };
 		FACE0CF115CBBDD80055B5DF /* asteroidglowupgrade.png in Resources */ = {isa = PBXBuildFile; fileRef = FACE0CF015CBBDD80055B5DF /* asteroidglowupgrade.png */; };
+		FACE0CF315CBC6BC0055B5DF /* coinglowglowupgrade.png in Resources */ = {isa = PBXBuildFile; fileRef = FACE0CF215CBC6BC0055B5DF /* coinglowglowupgrade.png */; };
+		FACE0CF515CBC6D10055B5DF /* asteroidbreakercoin.png in Resources */ = {isa = PBXBuildFile; fileRef = FACE0CF415CBC6D10055B5DF /* asteroidbreakercoin.png */; };
+		FACE0CF715CBC6E00055B5DF /* magnetcoin.png in Resources */ = {isa = PBXBuildFile; fileRef = FACE0CF615CBC6E00055B5DF /* magnetcoin.png */; };
+		FACE0CF915CBC7180055B5DF /* magnethudicon.png in Resources */ = {isa = PBXBuildFile; fileRef = FACE0CF815CBC7180055B5DF /* magnethudicon.png */; };
 		FAF1C64015BCF8A1001136E3 /* Coin.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF1C63F15BCF8A1001136E3 /* Coin.m */; };
 /* End PBXBuildFile section */
 
@@ -646,6 +650,10 @@
 		FACE0CEC15CB963B0055B5DF /* Powerup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Powerup.m; sourceTree = "<group>"; };
 		FACE0CEE15CB9F650055B5DF /* asteroidhudicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroidhudicon.png; sourceTree = "<group>"; };
 		FACE0CF015CBBDD80055B5DF /* asteroidglowupgrade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroidglowupgrade.png; sourceTree = "<group>"; };
+		FACE0CF215CBC6BC0055B5DF /* coinglowglowupgrade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coinglowglowupgrade.png; sourceTree = "<group>"; };
+		FACE0CF415CBC6D10055B5DF /* asteroidbreakercoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroidbreakercoin.png; sourceTree = "<group>"; };
+		FACE0CF615CBC6E00055B5DF /* magnetcoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnetcoin.png; sourceTree = "<group>"; };
+		FACE0CF815CBC7180055B5DF /* magnethudicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnethudicon.png; sourceTree = "<group>"; };
 		FAF1C63E15BCF8A1001136E3 /* Coin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coin.h; sourceTree = "<group>"; };
 		FAF1C63F15BCF8A1001136E3 /* Coin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1373,6 +1381,10 @@
 			isa = PBXGroup;
 			children = (
 				FACE0CEE15CB9F650055B5DF /* asteroidhudicon.png */,
+				FACE0CF415CBC6D10055B5DF /* asteroidbreakercoin.png */,
+				FACE0CF615CBC6E00055B5DF /* magnetcoin.png */,
+				FACE0CF215CBC6BC0055B5DF /* coinglowglowupgrade.png */,
+				FACE0CF815CBC7180055B5DF /* magnethudicon.png */,
 				FACE0CF015CBBDD80055B5DF /* asteroidglowupgrade.png */,
 				FACE0CE615CB93F90055B5DF /* upgradecoin.png */,
 			);
@@ -1532,6 +1544,10 @@
 				FACE0CE715CB93F90055B5DF /* upgradecoin.png in Resources */,
 				FACE0CEF15CB9F650055B5DF /* asteroidhudicon.png in Resources */,
 				FACE0CF115CBBDD80055B5DF /* asteroidglowupgrade.png in Resources */,
+				FACE0CF315CBC6BC0055B5DF /* coinglowglowupgrade.png in Resources */,
+				FACE0CF515CBC6D10055B5DF /* asteroidbreakercoin.png in Resources */,
+				FACE0CF715CBC6E00055B5DF /* magnetcoin.png in Resources */,
+				FACE0CF915CBC7180055B5DF /* magnethudicon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
