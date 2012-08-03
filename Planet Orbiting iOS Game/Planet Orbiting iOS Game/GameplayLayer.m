@@ -1267,7 +1267,7 @@ typedef struct {
 
 /* Your score goes up as you move along the vector between the current and next planet. Your score will also never go down, as the user doesn't like to see his score go down.*/
 - (void)UpdateScore {
-    tempScore = ccpDistance(CGPointZero, player.sprite.position);
+    tempScore = ccpDistance(CGPointZero, player.sprite.position)-160;
     if (tempScore > score)
         score = tempScore;
     [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score]];
