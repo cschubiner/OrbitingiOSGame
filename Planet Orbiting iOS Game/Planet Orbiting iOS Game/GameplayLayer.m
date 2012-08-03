@@ -639,6 +639,11 @@ typedef struct {
         [hudLayer addChild:asteroidImmunityHUD];
         asteroidImmunityHUD.position = ccp(30, 290);
         asteroidImmunityHUD.scale = .4;
+        asteroidGlow = [CCSprite spriteWithFile:@"asteroidglowupgrade.png"];
+        [cameraLayer addChild:asteroidGlow];
+        asteroidGlow.scale = 1.5;
+        [cameraLayer reorderChild:asteroidGlow z:2.5];
+
         
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444]; // add this line at the very beginning
         background = [CCSprite spriteWithFile:@"background.pvr.ccz"];
@@ -807,18 +812,15 @@ typedef struct {
     for (Asteroid* asteroid in asteroids) {        
         CGPoint p = asteroid.sprite.position;
         if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= asteroid.radius * asteroidRadiusCollisionZone && orbitState == 3) {
-            //[self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
             isHittingAsteroid = true;
         }
     }
     
     if (player.hasAsteroidImmunity) {
-        //[asteroidImmunityHUD setVisible:true];
+        [asteroidGlow setVisible:true];
         
         int updatesLeft = asteroidImmunityDurationInUpdates - powerupCounter;
-        float blinkAfterThisManyUpdates = updatesLeft*.12;//clampf(updatesLeft*.12, 8, 999999);
-        
-
+        float blinkAfterThisManyUpdates = updatesLeft*.12;
         
         if (asteroidImmunityHUD.visible) {
             updatesWithoutBlinking++;
@@ -838,32 +840,11 @@ typedef struct {
             [asteroidImmunityHUD setVisible:true];
         }
         
-        /*
-        if (updatesLeft <= 400 && updatesLeft > 80) {
-            float mod = fmodf(powerupCounter, (float)updatesLeft*.12);
-            if (mod >= 0 && mod <= 4)
-                [asteroidImmunityHUD setVisible:false];
-            CCLOG(@"ONE updates left: %f", mod);
-        }
-        if (updatesLeft <= 80) {
-            float mod = fmodf(powerupCounter, 80*.12);
-            if (mod >= 0 && mod <= 4)
-                [asteroidImmunityHUD setVisible:false];
-            CCLOG(@"TWO updates left: %f", mod);
-        }*/
-        
-        
-        /*
-        if (updatesLeft <= 30) {
-            int mod = fmodf(powerupCounter, 8);
-            if (mod >= 0 && mod <= 4)
-                [asteroidImmunityHUD setVisible:false];
-        }  */
-        
         
         if (powerupCounter >= asteroidImmunityDurationInUpdates)
             player.hasAsteroidImmunity = false;
     } else {
+        [asteroidGlow setVisible:false];
         [asteroidImmunityHUD setVisible:false];
         if (isHittingAsteroid)
             asteroidSlower -= .09;
@@ -1428,6 +1409,9 @@ typedef struct {
         [((AppDelegate*)[[UIApplication sharedApplication]delegate])setWasJustBackgrounded:false];
         [self togglePause];
     }
+    asteroidGlow.position = player.sprite.position;
+    if (!player.alive)
+        [asteroidGlow setVisible:false];
 }
 
 - (void)endGame {

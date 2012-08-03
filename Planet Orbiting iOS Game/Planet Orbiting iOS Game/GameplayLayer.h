@@ -61,6 +61,7 @@
     CCLayerStreak * streak;
     
     CCSprite* asteroidImmunityHUD;
+    CCSprite* asteroidGlow;
     
     CGPoint spotGoingTo;
     float swipeAccuracy;
