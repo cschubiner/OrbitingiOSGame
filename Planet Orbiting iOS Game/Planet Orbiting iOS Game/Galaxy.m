@@ -10,5 +10,5 @@
 
 
 @implementation Galaxy
-
+@synthesize number,segments;
 @end

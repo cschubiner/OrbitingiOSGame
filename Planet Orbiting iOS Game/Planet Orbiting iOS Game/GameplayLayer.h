@@ -18,6 +18,7 @@
 #import "PowerupManager.h"
 #import "LevelObjectReturner.h"
 #import "Light.h"
+#import "Galaxy.h"
 
 @interface GameplayLayer : CCLayer {
     Player *player;
@@ -43,6 +44,9 @@
     bool playerIsTouchingScreen;
     float asteroidSlower;
     
+    NSArray * galaxies;
+    int currentGalaxy;
+    int planetsHitSinceNewGalaxy;
     int segmentsSpawnedFlurry;
     int planetsHitFlurry;
     

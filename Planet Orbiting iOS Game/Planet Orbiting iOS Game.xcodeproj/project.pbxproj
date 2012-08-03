@@ -50,6 +50,7 @@
 		0C487B0E1594792C00674AB9 /* Planet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B0D1594792C00674AB9 /* Planet.m */; };
 		0C49E19015C0FE44007957E9 /* thrustParticle3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */; };
 		0C5400B915C50C4000AF9AA9 /* edit(84759).png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5400B815C50C4000AF9AA9 /* edit(84759).png */; };
+		0C60EC5A15CB8C42005FE434 /* Galaxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C60EC5915CB8C42005FE434 /* Galaxy.m */; };
 		0C62B19215C8D9CB00318B66 /* Kamcord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B19115C8D9CB00318B66 /* Kamcord.framework */; };
 		0C62B19515C8D9D600318B66 /* AWSiOSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B19415C8D9D600318B66 /* AWSiOSSDK.framework */; };
 		0C62B19F15C8D9FA00318B66 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C62B19715C8D9FA00318B66 /* FBDialog.bundle */; };
@@ -309,6 +310,8 @@
 		0C487B0D1594792C00674AB9 /* Planet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Planet.m; sourceTree = "<group>"; };
 		0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = thrustParticle3.plist; sourceTree = "<group>"; };
 		0C5400B815C50C4000AF9AA9 /* edit(84759).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit(84759).png"; sourceTree = "<group>"; };
+		0C60EC5815CB8C42005FE434 /* Galaxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Galaxy.h; sourceTree = "<group>"; };
+		0C60EC5915CB8C42005FE434 /* Galaxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Galaxy.m; sourceTree = "<group>"; };
 		0C62B19115C8D9CB00318B66 /* Kamcord.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kamcord.framework; sourceTree = "<group>"; };
 		0C62B19415C8D9D600318B66 /* AWSiOSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSiOSSDK.framework; sourceTree = "<group>"; };
 		0C62B19715C8D9FA00318B66 /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
@@ -844,6 +847,8 @@
 				0C7AA7541594693D000B58F2 /* AppDelegate.h */,
 				0C7AA7551594693D000B58F2 /* AppDelegate.m */,
 				C49E914A159A48D700BC424D /* Constants.h */,
+				0C60EC5815CB8C42005FE434 /* Galaxy.h */,
+				0C60EC5915CB8C42005FE434 /* Galaxy.m */,
 				0C487AF615946E2300674AB9 /* GameplayLayer.h */,
 				0C487AF715946E2300674AB9 /* GameplayLayer.m */,
 				0C2AB0B315BE8E43008822F1 /* MainMenuLayer.h */,
@@ -1637,6 +1642,7 @@
 				C43F5E8715C70589003BDF73 /* GKAchievementHandler.m in Sources */,
 				C43F5E8815C70589003BDF73 /* GKAchievementNotification.m in Sources */,
 				FACE0CDE15CB8ADA0055B5DF /* Powerups.m in Sources */,
+				0C60EC5A15CB8C42005FE434 /* Galaxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

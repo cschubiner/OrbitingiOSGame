@@ -12,5 +12,6 @@
 @interface Galaxy : CCNode {
     
 }
-
+@property (nonatomic) int number;
+@property (nonatomic,retain) NSArray* segments;
 @end
