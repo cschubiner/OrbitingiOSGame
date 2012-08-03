@@ -10,4 +10,18 @@
 
 @implementation Powerups
 
+@synthesize hasAsteroidImmunity;
+
+static Powerups *sharedInstance = nil;
+
++ (id)sharedInstance {
+    @synchronized([Powerups class]) {
+        if (sharedInstance == nil) {
+            sharedInstance = [[Powerups alloc] init];
+            sharedInstance.hasAsteroidImmunity = false;
+        }
+    }
+    return sharedInstance;
+}
+
 @end

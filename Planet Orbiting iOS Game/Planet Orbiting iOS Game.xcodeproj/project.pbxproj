@@ -247,6 +247,7 @@
 		FA908BEE15C105C0008ACC50 /* edit(84759)-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA908BED15C105C0008ACC50 /* edit(84759)-hd.png */; };
 		FA9C241515C137FD00139706 /* a_song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA9C241415C137FD00139706 /* a_song.mp3 */; };
 		FA9C246F15C2595000139706 /* menumusic_new.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA9C246E15C2595000139706 /* menumusic_new.mp3 */; };
+		FACE0CDE15CB8ADA0055B5DF /* Powerups.m in Sources */ = {isa = PBXBuildFile; fileRef = FACE0CDD15CB8ADA0055B5DF /* Powerups.m */; };
 		FAF1C64015BCF8A1001136E3 /* Coin.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF1C63F15BCF8A1001136E3 /* Coin.m */; };
 /* End PBXBuildFile section */
 
@@ -634,6 +635,8 @@
 		FA908BED15C105C0008ACC50 /* edit(84759)-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit(84759)-hd.png"; sourceTree = "<group>"; };
 		FA9C241415C137FD00139706 /* a_song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = a_song.mp3; sourceTree = "<group>"; };
 		FA9C246E15C2595000139706 /* menumusic_new.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = menumusic_new.mp3; sourceTree = "<group>"; };
+		FACE0CDC15CB8ADA0055B5DF /* Powerups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Powerups.h; sourceTree = "<group>"; };
+		FACE0CDD15CB8ADA0055B5DF /* Powerups.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Powerups.m; sourceTree = "<group>"; };
 		FAF1C63E15BCF8A1001136E3 /* Coin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coin.h; sourceTree = "<group>"; };
 		FAF1C63F15BCF8A1001136E3 /* Coin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -717,6 +720,8 @@
 				FAF1C63F15BCF8A1001136E3 /* Coin.m */,
 				FA895CD915C525B400FA4EC3 /* Light.h */,
 				FA895CDA15C525B400FA4EC3 /* Light.m */,
+				FACE0CDC15CB8ADA0055B5DF /* Powerups.h */,
+				FACE0CDD15CB8ADA0055B5DF /* Powerups.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1631,6 +1636,7 @@
 				C43F5E6E15C70352003BDF73 /* DDGameKitHelperDelegate.m in Sources */,
 				C43F5E8715C70589003BDF73 /* GKAchievementHandler.m in Sources */,
 				C43F5E8815C70589003BDF73 /* GKAchievementNotification.m in Sources */,
+				FACE0CDE15CB8ADA0055B5DF /* Powerups.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

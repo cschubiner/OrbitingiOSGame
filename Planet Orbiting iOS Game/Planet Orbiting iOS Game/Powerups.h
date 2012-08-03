@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Powerups : NSObject
+@interface Powerups : NSObject{
+    int balance;
+}
+
+@property (nonatomic) bool hasAsteroidImmunity;
++ (id)sharedInstance;
 
 @end

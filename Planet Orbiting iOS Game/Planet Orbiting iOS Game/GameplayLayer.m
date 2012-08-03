@@ -15,6 +15,7 @@
 #import "Coin.h"
 #import "DataStorage.h"
 #import "PlayerStats.h"
+#import "Powerups.h"
 
 #define pauseLayerTag       100
 #define gameOverLayerTag    200
@@ -1030,13 +1031,13 @@ typedef struct {
         }
     }
     
-//    if ()
-        
-    if (isHittingAsteroid)
-        asteroidSlower -= .09;
-    else
-        asteroidSlower += .01;
-    asteroidSlower = clampf(asteroidSlower, .15, 1);
+    if (![[Powerups sharedInstance] hasAsteroidImmunity]) {
+        if (isHittingAsteroid)
+            asteroidSlower -= .09;
+        else
+            asteroidSlower += .01;
+        asteroidSlower = clampf(asteroidSlower, .15, 1);
+    }
     
     
     for (Planet* planet in planets)
@@ -1193,7 +1194,7 @@ typedef struct {
                 
                 //perhaps dont use scaler/swipe accuracy, and just use it in (if orbitstate==1) for determining if it's good enough. btw scaler ranges from about 1to 3.5 (now 0 to 2.5)
                 
-                player.acceleration = ccpMult(accelToAdd, gravIncreaser*freeGravityStrength*scaler);
+                player.acceleration = ccpMult(accelToAdd, gravIncreaser*freeGravityStrength*scaler*asteroidSlower);
                 //  CCLOG(@"swipeAcc: %f", ccpLength(player.acceleration));
                 
                 if (initialAccelMag == 0)
