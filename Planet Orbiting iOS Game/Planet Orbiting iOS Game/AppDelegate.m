@@ -124,7 +124,7 @@
 	[Kamcord setDeviceOrientation:CCDeviceOrientationPortrait];
     
 #else
-    [Kamcord setDeviceOrientation:CCDeviceOrientationLandscapeLeft];
+    [Kamcord setDeviceOrientation:CCDeviceOrientationLandscapeRight];
 #endif
     
 	//[Kamcord setVideoResolution:TRAILER_VIDEO_RESOLUTION];
