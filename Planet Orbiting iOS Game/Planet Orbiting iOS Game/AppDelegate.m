@@ -119,7 +119,7 @@
         isRetinaDisplay = false;
 	}
     
-
+    
 #if GAME_AUTOROTATION == kGameAutorotationUIViewController
 	[Kamcord setDeviceOrientation:CCDeviceOrientationPortrait];
 #else
