@@ -632,6 +632,8 @@ typedef struct {
         tutorialIsTryingToAdvance = false;
         asteroidSlower = 1;
         powerupCounter = 0;
+        updatesWithoutBlinking = 0;
+        updatesWithBlinking = 999;
         
         asteroidImmunityHUD = [CCSprite spriteWithFile:@"asteroidhudicon.png"];
         [hudLayer addChild:asteroidImmunityHUD];
@@ -811,19 +813,45 @@ typedef struct {
     }
     
     if (player.hasAsteroidImmunity) {
-        [asteroidImmunityHUD setVisible:true];
+        //[asteroidImmunityHUD setVisible:true];
         
         int updatesLeft = asteroidImmunityDurationInUpdates - powerupCounter;
+        float blinkAfterThisManyUpdates = updatesLeft*.12;//clampf(updatesLeft*.12, 8, 999999);
         
-        if (updatesLeft <= 400 && updatesLeft > 80) {
-            int mod = fmodf(powerupCounter, updatesLeft*.11);
-            if (mod >= 0 && mod <= 4)
-                [asteroidImmunityHUD setVisible:false];
-        } else if (updatesLeft <= 80) {
-            int mod = fmodf(powerupCounter, 80*.11);
-            if (mod >= 0 && mod <= 4)
-                [asteroidImmunityHUD setVisible:false];
+
+        
+        if (asteroidImmunityHUD.visible) {
+            updatesWithoutBlinking++;
         }
+        
+        if (updatesWithoutBlinking >= blinkAfterThisManyUpdates && updatesLeft <= 300) {
+            updatesWithoutBlinking = 0;
+            [asteroidImmunityHUD setVisible:false];
+            
+        }
+        if (!asteroidImmunityHUD.visible) {
+            updatesWithBlinking++;
+        }
+        
+        if (updatesWithBlinking >= clampf(8*updatesLeft/100, 3, 99999999)) {
+            updatesWithBlinking = 0;
+            [asteroidImmunityHUD setVisible:true];
+        }
+        
+        /*
+        if (updatesLeft <= 400 && updatesLeft > 80) {
+            float mod = fmodf(powerupCounter, (float)updatesLeft*.12);
+            if (mod >= 0 && mod <= 4)
+                [asteroidImmunityHUD setVisible:false];
+            CCLOG(@"ONE updates left: %f", mod);
+        }
+        if (updatesLeft <= 80) {
+            float mod = fmodf(powerupCounter, 80*.12);
+            if (mod >= 0 && mod <= 4)
+                [asteroidImmunityHUD setVisible:false];
+            CCLOG(@"TWO updates left: %f", mod);
+        }*/
+        
         
         /*
         if (updatesLeft <= 30) {

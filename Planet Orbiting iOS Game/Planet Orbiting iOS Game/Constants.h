@@ -140,4 +140,4 @@ const float amountToIncreaseLightScoreVelocityEachUpdate = .00065;
 
 const int howMuchCoinsAddToScore = 10;
 
-const float asteroidImmunityDurationInUpdates = 500;
+const float asteroidImmunityDurationInUpdates = 1100;

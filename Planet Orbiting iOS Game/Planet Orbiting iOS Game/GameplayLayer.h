@@ -44,6 +44,8 @@
     bool planetJustExploded;
     bool playerIsTouchingScreen;
     float asteroidSlower;
+    float updatesWithoutBlinking;
+    float updatesWithBlinking;
     
     float powerupCounter;
     
