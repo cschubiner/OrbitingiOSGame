@@ -11,4 +11,12 @@
 
 @implementation Galaxy
 @synthesize number,segments;
+
+-(id)initWithSegments:(NSArray *)levelsegments{
+    if ((self = [super init])) {
+        segments = levelsegments;
+        [segments retain];
+    }
+    return self;
+}
 @end

@@ -65,7 +65,6 @@
     float velSoftener;
     float gravIncreaser;
     
-    NSArray *segments;
     int planetNumToRespawnSegments;
     int makingSegmentNumber;
     CGPoint indicatorPos;
