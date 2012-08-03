@@ -14,4 +14,5 @@
 }
 @property (nonatomic) int number;
 @property (nonatomic,retain) NSArray* segments;
+-(id)initWithSegments:(NSArray*)levelSegments;
 @end

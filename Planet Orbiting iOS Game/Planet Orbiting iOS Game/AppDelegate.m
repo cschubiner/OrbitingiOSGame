@@ -122,9 +122,8 @@
 
 #if GAME_AUTOROTATION == kGameAutorotationUIViewController
 	[Kamcord setDeviceOrientation:CCDeviceOrientationPortrait];
-    
 #else
-    [Kamcord setDeviceOrientation:CCDeviceOrientationLandscapeRight];
+    [Kamcord setDeviceOrientation:CCDeviceOrientationLandscapeLeft];
 #endif
     
 	//[Kamcord setVideoResolution:TRAILER_VIDEO_RESOLUTION];

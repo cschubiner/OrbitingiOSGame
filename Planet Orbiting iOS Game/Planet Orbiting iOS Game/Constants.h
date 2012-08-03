@@ -76,6 +76,8 @@ const float asteroidRadiusCollisionZone = .9;
 
 const float powerupRadiusCollisionZone = 10;
 
+const int optimalPlanetsPerGalaxy = 8;
+
 //the asteroid's minimum velocity
 const float minAstVel = 0;
 
