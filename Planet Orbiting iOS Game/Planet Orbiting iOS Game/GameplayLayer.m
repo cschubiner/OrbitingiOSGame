@@ -1029,10 +1029,13 @@ typedef struct {
             isHittingAsteroid = true;
         }
     }
+    
+//    if ()
+        
     if (isHittingAsteroid)
         asteroidSlower -= .09;
     else
-        asteroidSlower += .02;
+        asteroidSlower += .01;
     asteroidSlower = clampf(asteroidSlower, .15, 1);
     
     
