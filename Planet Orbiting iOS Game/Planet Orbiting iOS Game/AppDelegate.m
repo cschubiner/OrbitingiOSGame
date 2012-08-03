@@ -173,9 +173,7 @@
     return chosenLevelNumber;
 }
 
-/*
- My Apps Custom uncaught exception catcher, we do special stuff here, and TestFlight takes care of the rest
- **/
+/* Uncaught exception catcher, we do special stuff here, and TestFlight takes care of the rest */
 void HandleExceptions(NSException *exception) {
     [Flurry logError:@"Uncaught" message:@"Crash!" exception:exception];
     NSLog(@"This is where we save the application data during a exception");
