@@ -50,7 +50,8 @@
     float powerupCounter;
     
     NSArray * galaxies;
-    int currentGalaxy;
+    Galaxy* currentGalaxy;
+    Galaxy* nextGalaxy;
     int planetsHitSinceNewGalaxy;
     int segmentsSpawnedFlurry;
     int planetsHitFlurry;

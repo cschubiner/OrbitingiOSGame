@@ -211,6 +211,14 @@ void SignalHandler(int sig) {
 	[director end];	
 }
 
+-(int)getGalaxyCounter {
+    return galaxyCounter;
+}
+
+-(void)setGalaxyCounter:(int)count {
+    galaxyCounter = count;
+}
+
 - (void)applicationSignificantTimeChange:(UIApplication *)application {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
 }

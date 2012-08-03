@@ -20,6 +20,7 @@
     int chosenLevelNumber;
     bool isRetinaDisplay;
     bool wasJustBackgrounded;
+    int galaxyCounter;
 }
 
 @property (nonatomic, retain) UIWindow *window;
@@ -31,5 +32,7 @@
 -(KCViewController*)getViewController;
 -(bool)getWasJustBackgrounded;
 -(void)setWasJustBackgrounded:(bool)isItBackgrounded;
+-(int)getGalaxyCounter;
+-(void)setGalaxyCounter:(int)count;
 
 @end

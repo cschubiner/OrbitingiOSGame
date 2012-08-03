@@ -128,7 +128,7 @@ typedef struct {
 {
     segmentsSpawnedFlurry++;
     float rotationOfSegment = CC_DEGREES_TO_RADIANS([self RandomBetween:-segmentRotationVariation+directionPlanetSegmentsGoIn maxvalue:segmentRotationVariation+directionPlanetSegmentsGoIn]);
-    Galaxy *galaxy = [galaxies objectAtIndex:currentGalaxy];
+    Galaxy *galaxy = currentGalaxy;
     originalSegmentNumber = [self RandomBetween:0 maxvalue:[[galaxy segments ]count]-1];
     NSArray *chosenSegment = [[galaxy segments] objectAtIndex:originalSegmentNumber];
     
@@ -508,11 +508,6 @@ typedef struct {
                 
                  nil];
     
-    indicatorPos = CGPointZero;
-    for (int j = 0 ; j < numberOfSegmentsAtATime; j++) {
-        [self CreateSegment];
-    }
-    
 }
 
 /* On "init," initialize the instance */
@@ -594,6 +589,12 @@ typedef struct {
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spriteSheet.plist"];
         
         [self CreateLevel];
+        currentGalaxy = [galaxies objectAtIndex:0];
+        nextGalaxy = [galaxies objectAtIndex:1];
+        indicatorPos = CGPointZero;
+        for (int j = 0 ; j < numberOfSegmentsAtATime; j++) {
+            [self CreateSegment];
+        }
         
         player = [[Player alloc]init];
         [player retain];
@@ -649,9 +650,6 @@ typedef struct {
         background = [CCSprite spriteWithFile:@"background.pvr.ccz"];
         background.position = ccp(size.width/2+61,14);
         background.scale *=1.28f;
-      //  [background setAnchorPoint:CGPointZero];
-       // [background setPosition:CGPointZero];
-      //  [background setPosition:ccp(size.width/2,size.height/2)];
         [self addChild:background];
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888]; // add this line at the very beginning
         
@@ -1258,7 +1256,8 @@ typedef struct {
         
         if ([self CreateSegment]==false) {
             planetsHitSinceNewGalaxy=0;
-            currentGalaxy++;
+            currentGalaxy = nextGalaxy;
+            nextGalaxy = [galaxies objectAtIndex:currentGalaxy.number+1];
             indicatorPos = ccpAdd(indicatorPos, ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn)), 1000));
             [self CreateSegment];
         }
