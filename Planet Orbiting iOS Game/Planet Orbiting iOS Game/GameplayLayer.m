@@ -587,6 +587,7 @@ typedef struct {
         tutorialPauseTimer = 0;
         updatesToAdvanceTutorial = 0;
         tutorialIsTryingToAdvance = false;
+        asteroidSlower = 1;
         
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444]; // add this line at the very beginning
         background = [CCSprite spriteWithFile:@"background.pvr.ccz"];
