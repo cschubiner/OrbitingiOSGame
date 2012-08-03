@@ -786,20 +786,23 @@ typedef struct {
         
         int updatesLeft = asteroidImmunityDurationInUpdates - powerupCounter;
         
+        if (updatesLeft <= 400 && updatesLeft > 80) {
+            int mod = fmodf(powerupCounter, updatesLeft*.11);
+            if (mod >= 0 && mod <= 4)
+                [asteroidImmunityHUD setVisible:false];
+        } else if (updatesLeft <= 80) {
+            int mod = fmodf(powerupCounter, 80*.11);
+            if (mod >= 0 && mod <= 4)
+                [asteroidImmunityHUD setVisible:false];
+        }
         
+        /*
         if (updatesLeft <= 30) {
             int mod = fmodf(powerupCounter, 8);
             if (mod >= 0 && mod <= 4)
                 [asteroidImmunityHUD setVisible:false];
-        } else if (updatesLeft <= 100) {
-            int mod = fmodf(powerupCounter, 17);
-            if (mod >= 0 && mod <= 4)
-                [asteroidImmunityHUD setVisible:false];
-        } else if (updatesLeft <= 300) {
-            int mod = fmodf(powerupCounter, 25);
-            if (mod >= 0 && mod <= 4)
-                [asteroidImmunityHUD setVisible:false];
-        }
+        }  */
+        
         
         if (powerupCounter >= asteroidImmunityDurationInUpdates)
             player.hasAsteroidImmunity = false;
