@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "CameraObject.h"
 #import "CCLayerStreak.h"
+#import "Powerup.h"
 
 @interface Player : CameraObject {
 
@@ -24,7 +25,7 @@
 @property (nonatomic) CGPoint positionAtLastThrust;
 @property (nonatomic) bool isInZone;
 @property (nonatomic) int coins;
-@property (nonatomic) bool hasAsteroidImmunity;
+@property (nonatomic, retain) Powerup* currentPowerup;
 @property (nonatomic, retain) CCAction* moveAction;
 
 

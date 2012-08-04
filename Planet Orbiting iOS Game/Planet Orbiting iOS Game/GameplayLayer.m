@@ -73,13 +73,47 @@ typedef struct {
     [coin release];
 }
 
-- (void)CreatePowerup:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
+- (void)CreatePowerup:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale type:(int)type {
     Powerup *powerup = [[Powerup alloc]init];
-    powerup.sprite = [CCSprite spriteWithFile:@"upgradecoin.png"];
-    powerup.sprite.position = ccp(xPos, yPos);
-    [powerup.sprite setScale:scale];
+    powerup.type = type;
+    
+    if (powerup.type == 1) {
+        
+        powerup.duration = asteroidImmunityDurationInUpdates;
+        powerup.coinSprite = powerup.asteroidImmunityCoinSprite;
+        powerup.visualSprite = powerup.asteroidImmunityVisualSprite;
+        powerup.hudSprite = powerup.asteroidImmunityHudSprite;
+        
+    } else if (powerup.type == 2) {
+        
+        powerup.duration = coinMagnetDurationInUpdates;
+        powerup.coinSprite = powerup.coinMagetCoinSprite;
+        powerup.visualSprite = powerup.coinMagnetVisualSprite;
+        powerup.hudSprite = powerup.coinMagnetHudSprite;
+        
+    }
+    
+    
+    
+    powerup.coinSprite.position = ccp(xPos, yPos);
+    powerup.coinSprite.scale = scale;
+    
+    [powerup.visualSprite setVisible:false];
+    powerup.visualSprite.scale = 1.6;
+    
+    [powerup.hudSprite setVisible:false];
+    powerup.hudSprite.position = ccp(30, 290);
+    powerup.hudSprite.scale = .4;
+    
+    
     [powerups addObject:powerup];
-    [cameraLayer addChild:powerup.sprite];
+    
+    [cameraLayer addChild:powerup.coinSprite];
+    [cameraLayer addChild:powerup.visualSprite];
+    [hudLayer addChild:powerup.hudSprite];
+    
+    [cameraLayer reorderChild:powerup.visualSprite z:2.5];
+    
     [powerup release];
 }
 
@@ -164,7 +198,7 @@ typedef struct {
 - (void)CreateLevel // paste level creation code here
 {
     
-    [self CreatePowerup:1000 yPos:700 scale:.2];
+    [self CreatePowerup:700 yPos:500 scale:.3 type:2];
     
     if (isInTutorialMode) {
         [self CreatePlanetAndZone:288 yPos:364 scale:1];
@@ -243,7 +277,7 @@ typedef struct {
                    nil],
                   
                   nil]],
-        
+                
                 
                 //galaxy 2
                 [[Galaxy alloc]initWithSegments:
@@ -473,7 +507,7 @@ typedef struct {
                    nil],
                   
                   
-      
+                  
                   nil]],
                 //galaxy 4
                 [[Galaxy alloc]initWithSegments:
@@ -506,7 +540,7 @@ typedef struct {
                 
                 
                 
-                 nil];
+                nil];
     
 }
 
@@ -636,15 +670,9 @@ typedef struct {
         updatesWithoutBlinking = 0;
         updatesWithBlinking = 999;
         
-        asteroidImmunityHUD = [CCSprite spriteWithFile:@"asteroidhudicon.png"];
-        [hudLayer addChild:asteroidImmunityHUD];
-        asteroidImmunityHUD.position = ccp(30, 290);
-        asteroidImmunityHUD.scale = .4;
-        asteroidGlow = [CCSprite spriteWithFile:@"asteroidglowupgrade.png"];
-        [cameraLayer addChild:asteroidGlow];
-        asteroidGlow.scale = 1.5;
-        [cameraLayer reorderChild:asteroidGlow z:2.5];
-
+        
+        
+        
         
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444]; // add this line at the very beginning
         background = [CCSprite spriteWithFile:@"background.pvr.ccz"];
@@ -794,13 +822,28 @@ typedef struct {
     if (shouldLoop)
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:soundFile loop:YES];
     else
-    [[SimpleAudioEngine sharedEngine]playEffect:soundFile];
+        [[SimpleAudioEngine sharedEngine]playEffect:soundFile];
 }
 
 - (void)ApplyGravity:(float)dt {
     
     for (Coin* coin in coins) {
         CGPoint p = coin.sprite.position;
+        
+        if (player.currentPowerup.type == 2) {
+            if (ccpLength(ccpSub(player.sprite.position, p)) <= 3*(coin.radius + player.sprite.height/1.3) && coin.isAlive && coin.speed < .1) {
+                coin.speed = .0001;
+            }
+            
+        }
+        if (coin.speed != 0)
+            coin.speed += .3;
+        
+        
+        coin.velocity = ccpMult(ccpNormalize(ccpSub(player.sprite.position, p)), coin.speed);
+        coin.sprite.position = ccpAdd(coin.sprite.position, coin.velocity);
+        
+        
         if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/1.3 && coin.isAlive) {
             [self UserTouchedCoin:coin];
         }
@@ -814,57 +857,61 @@ typedef struct {
         }
     }
     
-    if (player.hasAsteroidImmunity) {
-        [asteroidGlow setVisible:true];
+    if (!(player.currentPowerup.type == 1)) {
+        if (isHittingAsteroid)
+            asteroidSlower -= .1;
+        else
+            asteroidSlower += .01;
+        asteroidSlower = clampf(asteroidSlower, .13, 1);
+    }
+    
+    
+    
+    for (Powerup* powerup in powerups) {
+        CGPoint p = powerup.coinSprite.position;
+        if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= powerup.coinSprite.width * powerupRadiusCollisionZone) {
+            //[self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
+            [powerup.coinSprite setVisible:false];
+            //[powerups removeObject:powerup];
+            player.currentPowerup = powerup;
+            [player.currentPowerup.visualSprite setVisible:true];
+            [player.currentPowerup.hudSprite setVisible:true];
+            powerupCounter = 0;
+        }
         
-        int updatesLeft = asteroidImmunityDurationInUpdates - powerupCounter;
+    }
+    
+    if (player.currentPowerup != nil) {
+        //[player.currentPowerup.hudSprite setVisible:true];
+        
+        int updatesLeft = player.currentPowerup.duration - powerupCounter;
         float blinkAfterThisManyUpdates = updatesLeft*.12;
         
-        if (asteroidImmunityHUD.visible) {
+        if (player.currentPowerup.hudSprite.visible) {
             updatesWithoutBlinking++;
         }
         
         if (updatesWithoutBlinking >= blinkAfterThisManyUpdates && updatesLeft <= 300) {
             updatesWithoutBlinking = 0;
-            [asteroidImmunityHUD setVisible:false];
+            [player.currentPowerup.hudSprite setVisible:false];
             
         }
-        if (!asteroidImmunityHUD.visible) {
+        if (!player.currentPowerup.hudSprite.visible) {
             updatesWithBlinking++;
         }
         
         if (updatesWithBlinking >= clampf(8*updatesLeft/100, 3, 99999999)) {
             updatesWithBlinking = 0;
-            [asteroidImmunityHUD setVisible:true];
+            [player.currentPowerup.hudSprite setVisible:true];
         }
         
-        
-        if (powerupCounter >= asteroidImmunityDurationInUpdates)
-            player.hasAsteroidImmunity = false;
-    } else {
-        [asteroidGlow setVisible:false];
-        [asteroidImmunityHUD setVisible:false];
-        if (isHittingAsteroid)
-            asteroidSlower -= .09;
-        else
-            asteroidSlower += .01;
-        asteroidSlower = clampf(asteroidSlower, .15, 1);
+        if (powerupCounter >= player.currentPowerup.duration) {
+            [player.currentPowerup.hudSprite setVisible:false];
+            [player.currentPowerup.visualSprite setVisible:false];
+            player.currentPowerup = nil;   
+        }
     }
-    
-    
     powerupCounter++;
-    
-    
-    for (Powerup* powerup in powerups) {
-        CGPoint p = powerup.sprite.position;
-        if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= powerup.radius * powerupRadiusCollisionZone) {
-            //[self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
-            [cameraLayer removeChild:powerup.sprite cleanup:true];
-            [powerups removeObject:powerup];
-            player.hasAsteroidImmunity = true;
-            powerupCounter = 0;
-        }
-    }
     
     
     for (Planet* planet in planets)
@@ -1271,8 +1318,8 @@ typedef struct {
         score = tempScore;
     [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score]];
     
-     int numCoins = [[UserWallet sharedInstance] getBalance];
-     int coinsDiff = numCoins - startingCoins;
+    int numCoins = [[UserWallet sharedInstance] getBalance];
+    int coinsDiff = numCoins - startingCoins;
     [coinsLabel setString:[NSString stringWithFormat:@"Coins: %i",coinsDiff]];
 }
 
@@ -1396,7 +1443,7 @@ typedef struct {
             [self UpdateCamera:dt];
             [self UpdateParticles:dt];
             if (levelNumber==0)
-            [self UpdateLight];
+                [self UpdateLight];
             updatesSinceLastPlanet++;
         }
     }
@@ -1407,9 +1454,9 @@ typedef struct {
         [((AppDelegate*)[[UIApplication sharedApplication]delegate])setWasJustBackgrounded:false];
         [self togglePause];
     }
-    asteroidGlow.position = player.sprite.position;
-    if (!player.alive)
-        [asteroidGlow setVisible:false];
+    player.currentPowerup.visualSprite.position = player.sprite.position;
+    //if (!player.alive)
+    //    [player.currentPowerup.visualSprite setVisible:false];
 }
 
 - (void)endGame {
@@ -1638,8 +1685,8 @@ typedef struct {
         }
         
         //else if (orbitState == 0) {
-            [player setThrustBeginPoint:location];
-            //playerIsTouchingScreen=true;
+        [player setThrustBeginPoint:location];
+        //playerIsTouchingScreen=true;
         //}
     }
 }
@@ -1788,11 +1835,11 @@ float lerpf(float a, float b, float t) {
     // before we add anything here, we should talk about what will be retained vs. released vs. set to nil in certain situations
     //LOL 
     /*(for (int i = 0 ; i < [segments count]; i++){
-        NSArray *chosenSegment = [segments objectAtIndex:i];
-        for (int j = 0 ; j < [chosenSegment count];j++) {
-            [[chosenSegment objectAtIndex:j] release];
-        }
-    }*/
+     NSArray *chosenSegment = [segments objectAtIndex:i];
+     for (int j = 0 ; j < [chosenSegment count];j++) {
+     [[chosenSegment objectAtIndex:j] release];
+     }
+     }*/
     [super dealloc];
 }
 

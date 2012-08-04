@@ -10,7 +10,7 @@
 
 @implementation Player
 
-@synthesize thrustEndPoint,thrustBeginPoint,mass,isInZone,coins,moveAction,rotationAtLastThrust,positionAtLastThrust, hasAsteroidImmunity;
+@synthesize thrustEndPoint,thrustBeginPoint,mass,isInZone,coins,moveAction,rotationAtLastThrust,positionAtLastThrust, currentPowerup;
 
 -(id) init
 {
@@ -19,7 +19,7 @@
 	if( (self=[super init])) {
         mass = 1;
         coins = 0;
-        hasAsteroidImmunity = false;
+        currentPowerup = nil;
 	}
 	return self;
 }

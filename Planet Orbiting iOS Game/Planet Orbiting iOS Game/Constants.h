@@ -77,7 +77,7 @@ const float asteroidSizeScale = .36*.64f;
 //radius percentage at which you will collide with a asteroid
 const float asteroidRadiusCollisionZone = .9;
 
-const float powerupRadiusCollisionZone = 10;
+const float powerupRadiusCollisionZone = 1;
 
 const int optimalPlanetsPerGalaxy = 8;
 
@@ -143,4 +143,6 @@ const float amountToIncreaseLightScoreVelocityEachUpdate = .00065;
 
 const int howMuchCoinsAddToScore = 10;
 
-const float asteroidImmunityDurationInUpdates = 1100;
+const float asteroidImmunityDurationInUpdates = 700;
+
+const float coinMagnetDurationInUpdates = 700;
