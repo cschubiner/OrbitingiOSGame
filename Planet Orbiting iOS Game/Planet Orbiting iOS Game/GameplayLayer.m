@@ -825,18 +825,16 @@ typedef struct {
         CGPoint p = coin.sprite.position;
         
         if (player.currentPowerup.type == 2) {
-            if (ccpLength(ccpSub(player.sprite.position, p)) <= 3*(coin.radius + player.sprite.height/1.3) && coin.isAlive && coin.speed < .1) {
-                coin.speed = .0001;
+            if (ccpLength(ccpSub(player.sprite.position, p)) <= 4*(coin.radius + player.sprite.height/1.3) && coin.isAlive && coin.speed < .1) {
+                coin.speed = .3;
             }
             
         }
         if (coin.speed != 0)
             coin.speed += .3;
         
-        
         coin.velocity = ccpMult(ccpNormalize(ccpSub(player.sprite.position, p)), coin.speed);
         coin.sprite.position = ccpAdd(coin.sprite.position, coin.velocity);
-        
         
         if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/1.3 && coin.isAlive) {
             [self UserTouchedCoin:coin];
@@ -863,14 +861,15 @@ typedef struct {
     
     for (Powerup* powerup in powerups) {
         CGPoint p = powerup.coinSprite.position;
-        if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= powerup.coinSprite.width * powerupRadiusCollisionZone) {
-            //[self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
+        if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= powerup.coinSprite.width * .5 * powerupRadiusCollisionZone) {
             [powerup.coinSprite setVisible:false];
             //[powerups removeObject:powerup];
             player.currentPowerup = powerup;
             [player.currentPowerup.visualSprite setVisible:true];
             [player.currentPowerup.hudSprite setVisible:true];
             powerupCounter = 0;
+            updatesWithBlinking = 0;
+            updatesWithoutBlinking = 99999;
         }
         
     }
