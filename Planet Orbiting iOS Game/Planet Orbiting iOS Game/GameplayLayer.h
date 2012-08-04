@@ -27,6 +27,7 @@
     NSMutableArray *asteroids;
     NSMutableArray *powerups;
     NSMutableArray *coins;
+    NSMutableArray *coinSprites;
     CCLabelTTF *scoreLabel;
     CCLabelTTF *coinsLabel;
     CGSize size;
@@ -46,6 +47,8 @@
     float asteroidSlower;
     float updatesWithoutBlinking;
     float updatesWithBlinking;
+    int coinAnimator;
+    int coinAnimator2;
     
     float powerupCounter;
     
