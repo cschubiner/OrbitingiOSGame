@@ -18,5 +18,6 @@
 
 
 @property (nonatomic) bool isAlive;
+@property (nonatomic) float speed;
 
 @end
