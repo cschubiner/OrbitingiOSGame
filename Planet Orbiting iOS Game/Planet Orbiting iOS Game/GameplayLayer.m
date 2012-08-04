@@ -181,6 +181,8 @@ typedef struct {
     
     [self CreatePowerup:700 yPos:500 scale:.3 type:2];
     
+    [self CreatePowerup:1400 yPos:1000 scale:.3 type:1];
+    
     if (isInTutorialMode) {
         [self CreatePlanetAndZone:288 yPos:364 scale:1];
         [self CreatePlanetAndZone:934 yPos:352 scale:1];
@@ -863,6 +865,10 @@ typedef struct {
         CGPoint p = powerup.coinSprite.position;
         if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= powerup.coinSprite.width * .5 * powerupRadiusCollisionZone) {
             [powerup.coinSprite setVisible:false];
+            if (player.currentPowerup != nil) {
+                [player.currentPowerup.visualSprite setVisible:false];
+                [player.currentPowerup.hudSprite setVisible:false];
+            }
             //[powerups removeObject:powerup];
             player.currentPowerup = powerup;
             [player.currentPowerup.visualSprite setVisible:true];
@@ -1027,42 +1033,19 @@ typedef struct {
                     if (ccpToAngle(player.velocity) > (anglePlayToTarg + (80 * M_PI/180)) || ccpToAngle(player.velocity) < (anglePlayToTarg - (80 * M_PI/180)))
                     {
                         dangerLevel += .02;
-                        //CCLOG(@"Added to DangerLevel: %f", dangerLevel);
                     }
                 }
                 
-                /*
-                 if (ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) > ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)))
-                 if (ccpLength(ccpSub(ccpAdd(player.sprite.position, player.velocity), targetPlanet.sprite.position)) < ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)))
-                 CCLOG(@"DIFFERNCE Q: %f", ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) - ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)));
-                 */
-                
-                //dangerLevel += .01;
-                //CCLOG(@"danger level: %f", dangerLevel);
-                
-                //CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
-                //CGPoint accelToAdd = ccpMult(direction, gravity/**planet.sprite.scale*/);
                 CGPoint accelToAdd = CGPointZero;
                 CGPoint direction = ccpNormalize(ccpSub(spotGoingTo, player.sprite.position));
-                accelToAdd = ccpAdd(accelToAdd, ccpMult(direction, gravity/**targetPlanet.sprite.scale*/));
-                
-                //use 'dif' in method above but rename to 'accuracy' or something
-                
-                //B = G + (G(90-x)*factorToScaleGravityForPerfectSwipe)/90
-                //B = G * clampf((G(angleToStartCreatingGravity-x)*factorToScaleGravityForPerfectSwipe)/angleToStartCreatingGravity, 0, factorToScaleGravityForPerfectSwipe)
-                
+                accelToAdd = ccpAdd(accelToAdd, ccpMult(direction, gravity));
                 
                 player.velocity = ccpMult(ccpNormalize(player.velocity), ccpLength(initialVel));
                 
                 float scaler = multiplyGravityThisManyTimesOnPerfectSwipe - swipeAccuracy * multiplyGravityThisManyTimesOnPerfectSwipe / 180;
                 scaler = clampf(scaler, 0, 99999999);
                 
-                //CCLOG(@"swipeAcc: %f, scaler: %f", swipeAccuracy, scaler);
-                
-                //perhaps dont use scaler/swipe accuracy, and just use it in (if orbitstate==1) for determining if it's good enough. btw scaler ranges from about 1to 3.5 (now 0 to 2.5)
-                
                 player.acceleration = ccpMult(accelToAdd, gravIncreaser*freeGravityStrength*scaler*asteroidSlower);
-                //  CCLOG(@"swipeAcc: %f", ccpLength(player.acceleration));
                 
                 if (initialAccelMag == 0)
                     initialAccelMag = ccpLength(player.acceleration);
