@@ -115,7 +115,8 @@ typedef struct {
 - (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
     Planet *planet = [[Planet alloc]init];
     planet.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"planet%d-%d.png",[self RandomBetween:1 maxvalue:currentGalaxy.numberOfDifferentPlanetsDrawn],currentGalaxy.number]];
-    planet.sprite.position =  ccp(xPos, yPos);
+    planet.sprite.position = ccp(xPos, yPos);
+    planet.sprite.rotation = [self randomValueBetween:-180 andValue:180];
     [planet.sprite setScale:scale];
     planet.mass = 1;
     planet.segmentNumber = makingSegmentNumber;
