@@ -74,26 +74,7 @@ typedef struct {
 }
 
 - (void)CreatePowerup:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale type:(int)type {
-    Powerup *powerup = [[Powerup alloc]init];
-    powerup.type = type;
-    
-    if (powerup.type == 1) {
-        
-        powerup.duration = asteroidImmunityDurationInUpdates;
-        powerup.coinSprite = powerup.asteroidImmunityCoinSprite;
-        powerup.visualSprite = powerup.asteroidImmunityVisualSprite;
-        powerup.hudSprite = powerup.asteroidImmunityHudSprite;
-        
-    } else if (powerup.type == 2) {
-        
-        powerup.duration = coinMagnetDurationInUpdates;
-        powerup.coinSprite = powerup.coinMagetCoinSprite;
-        powerup.visualSprite = powerup.coinMagnetVisualSprite;
-        powerup.hudSprite = powerup.coinMagnetHudSprite;
-        
-    }
-    
-    
+    Powerup *powerup = [[Powerup alloc]initWithType:type];
     
     powerup.coinSprite.position = ccp(xPos, yPos);
     powerup.coinSprite.scale = scale;

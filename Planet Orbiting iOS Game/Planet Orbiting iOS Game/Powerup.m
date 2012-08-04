@@ -11,21 +11,34 @@
 
 @implementation Powerup
 
-@synthesize coinSprite, visualSprite, hudSprite, asteroidImmunityCoinSprite, asteroidImmunityVisualSprite, asteroidImmunityHudSprite, type, duration, coinMagetCoinSprite, coinMagnetHudSprite, coinMagnetVisualSprite;
+@synthesize coinSprite, visualSprite, hudSprite, type, duration;
 
--(id) init {
+-(id) initWithType:(int)t {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
+        type = t;
         
-        asteroidImmunityCoinSprite = [CCSprite spriteWithFile:@"asteroidbreakercoin.png"];
-        asteroidImmunityVisualSprite = [CCSprite spriteWithFile:@"asteroidglowupgrade.png"];
-        asteroidImmunityHudSprite = [CCSprite spriteWithFile:@"asteroidhudicon.png"];
         
-        coinMagetCoinSprite = [CCSprite spriteWithFile:@"magnetcoin.png"];
-        coinMagnetVisualSprite = [CCSprite spriteWithFile:@"coinglowglowupgrade.png"];
-        coinMagnetHudSprite = [CCSprite spriteWithFile:@"magnethudicon.png"];
-	
+        if (type == 1) { //asteroidImmunity
+            
+            duration = 700;
+            coinSprite = [CCSprite spriteWithFile:@"asteroidbreakercoin.png"];
+            visualSprite = [CCSprite spriteWithFile:@"asteroidglowupgrade.png"];
+            hudSprite = [CCSprite spriteWithFile:@"asteroidhudicon.png"];
+            
+        } else if (type == 2) { //coinMagnet
+            
+            duration = 700;
+            coinSprite = [CCSprite spriteWithFile:@"magnetcoin.png"];
+            visualSprite = [CCSprite spriteWithFile:@"coinglowglowupgrade.png"];
+            hudSprite = [CCSprite spriteWithFile:@"magnethudicon.png"];
+            
+        } else { //type needs to be a valid int from the list above
+            id *hi = NULL;
+            return *hi;
+        }
+        
     }
 	return self;
 }
