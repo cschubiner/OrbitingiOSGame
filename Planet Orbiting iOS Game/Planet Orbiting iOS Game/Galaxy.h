@@ -12,7 +12,10 @@
 @interface Galaxy : CCNode {
     
 }
+@property (nonatomic,retain) CCSprite *backgroundSprite;
 @property (nonatomic) int number;
+@property (nonatomic) int numberOfDifferentPlanetsDrawn;
 @property (nonatomic,retain) NSArray* segments;
+@property (nonatomic, retain) NSString* name;
 -(id)initWithSegments:(NSArray*)levelSegments;
 @end

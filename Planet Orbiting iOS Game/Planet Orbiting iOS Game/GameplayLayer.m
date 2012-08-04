@@ -98,7 +98,7 @@ typedef struct {
 
 - (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
     Planet *planet = [[Planet alloc]init];
-    planet.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"planet%d.png",[self RandomBetween:1 maxvalue:8]]];
+    planet.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"planet%d-%d.png",[self RandomBetween:1 maxvalue:currentGalaxy.numberOfDifferentPlanetsDrawn],currentGalaxy.number]];
     planet.sprite.position =  ccp(xPos, yPos);
     [planet.sprite setScale:scale];
     planet.mass = 1;
@@ -161,7 +161,7 @@ typedef struct {
     return true;
 }
 
-- (void)CreateLevel // paste level creation code here
+- (void)CreateGalaxies // paste level creation code here
 {
     
     [self CreatePowerup:1000 yPos:700 scale:.2];
@@ -510,6 +510,21 @@ typedef struct {
     
 }
 
+- (void)setGalaxyProperties {
+    Galaxy* galaxy;
+    galaxy = [galaxies objectAtIndex:0];
+    [galaxy setName:@"Galaxy 1 - The Solar System"];
+    [galaxy setNumberOfDifferentPlanetsDrawn:3];
+    
+    galaxy = [galaxies objectAtIndex:1];
+    [galaxy setName:@"Galaxy 2 - Grasslands"];
+    [galaxy setNumberOfDifferentPlanetsDrawn:3];
+    
+    galaxy = [galaxies objectAtIndex:2];
+    [galaxy setName:@"Galaxy 3 - Girly Galaxy"];
+    [galaxy setNumberOfDifferentPlanetsDrawn:3];
+}
+
 /* On "init," initialize the instance */
 - (id)init {
 	// always call "super" init.
@@ -588,9 +603,10 @@ typedef struct {
         spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"spriteSheet.pvr.ccz"];
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spriteSheet.plist"];
         
-        [self CreateLevel];
+        [self CreateGalaxies];
         currentGalaxy = [galaxies objectAtIndex:0];
         nextGalaxy = [galaxies objectAtIndex:1];
+        [self setGalaxyProperties];
         indicatorPos = CGPointZero;
         for (int j = 0 ; j < numberOfSegmentsAtATime; j++) {
             [self CreateSegment];
@@ -640,10 +656,10 @@ typedef struct {
         [hudLayer addChild:asteroidImmunityHUD];
         asteroidImmunityHUD.position = ccp(30, 290);
         asteroidImmunityHUD.scale = .4;
-        asteroidGlow = [CCSprite spriteWithFile:@"asteroidglowupgrade.png"];
-        [cameraLayer addChild:asteroidGlow];
+        asteroidGlow = [CCSprite spriteWithSpriteFrameName:@"asteroidglowupgrade.png"];
+        [spriteSheet addChild:asteroidGlow];
         asteroidGlow.scale = 1.5;
-        [cameraLayer reorderChild:asteroidGlow z:2.5];
+        [spriteSheet reorderChild:asteroidGlow z:2.5];
 
         
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444]; // add this line at the very beginning
@@ -838,7 +854,6 @@ typedef struct {
             [asteroidImmunityHUD setVisible:true];
         }
         
-        
         if (powerupCounter >= asteroidImmunityDurationInUpdates)
             player.hasAsteroidImmunity = false;
     } else {
@@ -907,10 +922,11 @@ typedef struct {
                     player.velocity = ccpAdd(ccpMult(player.velocity, (1-velSoftener)*1), ccpMult(dir3, velSoftener*ccpLength(initialVel)));
                 }
                 
-                
                 CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
                 player.acceleration = ccpMult(direction, gravity);
-            } else if (orbitState == 1) 
+            }
+            else
+                if (orbitState == 1)
             {
                 velSoftener = 0;
                 gravIncreaser = 1;
@@ -1143,7 +1159,7 @@ typedef struct {
     }
     else if (player.moveAction.isDone){
         player.alive=true;
-        [streak runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.8f],[CCShow action], nil]];
+        [streak runAction:[CCSequence actions:[CCDelayTime actionWithDuration:timeToHideStreakAfterRespawn],[CCShow action], nil]];
         [thrustParticle resetSystem];
     }
 }

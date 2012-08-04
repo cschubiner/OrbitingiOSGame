@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 
 @implementation Galaxy
-@synthesize number,segments;
+@synthesize number,segments,backgroundSprite,name,numberOfDifferentPlanetsDrawn;
 
 -(id)initWithSegments:(NSArray *)levelsegments{
     if ((self = [super init])) {
