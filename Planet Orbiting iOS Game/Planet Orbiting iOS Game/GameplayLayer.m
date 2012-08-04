@@ -881,7 +881,6 @@ typedef struct {
     }
     
     if (player.currentPowerup != nil) {
-        //[player.currentPowerup.hudSprite setVisible:true];
         
         int updatesLeft = player.currentPowerup.duration - powerupCounter;
         float blinkAfterThisManyUpdates = updatesLeft*.12;
@@ -928,27 +927,19 @@ typedef struct {
                 dangerLevel = 0;
                 CGPoint a = ccpSub(player.sprite.position, planet.sprite.position);
                 if (ccpLength(a) != planet.orbitRadius) {
-                    //float offset = planet.orbitRadius/ccpLength(a);
-                    //player.sprite.position = ccpAdd(planet.sprite.position, ccpMult(a, offset));
                     player.sprite.position = ccpAdd(player.sprite.position, ccpMult(ccpNormalize(a), (planet.orbitRadius - ccpLength(a))*howFastOrbitPositionGetsFixed*timeDilationCoefficient/absoluteMinTimeDilation));
                 }
                 
                 velSoftener += 1/updatesToMakeOrbitVelocityPerfect;
-                //velSoftener = 1;
-                velSoftener = clampf(velSoftener, 0, 1);                
-                
-                //CCLOG(@"cur: %f", velSoftener);
+                velSoftener = clampf(velSoftener, 0, 1);
                 
                 CGPoint dir2 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(M_PI/2)));
                 CGPoint dir3 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(-M_PI/2)));            
                 if (ccpLength(ccpSub(ccpAdd(a, dir2), ccpAdd(a, player.velocity))) < ccpLength(ccpSub(ccpAdd(a, dir3), ccpAdd(a, player.velocity)))) { //up is closer
-                    //player.velocity = ccpMult(dir2, ccpLength(initialVel));
                     player.velocity = ccpAdd(ccpMult(player.velocity, (1-velSoftener)*1), ccpMult(dir2, velSoftener*ccpLength(initialVel))); 
                     
-                    //as velSoftener goes from 0 -> 1, player.velocity -> dir2
                 }
                 else {
-                    //player.velocity = ccpMult(dir3, ccpLength(initialVel));
                     player.velocity = ccpAdd(ccpMult(player.velocity, (1-velSoftener)*1), ccpMult(dir3, velSoftener*ccpLength(initialVel)));
                 }
                 
@@ -962,8 +953,7 @@ typedef struct {
                 gravIncreaser = 1;
                 [self playSound:@"SWOOSH.WAV" shouldLoop:false];
                 player.acceleration = CGPointZero;
-                //set velocity
-                //player.velocity = ccpMult(swipeVector, .55);
+                
                 CGPoint d = ccpSub(targetPlanet.sprite.position, player.sprite.position);
                 CGPoint d2 = ccpSub(targetPlanet.sprite.position, planet.sprite.position);
                 
@@ -1003,22 +993,9 @@ typedef struct {
                 if (swipeAccuracy > 180)
                     swipeAccuracy = 360 - swipeAccuracy;
                 
-                // CCLOG(@"cur: %f", swipeAccuracy);
-                
-                
-                //HERE: TO USE!!!!!: if swipe accuracy is greater than a certain amount, t did a poor swipe and should q punished severely!!!!!
-                
-                //if (swipeAccuracy <= requiredAngleAccuracy) {
-                //orbitState = 2;
-                //player.velocity = ccpMult(ccpNormalize(vel), ccpLength(player.velocity));
-                //} else {
                 orbitState = 3;
                 initialAccelMag = 0;
-                //player.velocity = ccpAdd(player.velocity, ccpMult(swipeVector, swipeStrength));
-                //}
                 
-                //player.velocity = ccpMult(ccpNormalize(vel), ccpLength(player.velocity));
-                //end if in position
             }
             
             if (orbitState == 3) {
