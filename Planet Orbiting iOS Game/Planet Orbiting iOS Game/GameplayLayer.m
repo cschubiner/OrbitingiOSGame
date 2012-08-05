@@ -1257,7 +1257,7 @@ typedef struct {
         [self DisposeAllContentsOfArray:asteroids shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:coins shouldRemoveFromArray:true];
         
-        makingSegmentNumber--;
+        makingSegmentNumber--; 
         
         if ([self CreateSegment]==false) {
             planetsHitSinceNewGalaxy=0;
