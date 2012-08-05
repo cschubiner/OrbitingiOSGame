@@ -67,6 +67,7 @@ typedef struct {
     coin.whichSegmentThisObjectIsOriginallyFrom = originalSegmentNumber;
     coin.segmentNumber = makingSegmentNumber;
     coin.number = coins.count;
+    coin.whichGalaxyThisObjectBelongsTo  = currentGalaxy.number;
     [coins addObject:coin];
     [spriteSheet addChild:coin.sprite];
     [spriteSheet reorderChild:coin.sprite z:5];
@@ -89,8 +90,8 @@ typedef struct {
     
     [powerups addObject:powerup];
     
-    [cameraLayer addChild:powerup.coinSprite];
-    [cameraLayer addChild:powerup.visualSprite];
+    [spriteSheet addChild:powerup.coinSprite];
+    [spriteSheet addChild:powerup.visualSprite];
     [hudLayer addChild:powerup.hudSprite];
     
     [cameraLayer reorderChild:powerup.visualSprite z:2.5];
@@ -106,6 +107,7 @@ typedef struct {
     asteroid.whichSegmentThisObjectIsOriginallyFrom = originalSegmentNumber;
     asteroid.segmentNumber = makingSegmentNumber;
     asteroid.number = asteroids.count;
+    asteroid.whichGalaxyThisObjectBelongsTo = currentGalaxy.number;
     [asteroids addObject:asteroid];
     [spriteSheet addChild:asteroid.sprite];
     [asteroid release];
@@ -127,6 +129,8 @@ typedef struct {
     zone.whichSegmentThisObjectIsOriginallyFrom = originalSegmentNumber;
     planet.orbitRadius = zone.radius*zoneCollisionFactor;
     
+    planet.whichGalaxyThisObjectBelongsTo = currentGalaxy.number;
+    zone.whichGalaxyThisObjectBelongsTo = currentGalaxy.number;
     planet.number = [planets count];
     zone.number = [zones count];
     [planets addObject:planet];
@@ -548,7 +552,7 @@ typedef struct {
         startingCoins = [[UserWallet sharedInstance] getBalance];
         size = [[CCDirector sharedDirector] winSize];
         self.isTouchEnabled= TRUE;
-        
+        [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setGalaxyCounter:0];
         isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsInTutorialMode];
         isInTutorialMode = false;
         levelNumber = [((AppDelegate*)[[UIApplication sharedApplication]delegate])getChosenLevelNumber];
@@ -633,7 +637,28 @@ typedef struct {
         player.alive=true;
         [player.sprite setScale:playerSizeScale];
         player.segmentNumber = -10;
-        player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
+        player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn)), -distanceBetweenGalaxies*8));
+        [self RespawnPlayerAtPlanetIndex:0];
+        /*        cameraDistToUse = 1005.14;
+         [cameraLayer setScale:.43608];
+         [cameraLayer setPosition:ccp(98.4779,67.6401)];
+         cameraLastFocusPosition = ccp(325.808,213.3);
+         [cameraFocusNode setPosition:ccp(142.078,93.0159)];*/
+        galaxyLabel = [[CCLabelTTF alloc]initWithString:currentGalaxy.name fontName:@"Marker Felt" fontSize:24];
+        [galaxyLabel setAnchorPoint:ccp(.5f,.5f)];
+        [galaxyLabel setPosition:ccp(230,60)];
+        [hudLayer addChild:galaxyLabel];
+        id fadeAction = [CCFadeIn actionWithDuration:.8];
+        id repeatAction = [CCRepeatForever actionWithAction:[CCSequence actions:[CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.8 scale:1.0f]],[CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.8 scale:1.06f]], nil]];
+        galaxyLabelAction = [CCSequence actions:[CCDelayTime actionWithDuration:.5],[CCSpawn actions:fadeAction,[CCScaleTo actionWithDuration:.3 scale:1.2], nil], nil] ;
+        [galaxyLabel runAction:galaxyLabelAction];
+        [galaxyLabel runAction: repeatAction];
+        cameraShouldFocusOnPlayer = true;
+        cameraLastFocusPosition = player.sprite.position;
+        cameraFocusNode.position = player.sprite.position;
+        [self scaleLayer:cameraLayer scaleToZoomTo:.5 scaleCenter:cameraLastFocusPosition];
+        [cameraLayer runAction: [CCFollow actionWithTarget:cameraFocusNode]];
+
         
         float streakWidth = streakWidthWITHOUTRetinaDisplay;
         if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsRetinaDisplay])
@@ -683,22 +708,14 @@ typedef struct {
         hand = [CCSprite spriteWithFile:@"edit(84759).png"];
         hand.position = ccp(-1000, -1000);
         
-        
         light = [[Light alloc] init];
         light.score = -negativeLightStartingScore;
         light.scoreVelocity = initialLightScoreVelocity;
         glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         light.hasPutOnLight = false;
         
-        
         [cameraLayer addChild:spriteSheet];
         [hudLayer addChild:hand];
-        
-        cameraDistToUse = 1005.14;
-        [cameraLayer setScale:.43608];
-        [cameraLayer setPosition:ccp(98.4779,67.6401)];
-        cameraLastFocusPosition = ccp(325.808,213.3);
-        [cameraFocusNode setPosition:ccp(142.078,93.0159)];
         
         lastPlanetVisited = [planets objectAtIndex:0];
         layerHudSlider = (CCLayer*)[CCBReader nodeGraphFromFile:@"hudLayer.ccb" owner:self];
@@ -782,10 +799,13 @@ typedef struct {
     
     if (!isInTutorialMode) {
         float scale = zoomMultiplier*horizontalScale*scalerToUse;
+        if (cameraShouldFocusOnPlayer) {
+            focusPosition = player.sprite.position;
+            scale = cameraScaleWhenTransitioningBetweenGalaxies;
+        }
         cameraLastFocusPosition = ccpLerp(cameraLastFocusPosition, focusPosition, cameraMovementSpeed);
         [self scaleLayer:cameraLayer scaleToZoomTo:lerpf([cameraLayer scale], scale, cameraZoomSpeed) scaleCenter:cameraLastFocusPosition];
-        id followAction = [CCFollow actionWithTarget:cameraFocusNode];
-        [cameraLayer runAction: followAction];
+        [cameraLayer runAction: [CCFollow actionWithTarget:cameraFocusNode]];
     }
 }
 
@@ -833,10 +853,8 @@ typedef struct {
         if (coin.speed != 0)
             coin.speed += .3;
         
-        
         coin.velocity = ccpMult(ccpNormalize(ccpSub(player.sprite.position, p)), coin.speed);
         coin.sprite.position = ccpAdd(coin.sprite.position, coin.velocity);
-        
         
         if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/1.3 && coin.isAlive) {
             [self UserTouchedCoin:coin];
@@ -1237,6 +1255,40 @@ typedef struct {
         ((CameraObject*)[array objectAtIndex:i]).number = i;
 }
 
+- (void)UpdateGalaxies {
+    if (lastPlanetVisited.number==0) {
+        cameraShouldFocusOnPlayer = false;
+    }
+    else if (targetPlanet.whichGalaxyThisObjectBelongsTo>lastPlanetVisited.whichGalaxyThisObjectBelongsTo) {
+        cameraShouldFocusOnPlayer=true;
+    }
+    else cameraShouldFocusOnPlayer=false;
+    
+    if (levelNumber !=0) {
+        if (planetsHitFlurry >= [planets count]) {
+            [self GameOver];
+        }
+    }
+    else if (lastPlanetVisited.segmentNumber == numberOfSegmentsAtATime-1&&isInTutorialMode==false) {
+        //CCLOG(@"Planet Count: %d",[planets count]);
+        [self DisposeAllContentsOfArray:planets shouldRemoveFromArray:true];
+        [self DisposeAllContentsOfArray:zones shouldRemoveFromArray:true];
+        [self DisposeAllContentsOfArray:asteroids shouldRemoveFromArray:true];
+        [self DisposeAllContentsOfArray:coins shouldRemoveFromArray:true];
+        
+        makingSegmentNumber--;
+        
+        if ([self CreateSegment]==false) {
+            planetsHitSinceNewGalaxy=0;
+            currentGalaxy = nextGalaxy;
+            nextGalaxy = [galaxies objectAtIndex:currentGalaxy.number+1];
+            indicatorPos = ccpAdd(indicatorPos, ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn)), distanceBetweenGalaxies));
+            [self CreateSegment];
+        }
+        //CCLOG(@"Planet Count: %d",[planets count]);
+    }
+}
+
 - (void)UpdatePlanets {    
     // Zone-to-Player collision detection follows-------------
     player.isInZone = false;
@@ -1279,30 +1331,6 @@ typedef struct {
             }
         }
     } // end collision detection code-----------------
-    
-    if (levelNumber !=0) {
-        if (planetsHitFlurry >= [planets count]) {
-            [self GameOver];
-        }
-    }
-    else if (lastPlanetVisited.segmentNumber == numberOfSegmentsAtATime-1&&isInTutorialMode==false) {
-        //CCLOG(@"Planet Count: %d",[planets count]);
-        [self DisposeAllContentsOfArray:planets shouldRemoveFromArray:true];
-        [self DisposeAllContentsOfArray:zones shouldRemoveFromArray:true];
-        [self DisposeAllContentsOfArray:asteroids shouldRemoveFromArray:true];
-        [self DisposeAllContentsOfArray:coins shouldRemoveFromArray:true];
-        
-        makingSegmentNumber--;
-        
-        if ([self CreateSegment]==false) {
-            planetsHitSinceNewGalaxy=0;
-            currentGalaxy = nextGalaxy;
-            nextGalaxy = [galaxies objectAtIndex:currentGalaxy.number+1];
-            indicatorPos = ccpAdd(indicatorPos, ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn)), 1000));
-            [self CreateSegment];
-        }
-        //CCLOG(@"Planet Count: %d",[planets count]);
-    }
 }
 
 /* Your score goes up as you move along the vector between the current and next planet. Your score will also never go down, as the user doesn't like to see his score go down.*/
@@ -1430,8 +1458,10 @@ typedef struct {
                 totalSecondsAlive+=dt;
             }
             
-            if (player.alive)
+            if (player.alive) {
                 [self UpdatePlanets];
+                [self UpdateGalaxies];
+            }
             [self UpdatePlayer: dt];
             [self UpdateScore];
             [self UpdateCamera:dt];

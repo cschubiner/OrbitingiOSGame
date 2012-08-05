@@ -23,15 +23,15 @@
         if (type == 1) { //asteroidImmunity
             
             duration = 700;
-            coinSprite = [CCSprite spriteWithFile:@"asteroidbreakercoin.png"];
-            visualSprite = [CCSprite spriteWithFile:@"asteroidglowupgrade.png"];
+            coinSprite = [CCSprite spriteWithSpriteFrameName:@"asteroidbreakercoin.png"];
+            visualSprite = [CCSprite spriteWithSpriteFrameName:@"asteroidglowupgrade.png"];
             hudSprite = [CCSprite spriteWithFile:@"asteroidhudicon.png"];
             
         } else if (type == 2) { //coinMagnet
             
             duration = 700;
-            coinSprite = [CCSprite spriteWithFile:@"magnetcoin.png"];
-            visualSprite = [CCSprite spriteWithFile:@"coinglowglowupgrade.png"];
+            coinSprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
+            visualSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];
             hudSprite = [CCSprite spriteWithFile:@"magnethudicon.png"];
             
         } else { //type needs to be a valid int from the list above

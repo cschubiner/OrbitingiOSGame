@@ -46,6 +46,7 @@
     float asteroidSlower;
     float updatesWithoutBlinking;
     float updatesWithBlinking;
+    CCAction* galaxyLabelAction;
     
     float powerupCounter;
     
@@ -55,6 +56,8 @@
     int planetsHitSinceNewGalaxy;
     int segmentsSpawnedFlurry;
     int planetsHitFlurry;
+    bool cameraShouldFocusOnPlayer;
+    CCLabelTTF * galaxyLabel;
     
     bool isOnFirstRun;
     CGPoint initialVel;

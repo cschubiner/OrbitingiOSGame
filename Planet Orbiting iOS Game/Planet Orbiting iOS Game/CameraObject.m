@@ -10,7 +10,7 @@
 
 @implementation CameraObject
 
-@synthesize sprite,alive,number,acceleration,velocity,isBeingDrawn,hasExploded,segmentNumber,whichSegmentThisObjectIsOriginallyFrom;
+@synthesize sprite,alive,number,acceleration,velocity,isBeingDrawn,hasExploded,segmentNumber,whichSegmentThisObjectIsOriginallyFrom,whichGalaxyThisObjectBelongsTo;
 
 -(id)init {
     if (self=[super init]) {
