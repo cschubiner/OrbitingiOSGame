@@ -860,12 +860,12 @@ typedef struct {
         
         if (player.currentPowerup.type == 2) {
             if (ccpLength(ccpSub(player.sprite.position, p)) <= 4*(coin.radius + player.sprite.height/1.3) && coin.isAlive && coin.speed < .1) {
-                coin.speed = .3;
+                coin.speed = .5;
             }
             
         }
         if (coin.speed != 0)
-            coin.speed += .3;
+            coin.speed += .5;
         
         coin.velocity = ccpMult(ccpNormalize(ccpSub(player.sprite.position, p)), coin.speed);
         coin.sprite.position = ccpAdd(coin.sprite.position, coin.velocity);
