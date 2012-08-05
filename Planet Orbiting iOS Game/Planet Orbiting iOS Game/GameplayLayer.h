@@ -61,6 +61,7 @@
     int planetsHitFlurry;
     bool cameraShouldFocusOnPlayer;
     CCLabelTTF * galaxyLabel;
+    bool justDisplayedGalaxyLabel;
     
     bool isOnFirstRun;
     CGPoint initialVel;
@@ -116,6 +117,7 @@
     int currentPtoPscore;
     
     CCSprite * background;
+    CCSprite * background2;
     CCSpriteBatchNode* spriteSheet;
     CCLayer *pauseLayer;
     CCLabelBMFont * gameOverScoreLabel;

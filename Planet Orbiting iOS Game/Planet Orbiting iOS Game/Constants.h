@@ -82,8 +82,8 @@ const float asteroidRadiusCollisionZone = .9;
 
 const float powerupRadiusCollisionZone = 1.2;
 
-const int optimalPlanetsPerGalaxy = 8;
-const int distanceBetweenGalaxies = 2400;
+const int optimalPlanetsPerGalaxy = 25;
+const int distanceBetweenGalaxies = 3200;
 const float cameraScaleWhenTransitioningBetweenGalaxies = .4;
 
 //the asteroid's minimum velocity

@@ -7,11 +7,11 @@
             <key>asteroid1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{426,506},{98,76}}</string>
+                <string>{{136,432},{98,76}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{6,14},{98,76}}</string>
                 <key>sourceSize</key>
@@ -56,23 +56,10 @@
                 <key>sourceSize</key>
                 <string>{99,91}</string>
             </dict>
-            <key>coin.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{265,307},{39,39}}</string>
-                <key>offset</key>
-                <string>{0,1}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{1,0},{39,39}}</string>
-                <key>sourceSize</key>
-                <string>{41,41}</string>
-            </dict>
             <key>coinglowglowupgrade.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{136,432},{91,87}}</string>
+                <string>{{380,506},{91,87}}</string>
                 <key>offset</key>
                 <string>{0,2}</string>
                 <key>rotated</key>
@@ -81,19 +68,6 @@
                 <string>{{4,0},{91,87}}</string>
                 <key>sourceSize</key>
                 <string>{99,91}</string>
-            </dict>
-            <key>coinv2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{380,497},{44,44}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{2,2},{44,44}}</string>
-                <key>sourceSize</key>
-                <string>{48,48}</string>
             </dict>
             <key>magnetcoin.png</key>
             <dict>
@@ -287,7 +261,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:b965cbbd2fb42b06336186f0ada07d0d$</string>
+            <string>$TexturePacker:SmartUpdate:039c64955c670b2069c1b7d54d3682cb$</string>
             <key>textureFileName</key>
             <string>spriteSheet.pvr.ccz</string>
         </dict>

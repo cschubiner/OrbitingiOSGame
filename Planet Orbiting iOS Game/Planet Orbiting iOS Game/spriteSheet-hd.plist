@@ -56,19 +56,6 @@
                 <key>sourceSize</key>
                 <string>{198,182}</string>
             </dict>
-            <key>coin.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{606,340},{76,76}}</string>
-                <key>offset</key>
-                <string>{0,1}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{3,2},{76,76}}</string>
-                <key>sourceSize</key>
-                <string>{82,82}</string>
-            </dict>
             <key>coinglowglowupgrade.png</key>
             <dict>
                 <key>frame</key>
@@ -81,19 +68,6 @@
                 <string>{{7,1},{182,172}}</string>
                 <key>sourceSize</key>
                 <string>{198,182}</string>
-            </dict>
-            <key>coinv2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{323,859},{90,90}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{3,3},{90,90}}</string>
-                <key>sourceSize</key>
-                <string>{96,96}</string>
             </dict>
             <key>magnetcoin.png</key>
             <dict>
@@ -287,7 +261,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:d98f302ec5a43b246afe584127c06b2f$</string>
+            <string>$TexturePacker:SmartUpdate:19aa52a73a642bd3e88b2be368bb3518$</string>
             <key>textureFileName</key>
             <string>spriteSheet-hd.pvr.ccz</string>
         </dict>

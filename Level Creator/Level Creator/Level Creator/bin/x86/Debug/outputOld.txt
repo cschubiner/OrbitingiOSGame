@@ -1,14 +1,20 @@
-[self CreatePlanetAndZone:493 yPos:394 scale:1];
-[self CreatePlanetAndZone:1059 yPos:685 scale:1];
-[self CreatePlanetAndZone:1666 yPos:670 scale:1];
-[self CreatePlanetAndZone:2042 yPos:1008 scale:1];
-[self CreatePlanetAndZone:2640 yPos:663 scale:1.629999];
-[self CreatePlanetAndZone:3460 yPos:355 scale:1];
-[self CreatePlanetAndZone:3718 yPos:927 scale:1];
-[self CreatePlanetAndZone:4271 yPos:953 scale:1];
-[self CreatePlanetAndZone:4658 yPos:1548 scale:1];
+[self CreatePlanetAndZone:135 yPos:373 scale:1];
 
 
 
 
+[self CreateCoin:135 yPos:373 scale:1];
+[self CreateCoin:179 yPos:374 scale:1];
+[self CreateCoin:224 yPos:373 scale:1];
+[self CreateCoin:265 yPos:374 scale:1];
+[self CreateCoin:308 yPos:376 scale:1];
+[self CreateCoin:352 yPos:377 scale:1];
+[self CreateCoin:395 yPos:377 scale:1];
+[self CreateCoin:438 yPos:379 scale:1];
+[self CreateCoin:400 yPos:430 scale:1];
+[self CreateCoin:369 yPos:467 scale:1];
+[self CreateCoin:402 yPos:322 scale:1];
+[self CreateCoin:368 yPos:283 scale:1];
+[self CreateCoin:333 yPos:242 scale:1];
+[self CreateCoin:340 yPos:503 scale:1];
 
