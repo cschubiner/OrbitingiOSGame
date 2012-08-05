@@ -681,7 +681,7 @@ typedef struct {
         id fadeAction = [CCFadeIn actionWithDuration:.8];
         id action2 = [CCSequence actions:[CCDelayTime actionWithDuration:.5],[CCSpawn actions:fadeAction,[CCScaleTo actionWithDuration:.3 scale:1.06], nil], nil] ;
         id repeatAction = [CCRepeat actionWithAction:[CCSequence actions:[CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.8 scale:1.0f]],[CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.8 scale:1.06f]], nil] times:1];
-        galaxyLabelAction = [CCSequence actions:action2,repeatAction, [CCFadeOut actionWithDuration:.8],nil];
+        galaxyLabelAction = [CCSequence actions:[CCShow action],action2,repeatAction, [CCFadeOut actionWithDuration:.8],nil];
         [galaxyLabelAction retain];
         [galaxyLabel runAction: galaxyLabelAction];
         
