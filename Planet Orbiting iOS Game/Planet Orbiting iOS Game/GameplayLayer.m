@@ -79,7 +79,7 @@ typedef struct {
     Powerup *powerup = [[Powerup alloc]initWithType:type];
     
     powerup.coinSprite.position = ccp(xPos, yPos);
-    powerup.coinSprite.scale = scale;
+    powerup.coinSprite.scale = scale*8;
     
     [powerup.visualSprite setVisible:false];
     powerup.visualSprite.scale = 1.6;
@@ -95,7 +95,7 @@ typedef struct {
     [spriteSheet addChild:powerup.visualSprite];
     [hudLayer addChild:powerup.hudSprite];
     
-    [cameraLayer reorderChild:powerup.visualSprite z:2.5];
+    [spriteSheet reorderChild:powerup.visualSprite z:2.5];
     
     [powerup release];
 }
@@ -140,8 +140,8 @@ typedef struct {
     
     [spriteSheet addChild:planet.sprite];
     [spriteSheet addChild:zone.sprite];
-    // [zone release];
-    // [planet release];
+     [zone release];
+     [planet release];
     planetCounter++;
 }
 
@@ -598,7 +598,6 @@ typedef struct {
         [cameraLayer setAnchorPoint:CGPointZero];
         
         cometParticle = [CCParticleSystemQuad particleWithFile:@"cometParticle.plist"];
-        //  [cameraLayer addChild:planetExplosionParticle];
         playerExplosionParticle = [CCParticleSystemQuad particleWithFile:@"playerExplosionParticle.plist"];
         [cameraLayer addChild:playerExplosionParticle];
         [playerExplosionParticle setVisible:false];
@@ -678,12 +677,12 @@ typedef struct {
         [galaxyLabel setAnchorPoint:ccp(.5f,.5f)];
         [galaxyLabel setPosition:ccp(230,60)];
         [hudLayer addChild:galaxyLabel];
+        
         id fadeAction = [CCFadeIn actionWithDuration:.8];
-        id repeatAction = [CCRepeatForever actionWithAction:[CCSequence actions:[CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.8 scale:1.0f]],[CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.8 scale:1.06f]], nil]];
-        galaxyLabelAction = [CCSequence actions:[CCDelayTime actionWithDuration:.5],[CCSpawn actions:fadeAction,[CCScaleTo actionWithDuration:.3 scale:1.2], nil], nil] ;
-        [galaxyLabel runAction:galaxyLabelAction];
-        [galaxyLabel runAction: repeatAction];
-
+        id action2 = [CCSequence actions:[CCDelayTime actionWithDuration:.5],[CCSpawn actions:fadeAction,[CCScaleTo actionWithDuration:.3 scale:1.06], nil], nil] ;
+        id repeatAction = [CCRepeat actionWithAction:[CCSequence actions:[CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.8 scale:1.0f]],[CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.8 scale:1.06f]], nil] times:1];
+        galaxyLabelAction = [CCSequence actions:action2,repeatAction, [CCFadeOut actionWithDuration:.8],nil];
+        [galaxyLabel runAction: galaxyLabelAction];
         
         float streakWidth = streakWidthWITHOUTRetinaDisplay;
         if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsRetinaDisplay])
@@ -1259,9 +1258,14 @@ typedef struct {
         cameraShouldFocusOnPlayer = false;
     }
     else if (targetPlanet.whichGalaxyThisObjectBelongsTo>lastPlanetVisited.whichGalaxyThisObjectBelongsTo) {
+    
+        [galaxyLabel setString:[currentGalaxy name]];
+
         cameraShouldFocusOnPlayer=true;
     }
     else cameraShouldFocusOnPlayer=false;
+    
+    
     
     if (levelNumber !=0) {
         if (planetsHitFlurry >= [planets count]) {
