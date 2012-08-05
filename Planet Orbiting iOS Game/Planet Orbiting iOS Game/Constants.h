@@ -80,7 +80,7 @@ const float asteroidSizeScale = .36*.64f;
 //radius percentage at which you will collide with a asteroid
 const float asteroidRadiusCollisionZone = .9;
 
-const float powerupRadiusCollisionZone = 1;
+const float powerupRadiusCollisionZone = 1.2;
 
 const int optimalPlanetsPerGalaxy = 8;
 const int distanceBetweenGalaxies = 2400;

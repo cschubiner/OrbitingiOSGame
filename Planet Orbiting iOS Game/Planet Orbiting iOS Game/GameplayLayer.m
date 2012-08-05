@@ -61,16 +61,17 @@ typedef struct {
 
 - (void)CreateCoin:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
     Coin *coin = [[Coin alloc]init];
-    coin.sprite = [CCSprite spriteWithSpriteFrameName:@"coin.png"];
+    coin.sprite = [CCSprite spriteWithFile:@"star1.png"];
     coin.sprite.position = ccp(xPos, yPos);
-    [coin.sprite setScale:scale];
+    [coin.sprite setScale:scale*.4];
     coin.whichSegmentThisObjectIsOriginallyFrom = originalSegmentNumber;
     coin.segmentNumber = makingSegmentNumber;
     coin.number = coins.count;
     coin.whichGalaxyThisObjectBelongsTo  = currentGalaxy.number;
     [coins addObject:coin];
-    [spriteSheet addChild:coin.sprite];
-    [spriteSheet reorderChild:coin.sprite z:5];
+    [cameraLayer addChild:coin.sprite];
+    //[spriteSheet addChild:coin.sprite];
+    //[spriteSheet reorderChild:coin.sprite z:5];
     [coin release];
 }
 
@@ -116,7 +117,8 @@ typedef struct {
 - (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
     Planet *planet = [[Planet alloc]init];
     planet.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"planet%d-%d.png",[self RandomBetween:1 maxvalue:currentGalaxy.numberOfDifferentPlanetsDrawn],currentGalaxy.number]];
-    planet.sprite.position =  ccp(xPos, yPos);
+    planet.sprite.position = ccp(xPos, yPos);
+    planet.sprite.rotation = [self randomValueBetween:-180 andValue:180];
     [planet.sprite setScale:scale];
     planet.mass = 1;
     planet.segmentNumber = makingSegmentNumber;
@@ -184,6 +186,8 @@ typedef struct {
 {
     
     [self CreatePowerup:700 yPos:500 scale:.3 type:2];
+    
+    [self CreatePowerup:1400 yPos:1000 scale:.3 type:1];
     
     if (isInTutorialMode) {
         [self CreatePlanetAndZone:288 yPos:364 scale:1];
@@ -563,6 +567,32 @@ typedef struct {
         zones = [[NSMutableArray alloc] init];
         powerups = [[NSMutableArray alloc] init];
         coins = [[NSMutableArray alloc] init];
+        coinSprites = [[NSMutableArray alloc] init];
+        CCTexture2D* tex1 = [[CCTextureCache sharedTextureCache] addImage:@"star1.png"];
+        CCTexture2D* tex2 = [[CCTextureCache sharedTextureCache] addImage:@"star2.png"];
+        CCTexture2D* tex3 = [[CCTextureCache sharedTextureCache] addImage:@"star3.png"];
+        CCTexture2D* tex4 = [[CCTextureCache sharedTextureCache] addImage:@"star4.png"];
+        CCTexture2D* tex5 = [[CCTextureCache sharedTextureCache] addImage:@"star5.png"];
+        CCTexture2D* tex6 = [[CCTextureCache sharedTextureCache] addImage:@"star6.png"];
+        CCTexture2D* tex7 = [[CCTextureCache sharedTextureCache] addImage:@"star7.png"];
+        CCTexture2D* tex8 = [[CCTextureCache sharedTextureCache] addImage:@"star8.png"];
+        CCTexture2D* tex9 = [[CCTextureCache sharedTextureCache] addImage:@"star9.png"];
+        CCTexture2D* tex10 = [[CCTextureCache sharedTextureCache] addImage:@"star10.png"];
+        CCTexture2D* tex11 = [[CCTextureCache sharedTextureCache] addImage:@"star11.png"];
+        CCTexture2D* tex12 = [[CCTextureCache sharedTextureCache] addImage:@"star12.png"];
+        [coinSprites addObject:tex1];
+        [coinSprites addObject:tex2];
+        [coinSprites addObject:tex3];
+        [coinSprites addObject:tex4];
+        [coinSprites addObject:tex5];
+        [coinSprites addObject:tex6];
+        [coinSprites addObject:tex7];
+        [coinSprites addObject:tex8];
+        [coinSprites addObject:tex9];
+        [coinSprites addObject:tex10];
+        [coinSprites addObject:tex11];
+        [coinSprites addObject:tex12];
+        
         hudLayer = [[CCLayer alloc] init];
         cameraLayer = [[CCLayer alloc] init];
         [cameraLayer setAnchorPoint:CGPointZero];
@@ -686,6 +716,8 @@ typedef struct {
         powerupCounter = 0;
         updatesWithoutBlinking = 0;
         updatesWithBlinking = 999;
+        coinAnimator = 0;
+        coinAnimator2 = 0;
         
         
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444]; // add this line at the very beginning
@@ -836,12 +868,25 @@ typedef struct {
 
 - (void)ApplyGravity:(float)dt {
     
+    coinAnimator2++;
+    if (coinAnimator2 >= 5) { //how many updates to display each image
+        coinAnimator2 = 0;
+        coinAnimator++;
+    }
+    if (coinAnimator >= [coinSprites count]) {
+        coinAnimator = 0;
+    }
+    
     for (Coin* coin in coins) {
+        
+        CCTexture2D* tx = [coinSprites objectAtIndex:coinAnimator];
+        [coin.sprite setTexture:tx];
+        
         CGPoint p = coin.sprite.position;
         
         if (player.currentPowerup.type == 2) {
-            if (ccpLength(ccpSub(player.sprite.position, p)) <= 3*(coin.radius + player.sprite.height/1.3) && coin.isAlive && coin.speed < .1) {
-                coin.speed = .0001;
+            if (ccpLength(ccpSub(player.sprite.position, p)) <= 4*(coin.radius + player.sprite.height/1.3) && coin.isAlive && coin.speed < .1) {
+                coin.speed = .3;
             }
             
         }
@@ -876,20 +921,24 @@ typedef struct {
     
     for (Powerup* powerup in powerups) {
         CGPoint p = powerup.coinSprite.position;
-        if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= powerup.coinSprite.width * powerupRadiusCollisionZone) {
-            //[self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
+        if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= powerup.coinSprite.width * .5 * powerupRadiusCollisionZone) {
             [powerup.coinSprite setVisible:false];
+            if (player.currentPowerup != nil) {
+                [player.currentPowerup.visualSprite setVisible:false];
+                [player.currentPowerup.hudSprite setVisible:false];
+            }
             //[powerups removeObject:powerup];
             player.currentPowerup = powerup;
             [player.currentPowerup.visualSprite setVisible:true];
             [player.currentPowerup.hudSprite setVisible:true];
             powerupCounter = 0;
+            updatesWithBlinking = 0;
+            updatesWithoutBlinking = 99999;
         }
         
     }
     
     if (player.currentPowerup != nil) {
-        //[player.currentPowerup.hudSprite setVisible:true];
         
         int updatesLeft = player.currentPowerup.duration - powerupCounter;
         float blinkAfterThisManyUpdates = updatesLeft*.12;
@@ -936,27 +985,19 @@ typedef struct {
                 dangerLevel = 0;
                 CGPoint a = ccpSub(player.sprite.position, planet.sprite.position);
                 if (ccpLength(a) != planet.orbitRadius) {
-                    //float offset = planet.orbitRadius/ccpLength(a);
-                    //player.sprite.position = ccpAdd(planet.sprite.position, ccpMult(a, offset));
                     player.sprite.position = ccpAdd(player.sprite.position, ccpMult(ccpNormalize(a), (planet.orbitRadius - ccpLength(a))*howFastOrbitPositionGetsFixed*timeDilationCoefficient/absoluteMinTimeDilation));
                 }
                 
                 velSoftener += 1/updatesToMakeOrbitVelocityPerfect;
-                //velSoftener = 1;
-                velSoftener = clampf(velSoftener, 0, 1);                
-                
-                //CCLOG(@"cur: %f", velSoftener);
+                velSoftener = clampf(velSoftener, 0, 1);
                 
                 CGPoint dir2 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(M_PI/2)));
                 CGPoint dir3 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(-M_PI/2)));            
                 if (ccpLength(ccpSub(ccpAdd(a, dir2), ccpAdd(a, player.velocity))) < ccpLength(ccpSub(ccpAdd(a, dir3), ccpAdd(a, player.velocity)))) { //up is closer
-                    //player.velocity = ccpMult(dir2, ccpLength(initialVel));
                     player.velocity = ccpAdd(ccpMult(player.velocity, (1-velSoftener)*1), ccpMult(dir2, velSoftener*ccpLength(initialVel))); 
                     
-                    //as velSoftener goes from 0 -> 1, player.velocity -> dir2
                 }
                 else {
-                    //player.velocity = ccpMult(dir3, ccpLength(initialVel));
                     player.velocity = ccpAdd(ccpMult(player.velocity, (1-velSoftener)*1), ccpMult(dir3, velSoftener*ccpLength(initialVel)));
                 }
                 
@@ -965,69 +1006,55 @@ typedef struct {
             }
             else
                 if (orbitState == 1)
-            {
-                velSoftener = 0;
-                gravIncreaser = 1;
-                [self playSound:@"SWOOSH.WAV" shouldLoop:false];
-                player.acceleration = CGPointZero;
-                //set velocity
-                //player.velocity = ccpMult(swipeVector, .55);
-                CGPoint d = ccpSub(targetPlanet.sprite.position, player.sprite.position);
-                CGPoint d2 = ccpSub(targetPlanet.sprite.position, planet.sprite.position);
-                
-                CGPoint dir2 = ccpNormalize(CGPointApplyAffineTransform(d, CGAffineTransformMakeRotation(M_PI/2)));
-                CGPoint dir3 = ccpNormalize(CGPointApplyAffineTransform(d, CGAffineTransformMakeRotation(-M_PI/2)));                    
-                CGPoint dir4 = ccpNormalize(CGPointApplyAffineTransform(d2, CGAffineTransformMakeRotation(M_PI/2)));                   
-                CGPoint dir5 = ccpNormalize(CGPointApplyAffineTransform(d2, CGAffineTransformMakeRotation(-M_PI/2)));                    
-                
-                
-                CGPoint left = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius), targetPlanet.sprite.position);
-                CGPoint right = ccpAdd(ccpMult(dir3, targetPlanet.orbitRadius), targetPlanet.sprite.position);
-                CGPoint spot1 = ccpAdd(dir4, planet.sprite.position);
-                CGPoint spot2 = ccpAdd(dir5, planet.sprite.position);
-                
-                float newAng = 0;
-                CGPoint vel = CGPointZero;
-                if (ccpLength(ccpSub(ccpAdd(player.sprite.position, swipeVector), left)) <= ccpLength(ccpSub(ccpAdd(player.sprite.position, swipeVector), right))) { //closer to the left
-                    float distToUse2 = factorToPlaceGravFieldWhenCrossingOverTheMiddle; //crossing over the middle
-                    if (ccpLength(ccpSub(player.sprite.position, spot1)) < ccpLength(ccpSub(player.sprite.position, spot2)))
-                        distToUse2 = factorToPlaceGravFieldWhenStayingOutside; //staying outside
-                    spotGoingTo = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius*distToUse2), targetPlanet.sprite.position);
-                    newAng = ccpToAngle(ccpSub(left, player.sprite.position));
-                    vel = ccpSub(left, player.sprite.position);
+                {
+                    velSoftener = 0;
+                    gravIncreaser = 1;
+                    [self playSound:@"SWOOSH.WAV" shouldLoop:false];
+                    player.acceleration = CGPointZero;
+                    
+                    CGPoint d = ccpSub(targetPlanet.sprite.position, player.sprite.position);
+                    CGPoint d2 = ccpSub(targetPlanet.sprite.position, planet.sprite.position);
+                    
+                    CGPoint dir2 = ccpNormalize(CGPointApplyAffineTransform(d, CGAffineTransformMakeRotation(M_PI/2)));
+                    CGPoint dir3 = ccpNormalize(CGPointApplyAffineTransform(d, CGAffineTransformMakeRotation(-M_PI/2)));                    
+                    CGPoint dir4 = ccpNormalize(CGPointApplyAffineTransform(d2, CGAffineTransformMakeRotation(M_PI/2)));                   
+                    CGPoint dir5 = ccpNormalize(CGPointApplyAffineTransform(d2, CGAffineTransformMakeRotation(-M_PI/2)));                    
+                    
+                    
+                    CGPoint left = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius), targetPlanet.sprite.position);
+                    CGPoint right = ccpAdd(ccpMult(dir3, targetPlanet.orbitRadius), targetPlanet.sprite.position);
+                    CGPoint spot1 = ccpAdd(dir4, planet.sprite.position);
+                    CGPoint spot2 = ccpAdd(dir5, planet.sprite.position);
+                    
+                    float newAng = 0;
+                    CGPoint vel = CGPointZero;
+                    if (ccpLength(ccpSub(ccpAdd(player.sprite.position, swipeVector), left)) <= ccpLength(ccpSub(ccpAdd(player.sprite.position, swipeVector), right))) { //closer to the left
+                        float distToUse2 = factorToPlaceGravFieldWhenCrossingOverTheMiddle; //crossing over the middle
+                        if (ccpLength(ccpSub(player.sprite.position, spot1)) < ccpLength(ccpSub(player.sprite.position, spot2)))
+                            distToUse2 = factorToPlaceGravFieldWhenStayingOutside; //staying outside
+                        spotGoingTo = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius*distToUse2), targetPlanet.sprite.position);
+                        newAng = ccpToAngle(ccpSub(left, player.sprite.position));
+                        vel = ccpSub(left, player.sprite.position);
+                    }
+                    else {
+                        float distToUse2 = factorToPlaceGravFieldWhenCrossingOverTheMiddle; //crossing over the middle
+                        if (ccpLength(ccpSub(player.sprite.position, spot1)) > ccpLength(ccpSub(player.sprite.position, spot2)))
+                            distToUse2 = factorToPlaceGravFieldWhenStayingOutside; //staying outside
+                        spotGoingTo = ccpAdd(ccpMult(dir3, targetPlanet.orbitRadius*distToUse2), targetPlanet.sprite.position);
+                        newAng = ccpToAngle(ccpSub(right, player.sprite.position));
+                        vel = ccpSub(right, player.sprite.position);
+                    }
+                    
+                    float curAng = ccpToAngle(player.velocity);
+                    swipeAccuracy = fabsf(CC_RADIANS_TO_DEGREES(curAng) - CC_RADIANS_TO_DEGREES(newAng));;
+                    
+                    if (swipeAccuracy > 180)
+                        swipeAccuracy = 360 - swipeAccuracy;
+                    
+                    orbitState = 3;
+                    initialAccelMag = 0;
+                    
                 }
-                else {
-                    float distToUse2 = factorToPlaceGravFieldWhenCrossingOverTheMiddle; //crossing over the middle
-                    if (ccpLength(ccpSub(player.sprite.position, spot1)) > ccpLength(ccpSub(player.sprite.position, spot2)))
-                        distToUse2 = factorToPlaceGravFieldWhenStayingOutside; //staying outside
-                    spotGoingTo = ccpAdd(ccpMult(dir3, targetPlanet.orbitRadius*distToUse2), targetPlanet.sprite.position);
-                    newAng = ccpToAngle(ccpSub(right, player.sprite.position));
-                    vel = ccpSub(right, player.sprite.position);
-                }
-                
-                float curAng = ccpToAngle(player.velocity);
-                swipeAccuracy = fabsf(CC_RADIANS_TO_DEGREES(curAng) - CC_RADIANS_TO_DEGREES(newAng));;
-                
-                if (swipeAccuracy > 180)
-                    swipeAccuracy = 360 - swipeAccuracy;
-                
-                // CCLOG(@"cur: %f", swipeAccuracy);
-                
-                
-                //HERE: TO USE!!!!!: if swipe accuracy is greater than a certain amount, t did a poor swipe and should q punished severely!!!!!
-                
-                //if (swipeAccuracy <= requiredAngleAccuracy) {
-                //orbitState = 2;
-                //player.velocity = ccpMult(ccpNormalize(vel), ccpLength(player.velocity));
-                //} else {
-                orbitState = 3;
-                initialAccelMag = 0;
-                //player.velocity = ccpAdd(player.velocity, ccpMult(swipeVector, swipeStrength));
-                //}
-                
-                //player.velocity = ccpMult(ccpNormalize(vel), ccpLength(player.velocity));
-                //end if in position
-            }
             
             if (orbitState == 3) {
                 gravIncreaser += increaseGravStrengthByThisMuchEveryUpdate;
@@ -1041,42 +1068,19 @@ typedef struct {
                     if (ccpToAngle(player.velocity) > (anglePlayToTarg + (80 * M_PI/180)) || ccpToAngle(player.velocity) < (anglePlayToTarg - (80 * M_PI/180)))
                     {
                         dangerLevel += .02;
-                        //CCLOG(@"Added to DangerLevel: %f", dangerLevel);
                     }
                 }
                 
-                /*
-                 if (ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) > ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)))
-                 if (ccpLength(ccpSub(ccpAdd(player.sprite.position, player.velocity), targetPlanet.sprite.position)) < ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)))
-                 CCLOG(@"DIFFERNCE Q: %f", ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) - ccpLength(ccpSub(planet.sprite.position, targetPlanet.sprite.position)));
-                 */
-                
-                //dangerLevel += .01;
-                //CCLOG(@"danger level: %f", dangerLevel);
-                
-                //CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
-                //CGPoint accelToAdd = ccpMult(direction, gravity/**planet.sprite.scale*/);
                 CGPoint accelToAdd = CGPointZero;
                 CGPoint direction = ccpNormalize(ccpSub(spotGoingTo, player.sprite.position));
-                accelToAdd = ccpAdd(accelToAdd, ccpMult(direction, gravity/**targetPlanet.sprite.scale*/));
-                
-                //use 'dif' in method above but rename to 'accuracy' or something
-                
-                //B = G + (G(90-x)*factorToScaleGravityForPerfectSwipe)/90
-                //B = G * clampf((G(angleToStartCreatingGravity-x)*factorToScaleGravityForPerfectSwipe)/angleToStartCreatingGravity, 0, factorToScaleGravityForPerfectSwipe)
-                
+                accelToAdd = ccpAdd(accelToAdd, ccpMult(direction, gravity));
                 
                 player.velocity = ccpMult(ccpNormalize(player.velocity), ccpLength(initialVel));
                 
                 float scaler = multiplyGravityThisManyTimesOnPerfectSwipe - swipeAccuracy * multiplyGravityThisManyTimesOnPerfectSwipe / 180;
                 scaler = clampf(scaler, 0, 99999999);
                 
-                //CCLOG(@"swipeAcc: %f, scaler: %f", swipeAccuracy, scaler);
-                
-                //perhaps dont use scaler/swipe accuracy, and just use it in (if orbitstate==1) for determining if it's good enough. btw scaler ranges from about 1to 3.5 (now 0 to 2.5)
-                
                 player.acceleration = ccpMult(accelToAdd, gravIncreaser*freeGravityStrength*scaler*asteroidSlower);
-                //  CCLOG(@"swipeAcc: %f", ccpLength(player.acceleration));
                 
                 if (initialAccelMag == 0)
                     initialAccelMag = ccpLength(player.acceleration);
