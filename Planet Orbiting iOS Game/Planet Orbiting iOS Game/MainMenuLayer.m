@@ -8,6 +8,7 @@
 
 #import "MainMenuLayer.h"
 #import "GameplayLayer.h"
+#import "Tutorial.h"
 #import "StoreItem.h"
 #import "StoreManager.h"
 #import "UserWallet.h"
@@ -254,9 +255,12 @@ const float effectsVolumeMainMenu = 1;
     [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
     CCLOG(@"tutorial scene launched, game starting");
     
-    tutorialLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"TutorialLayer.ccb" owner:self];
-    [tutorialLayer setTag:tutorialLayerTag];
-    [self addChild:tutorialLayer];
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[Tutorial scene]]];
+    
+    //tutorialLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"TutorialLayer.ccb" owner:self];
+    //[tutorialLayer setTag:tutorialLayerTag];
+    //[self addChild:tutorialLayer];
     
     // [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
 }

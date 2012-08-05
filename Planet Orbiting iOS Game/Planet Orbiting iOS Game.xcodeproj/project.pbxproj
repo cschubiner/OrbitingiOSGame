@@ -33,6 +33,7 @@
 		01FE9B2215BE94E9007512ED /* PowerupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B2115BE94E9007512ED /* PowerupManager.m */; };
 		01FE9B3415BFAE70007512ED /* DataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B3315BFAE6F007512ED /* DataStorage.m */; };
 		01FE9B3C15BFC2C9007512ED /* PlayerStats.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B3B15BFC2C9007512ED /* PlayerStats.m */; };
+		0C1662C915CEA56B00C0D0B9 /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1662C815CEA56B00C0D0B9 /* Tutorial.m */; };
 		0C2AB0B515BE8E43008822F1 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */; };
 		0C2AB0BA15BE8E54008822F1 /* StoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2AB0B715BE8E54008822F1 /* StoreManager.m */; };
 		0C2AB0BB15BE8E54008822F1 /* UserWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2AB0B915BE8E54008822F1 /* UserWallet.m */; };
@@ -311,6 +312,8 @@
 		01FE9B3315BFAE6F007512ED /* DataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataStorage.m; sourceTree = "<group>"; };
 		01FE9B3A15BFC2C9007512ED /* PlayerStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerStats.h; sourceTree = "<group>"; };
 		01FE9B3B15BFC2C9007512ED /* PlayerStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerStats.m; sourceTree = "<group>"; };
+		0C1662C715CEA56B00C0D0B9 /* Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutorial.h; sourceTree = "<group>"; };
+		0C1662C815CEA56B00C0D0B9 /* Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial.m; sourceTree = "<group>"; };
 		0C2AB0B315BE8E43008822F1 /* MainMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
 		0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
 		0C2AB0B615BE8E54008822F1 /* StoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreManager.h; sourceTree = "<group>"; };
@@ -906,6 +909,8 @@
 				0C487AF715946E2300674AB9 /* GameplayLayer.m */,
 				0C2AB0B315BE8E43008822F1 /* MainMenuLayer.h */,
 				0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */,
+				0C1662C715CEA56B00C0D0B9 /* Tutorial.h */,
+				0C1662C815CEA56B00C0D0B9 /* Tutorial.m */,
 				01FE9B3A15BFC2C9007512ED /* PlayerStats.h */,
 				01FE9B3B15BFC2C9007512ED /* PlayerStats.m */,
 				C445304D15A68888004F8F48 /* CocosBuilder  */,
@@ -1787,6 +1792,7 @@
 				C43F5E8815C70589003BDF73 /* GKAchievementNotification.m in Sources */,
 				0C60EC5A15CB8C42005FE434 /* Galaxy.m in Sources */,
 				FACE0CED15CB963B0055B5DF /* Powerup.m in Sources */,
+				0C1662C915CEA56B00C0D0B9 /* Tutorial.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

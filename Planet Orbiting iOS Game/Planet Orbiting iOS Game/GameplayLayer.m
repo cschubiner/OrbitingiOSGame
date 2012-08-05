@@ -884,30 +884,9 @@ typedef struct {
 
 - (void)ApplyGravity:(float)dt {
     
-    coinAnimator2++;
-    if (coinAnimator2 >= 5) { //how many updates to display each image
-        coinAnimator2 = 0;
-        coinAnimator++;
-    }
-    if (coinAnimator >= [coinSprites count]) {
-        coinAnimator = 0;
-    }
-    
     for (Coin* coin in coins) {
         
-        CCTexture2D* tx = [coinSprites objectAtIndex:coinAnimator];
-        [coin.sprite setTexture:tx];
-        
         CGPoint p = coin.sprite.position;
-        
-        if (player.currentPowerup.type == 2) {
-            if (ccpLength(ccpSub(player.sprite.position, p)) <= 4*(coin.radius + player.sprite.height/1.3) && coin.isAlive && coin.speed < .1) {
-                coin.speed = .3;
-            }
-            
-        }
-        if (coin.speed != 0)
-            coin.speed += .3;
         
         coin.velocity = ccpMult(ccpNormalize(ccpSub(player.sprite.position, p)), coin.speed);
         coin.sprite.position = ccpAdd(coin.sprite.position, coin.velocity);
@@ -1528,6 +1507,33 @@ typedef struct {
         light.score += light.scoreVelocity;
 }
 
+- (void)UpdateCoinAnimations {
+    coinAnimator2++;
+    if (coinAnimator2 >= 5) { //how many updates to display each image
+        coinAnimator2 = 0;
+        coinAnimator++;
+    }
+    if (coinAnimator >= [coinSprites count]) {
+        coinAnimator = 0;
+    }
+    for (Coin* coin in coins) {
+        
+        CCTexture2D* tx = [coinSprites objectAtIndex:coinAnimator];
+        [coin.sprite setTexture:tx];
+        
+        CGPoint p = coin.sprite.position;
+        
+        if (player.currentPowerup.type == 2) {
+            if (ccpLength(ccpSub(player.sprite.position, p)) <= 4*(coin.radius + player.sprite.height/1.3) && coin.isAlive && coin.speed < .1) {
+                coin.speed = .5;
+            }
+            
+        }
+        if (coin.speed != 0)
+            coin.speed += .5;
+    }
+}
+
 - (void) Update:(ccTime)dt {
     
     if (!paused&&isGameOver==false) {
@@ -1540,6 +1546,7 @@ typedef struct {
             [self UpdatePlanets];
             [self UpdateGalaxies];
         }
+        [self UpdateCoinAnimations];
         [self UpdatePlayer: dt];
         [self UpdateScore];
         [self UpdateCamera:dt];
