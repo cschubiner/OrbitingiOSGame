@@ -88,7 +88,6 @@ typedef struct {
     powerup.hudSprite.position = ccp(30, 290);
     powerup.hudSprite.scale = .4;
     
-    
     [powerups addObject:powerup];
     
     [spriteSheet addChild:powerup.coinSprite];
@@ -622,26 +621,9 @@ typedef struct {
             [hudLayer addChild: coinsLabel];
         } 
         else {
-            tutorialState = 0;
-            tutorialFader = 0;
-            tutorialAdvanceMode = 0;
-            shouldDisplayWaiting = false;
-            
-            tutorialLabel1 = [CCLabelTTF labelWithString:@" " fontName:@"Marker Felt" fontSize:24];
-            tutorialLabel1.position = ccp(240, 320-[tutorialLabel1 boundingBox].size.height*.6);
-            [hudLayer addChild: tutorialLabel1];
-            
-            tutorialLabel2 = [CCLabelTTF labelWithString:@" " fontName:@"Marker Felt" fontSize:24];
-            tutorialLabel2.position = ccp(240, 320-[tutorialLabel2 boundingBox].size.height*1.6);
-            [hudLayer addChild: tutorialLabel2];
-            
-            tutorialLabel3 = [CCLabelTTF labelWithString:@" " fontName:@"Marker Felt" fontSize:24];
-            tutorialLabel3.position = ccp(240, 320-[tutorialLabel3 boundingBox].size.height*2.6);
-            [hudLayer addChild: tutorialLabel3];
-            
-            tutorialLabel0 = [CCLabelTTF labelWithString:@" " fontName:@"Marker Felt" fontSize:21];
-            tutorialLabel0.position = ccp(240, [tutorialLabel0 boundingBox].size.height*.7);
-            [hudLayer addChild: tutorialLabel0];
+            tutImage1 = [CCSprite spriteWithFile:@"screen1.png"];
+            tutImage2 = [CCSprite spriteWithFile:@"screen2.png"];
+            tutImage3 = [CCSprite spriteWithFile:@"screen3.png"];
         }
         
         [self playSound:@"a_song.mp3" shouldLoop:YES];
@@ -667,13 +649,13 @@ typedef struct {
         player.alive=true;
         [player.sprite setScale:playerSizeScale];
         player.segmentNumber = -10;
-       // player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn)), -distanceBetweenGalaxies*8));
+        // player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn)), -distanceBetweenGalaxies*8));
         player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
-         cameraDistToUse = 1005.14;
-         [cameraLayer setScale:.43608];
-         [cameraLayer setPosition:ccp(98.4779,67.6401)];
-         cameraLastFocusPosition = ccp(325.808,213.3);
-         [cameraFocusNode setPosition:ccp(142.078,93.0159)];
+        cameraDistToUse = 1005.14;
+        [cameraLayer setScale:.43608];
+        [cameraLayer setPosition:ccp(98.4779,67.6401)];
+        cameraLastFocusPosition = ccp(325.808,213.3);
+        [cameraFocusNode setPosition:ccp(142.078,93.0159)];
         galaxyLabel = [[CCLabelTTF alloc]initWithString:currentGalaxy.name fontName:@"Marker Felt" fontSize:24];
         [galaxyLabel setAnchorPoint:ccp(.5f,.5f)];
         [galaxyLabel setPosition:ccp(230,60)];
@@ -683,7 +665,7 @@ typedef struct {
         galaxyLabelAction = [CCSequence actions:[CCDelayTime actionWithDuration:.5],[CCSpawn actions:fadeAction,[CCScaleTo actionWithDuration:.3 scale:1.2], nil], nil] ;
         [galaxyLabel runAction:galaxyLabelAction];
         [galaxyLabel runAction: repeatAction];
-
+        
         
         float streakWidth = streakWidthWITHOUTRetinaDisplay;
         if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsRetinaDisplay])
@@ -704,14 +686,9 @@ typedef struct {
         isOnFirstRun = true;
         timeDilationCoefficient = 1;
         dangerLevel = 0;
-        isTutPaused = false;
         swipeVector = ccp(0, -1);
         gravIncreaser = 1;
-        handCounter = 0;
         updatesSinceLastPlanet = 0;
-        tutorialPauseTimer = 0;
-        updatesToAdvanceTutorial = 0;
-        tutorialIsTryingToAdvance = false;
         asteroidSlower = 1;
         powerupCounter = 0;
         updatesWithoutBlinking = 0;
@@ -732,9 +709,6 @@ typedef struct {
         cometVelocity = ccp([self RandomBetween:-10 maxvalue:10]/5,-[self RandomBetween:1 maxvalue:23]/5);
         [self resetVariablesForNewGame];
         
-        hand = [CCSprite spriteWithFile:@"edit(84759).png"];
-        hand.position = ccp(-1000, -1000);
-        
         light = [[Light alloc] init];
         light.score = -negativeLightStartingScore;
         light.scoreVelocity = initialLightScoreVelocity;
@@ -742,7 +716,6 @@ typedef struct {
         light.hasPutOnLight = false;
         
         [cameraLayer addChild:spriteSheet];
-        [hudLayer addChild:hand];
         
         lastPlanetVisited = [planets objectAtIndex:0];
         layerHudSlider = (CCLayer*)[CCBReader nodeGraphFromFile:@"hudLayer.ccb" owner:self];
@@ -950,6 +923,7 @@ typedef struct {
         if (updatesWithoutBlinking >= blinkAfterThisManyUpdates && updatesLeft <= 300) {
             updatesWithoutBlinking = 0;
             [player.currentPowerup.hudSprite setVisible:false];
+            [player.currentPowerup.visualSprite setVisible:false];
             
         }
         if (!player.currentPowerup.hudSprite.visible) {
@@ -959,6 +933,7 @@ typedef struct {
         if (updatesWithBlinking >= clampf(8*updatesLeft/100, 3, 99999999)) {
             updatesWithBlinking = 0;
             [player.currentPowerup.hudSprite setVisible:true];
+            [player.currentPowerup.visualSprite setVisible:true];
         }
         
         if (powerupCounter >= player.currentPowerup.duration) {
@@ -1108,7 +1083,7 @@ typedef struct {
 }
 
 - (void)KillIfEnoughTimeHasPassed {
-    killer++;    
+    killer++;
     if (orbitState == 0 || orbitState == 2)
         killer = 0;    
     if (killer > deathAfterThisLong)
@@ -1450,26 +1425,26 @@ typedef struct {
 }
 
 - (void) Update:(ccTime)dt {
-    if (!isTutPaused) {
-        if (!paused&&isGameOver==false) {
-            if (zonesReached<[planets count]) {
-                totalGameTime+=dt;
-                totalSecondsAlive+=dt;
-            }
-            
-            if (player.alive) {
-                [self UpdatePlanets];
-                [self UpdateGalaxies];
-            }
-            [self UpdatePlayer: dt];
-            [self UpdateScore];
-            [self UpdateCamera:dt];
-            [self UpdateParticles:dt];
-            if (levelNumber==0)
-                [self UpdateLight];
-            updatesSinceLastPlanet++;
+    
+    if (!paused&&isGameOver==false) {
+        if (zonesReached<[planets count]) {
+            totalGameTime+=dt;
+            totalSecondsAlive+=dt;
         }
+        
+        if (player.alive) {
+            [self UpdatePlanets];
+            [self UpdateGalaxies];
+        }
+        [self UpdatePlayer: dt];
+        [self UpdateScore];
+        [self UpdateCamera:dt];
+        [self UpdateParticles:dt];
+        if (levelNumber==0)
+            [self UpdateLight];
+        updatesSinceLastPlanet++;
     }
+    
     if (isInTutorialMode)
         [self UpdateTutorial];
     if (!paused&&[((AppDelegate*)[[UIApplication sharedApplication]delegate])getWasJustBackgrounded])
@@ -1507,179 +1482,6 @@ typedef struct {
 
 - (void)UpdateTutorial {
     
-    hand.scale = .5;
-    tutorialPauseTimer++;
-    int tutorialCounter = 0;
-    tutorialFader+= 4;
-    tutorialFader = clampf(tutorialFader, 0, 255);
-    [tutorialLabel1 setOpacity:255];
-    [tutorialLabel2 setOpacity:255];
-    [tutorialLabel3 setOpacity:255];
-    
-    
-    [tutorialLabel0 setOpacity:clampf(((sinf(totalGameTime*5)+1)/2)*300, 0, 255)];
-    
-    //CCLOG(@"countuh: %d", tutorialState);
-    
-    float scale = .4;
-    
-    if (tutorialState == tutorialCounter++) { //good angle
-        updatesToAdvanceTutorial = 0;//300;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Swipe to fly to the next planet."]];
-        
-        [self updateHandFrom:ccp(100, 40) to:ccp(380, 40) fadeInUpdates:20 moveUpdates:50 fadeOutUpdates:20 goneUpdates:20];
-        
-        
-        
-        float ang = CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity));
-        
-        
-        if (ang > 0 && ang < 10) {
-            [self AdvanceTutorial];
-        }
-        
-        
-        CGPoint cameraLastFocusPosition2 = ccp(611, 400);
-        [self scaleLayer:cameraLayer scaleToZoomTo:scale scaleCenter:cameraLastFocusPosition2];
-        id followAction = [CCFollow actionWithTarget:cameraFocusNode];
-        [cameraLayer runAction: followAction];
-        
-        
-        
-    } else if (tutorialState == tutorialCounter++) {
-        [self updateHandFrom:ccp(100, 40) to:ccp(380, 40) fadeInUpdates:20 moveUpdates:50 fadeOutUpdates:20 goneUpdates:20];
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Swipe to fly to the next planet."]];
-        
-        swipeVector = ccp(0, -1);
-        
-        lastPlanetVisited = [planets objectAtIndex:0];
-        [self JustSwiped];
-        [self AdvanceTutorial];
-        
-    } else if (tutorialState == tutorialCounter++) { //hit the next zone
-        [self updateHandFrom:ccp(100, 40) to:ccp(380, 40) fadeInUpdates:20 moveUpdates:50 fadeOutUpdates:20 goneUpdates:20];
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Swipe to fly to the next planet."]];
-        if (orbitState == 0) {
-            lastPlanetVisited = [planets objectAtIndex:0];
-            //            player.sprite.position = ccp(400, 364);
-            [self RespawnPlayerAtPlanetIndex:0];
-            tutorialState-=2;
-        }
-        
-    } else if (tutorialState == tutorialCounter++) { //good angle
-        updatesToAdvanceTutorial = 300;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"test"]];
-        
-        [self updateHandFrom:ccp(100, 40) to:ccp(380, 40) fadeInUpdates:20 moveUpdates:50 fadeOutUpdates:20 goneUpdates:20];
-        
-        
-        
-        float ang = CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity));
-        
-        
-        if (ang > 0 && ang < 10) {
-            [self AdvanceTutorial];
-        }
-        
-        CGPoint cameraLastFocusPosition2 = ccp(611+2000, 400);
-        [self scaleLayer:cameraLayer scaleToZoomTo:scale scaleCenter:cameraLastFocusPosition2];
-        id followAction = [CCFollow actionWithTarget:cameraFocusNode];
-        [cameraLayer runAction: followAction];
-    } else if (tutorialState == tutorialCounter++) {
-        [self updateHandFrom:ccp(100, 40) to:ccp(380, 40) fadeInUpdates:20 moveUpdates:50 fadeOutUpdates:20 goneUpdates:20];
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"test."]];
-        
-        swipeVector = ccp(0, 1);
-        
-        lastPlanetVisited = [planets objectAtIndex:2];
-        [self JustSwiped];
-        [self AdvanceTutorial];
-    } else if (tutorialState == tutorialCounter++) { //hit the next zone
-        [self updateHandFrom:ccp(100, 40) to:ccp(380, 40) fadeInUpdates:20 moveUpdates:50 fadeOutUpdates:20 goneUpdates:20];
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"test."]];
-        if (orbitState == 0) {
-            lastPlanetVisited = [planets objectAtIndex:2];
-            //            player.sprite.position = ccp(400, 364);
-            [self RespawnPlayerAtPlanetIndex:2];
-            tutorialState-=2;
-        }
-        
-        float hi = 5;
-        hi++;
-        
-        
-    } else if (tutorialState == tutorialCounter++) { //tap
-        updatesToAdvanceTutorial = 100;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Tap to see when a good time"]];
-        [tutorialLabel2 setString:[NSString stringWithFormat:@"to swipe is."]];
-        
-        
-        
-        
-        CGPoint cameraLastFocusPosition2 = ccp(611+4000, 400);
-        [self scaleLayer:cameraLayer scaleToZoomTo:scale scaleCenter:cameraLastFocusPosition2];
-        id followAction = [CCFollow actionWithTarget:cameraFocusNode];
-        [cameraLayer runAction: followAction];
-        
-        
-        
-        
-        
-    } else if (tutorialState == tutorialCounter++) { //tap
-        updatesToAdvanceTutorial = 120;
-        [tutorialLabel1 setString:[NSString stringWithFormat:@"Now you're ready to play!"]];
-        
-    } else if (tutorialState == tutorialCounter++) { //end the game
-        if ([[PlayerStats sharedInstance] getPlays]>1)
-        {
-            [[PlayerStats sharedInstance] addPlay];
-            [self endGame];
-        }
-        else
-            [self restartGame];
-        tutorialState++;
-        
-    }
-    
-    if (tutorialPauseTimer < updatesToAdvanceTutorial)
-        [tutorialLabel0 setString:[NSString stringWithFormat:@" "]];
-    else
-        [tutorialLabel0 setString:[NSString stringWithFormat:@"Tap to continue...                                    Tap to continue..."]];
-}
-
-- (void)updateHandFrom:(CGPoint)pos1 to:(CGPoint)pos2 fadeInUpdates:(int)fadeInUpdates moveUpdates:(int)moveUpdates fadeOutUpdates:(int)fadeOutUpdates goneUpdates:(int)goneUpdates {
-    
-    
-    
-    if (handCounter == 0)
-        hand.position = pos1;
-    else if (handCounter <= fadeInUpdates) {
-        hand.opacity += 255/fadeInUpdates;
-    }
-    else if (handCounter <= fadeInUpdates + moveUpdates) {
-        CGPoint vec = ccpSub(pos2, pos1);
-        hand.position = ccpAdd(pos1, ccpMult(vec, (handCounter-fadeInUpdates)/moveUpdates));
-    } else if (handCounter <= fadeInUpdates + moveUpdates + fadeOutUpdates) {
-        if (hand.opacity < 20)
-            hand.opacity = 0;
-        else
-            hand.opacity -= 255/fadeOutUpdates;
-        
-    }
-    else if (handCounter > fadeInUpdates + moveUpdates + fadeOutUpdates + goneUpdates) {
-        handCounter = -1;
-        hand.opacity = 0;
-    }
-    
-    if (hand.position.x == pos2.x&&handCounter > fadeInUpdates + moveUpdates + fadeOutUpdates)
-        hand.opacity = 0 ; 
-    
-    
-    //CCLOG(@"opac: %f", (float)hand.opacity);
-    
-    // hand.opacity = 100;
-    
-    handCounter++;
 }
 
 - (void)restartGame {
@@ -1731,10 +1533,6 @@ typedef struct {
         playerIsTouchingScreen = true;
         if (!isInTutorialMode) {
             [self JustSwiped];
-        } else if (tutorialAdvanceMode == 2) {
-            tutorialPlanetIndex = lastPlanetVisited.number;
-            [self JustSwiped];
-            [self AdvanceTutorial];
         }
     }
     
@@ -1749,33 +1547,8 @@ typedef struct {
     targetPlanet = [planets objectAtIndex: (lastPlanetVisited.number + 1)];
 }
 
-- (void)AdvanceTutorial {
-    //    if (tutorialPauseTimer >= updatesToAdvanceTutorial) {
-    shouldDisplayWaiting = false;
-    tutorialFader = 0;
-    tutorialState++;
-    //    }
-}
-
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {    
     playerIsTouchingScreen = false;
-    
-    if (isInTutorialMode) {
-        if (tutorialPauseTimer >= updatesToAdvanceTutorial) {
-            //[self AdvanceTutorial];            
-            tutorialPauseTimer = 0;
-            
-            if (tutorialState == 0 || tutorialState == 1 || tutorialState == 2) {
-                lastPlanetVisited = [planets objectAtIndex:2];
-                //            player.sprite.position = ccp(400, 364);
-                [self RespawnPlayerAtPlanetIndex:2];
-                tutorialState = 3;
-            } else if (tutorialState == 3 || tutorialState == 4 || tutorialState == 5) {
-                tutorialState = 6;
-            }
-        }
-        
-    }
     
     if (orbitState == 0) {
         for (UITouch *touch in touches) {

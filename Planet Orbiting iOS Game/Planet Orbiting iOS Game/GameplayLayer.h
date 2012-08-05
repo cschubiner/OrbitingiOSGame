@@ -88,23 +88,11 @@
     int originalSegmentNumber;
     
     bool isInTutorialMode;
-    CCLabelTTF *tutorialLabel1;
-    CCLabelTTF *tutorialLabel2;
-    CCLabelTTF *tutorialLabel3;
-    CCLabelTTF *tutorialLabel0;
-    int tutorialState;
-    float tutorialFader;
-    int tutorialAdvanceMode;
-    bool isTutPaused;
-    CCSprite * hand;
-    float handCounter;
-    CCSprite * hand2;
-    float handCounter2;
-    int tutorialPlanetIndex;
-    bool shouldDisplayWaiting;
-    float tutorialPauseTimer;
-    float updatesToAdvanceTutorial;
-    bool tutorialIsTryingToAdvance;
+    CCSprite* tutImage1;
+    CCSprite* tutImage2;
+    CCSprite* tutImage3;
+
+    
     bool isGameOver;
     bool didEndGameAlready;
     int orbitState; // 0 = orbiting; 1 = just left orbit and deciding things for state 2; 3 = flying to next planet
