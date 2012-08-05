@@ -637,13 +637,13 @@ typedef struct {
         player.alive=true;
         [player.sprite setScale:playerSizeScale];
         player.segmentNumber = -10;
-        player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn)), -distanceBetweenGalaxies*8));
-        [self RespawnPlayerAtPlanetIndex:0];
-        /*        cameraDistToUse = 1005.14;
+       // player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn)), -distanceBetweenGalaxies*8));
+        player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
+         cameraDistToUse = 1005.14;
          [cameraLayer setScale:.43608];
          [cameraLayer setPosition:ccp(98.4779,67.6401)];
          cameraLastFocusPosition = ccp(325.808,213.3);
-         [cameraFocusNode setPosition:ccp(142.078,93.0159)];*/
+         [cameraFocusNode setPosition:ccp(142.078,93.0159)];
         galaxyLabel = [[CCLabelTTF alloc]initWithString:currentGalaxy.name fontName:@"Marker Felt" fontSize:24];
         [galaxyLabel setAnchorPoint:ccp(.5f,.5f)];
         [galaxyLabel setPosition:ccp(230,60)];
@@ -653,11 +653,6 @@ typedef struct {
         galaxyLabelAction = [CCSequence actions:[CCDelayTime actionWithDuration:.5],[CCSpawn actions:fadeAction,[CCScaleTo actionWithDuration:.3 scale:1.2], nil], nil] ;
         [galaxyLabel runAction:galaxyLabelAction];
         [galaxyLabel runAction: repeatAction];
-        cameraShouldFocusOnPlayer = true;
-        cameraLastFocusPosition = player.sprite.position;
-        cameraFocusNode.position = player.sprite.position;
-        [self scaleLayer:cameraLayer scaleToZoomTo:.5 scaleCenter:cameraLastFocusPosition];
-        [cameraLayer runAction: [CCFollow actionWithTarget:cameraFocusNode]];
 
         
         float streakWidth = streakWidthWITHOUTRetinaDisplay;
