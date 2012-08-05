@@ -654,6 +654,10 @@ typedef struct {
             tutImage3 = [CCSprite spriteWithFile:@"screen3.png"];
         }
         
+        powerupLabel = [CCLabelTTF labelWithString:@" " fontName:@"Marker Felt" fontSize:44];
+        powerupLabel.position = ccp(-[powerupLabel boundingBox].size.width/2, 160);
+        [hudLayer addChild: powerupLabel];
+        
         [self playSound:@"a_song.mp3" shouldLoop:YES];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"bomb.wav"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.WAV"];
@@ -695,7 +699,7 @@ typedef struct {
         [galaxyLabelAction retain];
         [galaxyLabel runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1.1], galaxyLabelAction,nil]];
         justDisplayedGalaxyLabel = true;
-
+        
         [hudLayer addChild:galaxyLabel];
         
         float streakWidth = streakWidthWITHOUTRetinaDisplay;
@@ -726,15 +730,17 @@ typedef struct {
         updatesWithBlinking = 999;
         coinAnimator = 0;
         coinAnimator2 = 0;
+        powerupPos = 0;
+        powerupVel = 0;
         
         background = [CCSprite spriteWithFile:@"background0.pvr.ccz"];
         background2 = [CCSprite spriteWithFile:@"background1.pvr.ccz"];
-   //     background.position = ccp(size.width/2+61,14);
+        //     background.position = ccp(size.width/2+61,14);
         background.position = ccp(size.width/4*1.5*1.3,15);
         background.scale *=1.98f;
-  //      background2.position = ccp(size.width/2+61,14);
+        //      background2.position = ccp(size.width/2+61,14);
         background2.position = ccp(size.width/4*1.5*1.3,15);
-
+        
         background2.scale *=1.98f;
         [background2 retain];
         [background retain];
@@ -917,20 +923,25 @@ typedef struct {
     for (Powerup* powerup in powerups) {
         CGPoint p = powerup.coinSprite.position;
         if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= powerup.coinSprite.width * .5 * powerupRadiusCollisionZone) {
-            [powerup.coinSprite setVisible:false];
-            if (player.currentPowerup != nil) {
-                [player.currentPowerup.visualSprite setVisible:false];
-                [player.currentPowerup.hudSprite setVisible:false];
+            if (powerup.coinSprite.visible) {
+                [powerup.coinSprite setVisible:false];
+                if (player.currentPowerup != nil) {
+                    [player.currentPowerup.visualSprite setVisible:false];
+                    [player.currentPowerup.hudSprite setVisible:false];
+                }
+                paused = true;
+                isDisplayingPowerupAnimation = true;
+                powerupPos = 0;
+                powerupVel = 0;
+                //[powerups removeObject:powerup];
+                player.currentPowerup = powerup;
+                [player.currentPowerup.visualSprite setVisible:true];
+                [player.currentPowerup.hudSprite setVisible:true];
+                powerupCounter = 0;
+                updatesWithBlinking = 0;
+                updatesWithoutBlinking = 99999;
             }
-            //[powerups removeObject:powerup];
-            player.currentPowerup = powerup;
-            [player.currentPowerup.visualSprite setVisible:true];
-            [player.currentPowerup.hudSprite setVisible:true];
-            powerupCounter = 0;
-            updatesWithBlinking = 0;
-            updatesWithoutBlinking = 99999;
         }
-        
     }
     
     if (player.currentPowerup != nil) {
@@ -982,7 +993,7 @@ typedef struct {
                 dangerLevel = 0;
                 CGPoint a = ccpSub(player.sprite.position, planet.sprite.position);
                 if (ccpLength(a) != planet.orbitRadius) {
-                    player.sprite.position = ccpAdd(player.sprite.position, ccpMult(ccpNormalize(a), (planet.orbitRadius - ccpLength(a))*howFastOrbitPositionGetsFixed*timeDilationCoefficient/absoluteMinTimeDilation));
+                    player.sprite.position = ccpAdd(player.sprite.position, ccpMult(ccpNormalize(a), (planet.orbitRadius - ccpLength(a))*howFastOrbitPositionGetsFixed*timeDilationCoefficient*60*dt/absoluteMinTimeDilation));
                 }
                 
                 velSoftener += 1/updatesToMakeOrbitVelocityPerfect;
@@ -1077,7 +1088,7 @@ typedef struct {
                 float scaler = multiplyGravityThisManyTimesOnPerfectSwipe - swipeAccuracy * multiplyGravityThisManyTimesOnPerfectSwipe / 180;
                 scaler = clampf(scaler, 0, 99999999);
                 
-                player.acceleration = ccpMult(accelToAdd, gravIncreaser*freeGravityStrength*scaler*asteroidSlower);
+                player.acceleration = ccpMult(accelToAdd, gravIncreaser*freeGravityStrength*scaler*asteroidSlower*60*dt);
                 
                 if (initialAccelMag == 0)
                     initialAccelMag = ccpLength(player.acceleration);
@@ -1279,9 +1290,9 @@ typedef struct {
             }
             if ([[self children]containsObject:background2]) {
                 if ([[self children]containsObject:background]==false) {
-                [self reorderChild:background2 z:-5];
-                [background setTexture:[[CCTextureCache sharedTextureCache] addImage:[NSString stringWithFormat:@"background%d.pvr.ccz",targetPlanet.whichGalaxyThisObjectBelongsTo]]];
-                [self addChild:background z:-6];
+                    [self reorderChild:background2 z:-5];
+                    [background setTexture:[[CCTextureCache sharedTextureCache] addImage:[NSString stringWithFormat:@"background%d.pvr.ccz",targetPlanet.whichGalaxyThisObjectBelongsTo]]];
+                    [self addChild:background z:-6];
                 }
             }
             if (background.zOrder<background2.zOrder)
@@ -1296,7 +1307,7 @@ typedef struct {
             if (percentofthewaytonext>.85&&justDisplayedGalaxyLabel==false&&(int)galaxyLabel.opacity<=0)
             {
                 if ([[hudLayer children]containsObject:galaxyLabel]==false)
-                [hudLayer addChild:galaxyLabel];
+                    [hudLayer addChild:galaxyLabel];
                 [galaxyLabel setOpacity:1];
                 [galaxyLabel setString:[currentGalaxy name]];
                 [galaxyLabel stopAllActions];
@@ -1314,7 +1325,7 @@ typedef struct {
         [self removeChild:background cleanup:NO];
     if ((int)[background2 opacity]<=0&&[[self children]containsObject:background2])
         [self removeChild:background2 cleanup:NO];
-
+    
     
     
     
@@ -1534,6 +1545,26 @@ typedef struct {
     }
 }
 
+- (void) updatePowerupAnimation:(float)dt {
+    
+    if (powerupPos - [powerupLabel boundingBox].size.width <= 0)
+        powerupVel = 8;
+    else if (powerupPos + [powerupLabel boundingBox].size.width/2 <= 480)
+        powerupVel = 2.5;
+    else
+        powerupVel = 15;
+    
+    if (powerupPos > 480 + [powerupLabel boundingBox].size.width) {
+        paused = false;
+        isDisplayingPowerupAnimation = false;
+    }
+    
+    powerupPos += powerupVel*60*dt;
+    [powerupLabel setString:player.currentPowerup.title];
+    powerupLabel.position = ccp(-[powerupLabel boundingBox].size.width/2 + powerupPos, 160);
+    
+}
+
 - (void) Update:(ccTime)dt {
     
     if (!paused&&isGameOver==false) {
@@ -1554,7 +1585,8 @@ typedef struct {
         if (levelNumber==0)
             [self UpdateLight];
         updatesSinceLastPlanet++;
-    }
+    } else if (isDisplayingPowerupAnimation)
+        [self updatePowerupAnimation: dt];
     
     if (isInTutorialMode)
         [self UpdateTutorial];

@@ -50,6 +50,10 @@
     CCAction* galaxyLabelAction;
     int coinAnimator;
     int coinAnimator2;
+    bool isDisplayingPowerupAnimation;
+    CCLabelTTF *powerupLabel;
+    float powerupPos;
+    float powerupVel;
     
     float powerupCounter;
     

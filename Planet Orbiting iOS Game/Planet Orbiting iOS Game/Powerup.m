@@ -11,18 +11,24 @@
 
 @implementation Powerup
 
-@synthesize coinSprite, visualSprite, hudSprite, type, duration;
+@synthesize coinSprite, visualSprite, hudSprite, type, duration, title;
 
 -(id) initWithType:(int)t {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
         type = t;
+        bool shouldBeRand = false;
         
+        if (type == 0) {
+            shouldBeRand = true;
+            type = [self RandomBetween:1 maxvalue:2];
+        }
         
         if (type == 1) { //asteroidImmunity
             
             duration = 700;
+            title = @"Asteroid Armor";
             coinSprite = [CCSprite spriteWithSpriteFrameName:@"asteroidbreakercoin.png"];
             visualSprite = [CCSprite spriteWithSpriteFrameName:@"asteroidglowupgrade.png"];
             hudSprite = [CCSprite spriteWithFile:@"asteroidhudicon.png"];
@@ -30,6 +36,7 @@
         } else if (type == 2) { //coinMagnet
             
             duration = 700;
+            title = @"Star Magnet";
             coinSprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
             visualSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];
             hudSprite = [CCSprite spriteWithFile:@"magnethudicon.png"];
@@ -39,8 +46,16 @@
             return *hi;
         }
         
+        if (shouldBeRand)
+            coinSprite = [CCSprite spriteWithFile:@"upgradecoin.png"];
+        
     }
 	return self;
+}
+
+- (int)RandomBetween:(int)minvalue maxvalue:(int)maxvalue  {
+    int randomNumber = minvalue+  arc4random() % (1+maxvalue-minvalue);
+    return randomNumber;
 }
 
 @end
