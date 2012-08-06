@@ -933,10 +933,9 @@ typedef struct {
                 isDisplayingPowerupAnimation = true;
                 powerupPos = 0;
                 powerupVel = 0;
-                //[powerups removeObject:powerup];
                 player.currentPowerup = powerup;
                 [player.currentPowerup.visualSprite setVisible:true];
-                [player.currentPowerup.hudSprite setVisible:true];
+                //[player.currentPowerup.hudSprite setVisible:true];
                 powerupCounter = 0;
                 updatesWithBlinking = 0;
                 updatesWithoutBlinking = 99999;
@@ -949,28 +948,28 @@ typedef struct {
         int updatesLeft = player.currentPowerup.duration - powerupCounter;
         float blinkAfterThisManyUpdates = updatesLeft*.12;
         
-        if (player.currentPowerup.hudSprite.visible) {
+        if (player.currentPowerup.visualSprite.visible) {
             updatesWithoutBlinking++;
         }
         
         if (updatesWithoutBlinking >= blinkAfterThisManyUpdates && updatesLeft <= 300) {
             updatesWithoutBlinking = 0;
-            [player.currentPowerup.hudSprite setVisible:false];
+            //[player.currentPowerup.hudSprite setVisible:false];
             [player.currentPowerup.visualSprite setVisible:false];
             
         }
-        if (!player.currentPowerup.hudSprite.visible) {
+        if (!player.currentPowerup.visualSprite.visible) {
             updatesWithBlinking++;
         }
         
         if (updatesWithBlinking >= clampf(8*updatesLeft/100, 3, 99999999)) {
             updatesWithBlinking = 0;
-            [player.currentPowerup.hudSprite setVisible:true];
+            //[player.currentPowerup.hudSprite setVisible:true];
             [player.currentPowerup.visualSprite setVisible:true];
         }
         
         if (powerupCounter >= player.currentPowerup.duration) {
-            [player.currentPowerup.hudSprite setVisible:false];
+            //[player.currentPowerup.hudSprite setVisible:false];
             [player.currentPowerup.visualSprite setVisible:false];
             player.currentPowerup = nil;
         }
@@ -1547,9 +1546,9 @@ typedef struct {
 
 - (void) updatePowerupAnimation:(float)dt {
     
-    if (powerupPos <= 200)
+    if (powerupPos <= 250)
         powerupVel = 15;
-    else if (powerupPos <= 380)
+    else if (powerupPos <= 430)
         powerupVel = 2.3;
     else
         powerupVel = 18;
