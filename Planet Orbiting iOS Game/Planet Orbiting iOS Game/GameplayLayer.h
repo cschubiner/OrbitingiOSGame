@@ -107,6 +107,7 @@
     
     float totalSecondsAlive;
     
+    CCParticleSystemQuad * playerSpawnedParticle;
     CCParticleSystemQuad * thrustParticle;
     CCParticleSystemQuad * cometParticle;
     CCParticleSystemQuad * playerExplosionParticle;

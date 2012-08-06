@@ -99,7 +99,18 @@ typedef struct {
     [powerup release];
 }
 
+- (void) setGlow:(CCSprite*)sprite forHowLong:(float)secondsToGlow{
+    [sprite setBlendFunc: (ccBlendFunc) { GL_SRC_ALPHA, GL_ONE }];
+    [self schedule:@selector(restoreNormalStateOfSprite) interval:secondsToGlow];
+}
+//restore normal state.
+- (void) restoreNormalStateOfSprite:(CCSprite*)sprite {
+    [self unschedule:@selector(restoreNormalStateOfSprite)];
+    [sprite setBlendFunc: (ccBlendFunc) { GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA }];
+}
+
 - (void)CreateAsteroid:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
+  //  [self setGlow];
     Asteroid *asteroid = [[Asteroid alloc]init];
     asteroid.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"asteroid%d.png",[self RandomBetween:1 maxvalue:2]]];
     asteroid.sprite.position = ccp(xPos, yPos);
@@ -630,6 +641,11 @@ typedef struct {
         [cameraLayer addChild:playerExplosionParticle];
         [playerExplosionParticle setVisible:false];
         [playerExplosionParticle stopSystem];
+        
+        playerSpawnedParticle = [CCParticleSystemQuad particleWithFile:@"playerSpawnedParticle.plist"];
+        [hudLayer addChild:playerSpawnedParticle];
+        [playerSpawnedParticle setVisible:false];
+        [playerSpawnedParticle stopSystem];
         thrustParticle = [CCParticleSystemQuad particleWithFile:@"thrustParticle3.plist"];
         
         CCMenuItem  *pauseButton = [CCMenuItemImage
@@ -1133,15 +1149,13 @@ typedef struct {
     [playerExplosionParticle setPositionType:kCCPositionTypeGrouped];
     [playerExplosionParticle setVisible:true];
     
-    float moveDuration = respawnMoveTime;
     CGPoint curPlanetPos = lastPlanetVisited.sprite.position;
     CGPoint nextPlanetPos = [[[planets objectAtIndex:(lastPlanetVisited.number+1)] sprite] position];
     CGPoint pToGoTo = ccpAdd(curPlanetPos, ccpMult(ccpNormalize(ccpSub(nextPlanetPos, curPlanetPos)), lastPlanetVisited.orbitRadius));
-    id moveAction = [CCEaseSineInOut actionWithAction:[CCMoveTo actionWithDuration:moveDuration position:pToGoTo]];
-    id delay = [ CCDelayTime actionWithDuration:delayTimeAfterPlayerExplodes];
-    
-    id movingSpawnActions = [CCSpawn actions:moveAction,[CCBlink actionWithDuration:moveDuration-.05f blinks:moveDuration*respawnBlinkFrequency], [CCRotateTo actionWithDuration:moveDuration-.1f angle:player.rotationAtLastThrust+180], nil];
-    player.moveAction = [CCSequence actions:[CCHide action],delay,movingSpawnActions, [CCShow action], nil];
+    id moveAction = [CCMoveTo actionWithDuration:.2 position:pToGoTo];
+    id blink = [CCBlink actionWithDuration:delayTimeAfterPlayerExplodes-.2 blinks:(delayTimeAfterPlayerExplodes-.2)*respawnBlinkFrequency];
+    id movingSpawnActions = [CCSpawn actions:moveAction, [CCRotateTo actionWithDuration:.2 angle:player.rotationAtLastThrust+180], nil];
+    player.moveAction = [CCSequence actions:[CCHide action],movingSpawnActions,blink, [CCShow action], nil];
     
     [player.sprite runAction:player.moveAction];
     [thrustParticle stopSystem];
@@ -1210,6 +1224,12 @@ typedef struct {
         player.alive=true;
         [streak runAction:[CCSequence actions:[CCDelayTime actionWithDuration:timeToHideStreakAfterRespawn],[CCShow action], nil]];
         [thrustParticle resetSystem];
+        
+        [playerSpawnedParticle resetSystem];
+        [playerSpawnedParticle setPosition:[self GetPlayerPositionOnScreen]];
+        [playerSpawnedParticle setPositionType:kCCPositionTypeGrouped];
+        [playerSpawnedParticle setVisible:true];
+        
     }
 }
 
