@@ -1547,12 +1547,12 @@ typedef struct {
 
 - (void) updatePowerupAnimation:(float)dt {
     
-    if (powerupPos - [powerupLabel boundingBox].size.width <= 0)
-        powerupVel = 8;
-    else if (powerupPos + [powerupLabel boundingBox].size.width/2 <= 480)
-        powerupVel = 2.5;
-    else
+    if (powerupPos <= 200)
         powerupVel = 15;
+    else if (powerupPos <= 380)
+        powerupVel = 2.3;
+    else
+        powerupVel = 18;
     
     if (powerupPos > 480 + [powerupLabel boundingBox].size.width) {
         paused = false;
