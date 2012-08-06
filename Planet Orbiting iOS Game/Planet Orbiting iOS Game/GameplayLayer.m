@@ -100,6 +100,8 @@ typedef struct {
 }
 
 - (void)CreateAsteroid:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
+    [self CreateSlower:xPos yPos:yPos scale:scale];
+    return;
     Asteroid *asteroid = [[Asteroid alloc]init];
     asteroid.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"asteroid%d.png",[self RandomBetween:1 maxvalue:2]]];
     asteroid.sprite.position = ccp(xPos, yPos);
@@ -111,6 +113,21 @@ typedef struct {
     [asteroids addObject:asteroid];
     [spriteSheet addChild:asteroid.sprite];
     [asteroid release];
+}
+
+- (void)CreateSlower:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
+    Slower *slower = [[Slower alloc]init];
+    slower.particles = [CCParticleSystemQuad particleWithFile:@"slowDownParticle.plist"];
+    slower.particles.position = ccp(xPos,yPos);
+    slower.particles.positionType = kCCPositionTypeGrouped;
+
+    slower.whichSegmentThisObjectIsOriginallyFrom = originalSegmentNumber;
+    slower.segmentNumber = makingSegmentNumber;
+    slower.number = asteroids.count;
+    slower.whichGalaxyThisObjectBelongsTo = currentGalaxy.number;
+    [slowers addObject:slower];
+    [cameraLayer addChild:slower.particles];
+    [slower release];
 }
 
 - (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
@@ -592,6 +609,7 @@ typedef struct {
         planetCounter = 0;
         planets = [[NSMutableArray alloc] init];
         asteroids = [[NSMutableArray alloc] init];
+        slowers = [[NSMutableArray alloc]init];
         zones = [[NSMutableArray alloc] init];
         powerups = [[NSMutableArray alloc] init];
         coins = [[NSMutableArray alloc] init];
@@ -772,6 +790,9 @@ typedef struct {
         [Flurry logEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:(int)isInTutorialMode],@"isInTutorialMode",nil]  timed:YES];
         [self schedule:@selector(Update:) interval:0]; // this makes the update loop loop!!!!
         [Kamcord startRecording];
+        [self CreateSlower:player.sprite.position.x yPos:player.sprite.position.y scale:1];
+        [self CreateSlower:player.sprite.position.x+100 yPos:player.sprite.position.y+100 scale:1];
+        [self CreateSlower:player.sprite.position.x+200 yPos:player.sprite.position.y+300 scale:1];
 	}
 	return self;
 }

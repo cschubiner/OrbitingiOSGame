@@ -19,12 +19,14 @@
 #import "LevelObjectReturner.h"
 #import "Light.h"
 #import "Galaxy.h"
+#import "Slower.h"
 
 @interface GameplayLayer : CCLayer {
     Player *player;
     NSMutableArray *planets;
     NSMutableArray *zones;
     NSMutableArray *asteroids;
+    NSMutableArray *slowers;
     NSMutableArray *powerups;
     NSMutableArray *coins;
     NSMutableArray *coinSprites;

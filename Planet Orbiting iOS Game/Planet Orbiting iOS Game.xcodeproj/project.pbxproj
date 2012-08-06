@@ -215,6 +215,8 @@
 		0CAFE0B815CE94FE008C549E /* spriteSheet-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0CAFE0B415CE94FE008C549E /* spriteSheet-hd.pvr.ccz */; };
 		0CAFE0B915CE94FE008C549E /* spriteSheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CAFE0B515CE94FE008C549E /* spriteSheet.plist */; };
 		0CAFE0BA15CE94FE008C549E /* spriteSheet.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0CAFE0B615CE94FE008C549E /* spriteSheet.pvr.ccz */; };
+		0CD3053A15CFBAAB007EA286 /* slowDownParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CD3053915CFBAAB007EA286 /* slowDownParticle.plist */; };
+		0CD3053F15CFBB25007EA286 /* Slower.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD3053E15CFBB25007EA286 /* Slower.m */; };
 		0CFB823915AE733800EADAF3 /* SWOOSH.WAV in Resources */ = {isa = PBXBuildFile; fileRef = 0CFB823815AE733800EADAF3 /* SWOOSH.WAV */; };
 		C4286D4315C3747F00773FA3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C4286D4215C3747F00773FA3 /* Default@2x.png */; };
 		C4286D4515C3748300773FA3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C4286D4415C3748300773FA3 /* Default.png */; };
@@ -626,6 +628,9 @@
 		0CAFE0B415CE94FE008C549E /* spriteSheet-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "spriteSheet-hd.pvr.ccz"; sourceTree = "<group>"; };
 		0CAFE0B515CE94FE008C549E /* spriteSheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = spriteSheet.plist; sourceTree = "<group>"; };
 		0CAFE0B615CE94FE008C549E /* spriteSheet.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = spriteSheet.pvr.ccz; sourceTree = "<group>"; };
+		0CD3053915CFBAAB007EA286 /* slowDownParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = slowDownParticle.plist; sourceTree = "<group>"; };
+		0CD3053E15CFBB25007EA286 /* Slower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Slower.m; sourceTree = "<group>"; };
+		0CD3054015CFBB35007EA286 /* Slower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slower.h; sourceTree = "<group>"; };
 		0CFB823815AE733800EADAF3 /* SWOOSH.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SWOOSH.WAV; sourceTree = "<group>"; };
 		C4286D4215C3747F00773FA3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		C4286D4415C3748300773FA3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
@@ -779,6 +784,8 @@
 				0C2DEF00159C20BE0018F0FA /* Zone.h */,
 				0C2DEF01159C20BE0018F0FA /* Zone.m */,
 				CE30F28515AA972E00796589 /* Asteroid.h */,
+				0CD3054015CFBB35007EA286 /* Slower.h */,
+				0CD3053E15CFBB25007EA286 /* Slower.m */,
 				CE30F28615AA972E00796589 /* Asteroid.m */,
 				FAF1C63E15BCF8A1001136E3 /* Coin.h */,
 				FAF1C63F15BCF8A1001136E3 /* Coin.m */,
@@ -1438,6 +1445,7 @@
 		C4E994B715A435EA00C7009D /* Particles */ = {
 			isa = PBXGroup;
 			children = (
+				0CD3053915CFBAAB007EA286 /* slowDownParticle.plist */,
 				C4E994AE15A435E600C7009D /* cometParticle.plist */,
 				0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */,
 				0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */,
@@ -1665,6 +1673,7 @@
 				0CAFE0B915CE94FE008C549E /* spriteSheet.plist in Resources */,
 				0CAFE0BA15CE94FE008C549E /* spriteSheet.pvr.ccz in Resources */,
 				FABB361D15CF1E10004F5396 /* upgradecoin.png in Resources */,
+				0CD3053A15CFBAAB007EA286 /* slowDownParticle.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1797,6 +1806,7 @@
 				0C60EC5A15CB8C42005FE434 /* Galaxy.m in Sources */,
 				FACE0CED15CB963B0055B5DF /* Powerup.m in Sources */,
 				0C1662C915CEA56B00C0D0B9 /* Tutorial.m in Sources */,
+				0CD3053F15CFBB25007EA286 /* Slower.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
