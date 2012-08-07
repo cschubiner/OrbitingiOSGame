@@ -93,17 +93,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Level Creator.exe" size="20480">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Level Creator.exe" size="22528">
       <assemblyIdentity name="Level Creator" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>p3LWKQQ5AeDLGmTXm/ZGo6alJkM=</dsig:DigestValue>
+        <dsig:DigestValue>/NiFmLjsofJH2mY+98l03WWRSdU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
+  <file name="Content\asteroidbreakercoinsmall.xnb" size="9403">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>lQ/+Q7RWEIy3yssnbxH7wBtgZqQ=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Content\asteroidsmall.xnb" size="45531">
     <hash>
       <dsig:Transforms>

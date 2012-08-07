@@ -48,3 +48,4 @@ C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Lev
 C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\Level Creator.application
 C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\Level Creator.exe
 C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\Level Creator.pdb
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\asteroidbreakercoinsmall.xnb

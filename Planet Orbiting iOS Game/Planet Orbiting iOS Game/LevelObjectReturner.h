@@ -11,7 +11,8 @@
 enum LevelObjectTypes {
     kplanet,
     kcoin,
-    kasteroid
+    kasteroid,
+    kpowerup
 };
 
 @interface LevelObjectReturner : NSObject {

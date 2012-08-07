@@ -79,6 +79,7 @@ const float asteroidSizeScale = .36*.64f;
 const float asteroidRadiusCollisionZone = .9;
 
 const float powerupRadiusCollisionZone = 1.2;
+const float powerupScaleSize = .263;
 
 const int optimalPlanetsPerGalaxy = 13;
 const int distanceBetweenGalaxies = 3200;
