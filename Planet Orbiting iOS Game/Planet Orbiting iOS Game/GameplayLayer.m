@@ -681,7 +681,7 @@ typedef struct {
         powerupLabel.position = ccp(-[powerupLabel boundingBox].size.width/2, 160);
         [hudLayer addChild: powerupLabel];
         
-        [self playSound:@"a_song.mp3" shouldLoop:YES];
+        [self playSound:@"a_song.mp3" shouldLoop:YES pitch:1];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"bomb.wav"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.WAV"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"buttonpress.mp3"];
@@ -895,20 +895,28 @@ typedef struct {
     layerToScale.position = ccpAdd(layerToScale.position, centerPointDelta);
 }
 
-- (void)UserTouchedCoin: (Coin*)coin {
+- (void)UserTouchedCoin: (Coin*)coin dt:(float)dt{
     [[UserWallet sharedInstance] addCoins:1];
     score += howMuchCoinsAddToScore;
     coin.sprite.visible = false;
     coin.isAlive = false;
-    [self playSound:@"buttonpress.mp3" shouldLoop:false];
+    if (timeSinceGotLastCoin<.4){
+        lastCoinPitch +=.3;
+    }
+    else lastCoinPitch = 0;
+    timeSinceGotLastCoin = 0;
+    if (lastCoinSoundID!=0)
+        [[SimpleAudioEngine sharedEngine]stopEffect:lastCoinSoundID];
+    lastCoinSoundID = [self playSound:@"buttonpress.mp3" shouldLoop:false pitch:1.1+lastCoinPitch];
 }
 
-- (void)playSound:(NSString*)soundFile shouldLoop:(bool)shouldLoop {
+- (ALuint)playSound:(NSString*)soundFile shouldLoop:(bool)shouldLoop pitch:(float)pitch{
     [Kamcord playSound:soundFile loop:shouldLoop];
     if (shouldLoop)
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:soundFile loop:YES];
     else
-        [[SimpleAudioEngine sharedEngine]playEffect:soundFile];
+        return [[SimpleAudioEngine sharedEngine]playEffect:soundFile pitch:pitch pan:0 gain:1];
+    return 0;
 }
 
 - (void)ApplyGravity:(float)dt {
@@ -921,7 +929,7 @@ typedef struct {
         coin.sprite.position = ccpAdd(coin.sprite.position, coin.velocity);
         
         if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/1.3 && coin.isAlive) {
-            [self UserTouchedCoin:coin];
+            [self UserTouchedCoin:coin dt:dt];
         }
     }
     
@@ -1039,7 +1047,7 @@ typedef struct {
                 {
                     velSoftener = 0;
                     gravIncreaser = 1;
-                    [self playSound:@"SWOOSH.WAV" shouldLoop:false];
+                    [self playSound:@"SWOOSH.WAV" shouldLoop:false pitch:1];
                     player.acceleration = CGPointZero;
                     
                     CGPoint d = ccpSub(targetPlanet.sprite.position, player.sprite.position);
@@ -1599,10 +1607,9 @@ typedef struct {
 - (void) Update:(ccTime)dt {
     
     if (!paused&&isGameOver==false) {
-        if (zonesReached<[planets count]) {
             totalGameTime+=dt;
             totalSecondsAlive+=dt;
-        }
+            timeSinceGotLastCoin+=dt;
         
         if (player.alive) {
             [self UpdatePlanets];

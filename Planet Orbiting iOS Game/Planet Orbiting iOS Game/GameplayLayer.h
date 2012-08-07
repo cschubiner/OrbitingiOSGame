@@ -115,6 +115,10 @@
     CGPoint cometVelocity;
     float lastTakeoffAngleToNextPlanet;
     
+    float timeSinceGotLastCoin;
+    float lastCoinPitch;
+    ALuint lastCoinSoundID;
+    
     // is multiplied by the absoluteSpeedMult to cause time dilation
     float timeDilationCoefficient;
     
