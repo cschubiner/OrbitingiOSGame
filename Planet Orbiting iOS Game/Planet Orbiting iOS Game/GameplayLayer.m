@@ -1539,7 +1539,7 @@ typedef struct {
 
 - (void)UpdateCoinAnimations {
     coinAnimator2++;
-    if (coinAnimator2 >= 5) { //how many updates to display each image
+    if (coinAnimator2 >= 2) { //how many updates to display each image
         coinAnimator2 = 0;
         coinAnimator++;
     }
