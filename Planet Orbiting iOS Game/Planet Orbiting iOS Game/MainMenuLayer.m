@@ -106,7 +106,6 @@ const float effectsVolumeMainMenu = 1;
         [self addChild:layer];
         
         [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic_new.mp3" loop:YES];
-        [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
         
         storeManager = [[StoreManager alloc] init];
         
@@ -161,7 +160,6 @@ const float effectsVolumeMainMenu = 1;
     }
     else [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:FALSE];
 
-    [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
     CCLOG(@"GameplayLayerScene launched, game starting");
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
 }
@@ -199,7 +197,6 @@ const float effectsVolumeMainMenu = 1;
 
 - (void)pressedLevelsButton: (id) sender {
     [Flurry logEvent:@"Pressed Levels Button"];
-    [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
     CCLOG(@"levels layer launched");
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(0,0)];
     id ease = [CCEaseSineInOut actionWithAction:action];
@@ -221,7 +218,6 @@ const float effectsVolumeMainMenu = 1;
 
 - (void)startLevelNumber:(int)levelNum {
     [((AppDelegate*)[[UIApplication sharedApplication]delegate])setChosenLevelNumber:levelNum];
-    [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
     NSLog(@"started level %d",levelNum);
     [Flurry logEvent:[NSString stringWithFormat:@"Started Level %d",levelNum]];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
@@ -252,7 +248,6 @@ const float effectsVolumeMainMenu = 1;
 - (void)pressedTutorialButton: (id) sender {
     [Flurry logEvent:@"Pressed Tutorial Button"];
     [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:TRUE];
-    [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
     CCLOG(@"tutorial scene launched, game starting");
     
     

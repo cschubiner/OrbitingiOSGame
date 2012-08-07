@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <Kamcord/Kamcord.h>
 
 @interface RootViewController : UIViewController {
 
