@@ -1310,22 +1310,20 @@ typedef struct {
                     [self addChild:background2 z:-6];
                 }
             }
+
             if ([[self children]containsObject:background2]) {
-                if ([[self children]containsObject:background]==false) {
-                    [self reorderChild:background2 z:-5];
-                    [background setTexture:[[CCTextureCache sharedTextureCache] addImage:[NSString stringWithFormat:@"background%d.pvr.ccz",targetPlanet.whichGalaxyThisObjectBelongsTo]]];
-                    [self addChild:background z:-6];
-                }
-            }
-            if (background.zOrder<background2.zOrder)
-            {
-                [background setOpacity:255];
-                [background2 setOpacity:lerpf(255, 0, percentofthewaytonext)];
-            }
-            else {
                 [background2 setOpacity:255];
                 [background setOpacity:lerpf(255, 0, percentofthewaytonext)];
             }
+            else [background setOpacity:255];
+            if (percentofthewaytonext>=1&&[[self children]containsObject:background2]) {
+                [background setTexture:[[CCTextureCache sharedTextureCache] addImage:[NSString stringWithFormat:@"background%d.pvr.ccz",targetPlanet.whichGalaxyThisObjectBelongsTo]]];
+                [background setOpacity:255];
+                if (![[self children]containsObject:background])
+                [self addChild:background];
+                [self removeChild:background2 cleanup:YES];
+            }
+            
             if (percentofthewaytonext>.85&&justDisplayedGalaxyLabel==false&&(int)galaxyLabel.opacity<=0)
             {
                 if ([[hudLayer children]containsObject:galaxyLabel]==false)
@@ -1337,8 +1335,10 @@ typedef struct {
                 justDisplayedGalaxyLabel= true;
             }
         }
-        else
+        else {
             cameraShouldFocusOnPlayer=false;
+            [background setOpacity:255];
+        }
     }
     
     if ((int)galaxyLabel.opacity <=0&&justDisplayedGalaxyLabel==false&&[[hudLayer children]containsObject:galaxyLabel])
@@ -1611,6 +1611,9 @@ typedef struct {
         updatesSinceLastPlanet++;
     } else if (isDisplayingPowerupAnimation)
         [self updatePowerupAnimation: dt];
+    
+    if ([[self children]containsObject:background]&&[[self children]containsObject:background2])
+        NSLog(@"both backgrounds are on the screen! this should only happen when transitioning between galaxies.");
     
     if (isInTutorialMode)
         [self UpdateTutorial];
