@@ -19,6 +19,7 @@
 #import "LevelObjectReturner.h"
 #import "Light.h"
 #import "Galaxy.h"
+#import "UpgradeValues.h"
 
 @interface GameplayLayer : CCLayer {
     Player *player;
@@ -127,6 +128,7 @@
     CCLayer *pauseLayer;
     CCLabelBMFont * gameOverScoreLabel;
 }
+
 
 + (CCScene *) scene;
 

@@ -10,4 +10,17 @@
 
 @implementation UpgradeValues
 
+@synthesize asteroidImmunityDuration, coinMagnetDuration;
+
+static UpgradeValues *sharedInstance = nil;
+
++ (id)sharedInstance {
+    @synchronized([UpgradeValues class]) {
+        if (sharedInstance == nil) {
+            sharedInstance = [[UpgradeValues alloc] init];
+        }
+    }
+    return sharedInstance;
+}
+
 @end

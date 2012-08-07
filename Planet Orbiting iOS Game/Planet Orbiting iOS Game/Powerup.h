@@ -7,6 +7,8 @@
 //
 
 #import "CameraObject.h"
+#import "UpgradeValues.h"
+
 
 @interface Powerup : CameraObject
 

@@ -7,7 +7,6 @@
 //
 
 #import "Powerup.h"
-#import "cocos2d.h"
 
 @implementation Powerup
 
@@ -27,7 +26,7 @@
         
         if (type == 1) { //asteroidImmunity
             
-            duration = 700;
+            duration = [[UpgradeValues sharedInstance] asteroidImmunityDuration];
             title = @"Asteroid Armor";
             coinSprite = [CCSprite spriteWithSpriteFrameName:@"asteroidbreakercoin.png"];
             visualSprite = [CCSprite spriteWithSpriteFrameName:@"asteroidglowupgrade.png"];
@@ -35,7 +34,7 @@
             
         } else if (type == 2) { //coinMagnet
             
-            duration = 700;
+            duration = [[UpgradeValues sharedInstance] coinMagnetDuration];
             title = @"Star Magnet";
             coinSprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
             visualSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];

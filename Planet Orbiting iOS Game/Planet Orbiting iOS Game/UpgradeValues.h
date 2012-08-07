@@ -10,4 +10,11 @@
 
 @interface UpgradeValues : NSObject
 
+@property (nonatomic) float asteroidImmunityDuration;
+@property (nonatomic) float coinMagnetDuration;
+
++ (id)sharedInstance;
+
+
+
 @end

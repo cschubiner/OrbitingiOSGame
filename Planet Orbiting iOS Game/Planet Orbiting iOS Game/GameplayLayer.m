@@ -587,6 +587,11 @@ typedef struct {
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
 }
 
+- (void)initUpgradedVariables {
+    [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:100 + 100];
+    [[UpgradeValues sharedInstance] setCoinMagnetDuration:100 + 100*5];
+}
+
 /* On "init," initialize the instance */
 - (id)init {
 	// always call "super" init.
@@ -599,6 +604,8 @@ typedef struct {
         isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsInTutorialMode];
         isInTutorialMode = false;
         levelNumber = [((AppDelegate*)[[UIApplication sharedApplication]delegate])getChosenLevelNumber];
+        [self initUpgradedVariables];
+        
         
         planetCounter = 0;
         planets = [[NSMutableArray alloc] init];

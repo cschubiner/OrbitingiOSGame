@@ -13,7 +13,7 @@
 @synthesize balance;
 
 static UserWallet *sharedInstance = nil;
-static int MAX_BALANCE = 100000000;
+static int MAX_BALANCE = 10000000000;
 
 + (id)sharedInstance {
     @synchronized([UserWallet class]) {
