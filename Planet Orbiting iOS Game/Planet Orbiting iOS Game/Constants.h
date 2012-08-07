@@ -146,3 +146,5 @@ const float initialLightScoreVelocity = 4;
 const float amountToIncreaseLightScoreVelocityEachUpdate = .00065;
 
 const int howMuchCoinsAddToScore = 10;
+
+const float coinAnimationDelay = .07;

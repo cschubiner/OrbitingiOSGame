@@ -28,7 +28,8 @@
     NSMutableArray *asteroids;
     NSMutableArray *powerups;
     NSMutableArray *coins;
-    NSMutableArray *coinSprites;
+    NSMutableArray * coinAnimationFrames;
+    CCAnimation * coinAnimation;
     CCLabelTTF *scoreLabel;
     CCLabelTTF *coinsLabel;
     CGSize size;
@@ -49,8 +50,6 @@
     float updatesWithoutBlinking;
     float updatesWithBlinking;
     CCAction* galaxyLabelAction;
-    int coinAnimator;
-    int coinAnimator2;
     bool isDisplayingPowerupAnimation;
     CCLabelTTF *powerupLabel;
     float powerupPos;

@@ -63,11 +63,13 @@ typedef struct {
     Coin *coin = [[Coin alloc]init];
     coin.sprite = [CCSprite spriteWithFile:@"star1.png"];
     coin.sprite.position = ccp(xPos, yPos);
-    [coin.sprite setScale:scale*.4];
+    [coin.sprite setScale:scale*.8];
     coin.whichSegmentThisObjectIsOriginallyFrom = originalSegmentNumber;
     coin.segmentNumber = makingSegmentNumber;
     coin.number = coins.count;
     coin.whichGalaxyThisObjectBelongsTo  = currentGalaxy.number;
+    [coin.sprite runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:coinAnimation restoreOriginalFrame:NO]]];
+
     [coins addObject:coin];
     [cameraLayer addChild:coin.sprite];
     //[spriteSheet addChild:coin.sprite];
@@ -669,31 +671,7 @@ typedef struct {
         zones = [[NSMutableArray alloc] init];
         powerups = [[NSMutableArray alloc] init];
         coins = [[NSMutableArray alloc] init];
-        coinSprites = [[NSMutableArray alloc] init];
-        CCTexture2D* tex1 = [[CCTextureCache sharedTextureCache] addImage:@"star1.png"];
-        CCTexture2D* tex2 = [[CCTextureCache sharedTextureCache] addImage:@"star2.png"];
-        CCTexture2D* tex3 = [[CCTextureCache sharedTextureCache] addImage:@"star3.png"];
-        CCTexture2D* tex4 = [[CCTextureCache sharedTextureCache] addImage:@"star4.png"];
-        CCTexture2D* tex5 = [[CCTextureCache sharedTextureCache] addImage:@"star5.png"];
-        CCTexture2D* tex6 = [[CCTextureCache sharedTextureCache] addImage:@"star6.png"];
-        CCTexture2D* tex7 = [[CCTextureCache sharedTextureCache] addImage:@"star7.png"];
-        CCTexture2D* tex8 = [[CCTextureCache sharedTextureCache] addImage:@"star8.png"];
-        CCTexture2D* tex9 = [[CCTextureCache sharedTextureCache] addImage:@"star9.png"];
-        CCTexture2D* tex10 = [[CCTextureCache sharedTextureCache] addImage:@"star10.png"];
-        CCTexture2D* tex11 = [[CCTextureCache sharedTextureCache] addImage:@"star11.png"];
-        CCTexture2D* tex12 = [[CCTextureCache sharedTextureCache] addImage:@"star12.png"];
-        [coinSprites addObject:tex1];
-        [coinSprites addObject:tex2];
-        [coinSprites addObject:tex3];
-        [coinSprites addObject:tex4];
-        [coinSprites addObject:tex5];
-        [coinSprites addObject:tex6];
-        [coinSprites addObject:tex7];
-        [coinSprites addObject:tex8];
-        [coinSprites addObject:tex9];
-        [coinSprites addObject:tex10];
-        [coinSprites addObject:tex11];
-        [coinSprites addObject:tex12];
+        
         
         hudLayer = [[CCLayer alloc] init];
         cameraLayer = [[CCLayer alloc] init];
@@ -744,6 +722,13 @@ typedef struct {
         
         spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"spriteSheet.pvr.ccz"];
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spriteSheet.plist"];
+        
+        coinAnimationFrames = [[NSMutableArray alloc]init];
+        for (int i = 1; i <= 12; ++i) {
+            [coinAnimationFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"star%d.png", i]]];
+        }
+        coinAnimation = [[CCAnimation alloc ]initWithFrames:coinAnimationFrames delay:coinAnimationDelay];
+
         
         [self CreateGalaxies];
         currentGalaxy = [galaxies objectAtIndex:0];
@@ -807,8 +792,6 @@ typedef struct {
         powerupCounter = 0;
         updatesWithoutBlinking = 0;
         updatesWithBlinking = 999;
-        coinAnimator = 0;
-        coinAnimator2 = 0;
         powerupPos = 0;
         powerupVel = 0;
         
@@ -954,7 +937,8 @@ typedef struct {
 - (void)UserTouchedCoin: (Coin*)coin dt:(float)dt{
     [[UserWallet sharedInstance] addCoins:1];
     score += howMuchCoinsAddToScore;
-    coin.sprite.visible = false;
+    id scaleAction = [CCScaleTo actionWithDuration:.1 scale:.2*coin.sprite.scale];
+    [coin.sprite runAction:[CCSequence actions:[CCSpawn actions:scaleAction,[CCRotateBy actionWithDuration:.1 angle:360],[CCMoveTo actionWithDuration:.1 position:player.sprite.position], nil],[CCHide action], nil]];
     coin.isAlive = false;
     if (timeSinceGotLastCoin<.4){
         lastCoinPitch +=.3;
@@ -1611,21 +1595,8 @@ typedef struct {
         light.score += light.scoreVelocity;
 }
 
-- (void)UpdateCoinAnimations {
-    coinAnimator2++;
-    if (coinAnimator2 >= 1) { //how many updates to display each image
-        coinAnimator2 = 0;
-        coinAnimator++;
-    }
-    
-    if (coinAnimator >= [coinSprites count]) {
-        coinAnimator = 0;
-    }
-    
+- (void)UpdateCoins {
     for (Coin* coin in coins) {
-        
-        CCTexture2D* tx = [coinSprites objectAtIndex:coinAnimator];
-        [coin.sprite setTexture:tx];
         
         CGPoint p = coin.sprite.position;
         
@@ -1671,7 +1642,7 @@ typedef struct {
             [self UpdatePlanets];
             [self UpdateGalaxies];
         }
-        [self UpdateCoinAnimations];
+        [self UpdateCoins];
         [self UpdatePlayer: dt];
         [self UpdateScore];
         [self UpdateCamera:dt];
