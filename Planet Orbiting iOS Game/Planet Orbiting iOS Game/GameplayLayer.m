@@ -1049,9 +1049,12 @@ typedef struct {
                     CGPoint spot1 = ccpAdd(dir4, planet.sprite.position);
                     CGPoint spot2 = ccpAdd(dir5, planet.sprite.position);
                     
+                    float howMuchOfSwipeVectorToUse = .35;
+                    CGPoint vectorToCheck = ccpAdd(ccpMult(ccpNormalize(swipeVector), howMuchOfSwipeVectorToUse), ccpMult(ccpNormalize(player.velocity), 1-howMuchOfSwipeVectorToUse));
+                    
                     float newAng = 0;
                     CGPoint vel = CGPointZero;
-                    if (ccpLength(ccpSub(ccpAdd(player.sprite.position, swipeVector), left)) <= ccpLength(ccpSub(ccpAdd(player.sprite.position, swipeVector), right))) { //closer to the left
+                    if (ccpLength(ccpSub(ccpAdd(player.sprite.position, vectorToCheck), left)) <= ccpLength(ccpSub(ccpAdd(player.sprite.position, vectorToCheck), right))) { //closer to the left
                         float distToUse2 = factorToPlaceGravFieldWhenCrossingOverTheMiddle; //crossing over the middle
                         if (ccpLength(ccpSub(player.sprite.position, spot1)) < ccpLength(ccpSub(player.sprite.position, spot2)))
                             distToUse2 = factorToPlaceGravFieldWhenStayingOutside; //staying outside
@@ -1539,13 +1542,15 @@ typedef struct {
 
 - (void)UpdateCoinAnimations {
     coinAnimator2++;
-    if (coinAnimator2 >= 2) { //how many updates to display each image
+    if (coinAnimator2 >= 1) { //how many updates to display each image
         coinAnimator2 = 0;
         coinAnimator++;
     }
+    
     if (coinAnimator >= [coinSprites count]) {
         coinAnimator = 0;
     }
+    
     for (Coin* coin in coins) {
         
         CCTexture2D* tx = [coinSprites objectAtIndex:coinAnimator];
@@ -1615,8 +1620,6 @@ typedef struct {
         [self togglePause];
     }
     player.currentPowerup.visualSprite.position = player.sprite.position;
-    //if (!player.alive)
-    //    [player.currentPowerup.visualSprite setVisible:false];
 }
 
 - (void)endGame {
