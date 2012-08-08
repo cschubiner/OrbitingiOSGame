@@ -123,6 +123,7 @@ const float effectsVolumeMainMenu = 1;
     [cells addObject:[self createCellWithTitle:@"somethang" spriteName:@"asteroidhudicon.png" readableCost:@"3,000"]];
     [cells addObject:[self createCellWithTitle:@"A sexy new rocket" spriteName:@"asteroidhudicon.png" readableCost:@"10,000"]];
     [cells addObject:[self createCellWithTitle:@"A 2sexy new rocket" spriteName:@"asteroidhudicon.png" readableCost:@"10,000"]];
+    [cells addObject:[self createCellWithTitle:@"A 2sexy new rocket" spriteName:@"asteroidhudicon.png" readableCost:@"10,000"]];
     
     upgradeLayerHeight = 0;
     for (int i = 0; i < [cells count]; i++) {
@@ -169,13 +170,36 @@ const float effectsVolumeMainMenu = 1;
             
             //for (CCLayer* laya in cells) {
                 //CGRect newRect = CGRectMake(upgradeLayer.boundingBox.origin.x + 960, upgradeLayer.boundingBox.origin.x + 680, upgradeLayer.boundingBox.size.width, upgradeLayer.boundingBox.size.height);
-                if (CGRectContainsPoint(upgradeLayer.boundingBox, ccp(location.x + 960, location.y + 680))) {
+            //CCLOG(@"boundingBox: %@", upgradeLayer.boundingBox);
+            //CCLOG(@"touch location: %@", location);
+            //CCLOG(@"layer position: %@", layer.position);
+            
+            
+            
+            int i = 0;
+            for (CCLayer* laya in cells) {
+                CGRect box = laya.boundingBox;
+                
+                box = CGRectMake(box.origin.x + upgradeLayer.boundingBox.origin.x, box.origin.y + upgradeLayer.boundingBox.origin.y, box.size.width, box.size.height);
+                
+                CGPoint point = ccp(location.x + layer.position.x + 960*2, location.y + layer.position.y + 320*3 - 160*1.5);
+                
+                
+                //CCLOG(@"cell y: %f, height: %f", box.origin.y, box.size.height);
+                //CCLOG(@"point y: %f", point.y);
+                
+                if (CGRectContainsPoint(box, point) && point.y < 720-55) {
                     
-                    UIAlertView* alertview2 = [[UIAlertView alloc] initWithTitle:@"tit" message:@"massage" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Purchase", nil];
+                    //if (CGRectContainsPoint(upgradeLayer.boundingBox, ccp(location.x + layer.position.x + 960*2, location.y + layer.position.y + 320*3))) {
+                    
+                    
+                    UIAlertView* alertview2 = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"tit number %d", i] message:@"massage" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Purchase", nil];
                     [alertview2 setTag:upgradeAlertTag];
                     [alertview2 show];
                     
                 }
+                i++;
+            }
             //}
             
         }
