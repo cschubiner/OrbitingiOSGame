@@ -16,8 +16,9 @@
 #import "DataStorage.h"
 #import "PlayerStats.h"
 
-#define tutorialLayerTag    300
-#define levelLayerTag    400
+#define tutorialLayerTag    1001
+#define levelLayerTag       1002
+#define upgradeAlertTag     1003
 
 
 const float musicVolumeMainMenu = 1;
@@ -27,7 +28,13 @@ const float effectsVolumeMainMenu = 1;
 @implementation MainMenuLayer {
     StoreManager *storeManager;
     BOOL muted;
-
+    CCLayer *upgradeLayer;
+    CGPoint swipeBeginPoint;
+    CGPoint swipeEndPoint;
+    CGPoint startingUpgradeLayerPos;
+    float upgradeLayerHeight;
+    NSMutableArray* cells;
+    bool didFingerMove;
 }
 
 // returns a singleton scene
@@ -62,12 +69,170 @@ const float effectsVolumeMainMenu = 1;
     [numImmunitiesLabel setString:immunitiesBought];
 }
 
+- (CCLayer*)createCellWithTitle:(NSString*)title spriteName:(NSString*)spriteName readableCost:(NSString*)readableCost {
+    CCLayer* aCell = [[CCLayer alloc] init];
+    
+    
+    CCSprite* backgroundSprite = [CCSprite spriteWithFile:@"cellBackground.png"];
+    [aCell addChild:backgroundSprite];
+    [backgroundSprite setPosition:ccp(backgroundSprite.width/2, -backgroundSprite.height/2)];
+    
+    
+    CCSprite* upgradeSprite = [CCSprite spriteWithFile:spriteName];
+    [upgradeSprite setScale:.5];
+    [aCell addChild:upgradeSprite];
+    [upgradeSprite setPosition:ccp(upgradeSprite.width/2+5, -backgroundSprite.height/2)];
+    
+    
+    CCLabelTTF* hello = [CCLabelTTF labelWithString:title fontName:@"Marker Felt" fontSize:24];
+    [aCell addChild: hello];
+    [hello setPosition:ccp(90 + [hello boundingBox].size.width/2, -25)];
+    
+    CCLabelTTF* hello2 = [CCLabelTTF labelWithString:@"Level 3" fontName:@"Marker Felt" fontSize:18];
+    [aCell addChild: hello2];
+    [hello2 setPosition:ccp(90 + [hello2 boundingBox].size.width/2, -58)];
+    
+    CCSprite* starSprite = [CCSprite spriteWithFile:@"star1.png"];
+    [starSprite setScale:.16];
+    [aCell addChild:starSprite];
+    [starSprite setPosition:ccp(480-starSprite.width/2-8, -57)];
+    
+    CCLabelTTF* hello3 = [CCLabelTTF labelWithString:readableCost fontName:@"Marker Felt" fontSize:18];
+    [aCell addChild: hello3];
+    [hello3 setPosition:ccp(480 - 37 - [hello3 boundingBox].size.width/2, -58)];
+    
+    
+    [aCell setContentSize:CGSizeMake(480, 80)];
+    
+    return aCell;
+}
+
+- (void) initUpgradeLayer {
+    
+    
+    upgradeLayer = [[CCLayer alloc] init];
+    startingUpgradeLayerPos = ccp(960, 640);
+    [upgradeLayer setPosition:startingUpgradeLayerPos];
+    //[upgradeLayer setContentSize:CGSizeMake(480, 10)];
+    
+    cells = [[NSMutableArray alloc] init];
+    [cells addObject:[self createCellWithTitle:@"Star Magnet Upgrade" spriteName:@"magnethudicon.png" readableCost:@"3,000"]];
+    [cells addObject:[self createCellWithTitle:@"Asteroid Armor Upgrade" spriteName:@"asteroidhudicon.png" readableCost:@"1,000"]];
+    [cells addObject:[self createCellWithTitle:@"Da nigguh" spriteName:@"asteroidhudicon.png" readableCost:@"-100"]];
+    [cells addObject:[self createCellWithTitle:@"Speed boost" spriteName:@"asteroidhudicon.png" readableCost:@"1,000"]];
+    [cells addObject:[self createCellWithTitle:@"somethang" spriteName:@"asteroidhudicon.png" readableCost:@"3,000"]];
+    [cells addObject:[self createCellWithTitle:@"A sexy new rocket" spriteName:@"asteroidhudicon.png" readableCost:@"10,000"]];
+    [cells addObject:[self createCellWithTitle:@"A 2sexy new rocket" spriteName:@"asteroidhudicon.png" readableCost:@"10,000"]];
+    
+    upgradeLayerHeight = 0;
+    for (int i = 0; i < [cells count]; i++) {
+        CCLayer* cell = (CCLayer*)[cells objectAtIndex:i];
+        [upgradeLayer addChild:cell];
+        [cell setPosition:ccp(0, -80*i - 55)];
+        upgradeLayerHeight += 80;
+    }
+}
+
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    for (UITouch *touch in touches) {
+        CGPoint location = [touch locationInView:[touch view]];
+        location = [[CCDirector sharedDirector] convertToGL:location];
+        swipeBeginPoint = location;
+        didFingerMove = false;
+    }
+}
+
+- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    for (UITouch *touch in touches) {
+        CGPoint location = [touch locationInView:[touch view]];
+        location = [[CCDirector sharedDirector] convertToGL:location];
+        swipeEndPoint = location;
+        didFingerMove = true;
+        CGPoint swipeVector = ccpSub(swipeEndPoint, swipeBeginPoint);
+        [upgradeLayer setPosition:CGPointMake(upgradeLayer.position.x, ccpAdd(upgradeLayer.position, swipeVector).y)];
+        swipeBeginPoint = swipeEndPoint;
+        if (upgradeLayer.position.y < startingUpgradeLayerPos.y)
+            [upgradeLayer setPosition:startingUpgradeLayerPos];
+        if (upgradeLayer.position.y > startingUpgradeLayerPos.y + upgradeLayerHeight - (320 - 55))
+            [upgradeLayer setPosition:ccp(upgradeLayer.position.x, startingUpgradeLayerPos.y + upgradeLayerHeight - (320 - 55))];
+        
+        //CCLOG(@"pos: %f, maxPerhaps; %f", upgradeLayer.position.y, startingUpgradeLayerPos.y + upgradeLayerHeight);
+        //CCLOG(@"startingPos: %f, height; %f", startingUpgradeLayerPos.y, upgradeLayerHeight);
+    }
+}
+
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    for (UITouch *touch in touches) {
+        CGPoint location = [touch locationInView:[touch view]];
+        location = [[CCDirector sharedDirector] convertToGL:location];
+        if (!didFingerMove) {
+            
+            //for (CCLayer* laya in cells) {
+                //CGRect newRect = CGRectMake(upgradeLayer.boundingBox.origin.x + 960, upgradeLayer.boundingBox.origin.x + 680, upgradeLayer.boundingBox.size.width, upgradeLayer.boundingBox.size.height);
+                if (CGRectContainsPoint(upgradeLayer.boundingBox, ccp(location.x + 960, location.y + 680))) {
+                    
+                    UIAlertView* alertview2 = [[UIAlertView alloc] initWithTitle:@"tit" message:@"massage" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Purchase", nil];
+                    [alertview2 setTag:upgradeAlertTag];
+                    [alertview2 show];
+                    
+                }
+            //}
+            
+        }
+    }
+}
+
 // on "init" you need to initialize your instance
 - (id)init {
 	if (self = [super init]) {
         [self updateLabels];
         
+        self.isTouchEnabled = true;
+        
+        
+        [self initUpgradeLayer];
+        
         layer = (CCLayer*)[CCBReader nodeGraphFromFile:@"MainMenuScrolling.ccb" owner:self];
+        [layer addChild:upgradeLayer];
+        
+        CCSprite* upgradeTopBar = [CCSprite spriteWithFile:@"upgradesHeader.png"];
+        [layer addChild:upgradeTopBar];
+        [upgradeTopBar setPosition:ccp(960 + upgradeTopBar.width/2, 640-upgradeTopBar.height/2)];
+        
+
+        //CCMenuItemImage* backButton = [[CCMenuItemImage alloc] initFromNormalImage:@"upgrade.png" selectedImage:@"upgrade.png" disabledImage:@"upgrade.png" target:self selector:@selector(pressedBackButton:)];
+        
+        CCMenuItem *back = [CCMenuItemImage 
+                                    itemFromNormalImage:@"upgrade.png" selectedImage:@"upgrade.png" 
+                                    target:self selector:@selector(pressedBackButton:)];
+
+        back.rotation = -90;
+        back.scale = .5;
+        back.position = ccp(720 + 28, 480 - 28);
+        
+        CCMenu *menu = [CCMenu menuWithItems:back, nil];
+        
+        [layer addChild:menu];
+        
+        
+        
+        CCLabelBMFont* hello4 = [[CCLabelBMFont alloc] initWithString:@"Upgrades" fntFile:@"betaFont2.fnt"];
+        [hello4 setScale:.8];
+        hello4.position = ccp(1200, 640-30);
+        [layer addChild:hello4];
+        
+        
+        CCSprite* starSprite = [CCSprite spriteWithFile:@"star1.png"];
+        [starSprite setScale:.2];
+        [layer addChild:starSprite];
+        [starSprite setPosition:ccp(1200 - 480/2 + 480-starSprite.width/2-8, 640-29)];
+        
+        CCLabelTTF* hello3 = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",[[UserWallet sharedInstance]getBalance]] fontName:@"Marker Felt" fontSize:22];
+        [layer addChild: hello3];
+        [hello3 setPosition:ccp(1200 - 480/2 + 480 - 40 - [hello3 boundingBox].size.width/2, 640-30)];
+        
+        
+        
         
         NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
         
@@ -188,11 +353,19 @@ const float effectsVolumeMainMenu = 1;
 }
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1) {
-        NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/PBD9L5H"];
-        [[UIApplication sharedApplication] openURL:url];
-        [Flurry logEvent:@"Launched survey from main menu"];
+    if (alertView.tag == upgradeAlertTag) {
+        if (buttonIndex == 1) {
+            UIAlertView* alertview3 = [[UIAlertView alloc] initWithTitle:@"Congratz yo" message:@"You bought something" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+            [alertview3 show];
+        }
+    } else {
+        if (buttonIndex == 1) {
+            NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/PBD9L5H"];
+            [[UIApplication sharedApplication] openURL:url];
+            [Flurry logEvent:@"Launched survey from main menu"];
+        }
     }
+    
 }
 
 - (void)pressedLevelsButton: (id) sender {
@@ -204,12 +377,12 @@ const float effectsVolumeMainMenu = 1;
     
 }
 
-
 -(void)moveLevelsLayerRight {
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(layer.position.x-480,0)];
     id ease = [CCEaseSineInOut actionWithAction:action];
     [layer runAction: ease];
 }
+
 -(void)moveLevelsLayerLeft {
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(layer.position.x+480,0)];
     id ease = [CCEaseSineInOut actionWithAction:action];

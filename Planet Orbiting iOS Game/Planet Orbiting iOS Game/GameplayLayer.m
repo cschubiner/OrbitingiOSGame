@@ -1525,7 +1525,7 @@ typedef struct {
     
     int numCoins = [[UserWallet sharedInstance] getBalance];
     int coinsDiff = numCoins - startingCoins;
-    [coinsLabel setString:[NSString stringWithFormat:@"Coins: %i",coinsDiff]];
+    [coinsLabel setString:[NSString stringWithFormat:@"Stars: %i",coinsDiff]];
 }
 
 - (void)UpdateParticles:(ccTime)dt {
