@@ -69,7 +69,11 @@ typedef struct {
     coin.number = coins.count;
     coin.whichGalaxyThisObjectBelongsTo  = currentGalaxy.number;
     [coin.sprite runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:coinAnimation restoreOriginalFrame:NO]]];
-
+    
+    
+    coin.plusLabel = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:50];
+    [cameraLayer addChild: coin.plusLabel];
+    
     [coins addObject:coin];
     [cameraLayer addChild:coin.sprite];
     //[spriteSheet addChild:coin.sprite];
@@ -646,8 +650,10 @@ typedef struct {
 }
 
 - (void)initUpgradedVariables {
-    [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:100 + 100];
-    [[UpgradeValues sharedInstance] setCoinMagnetDuration:100 + 100*5];
+    [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:500 + 100*0];
+    [[UpgradeValues sharedInstance] setCoinMagnetDuration:500 + 100*0];
+    [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.85 + .045*0];
+    [[UpgradeValues sharedInstance] setHasDoubleCoins:false];
 }
 
 /* On "init," initialize the instance */
@@ -701,7 +707,7 @@ typedef struct {
             scoreLabel.position = ccp(420, [scoreLabel boundingBox].size.height);
             [hudLayer addChild: scoreLabel];
             
-            coinsLabel = [CCLabelTTF labelWithString:@"Coins: " fontName:@"Marker Felt" fontSize:20];
+            coinsLabel = [CCLabelTTF labelWithString:@"Stars: " fontName:@"Marker Felt" fontSize:20];
             coinsLabel.position = ccp(50, [coinsLabel boundingBox].size.height);
             [hudLayer addChild: coinsLabel];
         }
@@ -794,6 +800,8 @@ typedef struct {
         updatesWithBlinking = 999;
         powerupPos = 0;
         powerupVel = 0;
+        currentNumOfCoinLabels = 0;
+        currentCoinLabel = 0;
         
         background = [CCSprite spriteWithFile:@"background0.pvr.ccz"];
         background2 = [CCSprite spriteWithFile:@"background1.pvr.ccz"];
@@ -935,10 +943,27 @@ typedef struct {
 }
 
 - (void)UserTouchedCoin: (Coin*)coin dt:(float)dt{
-    [[UserWallet sharedInstance] addCoins:1];
-    score += howMuchCoinsAddToScore;
+    
+    [[UserWallet sharedInstance] addCoins: ([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1) ];
+    
+    score += howMuchCoinsAddToScore*([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1);
+    
+    
+    currentCoinLabel += ([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1);
+    [coin.plusLabel setString:[NSString stringWithFormat:@"+%d!", currentCoinLabel]];
+    currentNumOfCoinLabels++;
+    
+    
+    [coin.plusLabel runAction:[CCSequence actions:
+                               [CCSpawn actions:[CCScaleTo actionWithDuration:.1 scale:2*coin.plusLabel.scale], nil],
+                               [CCSpawn actions:[CCScaleTo actionWithDuration:.2 scale:1*coin.plusLabel.scale], nil],
+                               [CCDelayTime actionWithDuration:.4],
+                               [CCHide action],
+                               [CCCallFunc actionWithTarget:self selector:@selector(coinDone)],
+                               nil]];
+    
     id scaleAction = [CCScaleTo actionWithDuration:.1 scale:.2*coin.sprite.scale];
-    [coin.sprite runAction:[CCSequence actions:[CCSpawn actions:scaleAction,[CCRotateBy actionWithDuration:.1 angle:360],[CCMoveTo actionWithDuration:.1 position:player.sprite.position], nil],[CCHide action], nil]];
+    [coin.sprite runAction:[CCSequence actions:[CCSpawn actions:scaleAction,[CCRotateBy actionWithDuration:.1 angle:360], nil],[CCHide action], nil]];
     coin.isAlive = false;
     if (timeSinceGotLastCoin<.4){
         lastCoinPitch +=.3;
@@ -948,6 +973,14 @@ typedef struct {
     if (lastCoinSoundID!=0)
         [[SimpleAudioEngine sharedEngine]stopEffect:lastCoinSoundID];
     lastCoinSoundID = [self playSound:@"buttonpress.mp3" shouldLoop:false pitch:1.1+lastCoinPitch];
+}
+
+- (void)coinDone {
+    currentNumOfCoinLabels--;
+    
+    if (currentNumOfCoinLabels <= 0) {
+        currentCoinLabel = 0;
+    }
 }
 
 - (ALuint)playSound:(NSString*)soundFile shouldLoop:(bool)shouldLoop pitch:(float)pitch{
@@ -966,28 +999,33 @@ typedef struct {
         CGPoint p = coin.sprite.position;
         
         coin.velocity = ccpMult(ccpNormalize(ccpSub(player.sprite.position, p)), coin.speed);
-        coin.sprite.position = ccpAdd(coin.sprite.position, coin.velocity);
+        if (coin.isAlive)
+            coin.sprite.position = ccpAdd(coin.sprite.position, coin.velocity);
+        coin.plusLabel.position = ccp(coin.sprite.position.x, coin.sprite.position.y + 50);
         
         if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/1.3 && coin.isAlive) {
             [self UserTouchedCoin:coin dt:dt];
         }
     }
     
-    bool isHittingAsteroid = false;
+    //bool isHittingAsteroid = false;
     for (Asteroid* asteroid in asteroids) {
         CGPoint p = asteroid.sprite.position;
         if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= asteroid.radius * asteroidRadiusCollisionZone && orbitState == 3) {
-            isHittingAsteroid = true;
+            //isHittingAsteroid = true;
+            if (!(player.currentPowerup.type == 1)) {
+                [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
+            }
         }
     }
     
-    if (!(player.currentPowerup.type == 1)) {
+    /*if (!(player.currentPowerup.type == 1)) {
         if (isHittingAsteroid)
             asteroidSlower -= .1;
         else
             asteroidSlower += .01;
         asteroidSlower = clampf(asteroidSlower, .13, 1);
-    }
+    }*/
     
     
     
@@ -1063,7 +1101,7 @@ typedef struct {
                 dangerLevel = 0;
                 CGPoint a = ccpSub(player.sprite.position, planet.sprite.position);
                 if (ccpLength(a) != planet.orbitRadius) {
-                    player.sprite.position = ccpAdd(player.sprite.position, ccpMult(ccpNormalize(a), (planet.orbitRadius - ccpLength(a))*howFastOrbitPositionGetsFixed*timeDilationCoefficient*60*dt/absoluteMinTimeDilation));
+                    player.sprite.position = ccpAdd(player.sprite.position, ccpMult(ccpNormalize(a), (planet.orbitRadius - ccpLength(a))*howFastOrbitPositionGetsFixed*timeDilationCoefficient*60*dt/[[UpgradeValues sharedInstance] absoluteMinTimeDilation]));
                 }
                 
                 velSoftener += 1/updatesToMakeOrbitVelocityPerfect;
@@ -1234,7 +1272,7 @@ typedef struct {
         //CCLOG(@"state: %d", orbitState);
         timeDilationCoefficient -= timeDilationReduceRate;
         
-        timeDilationCoefficient = clampf(timeDilationCoefficient, absoluteMinTimeDilation, absoluteMaxTimeDilation);
+        timeDilationCoefficient = clampf(timeDilationCoefficient, [[UpgradeValues sharedInstance] absoluteMinTimeDilation], absoluteMaxTimeDilation);
         
         //CCLOG(@"thrust mag: %f", timeDilationCoefficient);
         
@@ -1286,7 +1324,7 @@ typedef struct {
         [playerSpawnedParticle resetSystem];
         [playerSpawnedParticle setPosition:[self GetPlayerPositionOnScreen]];
         [playerSpawnedParticle setPositionType:kCCPositionTypeGrouped];
-        [playerSpawnedParticle setVisible:true];
+        //[playerSpawnedParticle setVisible:true];
         
     }
 }
@@ -1494,7 +1532,7 @@ typedef struct {
     [thrustParticle setPosition:player.sprite.position];
     [thrustParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
     // [thrustParticle setEmissionRate:ccpLengthSQ(player.velocity)*ccpLength(player.velocity)/2.2f];
-    float speedPercent = (timeDilationCoefficient-absoluteMinTimeDilation)/(absoluteMaxTimeDilation-absoluteMinTimeDilation);
+    float speedPercent = (timeDilationCoefficient-[[UpgradeValues sharedInstance] absoluteMinTimeDilation])/(absoluteMaxTimeDilation-[[UpgradeValues sharedInstance] absoluteMinTimeDilation]);
     [thrustParticle setEndColor:ccc4FFromccc4B(
                                                ccc4(lerpf(slowParticleColor[0], fastParticleColor[0], speedPercent),
                                                     lerpf(slowParticleColor[1], fastParticleColor[1], speedPercent),

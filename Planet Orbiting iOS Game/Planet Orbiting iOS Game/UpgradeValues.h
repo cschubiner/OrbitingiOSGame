@@ -10,11 +10,12 @@
 
 @interface UpgradeValues : NSObject
 
+// values set in initUpgradedVariables in gameplaylayer.m
 @property (nonatomic) float asteroidImmunityDuration;
 @property (nonatomic) float coinMagnetDuration;
+@property (nonatomic) float absoluteMinTimeDilation;
+@property (nonatomic) int hasDoubleCoins;
 
 + (id)sharedInstance;
-
-
 
 @end

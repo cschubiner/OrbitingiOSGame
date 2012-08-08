@@ -10,7 +10,7 @@
 
 @implementation Coin
 
-@synthesize isAlive, speed;
+@synthesize isAlive, speed, plusLabel;
 
 -(id) init {
 	// always call "super" init

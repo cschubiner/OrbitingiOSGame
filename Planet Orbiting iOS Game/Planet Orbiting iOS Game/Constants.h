@@ -67,7 +67,7 @@ const float gravity = .45;
 const float timeToHideStreakAfterRespawn = 1.1;
 
 //radius percentage at which you will collide with a planet
-const float planetRadiusCollisionZone = .01;
+const float planetRadiusCollisionZone = .9;
 
 //percent of the planet orbiting radius that you will respawn at
 const float respawnOrbitRadius = .88;
@@ -122,7 +122,7 @@ const float factorToScaleTimeDilationByOnDeath = .95;
 const float timeDilationIncreaseRate = .15;
 
 //the smallest the time dilation factor can go
-const float absoluteMinTimeDilation = .85;
+//THIS IS NOW IN UPGRADE VALUES const float absoluteMinTimeDilation = .85;
 
 //the highest the time dilation factor can go. this should probZ just be infinity. bitches will has c slow down if they're going too fast
 const float absoluteMaxTimeDilation = 1.7;
@@ -147,4 +147,4 @@ const float amountToIncreaseLightScoreVelocityEachUpdate = .00065;
 
 const int howMuchCoinsAddToScore = 10;
 
-const float coinAnimationDelay = .07;
+const float coinAnimationDelay = .05;

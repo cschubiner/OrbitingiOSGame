@@ -57,6 +57,9 @@
     
     float powerupCounter;
     
+    int currentNumOfCoinLabels;
+    int currentCoinLabel;
+    
     NSArray * galaxies;
     Galaxy* currentGalaxy;
     Galaxy* nextGalaxy;

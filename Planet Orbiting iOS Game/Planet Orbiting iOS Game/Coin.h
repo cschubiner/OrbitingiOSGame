@@ -19,5 +19,6 @@
 
 @property (nonatomic) bool isAlive;
 @property (nonatomic) float speed;
+@property (nonatomic, retain) CCLabelTTF* plusLabel;
 
 @end

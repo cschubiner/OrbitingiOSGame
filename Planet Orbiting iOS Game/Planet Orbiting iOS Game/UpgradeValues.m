@@ -10,7 +10,8 @@
 
 @implementation UpgradeValues
 
-@synthesize asteroidImmunityDuration, coinMagnetDuration;
+// values set in initUpgradedVariables in gameplaylayer.m
+@synthesize asteroidImmunityDuration, coinMagnetDuration, absoluteMinTimeDilation, hasDoubleCoins;
 
 static UpgradeValues *sharedInstance = nil;
 
