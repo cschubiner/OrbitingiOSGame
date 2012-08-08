@@ -71,8 +71,8 @@ typedef struct {
     [coin.sprite runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:coinAnimation restoreOriginalFrame:NO]]];
     
     
-    coin.plusLabel = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:50];
-    [cameraLayer addChild: coin.plusLabel];
+    coin.plusLabel = [CCLabelBMFont labelWithString:@"" fntFile:@"coin_label_font.fnt" ];
+    [hudLayer addChild: coin.plusLabel];
     
     [coins addObject:coin];
     [cameraLayer addChild:coin.sprite];
@@ -703,11 +703,11 @@ typedef struct {
         pauseMenu.position = CGPointZero;
         
         if (!isInTutorialMode) {
-            scoreLabel = [CCLabelTTF labelWithString:@"Score: " fontName:@"Marker Felt" fontSize:20];
-            scoreLabel.position = ccp(420, [scoreLabel boundingBox].size.height);
+            scoreLabel = [CCLabelBMFont labelWithString:@"Score: " fntFile:@"score_label_font.fnt"];
+            scoreLabel.position = ccp(480-[scoreLabel boundingBox].size.width-40, [scoreLabel boundingBox].size.height-16);
             [hudLayer addChild: scoreLabel];
             
-            coinsLabel = [CCLabelTTF labelWithString:@"Stars: " fontName:@"Marker Felt" fontSize:20];
+            coinsLabel = [CCLabelBMFont labelWithString:@"Stars: " fntFile:@"star_label_font.fnt"];
             coinsLabel.position = ccp(50, [coinsLabel boundingBox].size.height);
             [hudLayer addChild: coinsLabel];
         }
@@ -806,10 +806,10 @@ typedef struct {
         background = [CCSprite spriteWithFile:@"background0.pvr.ccz"];
         background2 = [CCSprite spriteWithFile:@"background1.pvr.ccz"];
         //     background.position = ccp(size.width/2+61,14);
-        background.position = ccp(size.width/4*1.5*1.3,15);
+        background.position = ccp(size.width/4*1.5*1.3+20,15);
         background.scale *=1.98f;
         //      background2.position = ccp(size.width/2+61,14);
-        background2.position = ccp(size.width/4*1.5*1.3,15);
+        background2.position = ccp(size.width/4*1.5*1.3+20,15);
         
         background2.scale *=1.98f;
         [background2 retain];
@@ -948,21 +948,21 @@ typedef struct {
     
     score += howMuchCoinsAddToScore*([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1);
     
-    
     currentCoinLabel += ([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1);
-    [coin.plusLabel setString:[NSString stringWithFormat:@"+%d!", currentCoinLabel]];
+    [coin.plusLabel setString:[NSString stringWithFormat:@"+%d", currentCoinLabel]];
     currentNumOfCoinLabels++;
-    
-    
+    [coin.plusLabel setScale:.7];
+    id scaleAction = [CCScaleTo actionWithDuration:.1 scale:.2*coin.sprite.scale];
+
     [coin.plusLabel runAction:[CCSequence actions:
-                               [CCSpawn actions:[CCScaleTo actionWithDuration:.1 scale:2*coin.plusLabel.scale], nil],
-                               [CCSpawn actions:[CCScaleTo actionWithDuration:.2 scale:1*coin.plusLabel.scale], nil],
+                               [CCScaleTo actionWithDuration:.2 scale:2*coin.plusLabel.scale],
+                               [CCScaleTo actionWithDuration:.1 scale:1*coin.plusLabel.scale],
                                [CCDelayTime actionWithDuration:.4],
+                               [CCSpawn actions:[CCFadeOut actionWithDuration:.3],[CCMoveTo actionWithDuration:.3 position:scoreLabel.position],nil],
                                [CCHide action],
                                [CCCallFunc actionWithTarget:self selector:@selector(coinDone)],
                                nil]];
     
-    id scaleAction = [CCScaleTo actionWithDuration:.1 scale:.2*coin.sprite.scale];
     [coin.sprite runAction:[CCSequence actions:[CCSpawn actions:scaleAction,[CCRotateBy actionWithDuration:.1 angle:360], nil],[CCHide action], nil]];
     coin.isAlive = false;
     if (timeSinceGotLastCoin<.4){
@@ -997,11 +997,12 @@ typedef struct {
     for (Coin* coin in coins) {
         
         CGPoint p = coin.sprite.position;
-        
+        CGPoint coinPosOnHud = [cameraLayer convertToWorldSpace:coin.sprite.position];
+        coin.plusLabel.position = ccp(coinPosOnHud.x, coinPosOnHud.y + 20);
+
         coin.velocity = ccpMult(ccpNormalize(ccpSub(player.sprite.position, p)), coin.speed);
         if (coin.isAlive)
             coin.sprite.position = ccpAdd(coin.sprite.position, coin.velocity);
-        coin.plusLabel.position = ccp(coin.sprite.position.x, coin.sprite.position.y + 50);
         
         if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/1.3 && coin.isAlive) {
             [self UserTouchedCoin:coin dt:dt];

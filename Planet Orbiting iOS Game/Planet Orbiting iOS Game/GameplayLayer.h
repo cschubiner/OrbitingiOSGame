@@ -30,8 +30,8 @@
     NSMutableArray *coins;
     NSMutableArray * coinAnimationFrames;
     CCAnimation * coinAnimation;
-    CCLabelTTF *scoreLabel;
-    CCLabelTTF *coinsLabel;
+    CCLabelBMFont *scoreLabel;
+    CCLabelBMFont *coinsLabel;
     CGSize size;
     CCLayer *hudLayer;
     CCLayer* layerHudSlider;

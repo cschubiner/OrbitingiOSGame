@@ -253,6 +253,18 @@
 		C47774FF15A75CE2005D0AEB /* jungle-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C47774F515A75CE2005D0AEB /* jungle-hd.png */; };
 		C477750215A75D2D005D0AEB /* burst-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C477750115A75D2C005D0AEB /* burst-hd.png */; };
 		C4B06C5715B9161D003C0183 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B06C5515B9161D003C0183 /* libTestFlight.a */; };
+		C4C9161515D309C5008105A6 /* coin_label_font-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = C4C9161115D309C5008105A6 /* coin_label_font-hd.fnt */; };
+		C4C9161615D309C5008105A6 /* coin_label_font-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C4C9161215D309C5008105A6 /* coin_label_font-hd.png */; };
+		C4C9161715D309C5008105A6 /* coin_label_font.fnt in Resources */ = {isa = PBXBuildFile; fileRef = C4C9161315D309C5008105A6 /* coin_label_font.fnt */; };
+		C4C9161815D309C5008105A6 /* coin_label_font.png in Resources */ = {isa = PBXBuildFile; fileRef = C4C9161415D309C5008105A6 /* coin_label_font.png */; };
+		C4C9162715D3124A008105A6 /* score_label_font-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = C4C9162315D3124A008105A6 /* score_label_font-hd.fnt */; };
+		C4C9162815D3124A008105A6 /* score_label_font-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C4C9162415D3124A008105A6 /* score_label_font-hd.png */; };
+		C4C9162915D3124A008105A6 /* score_label_font.fnt in Resources */ = {isa = PBXBuildFile; fileRef = C4C9162515D3124A008105A6 /* score_label_font.fnt */; };
+		C4C9162A15D3124A008105A6 /* score_label_font.png in Resources */ = {isa = PBXBuildFile; fileRef = C4C9162615D3124A008105A6 /* score_label_font.png */; };
+		C4C9162F15D315F4008105A6 /* star_label_font-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = C4C9162B15D315F4008105A6 /* star_label_font-hd.fnt */; };
+		C4C9163015D315F4008105A6 /* star_label_font-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C4C9162C15D315F4008105A6 /* star_label_font-hd.png */; };
+		C4C9163115D315F4008105A6 /* star_label_font.fnt in Resources */ = {isa = PBXBuildFile; fileRef = C4C9162D15D315F4008105A6 /* star_label_font.fnt */; };
+		C4C9163215D315F4008105A6 /* star_label_font.png in Resources */ = {isa = PBXBuildFile; fileRef = C4C9162E15D315F4008105A6 /* star_label_font.png */; };
 		C4E994B215A435E600C7009D /* cometParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4E994AE15A435E600C7009D /* cometParticle.plist */; };
 		C4F11E2015B4D58E008168B0 /* TitleFont-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = C4F11E1C15B4D58E008168B0 /* TitleFont-hd.fnt */; };
 		C4F11E2115B4D58E008168B0 /* TitleFont-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C4F11E1D15B4D58E008168B0 /* TitleFont-hd.png */; };
@@ -665,6 +677,18 @@
 		C49E914A159A48D700BC424D /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Constants.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		C4B06C5515B9161D003C0183 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		C4B06C5615B9161D003C0183 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		C4C9161115D309C5008105A6 /* coin_label_font-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "coin_label_font-hd.fnt"; sourceTree = "<group>"; };
+		C4C9161215D309C5008105A6 /* coin_label_font-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coin_label_font-hd.png"; sourceTree = "<group>"; };
+		C4C9161315D309C5008105A6 /* coin_label_font.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = coin_label_font.fnt; sourceTree = "<group>"; };
+		C4C9161415D309C5008105A6 /* coin_label_font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coin_label_font.png; sourceTree = "<group>"; };
+		C4C9162315D3124A008105A6 /* score_label_font-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "score_label_font-hd.fnt"; sourceTree = "<group>"; };
+		C4C9162415D3124A008105A6 /* score_label_font-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "score_label_font-hd.png"; sourceTree = "<group>"; };
+		C4C9162515D3124A008105A6 /* score_label_font.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = score_label_font.fnt; sourceTree = "<group>"; };
+		C4C9162615D3124A008105A6 /* score_label_font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = score_label_font.png; sourceTree = "<group>"; };
+		C4C9162B15D315F4008105A6 /* star_label_font-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "star_label_font-hd.fnt"; sourceTree = "<group>"; };
+		C4C9162C15D315F4008105A6 /* star_label_font-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star_label_font-hd.png"; sourceTree = "<group>"; };
+		C4C9162D15D315F4008105A6 /* star_label_font.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = star_label_font.fnt; sourceTree = "<group>"; };
+		C4C9162E15D315F4008105A6 /* star_label_font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_label_font.png; sourceTree = "<group>"; };
 		C4E994AE15A435E600C7009D /* cometParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cometParticle.plist; sourceTree = "<group>"; };
 		C4F11E1C15B4D58E008168B0 /* TitleFont-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "TitleFont-hd.fnt"; sourceTree = "<group>"; };
 		C4F11E1D15B4D58E008168B0 /* TitleFont-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TitleFont-hd.png"; sourceTree = "<group>"; };
@@ -921,6 +945,7 @@
 		0C7AA60315946939000B58F2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C4C9161A15D309C9008105A6 /* Fonts */,
 				FA7E63ED15D251520090C913 /* menu stuff */,
 				FABB360215CE44D4004F5396 /* tutorial */,
 				FABB35E615CDCF69004F5396 /* stars */,
@@ -1425,6 +1450,25 @@
 			name = TestFlight;
 			sourceTree = "<group>";
 		};
+		C4C9161A15D309C9008105A6 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C4C9162B15D315F4008105A6 /* star_label_font-hd.fnt */,
+				C4C9162C15D315F4008105A6 /* star_label_font-hd.png */,
+				C4C9162D15D315F4008105A6 /* star_label_font.fnt */,
+				C4C9162E15D315F4008105A6 /* star_label_font.png */,
+				C4C9162315D3124A008105A6 /* score_label_font-hd.fnt */,
+				C4C9162415D3124A008105A6 /* score_label_font-hd.png */,
+				C4C9162515D3124A008105A6 /* score_label_font.fnt */,
+				C4C9162615D3124A008105A6 /* score_label_font.png */,
+				C4C9161115D309C5008105A6 /* coin_label_font-hd.fnt */,
+				C4C9161215D309C5008105A6 /* coin_label_font-hd.png */,
+				C4C9161315D309C5008105A6 /* coin_label_font.fnt */,
+				C4C9161415D309C5008105A6 /* coin_label_font.png */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		C4E994B715A435EA00C7009D /* Particles */ = {
 			isa = PBXGroup;
 			children = (
@@ -1646,6 +1690,18 @@
 				FA7E63F015D251610090C913 /* cellBackground-hd.png in Resources */,
 				FA7E63F215D256E20090C913 /* star1.png in Resources */,
 				FA7E640C15D271DE0090C913 /* upgradesHeader-hd.png in Resources */,
+				C4C9161515D309C5008105A6 /* coin_label_font-hd.fnt in Resources */,
+				C4C9161615D309C5008105A6 /* coin_label_font-hd.png in Resources */,
+				C4C9161715D309C5008105A6 /* coin_label_font.fnt in Resources */,
+				C4C9161815D309C5008105A6 /* coin_label_font.png in Resources */,
+				C4C9162715D3124A008105A6 /* score_label_font-hd.fnt in Resources */,
+				C4C9162815D3124A008105A6 /* score_label_font-hd.png in Resources */,
+				C4C9162915D3124A008105A6 /* score_label_font.fnt in Resources */,
+				C4C9162A15D3124A008105A6 /* score_label_font.png in Resources */,
+				C4C9162F15D315F4008105A6 /* star_label_font-hd.fnt in Resources */,
+				C4C9163015D315F4008105A6 /* star_label_font-hd.png in Resources */,
+				C4C9163115D315F4008105A6 /* star_label_font.fnt in Resources */,
+				C4C9163215D315F4008105A6 /* star_label_font.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

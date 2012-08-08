@@ -16,9 +16,9 @@
 -(id)init;
 
 
-
+@property (nonatomic) bool isTargettingScoreLabel;
 @property (nonatomic) bool isAlive;
 @property (nonatomic) float speed;
-@property (nonatomic, retain) CCLabelTTF* plusLabel;
+@property (nonatomic, retain) CCLabelBMFont* plusLabel;
 
 @end
