@@ -1027,8 +1027,6 @@ typedef struct {
         asteroidSlower = clampf(asteroidSlower, .13, 1);
     }*/
     
-    
-    
     for (Powerup* powerup in powerups) {
         CGPoint p = powerup.coinSprite.position;
         if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= powerup.coinSprite.width * .5 * powerupRadiusCollisionZone) {
@@ -1104,7 +1102,7 @@ typedef struct {
                     player.sprite.position = ccpAdd(player.sprite.position, ccpMult(ccpNormalize(a), (planet.orbitRadius - ccpLength(a))*howFastOrbitPositionGetsFixed*timeDilationCoefficient*60*dt/[[UpgradeValues sharedInstance] absoluteMinTimeDilation]));
                 }
                 
-                velSoftener += 1/updatesToMakeOrbitVelocityPerfect;
+                velSoftener += 1/updatesToMakeOrbitVelocityPerfect*60*dt;
                 velSoftener = clampf(velSoftener, 0, 1);
                 
                 CGPoint dir2 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(M_PI/2)));
@@ -1176,7 +1174,7 @@ typedef struct {
                 }
             
             if (orbitState == 3) {
-                gravIncreaser += increaseGravStrengthByThisMuchEveryUpdate;
+                gravIncreaser += increaseGravStrengthByThisMuchEveryUpdate*60*dt;
                 
                 //Danger Level Code
                 CGPoint playerToTarget = ccpSub(targetPlanet.sprite.position, player.sprite.position);
@@ -1582,33 +1580,19 @@ typedef struct {
     }
 }
 
-- (void)UpdateLight {
+- (void)UpdateLight:(float)dt{
     light.distanceFromPlayer = score - light.score;
     
     if (light.distanceFromPlayer > negativeLightStartingScore)
         light.score = score - negativeLightStartingScore;
     
     
-    light.scoreVelocity += amountToIncreaseLightScoreVelocityEachUpdate;
+    light.scoreVelocity += amountToIncreaseLightScoreVelocityEachUpdate*60*dt;
     if (!isInTutorialMode&&levelNumber==0)
         [slidingSelector setPosition:ccp(slidingSelector.position.x,lerpf(50.453,269.848,1-light.distanceFromPlayer/negativeLightStartingScore))];
     
     //    CCLOG(@"DIST: %f, VEL: %f, LIGHSCORE: %f", light.distanceFromPlayer, light.scoreVelocity, light.score);
-    
-    
-    /*if (distance <= 100) {
-     [light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];
-     [self GameOver];
-     } else*/ if (light.distanceFromPlayer <= 0) {
-         /*if (!light.hasPutOnLight) {
-          light.hasPutOnLight = true;
-          light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
-          [light.sprite setOpacity:0];
-          light.sprite.position = ccp(240, 160);
-          [light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
-          [hudLayer reorderChild:light.sprite z:-1];
-          }
-          [light.sprite setOpacity:clampf(((600-distance)/500)*255, 0, 255)];*/
+    if (light.distanceFromPlayer <= 0) {
          if (!light.hasPutOnLight) {
              light.hasPutOnLight = true;
              light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
@@ -1686,13 +1670,13 @@ typedef struct {
         [self UpdateCamera:dt];
         [self UpdateParticles:dt];
         if (levelNumber==0)
-            [self UpdateLight];
+            [self UpdateLight:dt];
         updatesSinceLastPlanet++;
     } else if (isDisplayingPowerupAnimation)
         [self updatePowerupAnimation: dt];
     
-    if ([[self children]containsObject:background]&&[[self children]containsObject:background2])
-        NSLog(@"both backgrounds are on the screen! this should only happen when transitioning between galaxies.");
+    // if ([[self children]containsObject:background]&&[[self children]containsObject:background2])
+    //    NSLog(@"both backgrounds are on the screen! this should only happen when transitioning between galaxies.");
     
     if (isInTutorialMode)
         [self UpdateTutorial];
