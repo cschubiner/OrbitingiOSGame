@@ -196,6 +196,10 @@ typedef enum {
  */
 +(id) spriteWithTexture:(CCTexture2D*)texture rect:(CGRect)rect;
 
+-(CGFloat)width;
+-(CGFloat)height;
+
+
 /** Creates an sprite with an sprite frame.
  */
 +(id) spriteWithSpriteFrame:(CCSpriteFrame*)spriteFrame;

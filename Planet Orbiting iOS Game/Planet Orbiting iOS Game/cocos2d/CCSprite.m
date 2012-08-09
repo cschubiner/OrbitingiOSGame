@@ -261,6 +261,13 @@ struct transformValues_ {
 	return ret;
 }
 
+-(CGFloat)width{
+    return self.contentSize.width * self.scaleX;
+}
+-(CGFloat)height{
+    return self.contentSize.height * self.scaleY;
+}
+
 -(id) initWithBatchNode:(CCSpriteBatchNode*)batchNode rectInPixels:(CGRect)rect
 {
 	id ret = [self initWithTexture:batchNode.texture];
