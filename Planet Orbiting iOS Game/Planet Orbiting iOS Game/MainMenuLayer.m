@@ -96,9 +96,6 @@ const float effectsVolumeMainMenu = 1;
         UpgradeItem *item = [upgradeItems objectAtIndex:i];
         
         [cell.levelLabel setString:[NSString stringWithFormat:@"Level %d", item.level]];
-        
-        
-        
     }
 }
 
