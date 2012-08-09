@@ -278,7 +278,7 @@
 					<key>spriteFile</key>
 					<string>planet1-0.png</string>
 					<key>spriteFramesFile</key>
-					<string>spriteSheet.plist</string>
+					<string>galaxy0.plist</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
@@ -347,7 +347,7 @@
 					<key>spriteFile</key>
 					<string>planet2-0.png</string>
 					<key>spriteFramesFile</key>
-					<string>spriteSheet.plist</string>
+					<string>galaxy0.plist</string>
 					<key>tag</key>
 					<integer>0</integer>
 					<key>visible</key>
@@ -416,7 +416,7 @@
 					<key>spriteFile</key>
 					<string>planet2-1.png</string>
 					<key>spriteFramesFile</key>
-					<string>spriteSheet.plist</string>
+					<string>galaxy1.plist</string>
 					<key>tag</key>
 					<integer>0</integer>
 					<key>visible</key>
@@ -1440,7 +1440,7 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>69</real>
+										<real>111</real>
 										<real>67</real>
 									</array>
 									<key>customClass</key>
@@ -1471,7 +1471,7 @@
 									<key>scaleY</key>
 									<real>0.56160151958465576</real>
 									<key>string</key>
-									<string>2.5</string>
+									<string>2.5.1</string>
 									<key>tag</key>
 									<integer>0</integer>
 									<key>visible</key>
@@ -2851,7 +2851,7 @@
 					<key>spriteFile</key>
 					<string>planet2-2.png</string>
 					<key>spriteFramesFile</key>
-					<string>spriteSheet.plist</string>
+					<string>galaxy2.plist</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>

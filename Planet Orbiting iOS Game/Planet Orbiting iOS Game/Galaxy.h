@@ -14,8 +14,10 @@
 }
 @property (nonatomic,retain) CCSprite *backgroundSprite;
 @property (nonatomic) int number;
+@property (nonatomic) int optimalPlanetsInThisGalaxy;
 @property (nonatomic) int numberOfDifferentPlanetsDrawn;
 @property (nonatomic,retain) NSArray* segments;
 @property (nonatomic, retain) NSString* name;
+@property (nonatomic,retain) CCSpriteBatchNode* spriteSheet;
 -(id)initWithSegments:(NSArray*)levelSegments;
 @end

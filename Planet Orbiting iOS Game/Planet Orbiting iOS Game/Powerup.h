@@ -15,7 +15,7 @@
 -(id)initWithType:(int)t;
 
 @property (nonatomic, assign) CCSprite* coinSprite;
-@property (nonatomic, assign) CCSprite* visualSprite;
+@property (nonatomic, assign) CCSprite* glowSprite;
 @property (nonatomic, assign) CCSprite* hudSprite;
 @property (nonatomic, assign) int type; //0=random, 1=asteroidImmunity, 2=asteroid immunity
 @property (nonatomic, assign) NSString* title;

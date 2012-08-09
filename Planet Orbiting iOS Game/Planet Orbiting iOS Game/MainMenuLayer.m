@@ -217,9 +217,6 @@ const float effectsVolumeMainMenu = 1;
         [layer addChild: hello3];
         [hello3 setPosition:ccp(1200 - 480/2 + 480 - 40 - [hello3 boundingBox].size.width/2, 640-30)];
         
-        
-        
-        
         NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
         
         int highScore1Int;
