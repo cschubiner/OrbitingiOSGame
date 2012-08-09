@@ -37,6 +37,7 @@ const float effectsVolumeMainMenu = 1;
     float upgradeLayerHeight;
     NSMutableArray* cells;
     bool didFingerMove;
+    int lastIndexTapped;
 }
 
 // returns a singleton scene
@@ -74,7 +75,7 @@ const float effectsVolumeMainMenu = 1;
     
     for (UpgradeItem* item in upgradeItems) {
         UpgradeCell *cell = [[UpgradeCell alloc] initWithUpgradeItem:item];
-        [cells addObject: cell];
+        [cells addObject:cell];
     }
     
     upgradeLayerHeight = 0;
@@ -84,17 +85,20 @@ const float effectsVolumeMainMenu = 1;
         [cell setPosition:ccp(0, -80*i - 55)];
         upgradeLayerHeight += 80;
     }
+    
+    [self refreshUpgradeCells];
 }
 
 - (void)refreshUpgradeCells {
-    for (UIView* cell in cells) {
-        NSMutableArray* subviews = [[NSMutableArray alloc] initWithArray:cell.subviews];
+    NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
+    for (int i = 0; i < [cells count]; i++) {
+        UpgradeCell *cell = [cells objectAtIndex:i];
+        UpgradeItem *item = [upgradeItems objectAtIndex:i];
         
-        for (int i = 0; i < [subviews count]; i++) {
-            if (i == 3) {
-                //(CCLabelTTF*)[subviews objectAtIndex:i] setString: [NSString stringWithFormat:@"Level %d", cell.level];
-            }
-        }
+        [cell.levelLabel setString:[NSString stringWithFormat:@"Level %d", item.level]];
+        
+        
+        
     }
 }
 
@@ -156,7 +160,7 @@ const float effectsVolumeMainMenu = 1;
                     
                     //if (CGRectContainsPoint(upgradeLayer.boundingBox, ccp(location.x + layer.position.x + 960*2, location.y + layer.position.y + 320*3))) {
                     
-                    
+                    lastIndexTapped = i;
                     UIAlertView* alertview2 = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"tit number %d", i] message:@"massage" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Purchase", nil];
                     [alertview2 setTag:upgradeAlertTag];
                     [alertview2 show];
@@ -336,8 +340,14 @@ const float effectsVolumeMainMenu = 1;
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (alertView.tag == upgradeAlertTag) {
         if (buttonIndex == 1) {
+            NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
+            UpgradeItem *item = [upgradeItems objectAtIndex:lastIndexTapped];
+            int currLevel = [item level];
+            [item setLevel:currLevel+1];
+            [self refreshUpgradeCells];
             UIAlertView* alertview3 = [[UIAlertView alloc] initWithTitle:@"Congratz yo" message:@"You bought something" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
             [alertview3 show];
+
         }
     } else {
         if (buttonIndex == 1) {

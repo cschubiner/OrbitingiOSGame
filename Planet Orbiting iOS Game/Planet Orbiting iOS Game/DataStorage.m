@@ -21,12 +21,20 @@
     NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
     NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
     
+    NSMutableArray *levels = [[NSMutableArray alloc] init];
+    
+    for (UpgradeItem *item in upgradeItems) {
+        int level = item.level;
+        NSNumber *number = [NSNumber numberWithInt:level];
+        [levels addObject:number];
+    }
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     [defaults setInteger:coins forKey:@"coin"];
     [defaults setInteger:numPlays forKey:@"plays"];
     [defaults setObject:highScores forKey:@"highscores"];
-    [defaults setObject:upgradeItems forKey:@"upgrades"];
+    [defaults setObject:levels forKey:@"levels"];
     
     [defaults synchronize];
 }
@@ -37,7 +45,7 @@
     int coins = [defaults integerForKey:@"coin"];
     int numPlays = [defaults integerForKey:@"plays"];
     NSMutableArray *highScores = [defaults objectForKey:@"highscores"];
-    NSMutableArray *upgradeItems = [defaults objectForKey:@"upgrades"];
+    NSMutableArray *levels = [defaults objectForKey:@"levels"];
 
     [[UserWallet sharedInstance] setBalance:coins];
     [[PlayerStats sharedInstance] setPlays:numPlays];
@@ -46,16 +54,37 @@
         [[PlayerStats sharedInstance] setScores:highScores];
     }
     
-    if (!upgradeItems) {
-        NSMutableArray* items = [[NSMutableArray alloc] init];
+    
+    NSMutableArray* items = [[NSMutableArray alloc] init];
+    NSMutableArray* upgradeItems;
+    
+    
+    
+    if (!levels) {
+        
         [items addObject:[[UpgradeItem alloc] initWithTitle:@"Star Magnet" description:@"The stars will cum on t" icon:@"magnethudicon.png" price:1000 hasLevels:true level:0]];
-        [items addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Immunity" description:@"The asteroids will quiver in fear before t" icon:@"asteroidhudicon.png" price:2000 hasLevels:true level:0]];
+        [items addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Immunity" description:@"The asteroids will quiver in fear before t" icon:@"asteroidhudicon.png" price:4 hasLevels:true level:0]];
         [items addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Immunity" description:@"The asteroids will quiver in fear before t" icon:@"asteroidhudicon.png" price:2000 hasLevels:true level:0]];
         [items addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Immunity" description:@"The asteroids will quiver in fear before t" icon:@"asteroidhudicon.png" price:2000 hasLevels:true level:0]];
         [items addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Immunity" description:@"The asteroids will quiver in fear before t" icon:@"asteroidhudicon.png" price:2000 hasLevels:true level:0]];
         
-        upgradeItems = [[NSMutableArray alloc] initWithArray:items];
+    } else {
+        
+        //int index = 0;
+        
+        
+        int index = 0;
+        
+        [items addObject:[[UpgradeItem alloc] initWithTitle:@"Star Magnet" description:@"The stars will cum on t" icon:@"magnethudicon.png" price:1000 hasLevels:true level:[[levels objectAtIndex:index++]intValue]]];
+        [items addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Immunity" description:@"The asteroids will quiver in fear before t" icon:@"asteroidhudicon.png" price:4 hasLevels:true level:[[levels objectAtIndex:index++]intValue]]];
+        [items addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Immunity" description:@"The asteroids will quiver in fear before t" icon:@"asteroidhudicon.png" price:2000 hasLevels:true level:[[levels objectAtIndex:index++]intValue]]];
+        [items addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Immunity" description:@"The asteroids will quiver in fear before t" icon:@"asteroidhudicon.png" price:2000 hasLevels:true level:[[levels objectAtIndex:index++]intValue]]];
+        [items addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Immunity" description:@"The asteroids will quiver in fear before t" icon:@"asteroidhudicon.png" price:2000 hasLevels:true level:[[levels objectAtIndex:index++]intValue]]];
+        
     }
+    
+    
+    upgradeItems = [[NSMutableArray alloc] initWithArray:items];
     
     [[UpgradeManager sharedInstance] setUpgradeItems:upgradeItems];
 

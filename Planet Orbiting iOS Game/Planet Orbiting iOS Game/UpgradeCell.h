@@ -12,7 +12,7 @@
 
 @interface UpgradeCell : CCLayer
 
-@property (nonatomic) int index;
+@property (nonatomic, retain) CCLabelTTF *levelLabel;
 
 - (id)initWithUpgradeItem:(UpgradeItem*)item;
 

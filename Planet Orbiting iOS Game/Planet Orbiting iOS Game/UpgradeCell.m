@@ -10,7 +10,7 @@
 
 @implementation UpgradeCell
 
-@synthesize index;
+@synthesize levelLabel;
 
 - (id)initWithUpgradeItem:(UpgradeItem*)item {
     if (self = [super init]) {        
@@ -27,9 +27,9 @@
         [self addChild: hello];
         [hello setPosition:ccp(90 + [hello boundingBox].size.width/2, -25)];
         
-        CCLabelTTF* hello2 = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level %d", item.level] fontName:@"Marker Felt" fontSize:18];
-        [self addChild: hello2];
-        [hello2 setPosition:ccp(90 + [hello2 boundingBox].size.width/2, -58)];
+        levelLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level %d", item.level] fontName:@"Marker Felt" fontSize:18];
+        [self addChild: levelLabel];
+        [levelLabel setPosition:ccp(90 + [levelLabel boundingBox].size.width/2, -58)];
         
         CCSprite* starSprite = [CCSprite spriteWithFile:@"star1.png"];
         [starSprite setScale:.16];
