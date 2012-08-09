@@ -16,6 +16,8 @@
 @property (nonatomic) float absoluteMinTimeDilation;
 @property (nonatomic) int hasDoubleCoins;
 
+
+
 + (id)sharedInstance;
 
 @end

@@ -15,6 +15,8 @@
 #import "PowerupManager.h"
 #import "DataStorage.h"
 #import "PlayerStats.h"
+#import "UpgradeItem.h"
+#import "UpgradeManager.h"
 
 #define tutorialLayerTag    1001
 #define levelLayerTag       1002
@@ -69,7 +71,8 @@ const float effectsVolumeMainMenu = 1;
     [numImmunitiesLabel setString:immunitiesBought];
 }
 
-- (CCLayer*)createCellWithTitle:(NSString*)title spriteName:(NSString*)spriteName readableCost:(NSString*)readableCost {
+//- (CCLayer*)createCellWithTitle:(NSString*)title spriteName:(NSString*)spriteName readableCost:(NSString*)readableCost {
+- (CCLayer*)createCellWithUpgradeItem:(UpgradeItem*)item {
     CCLayer* aCell = [[CCLayer alloc] init];
     
     
@@ -78,17 +81,17 @@ const float effectsVolumeMainMenu = 1;
     [backgroundSprite setPosition:ccp(backgroundSprite.width/2, -backgroundSprite.height/2)];
     
     
-    CCSprite* upgradeSprite = [CCSprite spriteWithFile:spriteName];
+    CCSprite* upgradeSprite = [CCSprite spriteWithFile:item.icon];
     [upgradeSprite setScale:.5];
     [aCell addChild:upgradeSprite];
     [upgradeSprite setPosition:ccp(upgradeSprite.width/2+5, -backgroundSprite.height/2)];
     
     
-    CCLabelTTF* hello = [CCLabelTTF labelWithString:title fontName:@"Marker Felt" fontSize:24];
+    CCLabelTTF* hello = [CCLabelTTF labelWithString:item.title fontName:@"Marker Felt" fontSize:24];
     [aCell addChild: hello];
     [hello setPosition:ccp(90 + [hello boundingBox].size.width/2, -25)];
     
-    CCLabelTTF* hello2 = [CCLabelTTF labelWithString:@"Level 3" fontName:@"Marker Felt" fontSize:18];
+    CCLabelTTF* hello2 = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level %d", item.level] fontName:@"Marker Felt" fontSize:18];
     [aCell addChild: hello2];
     [hello2 setPosition:ccp(90 + [hello2 boundingBox].size.width/2, -58)];
     
@@ -97,7 +100,7 @@ const float effectsVolumeMainMenu = 1;
     [aCell addChild:starSprite];
     [starSprite setPosition:ccp(480-starSprite.width/2-8, -57)];
     
-    CCLabelTTF* hello3 = [CCLabelTTF labelWithString:readableCost fontName:@"Marker Felt" fontSize:18];
+    CCLabelTTF* hello3 = [CCLabelTTF labelWithString:[self commaInt:item.price] fontName:@"Marker Felt" fontSize:18];
     [aCell addChild: hello3];
     [hello3 setPosition:ccp(480 - 37 - [hello3 boundingBox].size.width/2, -58)];
     
@@ -115,15 +118,25 @@ const float effectsVolumeMainMenu = 1;
     [upgradeLayer setPosition:startingUpgradeLayerPos];
     //[upgradeLayer setContentSize:CGSizeMake(480, 10)];
     
+    
+    ;
+    
+    NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
+    
+    
     cells = [[NSMutableArray alloc] init];
-    [cells addObject:[self createCellWithTitle:@"Star Magnet Upgrade" spriteName:@"magnethudicon.png" readableCost:@"3,000"]];
-    [cells addObject:[self createCellWithTitle:@"Asteroid Armor Upgrade" spriteName:@"asteroidhudicon.png" readableCost:@"1,000"]];
-    [cells addObject:[self createCellWithTitle:@"Da nigguh" spriteName:@"asteroidhudicon.png" readableCost:@"-100"]];
+    /*[cells addObject:[self createCellWithTitle:@"Star Magnet" spriteName:@"magnethudicon.png" readableCost:@"3,000"]];
+    [cells addObject:[self createCellWithTitle:@"Asteroid Armor" spriteName:@"asteroidhudicon.png" readableCost:@"1,000"]];
+    [cells addObject:[self createCellWithTitle:@"Golden Rocketship" spriteName:@"asteroidhudicon.png" readableCost:@"10,000"]];
     [cells addObject:[self createCellWithTitle:@"Speed boost" spriteName:@"asteroidhudicon.png" readableCost:@"1,000"]];
     [cells addObject:[self createCellWithTitle:@"somethang" spriteName:@"asteroidhudicon.png" readableCost:@"3,000"]];
     [cells addObject:[self createCellWithTitle:@"A sexy new rocket" spriteName:@"asteroidhudicon.png" readableCost:@"10,000"]];
     [cells addObject:[self createCellWithTitle:@"A 2sexy new rocket" spriteName:@"asteroidhudicon.png" readableCost:@"10,000"]];
-    [cells addObject:[self createCellWithTitle:@"A 2sexy new rocket" spriteName:@"asteroidhudicon.png" readableCost:@"10,000"]];
+    [cells addObject:[self createCellWithTitle:@"A 2sexy new rocket" spriteName:@"asteroidhudicon.png" readableCost:@"10,000"]];*/
+    
+    for (UpgradeItem* item in upgradeItems) {
+        [cells addObject:[self createCellWithUpgradeItem:item]];
+    }
     
     upgradeLayerHeight = 0;
     for (int i = 0; i < [cells count]; i++) {
@@ -470,6 +483,12 @@ const float effectsVolumeMainMenu = 1;
         [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0];
         [[SimpleAudioEngine sharedEngine] setEffectsVolume:0];
     }
+}
+
+- (NSString*)commaInt:(int)num {
+    NSNumberFormatter *formatter = [NSNumberFormatter new];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    return [formatter stringFromNumber:[NSNumber numberWithInteger:num]];
 }
 
 - (void)dealloc {

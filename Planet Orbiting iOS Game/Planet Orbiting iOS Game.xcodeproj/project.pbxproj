@@ -271,6 +271,10 @@
 		C4F11E2215B4D58E008168B0 /* TitleFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = C4F11E1E15B4D58E008168B0 /* TitleFont.fnt */; };
 		C4F11E2315B4D58E008168B0 /* TitleFont.png in Resources */ = {isa = PBXBuildFile; fileRef = C4F11E1F15B4D58E008168B0 /* TitleFont.png */; };
 		CE30F28715AA972E00796589 /* Asteroid.m in Sources */ = {isa = PBXBuildFile; fileRef = CE30F28615AA972E00796589 /* Asteroid.m */; };
+		FA40DCB215D378B500174FB8 /* UpgradeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FA40DCB115D378B500174FB8 /* UpgradeItem.m */; };
+		FA40DCB515D37BFA00174FB8 /* UpgradeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA40DCB415D37BFA00174FB8 /* UpgradeManager.m */; };
+		FA40DCB715D388B200174FB8 /* upgradesHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = FA40DCB615D388B200174FB8 /* upgradesHeader.png */; };
+		FA40DCB915D388BE00174FB8 /* cellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = FA40DCB815D388BE00174FB8 /* cellBackground.png */; };
 		FA48C83715BE84DC00FA6F32 /* buttonpress.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA48C83615BE84DC00FA6F32 /* buttonpress.mp3 */; };
 		FA7E63BC15D0F26E0090C913 /* UpgradeValues.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E63BB15D0F26E0090C913 /* UpgradeValues.m */; };
 		FA7E63F015D251610090C913 /* cellBackground-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7E63EF15D251610090C913 /* cellBackground-hd.png */; };
@@ -696,6 +700,12 @@
 		C4F11E1F15B4D58E008168B0 /* TitleFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TitleFont.png; sourceTree = "<group>"; };
 		CE30F28515AA972E00796589 /* Asteroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Asteroid.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		CE30F28615AA972E00796589 /* Asteroid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Asteroid.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		FA40DCB015D378B500174FB8 /* UpgradeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeItem.h; sourceTree = "<group>"; };
+		FA40DCB115D378B500174FB8 /* UpgradeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeItem.m; sourceTree = "<group>"; };
+		FA40DCB315D37BFA00174FB8 /* UpgradeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeManager.h; sourceTree = "<group>"; };
+		FA40DCB415D37BFA00174FB8 /* UpgradeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeManager.m; sourceTree = "<group>"; };
+		FA40DCB615D388B200174FB8 /* upgradesHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgradesHeader.png; sourceTree = "<group>"; };
+		FA40DCB815D388BE00174FB8 /* cellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cellBackground.png; sourceTree = "<group>"; };
 		FA48C83615BE84DC00FA6F32 /* buttonpress.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonpress.mp3; sourceTree = "<group>"; };
 		FA7E63BA15D0F26E0090C913 /* UpgradeValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeValues.h; sourceTree = "<group>"; };
 		FA7E63BB15D0F26E0090C913 /* UpgradeValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeValues.m; sourceTree = "<group>"; };
@@ -795,10 +805,6 @@
 				FAF1C63F15BCF8A1001136E3 /* Coin.m */,
 				FA895CD915C525B400FA4EC3 /* Light.h */,
 				FA895CDA15C525B400FA4EC3 /* Light.m */,
-				FACE0CEB15CB963B0055B5DF /* Powerup.h */,
-				FACE0CEC15CB963B0055B5DF /* Powerup.m */,
-				FA7E63BA15D0F26E0090C913 /* UpgradeValues.h */,
-				FA7E63BB15D0F26E0090C913 /* UpgradeValues.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -913,6 +919,7 @@
 		0C7AA60215946939000B58F2 /* Planet Orbiting iOS Game */ = {
 			isa = PBXGroup;
 			children = (
+				FA40DCAE15D3788E00174FB8 /* Enhancements */,
 				0C487AFD159471FF00674AB9 /* Basic Stuff - Ignore */,
 				0C487AFC159471E800674AB9 /* Classes */,
 				0C7AA7541594693D000B58F2 /* AppDelegate.h */,
@@ -922,8 +929,6 @@
 				0C60EC5915CB8C42005FE434 /* Galaxy.m */,
 				0C487AF615946E2300674AB9 /* GameplayLayer.h */,
 				0C487AF715946E2300674AB9 /* GameplayLayer.m */,
-				0C2AB0B315BE8E43008822F1 /* MainMenuLayer.h */,
-				0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */,
 				0C1662C715CEA56B00C0D0B9 /* Tutorial.h */,
 				0C1662C815CEA56B00C0D0B9 /* Tutorial.m */,
 				01FE9B3A15BFC2C9007512ED /* PlayerStats.h */,
@@ -1480,6 +1485,23 @@
 			name = Particles;
 			sourceTree = "<group>";
 		};
+		FA40DCAE15D3788E00174FB8 /* Enhancements */ = {
+			isa = PBXGroup;
+			children = (
+				FACE0CEB15CB963B0055B5DF /* Powerup.h */,
+				FACE0CEC15CB963B0055B5DF /* Powerup.m */,
+				FA7E63BA15D0F26E0090C913 /* UpgradeValues.h */,
+				FA7E63BB15D0F26E0090C913 /* UpgradeValues.m */,
+				FA40DCB015D378B500174FB8 /* UpgradeItem.h */,
+				FA40DCB115D378B500174FB8 /* UpgradeItem.m */,
+				0C2AB0B315BE8E43008822F1 /* MainMenuLayer.h */,
+				0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */,
+				FA40DCB315D37BFA00174FB8 /* UpgradeManager.h */,
+				FA40DCB415D37BFA00174FB8 /* UpgradeManager.m */,
+			);
+			name = Enhancements;
+			sourceTree = "<group>";
+		};
 		FA7E63ED15D251520090C913 /* menu stuff */ = {
 			isa = PBXGroup;
 			children = (
@@ -1487,8 +1509,10 @@
 				FA7E640B15D271DE0090C913 /* upgradesHeader-hd.png */,
 				0CAFE07315CDB406008C549E /* magnethudicon-hd.png */,
 				0CAFE07415CDB406008C549E /* magnethudicon.png */,
+				FA40DCB815D388BE00174FB8 /* cellBackground.png */,
 				0CAFE07115CDB406008C549E /* asteroidhudicon-hd.png */,
 				0CAFE07215CDB406008C549E /* asteroidhudicon.png */,
+				FA40DCB615D388B200174FB8 /* upgradesHeader.png */,
 				FA7E63EF15D251610090C913 /* cellBackground-hd.png */,
 			);
 			name = "menu stuff";
@@ -1702,6 +1726,8 @@
 				C4C9163015D315F4008105A6 /* star_label_font-hd.png in Resources */,
 				C4C9163115D315F4008105A6 /* star_label_font.fnt in Resources */,
 				C4C9163215D315F4008105A6 /* star_label_font.png in Resources */,
+				FA40DCB715D388B200174FB8 /* upgradesHeader.png in Resources */,
+				FA40DCB915D388BE00174FB8 /* cellBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1835,6 +1861,8 @@
 				FACE0CED15CB963B0055B5DF /* Powerup.m in Sources */,
 				0C1662C915CEA56B00C0D0B9 /* Tutorial.m in Sources */,
 				FA7E63BC15D0F26E0090C913 /* UpgradeValues.m in Sources */,
+				FA40DCB215D378B500174FB8 /* UpgradeItem.m in Sources */,
+				FA40DCB515D37BFA00174FB8 /* UpgradeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

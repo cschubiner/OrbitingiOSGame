@@ -1722,7 +1722,6 @@ typedef struct {
     if ([[PlayerStats sharedInstance] getPlays] == 1) {
         [[PlayerStats sharedInstance] addPlay];
     }
-    //[DataStorage storeData];
     //CCLOG(@"number of plays ever: %i", [[PlayerStats sharedInstance] getPlays]);
     [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:FALSE];
     

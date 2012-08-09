@@ -10,4 +10,8 @@
 
 @interface UpgradeManager : NSObject
 
+@property (nonatomic, retain) NSMutableArray* upgradeItems;
+
++ (id)sharedInstance;
+
 @end
