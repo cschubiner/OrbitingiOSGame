@@ -1516,21 +1516,16 @@ typedef struct {
     currentNumOfCoinLabels++;
     [coin.plusLabel setScale:.7];
     
-    //id blockAction = [CCCallBlock actionWithBlock:BCA(^{
-      //  [coin setIsTargettingScoreLabel:true];
-        //})];
-    
- /*   void (^block)(CCNode*) =  BCA(^(CCNode *n) {
-		// do something generic with node
-		CCLOG(@"called block for %@", n);
-    });
-    id blockAction2 = [CCCallBlockN actionWithBlock:block]*/
+    id setCoinTargetting = [CCCallBlock actionWithBlock:(^{
+        [coin setIsTargettingScoreLabel:true];
+        })];
 
     [coin.plusLabel runAction:[CCSequence actions:
                                [CCScaleTo actionWithDuration:.2 scale:2*coin.plusLabel.scale],
                                [CCScaleTo actionWithDuration:.1 scale:1*coin.plusLabel.scale],
                                [CCDelayTime actionWithDuration:.4],
-                               [CCSpawn actions:[CCFadeOut actionWithDuration:.3],[CCMoveTo actionWithDuration:.3 position:scoreLabel.position],nil],
+                               setCoinTargetting,
+                               [CCSpawn actions:[CCFadeOut actionWithDuration:.4],[CCMoveTo actionWithDuration:.3 position:scoreLabel.position],nil],
                                [CCHide action],
                                [CCCallFunc actionWithTarget:self selector:@selector(coinDone)],
                                nil]];
@@ -1571,6 +1566,7 @@ typedef struct {
         
         CGPoint p = coin.sprite.position;
         CGPoint coinPosOnHud = [cameraLayer convertToWorldSpace:coin.sprite.position];
+        if (coin.isTargettingScoreLabel==false)
         coin.plusLabel.position = ccp(coinPosOnHud.x, coinPosOnHud.y + 20);
 
         coin.velocity = ccpMult(ccpNormalize(ccpSub(player.sprite.position, p)), coin.speed);
