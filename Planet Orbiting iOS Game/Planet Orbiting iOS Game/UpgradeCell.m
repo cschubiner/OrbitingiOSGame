@@ -10,7 +10,7 @@
 
 @implementation UpgradeCell
 
-@synthesize levelLabel;
+@synthesize index, levelLabel;
 
 - (id)initWithUpgradeItem:(UpgradeItem*)item {
     if (self = [super init]) {        
