@@ -4,16 +4,16 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>backgrounddark.png</key>
+            <key>background3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{404,270}}</string>
+                <string>{{2,2},{480,320}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{38,25},{404,270}}</string>
+                <string>{{0,0},{480,320}}</string>
                 <key>sourceSize</key>
                 <string>{480,320}</string>
             </dict>
@@ -27,7 +27,7 @@
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:b7f758690716db53bc0dcf65328f9f49$</string>
+            <string>$TexturePacker:SmartUpdate:ac869a0ebfb4d741d052096f63114520$</string>
             <key>textureFileName</key>
             <string>background3.pvr.ccz</string>
         </dict>

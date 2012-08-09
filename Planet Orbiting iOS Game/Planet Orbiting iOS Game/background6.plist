@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>background2.png</key>
+            <key>background6.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{480,320}}</string>
@@ -23,13 +23,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>background2.pvr.ccz</string>
+            <string>background6.pvr.ccz</string>
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:c5f3996a5e87a676892f9361612cbb27$</string>
+            <string>$TexturePacker:SmartUpdate:9226397bc3fd5da74cbd63febc41222b$</string>
             <key>textureFileName</key>
-            <string>background2.pvr.ccz</string>
+            <string>background6.pvr.ccz</string>
         </dict>
     </dict>
 </plist>

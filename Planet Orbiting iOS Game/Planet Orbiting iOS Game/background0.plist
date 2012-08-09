@@ -4,18 +4,18 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>background0-hd.png</key>
+            <key>background0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{384,250}}</string>
+                <string>{{2,2},{480,320}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{48,35},{384,250}}</string>
+                <string>{{0,0},{480,320}}</string>
                 <key>sourceSize</key>
-                <string>{384,250}</string>
+                <string>{480,320}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -25,9 +25,9 @@
             <key>realTextureFileName</key>
             <string>background0.pvr.ccz</string>
             <key>size</key>
-            <string>{256,512}</string>
+            <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:7914d421ae55135712a6d9a5e7c79afa$</string>
+            <string>$TexturePacker:SmartUpdate:d234d65fc86d2e7a5a8755919f5b5a37$</string>
             <key>textureFileName</key>
             <string>background0.pvr.ccz</string>
         </dict>
