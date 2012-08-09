@@ -1300,7 +1300,7 @@ typedef struct {
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"generalSpritesheet.plist"];
         
         coinAnimationFrames = [[NSMutableArray alloc]init];
-        for (int i = 1; i <= 12; ++i) {
+        for (int i = 0; i <= 29; ++i) {
             [coinAnimationFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%d.png", i]]];
         }
         coinAnimation = [[CCAnimation alloc ]initWithFrames:coinAnimationFrames delay:coinAnimationDelay];
