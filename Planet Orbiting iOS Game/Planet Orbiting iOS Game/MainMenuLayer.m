@@ -66,7 +66,7 @@ const float effectsVolumeMainMenu = 1;
     //[upgradeLayer setContentSize:CGSizeMake(480, 10)];
     
     
-    ;
+    
     
     NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
     
