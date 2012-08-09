@@ -63,8 +63,8 @@
     if (!levels) {
         
         [items addObject:[[UpgradeItem alloc] initWithTitle:@"Star Magnet" description:@"The stars will cum on t" icon:@"magnethudicon.png" price:1000 hasLevels:true level:0]];
-        [items addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Immunity" description:@"The asteroids will quiver in fear before t" icon:@"asteroidhudicon.png" price:4 hasLevels:true level:0]];
-        [items addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Immunity" description:@"The asteroids will quiver in fear before t" icon:@"asteroidhudicon.png" price:2000 hasLevels:true level:0]];
+        [items addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Armor" description:@"The asteroids will quiver in fear before t" icon:@"asteroidhudicon.png" price:4 hasLevels:true level:0]];
+        [items addObject:[[UpgradeItem alloc] initWithTitle:@"Strong Rockets" description:@"The asteroids will quiver in fear before t" icon:@"asteroidhudicon.png" price:2000 hasLevels:true level:0]];
         [items addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Immunity" description:@"The asteroids will quiver in fear before t" icon:@"asteroidhudicon.png" price:2000 hasLevels:true level:0]];
         [items addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Immunity" description:@"The asteroids will quiver in fear before t" icon:@"asteroidhudicon.png" price:2000 hasLevels:true level:0]];
         
@@ -77,7 +77,7 @@
         
         [items addObject:[[UpgradeItem alloc] initWithTitle:@"Star Magnet" description:@"The stars will cum on t" icon:@"magnethudicon.png" price:1000 hasLevels:true level:[[levels objectAtIndex:index++]intValue]]];
         [items addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Immunity" description:@"The asteroids will quiver in fear before t" icon:@"asteroidhudicon.png" price:4 hasLevels:true level:[[levels objectAtIndex:index++]intValue]]];
-        [items addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Immunity" description:@"The asteroids will quiver in fear before t" icon:@"asteroidhudicon.png" price:2000 hasLevels:true level:[[levels objectAtIndex:index++]intValue]]];
+        [items addObject:[[UpgradeItem alloc] initWithTitle:@"Stronger Rockets" description:@"The asteroids will quiver in fear before t" icon:@"asteroidhudicon.png" price:2000 hasLevels:true level:[[levels objectAtIndex:index++]intValue]]];
         [items addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Immunity" description:@"The asteroids will quiver in fear before t" icon:@"asteroidhudicon.png" price:2000 hasLevels:true level:[[levels objectAtIndex:index++]intValue]]];
         [items addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Immunity" description:@"The asteroids will quiver in fear before t" icon:@"asteroidhudicon.png" price:2000 hasLevels:true level:[[levels objectAtIndex:index++]intValue]]];
         

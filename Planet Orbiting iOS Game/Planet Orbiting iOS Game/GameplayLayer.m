@@ -1218,11 +1218,10 @@ typedef struct {
     
 }
 
-- (void)initUpgradedVariables {
-    
-    [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:500 + 100*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] level]];
+- (void)initUpgradedVariables {    
     [[UpgradeValues sharedInstance] setCoinMagnetDuration:500 + 100*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:0] level]];
-    [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.85 + .045*0];
+    [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:500 + 100*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] level]];
+    [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.8 + .05*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] level]];
     [[UpgradeValues sharedInstance] setHasDoubleCoins:false];
 }
 
