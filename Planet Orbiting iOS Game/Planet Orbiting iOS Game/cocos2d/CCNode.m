@@ -238,13 +238,7 @@
 
 -(float) scale
 {
-	//NSAssert( scaleX_ == scaleY_, @"CCNode#scale. ScaleX != ScaleY. Don't know which one to return");
-    if (scaleX_<.1 || scaleX_ != scaleY_) {
-        NSLog(@"THIS SHOULD BE AN ERROR BUT I COMMENTED IT OUT. ScaleX != ScaleY. SEE CCNODE.m:241");
-        scaleX_ = .1;
-        scaleY_ = .1;
-        NSLog(@"dubtif why is the scale so small??");
-    }
+	NSAssert( scaleX_ == scaleY_, @"CCNode#scale. ScaleX != ScaleY. Don't know which one to return");
 	return scaleX_;
 }
 

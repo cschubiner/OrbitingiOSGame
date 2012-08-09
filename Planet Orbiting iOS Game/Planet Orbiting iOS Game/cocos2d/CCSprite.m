@@ -187,13 +187,6 @@ struct transformValues_ {
 	return self;
 }
 
--(CGFloat)width{
-    return self.contentSize.width * self.scaleX;
-}
--(CGFloat)height{
-    return self.contentSize.height * self.scaleY;
-}
-
 -(id) initWithTexture:(CCTexture2D*)texture
 {
 	NSAssert(texture!=nil, @"Invalid texture for sprite");

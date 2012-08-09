@@ -121,8 +121,6 @@
  */
 -(NSInteger) mouseDelegatePriority;
 
-- (void) scaleWithCenterPoint:(CGFloat) newScale scaleCenter:(CGPoint) scaleCenter;
-
 /** priority of the keyboard event delegate.
  Default 0.
  Override this method to set another priority.
