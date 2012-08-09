@@ -62,7 +62,7 @@ typedef struct {
 
 
 - (void)CreateCoin:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
-    NSLog(@"started coin");
+    //NSLog(@"started coin");
     Coin *coin = [[Coin alloc]init];
     coin.sprite = [CCSprite spriteWithSpriteFrameName:@"0.png"];
     coin.sprite.position = ccp(xPos, yPos);
@@ -81,13 +81,13 @@ typedef struct {
     //[spriteSheet addChild:coin.sprite];
     //[spriteSheet reorderChild:coin.sprite z:5];
     [coin release];
-    NSLog(@"ended coin");
-
+    //NSLog(@"ended coin");
+    
 }
 
 - (void)CreatePowerup:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale type:(int)type {
-    NSLog(@"started powerup");
-
+    //NSLog(@"started powerup");
+    
     Powerup *powerup = [[Powerup alloc]initWithType:type];
     
     powerup.coinSprite.position = ccp(xPos, yPos);
@@ -109,8 +109,8 @@ typedef struct {
     [spriteSheet reorderChild:powerup.glowSprite z:2.5];
     
     [powerup release];
-    NSLog(@"ended powerup");
-
+    //NSLog(@"ended powerup");
+    
 }
 
 - (void) setGlow:(CCSprite*)sprite forHowLong:(float)secondsToGlow{
@@ -124,9 +124,9 @@ typedef struct {
 }
 
 - (void)CreateAsteroid:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
-    NSLog(@"started asteroid");
-
-  //  [self setGlow];
+    //NSLog(@"started asteroid");
+    
+    //  [self setGlow];
     Asteroid *asteroid = [[Asteroid alloc]init];
     asteroid.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"asteroid%d.png",[self RandomBetween:1 maxvalue:3]]];
     asteroid.sprite.position = ccp(xPos, yPos);
@@ -138,12 +138,12 @@ typedef struct {
     [asteroids addObject:asteroid];
     [spriteSheet addChild:asteroid.sprite];
     [asteroid release];
-    NSLog(@"ended asteroid");
-
+    //NSLog(@"ended asteroid");
+    
 }
 
 - (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
-    NSLog(@"started planet and zone");
+    //NSLog(@"started planet and zone");
     Planet *planet = [[Planet alloc]init];
     planet.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"planet%d-%d.png",[self RandomBetween:1 maxvalue:currentGalaxy.numberOfDifferentPlanetsDrawn],currentGalaxy.number]];
     planet.sprite.position = ccp(xPos, yPos);
@@ -172,7 +172,7 @@ typedef struct {
     [zone release];
     [planet release];
     planetCounter++;
-    NSLog(@"ended planet and zone");
+    //NSLog(@"ended planet and zone");
 }
 
 -(CGPoint)getPositionBasedOnOrigin:(CGPoint)origin offset:(CGPoint)offset andAngle:(float)angle {
@@ -238,7 +238,7 @@ typedef struct {
             [self CreateAsteroid:newPos.x yPos:newPos.y scale:returner.scale];
         if (returner.type == kpowerup)
             [self CreatePowerup:newPos.x yPos:newPos.y scale:powerupScaleSize type:returner.scale];
-
+        
     }
     makingSegmentNumber++;
     return true;
@@ -294,7 +294,7 @@ typedef struct {
                 //galaxy 1
                 [[Galaxy alloc]initWithSegments:
                  [NSArray arrayWithObjects:
-
+                  
                   // Craig's 1-SpeedOne
                   [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1262,-252) scale:0.87552],
                    [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1778,418) scale:1.08252],
@@ -323,7 +323,7 @@ typedef struct {
                    [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1437,137) scale:1],
                    [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2129,37) scale:1],
                    nil],
-
+                  
                   //1-SmoothSail
                   [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(48,246) scale:0.87552],
                    [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1452,-144) scale:0.87552],
@@ -352,7 +352,7 @@ typedef struct {
                    [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1816,-137) scale:1],
                    [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2298,-72) scale:1],
                    nil],
-
+                  
                   // Craig's 2-Simple1
                   [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(294,-224) scale:1],
                    [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(373,-187) scale:1],
@@ -578,7 +578,7 @@ typedef struct {
                    [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(846,351) scale:1],
                    [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1189,610) scale:1],
                    nil],
-         
+                  
                   //generic with asteriods
                   [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(229,9) scale:0.87552],
                    [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(108,221) scale:0.87552],
@@ -630,7 +630,7 @@ typedef struct {
                    [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(7090,31) scale:1],
                    [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(7630,102) scale:1],
                    nil],
-
+                  
                   
                   nil]],
                 
@@ -801,7 +801,7 @@ typedef struct {
                    [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1839,246) scale:1],
                    [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2902,57) scale:1],
                    nil],
-        
+                  
                   
                   
                   nil]],
@@ -943,7 +943,7 @@ typedef struct {
                 //galaxy 5
                 [[Galaxy alloc]initWithSegments:
                  [NSArray arrayWithObjects:
-
+                  
                   //LoopdeLoop
                   [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(229,73) scale:0.53052],
                    [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(223,-15) scale:0.48384],
@@ -1002,7 +1002,7 @@ typedef struct {
                    [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1069,380) scale:1],
                    [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1630,-380) scale:1],
                    nil],
-
+                  
                   
                   //8 - alex b favorite level broken
                   [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(283,2) scale:0.87552],
@@ -1161,26 +1161,26 @@ typedef struct {
                    [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2921,69) scale:1],
                    [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(3698,59) scale:1],
                    nil],
-
+                  
                   
                   nil]],
                 
                 /*
-                //galaxy 6
-                [[Galaxy alloc]initWithSegments:
+                 //galaxy 6
+                 [[Galaxy alloc]initWithSegments:
                  [NSArray arrayWithObjects:
-                  
-                  
-                  
-                  nil]],
-                //galaxy 7
-                [[Galaxy alloc]initWithSegments:
+                 
+                 
+                 
+                 nil]],
+                 //galaxy 7
+                 [[Galaxy alloc]initWithSegments:
                  [NSArray arrayWithObjects:
-                  
-                  
-                  
-                  nil]],
-                */
+                 
+                 
+                 
+                 nil]],
+                 */
                 
                 
                 nil];
@@ -1198,21 +1198,24 @@ typedef struct {
     [galaxy setName:@"Galaxy 2 - Grasslands"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:21];
-
     
     galaxy = [galaxies objectAtIndex:2];
     [galaxy setName:@"Galaxy 3 - Girly Galaxy"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:30];
-
+    [galaxy setOptimalPlanetsInThisGalaxy:21];
+    
     galaxy = [galaxies objectAtIndex:3];
     [galaxy setName:@"Galaxy 4 - Icy Galaxy"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
+    [galaxy setOptimalPlanetsInThisGalaxy:24];
+
     
     galaxy = [galaxies objectAtIndex:4];
     [galaxy setName:@"Galaxy 5 - Lava Galaxy"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
+    [galaxy setOptimalPlanetsInThisGalaxy:24];
 
+    
 }
 
 - (void)initUpgradedVariables {
@@ -1301,7 +1304,7 @@ typedef struct {
             [coinAnimationFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%d.png", i]]];
         }
         coinAnimation = [[CCAnimation alloc ]initWithFrames:coinAnimationFrames delay:coinAnimationDelay];
-
+        
         
         [self CreateGalaxies];
         currentGalaxy = [galaxies objectAtIndex:0];
@@ -1518,14 +1521,22 @@ typedef struct {
     
     id setCoinTargetting = [CCCallBlock actionWithBlock:(^{
         [coin setIsTargettingScoreLabel:true];
-        })];
-
+    })];
+    
+    id tintScoreYellow = [CCCallBlock actionWithBlock:(^{
+        id tintAction = [CCTintTo actionWithDuration:.05 red:255 green:255 blue:0];
+        [scoreLabel runAction:[CCSequence actions:tintAction,
+                               [CCDelayTime actionWithDuration:.4],
+                               [CCTintTo actionWithDuration:.4 red:255 green:255 blue:255],
+                               nil]];
+    })];
+    
     [coin.plusLabel runAction:[CCSequence actions:
                                [CCScaleTo actionWithDuration:.2 scale:2*coin.plusLabel.scale],
                                [CCScaleTo actionWithDuration:.1 scale:1*coin.plusLabel.scale],
                                [CCDelayTime actionWithDuration:.4],
                                setCoinTargetting,
-                               [CCSpawn actions:[CCFadeOut actionWithDuration:.4],[CCMoveTo actionWithDuration:.3 position:scoreLabel.position],nil],
+                               [CCSpawn actions:[CCFadeOut actionWithDuration:.4],[CCMoveTo actionWithDuration:.3 position:scoreLabel.position],tintScoreYellow,nil],
                                [CCHide action],
                                [CCCallFunc actionWithTarget:self selector:@selector(coinDone)],
                                nil]];
@@ -1545,7 +1556,6 @@ typedef struct {
 
 - (void)coinDone {
     currentNumOfCoinLabels--;
-    
     if (currentNumOfCoinLabels <= 0) {
         currentCoinLabel = 0;
     }
@@ -1567,8 +1577,8 @@ typedef struct {
         CGPoint p = coin.sprite.position;
         CGPoint coinPosOnHud = [cameraLayer convertToWorldSpace:coin.sprite.position];
         if (coin.isTargettingScoreLabel==false)
-        coin.plusLabel.position = ccp(coinPosOnHud.x, coinPosOnHud.y + 20);
-
+            coin.plusLabel.position = ccp(coinPosOnHud.x, coinPosOnHud.y + 20);
+        
         coin.velocity = ccpMult(ccpNormalize(ccpSub(player.sprite.position, p)), coin.speed);
         if (coin.isAlive)
             coin.sprite.position = ccpAdd(coin.sprite.position, coin.velocity);
@@ -1590,12 +1600,12 @@ typedef struct {
     }
     
     /*if (!(player.currentPowerup.type == 1)) {
-        if (isHittingAsteroid)
-            asteroidSlower -= .1;
-        else
-            asteroidSlower += .01;
-        asteroidSlower = clampf(asteroidSlower, .13, 1);
-    }*/
+     if (isHittingAsteroid)
+     asteroidSlower -= .1;
+     else
+     asteroidSlower += .01;
+     asteroidSlower = clampf(asteroidSlower, .13, 1);
+     }*/
     
     for (Powerup* powerup in powerups) {
         CGPoint p = powerup.coinSprite.position;
@@ -1973,7 +1983,7 @@ typedef struct {
                     [self addChild:background2 z:-6];
                 }
             }
-
+            
             if ([[self children]containsObject:background2]) {
                 [background2 setOpacity:255];
                 [background setOpacity:lerpf(255, 0, percentofthewaytonext)];
@@ -1983,7 +1993,7 @@ typedef struct {
                 [background setTexture:[[CCTextureCache sharedTextureCache] addImage:[NSString stringWithFormat:@"background%d.pvr.ccz",targetPlanet.whichGalaxyThisObjectBelongsTo]]];
                 [background setOpacity:255];
                 if (![[self children]containsObject:background])
-                [self addChild:background];
+                    [self addChild:background];
                 [self removeChild:background2 cleanup:YES];
             }
             
@@ -1995,7 +2005,8 @@ typedef struct {
                         [cameraLayer removeChild:lastGalaxy.spriteSheet cleanup:YES];
                         [[lastGalaxy spriteSheet]release];
                     }
-                    [cameraLayer addChild:currentGalaxy.spriteSheet];
+                    [cameraLayer addChild:currentGalaxy.spriteSheet z:3];
+                    [cameraLayer reorderChild:spriteSheet z:4];
                 }
                 
                 if ([[hudLayer children]containsObject:galaxyLabel]==false)
@@ -2020,9 +2031,6 @@ typedef struct {
     if ((int)[background2 opacity]<=0&&[[self children]containsObject:background2])
         [self removeChild:background2 cleanup:NO];
     
-    
-    
-    
     if (levelNumber !=0) {
         if (planetsHitFlurry >= [planets count]) {
             [self GameOver];
@@ -2040,11 +2048,14 @@ typedef struct {
         if ([self CreateSegment]==false) {
             justDisplayedGalaxyLabel = false;
             planetsHitSinceNewGalaxy=0;
-            currentGalaxy = nextGalaxy;
-            nextGalaxy = [galaxies objectAtIndex:currentGalaxy.number+1];
-            Planet*lastPlanetOfThisGalaxy = [planets objectAtIndex:planets.count-1];
-            [self CreateCoinArrowAtPosition:ccpAdd(lastPlanetOfThisGalaxy.sprite.position, ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn)), lastPlanetOfThisGalaxy.orbitRadius*2.1)) withAngle:directionPlanetSegmentsGoIn];
-            indicatorPos = ccpAdd(indicatorPos, ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn)), distanceBetweenGalaxies));
+            if (currentGalaxy.number+1<[galaxies count]) {
+                currentGalaxy = nextGalaxy;
+                if (currentGalaxy.number+1<[galaxies count])
+                    nextGalaxy = [galaxies objectAtIndex:currentGalaxy.number+1];
+                Planet*lastPlanetOfThisGalaxy = [planets objectAtIndex:planets.count-1];
+                [self CreateCoinArrowAtPosition:ccpAdd(lastPlanetOfThisGalaxy.sprite.position, ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn)), lastPlanetOfThisGalaxy.orbitRadius*2.1)) withAngle:directionPlanetSegmentsGoIn];
+                indicatorPos = ccpAdd(indicatorPos, ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn)), distanceBetweenGalaxies));
+            }
             [self CreateSegment];
         }
         //CCLOG(@"Planet Count: %d",[planets count]);
@@ -2167,23 +2178,22 @@ typedef struct {
     if (light.distanceFromPlayer > negativeLightStartingScore)
         light.score = score - negativeLightStartingScore;
     
-    
     light.scoreVelocity += amountToIncreaseLightScoreVelocityEachUpdate*60*dt;
     if (!isInTutorialMode&&levelNumber==0)
         [slidingSelector setPosition:ccp(slidingSelector.position.x,lerpf(50.453,269.848,1-light.distanceFromPlayer/negativeLightStartingScore))];
     
     //    CCLOG(@"DIST: %f, VEL: %f, LIGHSCORE: %f", light.distanceFromPlayer, light.scoreVelocity, light.score);
     if (light.distanceFromPlayer <= 0) {
-         if (!light.hasPutOnLight) {
-             light.hasPutOnLight = true;
-             light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
-             [light.sprite setOpacity:0];
-             light.sprite.position = ccp(-240, 160);
-             [light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
-             [hudLayer reorderChild:light.sprite z:-1];
-             [light.sprite setOpacity:0];
-         }
-     }
+        if (!light.hasPutOnLight) {
+            light.hasPutOnLight = true;
+            light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
+            [light.sprite setOpacity:0];
+            light.sprite.position = ccp(-240, 160);
+            [light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
+            [hudLayer reorderChild:light.sprite z:-1];
+            [light.sprite setOpacity:0];
+        }
+    }
     
     if (light.hasPutOnLight) {
         light.sprite.position = ccp(light.sprite.position.x+480/10, light.sprite.position.y);
@@ -2237,9 +2247,9 @@ typedef struct {
 - (void) Update:(ccTime)dt {
     
     if (!paused&&isGameOver==false) {
-            totalGameTime+=dt;
-            totalSecondsAlive+=dt;
-            timeSinceGotLastCoin+=dt;
+        totalGameTime+=dt;
+        totalSecondsAlive+=dt;
+        timeSinceGotLastCoin+=dt;
         
         if (player.alive) {
             [self UpdatePlanets];
