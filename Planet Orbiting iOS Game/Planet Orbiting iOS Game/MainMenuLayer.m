@@ -23,7 +23,6 @@
 #define levelLayerTag       1002
 #define upgradeAlertTag     1003
 
-
 const float musicVolumeMainMenu = 1;
 const float effectsVolumeMainMenu = 1;
 
