@@ -17,6 +17,7 @@
 #import "PlayerStats.h"
 #import "UpgradeItem.h"
 #import "UpgradeManager.h"
+#import "UpgradeCell.h"
 
 #define tutorialLayerTag    1001
 #define levelLayerTag       1002
@@ -54,61 +55,7 @@ const float effectsVolumeMainMenu = 1;
 	return scene;
 }
 
-- (void)updateLabels {
-    int coins = [[UserWallet sharedInstance] getBalance];
-    NSString *coinsBalance = [NSString stringWithFormat:@"Balance: %i coins", coins];
-    NSLog(@"%@", coinsBalance);
-    //[coinBalanceLabel setString:coinsBalance];
-    
-    int magnets = [[PowerupManager sharedInstance] numMagnet];
-    NSString *magnetsBought = [NSString stringWithFormat:@"%i", magnets];
-    NSLog(@"%@", magnetsBought);
-    [numMagnetsLabel setString:magnetsBought];
-    
-    int immunities = [[PowerupManager sharedInstance] numImmunity];
-    NSString *immunitiesBought = [NSString stringWithFormat:@"%i", immunities];
-    NSLog(@"%@", immunitiesBought);
-    [numImmunitiesLabel setString:immunitiesBought];
-}
-
 //- (CCLayer*)createCellWithTitle:(NSString*)title spriteName:(NSString*)spriteName readableCost:(NSString*)readableCost {
-- (CCLayer*)createCellWithUpgradeItem:(UpgradeItem*)item {
-    CCLayer* aCell = [[CCLayer alloc] init];
-    
-    
-    CCSprite* backgroundSprite = [CCSprite spriteWithFile:@"cellBackground.png"];
-    [aCell addChild:backgroundSprite];
-    [backgroundSprite setPosition:ccp(backgroundSprite.width/2, -backgroundSprite.height/2)];
-    
-    
-    CCSprite* upgradeSprite = [CCSprite spriteWithFile:item.icon];
-    [upgradeSprite setScale:.5];
-    [aCell addChild:upgradeSprite];
-    [upgradeSprite setPosition:ccp(upgradeSprite.width/2+5, -backgroundSprite.height/2)];
-    
-    
-    CCLabelTTF* hello = [CCLabelTTF labelWithString:item.title fontName:@"Marker Felt" fontSize:24];
-    [aCell addChild: hello];
-    [hello setPosition:ccp(90 + [hello boundingBox].size.width/2, -25)];
-    
-    CCLabelTTF* hello2 = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level %d", item.level] fontName:@"Marker Felt" fontSize:18];
-    [aCell addChild: hello2];
-    [hello2 setPosition:ccp(90 + [hello2 boundingBox].size.width/2, -58)];
-    
-    CCSprite* starSprite = [CCSprite spriteWithFile:@"star1.png"];
-    [starSprite setScale:.16];
-    [aCell addChild:starSprite];
-    [starSprite setPosition:ccp(480-starSprite.width/2-8, -57)];
-    
-    CCLabelTTF* hello3 = [CCLabelTTF labelWithString:[self commaInt:item.price] fontName:@"Marker Felt" fontSize:18];
-    [aCell addChild: hello3];
-    [hello3 setPosition:ccp(480 - 37 - [hello3 boundingBox].size.width/2, -58)];
-    
-    
-    [aCell setContentSize:CGSizeMake(480, 80)];
-    
-    return aCell;
-}
 
 - (void) initUpgradeLayer {
     
@@ -125,17 +72,10 @@ const float effectsVolumeMainMenu = 1;
     
     
     cells = [[NSMutableArray alloc] init];
-    /*[cells addObject:[self createCellWithTitle:@"Star Magnet" spriteName:@"magnethudicon.png" readableCost:@"3,000"]];
-    [cells addObject:[self createCellWithTitle:@"Asteroid Armor" spriteName:@"asteroidhudicon.png" readableCost:@"1,000"]];
-    [cells addObject:[self createCellWithTitle:@"Golden Rocketship" spriteName:@"asteroidhudicon.png" readableCost:@"10,000"]];
-    [cells addObject:[self createCellWithTitle:@"Speed boost" spriteName:@"asteroidhudicon.png" readableCost:@"1,000"]];
-    [cells addObject:[self createCellWithTitle:@"somethang" spriteName:@"asteroidhudicon.png" readableCost:@"3,000"]];
-    [cells addObject:[self createCellWithTitle:@"A sexy new rocket" spriteName:@"asteroidhudicon.png" readableCost:@"10,000"]];
-    [cells addObject:[self createCellWithTitle:@"A 2sexy new rocket" spriteName:@"asteroidhudicon.png" readableCost:@"10,000"]];
-    [cells addObject:[self createCellWithTitle:@"A 2sexy new rocket" spriteName:@"asteroidhudicon.png" readableCost:@"10,000"]];*/
     
     for (UpgradeItem* item in upgradeItems) {
-        [cells addObject:[self createCellWithUpgradeItem:item]];
+        UpgradeCell *cell = [[UpgradeCell alloc] initWithUpgradeItem:item];
+        [cells addObject: cell];
     }
     
     upgradeLayerHeight = 0;
@@ -144,6 +84,18 @@ const float effectsVolumeMainMenu = 1;
         [upgradeLayer addChild:cell];
         [cell setPosition:ccp(0, -80*i - 55)];
         upgradeLayerHeight += 80;
+    }
+}
+
+- (void)refreshUpgradeCells {
+    for (UIView* cell in cells) {
+        NSMutableArray* subviews = [[NSMutableArray alloc] initWithArray:cell.subviews];
+        
+        for (int i = 0; i < [subviews count]; i++) {
+            if (i == 3) {
+                //(CCLabelTTF*)[subviews objectAtIndex:i] setString: [NSString stringWithFormat:@"Level %d", cell.level];
+            }
+        }
     }
 }
 
@@ -213,8 +165,6 @@ const float effectsVolumeMainMenu = 1;
                 }
                 i++;
             }
-            //}
-            
         }
     }
 }
@@ -222,10 +172,8 @@ const float effectsVolumeMainMenu = 1;
 // on "init" you need to initialize your instance
 - (id)init {
 	if (self = [super init]) {
-        [self updateLabels];
         
         self.isTouchEnabled = true;
-        
         
         [self initUpgradeLayer];
         
@@ -264,7 +212,8 @@ const float effectsVolumeMainMenu = 1;
         [layer addChild:starSprite];
         [starSprite setPosition:ccp(1200 - 480/2 + 480-starSprite.width/2-8, 640-29)];
         
-        CCLabelTTF* hello3 = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",[[UserWallet sharedInstance]getBalance]] fontName:@"Marker Felt" fontSize:22];
+        
+        CCLabelTTF* hello3 = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"Marker Felt" fontSize:22];
         [layer addChild: hello3];
         [hello3 setPosition:ccp(1200 - 480/2 + 480 - 40 - [hello3 boundingBox].size.width/2, 640-30)];
         
@@ -337,7 +286,6 @@ const float effectsVolumeMainMenu = 1;
     if (currCoins - newCoins == [[storeManager.storeItems objectAtIndex:0] price]) {
         [[PowerupManager sharedInstance] addMagnet];
     }
-    [self updateLabels];
 }
 
 - (void)immunityButtonPressed {
@@ -348,7 +296,6 @@ const float effectsVolumeMainMenu = 1;
     if (currCoins - newCoins == [[storeManager.storeItems objectAtIndex:1] price]) {
         [[PowerupManager sharedInstance] addImmunity];
     }
-    [self updateLabels];
 }
 
 // this is called (magically?) by cocosbuilder when the start button is pressed
@@ -374,7 +321,6 @@ const float effectsVolumeMainMenu = 1;
 }
 
 - (void)pressedStoreButton:(id)sender {
-    [self updateLabels];
     [Flurry logEvent:@"Opened Store"];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(-960,-320)];
     id ease = [CCEaseSineInOut actionWithAction:action]; //does this "CCEaseSineInOut" look better than the above "CCEaseInOut"???
@@ -382,7 +328,6 @@ const float effectsVolumeMainMenu = 1;
 }
 
 - (void)pressedScoresButton:(id)sender {
-    [self updateLabels];
     [Flurry logEvent:@"Opened High Scores"];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(0,-320)];
     id ease = [CCEaseSineInOut actionWithAction:action];

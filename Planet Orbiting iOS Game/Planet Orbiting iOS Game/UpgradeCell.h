@@ -7,7 +7,13 @@
 //
 
 #import "CCLayer.h"
+#import "UpgradeItem.h"
+#import "cocos2d.h"
 
 @interface UpgradeCell : CCLayer
+
+@property (nonatomic) int index;
+
+- (id)initWithUpgradeItem:(UpgradeItem*)item;
 
 @end

@@ -16,6 +16,8 @@
 #import "DataStorage.h"
 #import "PlayerStats.h"
 #import "Powerup.h"
+#import "UpgradeItem.h"
+#import "UpgradeManager.h"
 
 #define pauseLayerTag       100
 #define gameOverLayerTag    200
@@ -650,8 +652,9 @@ typedef struct {
 }
 
 - (void)initUpgradedVariables {
-    [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:500 + 100*0];
-    [[UpgradeValues sharedInstance] setCoinMagnetDuration:500 + 100*0];
+    
+    [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:500 + 100*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] level]];
+    [[UpgradeValues sharedInstance] setCoinMagnetDuration:500 + 100*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:0] level]];
     [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.85 + .045*0];
     [[UpgradeValues sharedInstance] setHasDoubleCoins:false];
 }
