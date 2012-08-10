@@ -58,19 +58,13 @@ const float effectsVolumeMainMenu = 1;
 //- (CCLayer*)createCellWithTitle:(NSString*)title spriteName:(NSString*)spriteName readableCost:(NSString*)readableCost {
 
 - (void) initUpgradeLayer {
-    
-    
     upgradeLayer = [[CCLayer alloc] init];
     startingUpgradeLayerPos = ccp(960, 640);
     [upgradeLayer setPosition:startingUpgradeLayerPos];
     //[upgradeLayer setContentSize:CGSizeMake(480, 10)];
     
-    
-    
-    
     NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
-    
-    
+
     cells = [[NSMutableArray alloc] init];
     
     for (UpgradeItem* item in upgradeItems) {
