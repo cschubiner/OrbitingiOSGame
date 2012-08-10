@@ -62,7 +62,7 @@ typedef struct {
 
 
 - (void)CreateCoin:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
-    //NSLog(@"started coin");
+    ////NSLog(@"started coin");
     Coin *coin = [[Coin alloc]init];
     coin.sprite = [CCSprite spriteWithSpriteFrameName:@"0.png"];
     coin.sprite.position = ccp(xPos, yPos);
@@ -81,12 +81,12 @@ typedef struct {
     //[spriteSheet addChild:coin.sprite];
     //[spriteSheet reorderChild:coin.sprite z:5];
     [coin release];
-    //NSLog(@"ended coin");
+    ////NSLog(@"ended coin");
     
 }
 
 - (void)CreatePowerup:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale type:(int)type {
-    //NSLog(@"started powerup");
+    ////NSLog(@"started powerup");
     
     Powerup *powerup = [[Powerup alloc]initWithType:type];
     
@@ -109,7 +109,7 @@ typedef struct {
     [spriteSheet reorderChild:powerup.glowSprite z:2.5];
     
     [powerup release];
-    //NSLog(@"ended powerup");
+    ////NSLog(@"ended powerup");
     
 }
 
@@ -124,7 +124,7 @@ typedef struct {
 }
 
 - (void)CreateAsteroid:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
-    //NSLog(@"started asteroid");
+    ////NSLog(@"started asteroid");
     
     //  [self setGlow];
     Asteroid *asteroid = [[Asteroid alloc]init];
@@ -138,12 +138,12 @@ typedef struct {
     [asteroids addObject:asteroid];
     [spriteSheet addChild:asteroid.sprite];
     [asteroid release];
-    //NSLog(@"ended asteroid");
+    ////NSLog(@"ended asteroid");
     
 }
 
 - (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
-    //NSLog(@"started planet and zone");
+    ////NSLog(@"started planet and zone");
     Planet *planet = [[Planet alloc]init];
     planet.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"planet%d-%d.png",[self RandomBetween:1 maxvalue:currentGalaxy.numberOfDifferentPlanetsDrawn],currentGalaxy.number]];
     planet.sprite.position = ccp(xPos, yPos);
@@ -172,7 +172,7 @@ typedef struct {
     [zone release];
     [planet release];
     planetCounter++;
-    //NSLog(@"ended planet and zone");
+    ////NSLog(@"ended planet and zone");
 }
 
 -(CGPoint)getPositionBasedOnOrigin:(CGPoint)origin offset:(CGPoint)offset andAngle:(float)angle {
@@ -1192,27 +1192,27 @@ typedef struct {
     galaxy = [galaxies objectAtIndex:0];
     [galaxy setName:@"Galaxy 1"];
     [galaxy setNumberOfDifferentPlanetsDrawn:7];
-    [galaxy setOptimalPlanetsInThisGalaxy:17];
+   // [galaxy setOptimalPlanetsInThisGalaxy:17];
     
     galaxy = [galaxies objectAtIndex:1];
     [galaxy setName:@"Galaxy 2"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:21];
+ //   [galaxy setOptimalPlanetsInThisGalaxy:21];
     
     galaxy = [galaxies objectAtIndex:2];
     [galaxy setName:@"Galaxy 3"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:21];
+  //  [galaxy setOptimalPlanetsInThisGalaxy:21];
     
     galaxy = [galaxies objectAtIndex:3];
     [galaxy setName:@"Galaxy 4"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
-    [galaxy setOptimalPlanetsInThisGalaxy:24];
+  //  [galaxy setOptimalPlanetsInThisGalaxy:24];
 
     galaxy = [galaxies objectAtIndex:4];
     [galaxy setName:@"Galaxy 5"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
-    [galaxy setOptimalPlanetsInThisGalaxy:24];
+   // [galaxy setOptimalPlanetsInThisGalaxy:24];
     
 }
 
@@ -1476,7 +1476,7 @@ typedef struct {
     float scalerToUse = numerator/240; //CCLOG(@"num: %f, newAng: %f", numerator, newAng);
     
     if ([cameraLayer scale]<.1) {
-        //NSLog(@"cameraLayer scale should be bigger this this, we prob has an error");
+        ////NSLog(@"cameraLayer scale should be bigger this this, we prob has an error");
         [cameraLayer setScale:.1];
     }
     
@@ -1958,12 +1958,17 @@ typedef struct {
 }
 
 - (void)UpdateGalaxies {
+    //NSLog(@"galaxy0");
+
     if (lastPlanetVisited.number==0) {
         cameraShouldFocusOnPlayer = false;
     }
     else {
+        //NSLog(@"galaxy");
+
         Planet * nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
-        
+        //NSLog(@"galaxy11");
+
         if (
             //nextPlanet.whichGalaxyThisObjectBelongsTo > lastPlanetVisited.whichGalaxyThisObjectBelongsTo||
             targetPlanet.whichGalaxyThisObjectBelongsTo>lastPlanetVisited.whichGalaxyThisObjectBelongsTo) {
@@ -1983,7 +1988,7 @@ typedef struct {
                     [self addChild:background2 z:-6];
                 }
             }
-            
+            //NSLog(@"galaxy1");
             if ([[self children]containsObject:background2]) {
                 [background2 setOpacity:255];
                 [background setOpacity:lerpf(255, 0, percentofthewaytonext)];
@@ -1996,7 +2001,7 @@ typedef struct {
                     [self addChild:background];
                 [self removeChild:background2 cleanup:YES];
             }
-            
+            //NSLog(@"galaxy3");
             if (percentofthewaytonext>.85&&justDisplayedGalaxyLabel==false&&(int)galaxyLabel.opacity<=0)
             {
                 if ([[cameraLayer children]containsObject:currentGalaxy.spriteSheet]==false) {
@@ -2008,7 +2013,7 @@ typedef struct {
                     [cameraLayer addChild:currentGalaxy.spriteSheet z:3];
                     [cameraLayer reorderChild:spriteSheet z:4];
                 }
-                
+                //NSLog(@"galaxy4");
                 if ([[hudLayer children]containsObject:galaxyLabel]==false)
                     [hudLayer addChild:galaxyLabel];
                 [galaxyLabel setOpacity:1];
@@ -2023,7 +2028,7 @@ typedef struct {
             [background setOpacity:255];
         }
     }
-    
+    //NSLog(@"galaxy5");
     if ((int)galaxyLabel.opacity <=0&&justDisplayedGalaxyLabel==false&&[[hudLayer children]containsObject:galaxyLabel])
         [hudLayer removeChild:galaxyLabel cleanup:NO];
     if ((int)[background opacity]<=0&&[[self children]containsObject:background])
@@ -2042,7 +2047,7 @@ typedef struct {
         [self DisposeAllContentsOfArray:zones shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:asteroids shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:coins shouldRemoveFromArray:true];
-        
+        //NSLog(@"galaxy6");
         makingSegmentNumber--;
         
         if ([self CreateSegment]==false) {
@@ -2196,10 +2201,12 @@ typedef struct {
     }
     
     if (light.hasPutOnLight) {
-        light.sprite.position = ccp(light.sprite.position.x+480/10, light.sprite.position.y);
+        light.sprite.position = ccp(light.sprite.position.x+48, light.sprite.position.y);
         [light.sprite setOpacity:clampf((light.sprite.position.x+240)*255/480, 0, 255)];
     }
-    if (light.sprite.position.x >= 240) {
+    if (light.sprite.position.x >= 240
+        ||slidingSelector.position.y > 269.848+10)//failsafe line
+    {
         //[light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];
         [self GameOver];
     }
@@ -2245,7 +2252,7 @@ typedef struct {
 }
 
 - (void) Update:(ccTime)dt {
-    
+    //NSLog(@"start");
     if (!paused&&isGameOver==false) {
         totalGameTime+=dt;
         totalSecondsAlive+=dt;
@@ -2253,21 +2260,31 @@ typedef struct {
         
         if (player.alive) {
             [self UpdatePlanets];
+            //NSLog(@"start1");
+
             [self UpdateGalaxies];
+            //NSLog(@"start2");
         }
         [self UpdateCoins];
+         //NSLog(@"start3");
         [self UpdatePlayer: dt];
+         //NSLog(@"start4");
         [self UpdateScore];
+         //NSLog(@"start5");
         [self UpdateCamera:dt];
+         //NSLog(@"start6");
         [self UpdateParticles:dt];
-        if (levelNumber==0)
+         //NSLog(@"start7");
+        if (levelNumber==0) {
             [self UpdateLight:dt];
+             //NSLog(@"start7");
+        }
         updatesSinceLastPlanet++;
     } else if (isDisplayingPowerupAnimation)
         [self updatePowerupAnimation: dt];
     
     // if ([[self children]containsObject:background]&&[[self children]containsObject:background2])
-    //    NSLog(@"both backgrounds are on the screen! this should only happen when transitioning between galaxies.");
+    //    //NSLog(@"both backgrounds are on the screen! this should only happen when transitioning between galaxies.");
     
     if (isInTutorialMode)
         [self UpdateTutorial];

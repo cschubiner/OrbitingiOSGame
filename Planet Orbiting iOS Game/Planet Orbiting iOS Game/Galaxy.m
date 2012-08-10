@@ -21,7 +21,7 @@
         [spriteSheet retain];
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[NSString stringWithFormat:@"galaxy%d.plist",self.number]];
         [segments retain];
-        optimalPlanetsInThisGalaxy = 23;
+        optimalPlanetsInThisGalaxy = 6;//23;
     }
     return self;
 }
