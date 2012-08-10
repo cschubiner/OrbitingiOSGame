@@ -8,7 +8,7 @@
 
 #import "PlayerStats.h"
 
-const int highScoreLimit = 4;
+const int highScoreLimit = 8;
 
 @implementation PlayerStats {
     int totalPlays;
@@ -50,12 +50,11 @@ static PlayerStats *sharedInstance = nil;
 
 - (void)addScore:(int)score {
     NSNumber *newScore = [[NSNumber alloc] initWithInt:score];
-    [highScores addObject:newScore]; //THIS LINE CRASHES WHEN YOU PRESS QUIT AFTER THE TUTORIAL/REGULAR GAME HAS ALREADY RAN AND QUIT ONCE!!! JEFFFFF
+    [highScores addObject:newScore]; // THIS LINE CRASHES WHEN YOU PRESS QUIT AFTER THE TUTORIAL/REGULAR GAME HAS ALREADY RAN AND QUIT ONCE!!! 8/09 does this still apply?
     [newScore release];
     
     [[DDGameKitHelper sharedGameKitHelper] submitScore:score category:@"Star_Dash_Leaderboard"];
 
-    
     NSSortDescriptor *highestToLowest = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:NO];
     [highScores sortUsingDescriptors:[NSArray arrayWithObject:highestToLowest]];
     

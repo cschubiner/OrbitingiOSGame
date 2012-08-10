@@ -217,6 +217,12 @@ const float effectsVolumeMainMenu = 1;
         int highScore2Int;
         int highScore3Int;
         int highScore4Int;
+        int highScore5Int;
+        int highScore6Int;
+        int highScore7Int;
+        int highScore8Int;
+        int highScore9Int;
+        int highScore10Int;
         
         if (highScores && [highScores count] > 0) {
             highScore1Int = [[highScores objectAtIndex:0] intValue];
@@ -230,18 +236,54 @@ const float effectsVolumeMainMenu = 1;
         if (highScores && [highScores count] > 3) {
             highScore4Int = [[highScores objectAtIndex:3] intValue];
         }
+        if (highScores && [highScores count] > 4) {
+            highScore5Int = [[highScores objectAtIndex:4] intValue];
+        }
+        if (highScores && [highScores count] > 5) {
+            highScore6Int = [[highScores objectAtIndex:5] intValue];
+        }
+        if (highScores && [highScores count] > 6) {
+            highScore7Int = [[highScores objectAtIndex:6] intValue];
+        }
+        if (highScores && [highScores count] > 7) {
+            highScore8Int = [[highScores objectAtIndex:7] intValue];
+        }
+        if (highScores && [highScores count] > 8) {
+            highScore9Int = [[highScores objectAtIndex:8] intValue];
+        }
+        if (highScores && [highScores count] > 9) {
+            highScore10Int = [[highScores objectAtIndex:9] intValue];
+        }
         
         if (highScore1Int != 0) {
-            [highScore1Label setString:[NSString stringWithFormat:@"%i", highScore1Int]];
+            [highScore1Label setString:[NSString stringWithFormat:@"%i  CRAIG", highScore1Int]];
         }
         if (highScore2Int != 0) {
-            [highScore2Label setString:[NSString stringWithFormat:@"%i", highScore2Int]];
+            [highScore2Label setString:[NSString stringWithFormat:@"%i  MICHAEL", highScore2Int]];
         }
         if (highScore3Int != 0) {
-            [highScore3Label setString:[NSString stringWithFormat:@"%i", highScore3Int]];
+            [highScore3Label setString:[NSString stringWithFormat:@"%i  JEFF", highScore3Int]];
         }
         if (highScore4Int != 0) {
-            [highScore4Label setString:[NSString stringWithFormat:@"%i", highScore4Int]];
+            [highScore4Label setString:[NSString stringWithFormat:@"%i  CLAY", highScore4Int]];
+        }
+        if (highScore5Int != 0) {
+            [highScore5Label setString:[NSString stringWithFormat:@"%i  ALEX", highScore5Int]];
+        }
+        if (highScore6Int != 0) {
+            [highScore6Label setString:[NSString stringWithFormat:@"%i  CLAY", highScore6Int]];
+        }
+        if (highScore7Int != 0) {
+            [highScore7Label setString:[NSString stringWithFormat:@"%i  CLAY", highScore7Int]];
+        }
+        if (highScore8Int != 0) {
+            [highScore8Label setString:[NSString stringWithFormat:@"%i  JEFF", highScore8Int]];
+        }
+        if (highScore9Int != 0) {
+            [highScore9Label setString:[NSString stringWithFormat:@"%i", highScore9Int]];
+        }
+        if (highScore10Int != 0) {
+            [highScore10Label setString:[NSString stringWithFormat:@"%i", highScore10Int]];
         }
         
         [layer setPosition:ccp(-480, -320)];
