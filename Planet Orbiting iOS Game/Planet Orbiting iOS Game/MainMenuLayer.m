@@ -38,6 +38,7 @@ const float effectsVolumeMainMenu = 1;
     NSMutableArray* cells;
     bool didFingerMove;
     int lastIndexTapped;
+    CCLabelTTF* totalStars;
 }
 
 // returns a singleton scene
@@ -91,6 +92,8 @@ const float effectsVolumeMainMenu = 1;
         
         [cell.levelLabel setString:[NSString stringWithFormat:@"Level %d", item.level]];
     }
+    
+    [totalStars setString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]]];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -152,7 +155,11 @@ const float effectsVolumeMainMenu = 1;
                     //if (CGRectContainsPoint(upgradeLayer.boundingBox, ccp(location.x + layer.position.x + 960*2, location.y + layer.position.y + 320*3))) {
                     
                     lastIndexTapped = i;
-                    UIAlertView* alertview2 = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"tit number %d", i] message:@"massage" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Purchase", nil];
+                    
+                    NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
+                    UpgradeItem *item = [upgradeItems objectAtIndex:lastIndexTapped];
+                    
+                    UIAlertView* alertview2 = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:item.title, lastIndexTapped] message:item.description delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Purchase", nil];
                     [alertview2 setTag:upgradeAlertTag];
                     [alertview2 show];
                     
@@ -207,9 +214,9 @@ const float effectsVolumeMainMenu = 1;
         [starSprite setPosition:ccp(1200 - 480/2 + 480-starSprite.width/2-8, 640-29)];
         
         
-        CCLabelTTF* hello3 = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"Marker Felt" fontSize:22];
-        [layer addChild: hello3];
-        [hello3 setPosition:ccp(1200 - 480/2 + 480 - 40 - [hello3 boundingBox].size.width/2, 640-30)];
+        totalStars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"Marker Felt" fontSize:22];
+        [layer addChild: totalStars];
+        [totalStars setPosition:ccp(1200 - 480/2 + 480 - 40 - [totalStars boundingBox].size.width/2, 640-30)];
         
         NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
         
@@ -372,11 +379,16 @@ const float effectsVolumeMainMenu = 1;
         if (buttonIndex == 1) {
             NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
             UpgradeItem *item = [upgradeItems objectAtIndex:lastIndexTapped];
-            int currLevel = [item level];
-            [item setLevel:currLevel+1];
-            [self refreshUpgradeCells];
-            UIAlertView* alertview3 = [[UIAlertView alloc] initWithTitle:@"Congratz yo" message:@"You bought something" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
-            [alertview3 show];
+            
+            int curBalance = [[UserWallet sharedInstance] getBalance];
+            if (curBalance >= item.price) {
+                
+                [item setLevel:[item level] + 1];
+                [[UserWallet sharedInstance] setBalance:curBalance - item.price];
+                [self refreshUpgradeCells];
+            }
+            //UIAlertView* alertview3 = [[UIAlertView alloc] initWithTitle:@"Congratz yo" message:@"You bought something" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+            //[alertview3 show];
 
         }
     } else {

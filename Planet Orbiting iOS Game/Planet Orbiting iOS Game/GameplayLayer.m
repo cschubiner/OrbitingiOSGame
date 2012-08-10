@@ -1190,31 +1190,29 @@ typedef struct {
 - (void)setGalaxyProperties {
     Galaxy* galaxy;
     galaxy = [galaxies objectAtIndex:0];
-    [galaxy setName:@"Galaxy 1 - The Solar System"];
+    [galaxy setName:@"Galaxy 1"];
     [galaxy setNumberOfDifferentPlanetsDrawn:7];
     [galaxy setOptimalPlanetsInThisGalaxy:17];
     
     galaxy = [galaxies objectAtIndex:1];
-    [galaxy setName:@"Galaxy 2 - Grasslands"];
+    [galaxy setName:@"Galaxy 2"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:21];
     
     galaxy = [galaxies objectAtIndex:2];
-    [galaxy setName:@"Galaxy 3 - Girly Galaxy"];
+    [galaxy setName:@"Galaxy 3"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:21];
     
     galaxy = [galaxies objectAtIndex:3];
-    [galaxy setName:@"Galaxy 4 - Icy Galaxy"];
+    [galaxy setName:@"Galaxy 4"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
     [galaxy setOptimalPlanetsInThisGalaxy:24];
 
-    
     galaxy = [galaxies objectAtIndex:4];
-    [galaxy setName:@"Galaxy 5 - Lava Galaxy"];
+    [galaxy setName:@"Galaxy 5"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
     [galaxy setOptimalPlanetsInThisGalaxy:24];
-
     
 }
 
@@ -1222,7 +1220,10 @@ typedef struct {
     [[UpgradeValues sharedInstance] setCoinMagnetDuration:500 + 100*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:0] level]];
     [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:500 + 100*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] level]];
     [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.8 + .05*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] level]];
-    [[UpgradeValues sharedInstance] setHasDoubleCoins:false];
+    if ([[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] level] >= 1)
+        [[UpgradeValues sharedInstance] setHasDoubleCoins:true];
+    else
+        [[UpgradeValues sharedInstance] setHasDoubleCoins:false];
 }
 
 /* On "init," initialize the instance */
@@ -1332,8 +1333,8 @@ typedef struct {
         [galaxyLabel setPosition:ccp(240,45)];
         
         id fadeAction = [CCFadeIn actionWithDuration:.8];
-        id action2 = [CCSequence actions:[CCSpawn actions:fadeAction,[CCScaleTo actionWithDuration:.3 scale:1.06], nil], nil] ;
-        id repeatAction = [CCRepeat actionWithAction:[CCSequence actions:[CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.8 scale:1.0f]],[CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.8 scale:1.06f]], nil] times:2];
+        id action2 = [CCSequence actions:[CCSpawn actions:fadeAction,[CCScaleTo actionWithDuration:.3 scale:1], nil], nil] ;
+        id repeatAction = [CCRepeat actionWithAction:[CCSequence actions:[CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.8 scale:1.0f]],[CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.8 scale:1]], nil] times:2];
         galaxyLabelAction = [CCSequence actions:action2,repeatAction, [CCFadeOut actionWithDuration:.8],nil];
         [galaxyLabelAction retain];
         [galaxyLabel runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1.1], galaxyLabelAction,nil]];

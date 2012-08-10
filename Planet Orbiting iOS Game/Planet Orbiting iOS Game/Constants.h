@@ -34,7 +34,7 @@ const float segmentRotationVariation = 20;//30;
 
 //how quickly the player's spaceship rotates when the direction of his velocity changes
 const float playerRotationSpeed = .39f;
-const float playerSizeScale = 1;
+const float playerSizeScale = 1.2;
 
 const float anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees = 55;
 const float anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees = -35;
@@ -146,4 +146,4 @@ const float amountToIncreaseLightScoreVelocityEachUpdate = .00065;
 
 const int howMuchCoinsAddToScore = 10;
 
-const float coinAnimationDelay = .05;
+const float coinAnimationDelay = .02;
