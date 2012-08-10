@@ -888,6 +888,8 @@
 				FAF1C63F15BCF8A1001136E3 /* Coin.m */,
 				FA895CD915C525B400FA4EC3 /* Light.h */,
 				FA895CDA15C525B400FA4EC3 /* Light.m */,
+				FACE0CEB15CB963B0055B5DF /* Powerup.h */,
+				FACE0CEC15CB963B0055B5DF /* Powerup.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1619,8 +1621,6 @@
 		FA40DCAE15D3788E00174FB8 /* Enhancements */ = {
 			isa = PBXGroup;
 			children = (
-				FACE0CEB15CB963B0055B5DF /* Powerup.h */,
-				FACE0CEC15CB963B0055B5DF /* Powerup.m */,
 				FA7E63BA15D0F26E0090C913 /* UpgradeValues.h */,
 				FA7E63BB15D0F26E0090C913 /* UpgradeValues.m */,
 				FA40DCB015D378B500174FB8 /* UpgradeItem.h */,
