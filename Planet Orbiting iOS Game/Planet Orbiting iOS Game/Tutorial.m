@@ -49,7 +49,7 @@
         
         
         
-        continueLabel = [CCLabelTTF labelWithString:@"Read this or you won't know how to play t dumb bitch" fontName:@"Marker Felt" fontSize:22];
+        continueLabel = [CCLabelTTF labelWithString:@"Read this or you won't know how to play" fontName:@"Marker Felt" fontSize:22];
         continueLabel.position = ccp(240, 20);
         //[continueLabel setOpacity:0];
         [self addChild:continueLabel];
@@ -97,7 +97,7 @@
     if (canTouchScreen)
         [continueLabel setString:@"Tap to continue..."];//[continueLabel setOpacity:255];
     else
-        [continueLabel setString:@"Read this or you won't know how to play t dumb bitch"];//[continueLabel setOpacity:0];
+        [continueLabel setString:@"Read this or you won't know how to play"];//[continueLabel setOpacity:0];
     
     if (readingTimer > 0)
         readingTimer++;
