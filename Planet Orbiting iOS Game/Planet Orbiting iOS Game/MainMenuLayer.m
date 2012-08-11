@@ -180,17 +180,60 @@ const float effectsVolumeMainMenu = 1;
                     UpgradeItem *item = [upgradeItems objectAtIndex:lastIndexTapped];
                     
                     if (item.level < [item.prices count]) {
-                        UIAlertView* alertview2 = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:item.title, lastIndexTapped] message:item.description delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Purchase", nil];
+                        /*UIAlertView* alertview2 = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:item.title, lastIndexTapped] message:item.description delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Purchase", nil];
                         [alertview2 setTag:upgradeAlertTag];
-                        [alertview2 show];
+                        [alertview2 show];*/
+                        
+                        
+                        self.isTouchEnabled = false;
                         
                         CCLayer* sextasy = [[CCLayer alloc] init];
                         [layer addChild:sextasy];
                         [sextasy setPosition:ccp(960, 320)];
                         [sextasy setContentSize:CGSizeMake(480, 320)];
-                        CCSprite* lol = [CCSprite spriteWithFile:@"popup.png"];
+                        
+                        CCSprite* lol = [CCSprite spriteWithFile:@"popupSextasy.png"];
                         [lol setPosition:ccp(240, 160)];
                         [sextasy addChild:lol];
+                        
+                        
+                        
+                        CCLabelBMFont* title = [[CCLabelBMFont alloc] initWithString:item.title fntFile:@"betaFont2.fnt"];
+                        [title setScale:.8];
+                        title.position = ccp(240, 250);
+                        [sextasy addChild:title];
+                        
+                        
+                        CCLabelBMFont* desc = [[CCLabelBMFont alloc] initWithString:item.description fntFile:@"PlainFont.fnt"];
+                        [desc setScale:.8];
+                        desc.position = ccp(240, 200);
+                        [sextasy addChild:desc];
+                        
+                        
+                        
+                        
+                        CCMenuItem *cancel = [CCMenuItemImage 
+                                            itemFromNormalImage:@"upgrade.png" selectedImage:@"upgrade.png" 
+                                            target:self selector:@selector(pressedBackButton:)];
+                        
+                        cancel.rotation = -90;
+                        cancel.position = ccp(720 + 130, 160 + 80);
+                        
+                        CCMenuItem *purchase = [CCMenuItemImage 
+                                            itemFromNormalImage:@"upgrade.png" selectedImage:@"upgrade.png" 
+                                            target:self selector:@selector(pressedBackButton:)];
+                        
+                        purchase.rotation = 90;
+                        purchase.position = ccp(720 + 350, 160 + 80);
+                        
+                        CCMenu *menu = [CCMenu menuWithItems:cancel, purchase, nil];
+                        
+                        [layer addChild:menu];
+                        
+                        
+                        
+                        
+                        
                     }
                     
                 }
