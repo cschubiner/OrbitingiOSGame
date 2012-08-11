@@ -16,8 +16,11 @@
 - (void)addPlay;
 - (int)getPlays;
 - (void)setPlays:(int)plays;
-- (void)addScore:(int)score;
+- (void)addScore:(int)score withName:(NSString *)name;
 - (NSMutableArray *)getScores;
+- (NSMutableDictionary *)getKeyValuePairs;
 - (void)setScores:(NSMutableArray *)scores;
+- (void)setKeyValuePairs:(NSMutableDictionary *)dict;
+- (BOOL)isHighScore:(int)score;
 
 @end

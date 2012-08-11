@@ -1299,7 +1299,7 @@ typedef struct {
 }
 
 - (void)GameOver {
-    if (!isGameOver) { //this ensures it only runs once
+    if (!isGameOver) { // this line ensures that it only runs once
         isGameOver = true;
         if ([[self children]containsObject:layerHudSlider])
             [self removeChild:layerHudSlider cleanup:YES];
@@ -1312,7 +1312,13 @@ typedef struct {
         [self addChild:pauseLayer];
         int finalScore = score + prevCurrentPtoPScore;
         [gameOverScoreLabel setString:[NSString stringWithFormat:@"Score: %d",finalScore]];
-        [[PlayerStats sharedInstance] addScore:finalScore];
+        
+        if ([[PlayerStats sharedInstance] isHighScore:finalScore]) {
+            int plays = [[PlayerStats sharedInstance] getPlays];
+            NSString *playsString = [NSString stringWithFormat:@"%d", plays];
+            [[PlayerStats sharedInstance] addScore:finalScore withName:playsString];
+        }
+        
         scoreAlreadySaved = YES;
         [DataStorage storeData];
     }
@@ -1456,13 +1462,13 @@ typedef struct {
         
         int finalScore = score + prevCurrentPtoPScore;
         if (!isInTutorialMode && !scoreAlreadySaved) {
-            [[PlayerStats sharedInstance] addScore:finalScore];
+            if ([[PlayerStats sharedInstance] isHighScore:finalScore]) {
+                int plays = [[PlayerStats sharedInstance] getPlays];
+                NSString *playsString = [NSString stringWithFormat:@"%d", plays];
+                [[PlayerStats sharedInstance] addScore:finalScore withName:playsString];
+            }
         }
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
-        if ([[PlayerStats sharedInstance] getPlays] == 10) {
-            [Flurry logEvent:@"forced user to launch survey on gameplaylayer"];
-            [self launchSurvey];
-        }
     }
 }
 

@@ -13,6 +13,9 @@ const int highScoreLimit = 8;
 @implementation PlayerStats {
     int totalPlays;
     NSMutableArray *highScores;
+    NSMutableArray *rawScores;
+    NSMutableArray *rawNames;
+    NSMutableDictionary *keyValuePairs;
 }
 
 static PlayerStats *sharedInstance = nil;
@@ -29,6 +32,9 @@ static PlayerStats *sharedInstance = nil;
 - (id)init {
 	if (self = [super init]) {
         highScores = [[NSMutableArray alloc] init];
+        rawScores = [[NSMutableArray alloc] init];
+        rawNames = [[NSMutableArray alloc] init];
+        keyValuePairs = [[NSMutableDictionary alloc] init];
         for (int i = 0; i < highScoreLimit; i++) {
             [highScores addObject:[NSNumber numberWithInt:0]];
         }
@@ -48,10 +54,13 @@ static PlayerStats *sharedInstance = nil;
     totalPlays = plays;
 }
 
-- (void)addScore:(int)score {
+- (void)addScore:(int)score withName:(NSString *)name {
     NSNumber *newScore = [[NSNumber alloc] initWithInt:score];
-    [highScores addObject:newScore]; // THIS LINE CRASHES WHEN YOU PRESS QUIT AFTER THE TUTORIAL/REGULAR GAME HAS ALREADY RAN AND QUIT ONCE!!! 8/09 does this still apply?
+    [highScores addObject:newScore]; // THIS LINE CRASHES WHEN YOU PRESS QUIT AFTER THE TUTORIAL/REGULAR GAME HAS ALREADY RUN AND QUIT ONCE!!! 8/09 does this still apply?
     [newScore release];
+    
+    [rawScores addObject:newScore];
+    [rawNames addObject:name];
     
     [[DDGameKitHelper sharedGameKitHelper] submitScore:score category:@"Star_Dash_Leaderboard"];
 
@@ -62,14 +71,33 @@ static PlayerStats *sharedInstance = nil;
         [highScores removeObjectAtIndex:[highScores count] - 1];
     }
 
+    NSString *scoreString = [NSString stringWithFormat:@"%d", score];
+    
+    [keyValuePairs setObject:name forKey:scoreString];
 }
 
 - (NSMutableArray *)getScores {
     return highScores;
 }
 
+- (NSMutableDictionary *)getKeyValuePairs {
+    return keyValuePairs;
+}
+
 - (void)setScores:(NSMutableArray *)scores {
     highScores = scores;
+}
+
+- (void)setKeyValuePairs:(NSMutableDictionary *)dict {
+    keyValuePairs = dict;
+}
+
+- (BOOL)isHighScore:(int)score {
+    NSSortDescriptor *highestToLowest = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:NO];
+    [highScores sortUsingDescriptors:[NSArray arrayWithObject:highestToLowest]];
+    int count = [highScores count];
+    int lowestValue = [[highScores objectAtIndex:count-1] intValue];
+    return score > lowestValue;
 }
 
 @end
