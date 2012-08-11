@@ -1394,13 +1394,11 @@ typedef struct {
         [self resetVariablesForNewGame];
         
         light = [[Light alloc] init];
-<<<<<<< HEAD
-        light.score = -[[UpgradeValues sharedInstance] absoluteMinTimeDilation];
-=======
+
         light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
         [[light sprite]retain];
-        light.score = -negativeLightStartingScore;
->>>>>>> 8bd60f4eebb205416245ca6b8af9f69bad453b1b
+        light.score = -[[UpgradeValues sharedInstance] negativeLightStartingScore];
+
         light.scoreVelocity = initialLightScoreVelocity;
         //  glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         light.hasPutOnLight = false;
@@ -2203,21 +2201,17 @@ typedef struct {
 - (void)UpdateLight:(float)dt{
     light.distanceFromPlayer = score - light.score;
     
-    if (light.distanceFromPlayer > [[UpgradeValues sharedInstance] absoluteMinTimeDilation])
-        light.score = score - [[UpgradeValues sharedInstance] absoluteMinTimeDilation];
+    if (light.distanceFromPlayer > [[UpgradeValues sharedInstance] negativeLightStartingScore])
+        light.score = score - [[UpgradeValues sharedInstance] negativeLightStartingScore];
     
     light.scoreVelocity += amountToIncreaseLightScoreVelocityEachUpdate*60*dt;
     if (!isInTutorialMode&&levelNumber==0)
-        [slidingSelector setPosition:ccp(slidingSelector.position.x,lerpf(50.453,269.848,1-light.distanceFromPlayer/[[UpgradeValues sharedInstance] absoluteMinTimeDilation]))];
+        [slidingSelector setPosition:ccp(slidingSelector.position.x,lerpf(50.453,269.848,1-light.distanceFromPlayer/[[UpgradeValues sharedInstance] negativeLightStartingScore]))];
     
     //    CCLOG(@"DIST: %f, VEL: %f, LIGHSCORE: %f", light.distanceFromPlayer, light.scoreVelocity, light.score);
     if (light.distanceFromPlayer <= 0) {
         if (!light.hasPutOnLight) {
             light.hasPutOnLight = true;
-<<<<<<< HEAD
-            light.sprite = [CCSprite spriteWithFile:@"star1.png"];
-=======
->>>>>>> 8bd60f4eebb205416245ca6b8af9f69bad453b1b
             [light.sprite setOpacity:0];
             light.sprite.position = ccp(-240, 160);
             [light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];

@@ -72,7 +72,6 @@
     }
     
     
-    
     int index = 0;
     
     [items addObject:[[UpgradeItem alloc] initWithTitle:@"Star Magnet" description:@"The stars will cum on t" icon:@"magneticon.png" prices:[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:1000], nil] level:[[levelsToUse objectAtIndex:index++] intValue]]];
