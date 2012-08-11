@@ -13,6 +13,8 @@
 @interface UpgradeCell : CCLayer
 
 @property (nonatomic, retain) CCLabelTTF *levelLabel;
+@property (nonatomic, retain) CCLabelTTF *priceLabel;
+@property (nonatomic, retain) CCSprite *coinSprite;
 @property (nonatomic) int index;
 
 - (id)initWithUpgradeItem:(UpgradeItem*)item;

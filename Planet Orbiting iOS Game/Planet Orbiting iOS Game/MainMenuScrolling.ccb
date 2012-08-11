@@ -37,8 +37,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>480</real>
-						<real>320</real>
+						<real>64</real>
+						<real>64</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -1500,8 +1500,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>180</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -1560,8 +1560,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>180</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -1620,8 +1620,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>180</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -1680,8 +1680,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>180</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -1740,8 +1740,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>180</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -1800,8 +1800,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>180</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -1860,8 +1860,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>180</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
