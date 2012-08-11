@@ -17,8 +17,6 @@
 @property (nonatomic) int hasDoubleCoins;
 @property (nonatomic) float maxBatteryTime;
 
-
-
 + (id)sharedInstance;
 
 @end
