@@ -40,6 +40,8 @@
         
         
         levelLabel = [CCLabelTTF labelWithString:strToUse fontName:@"Marker Felt" fontSize:18];
+        if (item.level == [item.prices count])
+            [levelLabel setColor:ccGREEN];
         [self addChild: levelLabel];
         [levelLabel setPosition:ccp(90 + [levelLabel boundingBox].size.width/2, -58)];
         

@@ -39,6 +39,8 @@ const float effectsVolumeMainMenu = 1;
     bool didFingerMove;
     int lastIndexTapped;
     CCLabelTTF* totalStars;
+    CCLayer* shadeView;
+    CCLayer* popupView;
 }
 
 // returns a singleton scene
@@ -95,9 +97,13 @@ const float effectsVolumeMainMenu = 1;
                 [cell.levelLabel setString:@"Inactive"];
             else
                 [cell.levelLabel setString:@"Active"];
+            
+            [cell.levelLabel setPosition:ccp(90 + [cell.levelLabel boundingBox].size.width/2, -58)];
         } else {
             [cell.levelLabel setString:[NSString stringWithFormat:@"Level %d", item.level]];
         }
+        if (item.level == [item.prices count])
+            [cell.levelLabel setColor:ccGREEN];
         
         if ((item.level < [item.prices count])) {
             [cell.priceLabel setString:[self commaInt:[[item.prices objectAtIndex:item.level] intValue]]];
@@ -175,17 +181,111 @@ const float effectsVolumeMainMenu = 1;
                     NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
                     UpgradeItem *item = [upgradeItems objectAtIndex:lastIndexTapped];
                     
-                    if (item.level < [item.prices count]) {
-                        UIAlertView* alertview2 = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:item.title, lastIndexTapped] message:item.description delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Purchase", nil];
-                        [alertview2 setTag:upgradeAlertTag];
-                        [alertview2 show];
-                    }
+                    
+                    /*UIAlertView* alertview2 = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:item.title, lastIndexTapped] message:item.description delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Purchase", nil];
+                     [alertview2 setTag:upgradeAlertTag];
+                     [alertview2 show];*/
+                    
+                    
+                    self.isTouchEnabled = false;
+                    
+                    shadeView = [[CCLayer alloc] init];
+                    [layer addChild:shadeView];
+                    [shadeView setPosition:ccp(960, 320)];
+                    [shadeView setContentSize:CGSizeMake(480, 320)];
+                    
+                    CCSprite* shadeImage = [CCSprite spriteWithFile:@"shadeView.png"];
+                    [shadeImage setPosition:ccp(240, 160)];
+                    [shadeView addChild:shadeImage];
+                    
+                    popupView = [[CCLayer alloc] init];
+                    [layer addChild:popupView];
+                    [popupView setPosition:ccp(960, 320)];
+                    [popupView setContentSize:CGSizeMake(480, 320)];
+                    
+                    CCSprite* lol = [CCSprite spriteWithFile:@"popup.png"];
+                    [lol setPosition:ccp(240, 160)];
+                    [popupView addChild:lol];
+                    
+                    
+                    
+                    CCLabelBMFont* title = [[CCLabelBMFont alloc] initWithString:item.title fntFile:@"betaFont2.fnt"];
+                    [title setScale:.7];
+                    title.position = ccp(240, 255);
+                    [popupView addChild:title];
+                    
+                    
+                    CCLabelBMFont* desc = [[CCLabelBMFont alloc] initWithString:item.description fntFile:@"PlainFont.fnt" width:230 alignment:UITextAlignmentLeft];
+                    [desc setScale:1.2];
+                    desc.position = ccp(240, 200);
+                    [popupView addChild:desc];
+                    
+                    
+                    
+                    
+                    CCMenuItem *cancel = [CCMenuItemImage
+                                          itemFromNormalImage:@"upgrade.png" selectedImage:@"upgrade.png" 
+                                          target:self selector:@selector(pressedCancelButton:)];
+                    cancel.position = ccp(-110, -80);
+                    
+                    
+                    //if (item.level >= [item.prices count]) disp MAXED
+                    //else if ([[UserWallet sharedInstance] getBalance] >= [[item.prices objectAtIndex:item.level] intValue]) disp PURCHASE
+                    //else disp NOT ENOUGH COINZ
+                    CCMenuItem *purchase = [CCMenuItemImage
+                                            itemFromNormalImage:@"upgrade.png" selectedImage:@"upgrade.png" 
+                                            target:self selector:@selector(pressedPurchaseButton:)];
+                    purchase.position = ccp(110, -80);
+                    
+                    CCMenu *menu = [CCMenu menuWithItems:cancel, purchase, nil];
+                    
+                    [popupView addChild:menu];
+                    
+                    [popupView setScale:0];
+                    
+                    [popupView runAction:[CCSequence actions:
+                                          [CCScaleTo actionWithDuration:.37 scale:1.2],
+                                          [CCScaleTo actionWithDuration:.12 scale:.9],
+                                          [CCScaleTo actionWithDuration:.07 scale:1],
+                                          nil]];
+                    
+                    
+                    [shadeImage runAction:[CCSequence actions:
+                                           [CCFadeIn actionWithDuration:.4],
+                                           nil]];
+                    
+                    
+                    
+                    
                     
                 }
                 i++;
             }
         }
     }
+}
+-(void)pressedCancelButton:(id)sender {
+    [shadeView removeFromParentAndCleanup:true];
+    [popupView removeFromParentAndCleanup:true];
+    self.isTouchEnabled = true;
+}
+
+-(void)pressedPurchaseButton:(id)sender {
+    NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
+    UpgradeItem *item = [upgradeItems objectAtIndex:lastIndexTapped];
+    
+    int curBalance = [[UserWallet sharedInstance] getBalance];
+    if (curBalance >= [[item.prices objectAtIndex:item.level] intValue]) {
+        
+        [[UserWallet sharedInstance] setBalance:curBalance - [[item.prices objectAtIndex:item.level] intValue]];
+        [item setLevel:[item level] + 1];
+        [self refreshUpgradeCells];
+        [DataStorage storeData];
+    }
+    
+    [shadeView removeFromParentAndCleanup:true];
+    [popupView removeFromParentAndCleanup:true];
+    self.isTouchEnabled = true;
 }
 
 // on "init" you need to initialize your instance
@@ -399,11 +499,12 @@ const float effectsVolumeMainMenu = 1;
             UpgradeItem *item = [upgradeItems objectAtIndex:lastIndexTapped];
             
             int curBalance = [[UserWallet sharedInstance] getBalance];
-            if (curBalance >= [[item.prices objectAtIndex:0] intValue]) {
+            if (curBalance >= [[item.prices objectAtIndex:item.level] intValue]) {
                 
                 [[UserWallet sharedInstance] setBalance:curBalance - [[item.prices objectAtIndex:item.level] intValue]];
                 [item setLevel:[item level] + 1];
                 [self refreshUpgradeCells];
+                [DataStorage storeData];
             }
             //UIAlertView* alertview3 = [[UIAlertView alloc] initWithTitle:@"Congratz yo" message:@"You bought something" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
             //[alertview3 show];

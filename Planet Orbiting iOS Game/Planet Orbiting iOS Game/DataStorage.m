@@ -74,15 +74,15 @@
     
     int index = 0;
     
-    [items addObject:[[UpgradeItem alloc] initWithTitle:@"Star Magnet" description:@"The stars will cum on t" icon:@"magneticon.png" prices:[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:10], [NSNumber numberWithInt:20], [NSNumber numberWithInt:30], [NSNumber numberWithInt:40], [NSNumber numberWithInt:50], nil] level:[[levelsToUse objectAtIndex:index++] intValue]]];
+    [items addObject:[[UpgradeItem alloc] initWithTitle:@"Star Magnet" description:@"Increase the duration of the Star Magnet powerup!" icon:@"magneticon.png" prices:[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:300], [NSNumber numberWithInt:600], [NSNumber numberWithInt:1000], [NSNumber numberWithInt:2000], [NSNumber numberWithInt:5000], nil] level:[[levelsToUse objectAtIndex:index++] intValue]]];
     
-    [items addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Immunity" description:@"The asteroids will quiver in fear before t" icon:@"asteroidbreakericon.png" prices:[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:1000], [NSNumber numberWithInt:1], nil] level:[[levelsToUse objectAtIndex:index++] intValue]]];
+    [items addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Armor" description:@"Increase the duration of the Asteroid Armor powerup!" icon:@"asteroidbreakericon.png" prices:[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:200], [NSNumber numberWithInt:300], [NSNumber numberWithInt:500], [NSNumber numberWithInt:1000], [NSNumber numberWithInt:2000], nil] level:[[levelsToUse objectAtIndex:index++] intValue]]];
     
-    [items addObject:[[UpgradeItem alloc] initWithTitle:@"Stronger Rocket" description:@"Increase the strength of your rocket to fly faster through space!" icon:@"speedupgradeicon.png" prices:[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:1000], [NSNumber numberWithInt:1], nil] level:[[levelsToUse objectAtIndex:index++] intValue]]];
+    [items addObject:[[UpgradeItem alloc] initWithTitle:@"Nitrous Rocket" description:@"Increase the strength of your rocket to fly faster through space!" icon:@"speedupgradeicon.png" prices:[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:400], [NSNumber numberWithInt:1000], [NSNumber numberWithInt:2000], [NSNumber numberWithInt:3000], [NSNumber numberWithInt:5000], nil] level:[[levelsToUse objectAtIndex:index++] intValue]]];
     
-    [items addObject:[[UpgradeItem alloc] initWithTitle:@"Double Stars" description:@"A great long-term investment - each star you get is worth two!" icon:@"doublecoinicon.png" prices:[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:35], nil] level:[[levelsToUse objectAtIndex:index++] intValue]]];
+    [items addObject:[[UpgradeItem alloc] initWithTitle:@"Double Stars" description:@"A great long-term investment - each star you collect is worth two!" icon:@"doublecoinicon.png" prices:[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:6/*4000*/], nil] level:[[levelsToUse objectAtIndex:index++] intValue]]];
     
-    [items addObject:[[UpgradeItem alloc] initWithTitle:@"Lithium Ion Battery" description:@"A great long-term investment - each star you get is worth two!" icon:@"batteryupgradeicon.png" prices:[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:1000],[NSNumber numberWithInt:1], nil] level:[[levelsToUse objectAtIndex:index++] intValue]]];
+    [items addObject:[[UpgradeItem alloc] initWithTitle:@"Lithium Ion Battery" description:@"Increase your battery's effeciency to allow you to fly deeper into space!" icon:@"batteryupgradeicon.png" prices:[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:1000], [NSNumber numberWithInt:2000], [NSNumber numberWithInt:3000], [NSNumber numberWithInt:5000], [NSNumber numberWithInt:10000], nil] level:[[levelsToUse objectAtIndex:index++] intValue]]];
     
     
     
