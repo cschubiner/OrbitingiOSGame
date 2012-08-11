@@ -1193,31 +1193,31 @@ typedef struct {
     galaxy = [galaxies objectAtIndex:0];
     [galaxy setName:@"Galaxy 1"];
     [galaxy setNumberOfDifferentPlanetsDrawn:7];
-   // [galaxy setOptimalPlanetsInThisGalaxy:17];
+    // [galaxy setOptimalPlanetsInThisGalaxy:17];
     
     galaxy = [galaxies objectAtIndex:1];
     [galaxy setName:@"Galaxy 2"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
- //   [galaxy setOptimalPlanetsInThisGalaxy:21];
+    //   [galaxy setOptimalPlanetsInThisGalaxy:21];
     
     galaxy = [galaxies objectAtIndex:2];
     [galaxy setName:@"Galaxy 3"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-  //  [galaxy setOptimalPlanetsInThisGalaxy:21];
+    //  [galaxy setOptimalPlanetsInThisGalaxy:21];
     
     galaxy = [galaxies objectAtIndex:3];
     [galaxy setName:@"Galaxy 4"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
-  //  [galaxy setOptimalPlanetsInThisGalaxy:24];
-
+    //  [galaxy setOptimalPlanetsInThisGalaxy:24];
+    
     galaxy = [galaxies objectAtIndex:4];
     [galaxy setName:@"Galaxy 5"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
-   // [galaxy setOptimalPlanetsInThisGalaxy:24];
+    // [galaxy setOptimalPlanetsInThisGalaxy:24];
     
 }
 
-- (void)initUpgradedVariables {    
+- (void)initUpgradedVariables {
     [[UpgradeValues sharedInstance] setCoinMagnetDuration:500 + 100*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:0] level]];
     
     [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:500 + 100*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] level]];
@@ -1394,11 +1394,11 @@ typedef struct {
         [self resetVariablesForNewGame];
         
         light = [[Light alloc] init];
-
+        
         light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
         [[light sprite]retain];
         light.score = -[[UpgradeValues sharedInstance] negativeLightStartingScore];
-
+        
         light.scoreVelocity = initialLightScoreVelocity;
         //  glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         light.hasPutOnLight = false;
@@ -1970,42 +1970,42 @@ typedef struct {
 
 - (void)UpdateGalaxies {
     //NSLog(@"galaxy0");
-
+    
     if (lastPlanetVisited.number==0) {
         cameraShouldFocusOnPlayer = false;
     }
     else {
         //NSLog(@"galaxy");
-
+        
         Planet * nextPlanet;
         if (lastPlanetVisited.number+1<[planets count])
-        nextPlanet= [planets objectAtIndex:(lastPlanetVisited.number+1)];
+            nextPlanet= [planets objectAtIndex:(lastPlanetVisited.number+1)];
         else nextPlanet = lastPlanetVisited;
         //NSLog(@"galaxy11");
-
+        
         if (
             //nextPlanet.whichGalaxyThisObjectBelongsTo > lastPlanetVisited.whichGalaxyThisObjectBelongsTo||
             targetPlanet.whichGalaxyThisObjectBelongsTo>lastPlanetVisited.whichGalaxyThisObjectBelongsTo) {
             cameraShouldFocusOnPlayer=true;
             //NSLog(@"galaxy112");
-
+            
             float firsttoplayer = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, player.sprite.position));
             float planetAngle = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, nextPlanet.sprite.position));
             float firstToPlayerAngle = firsttoplayer-planetAngle;
             float firstToPlayerDistance = ccpDistance(lastPlanetVisited.sprite.position, player.sprite.position)*cosf(firstToPlayerAngle);
             float firsttonextDistance = ccpDistance(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
-                        //NSLog(@"galaxy113");
+            //NSLog(@"galaxy113");
             float percentofthewaytonext = firstToPlayerDistance/firsttonextDistance;
             percentofthewaytonext*=1.18;
             if (percentofthewaytonext>1) percentofthewaytonext = 1;
             if ([[self children]containsObject:background]) {
                 if ([[self children]containsObject:background2]==false) {
-                                NSLog(@"galaxy114");
+                    NSLog(@"galaxy114");
                     [self reorderChild:background z:-5];
                     [background2 setTexture:[[CCTextureCache sharedTextureCache] addImage:[NSString stringWithFormat:@"background%d.pvr.ccz",targetPlanet.whichGalaxyThisObjectBelongsTo]]];
-                                //NSLog(@"galaxy115");
+                    //NSLog(@"galaxy115");
                     [self addChild:background2 z:-6];
-                                //NSLog(@"galaxy116");
+                    //NSLog(@"galaxy116");
                 }
             }
             //NSLog(@"galaxy1");
@@ -2201,9 +2201,9 @@ typedef struct {
         light.score = score - [[UpgradeValues sharedInstance] negativeLightStartingScore];
     
     light.scoreVelocity += amountToIncreaseLightScoreVelocityEachUpdate*60*dt;
-    if (!isInTutorialMode&&levelNumber==0)
-        [slidingSelector setPosition:ccp(slidingSelector.position.x,lerpf(50.453,269.848,1-light.distanceFromPlayer/[[UpgradeValues sharedInstance] negativeLightStartingScore]))];
-    
+    if (!isInTutorialMode&&levelNumber==0) {
+        [batteryDecreaserSprite setScaleX:lerpf(0, 65, 1-light.distanceFromPlayer/[[UpgradeValues sharedInstance] negativeLightStartingScore])];
+    }
     //    CCLOG(@"DIST: %f, VEL: %f, LIGHSCORE: %f", light.distanceFromPlayer, light.scoreVelocity, light.score);
     if (light.distanceFromPlayer <= 0) {
         if (!light.hasPutOnLight) {
@@ -2213,7 +2213,7 @@ typedef struct {
             [light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
             NSLog(@"galaxy114light");
             if (light.sprite)
-            [hudLayer reorderChild:light.sprite z:-1];
+                [hudLayer reorderChild:light.sprite z:-1];
             [light.sprite setOpacity:0];
         }
     }
@@ -2280,23 +2280,23 @@ typedef struct {
         if (player.alive) {
             [self UpdatePlanets];
             //NSLog(@"start1");
-
+            
             [self UpdateGalaxies];
             //NSLog(@"start2");
         }
         [self UpdateCoins];
-         //NSLog(@"start3");
+        //NSLog(@"start3");
         [self UpdatePlayer: dt];
-         //NSLog(@"start4");
+        //NSLog(@"start4");
         [self UpdateScore];
-         //NSLog(@"start5");
+        //NSLog(@"start5");
         [self UpdateCamera:dt];
-         //NSLog(@"start6");
+        //NSLog(@"start6");
         [self UpdateParticles:dt];
-         //NSLog(@"start7");
+        //NSLog(@"start7");
         if (levelNumber==0) {
             [self UpdateLight:dt];
-             //NSLog(@"start7");
+            //NSLog(@"start7");
         }
         updatesSinceLastPlanet++;
     } else if (isDisplayingPowerupAnimation)

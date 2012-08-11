@@ -100,6 +100,7 @@
     CCSprite* tutImage2;
     CCSprite* tutImage3;
 
+    CCSprite* batteryDecreaserSprite;
     
     bool isGameOver;
     bool didEndGameAlready;
