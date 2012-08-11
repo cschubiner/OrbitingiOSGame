@@ -62,7 +62,7 @@ typedef struct {
 
 
 - (void)CreateCoin:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
-    ////NSLog(@"started coin");
+    //NSLog(@"started coin");
     Coin *coin = [[Coin alloc]init];
     coin.sprite = [CCSprite spriteWithSpriteFrameName:@"0.png"];
     coin.sprite.position = ccp(xPos, yPos);
@@ -81,12 +81,12 @@ typedef struct {
     //[spriteSheet addChild:coin.sprite];
     //[spriteSheet reorderChild:coin.sprite z:5];
     [coin release];
-    ////NSLog(@"ended coin");
+    //NSLog(@"ended coin");
     
 }
 
 - (void)CreatePowerup:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale type:(int)type {
-    ////NSLog(@"started powerup");
+    //NSLog(@"started powerup");
     
     Powerup *powerup = [[Powerup alloc]initWithType:type];
     
@@ -106,10 +106,11 @@ typedef struct {
     [spriteSheet addChild:powerup.glowSprite];
     [hudLayer addChild:powerup.hudSprite];
     
+    NSLog(@"galaxy114powerup");
     [spriteSheet reorderChild:powerup.glowSprite z:2.5];
     
     [powerup release];
-    ////NSLog(@"ended powerup");
+    //NSLog(@"ended powerup");
     
 }
 
@@ -124,7 +125,7 @@ typedef struct {
 }
 
 - (void)CreateAsteroid:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
-    ////NSLog(@"started asteroid");
+    //NSLog(@"started asteroid");
     
     //  [self setGlow];
     Asteroid *asteroid = [[Asteroid alloc]init];
@@ -138,12 +139,12 @@ typedef struct {
     [asteroids addObject:asteroid];
     [spriteSheet addChild:asteroid.sprite];
     [asteroid release];
-    ////NSLog(@"ended asteroid");
+    //NSLog(@"ended asteroid");
     
 }
 
 - (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
-    ////NSLog(@"started planet and zone");
+    //NSLog(@"started planet and zone");
     Planet *planet = [[Planet alloc]init];
     planet.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"planet%d-%d.png",[self RandomBetween:1 maxvalue:currentGalaxy.numberOfDifferentPlanetsDrawn],currentGalaxy.number]];
     planet.sprite.position = ccp(xPos, yPos);
@@ -172,7 +173,7 @@ typedef struct {
     [zone release];
     [planet release];
     planetCounter++;
-    ////NSLog(@"ended planet and zone");
+    //NSLog(@"ended planet and zone");
 }
 
 -(CGPoint)getPositionBasedOnOrigin:(CGPoint)origin offset:(CGPoint)offset andAngle:(float)angle {
@@ -1393,7 +1394,13 @@ typedef struct {
         [self resetVariablesForNewGame];
         
         light = [[Light alloc] init];
+<<<<<<< HEAD
         light.score = -[[UpgradeValues sharedInstance] absoluteMinTimeDilation];
+=======
+        light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
+        [[light sprite]retain];
+        light.score = -negativeLightStartingScore;
+>>>>>>> 8bd60f4eebb205416245ca6b8af9f69bad453b1b
         light.scoreVelocity = initialLightScoreVelocity;
         //  glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         light.hasPutOnLight = false;
@@ -1482,7 +1489,7 @@ typedef struct {
     float scalerToUse = numerator/240; //CCLOG(@"num: %f, newAng: %f", numerator, newAng);
     
     if ([cameraLayer scale]<.1) {
-        ////NSLog(@"cameraLayer scale should be bigger this this, we prob has an error");
+        //NSLog(@"cameraLayer scale should be bigger this this, we prob has an error");
         [cameraLayer setScale:.1];
     }
     
@@ -1874,7 +1881,7 @@ typedef struct {
             nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
         }
         
-        bool isGoingCounterClockwise;
+        bool isGoingCounterClockwise=false;
         if (orbitState == 0) { //may want to keep on calculating lastAngle... not sure.
             float takeoffAngleToNextPlanet=CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(nextPlanet.sprite.position, lastPlanetVisited.sprite.position)))-CC_RADIANS_TO_DEGREES(ccpToAngle(ccpSub(player.sprite.position, lastPlanetVisited.sprite.position)));
             isGoingCounterClockwise = (takeoffAngleToNextPlanet-lastTakeoffAngleToNextPlanet<0);
@@ -1972,26 +1979,35 @@ typedef struct {
     else {
         //NSLog(@"galaxy");
 
-        Planet * nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
+        Planet * nextPlanet;
+        if (lastPlanetVisited.number+1<[planets count])
+        nextPlanet= [planets objectAtIndex:(lastPlanetVisited.number+1)];
+        else nextPlanet = lastPlanetVisited;
         //NSLog(@"galaxy11");
 
         if (
             //nextPlanet.whichGalaxyThisObjectBelongsTo > lastPlanetVisited.whichGalaxyThisObjectBelongsTo||
             targetPlanet.whichGalaxyThisObjectBelongsTo>lastPlanetVisited.whichGalaxyThisObjectBelongsTo) {
             cameraShouldFocusOnPlayer=true;
+            //NSLog(@"galaxy112");
+
             float firsttoplayer = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, player.sprite.position));
             float planetAngle = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, nextPlanet.sprite.position));
             float firstToPlayerAngle = firsttoplayer-planetAngle;
             float firstToPlayerDistance = ccpDistance(lastPlanetVisited.sprite.position, player.sprite.position)*cosf(firstToPlayerAngle);
             float firsttonextDistance = ccpDistance(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
+                        //NSLog(@"galaxy113");
             float percentofthewaytonext = firstToPlayerDistance/firsttonextDistance;
             percentofthewaytonext*=1.18;
             if (percentofthewaytonext>1) percentofthewaytonext = 1;
             if ([[self children]containsObject:background]) {
                 if ([[self children]containsObject:background2]==false) {
+                                NSLog(@"galaxy114");
                     [self reorderChild:background z:-5];
                     [background2 setTexture:[[CCTextureCache sharedTextureCache] addImage:[NSString stringWithFormat:@"background%d.pvr.ccz",targetPlanet.whichGalaxyThisObjectBelongsTo]]];
+                                //NSLog(@"galaxy115");
                     [self addChild:background2 z:-6];
+                                //NSLog(@"galaxy116");
                 }
             }
             //NSLog(@"galaxy1");
@@ -2014,9 +2030,10 @@ typedef struct {
                     Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
                     if ([[cameraLayer children]containsObject:lastGalaxy.spriteSheet]) {
                         [cameraLayer removeChild:lastGalaxy.spriteSheet cleanup:YES];
-                        [[lastGalaxy spriteSheet]release];
+                        //[[lastGalaxy spriteSheet]release];
                     }
                     [cameraLayer addChild:currentGalaxy.spriteSheet z:3];
+                    NSLog(@"galaxy1155");
                     [cameraLayer reorderChild:spriteSheet z:4];
                 }
                 //NSLog(@"galaxy4");
@@ -2197,10 +2214,15 @@ typedef struct {
     if (light.distanceFromPlayer <= 0) {
         if (!light.hasPutOnLight) {
             light.hasPutOnLight = true;
+<<<<<<< HEAD
             light.sprite = [CCSprite spriteWithFile:@"star1.png"];
+=======
+>>>>>>> 8bd60f4eebb205416245ca6b8af9f69bad453b1b
             [light.sprite setOpacity:0];
             light.sprite.position = ccp(-240, 160);
             [light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
+            NSLog(@"galaxy114light");
+            if (light.sprite)
             [hudLayer reorderChild:light.sprite z:-1];
             [light.sprite setOpacity:0];
         }
@@ -2211,7 +2233,7 @@ typedef struct {
         [light.sprite setOpacity:clampf((light.sprite.position.x+240)*255/480, 0, 255)];
     }
     if (light.sprite.position.x >= 240
-        ||slidingSelector.position.y > 269.848+10)//failsafe line
+        ||slidingSelector.position.y > 269.848+10)//failsafe -- this condition should never have to trigger game over. fix this alex b!!
     {
         //[light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];
         [self GameOver];

@@ -136,8 +136,6 @@ const float effectsVolumeMainMenu = 1;
             //CCLOG(@"touch location: %@", location);
             //CCLOG(@"layer position: %@", layer.position);
             
-            
-            
             int i = 0;
             for (CCLayer* laya in cells) {
                 CGRect box = laya.boundingBox;
