@@ -10,7 +10,7 @@
 
 @implementation UpgradeCell
 
-@synthesize index, levelLabel;
+@synthesize index, levelLabel, priceLabel, coinSprite;
 
 - (id)initWithUpgradeItem:(UpgradeItem*)item {
     if (self = [super init]) {        
@@ -27,18 +27,32 @@
         [self addChild: hello];
         [hello setPosition:ccp(90 + [hello boundingBox].size.width/2, -25)];
         
-        levelLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level %d", item.level] fontName:@"Marker Felt" fontSize:18];
+        
+        NSString* strToUse;
+        if ([item.prices count] == 1) {
+            if (item.level == 0)
+                strToUse = @"Inactive";
+            else
+                strToUse = @"Active";
+        } else {
+            strToUse = [NSString stringWithFormat:@"Level %d", item.level];
+        }
+        
+        
+        levelLabel = [CCLabelTTF labelWithString:strToUse fontName:@"Marker Felt" fontSize:18];
         [self addChild: levelLabel];
         [levelLabel setPosition:ccp(90 + [levelLabel boundingBox].size.width/2, -58)];
         
-        CCSprite* starSprite = [CCSprite spriteWithFile:@"star1.png"];
-        [starSprite setScale:.16];
-        [self addChild:starSprite];
-        [starSprite setPosition:ccp(480-starSprite.width/2-8, -57)];
-        
-        CCLabelTTF* hello3 = [CCLabelTTF labelWithString:[self commaInt:[[item.prices objectAtIndex:0] intValue]] fontName:@"Marker Felt" fontSize:18];
-        [self addChild: hello3];
-        [hello3 setPosition:ccp(480 - 37 - [hello3 boundingBox].size.width/2, -58)];
+        if (item.level < [item.prices count]) {
+            coinSprite = [CCSprite spriteWithFile:@"star1.png"];
+            [coinSprite setScale:.16];
+            [self addChild:coinSprite];
+            [coinSprite setPosition:ccp(480-coinSprite.width/2-8, -57)];
+            
+            priceLabel = [CCLabelTTF labelWithString:[self commaInt:[[item.prices objectAtIndex:item.level] intValue]] fontName:@"Marker Felt" fontSize:18];
+            [self addChild: priceLabel];
+            [priceLabel setPosition:ccp(480 - 37 - [priceLabel boundingBox].size.width/2, -58)];
+        }
         
         [self setContentSize:CGSizeMake(480, 80)];
     }
