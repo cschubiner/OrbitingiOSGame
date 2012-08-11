@@ -2183,10 +2183,6 @@ typedef struct {
         [[PlayerStats sharedInstance] addScore:finalScore];
         scoreAlreadySaved = YES;
         [DataStorage storeData];
-        if ([[PlayerStats sharedInstance] getPlays] == 10) {
-            [Flurry logEvent:@"forced user to launch survey on gameplaylayer"];
-            [self launchSurvey];
-        }
     }
 }
 
