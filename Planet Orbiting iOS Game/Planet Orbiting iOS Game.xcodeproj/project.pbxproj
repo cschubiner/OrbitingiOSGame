@@ -76,6 +76,8 @@
 		0C65971415D62C2E00C42296 /* battery.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C65971215D62C2E00C42296 /* battery.png */; };
 		0C65971715D62C5B00C42296 /* batteryglow-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C65971515D62C5B00C42296 /* batteryglow-hd.png */; };
 		0C65971815D62C5B00C42296 /* batteryglow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C65971615D62C5B00C42296 /* batteryglow.png */; };
+		0C65971B15D6322700C42296 /* batteryborder-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C65971915D6322700C42296 /* batteryborder-hd.png */; };
+		0C65971C15D6322700C42296 /* batteryborder.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C65971A15D6322700C42296 /* batteryborder.png */; };
 		0C68283215BF0CCA00BF09C0 /* playerExplosionParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */; };
 		0C7AA5F315946939000B58F2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F215946939000B58F2 /* QuartzCore.framework */; };
 		0C7AA5F515946939000B58F2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F415946939000B58F2 /* OpenGLES.framework */; };
@@ -426,6 +428,8 @@
 		0C65971215D62C2E00C42296 /* battery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = battery.png; sourceTree = "<group>"; };
 		0C65971515D62C5B00C42296 /* batteryglow-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "batteryglow-hd.png"; sourceTree = "<group>"; };
 		0C65971615D62C5B00C42296 /* batteryglow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batteryglow.png; sourceTree = "<group>"; };
+		0C65971915D6322700C42296 /* batteryborder-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "batteryborder-hd.png"; sourceTree = "<group>"; };
+		0C65971A15D6322700C42296 /* batteryborder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batteryborder.png; sourceTree = "<group>"; };
 		0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = playerExplosionParticle.plist; sourceTree = "<group>"; };
 		0C7AA5EE15946939000B58F2 /* Star Dash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Star Dash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C7AA5F215946939000B58F2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1056,6 +1060,8 @@
 				0C65971215D62C2E00C42296 /* battery.png */,
 				0C65971515D62C5B00C42296 /* batteryglow-hd.png */,
 				0C65971615D62C5B00C42296 /* batteryglow.png */,
+				0C65971915D6322700C42296 /* batteryborder-hd.png */,
+				0C65971A15D6322700C42296 /* batteryborder.png */,
 				C43AF01315D4267D001FF7D9 /* Spritesheets */,
 				C4C9161A15D309C9008105A6 /* Fonts */,
 				FA7E63ED15D251520090C913 /* menu stuff */,
@@ -1933,6 +1939,8 @@
 				0C65971415D62C2E00C42296 /* battery.png in Resources */,
 				0C65971715D62C5B00C42296 /* batteryglow-hd.png in Resources */,
 				0C65971815D62C5B00C42296 /* batteryglow.png in Resources */,
+				0C65971B15D6322700C42296 /* batteryborder-hd.png in Resources */,
+				0C65971C15D6322700C42296 /* batteryborder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
