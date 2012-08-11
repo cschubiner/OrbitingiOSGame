@@ -183,6 +183,14 @@ const float effectsVolumeMainMenu = 1;
                         UIAlertView* alertview2 = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:item.title, lastIndexTapped] message:item.description delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Purchase", nil];
                         [alertview2 setTag:upgradeAlertTag];
                         [alertview2 show];
+                        
+                        CCLayer* sextasy = [[CCLayer alloc] init];
+                        [layer addChild:sextasy];
+                        [sextasy setPosition:ccp(960, 320)];
+                        [sextasy setContentSize:CGSizeMake(480, 320)];
+                        CCSprite* lol = [CCSprite spriteWithFile:@"popup.png"];
+                        [lol setPosition:ccp(240, 160)];
+                        [sextasy addChild:lol];
                     }
                     
                 }
