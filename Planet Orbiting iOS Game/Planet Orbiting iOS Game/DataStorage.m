@@ -20,6 +20,7 @@
     int numPlays = [[PlayerStats sharedInstance] getPlays];
     NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
     NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
+    NSMutableDictionary *nameScorePairs = [[PlayerStats sharedInstance] getKeyValuePairs];
     
     NSMutableArray *levels = [[NSMutableArray alloc] init];
     
@@ -35,6 +36,7 @@
     [defaults setInteger:numPlays forKey:@"plays"];
     [defaults setObject:highScores forKey:@"highscores"];
     [defaults setObject:levels forKey:@"levels"];
+    [defaults setObject:nameScorePairs forKey:@"nameScorePairs"];
     
     [defaults synchronize];
 }
@@ -46,6 +48,7 @@
     int numPlays = [defaults integerForKey:@"plays"];
     NSMutableArray *highScores = [defaults objectForKey:@"highscores"];
     NSMutableArray *levels = [defaults objectForKey:@"levels"];
+    NSMutableDictionary *nameScorePairs = [defaults objectForKey:@"nameScorePairs"];
 
     [[UserWallet sharedInstance] setBalance:coins];
     [[PlayerStats sharedInstance] setPlays:numPlays];
@@ -54,10 +57,12 @@
         [[PlayerStats sharedInstance] setScores:highScores];
     }
     
+    if (nameScorePairs) {
+        [[PlayerStats sharedInstance] setKeyValuePairs:nameScorePairs];
+    }
     
     NSMutableArray* items = [[NSMutableArray alloc] init];
     NSMutableArray* upgradeItems;
-    
     
     NSMutableArray *levelsToUse = [[NSMutableArray alloc] init];
     

@@ -231,7 +231,7 @@ const float effectsVolumeMainMenu = 1;
                         [layer addChild:menu];
                         
                         
-                        
+
                         
                         
                     }
@@ -280,12 +280,10 @@ const float effectsVolumeMainMenu = 1;
         hello4.position = ccp(1200, 640-30);
         [layer addChild:hello4];
         
-        
         CCSprite* starSprite = [CCSprite spriteWithFile:@"star1.png"];
         [starSprite setScale:.2];
         [layer addChild:starSprite];
         [starSprite setPosition:ccp(1200 - 480/2 + 480-starSprite.width/2-8, 640-29)];
-        
         
         totalStars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"Marker Felt" fontSize:22];
         [layer addChild: totalStars];
@@ -336,34 +334,44 @@ const float effectsVolumeMainMenu = 1;
         }
         
         if (highScore1Int != 0) {
-            [highScore1Label setString:[NSString stringWithFormat:@"%i  CRAIG", highScore1Int]];
+            NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore1Int];
+            [highScore1Label setString:scoreInt];
+            [name1Label setString:[[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         }
         if (highScore2Int != 0) {
-            [highScore2Label setString:[NSString stringWithFormat:@"%i  MICHAEL", highScore2Int]];
+            NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore2Int];
+            [highScore2Label setString:scoreInt];
+            [name2Label setString:[[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         }
         if (highScore3Int != 0) {
-            [highScore3Label setString:[NSString stringWithFormat:@"%i  JEFF", highScore3Int]];
+            NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore3Int];
+            [highScore3Label setString:scoreInt];
+            [name3Label setString:[[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         }
         if (highScore4Int != 0) {
-            [highScore4Label setString:[NSString stringWithFormat:@"%i  CLAY", highScore4Int]];
+            NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore4Int];
+            [highScore4Label setString:scoreInt];
+            [name4Label setString:[[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         }
         if (highScore5Int != 0) {
-            [highScore5Label setString:[NSString stringWithFormat:@"%i  ALEX", highScore5Int]];
+            NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore5Int];
+            [highScore5Label setString:scoreInt];
+            [name5Label setString:[[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         }
         if (highScore6Int != 0) {
-            [highScore6Label setString:[NSString stringWithFormat:@"%i  CLAY", highScore6Int]];
+            NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore6Int];
+            [highScore6Label setString:scoreInt];
+            [name6Label setString:[[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         }
         if (highScore7Int != 0) {
-            [highScore7Label setString:[NSString stringWithFormat:@"%i  CLAY", highScore7Int]];
+            NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore7Int];
+            [highScore7Label setString:scoreInt];
+            [name7Label setString:[[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         }
         if (highScore8Int != 0) {
-            [highScore8Label setString:[NSString stringWithFormat:@"%i  JEFF", highScore8Int]];
-        }
-        if (highScore9Int != 0) {
-            [highScore9Label setString:[NSString stringWithFormat:@"%i", highScore9Int]];
-        }
-        if (highScore10Int != 0) {
-            [highScore10Label setString:[NSString stringWithFormat:@"%i", highScore10Int]];
+            NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore8Int];
+            [highScore8Label setString:scoreInt];
+            [name8Label setString:[[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         }
         
         [layer setPosition:ccp(-480, -320)];
