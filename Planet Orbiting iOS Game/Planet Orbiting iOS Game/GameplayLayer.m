@@ -2218,6 +2218,7 @@ typedef struct {
         light.sprite.position = ccp(light.sprite.position.x+48, light.sprite.position.y);
         [light.sprite setOpacity:clampf((light.sprite.position.x+240)*255/480, 0, 255)];
     }
+    
     if (light.sprite.position.x >= 240
         ||slidingSelector.position.y > 269.848+10)//failsafe -- this condition should never have to trigger game over. fix this alex b!!
     {
