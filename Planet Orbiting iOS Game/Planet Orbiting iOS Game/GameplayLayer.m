@@ -390,12 +390,17 @@ typedef struct {
         pauseMenu.position = CGPointZero;
         
         if (!isInTutorialMode) {
-            scoreLabel = [CCLabelBMFont labelWithString:@"Score: " fntFile:@"score_label_font.fnt"];
-            scoreLabel.position = ccp(480-[scoreLabel boundingBox].size.width-40, [scoreLabel boundingBox].size.height-16);
+            scoreLabel = [CCLabelBMFont labelWithString:@"0" fntFile:@"score_label_font.fnt"];
+            scoreLabel.position = ccp(480-[scoreLabel boundingBox].size.width/2-10, 15);
             [hudLayer addChild: scoreLabel];
             
-            coinsLabel = [CCLabelBMFont labelWithString:@"Stars: " fntFile:@"star_label_font.fnt"];
-            coinsLabel.position = ccp(50, [coinsLabel boundingBox].size.height);
+            CCSprite* starSprite = [CCSprite spriteWithFile:@"star1.png"];
+            [starSprite setScale:.15];
+            [hudLayer addChild:starSprite];
+            [starSprite setPosition:ccp(74, 16)];
+            
+            coinsLabel = [CCLabelBMFont labelWithString:@"0" fntFile:@"star_label_font.fnt"];
+            coinsLabel.position = ccp(74 - [coinsLabel boundingBox].size.width/2 - 15, 15);
             [hudLayer addChild: coinsLabel];
         }
         else {
@@ -712,7 +717,7 @@ typedef struct {
         if (coin.isAlive)
             coin.sprite.position = ccpAdd(coin.sprite.position, coin.velocity);
         
-        if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/1.3 && coin.isAlive) {
+        if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/1.5 && coin.isAlive) {
             [self UserTouchedCoin:coin dt:dt];
         }
     }
@@ -1261,11 +1266,13 @@ typedef struct {
     tempScore = ccpDistance(CGPointZero, player.sprite.position)-160;
     if (tempScore > score)
         score = tempScore;
-    [scoreLabel setString:[NSString stringWithFormat:@"Score: %d",score]];
+    [scoreLabel setString:[NSString stringWithFormat:@"%d",score]];
+    scoreLabel.position = ccp(480-[scoreLabel boundingBox].size.width/2-10, 15);
     
     int numCoins = [[UserWallet sharedInstance] getBalance];
     int coinsDiff = numCoins - startingCoins;
-    [coinsLabel setString:[NSString stringWithFormat:@"Stars: %i",coinsDiff]];
+    [coinsLabel setString:[NSString stringWithFormat:@"%i",coinsDiff]];
+    coinsLabel.position = ccp(74 - [coinsLabel boundingBox].size.width/2 - 15, 15);
 }
 
 - (void)UpdateParticles:(ccTime)dt {
