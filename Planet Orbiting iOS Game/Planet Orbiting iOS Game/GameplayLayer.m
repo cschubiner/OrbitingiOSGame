@@ -1218,12 +1218,18 @@ typedef struct {
 
 - (void)initUpgradedVariables {    
     [[UpgradeValues sharedInstance] setCoinMagnetDuration:500 + 100*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:0] level]];
+    
     [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:500 + 100*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] level]];
+    
     [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.8 + .05*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] level]];
+    
     if ([[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] level] >= 1)
         [[UpgradeValues sharedInstance] setHasDoubleCoins:true];
     else
         [[UpgradeValues sharedInstance] setHasDoubleCoins:false];
+    
+    [[UpgradeValues sharedInstance] setNegativeLightStartingScore:9000 + 500*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] level]];
+    
 }
 
 /* On "init," initialize the instance */
@@ -1387,7 +1393,7 @@ typedef struct {
         [self resetVariablesForNewGame];
         
         light = [[Light alloc] init];
-        light.score = -negativeLightStartingScore;
+        light.score = -[[UpgradeValues sharedInstance] absoluteMinTimeDilation];
         light.scoreVelocity = initialLightScoreVelocity;
         //  glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         light.hasPutOnLight = false;
@@ -2180,18 +2186,18 @@ typedef struct {
 - (void)UpdateLight:(float)dt{
     light.distanceFromPlayer = score - light.score;
     
-    if (light.distanceFromPlayer > negativeLightStartingScore)
-        light.score = score - negativeLightStartingScore;
+    if (light.distanceFromPlayer > [[UpgradeValues sharedInstance] absoluteMinTimeDilation])
+        light.score = score - [[UpgradeValues sharedInstance] absoluteMinTimeDilation];
     
     light.scoreVelocity += amountToIncreaseLightScoreVelocityEachUpdate*60*dt;
     if (!isInTutorialMode&&levelNumber==0)
-        [slidingSelector setPosition:ccp(slidingSelector.position.x,lerpf(50.453,269.848,1-light.distanceFromPlayer/negativeLightStartingScore))];
+        [slidingSelector setPosition:ccp(slidingSelector.position.x,lerpf(50.453,269.848,1-light.distanceFromPlayer/[[UpgradeValues sharedInstance] absoluteMinTimeDilation]))];
     
     //    CCLOG(@"DIST: %f, VEL: %f, LIGHSCORE: %f", light.distanceFromPlayer, light.scoreVelocity, light.score);
     if (light.distanceFromPlayer <= 0) {
         if (!light.hasPutOnLight) {
             light.hasPutOnLight = true;
-            light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
+            light.sprite = [CCSprite spriteWithFile:@"star1.png"];
             [light.sprite setOpacity:0];
             light.sprite.position = ccp(-240, 160);
             [light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];

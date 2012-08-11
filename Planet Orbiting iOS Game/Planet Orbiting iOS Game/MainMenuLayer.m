@@ -381,10 +381,10 @@ const float effectsVolumeMainMenu = 1;
             UpgradeItem *item = [upgradeItems objectAtIndex:lastIndexTapped];
             
             int curBalance = [[UserWallet sharedInstance] getBalance];
-            if (curBalance >= item.price) {
+            if (curBalance >= [[item.prices objectAtIndex:0] intValue]) {
                 
                 [item setLevel:[item level] + 1];
-                [[UserWallet sharedInstance] setBalance:curBalance - item.price];
+                [[UserWallet sharedInstance] setBalance:curBalance - [[item.prices objectAtIndex:0] intValue]];
                 [self refreshUpgradeCells];
             }
             //UIAlertView* alertview3 = [[UIAlertView alloc] initWithTitle:@"Congratz yo" message:@"You bought something" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];

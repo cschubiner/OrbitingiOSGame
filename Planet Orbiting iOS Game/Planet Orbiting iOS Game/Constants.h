@@ -138,7 +138,7 @@ const float factorToPlaceGravFieldWhenStayingOutside = .66;
 
 const float zoneCollisionFactor = 1.01;
 
-const float negativeLightStartingScore = 9000;
+//THIS IS NOW IN UPGRADE VALUES const float negativeLightStartingScore = 9000;
 
 const float initialLightScoreVelocity = 4;
 

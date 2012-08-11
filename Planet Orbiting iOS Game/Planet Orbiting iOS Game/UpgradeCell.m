@@ -21,7 +21,7 @@
         CCSprite* upgradeSprite = [CCSprite spriteWithFile:item.icon];
         [upgradeSprite setScale:.5];
         [self addChild:upgradeSprite];
-        [upgradeSprite setPosition:ccp(upgradeSprite.width/2+5, -backgroundSprite.height/2)];
+        [upgradeSprite setPosition:ccp(45, -backgroundSprite.height/2)];
         
         CCLabelTTF* hello = [CCLabelTTF labelWithString:item.title fontName:@"Marker Felt" fontSize:24];
         [self addChild: hello];
@@ -36,7 +36,7 @@
         [self addChild:starSprite];
         [starSprite setPosition:ccp(480-starSprite.width/2-8, -57)];
         
-        CCLabelTTF* hello3 = [CCLabelTTF labelWithString:[self commaInt:item.price] fontName:@"Marker Felt" fontSize:18];
+        CCLabelTTF* hello3 = [CCLabelTTF labelWithString:[self commaInt:[[item.prices objectAtIndex:0] intValue]] fontName:@"Marker Felt" fontSize:18];
         [self addChild: hello3];
         [hello3 setPosition:ccp(480 - 37 - [hello3 boundingBox].size.width/2, -58)];
         
