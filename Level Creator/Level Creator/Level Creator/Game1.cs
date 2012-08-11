@@ -359,7 +359,7 @@ namespace Level_Creator
                         if (mouseState.X >= (pos.X + offset.X) - powerupTexture.Width * defaultPowerupScaleSize / 2 && mouseState.X <= (pos.X + offset.X) + powerupTexture.Width * defaultPowerupScaleSize / 2
                             && mouseState.Y >= (pos.Y + offset.Y) - powerupTexture.Height * defaultPowerupScaleSize / 2 && mouseState.Y <= (pos.Y + offset.Y) + powerupTexture.Height * defaultPowerupScaleSize / 2)
                         {
-                            posArrayAsteroid.Remove(pstruct);
+                            posArrayPowerups.Remove(pstruct);
                             break;
                         }
                     }

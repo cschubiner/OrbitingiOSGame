@@ -301,27 +301,31 @@ typedef struct {
     galaxy = [galaxies objectAtIndex:0];
     [galaxy setName:@"Galaxy 1"];
     [galaxy setNumberOfDifferentPlanetsDrawn:7];
-    // [galaxy setOptimalPlanetsInThisGalaxy:17];
+    [galaxy setOptimalPlanetsInThisGalaxy:17];
+    [galaxy setPercentTimeToAddUponGalaxyCompletion:.77777];
     
     galaxy = [galaxies objectAtIndex:1];
     [galaxy setName:@"Galaxy 2"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    //   [galaxy setOptimalPlanetsInThisGalaxy:21];
+    [galaxy setOptimalPlanetsInThisGalaxy:21];
+    [galaxy setPercentTimeToAddUponGalaxyCompletion:.488888];
     
     galaxy = [galaxies objectAtIndex:2];
     [galaxy setName:@"Galaxy 3"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    //  [galaxy setOptimalPlanetsInThisGalaxy:21];
+    [galaxy setOptimalPlanetsInThisGalaxy:21];
+    [galaxy setPercentTimeToAddUponGalaxyCompletion:.4];
     
     galaxy = [galaxies objectAtIndex:3];
     [galaxy setName:@"Galaxy 4"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
-    //  [galaxy setOptimalPlanetsInThisGalaxy:24];
+    [galaxy setOptimalPlanetsInThisGalaxy:24];
+    [galaxy setPercentTimeToAddUponGalaxyCompletion:.3];
     
     galaxy = [galaxies objectAtIndex:4];
     [galaxy setName:@"Galaxy 5"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
-    // [galaxy setOptimalPlanetsInThisGalaxy:24];
+    [galaxy setOptimalPlanetsInThisGalaxy:24];
     
 }
 
@@ -1150,8 +1154,8 @@ typedef struct {
                 }
                 //NSLog(@"galaxy4");
                 
-                float percentToAddToTimer = .4;
-                timeToAddToTimer = percentToAddToTimer*[[UpgradeValues sharedInstance] maxBatteryTime];
+                Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
+                timeToAddToTimer = lastGalaxy.percentTimeToAddUponGalaxyCompletion*[[UpgradeValues sharedInstance] maxBatteryTime];
                 if (timeToAddToTimer+light.timeLeft > [[UpgradeValues sharedInstance] maxBatteryTime])
                     timeToAddToTimer = [[UpgradeValues sharedInstance] maxBatteryTime] - light.timeLeft;
                 
