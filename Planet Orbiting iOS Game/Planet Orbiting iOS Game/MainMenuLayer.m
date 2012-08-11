@@ -39,6 +39,9 @@ const float effectsVolumeMainMenu = 1;
     bool didFingerMove;
     int lastIndexTapped;
     CCLabelTTF* totalStars;
+    CCLayer* shadeView;
+    CCLayer* popupView;
+    CCSprite* shadeImage;
 }
 
 // returns a singleton scene
@@ -179,68 +182,130 @@ const float effectsVolumeMainMenu = 1;
                     NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
                     UpgradeItem *item = [upgradeItems objectAtIndex:lastIndexTapped];
                     
-                    if (item.level < [item.prices count]) {
-                        /*UIAlertView* alertview2 = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:item.title, lastIndexTapped] message:item.description delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Purchase", nil];
-                        [alertview2 setTag:upgradeAlertTag];
-                        [alertview2 show];*/
-                        
-                        
-                        self.isTouchEnabled = false;
-                        
-                        CCLayer* sextasy = [[CCLayer alloc] init];
-                        [layer addChild:sextasy];
-                        [sextasy setPosition:ccp(960, 320)];
-                        [sextasy setContentSize:CGSizeMake(480, 320)];
-                        
-                        CCSprite* lol = [CCSprite spriteWithFile:@"popupSextasy.png"];
-                        [lol setPosition:ccp(240, 160)];
-                        [sextasy addChild:lol];
-                        
-                        
-                        
-                        CCLabelBMFont* title = [[CCLabelBMFont alloc] initWithString:item.title fntFile:@"betaFont2.fnt"];
-                        [title setScale:.8];
-                        title.position = ccp(240, 250);
-                        [sextasy addChild:title];
-                        
-                        
-                        CCLabelBMFont* desc = [[CCLabelBMFont alloc] initWithString:item.description fntFile:@"PlainFont.fnt"];
-                        [desc setScale:.8];
-                        desc.position = ccp(240, 200);
-                        [sextasy addChild:desc];
-                        
-                        
-                        
-                        
-                        CCMenuItem *cancel = [CCMenuItemImage 
-                                            itemFromNormalImage:@"upgrade.png" selectedImage:@"upgrade.png" 
-                                            target:self selector:@selector(pressedBackButton:)];
-                        
-                        cancel.rotation = -90;
-                        cancel.position = ccp(720 + 130, 160 + 80);
-                        
-                        CCMenuItem *purchase = [CCMenuItemImage 
-                                            itemFromNormalImage:@"upgrade.png" selectedImage:@"upgrade.png" 
-                                            target:self selector:@selector(pressedBackButton:)];
-                        
-                        purchase.rotation = 90;
-                        purchase.position = ccp(720 + 350, 160 + 80);
-                        
-                        CCMenu *menu = [CCMenu menuWithItems:cancel, purchase, nil];
-                        
-                        [layer addChild:menu];
-                        
-                        
-
-                        
-                        
-                    }
                     
+                    /*UIAlertView* alertview2 = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:item.title, lastIndexTapped] message:item.description delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Purchase", nil];
+                     [alertview2 setTag:upgradeAlertTag];
+                     [alertview2 show];*/
+                    
+                    
+                    self.isTouchEnabled = false;
+                    
+                    shadeView = [[CCLayer alloc] init];
+                    [layer addChild:shadeView];
+                    [shadeView setPosition:ccp(960, 320)];
+                    [shadeView setContentSize:CGSizeMake(480, 320)];
+                    
+                    shadeImage = [CCSprite spriteWithFile:@"shadeView.png"];
+                    [shadeImage setPosition:ccp(240, 160)];
+                    [shadeView addChild:shadeImage];
+                    
+                    popupView = [[CCLayer alloc] init];
+                    [layer addChild:popupView];
+                    [popupView setPosition:ccp(960, 320)];
+                    [popupView setContentSize:CGSizeMake(480, 320)];
+                    
+                    CCSprite* lol = [CCSprite spriteWithFile:@"popup.png"];
+                    [lol setPosition:ccp(240, 160)];
+                    [popupView addChild:lol];
+                    
+                    
+                    
+                    CCLabelBMFont* title = [[CCLabelBMFont alloc] initWithString:item.title fntFile:@"betaFont2.fnt"];
+                    [title setScale:.7];
+                    title.position = ccp(240, 255);
+                    [popupView addChild:title];
+                    
+                    
+                    CCLabelBMFont* desc = [[CCLabelBMFont alloc] initWithString:item.description fntFile:@"PlainFont.fnt" width:260 alignment:UITextAlignmentLeft];
+                    [desc setScale:1.2];
+                    desc.position = ccp(240, 200);
+                    [popupView addChild:desc];
+                    
+                    
+                    
+                    
+                    CCMenuItem *cancel = [CCMenuItemImage
+                                          itemFromNormalImage:@"upgrade.png" selectedImage:@"upgrade.png"
+                                          target:self selector:@selector(pressedCancelButton:)];
+                    cancel.position = ccp(-110, -80);
+                    
+                    
+                    //if (item.level >= [item.prices count]) disp MAXED
+                    //else if ([[UserWallet sharedInstance] getBalance] >= [[item.prices objectAtIndex:item.level] intValue]) disp PURCHASE
+                    //else disp NOT ENOUGH COINZ
+                    CCMenuItem *purchase = [CCMenuItemImage
+                                            itemFromNormalImage:@"upgrade.png" selectedImage:@"upgrade.png" 
+                                            target:self selector:@selector(pressedPurchaseButton:)];
+                    purchase.position = ccp(110, -80);
+                    
+                    CCMenu *menu = [CCMenu menuWithItems:cancel, purchase, nil];
+                    
+                    [popupView addChild:menu];
+                    
+                    [popupView setScale:0];
+                    
+                    /*[popupView runAction:[CCSequence actions:
+                                          [CCScaleTo actionWithDuration:.37 scale:1.2],
+                                          [CCScaleTo actionWithDuration:.12 scale:.9],
+                                          [CCScaleTo actionWithDuration:.07 scale:1],
+                                          nil]];*/
+                    
+                    
+                    id move = [CCScaleTo actionWithDuration:.8 scale:1];
+                    id action = [CCEaseBounceOut actionWithAction:move];
+                    [popupView runAction: action];
+                    
+                    
+                    
+                    [shadeImage runAction:[CCSequence actions:
+                                           [CCFadeIn actionWithDuration:.4],
+                                           nil]];
                 }
                 i++;
             }
         }
     }
+}
+
+-(void)pressedCancelButton:(id)sender {
+    [self removePopupView];
+}
+
+-(void)pressedPurchaseButton:(id)sender {
+    NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
+    UpgradeItem *item = [upgradeItems objectAtIndex:lastIndexTapped];
+    
+    int curBalance = [[UserWallet sharedInstance] getBalance];
+    if (curBalance >= [[item.prices objectAtIndex:item.level] intValue]) {
+        
+        [[UserWallet sharedInstance] setBalance:curBalance - [[item.prices objectAtIndex:item.level] intValue]];
+        [item setLevel:[item level] + 1];
+        [self refreshUpgradeCells];
+        [DataStorage storeData];
+    }
+    
+    [self removePopupView];
+}
+
+-(void)removePopupView {
+    
+    
+    id removeViews = [CCCallBlock actionWithBlock:(^{
+        [shadeView removeFromParentAndCleanup:true];
+        [popupView removeFromParentAndCleanup:true];
+        self.isTouchEnabled = true;
+    })];
+    
+    id move = [CCScaleTo actionWithDuration:.4 scale:0];
+    id action = [CCEaseSineInOut actionWithAction:move];
+    [popupView runAction:[CCSequence actions:
+                          action,
+                          removeViews,
+                          nil]];
+    
+    [shadeImage runAction:[CCSequence actions:
+                           [CCFadeOut actionWithDuration:.3],
+                           nil]];
 }
 
 // on "init" you need to initialize your instance

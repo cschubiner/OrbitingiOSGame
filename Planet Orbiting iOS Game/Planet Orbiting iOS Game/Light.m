@@ -7,9 +7,16 @@
 //
 
 #import "Light.h"
-
 @implementation Light
 
-@synthesize sprite, stage, hasPutOnLight, score, scoreVelocity, distanceFromPlayer;
+@synthesize sprite,timeLeft, stage, hasPutOnLight, score, scoreVelocity, distanceFromPlayer;
 
+
+
+-(id)init {
+    if (self=[super init]) {
+        timeLeft = [[UpgradeValues sharedInstance] maxBatteryTime];
+    }
+    return self;
+}
 @end
