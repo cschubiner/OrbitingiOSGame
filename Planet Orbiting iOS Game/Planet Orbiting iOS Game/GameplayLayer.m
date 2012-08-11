@@ -294,7 +294,6 @@ typedef struct {
     galaxies = [[NSArray alloc]initWithObjects:
     #include "LevelsFromLevelCreator"
                 nil];
-    
 }
 
 - (void)setGalaxyProperties {
@@ -1095,7 +1094,7 @@ typedef struct {
         Planet * nextPlanet;
         if (lastPlanetVisited.number+1<[planets count])
             nextPlanet= [planets objectAtIndex:(lastPlanetVisited.number+1)];
-        else nextPlanet = lastPlanetVisited;
+        else nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
         //NSLog(@"galaxy11");
         
         if (
@@ -1320,13 +1319,21 @@ typedef struct {
     light.timeLeft -= dt;
     float timerAddSpeed = 10;
     timeToAddToTimer-= timerAddSpeed * dt;
-    if (timeToAddToTimer>0)
-    light.timeLeft += timerAddSpeed * dt;
+    if (timeToAddToTimer>0) {
+        light.timeLeft += timerAddSpeed * dt;
+        [batteryGlowSprite setColor:ccc3(0, 255, 0)];
+    }
+    else [batteryGlowSprite setColor:ccc3(255, 0, 0)];
     
     light.scoreVelocity += amountToIncreaseLightScoreVelocityEachUpdate*60*dt;
+    
+    float percentDead = 1-light.timeLeft/[[UpgradeValues sharedInstance] maxBatteryTime];
     if (!isInTutorialMode&&levelNumber==0) {
-        [batteryDecreaserSprite setScaleX:lerpf(0, 66, 1-light.timeLeft/[[UpgradeValues sharedInstance] maxBatteryTime])];
+        [batteryDecreaserSprite setScaleX:lerpf(0, 66, percentDead)];
     }
+    
+    [batteryGlowScaleAction setSpeed:lerpf(1, 3.6, percentDead)];
+    
     //    CCLOG(@"DIST: %f, VEL: %f, LIGHSCORE: %f", light.distanceFromPlayer, light.scoreVelocity, light.score);
     if (light.timeLeft <= 0) {
         if (!light.hasPutOnLight) {
