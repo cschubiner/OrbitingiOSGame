@@ -41,6 +41,7 @@ const float effectsVolumeMainMenu = 1;
     CCLabelTTF* totalStars;
     CCLayer* shadeView;
     CCLayer* popupView;
+    CCSprite* shadeImage;
 }
 
 // returns a singleton scene
@@ -194,7 +195,7 @@ const float effectsVolumeMainMenu = 1;
                     [shadeView setPosition:ccp(960, 320)];
                     [shadeView setContentSize:CGSizeMake(480, 320)];
                     
-                    CCSprite* shadeImage = [CCSprite spriteWithFile:@"shadeView.png"];
+                    shadeImage = [CCSprite spriteWithFile:@"shadeView.png"];
                     [shadeImage setPosition:ccp(240, 160)];
                     [shadeView addChild:shadeImage];
                     
@@ -215,7 +216,7 @@ const float effectsVolumeMainMenu = 1;
                     [popupView addChild:title];
                     
                     
-                    CCLabelBMFont* desc = [[CCLabelBMFont alloc] initWithString:item.description fntFile:@"PlainFont.fnt" width:230 alignment:UITextAlignmentLeft];
+                    CCLabelBMFont* desc = [[CCLabelBMFont alloc] initWithString:item.description fntFile:@"PlainFont.fnt" width:260 alignment:UITextAlignmentLeft];
                     [desc setScale:1.2];
                     desc.position = ccp(240, 200);
                     [popupView addChild:desc];
@@ -224,7 +225,7 @@ const float effectsVolumeMainMenu = 1;
                     
                     
                     CCMenuItem *cancel = [CCMenuItemImage
-                                          itemFromNormalImage:@"upgrade.png" selectedImage:@"upgrade.png" 
+                                          itemFromNormalImage:@"upgrade.png" selectedImage:@"upgrade.png"
                                           target:self selector:@selector(pressedCancelButton:)];
                     cancel.position = ccp(-110, -80);
                     
@@ -243,11 +244,17 @@ const float effectsVolumeMainMenu = 1;
                     
                     [popupView setScale:0];
                     
-                    [popupView runAction:[CCSequence actions:
+                    /*[popupView runAction:[CCSequence actions:
                                           [CCScaleTo actionWithDuration:.37 scale:1.2],
                                           [CCScaleTo actionWithDuration:.12 scale:.9],
                                           [CCScaleTo actionWithDuration:.07 scale:1],
-                                          nil]];
+                                          nil]];*/
+                    
+                    
+                    id move = [CCScaleTo actionWithDuration:.8 scale:1];
+                    id action = [CCEaseBounceOut actionWithAction:move];
+                    [popupView runAction: action];
+                    
                     
                     
                     [shadeImage runAction:[CCSequence actions:
@@ -264,10 +271,9 @@ const float effectsVolumeMainMenu = 1;
         }
     }
 }
+
 -(void)pressedCancelButton:(id)sender {
-    [shadeView removeFromParentAndCleanup:true];
-    [popupView removeFromParentAndCleanup:true];
-    self.isTouchEnabled = true;
+    [self removePopupView];
 }
 
 -(void)pressedPurchaseButton:(id)sender {
@@ -283,9 +289,28 @@ const float effectsVolumeMainMenu = 1;
         [DataStorage storeData];
     }
     
-    [shadeView removeFromParentAndCleanup:true];
-    [popupView removeFromParentAndCleanup:true];
-    self.isTouchEnabled = true;
+    [self removePopupView];
+}
+
+-(void)removePopupView {
+    
+    
+    id removeViews = [CCCallBlock actionWithBlock:(^{
+        [shadeView removeFromParentAndCleanup:true];
+        [popupView removeFromParentAndCleanup:true];
+        self.isTouchEnabled = true;
+    })];
+    
+    id move = [CCScaleTo actionWithDuration:.4 scale:0];
+    id action = [CCEaseSineInOut actionWithAction:move];
+    [popupView runAction:[CCSequence actions:
+                          action,
+                          removeViews,
+                          nil]];
+    
+    [shadeImage runAction:[CCSequence actions:
+                           [CCFadeOut actionWithDuration:.3],
+                           nil]];
 }
 
 // on "init" you need to initialize your instance

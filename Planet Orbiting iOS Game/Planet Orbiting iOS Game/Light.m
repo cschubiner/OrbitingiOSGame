@@ -7,7 +7,6 @@
 //
 
 #import "Light.h"
-#import "Constants.h"
 @implementation Light
 
 @synthesize sprite,timeLeft, stage, hasPutOnLight, score, scoreVelocity, distanceFromPlayer;
@@ -16,7 +15,7 @@
 
 -(id)init {
     if (self=[super init]) {
-        timeLeft = maxBatteryTime;
+        timeLeft = [[UpgradeValues sharedInstance] maxBatteryTime];
     }
     return self;
 }

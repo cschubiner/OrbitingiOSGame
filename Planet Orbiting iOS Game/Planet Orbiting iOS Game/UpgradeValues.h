@@ -15,7 +15,7 @@
 @property (nonatomic) float coinMagnetDuration;
 @property (nonatomic) float absoluteMinTimeDilation;
 @property (nonatomic) int hasDoubleCoins;
-@property (nonatomic) float negativeLightStartingScore;
+@property (nonatomic) float maxBatteryTime;
 
 
 

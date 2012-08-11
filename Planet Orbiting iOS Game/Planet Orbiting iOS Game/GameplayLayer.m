@@ -337,7 +337,7 @@ typedef struct {
     else
         [[UpgradeValues sharedInstance] setHasDoubleCoins:false];
     
-    [[UpgradeValues sharedInstance] setNegativeLightStartingScore:9000 + 500*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] level]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:60 + 3*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] level]];
 }
 
 /* On "init," initialize the instance */
@@ -503,7 +503,6 @@ typedef struct {
         light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
         [light.sprite setColor:ccc3(0, 0, 0)]; //this makes the light black!
         [[light sprite]retain];
-        light.score = -[[UpgradeValues sharedInstance] negativeLightStartingScore];
         
         light.scoreVelocity = initialLightScoreVelocity;
         //  glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -1152,9 +1151,9 @@ typedef struct {
                 //NSLog(@"galaxy4");
                 
                 float percentToAddToTimer = .4;
-                timeToAddToTimer = percentToAddToTimer*maxBatteryTime;
-                if (timeToAddToTimer+light.timeLeft > maxBatteryTime)
-                    timeToAddToTimer = maxBatteryTime - light.timeLeft;
+                timeToAddToTimer = percentToAddToTimer*[[UpgradeValues sharedInstance] maxBatteryTime];
+                if (timeToAddToTimer+light.timeLeft > [[UpgradeValues sharedInstance] maxBatteryTime])
+                    timeToAddToTimer = [[UpgradeValues sharedInstance] maxBatteryTime] - light.timeLeft;
                 
                 if ([[hudLayer children]containsObject:galaxyLabel]==false)
                     [hudLayer addChild:galaxyLabel];
@@ -1316,10 +1315,6 @@ typedef struct {
 }
 
 - (void)UpdateLight:(float)dt{
-    light.distanceFromPlayer = score - light.score;
-    
-    if (light.distanceFromPlayer > [[UpgradeValues sharedInstance] negativeLightStartingScore])
-        light.score = score - [[UpgradeValues sharedInstance] negativeLightStartingScore];
     
     light.timeLeft -= dt;
     float timerAddSpeed = 10;
@@ -1332,7 +1327,7 @@ typedef struct {
     
     light.scoreVelocity += amountToIncreaseLightScoreVelocityEachUpdate*60*dt;
     
-    float percentDead = 1-light.timeLeft/maxBatteryTime;
+    float percentDead = 1-light.timeLeft/[[UpgradeValues sharedInstance] maxBatteryTime];
     if (!isInTutorialMode&&levelNumber==0) {
         [batteryDecreaserSprite setScaleX:lerpf(0, 66, percentDead)];
     }

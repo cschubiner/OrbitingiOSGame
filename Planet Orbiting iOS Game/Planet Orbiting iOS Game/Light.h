@@ -8,6 +8,7 @@
 
 #import "CCNode.h"
 #import "cocos2d.h"
+#import "UpgradeValues.h"
 
 @interface Light : CCNode
 
