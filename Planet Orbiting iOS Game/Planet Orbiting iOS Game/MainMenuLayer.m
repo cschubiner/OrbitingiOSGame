@@ -95,9 +95,13 @@ const float effectsVolumeMainMenu = 1;
                 [cell.levelLabel setString:@"Inactive"];
             else
                 [cell.levelLabel setString:@"Active"];
+            
+            [cell.levelLabel setPosition:ccp(90 + [cell.levelLabel boundingBox].size.width/2, -58)];
         } else {
             [cell.levelLabel setString:[NSString stringWithFormat:@"Level %d", item.level]];
         }
+        if (item.level == [item.prices count])
+            [cell.levelLabel setColor:ccGREEN];
         
         if ((item.level < [item.prices count])) {
             [cell.priceLabel setString:[self commaInt:[[item.prices objectAtIndex:item.level] intValue]]];
@@ -399,11 +403,12 @@ const float effectsVolumeMainMenu = 1;
             UpgradeItem *item = [upgradeItems objectAtIndex:lastIndexTapped];
             
             int curBalance = [[UserWallet sharedInstance] getBalance];
-            if (curBalance >= [[item.prices objectAtIndex:0] intValue]) {
+            if (curBalance >= [[item.prices objectAtIndex:item.level] intValue]) {
                 
                 [[UserWallet sharedInstance] setBalance:curBalance - [[item.prices objectAtIndex:item.level] intValue]];
                 [item setLevel:[item level] + 1];
                 [self refreshUpgradeCells];
+                [DataStorage storeData];
             }
             //UIAlertView* alertview3 = [[UIAlertView alloc] initWithTitle:@"Congratz yo" message:@"You bought something" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
             //[alertview3 show];
