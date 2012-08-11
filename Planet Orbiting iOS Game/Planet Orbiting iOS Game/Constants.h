@@ -142,6 +142,8 @@ const float zoneCollisionFactor = 1.01;
 
 const float initialLightScoreVelocity = 4;
 
+const float maxBatteryTime = 60;
+
 const float amountToIncreaseLightScoreVelocityEachUpdate = .00065;
 
 const int howMuchCoinsAddToScore = 10;

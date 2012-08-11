@@ -45,9 +45,10 @@ namespace Level_Creator
         string toDisplay;
         const float defaultPlanetScaleSize = 1;
         const float minPlanetScale = 1;
-        const float defaultAsteroidScaleSize =  .36f*.64f*2*1.9f;
+        const float defaultAsteroidScaleSize =  .87552f;
         const float defaultCoinScaleSize = 1;
-        const float minAsteroidScale = .36f * .64f * .7f*2*1.5f;
+        const float minAsteroidScale = .875f;
+        const float asteroidScaleFactorForScalingInGame = 1.0f / defaultAsteroidScaleSize;
         const float defaultPowerupScaleSize = 1.1f;
         int currentPowerupType;
         float currentAsteroidScale;
@@ -199,7 +200,7 @@ namespace Level_Creator
                     string first = "[[LevelObjectReturner alloc]initWithType:";
                     string middle = "  position:ccp(";
                     string middle2 = ") scale:";
-                    string end = "],\r\n";
+                    string end = "],";
 
                     float xOffset = 0;
                     float yOffset = 0;
@@ -233,7 +234,7 @@ namespace Level_Creator
                         toCopy += middle;
                         toCopy += (pstruct.pos.X - firstPlanetPos.X + xOffset).ToString() + "," + (-((pstruct.pos.Y - yOffset) - firstPlanetPos.Y)).ToString();
                         toCopy += middle2;
-                        toCopy += pstruct.scale.ToString();
+                        toCopy += (pstruct.scale*asteroidScaleFactorForScalingInGame).ToString();
                         toCopy += end;
                     }
 
@@ -260,9 +261,9 @@ namespace Level_Creator
                         toCopy += pstruct.scale.ToString();
                         toCopy += end;
                     }
-
+                    
                     StreamWriter textOut = new StreamWriter(new FileStream("output.txt", FileMode.Create, FileAccess.Write));
-                    textOut.WriteLine("[NSArray arrayWithObjects: "+ toCopy + " nil],");
+                    textOut.WriteLine("//Level Segment Title: PUT_TITLE_HERE\r\n[NSArray arrayWithObjects: "+ toCopy + " nil], //end of level segment");
                     textOut.Close();
 
                     first = "[self CreatePlanetAndZone:";
@@ -291,7 +292,7 @@ namespace Level_Creator
                         toCopy += middle;
                         toCopy += (graphics.GraphicsDevice.Viewport.Height - pstruct.pos.Y + yOffset).ToString();
                         toCopy += middle2;
-                        toCopy += pstruct.scale.ToString();
+                        toCopy += (pstruct.scale * asteroidScaleFactorForScalingInGame).ToString();
                         toCopy += end;
                     }
 
@@ -325,7 +326,6 @@ namespace Level_Creator
                     textOut = new StreamWriter(new FileStream("outputOld.txt", FileMode.Create, FileAccess.Write));
                     textOut.WriteLine(toCopy);
                     textOut.Close();
-
                 }
 
                 if (mouseState.MiddleButton == ButtonState.Released && lastMouseState.MiddleButton == ButtonState.Pressed

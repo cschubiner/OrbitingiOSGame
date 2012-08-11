@@ -53,22 +53,22 @@
 					<key>lockedScaleRatio</key>
 					<true/>
 					<key>memberVarAssignmentName</key>
-					<string></string>
+					<string>batteryGlowSprite</string>
 					<key>memberVarAssignmentType</key>
-					<integer>0</integer>
+					<integer>2</integer>
 					<key>opacity</key>
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>43.860855102539062</real>
+						<real>42.46099853515625</real>
 						<real>293.4296875</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>1.1083205938339233</real>
+					<real>0.85832071304321289</real>
 					<key>scaleY</key>
-					<real>1.1083205938339233</real>
+					<real>0.85832071304321289</real>
 					<key>spriteFile</key>
 					<string>batteryglow.png</string>
 					<key>tag</key>
@@ -160,8 +160,8 @@
 					</array>
 					<key>blendFunc</key>
 					<array>
-						<integer>770</integer>
-						<integer>771</integer>
+						<integer>1</integer>
+						<integer>0</integer>
 					</array>
 					<key>color</key>
 					<array>
@@ -194,13 +194,13 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>73.5390625</real>
+						<real>74.5390625</real>
 						<real>294.0159912109375</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>65</real>
+					<real>0.0</real>
 					<key>scaleY</key>
 					<real>36.141719818115234</real>
 					<key>spriteFile</key>

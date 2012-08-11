@@ -92,6 +92,7 @@
     Light* light;
     
     float tempScore;
+    float timeToAddToTimer;
     
     int originalSegmentNumber;
     
@@ -101,6 +102,8 @@
     CCSprite* tutImage3;
 
     CCSprite* batteryDecreaserSprite;
+    CCSprite* batteryGlowSprite;
+    CCSpeed* batteryGlowScaleAction;
     
     bool isGameOver;
     bool didEndGameAlready;

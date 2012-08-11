@@ -79,6 +79,7 @@
 		0C65971B15D6322700C42296 /* batteryborder-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C65971915D6322700C42296 /* batteryborder-hd.png */; };
 		0C65971C15D6322700C42296 /* batteryborder.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C65971A15D6322700C42296 /* batteryborder.png */; };
 		0C65971E15D6351F00C42296 /* OneByOne-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C65971D15D6351F00C42296 /* OneByOne-hd.png */; };
+		0C65972415D666D900C42296 /* LevelsFromLevelCreator in Resources */ = {isa = PBXBuildFile; fileRef = 0C65972315D666D900C42296 /* LevelsFromLevelCreator */; };
 		0C68283215BF0CCA00BF09C0 /* playerExplosionParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */; };
 		0C7AA5F315946939000B58F2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F215946939000B58F2 /* QuartzCore.framework */; };
 		0C7AA5F515946939000B58F2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F415946939000B58F2 /* OpenGLES.framework */; };
@@ -436,6 +437,7 @@
 		0C65971915D6322700C42296 /* batteryborder-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "batteryborder-hd.png"; sourceTree = "<group>"; };
 		0C65971A15D6322700C42296 /* batteryborder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batteryborder.png; sourceTree = "<group>"; };
 		0C65971D15D6351F00C42296 /* OneByOne-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OneByOne-hd.png"; sourceTree = "<group>"; };
+		0C65972315D666D900C42296 /* LevelsFromLevelCreator */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LevelsFromLevelCreator; sourceTree = "<group>"; };
 		0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = playerExplosionParticle.plist; sourceTree = "<group>"; };
 		0C7AA5EE15946939000B58F2 /* Star Dash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Star Dash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C7AA5F215946939000B58F2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1037,6 +1039,7 @@
 				FA40DCAE15D3788E00174FB8 /* Enhancements */,
 				0C487AFD159471FF00674AB9 /* Basic Stuff - Ignore */,
 				0C487AFC159471E800674AB9 /* Classes */,
+				0C65972315D666D900C42296 /* LevelsFromLevelCreator */,
 				0C7AA7541594693D000B58F2 /* AppDelegate.h */,
 				0C7AA7551594693D000B58F2 /* AppDelegate.m */,
 				C49E914A159A48D700BC424D /* Constants.h */,
@@ -1961,6 +1964,7 @@
 				FA16A16915D63FE0007C52E3 /* popupSextasy.png in Resources */,
 				FA16A16C15D655BC007C52E3 /* shadeView-hd.png in Resources */,
 				FA16A16E15D655C4007C52E3 /* shadeView.png in Resources */,
+				0C65972415D666D900C42296 /* LevelsFromLevelCreator in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
