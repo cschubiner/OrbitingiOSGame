@@ -71,6 +71,7 @@
 		0C62B1B415C8DA7E00318B66 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1B315C8DA7E00318B66 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0C62B1B615C8DD9300318B66 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1B515C8DD9300318B66 /* libz.dylib */; };
 		0C62B1B815C8DDE800318B66 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1B715C8DDE800318B66 /* Security.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0C65970F15D62BC800C42296 /* OneByOne.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C65970E15D62BC800C42296 /* OneByOne.png */; };
 		0C68283215BF0CCA00BF09C0 /* playerExplosionParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */; };
 		0C7AA5F315946939000B58F2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F215946939000B58F2 /* QuartzCore.framework */; };
 		0C7AA5F515946939000B58F2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F415946939000B58F2 /* OpenGLES.framework */; };
@@ -416,6 +417,7 @@
 		0C62B1B315C8DA7E00318B66 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		0C62B1B515C8DD9300318B66 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		0C62B1B715C8DDE800318B66 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		0C65970E15D62BC800C42296 /* OneByOne.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OneByOne.png; sourceTree = "<group>"; };
 		0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = playerExplosionParticle.plist; sourceTree = "<group>"; };
 		0C7AA5EE15946939000B58F2 /* Star Dash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Star Dash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C7AA5F215946939000B58F2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1041,6 +1043,7 @@
 		0C7AA60315946939000B58F2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0C65970E15D62BC800C42296 /* OneByOne.png */,
 				C43AF01315D4267D001FF7D9 /* Spritesheets */,
 				C4C9161A15D309C9008105A6 /* Fonts */,
 				FA7E63ED15D251520090C913 /* menu stuff */,
@@ -1913,6 +1916,7 @@
 				FA16A14615D60F13007C52E3 /* doublecoinicon.png in Resources */,
 				FA16A14715D60F13007C52E3 /* magneticon.png in Resources */,
 				FA16A14815D60F13007C52E3 /* speedupgradeicon.png in Resources */,
+				0C65970F15D62BC800C42296 /* OneByOne.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
