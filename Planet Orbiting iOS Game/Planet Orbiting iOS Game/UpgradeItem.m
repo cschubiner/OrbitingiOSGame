@@ -10,15 +10,14 @@
 
 @implementation UpgradeItem
 
-@synthesize description, hasLevels, icon, level, price, title;
+@synthesize description, icon, level, prices, title;
 
--(id)initWithTitle:(NSString*)tit description:(NSString*)desc icon:(NSString*)ic price:(int)pr hasLevels:(bool)hasLevs level:(int)lvl {
+-(id)initWithTitle:(NSString*)tit description:(NSString*)desc icon:(NSString*)ic prices:(NSMutableArray*)prs level:(int)lvl {
     if (self = [super init]) {
         self.title = tit;
         self.description = desc;
         self.icon = ic;
-        self.price = pr;
-        self.hasLevels = hasLevs;
+        self.prices = prs;
         self.level = lvl;
     }
     return self;
