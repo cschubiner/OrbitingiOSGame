@@ -38,6 +38,7 @@ const int maxNameLength = 10;
     BOOL muted;
     BOOL scoreAlreadySaved;
     CCMenu *pauseMenu;
+    NSString *recentName;
 }
 
 typedef struct {
@@ -514,8 +515,6 @@ typedef struct {
         //  glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         light.hasPutOnLight = false;
         
-        
-        
         [cameraLayer addChild:currentGalaxy.spriteSheet];
         [cameraLayer addChild:spriteSheet];
         
@@ -537,6 +536,7 @@ typedef struct {
         [self UpdateScore];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nameDidChange) name:UITextViewTextDidChangeNotification object:nil];
+        recentName = @"PLAYER";
         
         [Flurry logEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:(int)isInTutorialMode],@"isInTutorialMode",nil]  timed:YES];
         [self schedule:@selector(Update:) interval:0]; // this makes the update loop loop!!!!
@@ -1327,6 +1327,7 @@ typedef struct {
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:ccbFile owner:self];
         
         if (isHighScore) {
+            [displayName setString:recentName];
             playerNameLabel = [[[UITextView alloc] initWithFrame:CGRectMake(240, 160, 0, 0)] autorelease];
             [[[[CCDirector sharedDirector] openGLView] window] addSubview:playerNameLabel];
             playerNameLabel.delegate = self;
@@ -1342,18 +1343,12 @@ typedef struct {
         [self addChild:pauseLayer];
         [gameOverScoreLabel setString:scoreText];
         
-        if ([[PlayerStats sharedInstance] isHighScore:finalScore]) {
-            NSString *playerName = displayName.string;
-            [[PlayerStats sharedInstance] addScore:finalScore withName:playerName];
-        }
-        
         scoreAlreadySaved = YES;
         [DataStorage storeData];
     }
 }
 
-- (void)UpdateLight:(float)dt{
-    
+- (void)UpdateLight:(float)dt {
     light.timeLeft -= dt;
     float timerAddSpeed = 10;
     timeToAddToTimer-= timerAddSpeed * dt;
@@ -1484,6 +1479,11 @@ typedef struct {
 }
 
 - (void)endGame {
+    if ([[PlayerStats sharedInstance] isHighScore:score+prevCurrentPtoPScore]) {
+        NSString *playerName = displayName.string;
+        [[PlayerStats sharedInstance] addScore:score+prevCurrentPtoPScore withName:playerName];
+        recentName = playerName;
+    }
     if (playerNameLabel) {
         [playerNameLabel resignFirstResponder];
     }
@@ -1512,6 +1512,11 @@ typedef struct {
 }
 
 - (void)restartGame {
+    if ([[PlayerStats sharedInstance] isHighScore:score+prevCurrentPtoPScore]) {
+        NSString *playerName = displayName.string;
+        [[PlayerStats sharedInstance] addScore:score+prevCurrentPtoPScore withName:playerName];
+        recentName = playerName;
+    }
     if (playerNameLabel) {
         [playerNameLabel resignFirstResponder];
     }
@@ -1635,8 +1640,7 @@ float lerpf(float a, float b, float t) {
     if (paused) {
         [Kamcord pause];
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"PauseMenuLayer.ccb" owner:self];
-        int finalScore = score + prevCurrentPtoPScore;
-        [gameOverScoreLabel setString:[NSString stringWithFormat:@"Score: %d",finalScore]];
+        [gameOverScoreLabel setString:[NSString stringWithFormat:@"Score: %d",score+prevCurrentPtoPScore]];
         [pauseLayer setTag:pauseLayerTag];
         [self addChild:pauseLayer];
     } else {
