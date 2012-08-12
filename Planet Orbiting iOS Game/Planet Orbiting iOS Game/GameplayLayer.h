@@ -21,7 +21,7 @@
 #import "Galaxy.h"
 #import "UpgradeValues.h"
 
-@interface GameplayLayer : CCLayer {
+@interface GameplayLayer : CCLayer <UITextViewDelegate> {
     Player *player;
     NSMutableArray *planets;
     NSMutableArray *zones;
@@ -139,7 +139,8 @@
     CCLayer *pauseLayer;
     CCLabelBMFont * gameOverScoreLabel;
     
-    CCLabelBMFont *playerNameLabel;
+    UITextView *playerNameLabel;
+    CCLabelBMFont *displayName;
 }
 
 

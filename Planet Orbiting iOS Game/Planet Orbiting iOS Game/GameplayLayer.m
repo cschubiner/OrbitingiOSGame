@@ -24,6 +24,7 @@
 
 const float musicVolumeGameplay = 1;
 const float effectsVolumeGameplay = 1;
+const int maxNameLength = 10;
 
 @implementation GameplayLayer {
     int planetCounter;
@@ -325,9 +326,9 @@ typedef struct {
 }
 
 - (void)initUpgradedVariables {
-    [[UpgradeValues sharedInstance] setCoinMagnetDuration:500 + 100*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:0] level]];
+    [[UpgradeValues sharedInstance] setCoinMagnetDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:0] level]];
     
-    [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:500 + 100*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] level]];
+    [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] level]];
     
     [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.8 + .05*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] level]];
     
@@ -534,6 +535,8 @@ typedef struct {
             [self addChild:layerHudSlider];
         [self addChild:pauseMenu];
         [self UpdateScore];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nameDidChange) name:UITextViewTextDidChangeNotification object:nil];
         
         [Flurry logEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:(int)isInTutorialMode],@"isInTutorialMode",nil]  timed:YES];
         [self schedule:@selector(Update:) interval:0]; // this makes the update loop loop!!!!
@@ -1302,6 +1305,14 @@ typedef struct {
     
 }
 
+- (void)nameDidChange {
+    NSString *newName = playerNameLabel.text;
+    if (newName.length <= maxNameLength) {
+        [displayName setString:newName];
+    }
+    [playerNameLabel setText:displayName.string];
+}
+
 - (void)GameOver {
     if (!isGameOver) { // this line ensures that it only runs once
         isGameOver = true;
@@ -1316,7 +1327,13 @@ typedef struct {
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:ccbFile owner:self];
         
         if (isHighScore) {
-            // keyboard logicz here
+            playerNameLabel = [[[UITextView alloc] initWithFrame:CGRectMake(240, 160, 0, 0)] autorelease];
+            [[[[CCDirector sharedDirector] openGLView] window] addSubview:playerNameLabel];
+            playerNameLabel.delegate = self;
+            playerNameLabel.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+            playerNameLabel.autocorrectionType = UITextAutocorrectionTypeNo;
+            playerNameLabel.keyboardType = UIKeyboardTypeAlphabet;
+            [playerNameLabel becomeFirstResponder];
         }
         
         [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
@@ -1326,9 +1343,8 @@ typedef struct {
         [gameOverScoreLabel setString:scoreText];
         
         if ([[PlayerStats sharedInstance] isHighScore:finalScore]) {
-            int plays = [[PlayerStats sharedInstance] getPlays];
-            NSString *playsString = [NSString stringWithFormat:@"%d", plays];
-            [[PlayerStats sharedInstance] addScore:finalScore withName:playsString];
+            NSString *playerName = displayName.string;
+            [[PlayerStats sharedInstance] addScore:finalScore withName:playerName];
         }
         
         scoreAlreadySaved = YES;
@@ -1468,6 +1484,9 @@ typedef struct {
 }
 
 - (void)endGame {
+    if (playerNameLabel) {
+        [playerNameLabel resignFirstResponder];
+    }
     if (!didEndGameAlready) {
         didEndGameAlready = true;
         [Flurry logEvent:@"Game ended" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned", [NSNumber numberWithInt:(int)isInTutorialMode],@"isInTutorialMode", nil]];
@@ -1475,9 +1494,7 @@ typedef struct {
         int finalScore = score + prevCurrentPtoPScore;
         if (!isInTutorialMode && !scoreAlreadySaved) {
             if ([[PlayerStats sharedInstance] isHighScore:finalScore]) {
-                int plays = [[PlayerStats sharedInstance] getPlays];
-                NSString *playsString = [NSString stringWithFormat:@"%d", plays];
-                [[PlayerStats sharedInstance] addScore:finalScore withName:playsString];
+                [[PlayerStats sharedInstance] addScore:finalScore withName:@"fix fix fix"];
             }
         }
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
@@ -1495,6 +1512,9 @@ typedef struct {
 }
 
 - (void)restartGame {
+    if (playerNameLabel) {
+        [playerNameLabel resignFirstResponder];
+    }
     [Flurry logEvent:@"restarted game"];
     scoreAlreadySaved = NO;
     if ([[PlayerStats sharedInstance] getPlays] == 1) {
@@ -1647,8 +1667,6 @@ float lerpf(float a, float b, float t) {
      }*/
     [super dealloc];
 }
-
-
 
 #if !defined(MIN)
 #define MIN(A,B)    ({ __typeof__(A) __a = (A); __typeof__(B) __b = (B); __a < __b ? __a : __b; })
