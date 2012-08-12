@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Level_Creator
 {
@@ -32,6 +33,7 @@ namespace Level_Creator
             public Vector2 pos;
             public float scale;
             public int powerupType;
+            public float rotation;
         }
 
         List<posScaleStruct> posArray;
@@ -45,11 +47,12 @@ namespace Level_Creator
         string toDisplay;
         const float defaultPlanetScaleSize = 1;
         const float minPlanetScale = 1;
-        const float defaultAsteroidScaleSize =  .87552f;
+        const float defaultAsteroidScaleSize = 1;// .87552f;
         const float defaultCoinScaleSize = 1;
         const float minAsteroidScale = .875f;
-        const float asteroidScaleFactorForScalingInGame = 1.0f / defaultAsteroidScaleSize;
+       // const float asteroidScaleFactorForScalingInGame = 1.0f / .87552f;//defaultAsteroidScaleSize;
         const float defaultPowerupScaleSize = 1.1f;
+        float currentRotation;
         int currentPowerupType;
         float currentAsteroidScale;
         float currentPlanetScale;
@@ -58,6 +61,7 @@ namespace Level_Creator
         float currentCoinScale;
         KeyboardState lastKeyboardState;
         Vector2 offset;
+        float timeSinceOutput;
         // the zone scale is the planet scale * this number
         const float defaultZoneScaleRelativeToPlanet = 1.7f;
         public Game1()
@@ -89,6 +93,8 @@ namespace Level_Creator
             posArrayForFrame = new List<posScaleStruct>();
             posArrayPowerups = new List<posScaleStruct>();
             currentPowerupType = 0;
+            timeSinceOutput = 11000;
+            currentRotation = 0;
             base.Initialize();
             currPosToDraw = Vector2.Zero;
             currentFrameScale = 1;
@@ -143,6 +149,7 @@ namespace Level_Creator
                 this.Exit();
             if (this.IsActive)
             {
+                timeSinceOutput += gameTime.ElapsedGameTime.Milliseconds;
                 MouseState mouseState = Mouse.GetState();
                 KeyboardState keyboardState = Keyboard.GetState();
                 if (mouseState.LeftButton == ButtonState.Released && lastMouseState.LeftButton == ButtonState.Pressed)
@@ -166,6 +173,7 @@ namespace Level_Creator
                     posScaleStruct pstruct = new posScaleStruct();
                     pstruct.pos = new Vector2(mouseState.X - offset.X, mouseState.Y - offset.Y);
                     pstruct.scale = currentFrameScale;
+                    pstruct.rotation = currentRotation;
                     posArrayForFrame.Add(pstruct);
                 }
 
@@ -193,6 +201,66 @@ namespace Level_Creator
                 }
                 currPosToDraw = new Vector2(mouseState.X, mouseState.Y);
 
+                if (keyboardState.IsKeyDown(Keys.L) && lastKeyboardState.IsKeyUp(Keys.L))
+                {
+                    string[] parts = { "", "" };
+                    try
+                    {
+                        string levelText = System.IO.File.ReadAllText(@"input.txt");
+                        char[] delimiterChars = { ' ', ',', '(',')',':',']'};
+
+                        string[] words = levelText.Split(delimiterChars);
+                        System.Console.WriteLine("{0} words in text:", words.Length);
+
+                        foreach (string s in words)
+                        {
+                         //   System.Console.WriteLine(s);
+                        }
+
+                        string[] lines = Regex.Split(levelText, "\r\n");
+
+                        foreach (string line in lines)
+                        {
+                           // Console.WriteLine(line);
+                        }
+
+                        parts = levelText.Split(new string[] {"],", "\r\n","[[LevelObjectReturner alloc]initWithType:" ,"  position:ccp(",",",") scale:"}, StringSplitOptions.RemoveEmptyEntries);
+                        foreach (string line in parts)
+                        {
+                            Console.WriteLine(line);
+                        }
+                    }
+                    catch { }
+                        for (int i = 2; i < parts.Length; i += 4)
+                        {
+                            try
+                            {
+                                posScaleStruct newStruct = new posScaleStruct();
+                                string typeText = parts[i];
+                                Console.WriteLine(typeText);
+                                string xPos = parts[i + 1];
+                                string yPos = parts[i + 2];
+                                string scale = parts[i + 3];
+                                Console.WriteLine(xPos);
+                                newStruct.pos = new Vector2((float)Convert.ToDouble(xPos), -(float)Convert.ToDouble(yPos));
+                                newStruct.scale = (float)Convert.ToDouble(scale);
+                                if (typeText == "kpowerup")
+                                    posArrayPowerups.Add(newStruct);
+                                if (typeText == "kasteroid")
+                                {
+                                    if (Math.Abs(1 - newStruct.scale) <= .000001)
+                                        newStruct.scale = 1;
+                                    posArrayAsteroid.Add(newStruct);
+                                }
+                                if (typeText == "kcoin")
+                                    posArrayCoin.Add(newStruct);
+                                if (typeText == "kplanet")
+                                    posArray.Add(newStruct);
+                            }
+                            catch { }
+                        }
+                        timeSinceOutput = 0;
+                }
                 if (keyboardState.IsKeyDown(Keys.O) && lastKeyboardState.IsKeyUp(Keys.O))
                 {
                     //[[LevelObjectReturner alloc]initWithType:kplanet position:ccp(0,0) scale:1],
@@ -216,7 +284,12 @@ namespace Level_Creator
                     catch {}
 
                     string toCopy = "";
-                    Vector2 firstPlanetPos = posArray[0].pos;
+                    Vector2 firstPlanetPos = Vector2.Zero;
+                    try
+                    {
+                    firstPlanetPos = posArray[0].pos;
+                    }
+                    catch { }
                     foreach (posScaleStruct pstruct in posArrayPowerups)
                     {
                         toCopy += first;
@@ -234,7 +307,7 @@ namespace Level_Creator
                         toCopy += middle;
                         toCopy += (pstruct.pos.X - firstPlanetPos.X + xOffset).ToString() + "," + (-((pstruct.pos.Y - yOffset) - firstPlanetPos.Y)).ToString();
                         toCopy += middle2;
-                        toCopy += (pstruct.scale*asteroidScaleFactorForScalingInGame).ToString();
+                        toCopy += (pstruct.scale).ToString();
                         toCopy += end;
                     }
 
@@ -263,7 +336,7 @@ namespace Level_Creator
                     }
                     
                     StreamWriter textOut = new StreamWriter(new FileStream("output.txt", FileMode.Create, FileAccess.Write));
-                    textOut.WriteLine("//Level Segment Title: PUT_TITLE_HERE\r\n[NSArray arrayWithObjects: "+ toCopy + " nil], //end of level segment");
+                    textOut.WriteLine("//Level Title: PUT_TITLE_HERE Difficulty: PUT_DIFFICULTY_HERE_(OUT OF TEN)\r\n[NSArray arrayWithObjects: "+ toCopy + " nil], //end of level segment");
                     textOut.Close();
 
                     first = "[self CreatePlanetAndZone:";
@@ -292,7 +365,7 @@ namespace Level_Creator
                         toCopy += middle;
                         toCopy += (graphics.GraphicsDevice.Viewport.Height - pstruct.pos.Y + yOffset).ToString();
                         toCopy += middle2;
-                        toCopy += (pstruct.scale * asteroidScaleFactorForScalingInGame).ToString();
+                        toCopy += (pstruct.scale).ToString();
                         toCopy += end;
                     }
 
@@ -326,6 +399,7 @@ namespace Level_Creator
                     textOut = new StreamWriter(new FileStream("outputOld.txt", FileMode.Create, FileAccess.Write));
                     textOut.WriteLine(toCopy);
                     textOut.Close();
+                    timeSinceOutput = 0 ;
                 }
 
                 if (mouseState.MiddleButton == ButtonState.Released && lastMouseState.MiddleButton == ButtonState.Pressed
@@ -375,8 +449,9 @@ namespace Level_Creator
                         }
                     }
                 }
-
-                if (keyboardState.IsKeyDown(Keys.Z))
+                if (keyboardState.IsKeyDown(Keys.R))
+                    currentRotation += .6f*.75f*.05f*(mouseState.ScrollWheelValue - lastMouseState.ScrollWheelValue) / 120;
+                else if (keyboardState.IsKeyDown(Keys.Z))
                     currentZoneScale += .1f * (mouseState.ScrollWheelValue - lastMouseState.ScrollWheelValue) / 120;
                 else if (keyboardState.IsKeyDown(Keys.F))
                     currentFrameScale += .06f * (mouseState.ScrollWheelValue - lastMouseState.ScrollWheelValue) / 120;
@@ -439,10 +514,13 @@ namespace Level_Creator
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            if (timeSinceOutput<150)
+                GraphicsDevice.Clear(new Color(51,255,0));
+            else
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
 
-            spriteBatch.DrawString(font, "'P'= Powerup (scroll changes type).     'A' = Asteroid      'C' = Coin      'D' = Delete\n'O' outputs code to \"output.txt\" in the exe's directory.     'F' displays iPhone's frame size.     Middle click to delete.      Arrow keys scroll.\n" + toDisplay, new Vector2(10, 
+            spriteBatch.DrawString(font, "'P'= Powerup (scroll changes type).     'A' = Asteroid      'C' = Coin      'D' = Delete      'L' = Load (from input.txt)      'R' = Rotate\n'O' outputs code to \"output.txt\" in the exe's directory.     'F' displays iPhone's frame size.     Middle click to delete.      Arrow keys scroll.\n" + toDisplay, new Vector2(10, 
                 graphics.GraphicsDevice.Viewport.Height - 65), Color.Red);
 
             int index = 0;
@@ -480,7 +558,7 @@ namespace Level_Creator
             }
 
             foreach (posScaleStruct pstruct in posArrayForFrame)
-                spriteBatch.Draw(frameTexture, pstruct.pos + offset, null, Color.White, 0, new Vector2(frameTexture.Width / 2, frameTexture.Height / 2), pstruct.scale, SpriteEffects.None, 0);
+                spriteBatch.Draw(frameTexture, pstruct.pos + offset, null, Color.White, pstruct.rotation, new Vector2(frameTexture.Width / 2, frameTexture.Height / 2), pstruct.scale, SpriteEffects.None, 0);
             MouseState mouseState = Mouse.GetState();
             KeyboardState keyboardState = Keyboard.GetState();
             if (mouseState.LeftButton == ButtonState.Pressed)
@@ -489,7 +567,7 @@ namespace Level_Creator
                 spriteBatch.Draw(planetTexture, currPosToDraw, null, Color.White, 0, new Vector2(planetTexture.Width / 2, planetTexture.Height / 2), currentPlanetScale, SpriteEffects.None, 0);
             }
             if (keyboardState.IsKeyDown(Keys.F))
-                spriteBatch.Draw(frameTexture, currPosToDraw, null, Color.White, 0, new Vector2(frameTexture.Width / 2, frameTexture.Height / 2), currentFrameScale, SpriteEffects.None, 0);
+                spriteBatch.Draw(frameTexture, currPosToDraw, null, Color.White, currentRotation, new Vector2(frameTexture.Width / 2, frameTexture.Height / 2), currentFrameScale, SpriteEffects.None, 0);
             if (mouseState.RightButton == ButtonState.Pressed||keyboardState.IsKeyDown(Keys.A))
                 spriteBatch.Draw(asteroidTexture, currPosToDraw, null, Color.White, 0, new Vector2(asteroidTexture.Width / 2, asteroidTexture.Height / 2), currentAsteroidScale, SpriteEffects.None, 0);
             if (keyboardState.IsKeyDown(Keys.C))

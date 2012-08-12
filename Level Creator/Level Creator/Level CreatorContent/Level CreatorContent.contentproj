@@ -77,13 +77,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="asteroidsmall.png">
-      <Name>asteroidsmall</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="zonesmall.png">
       <Name>zonesmall</Name>
       <Importer>TextureImporter</Importer>
@@ -93,6 +86,13 @@
   <ItemGroup>
     <Compile Include="asteroidbreakercoinsmall.png">
       <Name>asteroidbreakercoinsmall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="asteroidsmall.png">
+      <Name>asteroidsmall</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
