@@ -96,15 +96,10 @@ typedef struct {
     [powerup.glowSprite setVisible:false];
     powerup.glowSprite.scale = 1;
     
-    [powerup.hudSprite setVisible:false];
-    powerup.hudSprite.position = ccp(30, 290);
-    powerup.hudSprite.scale = .4;
-    
     [powerups addObject:powerup];
     
     [spriteSheet addChild:powerup.coinSprite];
     [spriteSheet addChild:powerup.glowSprite];
-    [hudLayer addChild:powerup.hudSprite];
     
     NSLog(@"galaxy114powerup");
     [spriteSheet reorderChild:powerup.glowSprite z:2.5];
@@ -391,16 +386,16 @@ typedef struct {
         
         if (!isInTutorialMode) {
             scoreLabel = [CCLabelBMFont labelWithString:@"0" fntFile:@"score_label_font.fnt"];
-            scoreLabel.position = ccp(480-[scoreLabel boundingBox].size.width/2-10, 15);
+            scoreLabel.position = ccp(10 + [scoreLabel boundingBox].size.width/2, 15);
             [hudLayer addChild: scoreLabel];
             
             CCSprite* starSprite = [CCSprite spriteWithFile:@"star1.png"];
             [starSprite setScale:.15];
             [hudLayer addChild:starSprite];
-            [starSprite setPosition:ccp(74, 16)];
+            [starSprite setPosition:ccp(480 - 15, 16)];
             
             coinsLabel = [CCLabelBMFont labelWithString:@"0" fntFile:@"star_label_font.fnt"];
-            coinsLabel.position = ccp(74 - [coinsLabel boundingBox].size.width/2 - 15, 15);
+            coinsLabel.position = ccp(480 - 15 - [coinsLabel boundingBox].size.width/2 - 12, 15);
             [hudLayer addChild: coinsLabel];
         }
         else {
@@ -493,6 +488,7 @@ typedef struct {
         powerupVel = 0;
         currentNumOfCoinLabels = 0;
         currentCoinLabel = 0;
+        numCoinsDisplayed = 0;
         
         background = [CCSprite spriteWithFile:@"background0.pvr.ccz"];
         background2 = [CCSprite spriteWithFile:@"background1.pvr.ccz"];
@@ -670,7 +666,7 @@ typedef struct {
                                [CCScaleTo actionWithDuration:.1 scale:1*coin.plusLabel.scale],
                                [CCDelayTime actionWithDuration:.4],
                                setCoinTargetting,
-                               [CCSpawn actions:[CCFadeOut actionWithDuration:.4],[CCMoveTo actionWithDuration:.3 position:scoreLabel.position],tintScoreYellow,nil],
+                               [CCSpawn actions:[CCFadeOut actionWithDuration:.4],[CCMoveTo actionWithDuration:.3 position:coinsLabel.position],tintScoreYellow,nil],
                                [CCHide action],
                                [CCCallFunc actionWithTarget:self selector:@selector(coinDone)],
                                nil]];
@@ -693,6 +689,10 @@ typedef struct {
     if (currentNumOfCoinLabels <= 0) {
         currentCoinLabel = 0;
     }
+    
+    numCoinsDisplayed += ([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1);
+    
+    [coinsLabel setString:[NSString stringWithFormat:@"%i",numCoinsDisplayed]];
 }
 
 - (ALuint)playSound:(NSString*)soundFile shouldLoop:(bool)shouldLoop pitch:(float)pitch{
@@ -748,7 +748,6 @@ typedef struct {
                 [powerup.coinSprite setVisible:false];
                 if (player.currentPowerup != nil) {
                     [player.currentPowerup.glowSprite setVisible:false];
-                    [player.currentPowerup.hudSprite setVisible:false];
                 }
                 paused = true;
                 isDisplayingPowerupAnimation = true;
@@ -756,7 +755,6 @@ typedef struct {
                 powerupVel = 0;
                 player.currentPowerup = powerup;
                 [player.currentPowerup.glowSprite setVisible:true];
-                //[player.currentPowerup.hudSprite setVisible:true];
                 powerupCounter = 0;
                 updatesWithBlinking = 0;
                 updatesWithoutBlinking = 99999;
@@ -775,7 +773,6 @@ typedef struct {
         
         if (updatesWithoutBlinking >= blinkAfterThisManyUpdates && updatesLeft <= 300) {
             updatesWithoutBlinking = 0;
-            //[player.currentPowerup.hudSprite setVisible:false];
             [player.currentPowerup.glowSprite setVisible:false];
             
         }
@@ -785,12 +782,10 @@ typedef struct {
         
         if (updatesWithBlinking >= clampf(8*updatesLeft/100, 3, 99999999)) {
             updatesWithBlinking = 0;
-            //[player.currentPowerup.hudSprite setVisible:true];
             [player.currentPowerup.glowSprite setVisible:true];
         }
         
         if (powerupCounter >= player.currentPowerup.duration) {
-            //[player.currentPowerup.hudSprite setVisible:false];
             [player.currentPowerup.glowSprite setVisible:false];
             player.currentPowerup = nil;
         }
@@ -1267,12 +1262,14 @@ typedef struct {
     if (tempScore > score)
         score = tempScore;
     [scoreLabel setString:[NSString stringWithFormat:@"%d",score]];
-    scoreLabel.position = ccp(480-[scoreLabel boundingBox].size.width/2-10, 15);
+    scoreLabel.position = ccp(10 + [scoreLabel boundingBox].size.width/2, 15);
     
-    int numCoins = [[UserWallet sharedInstance] getBalance];
-    int coinsDiff = numCoins - startingCoins;
-    [coinsLabel setString:[NSString stringWithFormat:@"%i",coinsDiff]];
-    coinsLabel.position = ccp(74 - [coinsLabel boundingBox].size.width/2 - 15, 15);
+    
+    //int numCoins = [[UserWallet sharedInstance] getBalance];
+    //int coinsDiff = numCoins - startingCoins;
+    //[coinsLabel setString:[NSString stringWithFormat:@"%i",coinsDiff]];
+    coinsLabel.position = ccp(480 - 15 - [coinsLabel boundingBox].size.width/2 - 12, 15);
+    
 }
 
 - (void)UpdateParticles:(ccTime)dt {

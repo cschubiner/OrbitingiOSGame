@@ -10,7 +10,7 @@
 
 @implementation Powerup
 
-@synthesize coinSprite, glowSprite, hudSprite, type, duration, title;
+@synthesize coinSprite, glowSprite, type, duration, title;
 
 -(id) initWithType:(int)t {
 	// always call "super" init
@@ -30,7 +30,6 @@
             title = @"Asteroid Armor";
             coinSprite = [CCSprite spriteWithSpriteFrameName:@"asteroidbreakercoin.png"];
             glowSprite = [CCSprite spriteWithSpriteFrameName:@"asteroidglowupgrade.png"];
-            hudSprite = [CCSprite spriteWithFile:@"asteroidhudicon.png"];
             
         } else if (type == 2) { //coinMagnet
             
@@ -38,15 +37,14 @@
             title = @"Star Magnet";
             coinSprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
             glowSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];
-            hudSprite = [CCSprite spriteWithFile:@"magnethudicon.png"];
             
         } else { //type needs to be a valid int from the list above
             id *hi = NULL;
             return *hi;
         }
         
-        if (shouldBeRand)
-            coinSprite = [CCSprite spriteWithFile:@"upgradecoin.png"];
+        //if (shouldBeRand)
+        //    coinSprite = [CCSprite spriteWithFile:@"upgradecoin.png"];
         
     }
 	return self;

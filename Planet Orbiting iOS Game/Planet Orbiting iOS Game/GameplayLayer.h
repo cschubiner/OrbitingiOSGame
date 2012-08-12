@@ -54,6 +54,7 @@
     CCLabelTTF *powerupLabel;
     float powerupPos;
     float powerupVel;
+    int numCoinsDisplayed;
     
     float powerupCounter;
     
