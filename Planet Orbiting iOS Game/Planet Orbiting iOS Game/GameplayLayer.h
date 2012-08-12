@@ -141,6 +141,7 @@
     
     UITextView *playerNameLabel;
     CCLabelBMFont *displayName;
+    CCLabelBMFont *underscore;
 }
 
 

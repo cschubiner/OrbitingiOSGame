@@ -255,6 +255,8 @@ const float effectsVolumeMainMenu = 1;
                     //id action = [CCEaseBounceOut actionWithAction:move];
                     //[popupView runAction: action];
                     
+                    
+                    
                     id move = [CCScaleTo actionWithDuration:.5 scale:1];
                     id action = [CCEaseBounceOut actionWithAction:move];
                     [popupView runAction: action];
