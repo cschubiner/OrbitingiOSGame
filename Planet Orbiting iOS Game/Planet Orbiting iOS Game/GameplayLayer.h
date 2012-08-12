@@ -90,6 +90,8 @@
     float nextPlanetOpacity;
     int updatesSinceLastPlanet;
     
+    float rotationOfLastCreatedSegment;
+    
     Light* light;
     
     float tempScore;

@@ -238,6 +238,7 @@ typedef struct {
             [self CreatePowerup:newPos.x yPos:newPos.y scale:powerupScaleSize type:returner.scale];
         
     }
+    rotationOfLastCreatedSegment = rotationOfSegment;
     makingSegmentNumber++;
     return true;
 }
@@ -1122,7 +1123,7 @@ typedef struct {
             if (percentofthewaytonext>1) percentofthewaytonext = 1;
             if ([[self children]containsObject:background]) {
                 if ([[self children]containsObject:background2]==false) {
-                    NSLog(@"galaxy114");
+                   // NSLog(@"galaxy114");
                     [self reorderChild:background z:-5];
                     [background2 setTexture:[[CCTextureCache sharedTextureCache] addImage:[NSString stringWithFormat:@"background%d.pvr.ccz",targetPlanet.whichGalaxyThisObjectBelongsTo]]];
                     //NSLog(@"galaxy115");
@@ -1201,14 +1202,25 @@ typedef struct {
         
         if ([self CreateSegment]==false) {
             justDisplayedGalaxyLabel = false;
+            
+            Planet*lastPlanetOfThisGalaxy2 = [planets objectAtIndex:planets.count-1];
+            NSArray *chosenSegment = [[currentGalaxy segments] objectAtIndex:lastPlanetOfThisGalaxy2.whichSegmentThisObjectIsOriginallyFrom];
+            LevelObjectReturner * returner = [chosenSegment objectAtIndex:chosenSegment.count-1];
+            LevelObjectReturner * returner2 = [chosenSegment objectAtIndex:chosenSegment.count-2];
+            CGPoint returnerPos = ccpSub(returner.pos, returner2.pos);
+            CGPoint newPos = ccpRotateByAngle(ccp(returnerPos.x+(indicatorPos).x,returnerPos.y+(indicatorPos).y), indicatorPos, rotationOfLastCreatedSegment);
+            [self CreatePlanetAndZone:newPos.x yPos:newPos.y scale:1];
+            indicatorPos = newPos;
+
             planetsHitSinceNewGalaxy=0;
             if (currentGalaxy.number+1<[galaxies count]) {
                 currentGalaxy = nextGalaxy;
                 if (currentGalaxy.number+1<[galaxies count])
                     nextGalaxy = [galaxies objectAtIndex:currentGalaxy.number+1];
+                
                 Planet*lastPlanetOfThisGalaxy = [planets objectAtIndex:planets.count-1];
                 [self CreateCoinArrowAtPosition:ccpAdd(lastPlanetOfThisGalaxy.sprite.position, ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn)), lastPlanetOfThisGalaxy.orbitRadius*2.1)) withAngle:directionPlanetSegmentsGoIn];
-                indicatorPos = ccpAdd(indicatorPos, ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn)), distanceBetweenGalaxies));
+                indicatorPos = ccpAdd(indicatorPos, ccpMult(ccpNormalize(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn))), distanceBetweenGalaxies));
             }
             [self CreateSegment];
         }
@@ -1238,6 +1250,9 @@ typedef struct {
                     lastPlanetVisited = [planets objectAtIndex:zone.number];
                     updatesSinceLastPlanet = 0;
                 }
+                
+                if (zone.number==0||((Planet*)[planets objectAtIndex:zone.number-1]).whichSegmentThisObjectIsOriginallyFrom!=lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom)
+                NSLog(@"Entering galaxy %d segment %d (1-based index)",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1);
                 
                 [zone.sprite setColor:ccc3(255, 80, 180)];
                 zone.hasPlayerHitThisZone = true;
