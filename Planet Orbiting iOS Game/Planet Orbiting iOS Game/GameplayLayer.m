@@ -492,6 +492,7 @@ typedef struct {
         currentCoinLabel = 0;
         numCoinsDisplayed = 0;
         
+        
         background = [CCSprite spriteWithFile:@"background0.pvr.ccz"];
         background2 = [CCSprite spriteWithFile:@"background1.pvr.ccz"];
         [background setPosition:ccp(size.width/2+14,size.height/5+2)];
@@ -1311,6 +1312,7 @@ typedef struct {
         [displayName setString:newName];
     }
     [playerNameLabel setText:displayName.string];
+    [underscore setPosition:ccp(displayName.position.x + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, displayName.position.y)];
 }
 
 - (void)GameOver {
@@ -1335,6 +1337,23 @@ typedef struct {
             playerNameLabel.autocorrectionType = UITextAutocorrectionTypeNo;
             playerNameLabel.keyboardType = UIKeyboardTypeAlphabet;
             [playerNameLabel becomeFirstResponder];
+            
+            
+            underscore = [[CCLabelBMFont alloc] initWithString:@"_" fntFile:@"betaFont2.fnt"];
+            [pauseLayer addChild:underscore];
+            [underscore setPosition:ccp(displayName.position.x + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, displayName.position.y)];
+            
+            id action1 = [CCBlink actionWithDuration:1 blinks:1];
+            
+            [underscore runAction: [CCRepeatForever actionWithAction: action1]];
+            
+            /*
+            [underscore runAction:[CCRepeatForever actionWithAction: [CCSequence actions:
+                                                                      [CCHide action],
+                                                                      [CCDelayTime actionWithDuration:.5],
+                                                                      [CCShow action],
+                                                                      [CCDelayTime actionWithDuration:.5],
+                                                                      nil]]];*/
         }
         
         [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
