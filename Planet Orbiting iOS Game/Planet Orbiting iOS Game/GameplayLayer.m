@@ -1363,7 +1363,6 @@ typedef struct {
         [gameOverScoreLabel setString:scoreText];
         
         scoreAlreadySaved = YES;
-        [DataStorage storeData];
     }
 }
 
@@ -1502,9 +1501,11 @@ typedef struct {
         NSString *playerName = displayName.string;
         [[PlayerStats sharedInstance] addScore:score+prevCurrentPtoPScore withName:playerName];
         recentName = playerName;
+        [DataStorage storeData];
     }
     if (playerNameLabel) {
         [playerNameLabel resignFirstResponder];
+        [playerNameLabel release];
     }
     if (!didEndGameAlready) {
         didEndGameAlready = true;
@@ -1535,9 +1536,11 @@ typedef struct {
         NSString *playerName = displayName.string;
         [[PlayerStats sharedInstance] addScore:score+prevCurrentPtoPScore withName:playerName];
         recentName = playerName;
+        [DataStorage storeData];
     }
     if (playerNameLabel) {
         [playerNameLabel resignFirstResponder];
+        [playerNameLabel release];
     }
     [Flurry logEvent:@"restarted game"];
     scoreAlreadySaved = NO;
