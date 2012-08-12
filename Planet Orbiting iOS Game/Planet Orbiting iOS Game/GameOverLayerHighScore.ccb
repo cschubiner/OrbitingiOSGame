@@ -461,7 +461,7 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>426</real>
+								<real>713</real>
 								<real>145</real>
 							</array>
 							<key>customClass</key>
@@ -492,7 +492,7 @@
 							<key>scaleY</key>
 							<real>0.2882421612739563</real>
 							<key>string</key>
-							<string>High Score!</string>
+							<string>Top 10 High Score!</string>
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
@@ -641,7 +641,7 @@
 					<key>lockedScaleRatio</key>
 					<true/>
 					<key>memberVarAssignmentName</key>
-					<string>nameLabel</string>
+					<string>playerNameLabel</string>
 					<key>memberVarAssignmentType</key>
 					<integer>2</integer>
 					<key>opacity</key>

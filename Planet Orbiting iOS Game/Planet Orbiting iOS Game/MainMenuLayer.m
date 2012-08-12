@@ -369,7 +369,6 @@ const float effectsVolumeMainMenu = 1;
         int highScore7Int;
         int highScore8Int;
         int highScore9Int;
-        int highScore10Int;
         
         if (highScores && [highScores count] > 0) {
             highScore1Int = [[highScores objectAtIndex:0] intValue];
@@ -397,9 +396,6 @@ const float effectsVolumeMainMenu = 1;
         }
         if (highScores && [highScores count] > 8) {
             highScore9Int = [[highScores objectAtIndex:8] intValue];
-        }
-        if (highScores && [highScores count] > 9) {
-            highScore10Int = [[highScores objectAtIndex:9] intValue];
         }
         
         if (highScore1Int != 0) {
@@ -441,6 +437,11 @@ const float effectsVolumeMainMenu = 1;
             NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore8Int];
             [highScore8Label setString:scoreInt];
             [name8Label setString:[[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        }
+        if (highScore9Int != 0) {
+            NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore9Int];
+            [highScore9Label setString:scoreInt];
+            [name9Label setString:[[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         }
         
         [layer setPosition:ccp(-480, -320)];

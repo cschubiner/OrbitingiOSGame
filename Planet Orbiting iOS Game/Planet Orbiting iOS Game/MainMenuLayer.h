@@ -26,6 +26,7 @@
     CCLabelBMFont *highScore6Label;
     CCLabelBMFont *highScore7Label;
     CCLabelBMFont *highScore8Label;
+    CCLabelBMFont *highScore9Label;
     CCLabelBMFont *name1Label;
     CCLabelBMFont *name2Label;
     CCLabelBMFont *name3Label;
@@ -34,6 +35,7 @@
     CCLabelBMFont *name6Label;
     CCLabelBMFont *name7Label;
     CCLabelBMFont *name8Label;
+    CCLabelBMFont *name9Label;
     CCLayer *tutorialLayer;
 }
 

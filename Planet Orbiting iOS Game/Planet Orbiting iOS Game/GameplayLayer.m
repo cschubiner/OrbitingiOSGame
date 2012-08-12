@@ -292,7 +292,7 @@ typedef struct {
     }
     
     galaxies = [[NSArray alloc]initWithObjects:
-    #include "LevelsFromLevelCreator"
+#include "LevelsFromLevelCreator"
                 nil];
 }
 
@@ -1311,14 +1311,22 @@ typedef struct {
         if ([[self children]containsObject:layerHudSlider])
             [self removeChild:layerHudSlider cleanup:YES];
         [Kamcord stopRecording];
-        pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"GameOverLayer.ccb" owner:self];
+        
+        int finalScore = score + prevCurrentPtoPScore;
+        BOOL isHighScore = [[PlayerStats sharedInstance] isHighScore:finalScore];
+        NSString *ccbFile = isHighScore ? @"GameOverLayerHighScore.ccb" : @"GameOverLayer.ccb";
+        NSString *scoreText = isHighScore ? @"" : [NSString stringWithFormat:@"Score: %d",finalScore];
+        pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:ccbFile owner:self];
+        
+        if (isHighScore) {
+            // keyboard logicz here
+        }
         
         [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
         [Flurry logEvent:@"Game over" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned", [NSNumber numberWithInt:(int)isInTutorialMode],@"isInTutorialMode",nil]];
         [pauseLayer setTag:gameOverLayerTag];
         [self addChild:pauseLayer];
-        int finalScore = score + prevCurrentPtoPScore;
-        [gameOverScoreLabel setString:[NSString stringWithFormat:@"Score: %d",finalScore]];
+        [gameOverScoreLabel setString:scoreText];
         
         if ([[PlayerStats sharedInstance] isHighScore:finalScore]) {
             int plays = [[PlayerStats sharedInstance] getPlays];
@@ -1427,7 +1435,7 @@ typedef struct {
         if (player.alive) {
             [self UpdateGalaxies];
             //NSLog(@"start2");
-
+            
             [self UpdatePlanets];
             //NSLog(@"start1");
         }

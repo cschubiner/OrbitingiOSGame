@@ -137,6 +137,8 @@
     CCSpriteBatchNode* spriteSheet;
     CCLayer *pauseLayer;
     CCLabelBMFont * gameOverScoreLabel;
+    
+    CCLabelBMFont *playerNameLabel;
 }
 
 

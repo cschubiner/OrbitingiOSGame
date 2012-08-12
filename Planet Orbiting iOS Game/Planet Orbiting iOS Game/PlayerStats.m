@@ -8,7 +8,7 @@
 
 #import "PlayerStats.h"
 
-const int highScoreLimit = 8;
+const int highScoreLimit = 9;
 
 @implementation PlayerStats {
     int totalPlays;

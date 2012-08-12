@@ -1227,9 +1227,9 @@
 									<key>rotation</key>
 									<real>0.0</real>
 									<key>scaleX</key>
-									<real>0.38996091485023499</real>
+									<real>0.33824217319488525</real>
 									<key>scaleY</key>
-									<real>0.38996091485023499</real>
+									<real>0.33824217319488525</real>
 									<key>string</key>
 									<string>High Scores</string>
 									<key>tag</key>
@@ -1380,8 +1380,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>150</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -1440,8 +1440,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>86</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -1500,8 +1500,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>150</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -1560,8 +1560,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>150</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -1620,8 +1620,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>150</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -1680,8 +1680,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>150</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -1740,8 +1740,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>150</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -1800,8 +1800,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>150</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -1860,8 +1860,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>150</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -1920,8 +1920,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>86</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -1980,8 +1980,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>86</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -2040,8 +2040,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>86</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -2100,8 +2100,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>86</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -2160,8 +2160,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>86</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -2220,8 +2220,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>86</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -2280,8 +2280,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>86</real>
-										<real>67</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -2303,6 +2303,126 @@
 									<array>
 										<real>-105</real>
 										<real>-100</real>
+									</array>
+									<key>rotation</key>
+									<real>0.0</real>
+									<key>scaleX</key>
+									<real>0.46800777316093445</real>
+									<key>scaleY</key>
+									<real>0.46800777316093445</real>
+									<key>string</key>
+									<string></string>
+									<key>tag</key>
+									<integer>-1</integer>
+									<key>visible</key>
+									<true/>
+									<key>zOrder</key>
+									<integer>0</integer>
+								</dict>
+							</dict>
+							<dict>
+								<key>children</key>
+								<array/>
+								<key>class</key>
+								<string>CCLabelBMFont</string>
+								<key>properties</key>
+								<dict>
+									<key>anchorPoint</key>
+									<array>
+										<real>1</real>
+										<real>0.5</real>
+									</array>
+									<key>color</key>
+									<array>
+										<integer>255</integer>
+										<integer>255</integer>
+										<integer>255</integer>
+									</array>
+									<key>contentSize</key>
+									<array>
+										<real>0.0</real>
+										<real>0.0</real>
+									</array>
+									<key>customClass</key>
+									<string></string>
+									<key>fontFile</key>
+									<string>betaFont2.fnt</string>
+									<key>isExpanded</key>
+									<true/>
+									<key>isRelativeAnchorPoint</key>
+									<true/>
+									<key>lockedScaleRatio</key>
+									<true/>
+									<key>memberVarAssignmentName</key>
+									<string>highScore9Label</string>
+									<key>memberVarAssignmentType</key>
+									<integer>2</integer>
+									<key>opacity</key>
+									<integer>255</integer>
+									<key>position</key>
+									<array>
+										<real>-120</real>
+										<real>-127</real>
+									</array>
+									<key>rotation</key>
+									<real>0.0</real>
+									<key>scaleX</key>
+									<real>0.46800777316093445</real>
+									<key>scaleY</key>
+									<real>0.46800777316093445</real>
+									<key>string</key>
+									<string></string>
+									<key>tag</key>
+									<integer>-1</integer>
+									<key>visible</key>
+									<true/>
+									<key>zOrder</key>
+									<integer>0</integer>
+								</dict>
+							</dict>
+							<dict>
+								<key>children</key>
+								<array/>
+								<key>class</key>
+								<string>CCLabelBMFont</string>
+								<key>properties</key>
+								<dict>
+									<key>anchorPoint</key>
+									<array>
+										<real>0.0</real>
+										<real>0.5</real>
+									</array>
+									<key>color</key>
+									<array>
+										<integer>255</integer>
+										<integer>255</integer>
+										<integer>255</integer>
+									</array>
+									<key>contentSize</key>
+									<array>
+										<real>0.0</real>
+										<real>0.0</real>
+									</array>
+									<key>customClass</key>
+									<string></string>
+									<key>fontFile</key>
+									<string>betaFont2.fnt</string>
+									<key>isExpanded</key>
+									<true/>
+									<key>isRelativeAnchorPoint</key>
+									<true/>
+									<key>lockedScaleRatio</key>
+									<true/>
+									<key>memberVarAssignmentName</key>
+									<string>name9Label</string>
+									<key>memberVarAssignmentType</key>
+									<integer>2</integer>
+									<key>opacity</key>
+									<integer>255</integer>
+									<key>position</key>
+									<array>
+										<real>-105</real>
+										<real>-127</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
