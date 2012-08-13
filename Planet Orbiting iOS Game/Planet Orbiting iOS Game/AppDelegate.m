@@ -65,7 +65,7 @@
 {   
     // installs HandleExceptions as the Uncaught Exception Handler
     NSSetUncaughtExceptionHandler(&HandleExceptions);
-    // create the signal action structure 
+    // create the signal action structure
     struct sigaction newSignalAction;
     // initialize the signal action structure
     memset(&newSignalAction, 0, sizeof(newSignalAction));
@@ -83,6 +83,11 @@
     [Kamcord setDeveloperKey:@"d05f73399ff3c1755bd97ec94cb5fdda"
              developerSecret:@"prcU7MltdajQ1YVTSeFDtPtywe2zABOmzzpSB5pGP79"
                      appName:@"Star Dash"];
+    
+#define TESTING 1
+#ifdef TESTING
+    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+#endif
     
 	// Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -161,11 +166,12 @@
     return chosenLevelNumber;
 }
 
-/* Uncaught exception catcher, we do special stuff here, and TestFlight takes care of the rest */
+/*
+ My Apps Custom uncaught exception catcher, we do special stuff here, and TestFlight takes care of the rest
+ **/
 void HandleExceptions(NSException *exception) {
-    [Flurry logError:@"Uncaught" message:@"Crash!" exception:exception];
     NSLog(@"This is where we save the application data during a exception");
-    // Save application data on crash (we're not doing this yet)
+    // Save application data on crash
 }
 /*
  My Apps Custom signal catcher, we do special stuff here, and TestFlight takes care of the rest

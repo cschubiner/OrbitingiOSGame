@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TestFlight.h"
 #import "Flurry.h"
 #import <Kamcord/Kamcord.h>
 
@@ -34,5 +33,5 @@
 -(void)setWasJustBackgrounded:(bool)isItBackgrounded;
 -(int)getGalaxyCounter;
 -(void)setGalaxyCounter:(int)count;
-
+void uncaughtExceptionHandler(NSException *exception);
 @end
