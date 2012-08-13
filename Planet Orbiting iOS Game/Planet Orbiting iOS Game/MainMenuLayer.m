@@ -225,20 +225,39 @@ const float effectsVolumeMainMenu = 1;
                     
                     
                     CCMenuItem *cancel = [CCMenuItemImage
-                                          itemFromNormalImage:@"upgrade.png" selectedImage:@"upgrade.png"
+                                          itemFromNormalImage:@"no.png" selectedImage:@"nopressed.png"
                                           target:self selector:@selector(pressedCancelButton:)];
                     cancel.position = ccp(-110, -80);
                     
                     
-                    //if (item.level >= [item.prices count]) disp MAXED
-                    //else if ([[UserWallet sharedInstance] getBalance] >= [[item.prices objectAtIndex:item.level] intValue]) disp PURCHASE
-                    //else disp NOT ENOUGH COINZ
-                    CCMenuItem *purchase = [CCMenuItemImage
-                                            itemFromNormalImage:@"upgrade.png" selectedImage:@"upgrade.png" 
-                                            target:self selector:@selector(pressedPurchaseButton:)];
-                    purchase.position = ccp(110, -80);
+                    CCMenu *menu;
                     
-                    CCMenu *menu = [CCMenu menuWithItems:cancel, purchase, nil];
+                    if (item.level >= [item.prices count]) {
+                        //else if ([[UserWallet sharedInstance] getBalance] >= [[item.prices objectAtIndex:item.level] intValue]) disp PURCHASE
+                        //else disp NOT ENOUGH COINZ
+                        CCMenuItem *purchase = [CCMenuItemImage
+                                                itemFromNormalImage:@"maxed.png" selectedImage:@"maxedpressed.png" 
+                                                target:self selector:@selector(pressedDisabledButton:)];
+                        purchase.position = ccp(110, -80);
+                        
+                        menu = [CCMenu menuWithItems:cancel, purchase, nil];
+                    } else if ([[UserWallet sharedInstance] getBalance] >= [[item.prices objectAtIndex:item.level] intValue]) {
+                        
+                        CCMenuItem *purchase = [CCMenuItemImage
+                                                itemFromNormalImage:@"yes.png" selectedImage:@"yespressed.png" 
+                                                target:self selector:@selector(pressedPurchaseButton:)];
+                        purchase.position = ccp(110, -80);
+                        
+                        menu = [CCMenu menuWithItems:cancel, purchase, nil];
+                    } else {
+                        
+                        CCMenuItem *purchase = [CCMenuItemImage
+                                                itemFromNormalImage:@"notenoughminerals.png" selectedImage:@"notenoughmineralspressed.png" 
+                                                target:self selector:@selector(pressedDisabledButton:)];
+                        purchase.position = ccp(110, -80);
+                        
+                        menu = [CCMenu menuWithItems:cancel, purchase, nil];
+                    }
                     
                     [popupView addChild:menu];
                     
@@ -272,6 +291,8 @@ const float effectsVolumeMainMenu = 1;
         }
     }
 }
+
+-(void)pressedDisabledButton:(id)sender { }
 
 -(void)pressedCancelButton:(id)sender {
     [self removePopupView];

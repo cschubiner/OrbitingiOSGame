@@ -958,10 +958,10 @@ typedef struct {
     
     CGPoint curPlanetPos = lastPlanetVisited.sprite.position;
     CGPoint nextPlanetPos = [[[planets objectAtIndex:(lastPlanetVisited.number+1)] sprite] position];
-    CGPoint pToGoTo = ccpAdd(curPlanetPos, ccpMult(ccpNormalize(ccpSub(nextPlanetPos, curPlanetPos)), lastPlanetVisited.orbitRadius));
+    CGPoint pToGoTo = ccpAdd(curPlanetPos, ccpMult(ccpNormalize(ccpSub(nextPlanetPos, curPlanetPos)), -lastPlanetVisited.orbitRadius));
     id moveAction = [CCMoveTo actionWithDuration:.2 position:pToGoTo];
     id blink = [CCBlink actionWithDuration:delayTimeAfterPlayerExplodes-.2 blinks:(delayTimeAfterPlayerExplodes-.2)*respawnBlinkFrequency];
-    id movingSpawnActions = [CCSpawn actions:moveAction, [CCRotateTo actionWithDuration:.2 angle:player.rotationAtLastThrust+180], nil];
+    id movingSpawnActions = [CCSpawn actions:moveAction, [CCRotateTo actionWithDuration:.2 angle:player.rotationAtLastThrust], nil];
     player.moveAction = [CCSequence actions:[CCHide action],movingSpawnActions,blink, [CCShow action], nil];
     
     [player.sprite runAction:player.moveAction];
