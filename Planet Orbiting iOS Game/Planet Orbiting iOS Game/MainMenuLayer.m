@@ -9,8 +9,6 @@
 #import "MainMenuLayer.h"
 #import "GameplayLayer.h"
 #import "Tutorial.h"
-#import "StoreItem.h"
-#import "StoreManager.h"
 #import "UserWallet.h"
 #import "PowerupManager.h"
 #import "DataStorage.h"
@@ -28,7 +26,6 @@ const float effectsVolumeMainMenu = 1;
 
 // HelloWorldLayer implementation
 @implementation MainMenuLayer {
-    StoreManager *storeManager;
     BOOL muted;
     CCLayer *upgradeLayer;
     CGPoint swipeBeginPoint;
@@ -471,46 +468,16 @@ const float effectsVolumeMainMenu = 1;
         [self addChild:layer];
         
         [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic_new.mp3" loop:YES];
-        
-        storeManager = [[StoreManager alloc] init];
-        
-        StoreItem *magnet = [[StoreItem alloc] init];
-        magnet.itemID = 0;
-        magnet.title = @"Magnet";
-        magnet.price = 20;
-        magnet.description = @"Pull coins toward you as you fly.";
-        
-        StoreItem *immunity = [[StoreItem alloc] init];
-        immunity.itemID = 1;
-        immunity.title = @"Immunity";
-        immunity.price = 50;
-        immunity.description = @"Become temporarily invincible to asteroids.";
-        
-        [storeManager.storeItems addObject:magnet];
-        [storeManager.storeItems addObject:immunity];
+                
+        [self schedule:@selector(Update:) interval:0]; // this makes the update loop loop!!!!
 	}
 	return self;
 }
 
-- (void)magnetButtonPressed {
-    int currCoins = [[UserWallet sharedInstance] getBalance];
-    CCLOG(@"magnetButtonPressed");
-    [storeManager purchaseItemWithID:0];
-    int newCoins = [[UserWallet sharedInstance] getBalance];
-    if (currCoins - newCoins == [[storeManager.storeItems objectAtIndex:0] price]) {
-        [[PowerupManager sharedInstance] addMagnet];
-    }
+- (void) Update:(ccTime)dt {
+    
 }
 
-- (void)immunityButtonPressed {
-    int currCoins = [[UserWallet sharedInstance] getBalance];
-    CCLOG(@"immunityButtonPressed");
-    [storeManager purchaseItemWithID:1];
-    int newCoins = [[UserWallet sharedInstance] getBalance];
-    if (currCoins - newCoins == [[storeManager.storeItems objectAtIndex:1] price]) {
-        [[PowerupManager sharedInstance] addImmunity];
-    }
-}
 
 // this is called (magically?) by cocosbuilder when the start button is pressed
 - (void)startGame:(id)sender {

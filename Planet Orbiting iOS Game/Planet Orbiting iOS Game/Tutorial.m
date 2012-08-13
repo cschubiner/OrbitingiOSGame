@@ -34,9 +34,9 @@
         self.isTouchEnabled= TRUE;
         
         images = [[NSMutableArray alloc] init];
-        [images addObject:[CCSprite spriteWithFile:@"screen1.png"]];
-        [images addObject:[CCSprite spriteWithFile:@"screen2.png"]];
-        [images addObject:[CCSprite spriteWithFile:@"screen3.png"]];
+        [images addObject:[CCSprite spriteWithFile:@"1.png"]];
+        [images addObject:[CCSprite spriteWithFile:@"2.png"]];
+        [images addObject:[CCSprite spriteWithFile:@"3.png"]];
         
         for (CCSprite* image in images) {
             image.position =  ccp(240, 160);
@@ -46,7 +46,7 @@
         currentImageIndex = 0;
         [(CCSprite*)[images objectAtIndex:currentImageIndex] setOpacity:255];
         
-        continueLabel = [CCLabelTTF labelWithString:@"Read this or you won't know how to play" fontName:@"Marker Felt" fontSize:22];
+        continueLabel = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:22];
         continueLabel.position = ccp(240, 20);
         //[continueLabel setOpacity:0];
         [self addChild:continueLabel];
@@ -92,12 +92,12 @@
     if (canTouchScreen)
         [continueLabel setString:@"Tap to continue..."];//[continueLabel setOpacity:255];
     else
-        [continueLabel setString:@"Read this or you won't know how to play"];//[continueLabel setOpacity:0];
+        [continueLabel setString:@""];//[continueLabel setOpacity:0];
     
     if (readingTimer > 0)
         readingTimer++;
     
-    if (readingTimer >= 240)
+    if (readingTimer >= 100)
         canTouchScreen = true;
     
     if (currentImageIndex < [images count])

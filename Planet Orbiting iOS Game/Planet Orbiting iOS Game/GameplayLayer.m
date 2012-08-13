@@ -331,7 +331,7 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] level]];
     
-    [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.8 + .05*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] level]];
+    [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.9 + .05*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] level]];
     
     if ([[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] level] >= 1)
         [[UpgradeValues sharedInstance] setHasDoubleCoins:true];
@@ -410,7 +410,7 @@ typedef struct {
         powerupLabel.position = ccp(-[powerupLabel boundingBox].size.width/2, 160);
         [hudLayer addChild: powerupLabel];
         
-        [self playSound:@"a_song.mp3" shouldLoop:YES pitch:1];
+        [self playSound:@"kick_shock.mp3" shouldLoop:YES pitch:1];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"bomb.wav"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.WAV"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"buttonpress.mp3"];
@@ -656,14 +656,6 @@ typedef struct {
     
     id setCoinTargetting = [CCCallBlock actionWithBlock:(^{
         [coin setIsTargettingScoreLabel:true];
-    })];
-    
-    id tintScoreYellow = [CCCallBlock actionWithBlock:(^{
-        id tintAction = [CCTintTo actionWithDuration:.05 red:255 green:255 blue:0];
-        [scoreLabel runAction:[CCSequence actions:tintAction,
-                               [CCDelayTime actionWithDuration:.4],
-                               [CCTintTo actionWithDuration:.4 red:255 green:255 blue:255],
-                               nil]];
     })];
     
     [coin.plusLabel runAction:[CCSequence actions:
