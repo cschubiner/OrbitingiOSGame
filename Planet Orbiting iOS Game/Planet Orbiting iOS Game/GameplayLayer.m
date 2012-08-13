@@ -338,7 +338,7 @@ typedef struct {
     else
         [[UpgradeValues sharedInstance] setHasDoubleCoins:false];
     
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:10 + 3*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] level]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:60 + 3*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] level]];
 }
 
 /* On "init," initialize the instance */
@@ -1343,7 +1343,7 @@ typedef struct {
             
             //[displayName setString:recentName];
             [[[[CCDirector sharedDirector] openGLView] window] addSubview:playerNameLabel];
-            [self schedule:@selector(nameDidChange) interval:.1];
+            [self schedule:@selector(nameDidChange) interval:.05];
             playerNameLabel.delegate = self;
             playerNameLabel.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
             playerNameLabel.autocorrectionType = UITextAutocorrectionTypeNo;
