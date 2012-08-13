@@ -129,7 +129,7 @@
 	//[Kamcord setVideoResolution:TRAILER_VIDEO_RESOLUTION];
     
 	[director setAnimationInterval:1.0/60];
-	[director setDisplayFPS:YES];
+	[director setDisplayFPS:YES]; //screen goes green when this is NO. 
     
     [CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
 
