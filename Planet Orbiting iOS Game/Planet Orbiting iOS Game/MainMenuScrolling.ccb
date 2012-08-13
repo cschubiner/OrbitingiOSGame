@@ -31,14 +31,14 @@
 					</array>
 					<key>color</key>
 					<array>
-						<integer>82</integer>
-						<integer>95</integer>
+						<integer>133</integer>
+						<integer>203</integer>
 						<integer>255</integer>
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>64</real>
-						<real>64</real>
+						<real>480</real>
+						<real>320</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -60,19 +60,19 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>720</real>
-						<real>179.13671875</real>
+						<real>776.06640625</real>
+						<real>346.64453125</real>
 					</array>
 					<key>rotation</key>
-					<real>0.0</real>
+					<real>21.376953125</real>
 					<key>scaleX</key>
 					<real>3.6130468845367432</real>
 					<key>scaleY</key>
 					<real>3.6130468845367432</real>
 					<key>spriteFile</key>
-					<string>backgrounddark.png</string>
+					<string>background0.png</string>
 					<key>spriteFramesFile</key>
-					<string>background.plist</string>
+					<string>background0.plist</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
@@ -1255,8 +1255,8 @@
 									<key>color</key>
 									<array>
 										<integer>255</integer>
-										<integer>255</integer>
-										<integer>255</integer>
+										<integer>248</integer>
+										<integer>0</integer>
 									</array>
 									<key>contentSize</key>
 									<array>
@@ -1314,8 +1314,8 @@
 									</array>
 									<key>color</key>
 									<array>
-										<integer>255</integer>
-										<integer>255</integer>
+										<integer>253</integer>
+										<integer>245</integer>
 										<integer>255</integer>
 									</array>
 									<key>contentSize</key>

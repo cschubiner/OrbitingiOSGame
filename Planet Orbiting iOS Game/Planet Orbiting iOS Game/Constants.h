@@ -83,6 +83,7 @@ const float powerupScaleSize = 1;
 
 const int distanceBetweenGalaxies = 3200;
 const float cameraScaleWhenTransitioningBetweenGalaxies = .4;
+const float howMuchSlowerTheBatteryRunsOutWhenYouAreTravelingBetweenGalaxies = .93;
 
 //the asteroid's minimum velocity
 const float minAstVel = 0;

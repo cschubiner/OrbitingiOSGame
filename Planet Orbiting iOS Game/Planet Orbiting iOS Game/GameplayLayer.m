@@ -238,7 +238,6 @@ typedef struct {
             [self CreatePowerup:newPos.x yPos:newPos.y scale:powerupScaleSize type:returner.scale];
         
     }
-    rotationOfLastCreatedSegment = rotationOfSegment;
     makingSegmentNumber++;
     return true;
 }
@@ -1091,7 +1090,7 @@ typedef struct {
         ((CameraObject*)[array objectAtIndex:i]).number = i;
 }
 
-- (void)UpdateGalaxies {
+- (void)UpdateGalaxies:(float)dt{
     //NSLog(@"galaxy0");
     
     if (lastPlanetVisited.number==0) {
@@ -1111,6 +1110,8 @@ typedef struct {
             targetPlanet.whichGalaxyThisObjectBelongsTo>lastPlanetVisited.whichGalaxyThisObjectBelongsTo) {
             cameraShouldFocusOnPlayer=true;
             //NSLog(@"galaxy112");
+            
+            light.timeLeft += howMuchSlowerTheBatteryRunsOutWhenYouAreTravelingBetweenGalaxies*dt;
             
             float firsttoplayer = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, player.sprite.position));
             float planetAngle = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, nextPlanet.sprite.position));
@@ -1203,14 +1204,7 @@ typedef struct {
         if ([self CreateSegment]==false) {
             justDisplayedGalaxyLabel = false;
             
-            Planet*lastPlanetOfThisGalaxy2 = [planets objectAtIndex:planets.count-1];
-            NSArray *chosenSegment = [[currentGalaxy segments] objectAtIndex:lastPlanetOfThisGalaxy2.whichSegmentThisObjectIsOriginallyFrom];
-            LevelObjectReturner * returner = [chosenSegment objectAtIndex:chosenSegment.count-1];
-            LevelObjectReturner * returner2 = [chosenSegment objectAtIndex:chosenSegment.count-2];
-            CGPoint returnerPos = ccpSub(returner.pos, returner2.pos);
-            CGPoint newPos = ccpRotateByAngle(ccp(returnerPos.x+(indicatorPos).x,returnerPos.y+(indicatorPos).y), indicatorPos, rotationOfLastCreatedSegment);
-            [self CreatePlanetAndZone:newPos.x yPos:newPos.y scale:1];
-            indicatorPos = newPos;
+            [self CreatePlanetAndZone:indicatorPos.x yPos:indicatorPos.y scale:1];
 
             planetsHitSinceNewGalaxy=0;
             if (currentGalaxy.number+1<[galaxies count]) {
@@ -1283,7 +1277,6 @@ typedef struct {
     [scoreLabel setString:[NSString stringWithFormat:@"%d",score]];
     scoreLabel.position = ccp(10 + [scoreLabel boundingBox].size.width/2, 15);
     
-    
     //int numCoins = [[UserWallet sharedInstance] getBalance];
     //int coinsDiff = numCoins - startingCoins;
     //[coinsLabel setString:[NSString stringWithFormat:@"%i",coinsDiff]];
@@ -1318,7 +1311,6 @@ typedef struct {
         }
     }
     [cometParticle setPosition:ccpAdd(cometParticle.position, cometVelocity)];
-    
 }
 
 - (void)nameDidChange {
@@ -1473,10 +1465,10 @@ typedef struct {
         totalSecondsAlive+=dt;
         timeSinceGotLastCoin+=dt;
         
-        if (player.alive) {
-            [self UpdateGalaxies];
+        
+            [self UpdateGalaxies:dt];
             //NSLog(@"start2");
-            
+        if (player.alive) {  
             [self UpdatePlanets];
             //NSLog(@"start1");
         }
