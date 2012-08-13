@@ -1314,7 +1314,7 @@ typedef struct {
 }
 
 - (void)nameDidChange {
-    NSString *newName = playerNameLabel.text;
+    NSString *newName = [playerNameLabel.text uppercaseString];
     if (newName.length <= maxNameLength) {
         [displayName setString:newName];
     }
@@ -1336,7 +1336,7 @@ typedef struct {
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:ccbFile owner:self];
         
         if (isHighScore) {
-            [displayName setString:recentName];
+            //[displayName setString:recentName];
             playerNameLabel = [[[UITextView alloc] initWithFrame:CGRectMake(240, 160, 0, 0)] autorelease];
             [[[[CCDirector sharedDirector] openGLView] window] addSubview:playerNameLabel];
             playerNameLabel.delegate = self;
