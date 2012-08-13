@@ -1345,16 +1345,15 @@ typedef struct {
         
         if (isHighScore) {
             //[displayName setString:recentName];
-<<<<<<< HEAD
+
             NSDictionary *dictForFlurry = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:finalScore],@"Highscore Value", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned",[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSString stringWithFormat:@"%d galaxies and %d segments",currentGalaxy.number+1,flurrySegmentsVisitedSinceGalaxyJump],@"How far player went",nil];
             
             [Flurry logEvent:@"Got a top 10 highscore" withParameters:dictForFlurry];
             
-            [displayName setString:recentName];
+            //[displayName setString:recentName];
             playerNameLabel = [[[UITextView alloc] initWithFrame:CGRectMake(240, 160, 0, 0)] autorelease];
             [[[[CCDirector sharedDirector] openGLView] window] addSubview:playerNameLabel];
-=======
->>>>>>> sinkhole
+
             playerNameLabel.delegate = self;
             playerNameLabel.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
             playerNameLabel.autocorrectionType = UITextAutocorrectionTypeNo;
