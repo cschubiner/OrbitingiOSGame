@@ -53,7 +53,7 @@ const GLubyte fastParticleColor[] = {255,255,255,255};
 const float planetSizeScale = .5;
 
 //this is the time in seconds it takes before the player appears again and starts blinking and moving towards where he should spawn
-const float delayTimeAfterPlayerExplodes = 2.2f;
+const float delayTimeAfterPlayerExplodes = 1.7f;
 //increase this number to increase the rate at which the player blinks as he is spawning
 const float respawnBlinkFrequency = 2.5f;
 

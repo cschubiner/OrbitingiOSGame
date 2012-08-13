@@ -236,7 +236,7 @@ const float effectsVolumeMainMenu = 1;
                         //else if ([[UserWallet sharedInstance] getBalance] >= [[item.prices objectAtIndex:item.level] intValue]) disp PURCHASE
                         //else disp NOT ENOUGH COINZ
                         CCMenuItem *purchase = [CCMenuItemImage
-                                                itemFromNormalImage:@"maxed.png" selectedImage:@"maxedpressed.png" 
+                                                itemFromNormalImage:@"maxed.png" selectedImage:@"maxed.png" 
                                                 target:self selector:@selector(pressedDisabledButton:)];
                         purchase.position = ccp(110, -80);
                         
@@ -252,7 +252,7 @@ const float effectsVolumeMainMenu = 1;
                     } else {
                         
                         CCMenuItem *purchase = [CCMenuItemImage
-                                                itemFromNormalImage:@"notenoughminerals.png" selectedImage:@"notenoughmineralspressed.png" 
+                                                itemFromNormalImage:@"notenoughminerals.png" selectedImage:@"notenoughminerals.png" 
                                                 target:self selector:@selector(pressedDisabledButton:)];
                         purchase.position = ccp(110, -80);
                         
