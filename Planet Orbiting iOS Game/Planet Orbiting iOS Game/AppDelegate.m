@@ -195,6 +195,7 @@ void SignalHandler(int sig) {
     wasJustBackgrounded = true;
     [DataStorage storeData];
 	[[CCDirector sharedDirector] stopAnimation];
+    [Kamcord pause];
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application {

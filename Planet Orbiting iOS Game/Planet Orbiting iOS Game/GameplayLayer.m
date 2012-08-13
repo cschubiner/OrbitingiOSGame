@@ -536,7 +536,6 @@ typedef struct {
         [self addChild:pauseMenu];
         [self UpdateScore];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nameDidChange) name:UITextViewTextDidChangeNotification object:nil];
         recentName = @"PLAYER";
         playerNameLabel = [[[UITextView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)]retain];
         
@@ -1338,19 +1337,17 @@ typedef struct {
         if (isHighScore) {
             //[displayName setString:recentName];
 
-            NSDictionary *dictForFlurry = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:finalScore],@"Highscore Value", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned",[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSString stringWithFormat:@"%d galaxies and %d segments",currentGalaxy.number+1,flurrySegmentsVisitedSinceGalaxyJump],@"How far player went",nil];
+            NSDictionary *dictForFlurry = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:finalScore],@"Highscore Value", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned",[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSString stringWithFormat:@"%d galaxies and %d segments",currentGalaxy.number+1,flurrySegmentsVisitedSinceGalaxyJump],@"How far player went",[NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays",nil];
             
             [Flurry logEvent:@"Got a top 10 highscore" withParameters:dictForFlurry];
             
             //[displayName setString:recentName];
-            playerNameLabel = [[[UITextView alloc] initWithFrame:CGRectMake(240, 160, 0, 0)] autorelease];
             [[[[CCDirector sharedDirector] openGLView] window] addSubview:playerNameLabel];
-
+            [self schedule:@selector(nameDidChange) interval:.1];
             playerNameLabel.delegate = self;
             playerNameLabel.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
             playerNameLabel.autocorrectionType = UITextAutocorrectionTypeNo;
             playerNameLabel.keyboardType = UIKeyboardTypeAlphabet;
-            [[[[CCDirector sharedDirector] openGLView] window] addSubview:playerNameLabel];
             [playerNameLabel becomeFirstResponder];
             
             underscore = [[CCLabelBMFont alloc] initWithString:@"_" fntFile:@"betaFont2.fnt"];
@@ -1490,37 +1487,54 @@ typedef struct {
     
     // if ([[self children]containsObject:background]&&[[self children]containsObject:background2])
     //    //NSLog(@"both backgrounds are on the screen! this should only happen when transitioning between galaxies.");
-    
+    //NSLog(@"startx");
+
     if (isInTutorialMode)
         [self UpdateTutorial];
+    //NSLog(@"startx1");
+
     if (!paused&&[((AppDelegate*)[[UIApplication sharedApplication]delegate])getWasJustBackgrounded])
     {
+        //NSLog(@"startx2");
         [((AppDelegate*)[[UIApplication sharedApplication]delegate])setWasJustBackgrounded:false];
+        //NSLog(@"startx3");
         [self togglePause];
+        //NSLog(@"startx4");
     }
+
     player.currentPowerup.glowSprite.position = player.sprite.position;
+        //NSLog(@"startx5");
 }
 
 - (void)endGame {
-    if ([[PlayerStats sharedInstance] isHighScore:score+prevCurrentPtoPScore]) {
+    int finalScore = score + prevCurrentPtoPScore;
+    NSLog(@"1");
+    if ([[PlayerStats sharedInstance] isHighScore:finalScore]) {
+        NSLog(@"2");
         NSString *playerName = displayName.string;
+        NSLog(@"3");
         [[PlayerStats sharedInstance] addScore:score+prevCurrentPtoPScore withName:playerName];
+        NSLog(@"4");
         recentName = playerName;
         [DataStorage storeData];
+        if ([[[[[CCDirector sharedDirector] openGLView] window] subviews]containsObject:playerNameLabel])
         [playerNameLabel removeFromSuperview];
-        [playerNameLabel release];
+     //   [playerNameLabel release];
     }
-
+    NSLog(@"5");
     if (!didEndGameAlready) {
         didEndGameAlready = true;
         
-        int finalScore = score + prevCurrentPtoPScore;
-        if (!isInTutorialMode && !scoreAlreadySaved) {
+      /*  if (!isInTutorialMode && !scoreAlreadySaved) {
             if ([[PlayerStats sharedInstance] isHighScore:finalScore]) {
                 [[PlayerStats sharedInstance] addScore:finalScore withName:@"fix fix fix"];
             }
-        }
+        }*/
+        NSLog(@"6");
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
+//        [[CCDirector sharedDirector] pushScene:[MainMenuLayer scene]];
+      
+        NSLog(@"7");
     }
 }
 
@@ -1528,10 +1542,6 @@ typedef struct {
     [Flurry logEvent:@"Launched survey from gameplaylayer"];
     NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/PBD9L5H"];
     [[UIApplication sharedApplication] openURL:url];
-}
-
-- (void)UpdateTutorial {
-    
 }
 
 - (void)restartGame {

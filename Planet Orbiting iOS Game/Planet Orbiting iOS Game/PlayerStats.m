@@ -55,24 +55,28 @@ static PlayerStats *sharedInstance = nil;
 }
 
 - (void)addScore:(int)score withName:(NSString *)name {
+    if (!name||[name isEqualToString:@""])
+        name = @"PLAYER";
+    NSLog(@"a1");
     NSNumber *newScore = [[NSNumber alloc] initWithInt:score];
     [highScores addObject:newScore]; // THIS LINE CRASHES WHEN YOU PRESS QUIT AFTER THE TUTORIAL/REGULAR GAME HAS ALREADY RUN AND QUIT ONCE!!! 8/09 does this still apply?
     [newScore release];
-    
+    NSLog(@"a2");
     [rawScores addObject:newScore];
+    NSLog(@"a3a");
     [rawNames addObject:name];
-    
+    NSLog(@"a3b");
     [[DDGameKitHelper sharedGameKitHelper] submitScore:score category:@"Star_Dash_Leaderboard"];
-
+NSLog(@"a4");
     NSSortDescriptor *highestToLowest = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:NO];
     [highScores sortUsingDescriptors:[NSArray arrayWithObject:highestToLowest]];
-    
+    NSLog(@"a5");
     if ([highScores count] > highScoreLimit) {
         [highScores removeObjectAtIndex:[highScores count] - 1];
     }
-
+NSLog(@"a6");
     NSString *scoreString = [NSString stringWithFormat:@"%d", score];
-    
+    NSLog(@"a7");
     [keyValuePairs setObject:name forKey:scoreString];
 }
 
