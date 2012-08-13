@@ -673,7 +673,7 @@ typedef struct {
     [coin.sprite runAction:[CCSequence actions:[CCSpawn actions:scaleAction,[CCRotateBy actionWithDuration:.1 angle:360], nil],[CCHide action], nil]];
     coin.isAlive = false;
     if (timeSinceGotLastCoin<.4){
-        lastCoinPitch +=.3;
+        lastCoinPitch +=.1;
     }
     else lastCoinPitch = 0;
     timeSinceGotLastCoin = 0;
