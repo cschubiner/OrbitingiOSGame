@@ -33,7 +33,6 @@
 	if ((self = [super init])) {
         self.isTouchEnabled= TRUE;
         
-        
         images = [[NSMutableArray alloc] init];
         [images addObject:[CCSprite spriteWithFile:@"screen1.png"]];
         [images addObject:[CCSprite spriteWithFile:@"screen2.png"]];
@@ -47,14 +46,10 @@
         currentImageIndex = 0;
         [(CCSprite*)[images objectAtIndex:currentImageIndex] setOpacity:255];
         
-        
-        
         continueLabel = [CCLabelTTF labelWithString:@"Read this or you won't know how to play" fontName:@"Marker Felt" fontSize:22];
         continueLabel.position = ccp(240, 20);
         //[continueLabel setOpacity:0];
         [self addChild:continueLabel];
-        
-        
         
         opacTimer = 255;
         justTouchedScreen = false;
