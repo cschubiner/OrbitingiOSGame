@@ -338,7 +338,7 @@ typedef struct {
     else
         [[UpgradeValues sharedInstance] setHasDoubleCoins:false];
     
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:60 + 3*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] level]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:10 + 3*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] level]];
 }
 
 /* On "init," initialize the instance */
@@ -538,6 +538,7 @@ typedef struct {
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nameDidChange) name:UITextViewTextDidChangeNotification object:nil];
         recentName = @"PLAYER";
+        playerNameLabel = [[[UITextView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)]retain];
         
         [Flurry logEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:(int)isInTutorialMode],@"isInTutorialMode",nil]  timed:YES];
         [self schedule:@selector(Update:) interval:0]; // this makes the update loop loop!!!!
@@ -670,7 +671,9 @@ typedef struct {
                                [CCScaleTo actionWithDuration:.1 scale:1*coin.plusLabel.scale],
                                [CCDelayTime actionWithDuration:.4],
                                setCoinTargetting,
-                               [CCSpawn actions:[CCFadeOut actionWithDuration:.4],[CCMoveTo actionWithDuration:.3 position:coinsLabel.position],tintScoreYellow,nil],
+                               [CCSpawn actions:[CCFadeOut actionWithDuration:.4],[CCMoveTo actionWithDuration:.3 position:coinsLabel.position],
+                                //tintScoreYellow,
+                                nil],
                                [CCHide action],
                                [CCCallFunc actionWithTarget:self selector:@selector(coinDone)],
                                nil]];
@@ -971,10 +974,9 @@ typedef struct {
     player.velocity=ccp(0,.05);
     player.acceleration=CGPointZero;
     
-    [Flurry logEvent:@"Player Died" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom],@"Segment Player Died On",[NSNumber numberWithInt:numZonesHitInARow],@"Pre-death combo",[NSNumber numberWithFloat:totalSecondsAlive],@"Time Alive",[NSNumber numberWithInt: [[UserWallet sharedInstance] getBalance]],@"Total Coins", nil]];
+    [Flurry logEvent:@"Player Died" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSNumber numberWithInt:currentGalaxy.number],@"Galaxy",[NSNumber numberWithInt:numZonesHitInARow],@"Pre-death combo", nil]];
     
     totalSecondsAlive = 0;
-    
 }
 
 - (void)UpdatePlayer:(float)dt {
@@ -1112,6 +1114,9 @@ typedef struct {
             //NSLog(@"galaxy112");
             
             light.timeLeft += howMuchSlowerTheBatteryRunsOutWhenYouAreTravelingBetweenGalaxies*dt;
+
+            if (light.timeLeft<1)
+            light.timeLeft += dt;
             
             float firsttoplayer = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, player.sprite.position));
             float planetAngle = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, nextPlanet.sprite.position));
@@ -1160,6 +1165,7 @@ typedef struct {
                 }
                 //NSLog(@"galaxy4");
                 
+                flurrySegmentsVisitedSinceGalaxyJump = 0;
                 Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
                 timeToAddToTimer = lastGalaxy.percentTimeToAddUponGalaxyCompletion*[[UpgradeValues sharedInstance] maxBatteryTime];
                 if (timeToAddToTimer+light.timeLeft > [[UpgradeValues sharedInstance] maxBatteryTime])
@@ -1245,8 +1251,10 @@ typedef struct {
                     updatesSinceLastPlanet = 0;
                 }
                 
-                if (zone.number==0||((Planet*)[planets objectAtIndex:zone.number-1]).whichSegmentThisObjectIsOriginallyFrom!=lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom)
+                if (zone.number==0||((Planet*)[planets objectAtIndex:zone.number-1]).whichSegmentThisObjectIsOriginallyFrom!=lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom) {
                 NSLog(@"Entering galaxy %d segment %d (1-based index)",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1);
+                    flurrySegmentsVisitedSinceGalaxyJump++;
+                }
                 
                 [zone.sprite setColor:ccc3(255, 80, 180)];
                 zone.hasPlayerHitThisZone = true;
@@ -1316,7 +1324,7 @@ typedef struct {
 - (void)nameDidChange {
     NSString *newName = [playerNameLabel.text uppercaseString];
     if (newName.length <= maxNameLength) {
-        [displayName setString:newName];
+        [displayName setString:[newName stringByReplacingOccurrencesOfString:@"\n" withString:@""]];
     }
     [playerNameLabel setText:displayName.string];
     [underscore setPosition:ccp(displayName.position.x + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, displayName.position.y)];
@@ -1337,34 +1345,32 @@ typedef struct {
         
         if (isHighScore) {
             //[displayName setString:recentName];
+
+            NSDictionary *dictForFlurry = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:finalScore],@"Highscore Value", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned",[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSString stringWithFormat:@"%d galaxies and %d segments",currentGalaxy.number+1,flurrySegmentsVisitedSinceGalaxyJump],@"How far player went",nil];
+            
+            [Flurry logEvent:@"Got a top 10 highscore" withParameters:dictForFlurry];
+            
+            //[displayName setString:recentName];
             playerNameLabel = [[[UITextView alloc] initWithFrame:CGRectMake(240, 160, 0, 0)] autorelease];
             [[[[CCDirector sharedDirector] openGLView] window] addSubview:playerNameLabel];
+
             playerNameLabel.delegate = self;
             playerNameLabel.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
             playerNameLabel.autocorrectionType = UITextAutocorrectionTypeNo;
             playerNameLabel.keyboardType = UIKeyboardTypeAlphabet;
+            [[[[CCDirector sharedDirector] openGLView] window] addSubview:playerNameLabel];
             [playerNameLabel becomeFirstResponder];
-            
             
             underscore = [[CCLabelBMFont alloc] initWithString:@"_" fntFile:@"betaFont2.fnt"];
             [pauseLayer addChild:underscore];
             [underscore setPosition:ccp(displayName.position.x + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, displayName.position.y)];
             
-            id action1 = [CCBlink actionWithDuration:1 blinks:1];
-            
-            [underscore runAction: [CCRepeatForever actionWithAction: action1]];
-            
-            /*
-            [underscore runAction:[CCRepeatForever actionWithAction: [CCSequence actions:
-                                                                      [CCHide action],
-                                                                      [CCDelayTime actionWithDuration:.5],
-                                                                      [CCShow action],
-                                                                      [CCDelayTime actionWithDuration:.5],
-                                                                      nil]]];*/
+            id action = [CCBlink actionWithDuration:1 blinks:1];
+            [underscore runAction: [CCRepeatForever actionWithAction: action]];
         }
         
         [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
-        [Flurry logEvent:@"Game over" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned", [NSNumber numberWithInt:(int)isInTutorialMode],@"isInTutorialMode",nil]];
+
         [pauseLayer setTag:gameOverLayerTag];
         [self addChild:pauseLayer];
         [gameOverScoreLabel setString:scoreText];
@@ -1509,14 +1515,12 @@ typedef struct {
         [[PlayerStats sharedInstance] addScore:score+prevCurrentPtoPScore withName:playerName];
         recentName = playerName;
         [DataStorage storeData];
-    }
-    if (playerNameLabel) {
-        [playerNameLabel resignFirstResponder];
+        [playerNameLabel removeFromSuperview];
         [playerNameLabel release];
     }
+
     if (!didEndGameAlready) {
         didEndGameAlready = true;
-        [Flurry logEvent:@"Game ended" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned", [NSNumber numberWithInt:(int)isInTutorialMode],@"isInTutorialMode", nil]];
         
         int finalScore = score + prevCurrentPtoPScore;
         if (!isInTutorialMode && !scoreAlreadySaved) {
@@ -1539,16 +1543,6 @@ typedef struct {
 }
 
 - (void)restartGame {
-    if ([[PlayerStats sharedInstance] isHighScore:score+prevCurrentPtoPScore]) {
-        NSString *playerName = displayName.string;
-        [[PlayerStats sharedInstance] addScore:score+prevCurrentPtoPScore withName:playerName];
-        recentName = playerName;
-        [DataStorage storeData];
-    }
-    if (playerNameLabel) {
-        [playerNameLabel resignFirstResponder];
-        [playerNameLabel release];
-    }
     [Flurry logEvent:@"restarted game"];
     scoreAlreadySaved = NO;
     if ([[PlayerStats sharedInstance] getPlays] == 1) {

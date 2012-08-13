@@ -96,7 +96,7 @@
     float timeToAddToTimer;
     
     int originalSegmentNumber;
-    
+    int flurrySegmentsVisitedSinceGalaxyJump;
     bool isInTutorialMode;
     CCSprite* tutImage1;
     CCSprite* tutImage2;

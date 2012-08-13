@@ -152,7 +152,6 @@
     [DataStorage fetchData];
     
     [[CCDirector sharedDirector] runWithScene: [MainMenuLayer scene]];
-    
 }
 
 -(void)setChosenLevelNumber:(int)num {
