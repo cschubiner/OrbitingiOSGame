@@ -1534,7 +1534,7 @@ typedef struct {
         [DataStorage storeData];
         if ([[[[[CCDirector sharedDirector] openGLView] window] subviews]containsObject:playerNameLabel])
             [playerNameLabel removeFromSuperview];
-        //   [playerNameLabel release];
+        
     }
     //NSLog(@"5");
     if (!didEndGameAlready) {
@@ -1555,7 +1555,7 @@ typedef struct {
 
 - (void)launchSurvey {
     [Flurry logEvent:@"Launched survey from gameplaylayer"];
-    NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/VJJ3RGJ"];
+    NSURL *url = [NSURL URLWithString:@"https://docs.google.com/spreadsheet/viewform?formkey=dGwxbVRnd1diQTlKTkpBUE5mRHRBMGc6MQ#gid=0"];//"http://www.surveymonkey.com/s/VJJ3RGJ"];
     [[UIApplication sharedApplication] openURL:url];
 }
 

@@ -36,15 +36,15 @@
     [TestFlight takeOff:@"d617a481887a5d2cf7db0f22b735c89f_MTExODYwMjAxMi0wNy0xOCAxOToxNToyNC43NzQ3NjA"];
     
     [Flurry startSession:@"96GKYS7HQZHNKZJJN2CZ"];
+    [Flurry setUserID:[[UIDevice currentDevice] uniqueIdentifier]];
     
 //    [Kamcord setDeveloperKey:@"d05f73399ff3c1755bd97ec94cb5fdda"
   //           developerSecret:@"prcU7MltdajQ1YVTSeFDtPtywe2zABOmzzpSB5pGP79"
     //                 appName:@"Star Dash"];
     
-#define TESTING 1
-#ifdef TESTING
+
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-#endif
+
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     

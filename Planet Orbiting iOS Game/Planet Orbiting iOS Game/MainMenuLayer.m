@@ -220,9 +220,7 @@ const float effectsVolumeMainMenu = 1;
                     desc.position = ccp(240, 200);
                     [popupView addChild:desc];
                     
-                    
-                    
-                    
+                                        
                     CCMenuItem *cancel = [CCMenuItemImage
                                           itemFromNormalImage:@"no.png" selectedImage:@"nopressed.png"
                                           target:self selector:@selector(pressedCancelButton:)];
@@ -456,15 +454,9 @@ const float effectsVolumeMainMenu = 1;
         [self addChild:layer];
         
         [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic_new.mp3" loop:YES];
-        [self schedule:@selector(Update:) interval:0]; // this makes the update loop loop!!!!
 	}
 	return self;
 }
-
-- (void) Update:(ccTime)dt {
-    
-}
-
 
 // this is called (magically?) by cocosbuilder when the start button is pressed
 - (void)startGame:(id)sender {
@@ -522,9 +514,11 @@ const float effectsVolumeMainMenu = 1;
         }
     } else {
         if (buttonIndex == 1) {
-            NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/VJJ3RGJ"];
+            NSURL *url = [NSURL URLWithString:@"https://docs.google.com/spreadsheet/viewform?formkey=dGwxbVRnd1diQTlKTkpBUE5mRHRBMGc6MQ#gid=0"];//"http://www.surveymonkey.com/s/VJJ3RGJ"];
             [[UIApplication sharedApplication] openURL:url];
             [Flurry logEvent:@"Launched survey from main menu"];
+            [TestFlight passCheckpoint:@"Launched survey from main menu"];
+
         }
     }
     
@@ -565,13 +559,12 @@ const float effectsVolumeMainMenu = 1;
     [self startLevelNumber:2];
 }
 
-
-
 - (void)pressedSendFeedback: (id) sender {
+    [TestFlight passCheckpoint:@"pressed survey button on main menu"];
     [Flurry logEvent:@"Pressed Survey Button on main menu"];
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle: @"Entering survey"
-                          message: @"Thanks for taking the time to answer our survey! Any input is helpful. \n-Clay, Alex, Jeff, and Michael."
+                          message: @"Thanks for taking the time to answer our survey! Any input is helpful. \n-Clay, Alex, Jeff, and Michael.\n\nIf you want to take the survey on your computer, type in this URL: tinyurl.com/stardashsurvey"
                           delegate: self
                           cancelButtonTitle:@"Cancel"
                           otherButtonTitles:@"Continue",nil];
@@ -580,6 +573,7 @@ const float effectsVolumeMainMenu = 1;
 }
 
 - (void)pressedTutorialButton: (id) sender {
+    [TestFlight passCheckpoint:@"Opened tutorial"];
     [Flurry logEvent:@"Pressed Tutorial Button"];
     [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:TRUE];
     CCLOG(@"tutorial scene launched, game starting");
