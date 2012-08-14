@@ -59,8 +59,6 @@
 		0C2DEF02159C20BE0018F0FA /* Zone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2DEF01159C20BE0018F0FA /* Zone.m */; };
 		0C2E4D1315C4F70B00AB28FC /* pauseButton7-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2E4D0F15C4F70B00AB28FC /* pauseButton7-hd.png */; };
 		0C2E4D1415C4F70B00AB28FC /* pauseButton7.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2E4D1015C4F70B00AB28FC /* pauseButton7.png */; };
-		0C3F53CE15BD32CD009A5915 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C3F53CD15BD32CD009A5915 /* icon@2x.png */; };
-		0C3F53D015BD32CF009A5915 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C3F53CF15BD32CF009A5915 /* icon.png */; };
 		0C3F53D415BD3397009A5915 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3F53D315BD3397009A5915 /* libFlurry.a */; };
 		0C3F53D615BD3533009A5915 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3F53D515BD3533009A5915 /* SystemConfiguration.framework */; };
 		0C48319115BFEB4E00311FB1 /* LevelObjectReturner.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C48319015BFEB4E00311FB1 /* LevelObjectReturner.m */; };
@@ -106,6 +104,8 @@
 		0C8534C415B64D5C0006EAC9 /* PlainFont.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534C015B64D5C0006EAC9 /* PlainFont.png */; };
 		0C8534C515B64D5C0006EAC9 /* PlainFont-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534C115B64D5C0006EAC9 /* PlainFont-hd.fnt */; };
 		0C8534C615B64D5C0006EAC9 /* PlainFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534C215B64D5C0006EAC9 /* PlainFont.fnt */; };
+		0C8A1E4315DA2EC800600B36 /* iconv2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A1E4215DA2EC800600B36 /* iconv2.png */; };
+		0C8A1E4615DA2ECC00600B36 /* iconv2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A1E4515DA2ECC00600B36 /* iconv2@2x.png */; };
 		0C9D124115C2513900C3495A /* streak2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D123F15C2513900C3495A /* streak2.png */; };
 		0C9D124B15C25A1C00C3495A /* titleFontGreen-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D124715C25A1C00C3495A /* titleFontGreen-hd.fnt */; };
 		0C9D124C15C25A1C00C3495A /* titleFontGreen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D124815C25A1C00C3495A /* titleFontGreen-hd.png */; };
@@ -424,8 +424,6 @@
 		0C2DEF01159C20BE0018F0FA /* Zone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Zone.m; sourceTree = "<group>"; };
 		0C2E4D0F15C4F70B00AB28FC /* pauseButton7-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pauseButton7-hd.png"; sourceTree = "<group>"; };
 		0C2E4D1015C4F70B00AB28FC /* pauseButton7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pauseButton7.png; sourceTree = "<group>"; };
-		0C3F53CD15BD32CD009A5915 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
-		0C3F53CF15BD32CF009A5915 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
 		0C3F53D215BD3397009A5915 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		0C3F53D315BD3397009A5915 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		0C3F53D515BD3533009A5915 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -484,6 +482,8 @@
 		0C8534C015B64D5C0006EAC9 /* PlainFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlainFont.png; sourceTree = "<group>"; };
 		0C8534C115B64D5C0006EAC9 /* PlainFont-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "PlainFont-hd.fnt"; sourceTree = "<group>"; };
 		0C8534C215B64D5C0006EAC9 /* PlainFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PlainFont.fnt; sourceTree = "<group>"; };
+		0C8A1E4215DA2EC800600B36 /* iconv2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconv2.png; path = ../iconv2.png; sourceTree = "<group>"; };
+		0C8A1E4515DA2ECC00600B36 /* iconv2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iconv2@2x.png"; path = "../iconv2@2x.png"; sourceTree = "<group>"; };
 		0C9D123F15C2513900C3495A /* streak2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = streak2.png; sourceTree = "<group>"; };
 		0C9D124715C25A1C00C3495A /* titleFontGreen-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "titleFontGreen-hd.fnt"; sourceTree = "<group>"; };
 		0C9D124815C25A1C00C3495A /* titleFontGreen-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleFontGreen-hd.png"; sourceTree = "<group>"; };
@@ -1056,11 +1056,11 @@
 		0C487B0F159481C500674AB9 /* Icons and Launch Images */ = {
 			isa = PBXGroup;
 			children = (
+				0C8A1E4515DA2ECC00600B36 /* iconv2@2x.png */,
+				0C8A1E4215DA2EC800600B36 /* iconv2.png */,
 				C4286D4415C3748300773FA3 /* Default.png */,
 				C4286D4215C3747F00773FA3 /* Default@2x.png */,
 				0C7AA60615946939000B58F2 /* fps_images.png */,
-				0C3F53CF15BD32CF009A5915 /* icon.png */,
-				0C3F53CD15BD32CD009A5915 /* icon@2x.png */,
 				0C7AA61415946939000B58F2 /* Info.plist */,
 				0C7AA61515946939000B58F2 /* iTunesArtwork */,
 			);
@@ -1795,8 +1795,6 @@
 				0C8534C415B64D5C0006EAC9 /* PlainFont.png in Resources */,
 				0C8534C515B64D5C0006EAC9 /* PlainFont-hd.fnt in Resources */,
 				0C8534C615B64D5C0006EAC9 /* PlainFont.fnt in Resources */,
-				0C3F53CE15BD32CD009A5915 /* icon@2x.png in Resources */,
-				0C3F53D015BD32CF009A5915 /* icon.png in Resources */,
 				FA48C83715BE84DC00FA6F32 /* buttonpress.mp3 in Resources */,
 				0C68283215BF0CCA00BF09C0 /* playerExplosionParticle.plist in Resources */,
 				0C49E19015C0FE44007957E9 /* thrustParticle3.plist in Resources */,
@@ -1970,6 +1968,8 @@
 				01825C9C15DA28540010473B /* resume.png in Resources */,
 				01825C9D15DA28540010473B /* resumepressed-hd.png in Resources */,
 				01825C9E15DA28540010473B /* resumepressed.png in Resources */,
+				0C8A1E4315DA2EC800600B36 /* iconv2.png in Resources */,
+				0C8A1E4615DA2ECC00600B36 /* iconv2@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
