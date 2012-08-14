@@ -199,11 +199,11 @@
 									<key>selector</key>
 									<string>togglePause</string>
 									<key>spriteFileDisabled</key>
-									<string>replay.png</string>
+									<string>resume.png</string>
 									<key>spriteFileNormal</key>
 									<string>resume.png</string>
 									<key>spriteFileSelected</key>
-									<string>replaypressed.png</string>
+									<string>resumepressed.png</string>
 									<key>tag</key>
 									<integer>2</integer>
 									<key>target</key>
