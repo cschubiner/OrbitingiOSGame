@@ -288,8 +288,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>35</real>
-										<real>35</real>
+										<real>77</real>
+										<real>77</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -302,28 +302,28 @@
 									<key>lockedScaleRatio</key>
 									<true/>
 									<key>memberVarAssignmentName</key>
-									<string></string>
+									<string>soundButton</string>
 									<key>memberVarAssignmentType</key>
-									<integer>1</integer>
+									<integer>2</integer>
 									<key>position</key>
 									<array>
-										<real>21.82421875</real>
-										<real>141.49609375</real>
+										<real>23.6484375</real>
+										<real>148.38671875</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
 									<key>scaleX</key>
-									<real>1.2236719131469727</real>
+									<real>0.59566414356231689</real>
 									<key>scaleY</key>
-									<real>1.2236719131469727</real>
+									<real>0.59566414356231689</real>
 									<key>selector</key>
 									<string>toggleMute</string>
 									<key>spriteFileDisabled</key>
-									<string>soundButtonGame.png</string>
+									<string>sound.png</string>
 									<key>spriteFileNormal</key>
-									<string>soundButtonGame.png</string>
+									<string>sound.png</string>
 									<key>spriteFileSelected</key>
-									<string>soundButtonGame.png</string>
+									<string>soundpressed.png</string>
 									<key>tag</key>
 									<integer>1</integer>
 									<key>target</key>
@@ -522,8 +522,8 @@
 							</array>
 							<key>color</key>
 							<array>
-								<integer>255</integer>
-								<integer>255</integer>
+								<integer>41</integer>
+								<integer>0</integer>
 								<integer>255</integer>
 							</array>
 							<key>contentSize</key>
@@ -549,8 +549,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-104.68359375</real>
-								<real>117.73046875</real>
+								<real>-106.3125</real>
+								<real>118.59765625</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -694,8 +694,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>512</real>
-						<real>145</real>
+						<real>0.0</real>
+						<real>0.0</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -868,13 +868,13 @@
 					</array>
 					<key>color</key>
 					<array>
-						<integer>36</integer>
-						<integer>152</integer>
+						<integer>16</integer>
+						<integer>182</integer>
 						<integer>0</integer>
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>564</real>
+						<real>408</real>
 						<real>145</real>
 					</array>
 					<key>customClass</key>
@@ -905,7 +905,7 @@
 					<key>scaleY</key>
 					<real>0.45269531011581421</real>
 					<key>string</key>
-					<string></string>
+					<string>Score: 566</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>

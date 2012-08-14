@@ -141,6 +141,8 @@
     UITextView *playerNameLabel;
     CCLabelBMFont *displayName;
     CCLabelBMFont *underscore;
+    
+    CCMenuItemImage *soundButton;
 }
 
 + (CCScene *) scene;

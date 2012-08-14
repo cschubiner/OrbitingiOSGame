@@ -36,6 +36,7 @@
     CCLabelBMFont *name8Label;
     CCLabelBMFont *name9Label;
     CCLayer *tutorialLayer;
+    CCMenuItemImage *soundButton;
 }
 
 + (CCScene *)scene;

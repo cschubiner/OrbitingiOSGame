@@ -1675,6 +1675,8 @@ float lerpf(float a, float b, float t) {
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"PauseMenuLayer.ccb" owner:self];
         [gameOverScoreLabel setString:[NSString stringWithFormat:@"Score: %d",score+prevCurrentPtoPScore]];
         [pauseLayer setTag:pauseLayerTag];
+        muted = ![[PlayerStats sharedInstance] isMuted];
+        [self toggleMute];
         [self addChild:pauseLayer];
     } else {
         //[Kamcord resume];
@@ -1687,10 +1689,17 @@ float lerpf(float a, float b, float t) {
     if (!muted) {
         [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:musicVolumeGameplay];
         [[SimpleAudioEngine sharedEngine] setEffectsVolume:effectsVolumeGameplay];
+        [soundButton setNormalImage:[CCSprite spriteWithFile:@"sound.png"]];
+        [soundButton setSelectedImage:[CCSprite spriteWithFile:@"soundpressed.png"]];
+        [soundButton setDisabledImage:[CCSprite spriteWithFile:@"sound.png"]];
     } else {
         [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0];
         [[SimpleAudioEngine sharedEngine] setEffectsVolume:0];
+        [soundButton setNormalImage:[CCSprite spriteWithFile:@"soundoff.png"]];
+        [soundButton setSelectedImage:[CCSprite spriteWithFile:@"soundoffpressed.png"]];
+        [soundButton setDisabledImage:[CCSprite spriteWithFile:@"soundoff.png"]];
     }
+    [[PlayerStats sharedInstance] setIsMuted:muted];
 }
 
 #if !defined(MIN)

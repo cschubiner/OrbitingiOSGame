@@ -365,7 +365,8 @@ const float effectsVolumeMainMenu = 1;
         
         [layer addChild:menu];
         
-        
+        muted = ![[PlayerStats sharedInstance] isMuted];
+        [self toggleMute];
         
         CCLabelBMFont* hello4 = [[CCLabelBMFont alloc] initWithString:@"Upgrades" fntFile:@"betaFont2.fnt"];
         [hello4 setScale:.8];
@@ -618,10 +619,17 @@ const float effectsVolumeMainMenu = 1;
     if (!muted) {
         [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:musicVolumeMainMenu];
         [[SimpleAudioEngine sharedEngine] setEffectsVolume:effectsVolumeMainMenu];
+        [soundButton setNormalImage:[CCSprite spriteWithFile:@"sound.png"]];
+        [soundButton setSelectedImage:[CCSprite spriteWithFile:@"soundpressed.png"]];
+        [soundButton setDisabledImage:[CCSprite spriteWithFile:@"sound.png"]];
     } else {
         [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0];
         [[SimpleAudioEngine sharedEngine] setEffectsVolume:0];
+        [soundButton setNormalImage:[CCSprite spriteWithFile:@"soundoff.png"]];
+        [soundButton setSelectedImage:[CCSprite spriteWithFile:@"soundoffpressed.png"]];
+        [soundButton setDisabledImage:[CCSprite spriteWithFile:@"soundoff.png"]];
     }
+    [[PlayerStats sharedInstance] setIsMuted:muted];
 }
 
 - (NSString*)commaInt:(int)num {

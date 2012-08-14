@@ -20,6 +20,7 @@ const int highScoreLimit = 9;
 
 static PlayerStats *sharedInstance = nil;
 
+
 + (id)sharedInstance {
     @synchronized([PlayerStats class]) {
         if (sharedInstance == nil) {
