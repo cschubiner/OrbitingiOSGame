@@ -168,8 +168,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>103</real>
-										<real>103</real>
+										<real>206</real>
+										<real>206</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -187,25 +187,25 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
-										<real>-102.359375</real>
-										<real>5.82421875</real>
+										<real>-102.09375</real>
+										<real>3.96875</real>
 									</array>
 									<key>rotation</key>
 									<real>-1.0869140625</real>
 									<key>scaleX</key>
-									<real>1.1499999761581421</real>
+									<real>0.423828125</real>
 									<key>scaleY</key>
-									<real>1.1499999761581421</real>
+									<real>0.423828125</real>
 									<key>selector</key>
 									<string>togglePause</string>
 									<key>spriteFileDisabled</key>
-									<string>play.png</string>
+									<string>replay.png</string>
 									<key>spriteFileNormal</key>
-									<string>play.png</string>
+									<string>resume.png</string>
 									<key>spriteFileSelected</key>
-									<string>play.png</string>
+									<string>replaypressed.png</string>
 									<key>tag</key>
-									<integer>1</integer>
+									<integer>2</integer>
 									<key>target</key>
 									<integer>2</integer>
 									<key>visible</key>
@@ -228,8 +228,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>94</real>
-										<real>94</real>
+										<real>137</real>
+										<real>137</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -247,23 +247,23 @@
 									<integer>1</integer>
 									<key>position</key>
 									<array>
-										<real>-0.4140625</real>
-										<real>0.80078125</real>
+										<real>3.52734375</real>
+										<real>1.3828125</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
 									<key>scaleX</key>
-									<real>0.80000001192092896</real>
+									<real>0.64816403388977051</real>
 									<key>scaleY</key>
-									<real>0.80000001192092896</real>
+									<real>0.64816403388977051</real>
 									<key>selector</key>
 									<string>endGame</string>
 									<key>spriteFileDisabled</key>
-									<string>upgrade.png</string>
+									<string>quit.png</string>
 									<key>spriteFileNormal</key>
-									<string>upgrade.png</string>
+									<string>quit.png</string>
 									<key>spriteFileSelected</key>
-									<string>upgrade.png</string>
+									<string>quitpressed.png</string>
 									<key>tag</key>
 									<integer>1</integer>
 									<key>target</key>
@@ -348,8 +348,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>103</real>
-										<real>103</real>
+										<real>137</real>
+										<real>137</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -373,17 +373,17 @@
 									<key>rotation</key>
 									<real>-181.54800415039062</real>
 									<key>scaleX</key>
-									<real>0.80000001192092896</real>
+									<real>0.61839842796325684</real>
 									<key>scaleY</key>
-									<real>0.80000001192092896</real>
+									<real>0.61839842796325684</real>
 									<key>selector</key>
 									<string>restartGame</string>
 									<key>spriteFileDisabled</key>
 									<string>play.png</string>
 									<key>spriteFileNormal</key>
-									<string>play.png</string>
+									<string>replay.png</string>
 									<key>spriteFileSelected</key>
-									<string>play.png</string>
+									<string>replaypressed.png</string>
 									<key>tag</key>
 									<integer>1</integer>
 									<key>target</key>
@@ -489,8 +489,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-102.42578125</real>
-								<real>-85.484375</real>
+								<real>-100.62109375</real>
+								<real>-79.89453125</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -549,8 +549,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-1.69921875</real>
-								<real>-86.11328125</real>
+								<real>3.80078125</real>
+								<real>-81.77734375</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -609,8 +609,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-209.41015625</real>
-								<real>-85.29296875</real>
+								<real>-208.24609375</real>
+								<real>-81.265625</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>

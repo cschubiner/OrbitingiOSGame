@@ -218,8 +218,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>103</real>
-								<real>103</real>
+								<real>137</real>
+								<real>137</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -237,29 +237,29 @@
 							<integer>1</integer>
 							<key>position</key>
 							<array>
-								<real>-305.56640625</real>
-								<real>147.92578125</real>
+								<real>-288.56640625</real>
+								<real>124.65625</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>0.55000001192092896</real>
+							<real>0.64999997615814209</real>
 							<key>scaleY</key>
-							<real>0.55000001192092896</real>
+							<real>0.64999997615814209</real>
 							<key>selector</key>
 							<string>showRecording</string>
 							<key>spriteFileDisabled</key>
 							<string>play.png</string>
 							<key>spriteFileNormal</key>
-							<string>play.png</string>
+							<string>kamcord.png</string>
 							<key>spriteFileSelected</key>
-							<string>play.png</string>
+							<string>kamcordpressed.png</string>
 							<key>tag</key>
 							<integer>1</integer>
 							<key>target</key>
 							<integer>2</integer>
 							<key>visible</key>
-							<true/>
+							<false/>
 							<key>zOrder</key>
 							<integer>0</integer>
 						</dict>
@@ -278,8 +278,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>94</real>
-								<real>94</real>
+								<real>137</real>
+								<real>137</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -297,23 +297,23 @@
 							<integer>1</integer>
 							<key>position</key>
 							<array>
-								<real>107.2734375</real>
-								<real>148.4609375</real>
+								<real>90.59375</real>
+								<real>124.171875</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>0.5899999737739563</real>
+							<real>0.66710937023162842</real>
 							<key>scaleY</key>
-							<real>0.5899999737739563</real>
+							<real>0.66710937023162842</real>
 							<key>selector</key>
 							<string>endGame</string>
 							<key>spriteFileDisabled</key>
-							<string>upgrade.png</string>
+							<string>submit.png</string>
 							<key>spriteFileNormal</key>
-							<string>upgrade.png</string>
+							<string>submit.png</string>
 							<key>spriteFileSelected</key>
-							<string>upgrade.png</string>
+							<string>submitpressed.png</string>
 							<key>tag</key>
 							<integer>1</integer>
 							<key>target</key>
@@ -490,66 +490,6 @@
 					<real>0.40507814288139343</real>
 					<key>string</key>
 					<string> </string>
-					<key>tag</key>
-					<integer>-1</integer>
-					<key>visible</key>
-					<true/>
-					<key>zOrder</key>
-					<integer>0</integer>
-				</dict>
-			</dict>
-			<dict>
-				<key>children</key>
-				<array/>
-				<key>class</key>
-				<string>CCLabelBMFont</string>
-				<key>properties</key>
-				<dict>
-					<key>anchorPoint</key>
-					<array>
-						<real>0.5</real>
-						<real>0.5</real>
-					</array>
-					<key>color</key>
-					<array>
-						<integer>255</integer>
-						<integer>255</integer>
-						<integer>255</integer>
-					</array>
-					<key>contentSize</key>
-					<array>
-						<real>83</real>
-						<real>67</real>
-					</array>
-					<key>customClass</key>
-					<string></string>
-					<key>fontFile</key>
-					<string>betaFont2.fnt</string>
-					<key>isExpanded</key>
-					<true/>
-					<key>isRelativeAnchorPoint</key>
-					<true/>
-					<key>lockedScaleRatio</key>
-					<true/>
-					<key>memberVarAssignmentName</key>
-					<string></string>
-					<key>memberVarAssignmentType</key>
-					<integer>0</integer>
-					<key>opacity</key>
-					<integer>255</integer>
-					<key>position</key>
-					<array>
-						<real>446.2109375</real>
-						<real>258.49609375</real>
-					</array>
-					<key>rotation</key>
-					<real>0.0</real>
-					<key>scaleX</key>
-					<real>0.42906248569488525</real>
-					<key>scaleY</key>
-					<real>0.42906248569488525</real>
-					<key>string</key>
-					<string>Quit</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
