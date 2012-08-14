@@ -67,11 +67,11 @@
     NSMutableArray *levelsToUse = [[NSMutableArray alloc] init];
     
     if (!levels) {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             [levelsToUse addObject:[NSNumber numberWithInt:0]];
         }
     } else {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             [levelsToUse addObject:[levels objectAtIndex:i]];
         }
     }
@@ -88,6 +88,8 @@
     [items addObject:[[UpgradeItem alloc] initWithTitle:@"Double Stars" description:@"A great long-term investment - each star you collect is worth two!" icon:@"doublecoinicon.png" prices:[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0/*4000*/], nil] level:[[levelsToUse objectAtIndex:index++] intValue]]];
     
     [items addObject:[[UpgradeItem alloc] initWithTitle:@"Lithium Ion Battery" description:@"Increase your battery's efficiency to allow you to fly deeper into space!" icon:@"batteryupgradeicon.png" prices:[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:1000], [NSNumber numberWithInt:2000], [NSNumber numberWithInt:3000], [NSNumber numberWithInt:5000], [NSNumber numberWithInt:10000], nil] level:[[levelsToUse objectAtIndex:index++] intValue]]];
+    
+    [items addObject:[[UpgradeItem alloc] initWithTitle:@"Starting Powerup" description:@"Start each game with a random powerup!" icon:@"doublecoinicon.png" prices:[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0/*4000*/], nil] level:[[levelsToUse objectAtIndex:index++] intValue]]];
     
     
     
