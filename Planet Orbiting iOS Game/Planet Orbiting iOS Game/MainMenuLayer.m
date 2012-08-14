@@ -26,13 +26,13 @@ const float effectsVolumeMainMenu = 1;
 
 // HelloWorldLayer implementation
 @implementation MainMenuLayer {
+    
     BOOL muted;
     CCLayer *upgradeLayer;
     CGPoint swipeBeginPoint;
     CGPoint swipeEndPoint;
     CGPoint startingUpgradeLayerPos;
     float upgradeLayerHeight;
-    NSMutableArray* cells;
     bool didFingerMove;
     int lastIndexTapped;
     CCLabelTTF* totalStars;
@@ -40,6 +40,7 @@ const float effectsVolumeMainMenu = 1;
     CCLayer* popupView;
     CCSprite* shadeImage;
 }
+@synthesize cells;
 
 // returns a singleton scene
 + (CCScene *)scene {
@@ -534,7 +535,7 @@ const float effectsVolumeMainMenu = 1;
         }
     } else {
         if (buttonIndex == 1) {
-            NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/PBD9L5H"];
+            NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/VJJ3RGJ"];
             [[UIApplication sharedApplication] openURL:url];
             [Flurry logEvent:@"Launched survey from main menu"];
         }
