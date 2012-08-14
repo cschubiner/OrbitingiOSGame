@@ -307,15 +307,15 @@
 									<integer>2</integer>
 									<key>position</key>
 									<array>
-										<real>23.6484375</real>
-										<real>148.38671875</real>
+										<real>23.62890625</real>
+										<real>149.57421875</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
 									<key>scaleX</key>
-									<real>0.59566414356231689</real>
+									<real>0.60183602571487427</real>
 									<key>scaleY</key>
-									<real>0.59566414356231689</real>
+									<real>0.60183602571487427</real>
 									<key>selector</key>
 									<string>toggleMute</string>
 									<key>spriteFileDisabled</key>

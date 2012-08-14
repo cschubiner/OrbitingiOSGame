@@ -14,6 +14,7 @@
 		011FE40415DA160F003C7713 /* kamcordpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 011FE40215DA160F003C7713 /* kamcordpressed.png */; };
 		011FE40715DA163E003C7713 /* highscores.png in Resources */ = {isa = PBXBuildFile; fileRef = 011FE40515DA163E003C7713 /* highscores.png */; };
 		011FE40815DA163E003C7713 /* highscorespressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 011FE40615DA163E003C7713 /* highscorespressed.png */; };
+		01449D9015DA3DB30062295C /* sound-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 01825CA515DA2F840010473B /* sound-hd.png */; };
 		014B372215C25C93002EDBCA /* PauseMenuLayer.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 014B372115C25C93002EDBCA /* PauseMenuLayer.ccb */; };
 		016A13E015D620D300C5D77D /* popup.png in Resources */ = {isa = PBXBuildFile; fileRef = 016A13DF15D620D300C5D77D /* popup.png */; };
 		016A13E515D624F600C5D77D /* popup-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 016A13E415D624F600C5D77D /* popup-hd.png */; };
@@ -29,7 +30,6 @@
 		01825C9C15DA28540010473B /* resume.png in Resources */ = {isa = PBXBuildFile; fileRef = 01825C9015DA28540010473B /* resume.png */; };
 		01825C9D15DA28540010473B /* resumepressed-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 01825C9115DA28540010473B /* resumepressed-hd.png */; };
 		01825C9E15DA28540010473B /* resumepressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 01825C9215DA28540010473B /* resumepressed.png */; };
-		01825CAD15DA2F840010473B /* sound-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 01825CA515DA2F840010473B /* sound-hd.png */; };
 		01825CAE15DA2F840010473B /* sound.png in Resources */ = {isa = PBXBuildFile; fileRef = 01825CA615DA2F840010473B /* sound.png */; };
 		01825CAF15DA2F840010473B /* soundoff-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 01825CA715DA2F840010473B /* soundoff-hd.png */; };
 		01825CB015DA2F840010473B /* soundoff.png in Resources */ = {isa = PBXBuildFile; fileRef = 01825CA815DA2F840010473B /* soundoff.png */; };
@@ -1796,6 +1796,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01449D9015DA3DB30062295C /* sound-hd.png in Resources */,
 				0C7AA60715946939000B58F2 /* fps_images.png in Resources */,
 				0C7AA61615946939000B58F2 /* iTunesArtwork in Resources */,
 				C4E994B215A435E600C7009D /* cometParticle.plist in Resources */,
