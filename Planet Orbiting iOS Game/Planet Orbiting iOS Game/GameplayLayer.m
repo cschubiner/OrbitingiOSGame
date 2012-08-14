@@ -334,6 +334,11 @@ typedef struct {
         [[UpgradeValues sharedInstance] setHasDoubleCoins:false];
     
     [[UpgradeValues sharedInstance] setMaxBatteryTime:60 + 3*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] level]];
+    
+    if ([[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] level] >= 1)
+        [[UpgradeValues sharedInstance] setHasStartPowerup:true];
+    else
+        [[UpgradeValues sharedInstance] setHasStartPowerup:false];
 }
 
 /* On "init," initialize the instance */
@@ -435,6 +440,11 @@ typedef struct {
         player.segmentNumber = -10;
         // player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn)), -distanceBetweenGalaxies*8));
         player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
+        if ([[UpgradeValues sharedInstance] hasStartPowerup]) {
+            CGPoint planPos = [[planets objectAtIndex:0] sprite].position;
+            CGPoint pToUse = ccpAdd(ccpSub(planPos, player.sprite.position), planPos);
+            [self CreatePowerup:pToUse.x yPos:pToUse.y scale:1 type:0];
+        }
         cameraDistToUse = 1005.14;
         [cameraLayer setScale:.43608];
         [cameraLayer setPosition:ccp(98.4779,67.6401)];

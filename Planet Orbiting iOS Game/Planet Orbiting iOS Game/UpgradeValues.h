@@ -16,6 +16,7 @@
 @property (nonatomic) float absoluteMinTimeDilation;
 @property (nonatomic) int hasDoubleCoins;
 @property (nonatomic) float maxBatteryTime;
+@property (nonatomic) int hasStartPowerup;
 
 + (id)sharedInstance;
 

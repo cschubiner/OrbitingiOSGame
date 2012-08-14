@@ -112,6 +112,8 @@
 		0C8534C415B64D5C0006EAC9 /* PlainFont.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534C015B64D5C0006EAC9 /* PlainFont.png */; };
 		0C8534C515B64D5C0006EAC9 /* PlainFont-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534C115B64D5C0006EAC9 /* PlainFont-hd.fnt */; };
 		0C8534C615B64D5C0006EAC9 /* PlainFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534C215B64D5C0006EAC9 /* PlainFont.fnt */; };
+		0C8A1E4315DA2EC800600B36 /* iconv2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A1E4215DA2EC800600B36 /* iconv2.png */; };
+		0C8A1E4615DA2ECC00600B36 /* iconv2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A1E4515DA2ECC00600B36 /* iconv2@2x.png */; };
 		0C9D124115C2513900C3495A /* streak2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D123F15C2513900C3495A /* streak2.png */; };
 		0C9D124B15C25A1C00C3495A /* titleFontGreen-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D124715C25A1C00C3495A /* titleFontGreen-hd.fnt */; };
 		0C9D124C15C25A1C00C3495A /* titleFontGreen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D124815C25A1C00C3495A /* titleFontGreen-hd.png */; };
@@ -347,6 +349,7 @@
 		FA40DCB515D37BFA00174FB8 /* UpgradeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA40DCB415D37BFA00174FB8 /* UpgradeManager.m */; };
 		FA40DCB715D388B200174FB8 /* upgradesHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = FA40DCB615D388B200174FB8 /* upgradesHeader.png */; };
 		FA40DCB915D388BE00174FB8 /* cellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = FA40DCB815D388BE00174FB8 /* cellBackground.png */; };
+		FA45F7D915DA327500D45A58 /* asteroidcoin.png in Resources */ = {isa = PBXBuildFile; fileRef = FA45F7D815DA327500D45A58 /* asteroidcoin.png */; };
 		FA48C83715BE84DC00FA6F32 /* buttonpress.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA48C83615BE84DC00FA6F32 /* buttonpress.mp3 */; };
 		FA70700115D8EA670003ACF4 /* maxed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA706FF915D8EA670003ACF4 /* maxed.png */; };
 		FA70700315D8EA670003ACF4 /* no.png in Resources */ = {isa = PBXBuildFile; fileRef = FA706FFB15D8EA670003ACF4 /* no.png */; };
@@ -496,6 +499,8 @@
 		0C8534C015B64D5C0006EAC9 /* PlainFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlainFont.png; sourceTree = "<group>"; };
 		0C8534C115B64D5C0006EAC9 /* PlainFont-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "PlainFont-hd.fnt"; sourceTree = "<group>"; };
 		0C8534C215B64D5C0006EAC9 /* PlainFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PlainFont.fnt; sourceTree = "<group>"; };
+		0C8A1E4215DA2EC800600B36 /* iconv2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconv2.png; path = ../iconv2.png; sourceTree = "<group>"; };
+		0C8A1E4515DA2ECC00600B36 /* iconv2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iconv2@2x.png"; path = "../iconv2@2x.png"; sourceTree = "<group>"; };
 		0C9D123F15C2513900C3495A /* streak2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = streak2.png; sourceTree = "<group>"; };
 		0C9D124715C25A1C00C3495A /* titleFontGreen-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "titleFontGreen-hd.fnt"; sourceTree = "<group>"; };
 		0C9D124815C25A1C00C3495A /* titleFontGreen-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleFontGreen-hd.png"; sourceTree = "<group>"; };
@@ -864,6 +869,7 @@
 		FA40DCB415D37BFA00174FB8 /* UpgradeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeManager.m; sourceTree = "<group>"; };
 		FA40DCB615D388B200174FB8 /* upgradesHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgradesHeader.png; sourceTree = "<group>"; };
 		FA40DCB815D388BE00174FB8 /* cellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cellBackground.png; sourceTree = "<group>"; };
+		FA45F7D815DA327500D45A58 /* asteroidcoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroidcoin.png; sourceTree = "<group>"; };
 		FA48C83615BE84DC00FA6F32 /* buttonpress.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonpress.mp3; sourceTree = "<group>"; };
 		FA706FF915D8EA670003ACF4 /* maxed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maxed.png; sourceTree = "<group>"; };
 		FA706FFB15D8EA670003ACF4 /* no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no.png; sourceTree = "<group>"; };
@@ -1084,6 +1090,8 @@
 		0C487B0F159481C500674AB9 /* Icons and Launch Images */ = {
 			isa = PBXGroup;
 			children = (
+				0C8A1E4515DA2ECC00600B36 /* iconv2@2x.png */,
+				0C8A1E4215DA2EC800600B36 /* iconv2.png */,
 				C4286D4415C3748300773FA3 /* Default.png */,
 				C4286D4215C3747F00773FA3 /* Default@2x.png */,
 				0C7AA60615946939000B58F2 /* fps_images.png */,
@@ -1705,6 +1713,7 @@
 			isa = PBXGroup;
 			children = (
 				FA7E63F115D256E20090C913 /* star1.png */,
+				FA45F7D815DA327500D45A58 /* asteroidcoin.png */,
 				FA16A13F15D60F13007C52E3 /* asteroidbreakericon.png */,
 				FA16A14015D60F13007C52E3 /* batteryupgradeicon.png */,
 				FA16A14115D60F13007C52E3 /* doublecoinicon.png */,
@@ -1994,7 +2003,6 @@
 				01825C9C15DA28540010473B /* resume.png in Resources */,
 				01825C9D15DA28540010473B /* resumepressed-hd.png in Resources */,
 				01825C9E15DA28540010473B /* resumepressed.png in Resources */,
-				01825CAD15DA2F840010473B /* sound-hd.png in Resources */,
 				01825CAE15DA2F840010473B /* sound.png in Resources */,
 				01825CAF15DA2F840010473B /* soundoff-hd.png in Resources */,
 				01825CB015DA2F840010473B /* soundoff.png in Resources */,
@@ -2002,6 +2010,9 @@
 				01825CB215DA2F840010473B /* soundoffpressed.png in Resources */,
 				01825CB315DA2F840010473B /* soundpressed-hd.png in Resources */,
 				01825CB415DA2F840010473B /* soundpressed.png in Resources */,
+				0C8A1E4315DA2EC800600B36 /* iconv2.png in Resources */,
+				0C8A1E4615DA2ECC00600B36 /* iconv2@2x.png in Resources */,
+				FA45F7D915DA327500D45A58 /* asteroidcoin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
