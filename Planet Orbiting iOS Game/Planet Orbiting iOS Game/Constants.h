@@ -113,19 +113,19 @@ const float blackHoleCollisionRadiusFactor = .2f;
 const float blackHoleSpeedFactor = 1.85*.6f*.6f;
 
 //increase to make timeDilationFactor decrease more rapidly
-const float timeDilationReduceRate = .0011;
+const float timeDilationReduceRate = .001;
 
 //1 means you lose no speed when you die, 0 means you lose it all
 const float factorToScaleTimeDilationByOnDeath = .9;
 
 //increase to increase timeDilationFactor by a larger amount everytime you get to a new zone
-const float timeDilationIncreaseRate = .1;
+const float timeDilationIncreaseRate = .07;
 
 //the smallest the time dilation factor can go
 //THIS IS NOW IN UPGRADE VALUES const float absoluteMinTimeDilation = .85;
 
 //the highest the time dilation factor can go. this should probZ just be infinity. bitches will has c slow down if they're going too fast
-const float absoluteMaxTimeDilation = 1.7;
+const float absoluteMaxTimeDilation = 1.4;
 
 //after this many updates, your velocity will go from what it was when you entered to perfect tangential orbital velocity
 const float updatesToMakeOrbitVelocityPerfect = 60;
