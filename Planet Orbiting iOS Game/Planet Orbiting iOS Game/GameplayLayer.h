@@ -143,7 +143,6 @@
     CCLabelBMFont *underscore;
 }
 
-
 + (CCScene *) scene;
 
 - (float)randomValueBetween:(float)low andValue:(float)high;
@@ -151,6 +150,8 @@
 - (int)RandomBetween:(int)minvalue maxvalue:(int)maxvalue;
 
 - (void)togglePause;
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textFiel;
 
 double lerpd(double a, double b, double t);
 float lerpf(float a, float b, float t);

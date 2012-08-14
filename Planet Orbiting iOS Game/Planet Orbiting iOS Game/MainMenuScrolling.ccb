@@ -266,8 +266,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>936.8515625</real>
-						<real>458.875</real>
+						<real>939.37890625</real>
+						<real>466.9921875</real>
 					</array>
 					<key>rotation</key>
 					<real>136.7744140625</real>
@@ -335,8 +335,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>480.99609375</real>
-						<real>403.859375</real>
+						<real>478.3046875</real>
+						<real>402.921875</real>
 					</array>
 					<key>rotation</key>
 					<real>-221.6787109375</real>
@@ -589,8 +589,8 @@
 									<integer>255</integer>
 									<key>position</key>
 									<array>
-										<real>251.607421875</real>
-										<real>89.26953125</real>
+										<real>252.001953125</real>
+										<real>91.55078125</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
@@ -647,8 +647,8 @@
 													<integer>1</integer>
 													<key>position</key>
 													<array>
-														<real>208.798828125</real>
-														<real>-62.35546875</real>
+														<real>204.775390625</real>
+														<real>-58.2734375</real>
 													</array>
 													<key>rotation</key>
 													<real>89.349609375</real>
@@ -707,8 +707,8 @@
 													<integer>1</integer>
 													<key>position</key>
 													<array>
-														<real>-176.486328125</real>
-														<real>162.21484375</real>
+														<real>-173.130859375</real>
+														<real>162.125</real>
 													</array>
 													<key>rotation</key>
 													<real>90</real>
@@ -829,8 +829,8 @@
 											<integer>255</integer>
 											<key>position</key>
 											<array>
-												<real>210.2109375</real>
-												<real>-99.390625</real>
+												<real>206.41796875</real>
+												<real>-100.52734375</real>
 											</array>
 											<key>rotation</key>
 											<real>0.0</real>
@@ -979,8 +979,8 @@
 											<integer>1</integer>
 											<key>position</key>
 											<array>
-												<real>259.87890625</real>
-												<real>-71.990234375</real>
+												<real>263.1015625</real>
+												<real>-69.013671875</real>
 											</array>
 											<key>rotation</key>
 											<real>0.0</real>
@@ -1039,8 +1039,8 @@
 											<integer>1</integer>
 											<key>position</key>
 											<array>
-												<real>371.611328125</real>
-												<real>-29.6875</real>
+												<real>372.556640625</real>
+												<real>-18.59765625</real>
 											</array>
 											<key>rotation</key>
 											<real>-1.8193359375</real>
@@ -1161,8 +1161,8 @@
 									<integer>255</integer>
 									<key>position</key>
 									<array>
-										<real>263.5625</real>
-										<real>-114.8125</real>
+										<real>264.17578125</real>
+										<real>-111.76953125</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
@@ -1320,7 +1320,7 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>130</real>
+										<real>84</real>
 										<real>67</real>
 									</array>
 									<key>customClass</key>
@@ -1341,8 +1341,8 @@
 									<integer>255</integer>
 									<key>position</key>
 									<array>
-										<real>566.751953125</real>
-										<real>150.380859375</real>
+										<real>372.865234375</real>
+										<real>-87.666015625</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
@@ -1351,7 +1351,7 @@
 									<key>scaleY</key>
 									<real>0.56160151958465576</real>
 									<key>string</key>
-									<string>Beta 2</string>
+									<string>Play</string>
 									<key>tag</key>
 									<integer>0</integer>
 									<key>visible</key>
@@ -2630,15 +2630,15 @@
 											<integer>1</integer>
 											<key>position</key>
 											<array>
-												<real>393.64453125</real>
-												<real>71.525390625</real>
+												<real>393.35546875</real>
+												<real>65.841796875</real>
 											</array>
 											<key>rotation</key>
 											<real>0.0</real>
 											<key>scaleX</key>
-											<real>0.80000001192092896</real>
+											<real>0.89414066076278687</real>
 											<key>scaleY</key>
-											<real>0.80000001192092896</real>
+											<real>0.89414066076278687</real>
 											<key>selector</key>
 											<string>pressedSendFeedback:</string>
 											<key>spriteFileDisabled</key>
@@ -2812,8 +2812,8 @@
 									<integer>255</integer>
 									<key>position</key>
 									<array>
-										<real>392.720703125</real>
-										<real>35.3828125</real>
+										<real>393.056640625</real>
+										<real>24.46484375</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>

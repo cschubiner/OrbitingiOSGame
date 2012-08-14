@@ -1316,6 +1316,11 @@ typedef struct {
     [underscore setPosition:ccp(displayName.position.x + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, displayName.position.y)];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self endGame];
+    return YES;
+}
+
 - (void)GameOver {
     if (!isGameOver) { // this line ensures that it only runs once
         isGameOver = true;
@@ -1331,7 +1336,6 @@ typedef struct {
         
         if (isHighScore) {
             //[displayName setString:recentName];
-            
             NSDictionary *dictForFlurry = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:finalScore],@"Highscore Value", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned",[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSString stringWithFormat:@"%d galaxies and %d segments",currentGalaxy.number+1,flurrySegmentsVisitedSinceGalaxyJump],@"How far player went",[NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays",nil];
             
             [Flurry logEvent:@"Got a top 10 highscore" withParameters:dictForFlurry];
@@ -1343,6 +1347,7 @@ typedef struct {
             playerNameLabel.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
             playerNameLabel.autocorrectionType = UITextAutocorrectionTypeNo;
             playerNameLabel.keyboardType = UIKeyboardTypeAlphabet;
+            playerNameLabel.returnKeyType = UIReturnKeyDone;
             [playerNameLabel becomeFirstResponder];
             
             underscore = [[CCLabelBMFont alloc] initWithString:@"_" fntFile:@"betaFont2.fnt"];
