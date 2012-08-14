@@ -1,3 +1,4 @@
+
 //
 //  MainMenuLayer.m
 //  Planet Orbiting iOS Game
@@ -348,7 +349,7 @@ const float effectsVolumeMainMenu = 1;
         [layer addChild:upgradeTopBar];
         [upgradeTopBar setPosition:ccp(960 + upgradeTopBar.width/2, 640-upgradeTopBar.height/2)];
         
-        muted = ![[PlayerStats sharedInstance] isMuted];
+        muted = ![[PlayerStats sharedInstance] isMuted];        
         [self toggleMute];
         
         CCLabelBMFont* hello4 = [[CCLabelBMFont alloc] initWithString:@"Upgrades" fntFile:@"betaFont2.fnt"];

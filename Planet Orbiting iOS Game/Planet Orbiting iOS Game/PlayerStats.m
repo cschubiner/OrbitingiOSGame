@@ -17,9 +17,7 @@ const int highScoreLimit = 9;
     NSMutableArray *rawNames;
     NSMutableDictionary *keyValuePairs;
 }
-
 static PlayerStats *sharedInstance = nil;
-
 
 + (id)sharedInstance {
     @synchronized([PlayerStats class]) {
