@@ -15,10 +15,27 @@
 	UINavigationController *navController_;
 
 	CCDirectorIOS	*director_;							// weak ref
+    bool isInTutorialMode;
+    int chosenLevelNumber;
+    bool isRetinaDisplay;
+    bool wasJustBackgrounded;
+    int galaxyCounter;
+
 }
 
 @property (nonatomic, retain) UIWindow *window;
 @property (readonly) UINavigationController *navController;
 @property (readonly) CCDirectorIOS *director;
+-(UIViewController*)getViewController;
+-(void)setIsInTutorialMode:(bool)mode;
+-(bool)getIsInTutorialMode;
+-(bool)getIsRetinaDisplay;
+-(void)setChosenLevelNumber:(int)num;
+-(int)getChosenLevelNumber;
+-(bool)getWasJustBackgrounded;
+-(void)setWasJustBackgrounded:(bool)isItBackgrounded;
+-(int)getGalaxyCounter;
+-(void)setGalaxyCounter:(int)count;
+
 
 @end

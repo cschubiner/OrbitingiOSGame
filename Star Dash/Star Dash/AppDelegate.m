@@ -95,6 +95,38 @@
 	return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
+-(UIViewController*)getViewController{
+    return navController_;
+}
+
+
+-(int)getGalaxyCounter {
+    return galaxyCounter;
+}
+
+-(bool)getIsRetinaDisplay {
+    return isRetinaDisplay;
+}
+
+
+-(void)setGalaxyCounter:(int)count {
+    galaxyCounter = count;
+}
+
+
+-(bool)getWasJustBackgrounded {
+    return wasJustBackgrounded;
+}
+
+-(void)setWasJustBackgrounded:(bool)isItBackgrounded{
+    wasJustBackgrounded = isItBackgrounded;
+}
+-(void)setChosenLevelNumber:(int)num {
+    chosenLevelNumber = num;
+}
+-(int)getChosenLevelNumber {
+    return chosenLevelNumber;
+}
 
 // getting a call, pause the game
 -(void) applicationWillResignActive:(UIApplication *)application

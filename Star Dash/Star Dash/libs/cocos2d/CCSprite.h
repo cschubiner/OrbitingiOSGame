@@ -210,6 +210,9 @@
  */
 - (id)initWithTexture:(CCTexture2D *)texture rect:(CGRect)rect rotated:(BOOL)rotated;
 
+-(CGFloat)width;
+-(CGFloat)height;
+
 
 /** Initializes an sprite with an sprite frame.
  */

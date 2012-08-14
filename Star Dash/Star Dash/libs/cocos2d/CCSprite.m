@@ -216,6 +216,13 @@
 	return ret;
 }
 
+-(CGFloat)width{
+    return self.contentSize.width * self.scaleX;
+}
+-(CGFloat)height{
+    return self.contentSize.height * self.scaleY;
+}
+
 -(id)initWithSpriteFrameName:(NSString*)spriteFrameName
 {
 	NSAssert(spriteFrameName!=nil, @"Invalid spriteFrameName for sprite");

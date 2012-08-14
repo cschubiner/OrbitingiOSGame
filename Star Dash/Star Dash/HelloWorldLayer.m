@@ -43,16 +43,15 @@
 		
 		// create and initialize a Label
 		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello World" fontName:@"Marker Felt" fontSize:64];
-
+        
 		// ask director for the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
-	
+        
 		// position the label on the center of the screen
 		label.position =  ccp( size.width /2 , size.height/2 );
 		
 		// add the label as a child to this Layer
 		[self addChild: label];
-		
 		
 		
 		//
@@ -75,7 +74,7 @@
 			
 		}
 									   ];
-
+        
 		// Leaderboard Menu Item using blocks
 		CCMenuItem *itemLeaderboard = [CCMenuItemFont itemWithString:@"Leaderboard" block:^(id sender) {
 			
@@ -89,19 +88,25 @@
 			
 		}
 									   ];
+        
+        CCMenuItem *start = [CCMenuItemFont itemWithString:@"Leaderboard" block:^(id sender) {
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];			
+		}
+									   ];
+        
+
 		
-		CCMenu *menu = [CCMenu menuWithItems:itemAchievement, itemLeaderboard, nil];
+		CCMenu *menu = [CCMenu menuWithItems:itemAchievement, itemLeaderboard,start, nil];
 		
 		[menu alignItemsHorizontallyWithPadding:20];
 		[menu setPosition:ccp( size.width/2, size.height/2 - 50)];
 		
 		// Add the menu to the layer
 		[self addChild:menu];
-
+        
 	}
 	return self;
 }
-
 
 
 #pragma mark GameKit delegate

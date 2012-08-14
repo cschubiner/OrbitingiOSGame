@@ -1,0 +1,25 @@
+info face="Arial Black" size=36 bold=0 italic=0 charset="" unicode=0 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=0,0
+common lineHeight=51 base=40 scaleW=128 scaleH=128 pages=1 packed=0
+page id=0 file="star_label_font-hd.png"
+chars count=17
+char id=49 x=76 y=66 width=18 height=30 xoffset=3 yoffset=10 xadvance=24 page=0 chnl=0
+char id=50 x=56 y=34 width=24 height=30 xoffset=1 yoffset=10 xadvance=24 page=0 chnl=0
+char id=51 x=30 y=66 width=24 height=30 xoffset=2 yoffset=10 xadvance=24 page=0 chnl=0
+char id=52 x=2 y=34 width=26 height=30 xoffset=1 yoffset=10 xadvance=24 page=0 chnl=0
+char id=53 x=30 y=34 width=24 height=30 xoffset=2 yoffset=10 xadvance=24 page=0 chnl=0
+char id=54 x=82 y=2 width=24 height=30 xoffset=2 yoffset=10 xadvance=24 page=0 chnl=0
+char id=55 x=82 y=34 width=24 height=28 xoffset=2 yoffset=12 xadvance=24 page=0 chnl=0
+char id=56 x=56 y=2 width=24 height=30 xoffset=2 yoffset=10 xadvance=24 page=0 chnl=0
+char id=57 x=30 y=2 width=24 height=30 xoffset=2 yoffset=10 xadvance=24 page=0 chnl=0
+char id=48 x=2 y=66 width=24 height=30 xoffset=2 yoffset=10 xadvance=24 page=0 chnl=0
+char id=83 x=2 y=2 width=26 height=30 xoffset=2 yoffset=10 xadvance=25 page=0 chnl=0
+char id=116 x=56 y=66 width=18 height=30 xoffset=1 yoffset=10 xadvance=15 page=0 chnl=0
+char id=97 x=2 y=98 width=24 height=22 xoffset=2 yoffset=18 xadvance=24 page=0 chnl=0
+char id=114 x=56 y=98 width=18 height=22 xoffset=3 yoffset=18 xadvance=15 page=0 chnl=0
+char id=115 x=30 y=98 width=22 height=22 xoffset=1 yoffset=18 xadvance=21 page=0 chnl=0
+char id=58 x=108 y=2 width=10 height=22 xoffset=3 yoffset=18 xadvance=11 page=0 chnl=0
+char id=32 x=2 y=122 width=0 height=0 xoffset=0 yoffset=38 xadvance=12 page=0 chnl=0
+kernings count=3
+kerning first=114 second=58 amount=1
+kerning first=114 second=114 amount=1
+kerning first=114 second=116 amount=1
