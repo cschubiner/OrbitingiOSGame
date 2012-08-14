@@ -346,6 +346,7 @@
 		FA70700E15D8F2100003ACF4 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = FA70700B15D8F2100003ACF4 /* 1.png */; };
 		FA70700F15D8F2100003ACF4 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = FA70700C15D8F2100003ACF4 /* 2.png */; };
 		FA70701015D8F2100003ACF4 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = FA70700D15D8F2100003ACF4 /* 3.png */; };
+		FA70703D15DA27CC0003ACF4 /* upgradepressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA70703C15DA27CC0003ACF4 /* upgradepressed.png */; };
 		FA7E63BC15D0F26E0090C913 /* UpgradeValues.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E63BB15D0F26E0090C913 /* UpgradeValues.m */; };
 		FA7E63F015D251610090C913 /* cellBackground-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7E63EF15D251610090C913 /* cellBackground-hd.png */; };
 		FA7E63F215D256E20090C913 /* star1.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7E63F115D256E20090C913 /* star1.png */; };
@@ -850,6 +851,7 @@
 		FA70700B15D8F2100003ACF4 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		FA70700C15D8F2100003ACF4 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		FA70700D15D8F2100003ACF4 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		FA70703C15DA27CC0003ACF4 /* upgradepressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgradepressed.png; sourceTree = "<group>"; };
 		FA7E63BA15D0F26E0090C913 /* UpgradeValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeValues.h; sourceTree = "<group>"; };
 		FA7E63BB15D0F26E0090C913 /* UpgradeValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeValues.m; sourceTree = "<group>"; };
 		FA7E63EF15D251610090C913 /* cellBackground-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cellBackground-hd.png"; sourceTree = "<group>"; };
@@ -1307,6 +1309,7 @@
 				01A5EB7B15C6767B005BA93E /* tutorial.png */,
 				01A5EB7C15C6767B005BA93E /* upgrade-hd.png */,
 				01A5EB7D15C6767B005BA93E /* upgrade.png */,
+				FA70703C15DA27CC0003ACF4 /* upgradepressed.png */,
 				C477750115A75D2C005D0AEB /* burst-hd.png */,
 				C47774EC15A75CE1005D0AEB /* logo-hd.png */,
 				C47774ED15A75CE1005D0AEB /* logo-icon-hd.png */,
@@ -1942,6 +1945,7 @@
 				011FE41015DA1795003C7713 /* quitpressed.png in Resources */,
 				011FE41315DA19EA003C7713 /* resume.png in Resources */,
 				011FE41415DA19EA003C7713 /* resumepressed.png in Resources */,
+				FA70703D15DA27CC0003ACF4 /* upgradepressed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

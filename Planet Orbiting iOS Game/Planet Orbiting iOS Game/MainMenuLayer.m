@@ -351,9 +351,11 @@ const float effectsVolumeMainMenu = 1;
 
         //CCMenuItemImage* backButton = [[CCMenuItemImage alloc] initFromNormalImage:@"upgrade.png" selectedImage:@"upgrade.png" disabledImage:@"upgrade.png" target:self selector:@selector(pressedBackButton:)];
         
-        CCMenuItem *back = [CCMenuItemImage 
+       /* CCMenuItem *back = [CCMenuItemImage 
                                     itemFromNormalImage:@"upgrade.png" selectedImage:@"upgrade.png" 
-                                    target:self selector:@selector(pressedBackButton:)];
+                                    target:self selector:@selector(pressedBackButton:)];*/
+        
+        CCMenuItem *back = [[CCMenuItemImage alloc] initWithNormalImage:@"upgrade.png" selectedImage:@"upgrade.png" disabledImage:@"upgrade.png" target:self selector:@selector(pressedBackButton:)];
 
         back.rotation = -90;
         back.scale = .5;
