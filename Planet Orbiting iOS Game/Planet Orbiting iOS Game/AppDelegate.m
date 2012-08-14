@@ -12,6 +12,7 @@
 #import "DataStorage.h"
 #import "GameplayLayer.h"
 #import "MainMenuLayer.h"
+#import "DataStorage.h"
 
 @implementation AppDelegate
 
@@ -61,7 +62,7 @@
 	director_.wantsFullScreenLayout = YES;
     
 	// Display FSP and SPF
-	[director_ setDisplayStats:NO];
+	[director_ setDisplayStats:YES];
     
 	// set FPS at 60
 	[director_ setAnimationInterval:1.0/60];
@@ -97,6 +98,8 @@
     
 	// Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
+    
+    [DataStorage fetchData];
     
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
 	[director_ pushScene: [MainMenuLayer scene]];

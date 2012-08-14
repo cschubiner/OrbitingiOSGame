@@ -26,13 +26,13 @@ const float effectsVolumeMainMenu = 1;
 
 // HelloWorldLayer implementation
 @implementation MainMenuLayer {
+    
     BOOL muted;
     CCLayer *upgradeLayer;
     CGPoint swipeBeginPoint;
     CGPoint swipeEndPoint;
     CGPoint startingUpgradeLayerPos;
     float upgradeLayerHeight;
-    NSMutableArray* cells;
     bool didFingerMove;
     int lastIndexTapped;
     CCLabelTTF* totalStars;
@@ -40,6 +40,7 @@ const float effectsVolumeMainMenu = 1;
     CCLayer* popupView;
     CCSprite* shadeImage;
 }
+@synthesize cells;
 
 // returns a singleton scene
 + (CCScene *)scene {
