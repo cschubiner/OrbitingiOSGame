@@ -39,5 +39,5 @@
 }
 
 + (CCScene *)scene;
-
+@property (nonatomic, retain) NSMutableArray *cells;
 @end
