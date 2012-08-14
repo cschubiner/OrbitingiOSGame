@@ -348,27 +348,6 @@ const float effectsVolumeMainMenu = 1;
         [layer addChild:upgradeTopBar];
         [upgradeTopBar setPosition:ccp(960 + upgradeTopBar.width/2, 640-upgradeTopBar.height/2)];
         
-
-        //CCMenuItemImage* backButton = [[CCMenuItemImage alloc] initFromNormalImage:@"upgrade.png" selectedImage:@"upgrade.png" disabledImage:@"upgrade.png" target:self selector:@selector(pressedBackButton:)];
-        
-     //  CCMenuItem *back = [CCMenuItemImage 
-       //                             itemFromNormalImage:@"upgrade.png" selectedImage:@"upgradepressed.png" 
-         //                           target:self selector:@selector(pressedBackButton:)];
-        
-        CCMenuItem *back =[CCMenuItemImage itemWithNormalImage:@"upgrade.png" selectedImage:@"upgradepressed.png" target:self selector:@selector(pressedBackButton:)];
-        
-        /*CCMenuItem *back = [[CCMenuItemImage alloc] initWithNormalImage:@"upgrade.png" selectedImage:@"upgradepressed.png" disabledImage:@"upgrade.png" target:self selector:@selector(pressedBackButton:)];*/
-
-        back.rotation = -90;
-        back.scale = .5;
-        back.position = ccp(720 + 28, 480 - 28);
-      //  back.position = ccp(100,100);
-        CCMenu *menu = [CCMenu menuWithItems:back, nil];
-        menu.position = CGPointZero;
-        
-        [self addChild:menu z:10];
-        
-        
         muted = ![[PlayerStats sharedInstance] isMuted];
         [self toggleMute];
         
