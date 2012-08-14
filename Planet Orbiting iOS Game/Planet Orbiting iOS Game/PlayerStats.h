@@ -22,7 +22,6 @@
 - (void)setScores:(NSMutableArray *)scores;
 - (void)setKeyValuePairs:(NSMutableDictionary *)dict;
 - (BOOL)isHighScore:(int)score;
-- (BOOL)isMuted;
 
 @property (nonatomic, assign) BOOL isMuted;
 
