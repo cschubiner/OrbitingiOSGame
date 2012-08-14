@@ -873,6 +873,66 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		011FE3F615DA12E8003C7713 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				011FE3FB15DA1304003C7713 /* Game Over */,
+				011FE3FA15DA12FD003C7713 /* Main Menu */,
+				011FE3F915DA12F7003C7713 /* Pause */,
+				011FE3F815DA12EE003C7713 /* Popup */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
+		011FE3F815DA12EE003C7713 /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				FA706FF915D8EA670003ACF4 /* maxed.png */,
+				FA706FFB15D8EA670003ACF4 /* no.png */,
+				FA706FFC15D8EA670003ACF4 /* nopressed.png */,
+				FA706FFD15D8EA670003ACF4 /* notenoughminerals.png */,
+				FA706FFF15D8EA670003ACF4 /* yes.png */,
+				FA70700015D8EA670003ACF4 /* yespressed.png */,
+			);
+			name = Popup;
+			sourceTree = "<group>";
+		};
+		011FE3F915DA12F7003C7713 /* Pause */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Pause;
+			sourceTree = "<group>";
+		};
+		011FE3FA15DA12FD003C7713 /* Main Menu */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Main Menu";
+			sourceTree = "<group>";
+		};
+		011FE3FB15DA1304003C7713 /* Game Over */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Game Over";
+			sourceTree = "<group>";
+		};
+		011FE3FC15DA1316003C7713 /* Battery */ = {
+			isa = PBXGroup;
+			children = (
+				0C65971D15D6351F00C42296 /* OneByOne-hd.png */,
+				0C65970E15D62BC800C42296 /* OneByOne.png */,
+				0C65971115D62C2E00C42296 /* battery-hd.png */,
+				0C65971215D62C2E00C42296 /* battery.png */,
+				0C65971515D62C5B00C42296 /* batteryglow-hd.png */,
+				0C65971615D62C5B00C42296 /* batteryglow.png */,
+				0C65971915D6322700C42296 /* batteryborder-hd.png */,
+				0C65971A15D6322700C42296 /* batteryborder.png */,
+			);
+			name = Battery;
+			sourceTree = "<group>";
+		};
 		012ED2ED15BB87C1008FDFBD /* Commerce */ = {
 			isa = PBXGroup;
 			children = (
@@ -1030,20 +1090,12 @@
 		0C7AA60315946939000B58F2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FA706FE715D8D8410003ACF4 /* popup buttons */,
-				0C65971D15D6351F00C42296 /* OneByOne-hd.png */,
-				0C65970E15D62BC800C42296 /* OneByOne.png */,
-				0C65971115D62C2E00C42296 /* battery-hd.png */,
-				0C65971215D62C2E00C42296 /* battery.png */,
-				0C65971515D62C5B00C42296 /* batteryglow-hd.png */,
-				0C65971615D62C5B00C42296 /* batteryglow.png */,
-				0C65971915D6322700C42296 /* batteryborder-hd.png */,
-				0C65971A15D6322700C42296 /* batteryborder.png */,
+				011FE3FC15DA1316003C7713 /* Battery */,
+				011FE3F615DA12E8003C7713 /* Buttons */,
 				C43AF01315D4267D001FF7D9 /* Spritesheets */,
 				C4C9161A15D309C9008105A6 /* Fonts */,
-				FA7E63ED15D251520090C913 /* menu stuff */,
-				FABB360215CE44D4004F5396 /* tutorial */,
-				FABB35E615CDCF69004F5396 /* stars */,
+				FA7E63ED15D251520090C913 /* Store */,
+				FABB360215CE44D4004F5396 /* Tutorial */,
 				0C9D123F15C2513900C3495A /* streak2.png */,
 				0CAFE09215CE8570008C549E /* Backgrounds */,
 				0CFB823015AE61F300EADAF3 /* Audio */,
@@ -1566,20 +1618,7 @@
 			name = Enhancements;
 			sourceTree = "<group>";
 		};
-		FA706FE715D8D8410003ACF4 /* popup buttons */ = {
-			isa = PBXGroup;
-			children = (
-				FA706FF915D8EA670003ACF4 /* maxed.png */,
-				FA706FFB15D8EA670003ACF4 /* no.png */,
-				FA706FFC15D8EA670003ACF4 /* nopressed.png */,
-				FA706FFD15D8EA670003ACF4 /* notenoughminerals.png */,
-				FA706FFF15D8EA670003ACF4 /* yes.png */,
-				FA70700015D8EA670003ACF4 /* yespressed.png */,
-			);
-			name = "popup buttons";
-			sourceTree = "<group>";
-		};
-		FA7E63ED15D251520090C913 /* menu stuff */ = {
+		FA7E63ED15D251520090C913 /* Store */ = {
 			isa = PBXGroup;
 			children = (
 				FA7E63F115D256E20090C913 /* star1.png */,
@@ -1593,24 +1632,17 @@
 				FA40DCB615D388B200174FB8 /* upgradesHeader.png */,
 				FA7E640B15D271DE0090C913 /* upgradesHeader-hd.png */,
 			);
-			name = "menu stuff";
+			name = Store;
 			sourceTree = "<group>";
 		};
-		FABB35E615CDCF69004F5396 /* stars */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = stars;
-			sourceTree = "<group>";
-		};
-		FABB360215CE44D4004F5396 /* tutorial */ = {
+		FABB360215CE44D4004F5396 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
 				FA70700B15D8F2100003ACF4 /* 1.png */,
 				FA70700C15D8F2100003ACF4 /* 2.png */,
 				FA70700D15D8F2100003ACF4 /* 3.png */,
 			);
-			name = tutorial;
+			name = Tutorial;
 			sourceTree = "<group>";
 		};
 		FACE0CE415CB93B70055B5DF /* Powerups */ = {
