@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
-#import "GameplayLayer.h"
-#import "MainMenuLayer.h"
 
 @interface AppDelegate : NSObject <UIApplicationDelegate, CCDirectorDelegate>
 {

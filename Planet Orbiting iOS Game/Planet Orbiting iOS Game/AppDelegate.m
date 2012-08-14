@@ -9,6 +9,9 @@
 #import "cocos2d.h"
 
 #import "AppDelegate.h"
+#import "DataStorage.h"
+#import "GameplayLayer.h"
+#import "MainMenuLayer.h"
 
 @implementation AppDelegate
 
@@ -16,6 +19,31 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // installs HandleExceptions as the Uncaught Exception Handler
+    NSSetUncaughtExceptionHandler(&HandleExceptions);
+    // create the signal action structure
+    struct sigaction newSignalAction;
+    // initialize the signal action structure
+    memset(&newSignalAction, 0, sizeof(newSignalAction));
+    // set SignalHandler as the handler in the signal action structure
+    newSignalAction.sa_handler = &SignalHandler;
+    // set SignalHandler as the handlers for SIGABRT, SIGILL and SIGBUS
+    sigaction(SIGABRT, &newSignalAction, NULL);
+    sigaction(SIGILL, &newSignalAction, NULL);
+    sigaction(SIGBUS, &newSignalAction, NULL);
+    // Call takeOff after install your own unhandled exception and signal handlers
+    [TestFlight takeOff:@"d617a481887a5d2cf7db0f22b735c89f_MTExODYwMjAxMi0wNy0xOCAxOToxNToyNC43NzQ3NjA"];
+    
+    [Flurry startSession:@"96GKYS7HQZHNKZJJN2CZ"];
+    
+//    [Kamcord setDeveloperKey:@"d05f73399ff3c1755bd97ec94cb5fdda"
+  //           developerSecret:@"prcU7MltdajQ1YVTSeFDtPtywe2zABOmzzpSB5pGP79"
+    //                 appName:@"Star Dash"];
+    
+#define TESTING 1
+#ifdef TESTING
+    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+#endif
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -33,7 +61,7 @@
 	director_.wantsFullScreenLayout = YES;
     
 	// Display FSP and SPF
-	[director_ setDisplayStats:YES];
+	[director_ setDisplayStats:NO];
     
 	// set FPS at 60
 	[director_ setAnimationInterval:1.0/60];
@@ -86,6 +114,21 @@
 	[window_ makeKeyAndVisible];
 	
 	return YES;
+}
+
+/*
+ My Apps Custom uncaught exception catcher, we do special stuff here, and TestFlight takes care of the rest
+ **/
+void HandleExceptions(NSException *exception) {
+    NSLog(@"This is where we save the application data during a exception");
+    // Save application data on crash
+}
+/*
+ My Apps Custom signal catcher, we do special stuff here, and TestFlight takes care of the rest
+ **/
+void SignalHandler(int sig) {
+    NSLog(@"This is where we save the application data during a signal");
+    // Save application data on crash
 }
 
 // Supported orientations: Landscape. Customize it for your own needs
@@ -165,6 +208,7 @@
 // application will be killed
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    	[DataStorage storeData];
 	CC_DIRECTOR_END();
 }
 

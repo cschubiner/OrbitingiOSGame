@@ -487,10 +487,7 @@ typedef struct {
         
         background = [CCSprite spriteWithFile:@"background0.pvr.ccz"];
         background2 = [CCSprite spriteWithFile:@"background1.pvr.ccz"];
-        [background setPosition:ccp(size.width/2+14,size.height/5+2)];
-        [background setAnchorPoint:CGPointZero];
-        [background setPosition:ccp(0,-size.height/2+51)];
-        
+        [background setPosition:ccp(size.width/2+14,size.height/5+2)];        
         [background2 setPosition:ccp(size.width/2+14,size.height/5+2)];
         [self addChild:background];
         

@@ -468,7 +468,6 @@ const float effectsVolumeMainMenu = 1;
         [self addChild:layer];
         
         [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic_new.mp3" loop:YES];
-                
         [self schedule:@selector(Update:) interval:0]; // this makes the update loop loop!!!!
 	}
 	return self;
