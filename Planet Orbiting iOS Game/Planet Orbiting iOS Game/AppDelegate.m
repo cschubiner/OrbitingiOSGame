@@ -175,9 +175,11 @@ void SignalHandler(int sig) {
 -(void)setWasJustBackgrounded:(bool)isItBackgrounded{
     wasJustBackgrounded = isItBackgrounded;
 }
+
 -(void)setChosenLevelNumber:(int)num {
     chosenLevelNumber = num;
 }
+
 -(int)getChosenLevelNumber {
     return chosenLevelNumber;
 }
