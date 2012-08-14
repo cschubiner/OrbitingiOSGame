@@ -2,110 +2,48 @@
                 [[Galaxy alloc]initWithSegments:
                  [NSArray arrayWithObjects:
                 
+                  
+                  
+                  //Level Title: Drifting Difficulty: 2 (OUT OF TEN)
+[NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(462,271) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(717,107) scale:1.069],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(740,-534) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1000,-83) scale:1.046],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1311,-616) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1257,-115) scale:0.885],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1576,-106) scale:1.069],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1836,38) scale:1.092],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1739,-76) scale:1.046],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1961,221) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2385,-222) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2287,-515) scale:1.253],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2426,-393) scale:1.138],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1928,-819) scale:1.529],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2075,-587) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1714,-696) scale:1.092],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1887,-655) scale:1.023],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1590,-684) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1834,-736) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1789,-623) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2011,-687) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2160,-499) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2303,-411) scale:1.023],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1019,-631) scale:1.069],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1420,-120) scale:1.138],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1134,-77) scale:1.184],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(879,25) scale:1.161],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1190,-710) scale:1.115],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1434,-705) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2535,-116) scale:1.115],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2729,32) scale:1.069],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2162,344) scale:1.138],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(340,-249) scale:1.046],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2747,-117) scale:1.069],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2607,-279) scale:1.115],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1602,53) scale:1.253],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1350,24) scale:1.253],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(310,265) scale:1.069],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(619,204) scale:1.069],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(554,31) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(608,-2) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(670,-40) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1015,-248) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1082,-235) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1154,-251) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1634,-475) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1666,-398) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1682,-303) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1850,-174) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1906,-146) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2042,-4) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2067,46) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(809,-398) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(858,-427) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(855,-373) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(371,-20) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(699,-220) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1083,-377) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1519,-395) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1813,-350) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2071,-205) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2239,38) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2563,308) scale:1], nil], //end of level segment
 
-                  // Craig's 1-SpeedOne
-                  [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1262,-252) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1778,418) scale:1.08252],
-                   [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1317,467) scale:0.96752],
-                   [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(479,406) scale:1.22052],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1034,38) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1110,61) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1179,81) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1671,103) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1752,92) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1843,78) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1056,88) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1131,115) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1810,135) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1702,42) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(232,-33) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(277,-32) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(234,18) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(275,19) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(230,-85) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(275,-84) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(234,66) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(277,68) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(644,23) scale:1.749999],
-                   [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1437,137) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2129,37) scale:1],
-                   nil],
+
+//Level Title: AlmostAnS Difficulty: 3 (OUT OF TEN)
+[NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(877,-174) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(445,225) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1257,141) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(242,-228) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(334,202) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(360,268) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1330,95) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1153,568) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1041,491) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1072,557) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(753,448) scale:1.069],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1669,567) scale:0.875],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(718,88) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(755,68) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(752,112) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(722,44) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1078,102) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1126,155) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1187,200) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1259,220) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1327,224) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1396,219) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(502,-2) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(965,178) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1415,354) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1794,364) scale:1], nil], //end of level segment
+
+//Level Title: SmoothSail Difficulty: 2 (OUT OF TEN)
+[NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(108,228) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(282,252) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(198,241) scale:0.885],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(201,-249) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(375,-191) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(594,-239) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1680,152) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1287,187) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1694,-303) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(789,418) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1242,-244) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2380,-214) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2311,278) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1040,111) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(948,110) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1139,100) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1249,84) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1361,67) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1462,78) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1566,57) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1643,-3) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1720,-75) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1794,-141) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1881,-182) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(616,98) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1047,-30) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1473,-59) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1908,-39) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2414,72) scale:1], nil], //end of level segment
+
+//Level Title: EazyMode Difficulty: 1 (OUT OF TEN)
+[NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(320,-209) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(774,307) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(-8,252) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1066,-136) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(915,-227) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1371,134) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1286,-53) scale:1.184],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(904,498) scale:1.115],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1201,761) scale:1.092],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1663,183) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1700,507) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1549,381) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(14,-294) scale:1.138],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(645,-329) scale:1.161],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(558,304) scale:1.184],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1035,644) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(308,207) scale:1.023],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1224,156) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1273,218) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(721,-17) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(792,-3) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(747,51) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(461,-3) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(980,121) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1279,434) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1591,735) scale:1], nil], //end of level segment
+
+
+
                   
-                  //1-SmoothSail
-                  [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(48,246) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1452,-144) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(601,-113) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(488,209) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(529,236) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(575,252) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(621,253) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(672,249) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(725,245) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(779,239) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(832,232) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(886,228) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(946,224) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1003,219) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1173,215) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1061,215) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1116,213) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2070,-246) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2111,-238) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2021,22) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2062,31) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(600,106) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1246,96) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1816,-137) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2298,-72) scale:1],
-                   nil],
-                  
-                  // Craig's 2-Simple1
-                  [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(294,-224) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(373,-187) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(303,-159) scale:0.66852],
-                   [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1655,-73) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(838,213) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2287,-43) scale:1.19752],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(583,-101) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(583,-47) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(585,8) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(588,57) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(552,30) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(548,-24) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(545,-78) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1335,14) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1385,22) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1359,66) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1119,126) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1171,132) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1146,83) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1512,177) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1564,181) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1542,126) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2098,13) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2147,0) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2186,-49) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2207,0) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2352,-100) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2371,-45) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2405,-87) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2449,-103) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(755,-8) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1826,109) scale:1],
-                   [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2787,-127) scale:1],
-                   nil],
-                  
-                  
-                  
+                                    
+                                                      
+                                                                                          
                   nil]],
                 
                 
                 //galaxy 2
                 [[Galaxy alloc]initWithSegments:
                  [NSArray arrayWithObjects:
+                 
+                 
+                 
+                 
+                 
+                 //Level Title: TowardsTheSun Difficulty: 3 (OUT OF TEN)
+[NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(310,138) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(362,144) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(411,144) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(709,-39) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(763,-23) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(805,16) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(795,365) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(831,413) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(875,444) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1187,444) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1220,487) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1242,545) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(372,2) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(691,102) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(930,308) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1100,560) scale:1], nil], //end of level segment
+
+//Level Title: BaitAndThenSome Difficulty: 4 (OUT OF TEN)
+[NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kpowerup  position:ccp(1755,416) scale:2],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1698,54) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1396,564) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(534,290) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1240,-69) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1080,373) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1513,-19) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1395,8) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2119,566) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1984,705) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1556,663) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(911,-226) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(793,-206) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(876,-149) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(668,402) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1735,283) scale:0.875],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(765,-21) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(737,46) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(803,37) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1703,572) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1755,569) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1812,561) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1865,550) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2376,413) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2439,416) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2503,411) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2830,409) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2906,412) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(2979,409) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1638,165) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1689,161) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1740,154) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1797,142) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(469,-20) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(984,127) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1497,293) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1972,247) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2451,183) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2940,190) scale:1], nil], //end of level segment
+
+
+                 
+                 
+                 
                   
                   //highway coin risk reward
                   [NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(-72,170) scale:1],
@@ -289,10 +227,6 @@
                    [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(7090,31) scale:1],
                    [[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(7630,102) scale:1],
                    nil],
-                  
-                  //Level Title: SmoothSail Difficulty: 2 (OUT OF TEN)
-[NSArray arrayWithObjects: [[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(108,228) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(282,252) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(198,241) scale:0.885],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(201,-249) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(375,-191) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(594,-239) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1680,152) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1287,187) scale:0.875],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1694,-303) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(789,418) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(1242,-244) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2380,-214) scale:1],[[LevelObjectReturner alloc]initWithType:kasteroid  position:ccp(2311,278) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1040,111) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(948,110) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1139,100) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1249,84) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1361,67) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1462,78) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1566,57) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1643,-3) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1720,-75) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1794,-141) scale:1],[[LevelObjectReturner alloc]initWithType:kcoin  position:ccp(1881,-182) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(0,0) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(616,98) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1047,-30) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1473,-59) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(1908,-39) scale:1],[[LevelObjectReturner alloc]initWithType:kplanet  position:ccp(2414,72) scale:1], nil], //end of level segment
-
                   
                   nil]],
                 

@@ -712,10 +712,14 @@ typedef struct {
     //bool isHittingAsteroid = false;
     for (Asteroid* asteroid in asteroids) {
         CGPoint p = asteroid.sprite.position;
-        if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= asteroid.radius * asteroidRadiusCollisionZone && orbitState == 3) {
+        if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= asteroid.radius * asteroidRadiusCollisionZone && orbitState == 3 && asteroid.sprite.visible) {
             //isHittingAsteroid = true;
+            for (Asteroid* a in asteroids) {
+                if (ccpDistance(p, a.sprite.position) <= 80)
+                    [a.sprite setVisible:false];
+            }
             if (!(player.currentPowerup.type == 1)) {
-                [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
+                [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number asteroidHit:asteroid];
             }
         }
     }
@@ -907,12 +911,12 @@ typedef struct {
         }
         
         if (ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) <= planet.radius * planetRadiusCollisionZone && planet.number >= lastPlanetVisited.number) {
-            [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
+            [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number asteroidHit:Nil];
         }
         
         if (dangerLevel >= 1) {
             dangerLevel = 0;
-            [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
+            [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number asteroidHit:Nil];
         }
         
         if (planet.number >lastPlanetVisited.number+2)
@@ -925,17 +929,19 @@ typedef struct {
     if (orbitState == 0 || orbitState == 2)
         killer = 0;
     if (killer > deathAfterThisLong)
-        [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number];
+        [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number asteroidHit:Nil];
 }
 
 // FIX you don't really need planetIndex passed in because it's just going to spawn at the position of the last thrust point anyway
-- (void)RespawnPlayerAtPlanetIndex:(int)planetIndex {
+- (void)RespawnPlayerAtPlanetIndex:(int)planetIndex asteroidHit:(Asteroid*)asteroidHit {
     timeDilationCoefficient *= factorToScaleTimeDilationByOnDeath;
     numZonesHitInARow = 0;
     orbitState = 0;
     
     [playerExplosionParticle resetSystem];
     [playerExplosionParticle setPosition:player.sprite.position];
+    if (asteroidHit)
+        [playerExplosionParticle setPosition:asteroidHit.sprite.position];
     [playerExplosionParticle setPositionType:kCCPositionTypeGrouped];
     [playerExplosionParticle setVisible:true];
     

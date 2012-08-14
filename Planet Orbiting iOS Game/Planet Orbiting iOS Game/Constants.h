@@ -113,13 +113,13 @@ const float blackHoleCollisionRadiusFactor = .2f;
 const float blackHoleSpeedFactor = 1.85*.6f*.6f;
 
 //increase to make timeDilationFactor decrease more rapidly
-const float timeDilationReduceRate = .001;
+const float timeDilationReduceRate = .0011;
 
 //1 means you lose no speed when you die, 0 means you lose it all
 const float factorToScaleTimeDilationByOnDeath = .9;
 
 //increase to increase timeDilationFactor by a larger amount everytime you get to a new zone
-const float timeDilationIncreaseRate = .08;
+const float timeDilationIncreaseRate = .07;
 
 //the smallest the time dilation factor can go
 //THIS IS NOW IN UPGRADE VALUES const float absoluteMinTimeDilation = .85;
