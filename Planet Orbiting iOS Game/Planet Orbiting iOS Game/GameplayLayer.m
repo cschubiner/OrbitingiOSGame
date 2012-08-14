@@ -1535,7 +1535,7 @@ typedef struct {
 
 - (void)launchSurvey {
     [Flurry logEvent:@"Launched survey from gameplaylayer"];
-    NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/PBD9L5H"];
+    NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/VJJ3RGJ"];
     [[UIApplication sharedApplication] openURL:url];
 }
 

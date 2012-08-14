@@ -534,7 +534,7 @@ const float effectsVolumeMainMenu = 1;
         }
     } else {
         if (buttonIndex == 1) {
-            NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/PBD9L5H"];
+            NSURL *url = [NSURL URLWithString:@"http://www.surveymonkey.com/s/VJJ3RGJ"];
             [[UIApplication sharedApplication] openURL:url];
             [Flurry logEvent:@"Launched survey from main menu"];
         }
