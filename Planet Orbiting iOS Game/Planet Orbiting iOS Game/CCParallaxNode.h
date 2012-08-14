@@ -25,7 +25,7 @@
  */
 
 #import "CCNode.h"
-#import "Support/ccCArray.h"
+#import "ccCArray.h"
 
 /** CCParallaxNode: A node that simulates a parallax scroller
 

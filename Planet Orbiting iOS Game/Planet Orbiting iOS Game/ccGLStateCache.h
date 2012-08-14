@@ -25,7 +25,7 @@
 
 #import <TargetConditionals.h>
 #import "ccMacros.h"
-#import "Platforms/CCGL.h"
+#import "CCGL.h"
 
 @class CCGLProgram;
 

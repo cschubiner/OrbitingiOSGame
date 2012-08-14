@@ -43,7 +43,7 @@
 //
 
 // opengl
-#import "Platforms/CCGL.h"
+#import "CCGL.h"
 
 // cocos2d
 #import "ccConfig.h"
@@ -52,14 +52,14 @@
 #import "CCTextureCache.h"
 #import "CCTextureAtlas.h"
 #import "ccMacros.h"
-#import "Support/CCProfiling.h"
+#import "CCProfiling.h"
 
 // support
-#import "Support/OpenGL_Internal.h"
-#import "Support/CGPointExtension.h"
-#import "Support/base64.h"
-#import "Support/ZipUtils.h"
-#import "Support/CCFileUtils.h"
+#import "OpenGL_Internal.h"
+#import "CGPointExtension.h"
+#import "base64.h"
+#import "ZipUtils.h"
+#import "CCFileUtils.h"
 
 @interface CCParticleSystem ()
 -(void) updateBlendFunc;

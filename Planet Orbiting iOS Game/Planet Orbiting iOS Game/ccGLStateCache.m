@@ -29,8 +29,8 @@
 #import "ccConfig.h"
 
 // extern
-#import "kazmath/GL/matrix.h"
-#import "kazmath/kazmath.h"
+#import "matrix.h"
+#import "kazmath.h"
 
 static GLuint	_ccCurrentProjectionMatrix = -1;
 static BOOL		_vertexAttribPosition = NO;

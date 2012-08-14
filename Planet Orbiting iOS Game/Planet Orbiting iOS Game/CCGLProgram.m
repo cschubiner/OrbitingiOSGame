@@ -29,13 +29,13 @@
 #import "CCGLProgram.h"
 #import "ccGLStateCache.h"
 #import "ccMacros.h"
-#import "Support/CCFileUtils.h"
-#import "Support/uthash.h"
-#import "Support/OpenGL_Internal.h"
+#import "CCFileUtils.h"
+#import "uthash.h"
+#import "OpenGL_Internal.h"
 
 // extern
-#import "kazmath/GL/matrix.h"
-#import "kazmath/kazmath.h"
+#import "matrix.h"
+#import "kazmath.h"
 
 
 typedef struct _hashUniformEntry

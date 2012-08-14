@@ -36,7 +36,7 @@
 #import <CoreGraphics/CGGeometry.h>	// CGPoint
 #endif
 
-#import "Platforms/CCGL.h"
+#import "CCGL.h"
 
 /** RGB color composed of bytes 3 bytes
 @since v0.8

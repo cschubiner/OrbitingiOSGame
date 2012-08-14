@@ -26,7 +26,7 @@
 
 
 #import <Foundation/Foundation.h>
-#import "../ccTypes.h"
+#import "ccTypes.h"
 
 /** Helper class to handle file operations */
 @interface CCFileUtils : NSObject

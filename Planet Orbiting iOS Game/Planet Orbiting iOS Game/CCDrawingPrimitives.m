@@ -29,12 +29,12 @@
 
 #import "CCDrawingPrimitives.h"
 #import "ccMacros.h"
-#import "Platforms/CCGL.h"
+#import "CCGL.h"
 #import "ccGLStateCache.h"
 #import "CCShaderCache.h"
 #import "CCGLProgram.h"
 #import "CCActionCatmullRom.h"
-#import "Support/OpenGL_Internal.h"
+#import "OpenGL_Internal.h"
 
 
 static BOOL initialized = NO;

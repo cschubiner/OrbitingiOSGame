@@ -35,13 +35,13 @@
  *
  */
 
-#import "Platforms/CCNS.h"
+#import "CCNS.h"
 #import "ccMacros.h"
 #import "CCTextureCache.h"
 #import "CCSpriteFrameCache.h"
 #import "CCSpriteFrame.h"
 #import "CCSprite.h"
-#import "Support/CCFileUtils.h"
+#import "CCFileUtils.h"
 
 @interface CCSpriteFrameCache ()
 - (void) addSpriteFramesWithDictionary:(NSDictionary*)dictionary textureFilename:(NSString*)filename;

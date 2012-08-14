@@ -26,7 +26,7 @@
 
 
 #import "CCNode.h"
-#import "kazmath/mat4.h"
+#import "mat4.h"
 
 /**
     A CCCamera is used in every CCNode.

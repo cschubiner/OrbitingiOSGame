@@ -41,9 +41,9 @@
 #import "CCDrawingPrimitives.h"
 #import "CCConfiguration.h"
 #import "CCTextureCache.h"
-#import "Support/CCFileUtils.h"
-#import "Support/CGPointExtension.h"
-#import "Support/uthash.h"
+#import "CCFileUtils.h"
+#import "CGPointExtension.h"
+#import "uthash.h"
 
 #pragma mark -
 #pragma mark FNTConfig Cache - free functions

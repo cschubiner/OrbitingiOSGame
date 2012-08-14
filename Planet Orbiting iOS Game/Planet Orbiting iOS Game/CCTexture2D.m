@@ -69,8 +69,8 @@
  * Added many additions for cocos2d
  */
 
-#import "Platforms/CCGL.h"
-#import "Platforms/CCNS.h"
+#import "CCGL.h"
+#import "CCNS.h"
 
 #import "CCTexture2D.h"
 #import "ccConfig.h"
@@ -82,8 +82,8 @@
 #import "CCShaderCache.h"
 #import "CCDirector.h"
 
-#import "Support/ccUtils.h"
-#import "Support/CCFileUtils.h"
+#import "ccUtils.h"
+#import "CCFileUtils.h"
 
 #import "ccDeprecated.h"
 

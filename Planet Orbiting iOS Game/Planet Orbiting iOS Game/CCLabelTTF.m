@@ -26,15 +26,15 @@
 
 
 #import "CCLabelTTF.h"
-#import "Support/CGPointExtension.h"
+#import "CGPointExtension.h"
 #import "ccMacros.h"
 #import "CCShaderCache.h"
 #import "CCGLProgram.h"
-#import "Support/CCFileUtils.h"
+#import "CCFileUtils.h"
 #import "ccDeprecated.h"
 
 #ifdef __CC_PLATFORM_IOS
-#import "Platforms/iOS/CCDirectorIOS.h"
+#import "CCDirectorIOS.h"
 #endif
 
 #if CC_USE_LA88_LABELS

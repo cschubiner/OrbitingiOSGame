@@ -30,10 +30,10 @@
 #import "CCShaderCache.h"
 #import "ccGLStateCache.h"
 #import "CCDirector.h"
-#import "Support/TransformUtils.h"
+#import "TransformUtils.h"
 
 // external
-#import "kazmath/GL/matrix.h"
+#import "matrix.h"
 
 
 @interface CCAtlasNode ()

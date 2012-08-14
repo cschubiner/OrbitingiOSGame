@@ -33,7 +33,7 @@
 #import "CCActionInstant.h"
 #import "CCProgressTimer.h"
 #import "CCActionProgressTimer.h"
-#import "Support/CGPointExtension.h"
+#import "CGPointExtension.h"
 
 enum {
 	kCCSceneRadial = 0xc001,

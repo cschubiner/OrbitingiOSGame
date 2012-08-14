@@ -27,13 +27,13 @@
 // Common layer for OpenGL stuff
 //
 
-#import "../ccMacros.h"
+#import "ccMacros.h"
 
 #if __CC_PLATFORM_IOS
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 #import <OpenGLES/EAGL.h>
-#import "iOS/CCGLView.h"
+#import "CCGLView.h"
 
 #elif __CC_PLATFORM_MAC
 #import <OpenGL/gl.h>

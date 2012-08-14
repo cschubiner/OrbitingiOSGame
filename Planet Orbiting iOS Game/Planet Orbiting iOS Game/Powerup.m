@@ -39,8 +39,6 @@
             glowSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];
             
         } else { //type needs to be a valid int from the list above
-            id *hi = NULL;
-            return *hi;
         }
         
         //if (shouldBeRand)

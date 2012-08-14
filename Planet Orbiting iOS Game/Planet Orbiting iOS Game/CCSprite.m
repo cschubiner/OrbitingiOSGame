@@ -37,13 +37,13 @@
 #import "ccGLStateCache.h"
 #import "CCGLProgram.h"
 #import "CCDirector.h"
-#import "Support/CGPointExtension.h"
-#import "Support/TransformUtils.h"
-#import "Support/CCProfiling.h"
-#import "Support/OpenGL_Internal.h"
+#import "CGPointExtension.h"
+#import "TransformUtils.h"
+#import "CCProfiling.h"
+#import "OpenGL_Internal.h"
 
 // external
-#import "kazmath/GL/matrix.h"
+#import "matrix.h"
 
 #pragma mark -
 #pragma mark CCSprite

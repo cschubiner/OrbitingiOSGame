@@ -34,8 +34,8 @@
 #import "CCDirector.h"
 #import "CCConfiguration.h"
 
-#import "Support/NSThread+performBlock.h"
-#import "Support/OpenGL_Internal.h"
+#import "NSThread+performBlock.h"
+#import "OpenGL_Internal.h"
 
 @interface CCTextureAtlas ()
 -(void) setupIndices;

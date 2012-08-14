@@ -29,7 +29,7 @@
 #import "CCParticleExamples.h"
 #import "CCTextureCache.h"
 #import "CCDirector.h"
-#import "Support/CGPointExtension.h"
+#import "CGPointExtension.h"
 
 //
 // ParticleFireworks

@@ -26,7 +26,7 @@
 
 #import "CCActionGrid3D.h"
 #import "ccMacros.h"
-#import "Support/CGPointExtension.h"
+#import "CGPointExtension.h"
 
 #pragma mark -
 #pragma mark Waves3D

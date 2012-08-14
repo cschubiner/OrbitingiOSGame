@@ -26,7 +26,7 @@
 
 #import "CCTextureAtlas.h"
 #import "CCAtlasNode.h"
-#import "Support/TGAlib.h"
+#import "TGAlib.h"
 
 /** CCTileMapAtlas is a subclass of CCAtlasNode.
 

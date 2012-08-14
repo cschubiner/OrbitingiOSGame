@@ -30,8 +30,8 @@
 #import "CCShaderCache.h"
 #import "ccMacros.h"
 
-#import "Support/CCVertex.h"
-#import "Support/CGPointExtension.h"
+#import "CCVertex.h"
+#import "CGPointExtension.h"
 
 
 @implementation CCMotionStreak

@@ -29,7 +29,7 @@
 #import "ccMacros.h"
 #import "CCAction.h"
 #import "CCActionInterval.h"
-#import "Support/CGPointExtension.h"
+#import "CGPointExtension.h"
 
 //
 // Action Base Class

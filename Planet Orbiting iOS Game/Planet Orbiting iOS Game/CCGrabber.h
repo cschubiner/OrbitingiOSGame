@@ -24,7 +24,7 @@
  */
 
 
-#import "Platforms/CCGL.h"
+#import "CCGL.h"
 #import <Foundation/Foundation.h>
 
 @class CCTexture2D;

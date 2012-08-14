@@ -34,7 +34,7 @@
  */
 
 #import "CCSpriteBatchNode.h"
-#import "Support/uthash.h"
+#import "uthash.h"
 
 enum {
 	kCCLabelAutomaticWidth = -1,

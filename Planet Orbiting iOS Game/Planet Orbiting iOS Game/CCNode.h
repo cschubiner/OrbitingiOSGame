@@ -25,13 +25,13 @@
  * THE SOFTWARE.
  */
 
-#import "Platforms/CCGL.h"
+#import "CCGL.h"
 #import "ccTypes.h"
 #import "CCProtocols.h"
 #import "ccConfig.h"
 #import "ccGLStateCache.h"
-#import "Support/CCArray.h"
-#import "kazmath/kazmath.h"
+#import "CCArray.h"
+#import "kazmath.h"
 
 enum {
 	kCCNodeTagInvalid = -1,

@@ -131,40 +131,40 @@
 #import "ccDeprecated.h"
 
 // Platform common
-#import "Platforms/CCGL.h"
-#import "Platforms/CCNS.h"
+#import "CCGL.h"
+#import "CCNS.h"
 
 #ifdef __CC_PLATFORM_IOS
-#import "Platforms/iOS/CCTouchDispatcher.h"
-#import "Platforms/iOS/CCTouchDelegateProtocol.h"
-#import "Platforms/iOS/CCTouchHandler.h"
-#import "Platforms/iOS/CCGLView.h"
-#import "Platforms/iOS/CCDirectorIOS.h"
+#import "CCTouchDispatcher.h"
+#import "CCTouchDelegateProtocol.h"
+#import "CCTouchHandler.h"
+#import "CCGLView.h"
+#import "CCDirectorIOS.h"
 
 #elif defined(__CC_PLATFORM_MAC)
-#import "Platforms/Mac/CCGLView.h"
-#import "Platforms/Mac/CCDirectorMac.h"
-#import "Platforms/Mac/CCWindow.h"
-#import "Platforms/Mac/CCEventDispatcher.h"
+#import "Mac/CCGLView.h"
+#import "Mac/CCDirectorMac.h"
+#import "Mac/CCWindow.h"
+#import "Mac/CCEventDispatcher.h"
 #endif
 
 //
 // cocos2d helper files
 //
-#import "Support/OpenGL_Internal.h"
-#import "Support/CCFileUtils.h"
-#import "Support/CGPointExtension.h"
-#import "Support/ccCArray.h"
-#import "Support/CCArray.h"
-#import "Support/ccUtils.h"
-#import "Support/TransformUtils.h"
-#import "Support/CCProfiling.h"
+#import "OpenGL_Internal.h"
+#import "CCFileUtils.h"
+#import "CGPointExtension.h"
+#import "ccCArray.h"
+#import "CCArray.h"
+#import "ccUtils.h"
+#import "TransformUtils.h"
+#import "CCProfiling.h"
 
 //
 // external
 //
-#import "kazmath/kazmath.h"
-#import "kazmath/GL/matrix.h"
+#import "kazmath.h"
+#import "matrix.h"
 
 
 

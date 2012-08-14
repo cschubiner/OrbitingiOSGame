@@ -47,19 +47,19 @@
 #import "CCShaderCache.h"
 
 // support imports
-#import "Platforms/CCGL.h"
-#import "Platforms/CCNS.h"
+#import "CCGL.h"
+#import "CCNS.h"
 
-#import "Support/OpenGL_Internal.h"
-#import "Support/CGPointExtension.h"
-#import "Support/CCProfiling.h"
-#import "Support/CCFileUtils.h"
+#import "OpenGL_Internal.h"
+#import "CGPointExtension.h"
+#import "CCProfiling.h"
+#import "CCFileUtils.h"
 
 #ifdef __CC_PLATFORM_IOS
-#import "Platforms/iOS/CCDirectorIOS.h"
+#import "CCDirectorIOS.h"
 #define CC_DIRECTOR_DEFAULT CCDirectorDisplayLink
 #elif defined(__CC_PLATFORM_MAC)
-#import "Platforms/Mac/CCDirectorMac.h"
+#import "Mac/CCDirectorMac.h"
 #define CC_DIRECTOR_DEFAULT CCDirectorDisplayLink
 #endif
 

@@ -25,8 +25,8 @@
  */
 
 #import "CCParallaxNode.h"
-#import "Support/CGPointExtension.h"
-#import "Support/ccCArray.h"
+#import "CGPointExtension.h"
+#import "ccCArray.h"
 
 @interface CGPointObject : NSObject
 {

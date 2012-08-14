@@ -28,7 +28,7 @@
 
 
 // opengl
-#import "Platforms/CCGL.h"
+#import "CCGL.h"
 
 // cocos2d
 #import "ccConfig.h"
@@ -45,13 +45,13 @@
 #import "CCConfiguration.h"
 
 // support
-#import "Support/OpenGL_Internal.h"
-#import "Support/CGPointExtension.h"
-#import "Support/TransformUtils.h"
-#import "Support/NSThread+performBlock.h"
+#import "OpenGL_Internal.h"
+#import "CGPointExtension.h"
+#import "TransformUtils.h"
+#import "NSThread+performBlock.h"
 
 // extern
-#import "kazmath/GL/matrix.h"
+#import "matrix.h"
 
 @interface CCParticleSystemQuad ()
 -(void) initVAO;

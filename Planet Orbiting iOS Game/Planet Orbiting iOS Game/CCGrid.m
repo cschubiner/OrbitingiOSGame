@@ -33,17 +33,17 @@
 #import "CCShaderCache.h"
 #import "ccGLStateCache.h"
 
-#import "Platforms/CCGL.h"
-#import "Support/CGPointExtension.h"
-#import "Support/ccUtils.h"
-#import "Support/TransformUtils.h"
-#import "Support/OpenGL_Internal.h"
+#import "CCGL.h"
+#import "CGPointExtension.h"
+#import "ccUtils.h"
+#import "TransformUtils.h"
+#import "OpenGL_Internal.h"
 
-#import "kazmath/kazmath.h"
-#import "kazmath/GL/matrix.h"
+#import "kazmath.h"
+#import "matrix.h"
 
 #ifdef __CC_PLATFORM_IOS
-#import "Platforms/iOS/CCDirectorIOS.h"
+#import "CCDirectorIOS.h"
 #endif // __CC_PLATFORM_IOS
 
 #pragma mark -

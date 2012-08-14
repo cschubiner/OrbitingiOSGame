@@ -26,7 +26,7 @@
 
 // Only compile this code on iOS. These files should NOT be included on your Mac project.
 // But in case they are included, it won't be compiled.
-#import "../../ccMacros.h"
+#import "ccMacros.h"
 #ifdef __CC_PLATFORM_IOS
 
 #import <unistd.h>
@@ -35,25 +35,25 @@
 #import "CCDirectorIOS.h"
 #import "CCTouchDelegateProtocol.h"
 #import "CCTouchDispatcher.h"
-#import "../../CCScheduler.h"
-#import "../../CCActionManager.h"
-#import "../../CCTextureCache.h"
-#import "../../ccMacros.h"
-#import "../../CCScene.h"
-#import "../../CCGLProgram.h"
-#import "../../ccGLStateCache.h"
-#import "../../CCLayer.h"
+#import "CCScheduler.h"
+#import "CCActionManager.h"
+#import "CCTextureCache.h"
+#import "ccMacros.h"
+#import "CCScene.h"
+#import "CCGLProgram.h"
+#import "ccGLStateCache.h"
+#import "CCLayer.h"
 
 // support imports
-#import "../../Support/OpenGL_Internal.h"
-#import "../../Support/CGPointExtension.h"
-#import "../../Support/TransformUtils.h"
+#import "OpenGL_Internal.h"
+#import "CGPointExtension.h"
+#import "TransformUtils.h"
 
-#import "kazmath/kazmath.h"
-#import "kazmath/GL/matrix.h"
+#import "kazmath.h"
+#import "matrix.h"
 
 #if CC_ENABLE_PROFILERS
-#import "../../Support/CCProfiling.h"
+#import "CCProfiling.h"
 #endif
 
 

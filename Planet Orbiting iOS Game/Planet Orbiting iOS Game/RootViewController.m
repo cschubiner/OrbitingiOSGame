@@ -68,9 +68,9 @@
 	// Sample: Autorotate only in landscape mode
 	//
 	if( interfaceOrientation == UIInterfaceOrientationLandscapeLeft ) {
-        [Kamcord setDeviceOrientation:CCDeviceOrientationLandscapeLeft];
+        //[Kamcord setDeviceOrientation:CCDeviceOrientationLandscapeLeft];
 	} else if( interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
-        [Kamcord setDeviceOrientation:CCDeviceOrientationLandscapeRight];
+        //[Kamcord setDeviceOrientation:CCDeviceOrientationLandscapeRight];
 
 	}
 	
@@ -145,9 +145,7 @@
 }
 
 
-- (void)dealloc {
-    [super dealloc];
-}
+
 
 
 @end

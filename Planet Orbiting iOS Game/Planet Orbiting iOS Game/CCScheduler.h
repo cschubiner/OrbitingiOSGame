@@ -25,7 +25,7 @@
 
 
 
-#import "Support/uthash.h"
+#import "uthash.h"
 #import "ccTypes.h"
 
 // Priority level reserved for system services.

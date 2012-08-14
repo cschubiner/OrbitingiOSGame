@@ -40,10 +40,9 @@
 #import "CCSpriteFrameCache.h"
 #import "CCLabelTTF.h"
 #import "CCTexture2D.h"
-#import "Support/CCFileUtils.h"
-#import "Platforms/Mac/CCDirectorMac.h"
-#import "Platforms/iOS/CCTouchDispatcher.h"
-#import "Platforms/iOS/CCDirectorIOS.h"
+#import "CCFileUtils.h"
+#import "CCTouchDispatcher.h"
+#import "CCDirectorIOS.h"
 
 
 /*

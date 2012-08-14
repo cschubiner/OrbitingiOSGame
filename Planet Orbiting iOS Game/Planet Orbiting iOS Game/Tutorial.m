@@ -113,7 +113,5 @@
         justTouchedScreen = true;
 }
 
-- (void)dealloc {
-    [super dealloc];
-}
+
 @end

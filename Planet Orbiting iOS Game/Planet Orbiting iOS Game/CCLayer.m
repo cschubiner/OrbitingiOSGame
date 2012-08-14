@@ -27,7 +27,7 @@
 
 #import <stdarg.h>
 
-#import "Platforms/CCGL.h"
+#import "CCGL.h"
 
 #import "CCLayer.h"
 #import "CCDirector.h"
@@ -35,19 +35,19 @@
 #import "CCShaderCache.h"
 #import "CCGLProgram.h"
 #import "ccGLStateCache.h"
-#import "Support/TransformUtils.h"
-#import "Support/CGPointExtension.h"
+#import "TransformUtils.h"
+#import "CGPointExtension.h"
 
 #ifdef __CC_PLATFORM_IOS
-#import "Platforms/iOS/CCTouchDispatcher.h"
-#import "Platforms/iOS/CCDirectorIOS.h"
+#import "CCTouchDispatcher.h"
+#import "CCDirectorIOS.h"
 #elif defined(__CC_PLATFORM_MAC)
-#import "Platforms/Mac/CCEventDispatcher.h"
-#import "Platforms/Mac/CCDirectorMac.h"
+#import "Mac/CCEventDispatcher.h"
+#import "Mac/CCDirectorMac.h"
 #endif
 
 // extern
-#import "kazmath/GL/matrix.h"
+#import "matrix.h"
 
 #pragma mark -
 #pragma mark Layer

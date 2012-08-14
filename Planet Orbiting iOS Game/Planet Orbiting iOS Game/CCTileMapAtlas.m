@@ -27,7 +27,7 @@
 #import "ccConfig.h"
 #import "CCTileMapAtlas.h"
 #import "ccMacros.h"
-#import "Support/CCFileUtils.h"
+#import "CCFileUtils.h"
 
 @interface CCTileMapAtlas (Private)
 -(void) loadTGAfile:(NSString*)file;

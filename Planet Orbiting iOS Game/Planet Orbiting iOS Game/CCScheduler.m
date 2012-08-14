@@ -28,9 +28,9 @@
 #import "CCScheduler.h"
 #import "ccMacros.h"
 #import "CCDirector.h"
-#import "Support/uthash.h"
-#import "Support/utlist.h"
-#import "Support/ccCArray.h"
+#import "uthash.h"
+#import "utlist.h"
+#import "ccCArray.h"
 
 //
 // Data structures

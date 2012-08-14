@@ -64,10 +64,10 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #import "ccMacros.h"
 #import "CCConfiguration.h"
 #import "ccGLStateCache.h"
-#import "Support/ccUtils.h"
-#import "Support/CCFileUtils.h"
-#import "Support/ZipUtils.h"
-#import "Support/OpenGL_Internal.h"
+#import "ccUtils.h"
+#import "CCFileUtils.h"
+#import "ZipUtils.h"
+#import "OpenGL_Internal.h"
 
 #pragma mark -
 #pragma mark CCTexturePVR

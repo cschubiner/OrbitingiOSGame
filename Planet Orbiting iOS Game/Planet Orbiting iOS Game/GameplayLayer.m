@@ -82,7 +82,6 @@ typedef struct {
     [spriteSheet addChild:coin.sprite];
     //[spriteSheet addChild:coin.sprite];
     //[spriteSheet reorderChild:coin.sprite z:5];
-    [coin release];
     //NSLog(@"ended coin");
     
 }
@@ -103,10 +102,9 @@ typedef struct {
     [spriteSheet addChild:powerup.coinSprite];
     [spriteSheet addChild:powerup.glowSprite];
     
-    NSLog(@"galaxy114powerup");
+    //NSLog(@"galaxy114powerup");
     [spriteSheet reorderChild:powerup.glowSprite z:2.5];
     
-    [powerup release];
     //NSLog(@"ended powerup");
     
 }
@@ -135,7 +133,6 @@ typedef struct {
     asteroid.whichGalaxyThisObjectBelongsTo = currentGalaxy.number;
     [asteroids addObject:asteroid];
     [spriteSheet addChild:asteroid.sprite];
-    [asteroid release];
     //NSLog(@"ended asteroid");
     
 }
@@ -167,8 +164,6 @@ typedef struct {
     
     [currentGalaxy.spriteSheet addChild:planet.sprite];
     [currentGalaxy.spriteSheet addChild:zone.sprite];
-    [zone release];
-    [planet release];
     planetCounter++;
     //NSLog(@"ended planet and zone");
 }
@@ -434,7 +429,6 @@ typedef struct {
         }
         
         player = [[Player alloc]init];
-        [player retain];
         player.sprite = [CCSprite spriteWithSpriteFrameName:@"playercute.png"];
         player.alive=true;
         [player.sprite setScale:playerSizeScale];
@@ -454,7 +448,6 @@ typedef struct {
         id action2 = [CCSequence actions:[CCSpawn actions:fadeAction,[CCScaleTo actionWithDuration:.3 scale:1], nil], nil] ;
         id repeatAction = [CCRepeat actionWithAction:[CCSequence actions:[CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.8 scale:1.0f]],[CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.8 scale:1]], nil] times:2];
         galaxyLabelAction = [CCSequence actions:action2,repeatAction, [CCFadeOut actionWithDuration:.8],nil];
-        [galaxyLabelAction retain];
         [galaxyLabel runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1.1], galaxyLabelAction,nil]];
         justDisplayedGalaxyLabel = true;
         
@@ -463,13 +456,13 @@ typedef struct {
         float streakWidth = streakWidthWITHOUTRetinaDisplay;
         if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsRetinaDisplay])
             streakWidth = streakWidthOnRetinaDisplay;
-        streak=[CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak2.png" width:streakWidth length:32 color:// ccc4(153,102,0, 255)  //orange
+       /* streak=[CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak2.png" width:streakWidth length:32 color:// ccc4(153,102,0, 255)  //orange
                 //ccc4(255,255,255, 255) // white
                 // ccc4(255,255,0,255) // yellow
                 //  ccc4(0,0,255,255) // blue
                 ccc4(0,255,153,255) // blue green
                 // ccc4(0,255,0,255) // green
-                                      target:player.sprite];
+                                      target:player.sprite];*/
         
         cameraFocusNode = [[CCSprite alloc]init];
         killer = 0;
@@ -492,13 +485,13 @@ typedef struct {
         currentCoinLabel = 0;
         numCoinsDisplayed = 0;
         
-        
         background = [CCSprite spriteWithFile:@"background0.pvr.ccz"];
         background2 = [CCSprite spriteWithFile:@"background1.pvr.ccz"];
         [background setPosition:ccp(size.width/2+14,size.height/5+2)];
+        [background setAnchorPoint:CGPointZero];
+        [background setPosition:ccp(0,-size.height/2+51)];
+        
         [background2 setPosition:ccp(size.width/2+14,size.height/5+2)];
-        [background2 retain];
-        [background retain];
         [self addChild:background];
         
         [self addChild:cometParticle];
@@ -509,8 +502,8 @@ typedef struct {
         light = [[Light alloc] init];
         
         light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
+        [light.sprite setPosition:CGPointZero];
         [light.sprite setColor:ccc3(0, 0, 0)]; //this makes the light black!
-        [[light sprite]retain];
         
         light.scoreVelocity = initialLightScoreVelocity;
         //  glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -537,11 +530,11 @@ typedef struct {
         [self UpdateScore];
         
         recentName = @"PLAYER";
-        playerNameLabel = [[[UITextView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)]retain];
+        playerNameLabel = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
         
         [Flurry logEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:(int)isInTutorialMode],@"isInTutorialMode",nil]  timed:YES];
         [self schedule:@selector(Update:) interval:0]; // this makes the update loop loop!!!!
-        [Kamcord startRecording];
+        //[Kamcord startRecording];
 	}
 	return self;
 }
@@ -694,7 +687,7 @@ typedef struct {
 }
 
 - (ALuint)playSound:(NSString*)soundFile shouldLoop:(bool)shouldLoop pitch:(float)pitch{
-    [Kamcord playSound:soundFile loop:shouldLoop];
+    //[Kamcord playSound:soundFile loop:shouldLoop];
     if (shouldLoop)
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:soundFile loop:YES];
     else
@@ -960,7 +953,7 @@ typedef struct {
     
     [player.sprite runAction:player.moveAction];
     [thrustParticle stopSystem];
-    streak.visible = false;
+   // streak.visible = false;
     player.alive = false;
     player.velocity=ccp(0,.05);
     player.acceleration=CGPointZero;
@@ -1022,7 +1015,7 @@ typedef struct {
     }
     else if (player.moveAction.isDone){
         player.alive=true;
-        [streak runAction:[CCSequence actions:[CCDelayTime actionWithDuration:timeToHideStreakAfterRespawn],[CCShow action], nil]];
+  //      [streak runAction:[CCSequence actions:[CCDelayTime actionWithDuration:timeToHideStreakAfterRespawn],[CCShow action], nil]];
         [thrustParticle resetSystem];
         
         [playerSpawnedParticle resetSystem];
@@ -1053,7 +1046,7 @@ typedef struct {
     
     [thrustParticle setPositionType:kCCPositionTypeRelative];
     [cameraLayer addChild:thrustParticle z:2];
-    [cameraLayer addChild:streak z:1];
+//    [cameraLayer addChild:streak z:1];
     [spriteSheet addChild:player.sprite z:3];
 }
 
@@ -1120,7 +1113,7 @@ typedef struct {
             if (percentofthewaytonext>1) percentofthewaytonext = 1;
             if ([[self children]containsObject:background]) {
                 if ([[self children]containsObject:background2]==false) {
-                   // NSLog(@"galaxy114");
+                   // //NSLog(@"galaxy114");
                     [self reorderChild:background z:-5];
                     [background2 setTexture:[[CCTextureCache sharedTextureCache] addImage:[NSString stringWithFormat:@"background%d.pvr.ccz",targetPlanet.whichGalaxyThisObjectBelongsTo]]];
                     //NSLog(@"galaxy115");
@@ -1151,7 +1144,7 @@ typedef struct {
                         //[[lastGalaxy spriteSheet]release];
                     }
                     [cameraLayer addChild:currentGalaxy.spriteSheet z:3];
-                    NSLog(@"galaxy1155");
+                    //NSLog(@"galaxy1155");
                     [cameraLayer reorderChild:spriteSheet z:4];
                 }
                 //NSLog(@"galaxy4");
@@ -1243,7 +1236,7 @@ typedef struct {
                 }
                 
                 if (zone.number==0||((Planet*)[planets objectAtIndex:zone.number-1]).whichSegmentThisObjectIsOriginallyFrom!=lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom) {
-                NSLog(@"Entering galaxy %d segment %d (1-based index)",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1);
+                //NSLog(@"Entering galaxy %d segment %d (1-based index)",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1);
                     flurrySegmentsVisitedSinceGalaxyJump++;
                 }
                 
@@ -1293,10 +1286,10 @@ typedef struct {
                                                     lerpf(slowParticleColor[1], fastParticleColor[1], speedPercent),
                                                     lerpf(slowParticleColor[2], fastParticleColor[2], speedPercent),
                                                     lerpf(slowParticleColor[3], fastParticleColor[3], speedPercent)))];
-    [streak setColor:ccc4(lerpf(slowStreakColor[0], fastStreakColor[0], speedPercent),
+  /*  [streak setColor:ccc4(lerpf(slowStreakColor[0], fastStreakColor[0], speedPercent),
                           lerpf(slowStreakColor[1], fastStreakColor[1], speedPercent),
                           lerpf(slowStreakColor[2], fastStreakColor[2], speedPercent),
-                          lerpf(slowStreakColor[3], fastStreakColor[3], speedPercent))];
+                          lerpf(slowStreakColor[3], fastStreakColor[3], speedPercent))];*/
     
     if (cometParticle.position.y<0) {
         [cometParticle stopSystem];
@@ -1326,7 +1319,7 @@ typedef struct {
         isGameOver = true;
         if ([[self children]containsObject:layerHudSlider])
             [self removeChild:layerHudSlider cleanup:YES];
-        [Kamcord stopRecording];
+        //[Kamcord stopRecording];
         
         int finalScore = score + prevCurrentPtoPScore;
         BOOL isHighScore = [[PlayerStats sharedInstance] isHighScore:finalScore];
@@ -1394,7 +1387,7 @@ typedef struct {
             [light.sprite setOpacity:0];
             light.sprite.position = ccp(-240, 160);
             [light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
-            NSLog(@"galaxy114light");
+            //NSLog(@"galaxy114light");
             if (light.sprite)
                 [hudLayer reorderChild:light.sprite z:-1];
             [light.sprite setOpacity:0];
@@ -1406,12 +1399,17 @@ typedef struct {
         [light.sprite setOpacity:clampf((light.sprite.position.x+240)*255/480, 0, 255)];
     }
     
+    //NSLog(@"galaxy114lightXX");
+    if (light.sprite)
+//    if ([[hudLayer children]containsObject:light.sprite])
     if (light.sprite.position.x >= 240
         ||batteryDecreaserSprite.scaleX>67)//failsafe -- this condition should never have to trigger game over. fix this alex b!!
     {
         //[light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];
         [self GameOver];
     }
+    //NSLog(@"galaxy114lightXX11");
+
     
     if (!isInTutorialMode)
         light.score += light.scoreVelocity;
@@ -1479,7 +1477,7 @@ typedef struct {
         //NSLog(@"start7");
         if (levelNumber==0) {
             [self UpdateLight:dt];
-            //NSLog(@"start7");
+            //NSLog(@"start7b");
         }
         updatesSinceLastPlanet++;
     } else if (isDisplayingPowerupAnimation)
@@ -1490,7 +1488,7 @@ typedef struct {
     //NSLog(@"startx");
 
     if (isInTutorialMode)
-        [self UpdateTutorial];
+     //   [self UpdateTutorial];
     //NSLog(@"startx1");
 
     if (!paused&&[((AppDelegate*)[[UIApplication sharedApplication]delegate])getWasJustBackgrounded])
@@ -1508,20 +1506,20 @@ typedef struct {
 
 - (void)endGame {
     int finalScore = score + prevCurrentPtoPScore;
-    NSLog(@"1");
+    //NSLog(@"1");
     if ([[PlayerStats sharedInstance] isHighScore:finalScore]) {
-        NSLog(@"2");
+        //NSLog(@"2");
         NSString *playerName = displayName.string;
-        NSLog(@"3");
+        //NSLog(@"3");
         [[PlayerStats sharedInstance] addScore:score+prevCurrentPtoPScore withName:playerName];
-        NSLog(@"4");
+        //NSLog(@"4");
         recentName = playerName;
         [DataStorage storeData];
         if ([[[[[CCDirector sharedDirector] openGLView] window] subviews]containsObject:playerNameLabel])
         [playerNameLabel removeFromSuperview];
      //   [playerNameLabel release];
     }
-    NSLog(@"5");
+    //NSLog(@"5");
     if (!didEndGameAlready) {
         didEndGameAlready = true;
         
@@ -1530,11 +1528,11 @@ typedef struct {
                 [[PlayerStats sharedInstance] addScore:finalScore withName:@"fix fix fix"];
             }
         }*/
-        NSLog(@"6");
+        //NSLog(@"6");
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
 //        [[CCDirector sharedDirector] pushScene:[MainMenuLayer scene]];
       
-        NSLog(@"7");
+        //NSLog(@"7");
     }
 }
 
@@ -1656,20 +1654,20 @@ float lerpf(float a, float b, float t) {
 -(void)showRecording {
     muted = false;
     [self toggleMute];
-    [Kamcord stopRecording];
-    [Kamcord showView];
+    //[Kamcord stopRecording];
+    //[Kamcord showView];
 }
 
 - (void)togglePause {
     paused = !paused;
     if (paused) {
-        [Kamcord pause];
+        //[Kamcord pause];
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"PauseMenuLayer.ccb" owner:self];
         [gameOverScoreLabel setString:[NSString stringWithFormat:@"Score: %d",score+prevCurrentPtoPScore]];
         [pauseLayer setTag:pauseLayerTag];
         [self addChild:pauseLayer];
     } else {
-        [Kamcord resume];
+        //[Kamcord resume];
         [self removeChildByTag:pauseLayerTag cleanup:NO];
     }
 }
@@ -1694,7 +1692,6 @@ float lerpf(float a, float b, float t) {
      [[chosenSegment objectAtIndex:j] release];
      }
      }*/
-    [super dealloc];
 }
 
 #if !defined(MIN)

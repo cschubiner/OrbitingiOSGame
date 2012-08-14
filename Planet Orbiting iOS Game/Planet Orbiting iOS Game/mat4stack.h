@@ -26,7 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef C_STACK_H_INCLUDED
 #define C_STACK_H_INCLUDED
 
-#include "../mat4.h"
+#include "mat4.h"
 
 typedef struct km_mat4_stack {
 	int capacity; //The total item capacity

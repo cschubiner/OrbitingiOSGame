@@ -30,7 +30,7 @@
 #import "CCCamera.h"
 #import "ccTypes.h"
 #import "CCDirector.h"
-#import "kazmath/mat4.h"
+#import "mat4.h"
 
 @class CCTexture2D;
 @class CCGrabber;

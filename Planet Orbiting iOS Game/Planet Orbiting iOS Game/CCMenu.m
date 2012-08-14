@@ -28,15 +28,15 @@
 
 #import "CCMenu.h"
 #import "CCDirector.h"
-#import "Support/CGPointExtension.h"
+#import "CGPointExtension.h"
 #import "ccMacros.h"
 
 #ifdef __CC_PLATFORM_IOS
-#import "Platforms/iOS/CCDirectorIOS.h"
-#import "Platforms/iOS/CCTouchDispatcher.h"
+#import "CCDirectorIOS.h"
+#import "CCTouchDispatcher.h"
 #elif defined(__CC_PLATFORM_MAC)
-#import "Platforms/Mac/CCGLView.h"
-#import "Platforms/Mac/CCDirectorMac.h"
+#import "Mac/CCGLView.h"
+#import "Mac/CCDirectorMac.h"
 #endif
 
 enum {

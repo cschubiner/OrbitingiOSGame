@@ -33,17 +33,17 @@
 #import "CCScheduler.h"
 #import "ccConfig.h"
 #import "ccMacros.h"
-#import "Support/CGPointExtension.h"
-#import "Support/ccCArray.h"
-#import "Support/TransformUtils.h"
+#import "CGPointExtension.h"
+#import "ccCArray.h"
+#import "TransformUtils.h"
 #import "ccMacros.h"
 #import "CCGLProgram.h"
 
 // externals
-#import "kazmath/GL/matrix.h"
+#import "matrix.h"
 
 #ifdef __CC_PLATFORM_IOS
-#import "Platforms/iOS/CCDirectorIOS.h"
+#import "CCDirectorIOS.h"
 #endif
 
 

@@ -12,7 +12,7 @@
 
 @interface Light : CCNode
 
-@property (nonatomic, assign) CCSprite* sprite;
+@property (nonatomic, retain) CCSprite* sprite;
 @property (nonatomic) int stage; //0=far away, 1=close, 2=wrapping
 @property (nonatomic) bool hasPutOnLight;
 @property (nonatomic) float score;

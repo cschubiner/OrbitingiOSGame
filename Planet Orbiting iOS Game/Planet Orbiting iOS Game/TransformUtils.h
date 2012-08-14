@@ -23,8 +23,8 @@
  *
  */
 
-#import "../ccMacros.h"
-#import "../Platforms/CCGL.h"
+#import "ccMacros.h"
+#import "CCGL.h"
 
 #ifdef __CC_PLATFORM_IOS
 #import <UIKit/UIKit.h>

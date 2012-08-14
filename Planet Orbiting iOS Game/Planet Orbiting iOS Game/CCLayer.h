@@ -30,9 +30,9 @@
 
 #ifdef __CC_PLATFORM_IOS
 #import <UIKit/UIKit.h>									// Needed for UIAccelerometerDelegate
-#import "Platforms/iOS/CCTouchDelegateProtocol.h"		// Touches only supported on iOS
+#import "CCTouchDelegateProtocol.h"		// Touches only supported on iOS
 #elif defined(__CC_PLATFORM_MAC)
-#import "Platforms/Mac/CCEventDispatcher.h"
+#import "Mac/CCEventDispatcher.h"
 #endif
 
 #import "CCProtocols.h"

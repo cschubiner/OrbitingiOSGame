@@ -65,8 +65,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #import "ccTypes.h"
 #import "ccMacros.h"
 
-#import "Platforms/CCGL.h" // OpenGL stuff
-#import "Platforms/CCNS.h" // Next-Step stuff
+#import "CCGL.h" // OpenGL stuff
+#import "CCNS.h" // Next-Step stuff
 
 //CONSTANTS:
 

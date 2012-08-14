@@ -29,8 +29,8 @@
 
 #import "CCAction.h"
 #import "ccMacros.h"
-#import "Support/ccCArray.h"
-#import "Support/uthash.h"
+#import "ccCArray.h"
+#import "uthash.h"
 
 typedef struct _hashElement
 {

@@ -29,15 +29,15 @@
 #import "CCGLProgram.h"
 #import "ccGLStateCache.h"
 #import "CCConfiguration.h"
-#import "Support/ccUtils.h"
-#import "Support/CCFileUtils.h"
+#import "ccUtils.h"
+#import "CCFileUtils.h"
 
 #if __CC_PLATFORM_MAC
 #import <ApplicationServices/ApplicationServices.h>
 #endif
 
 // extern
-#import "kazmath/GL/matrix.h"
+#import "matrix.h"
 
 @implementation CCRenderTexture
 

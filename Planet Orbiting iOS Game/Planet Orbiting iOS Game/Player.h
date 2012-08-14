@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "CameraObject.h"
-#import "CCLayerStreak.h"
 #import "Powerup.h"
 
 @interface Player : CameraObject {

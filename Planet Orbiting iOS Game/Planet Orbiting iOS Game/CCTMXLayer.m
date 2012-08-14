@@ -36,7 +36,7 @@
 #import "CCTextureCache.h"
 #import "CCShaderCache.h"
 #import "CCGLProgram.h"
-#import "Support/CGPointExtension.h"
+#import "CGPointExtension.h"
 
 
 #pragma mark -

@@ -29,7 +29,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ccMacros.h"
-#import "Platforms/CCGL.h"
+#import "CCGL.h"
 
 enum {
 	kCCVertexAttrib_Position,

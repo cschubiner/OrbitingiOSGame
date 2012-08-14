@@ -34,18 +34,18 @@
 #import "ccConfig.h"
 #import "ccMacros.h"
 #import "CCGrid.h"
-#import "Support/CGPointExtension.h"
+#import "CGPointExtension.h"
 #import "CCParticleSystem.h"
 #import "CCParticleSystem.h"
 #import "CCShaderCache.h"
 #import "CCGLProgram.h"
 #import "ccGLStateCache.h"
 
-#import "Support/base64.h"
-#import "Support/ZipUtils.h"
-#import "Support/CCFileUtils.h"
+#import "base64.h"
+#import "ZipUtils.h"
+#import "CCFileUtils.h"
 
-#import "kazmath/GL/matrix.h"
+#import "matrix.h"
 
 #define kCCParticleDefaultCapacity 500
 

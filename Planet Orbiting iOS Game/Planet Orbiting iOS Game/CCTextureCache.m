@@ -25,7 +25,7 @@
  */
 
 #import "ccMacros.h"
-#import "Platforms/CCGL.h"
+#import "CCGL.h"
 #import "CCTextureCache.h"
 #import "CCTexture2D.h"
 #import "CCTexturePVR.h"
@@ -34,12 +34,12 @@
 #import "ccConfig.h"
 #import "ccTypes.h"
 
-#import "Support/CCFileUtils.h"
-#import "Support/NSThread+performBlock.h"
+#import "CCFileUtils.h"
+#import "NSThread+performBlock.h"
 
 
 #ifdef __CC_PLATFORM_MAC
-#import "Platforms/Mac/CCDirectorMac.h"
+#import "Mac/CCDirectorMac.h"
 #endif
 
 // needed for CCCallFuncO in Mac-display_link version

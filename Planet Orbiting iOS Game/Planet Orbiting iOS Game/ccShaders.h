@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-#import "Platforms/CCGL.h"
+#import "CCGL.h"
 
 extern const GLchar * ccPosition_uColor_frag;
 extern const GLchar * ccPosition_uColor_vert;

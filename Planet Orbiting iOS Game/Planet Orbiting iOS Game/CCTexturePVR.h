@@ -47,7 +47,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 #import <Foundation/Foundation.h>
 
-#import "Platforms/CCGL.h"
+#import "CCGL.h"
 #import "CCTexture2D.h"
 
 

@@ -334,7 +334,7 @@
     if ([class isEqualToString:@"CCParticleSystem"])
     {
         NSString* spriteFile = [NSString stringWithFormat:@"%@%@", path, [props objectForKey:@"spriteFile"]];
-        CCParticleSystem* sys = [[[ARCH_OPTIMAL_PARTICLE_SYSTEM alloc] initWithTotalParticles:2048] autorelease];
+        CCParticleSystem* sys = [[[CCParticleSystemQuad alloc] initWithTotalParticles:2048] autorelease];
         sys.texture = [[CCTextureCache sharedTextureCache] addImage:spriteFile];
         node = sys;
         [CCBReader setPropsForNode:node props:props extraProps:extraProps];

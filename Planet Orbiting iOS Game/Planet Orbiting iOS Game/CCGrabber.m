@@ -24,11 +24,11 @@
  */
 
 
-#import "Platforms/CCGL.h"
+#import "CCGL.h"
 #import "CCGrabber.h"
 #import "ccMacros.h"
 #import "CCTexture2D.h"
-#import "Support/OpenGL_Internal.h"
+#import "OpenGL_Internal.h"
 
 @implementation CCGrabber
 

@@ -1,37 +1,43 @@
 //
 //  AppDelegate.h
-//  Planet Orbiting iOS Game
+//  Star Dash
 //
-//  Created by Clay Schubiner on 6/22/12.
-//  Copyright Clayton Schubiner 2012. All rights reserved.
+//  Created by Clayton Schubiner on 8/13/12.
+//  Copyright __MyCompanyName__ 2012. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "Flurry.h"
-#import <Kamcord/Kamcord.h>
+#import "cocos2d.h"
+#import "GameplayLayer.h"
+#import "MainMenuLayer.h"
 
-@class RootViewController;
-
-@interface AppDelegate : NSObject <UIApplicationDelegate> {
-	UIWindow			*window;
-	KCViewController	*viewController;
+@interface AppDelegate : NSObject <UIApplicationDelegate, CCDirectorDelegate>
+{
+	UIWindow *window_;
+	UINavigationController *navController_;
+    
+	CCDirectorIOS	*director_;							// weak ref
     bool isInTutorialMode;
     int chosenLevelNumber;
     bool isRetinaDisplay;
     bool wasJustBackgrounded;
     int galaxyCounter;
+    
 }
 
 @property (nonatomic, retain) UIWindow *window;
+@property (readonly) UINavigationController *navController;
+@property (readonly) CCDirectorIOS *director;
+-(UIViewController*)getViewController;
 -(void)setIsInTutorialMode:(bool)mode;
 -(bool)getIsInTutorialMode;
 -(bool)getIsRetinaDisplay;
 -(void)setChosenLevelNumber:(int)num;
 -(int)getChosenLevelNumber;
--(KCViewController*)getViewController;
 -(bool)getWasJustBackgrounded;
 -(void)setWasJustBackgrounded:(bool)isItBackgrounded;
 -(int)getGalaxyCounter;
 -(void)setGalaxyCounter:(int)count;
-void uncaughtExceptionHandler(NSException *exception);
+
+
 @end

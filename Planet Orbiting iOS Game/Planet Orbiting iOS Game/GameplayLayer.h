@@ -74,7 +74,6 @@
     bool isOnFirstRun;
     CGPoint initialVel;
     float initialAccelMag;
-    CCLayerStreak * streak;
     
     CGPoint spotGoingTo;
     float swipeAccuracy;

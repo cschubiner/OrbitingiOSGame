@@ -589,7 +589,6 @@ const float effectsVolumeMainMenu = 1;
                           cancelButtonTitle:@"Cancel"
                           otherButtonTitles:@"Continue",nil];
     [alert show];
-    [alert release];
    
 }
 
@@ -629,8 +628,5 @@ const float effectsVolumeMainMenu = 1;
     return [formatter stringFromNumber:[NSNumber numberWithInteger:num]];
 }
 
-- (void)dealloc {
-	[super dealloc];
-}
 
 @end

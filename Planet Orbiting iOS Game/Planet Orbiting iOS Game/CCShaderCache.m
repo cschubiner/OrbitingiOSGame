@@ -27,7 +27,7 @@
 #import "ccShaders.h"
 #import "CCGLProgram.h"
 #import "ccMacros.h"
-#import "Support/OpenGL_Internal.h"
+#import "OpenGL_Internal.h"
 
 static CCShaderCache *_sharedShaderCache;
 
