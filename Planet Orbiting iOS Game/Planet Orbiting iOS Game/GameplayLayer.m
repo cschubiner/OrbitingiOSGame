@@ -661,7 +661,7 @@ typedef struct {
                                [CCScaleTo actionWithDuration:.1 scale:1*coin.plusLabel.scale],
                                [CCDelayTime actionWithDuration:.4],
                                setCoinTargetting,
-                               [CCSpawn actions:[CCFadeOut actionWithDuration:.4],[CCMoveTo actionWithDuration:.3 position:coinsLabel.position],
+                               [CCSpawn actions:[CCFadeOut actionWithDuration:.3],[CCMoveTo actionWithDuration:.3 position:coinsLabel.position],
                                 //tintScoreYellow,
                                 nil],
                                [CCHide action],
@@ -690,6 +690,10 @@ typedef struct {
     numCoinsDisplayed += ([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1);
     
     [coinsLabel setString:[NSString stringWithFormat:@"%i",numCoinsDisplayed]];
+    [coinsLabel runAction:[CCSequence actions:
+                           [CCScaleTo actionWithDuration:.03 scale:1.4],
+                           [CCScaleTo actionWithDuration:.03 scale:1],
+                           nil]];
 }
 
 - (ALuint)playSound:(NSString*)soundFile shouldLoop:(bool)shouldLoop pitch:(float)pitch{

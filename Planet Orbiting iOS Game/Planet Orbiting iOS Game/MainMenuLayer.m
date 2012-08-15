@@ -303,12 +303,11 @@ const float effectsVolumeMainMenu = 1;
     int curBalance = [[UserWallet sharedInstance] getBalance];
     if (curBalance >= [[item.prices objectAtIndex:item.level] intValue]) {
         
-        
         [self playSound:@"purchase.wav" shouldLoop:false pitch:1];
         [[UserWallet sharedInstance] setBalance:curBalance - [[item.prices objectAtIndex:item.level] intValue]];
         [item setLevel:[item level] + 1];
-        [self refreshUpgradeCells];
         [DataStorage storeData];
+        [self refreshUpgradeCells];
     }
     
     [self removePopupView];
