@@ -17,6 +17,7 @@
 #import "UpgradeItem.h"
 #import "UpgradeManager.h"
 #import "UpgradeCell.h"
+#import "AppDelegate.h"
 
 #define tutorialLayerTag    1001
 #define levelLayerTag       1002
@@ -487,6 +488,20 @@ const float effectsVolumeMainMenu = 1;
     [layer runAction: ease];
 }
 
+- (void)pressedLeaderboardsButton:(id)sender {
+    [Flurry logEvent:@"Opened gamecenter leaderboards"];
+  /*  GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
+    leaderboardViewController.leaderboardDelegate = self;
+    
+    AppDelegate *app = (AppDelegate*) [[UIApplication sharedApplication] delegate];
+    
+    [[app navController] presentModalViewController:leaderboardViewController animated:YES];
+*/
+    [[DDGameKitHelper sharedGameKitHelper]showLeaderboardwithCategory:@"Bear_Jump_Leaderboard" timeScope:GKLeaderboardTimeScopeWeek];
+
+}
+
+
 - (void)pressedScoresButton:(id)sender {
     [Flurry logEvent:@"Opened High Scores"];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(0,-320)];
@@ -616,5 +631,18 @@ const float effectsVolumeMainMenu = 1;
     return [formatter stringFromNumber:[NSNumber numberWithInteger:num]];
 }
 
+#pragma mark GameKit delegate
+
+-(void) achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
+{
+	AppDelegate *app = (AppDelegate*) [[UIApplication sharedApplication] delegate];
+	[[app navController] dismissModalViewControllerAnimated:YES];
+}
+
+-(void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
+{
+	AppDelegate *app = (AppDelegate*) [[UIApplication sharedApplication] delegate];
+	[[app navController] dismissModalViewControllerAnimated:YES];
+}
 
 @end

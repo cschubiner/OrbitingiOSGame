@@ -6,13 +6,14 @@
 //  Copyright Clayton Schubiner 2012. All rights reserved.
 //
 
+#import <GameKit/GameKit.h>
 #import "cocos2d.h"
 #import "CCBReader.h"
 #import "TestFlight.h"
 #import "Flurry.h"
 #import "AppDelegate.h"
 
-@interface MainMenuLayer : CCLayer <UIAlertViewDelegate>{
+@interface MainMenuLayer : CCLayer <UIAlertViewDelegate,GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>{
     CCLayer* layer;
     CCLabelBMFont *coinBalanceLabel;
     CCLabelBMFont *numMagnetsLabel;

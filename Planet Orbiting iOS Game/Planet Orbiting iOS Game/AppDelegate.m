@@ -11,8 +11,8 @@
 #import "AppDelegate.h"
 #import "DataStorage.h"
 #import "GameplayLayer.h"
-#import "MainMenuLayer.h"
 #import "DataStorage.h"
+#import "IntroLayer.h"
 
 @implementation AppDelegate
 
@@ -102,7 +102,7 @@
     [DataStorage fetchData];
     
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-	[director_ pushScene: [MainMenuLayer scene]];
+	[director_ pushScene: [IntroLayer scene]];
     
 	
 	// Create a Navigation Controller with the Director
