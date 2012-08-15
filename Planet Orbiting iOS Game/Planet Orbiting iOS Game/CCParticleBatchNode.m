@@ -387,9 +387,9 @@
 
 -(void) increaseAtlasCapacityTo:(NSUInteger) quantity
 {
-	CCLOG(@"cocos2d: CCParticleBatchNode: resizing TextureAtlas capacity from [%lu] to [%lu].",
-		  (long)textureAtlas_.capacity,
-		  (long)quantity);
+	//CCLOG(@"cocos2d: CCParticleBatchNode: resizing TextureAtlas capacity from [%lu] to [%lu].",
+	//	  (long)textureAtlas_.capacity,
+	//	  (long)quantity);
 
 	if( ! [textureAtlas_ resizeCapacity:quantity] ) {
 		// serious problems

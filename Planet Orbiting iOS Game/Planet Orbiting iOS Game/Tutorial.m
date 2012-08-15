@@ -34,10 +34,15 @@
         self.isTouchEnabled= TRUE;
         
         images = [[NSMutableArray alloc] init];
-        [images addObject:[CCSprite spriteWithFile:@"1.png"]];
-        [images addObject:[CCSprite spriteWithFile:@"2.png"]];
-        [images addObject:[CCSprite spriteWithFile:@"3.png"]];
-        
+        [images addObject:[CCSprite spriteWithFile:@"slide1.png"]];
+        [images addObject:[CCSprite spriteWithFile:@"slide2.png"]];
+        [images addObject:[CCSprite spriteWithFile:@"slide3.png"]];
+        [images addObject:[CCSprite spriteWithFile:@"slide4.png"]];
+        [images addObject:[CCSprite spriteWithFile:@"slide5.png"]];
+        [images addObject:[CCSprite spriteWithFile:@"slide6.png"]];
+        [images addObject:[CCSprite spriteWithFile:@"slide7.png"]];
+        [images addObject:[CCSprite spriteWithFile:@"slide8.png"]];
+        [images addObject:[CCSprite spriteWithFile:@"slide9.png"]];
         for (CCSprite* image in images) {
             image.position =  ccp(240, 160);
             [image setOpacity:0];
