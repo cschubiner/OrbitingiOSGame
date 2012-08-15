@@ -470,9 +470,9 @@ const float effectsVolumeMainMenu = 1;
     [((AppDelegate*)[[UIApplication sharedApplication]delegate])setChosenLevelNumber:0];
 
     if ([[PlayerStats sharedInstance] getPlays] == 1) {
-        [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:TRUE];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[Tutorial scene]]];
+        return;
     }
-    else [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:FALSE];
 
     CCLOG(@"GameplayLayerScene launched, game starting");
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
@@ -597,6 +597,8 @@ const float effectsVolumeMainMenu = 1;
     [Flurry logEvent:@"Pressed Tutorial Button"];
     [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:TRUE];
     CCLOG(@"tutorial scene launched, game starting");
+    
+    [[PlayerStats sharedInstance] addPlay];
     
     
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[Tutorial scene]]];
