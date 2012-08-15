@@ -62,6 +62,7 @@
 		01B5AFFC15DB57A8004C6C67 /* submit.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B5AFF415DB57A8004C6C67 /* submit.png */; };
 		01B5AFFD15DB57A8004C6C67 /* submitpressed-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B5AFF515DB57A8004C6C67 /* submitpressed-hd.png */; };
 		01B5AFFE15DB57A8004C6C67 /* submitpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B5AFF615DB57A8004C6C67 /* submitpressed.png */; };
+		01B5B00815DB703A004C6C67 /* GameOverHighScoreLayer.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 01B5B00715DB703A004C6C67 /* GameOverHighScoreLayer.ccb */; };
 		01FE9B2215BE94E9007512ED /* PowerupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B2115BE94E9007512ED /* PowerupManager.m */; };
 		01FE9B3415BFAE70007512ED /* DataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B3315BFAE6F007512ED /* DataStorage.m */; };
 		01FE9B3C15BFC2C9007512ED /* PlayerStats.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B3B15BFC2C9007512ED /* PlayerStats.m */; };
@@ -435,6 +436,7 @@
 		01B5AFF415DB57A8004C6C67 /* submit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = submit.png; sourceTree = "<group>"; };
 		01B5AFF515DB57A8004C6C67 /* submitpressed-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submitpressed-hd.png"; sourceTree = "<group>"; };
 		01B5AFF615DB57A8004C6C67 /* submitpressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = submitpressed.png; sourceTree = "<group>"; };
+		01B5B00715DB703A004C6C67 /* GameOverHighScoreLayer.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GameOverHighScoreLayer.ccb; sourceTree = "<group>"; };
 		01FE9B2015BE94E9007512ED /* PowerupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PowerupManager.h; sourceTree = "<group>"; };
 		01FE9B2115BE94E9007512ED /* PowerupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PowerupManager.m; sourceTree = "<group>"; };
 		01FE9B3215BFAE6F007512ED /* DataStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataStorage.h; sourceTree = "<group>"; };
@@ -1417,6 +1419,7 @@
 				014B372115C25C93002EDBCA /* PauseMenuLayer.ccb */,
 				019A361315C539BF00572B68 /* GameOverLayer.ccb */,
 				0193DDF115D672D000350035 /* GameOverLayerHighScore.ccb */,
+				01B5B00715DB703A004C6C67 /* GameOverHighScoreLayer.ccb */,
 				0112359515C6995D009A5344 /* TutorialLayer.ccb */,
 				0CA964FE15C65C95002FB2E8 /* hudLayer.ccb */,
 				C445303215A68880004F8F48 /* btn-test-2.png */,
@@ -2039,6 +2042,7 @@
 				01B5AFFD15DB57A8004C6C67 /* submitpressed-hd.png in Resources */,
 				01B5AFFE15DB57A8004C6C67 /* submitpressed.png in Resources */,
 				FA18E60E15DB5CB20038E3EC /* purchase.wav in Resources */,
+				01B5B00815DB703A004C6C67 /* GameOverHighScoreLayer.ccb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

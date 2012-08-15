@@ -16,65 +16,63 @@
 				<key>children</key>
 				<array/>
 				<key>class</key>
-				<string>CCLayerColor</string>
+				<string>CCSprite</string>
 				<key>properties</key>
 				<dict>
-					<key>accelerometerEnabled</key>
-					<integer>0</integer>
 					<key>anchorPoint</key>
 					<array>
-						<real>0.0</real>
-						<real>0.0</real>
+						<real>0.5</real>
+						<real>0.5</real>
 					</array>
 					<key>blendFunc</key>
 					<array>
-						<integer>1</integer>
+						<integer>770</integer>
 						<integer>771</integer>
 					</array>
 					<key>color</key>
 					<array>
-						<integer>0</integer>
-						<integer>3</integer>
-						<integer>108</integer>
+						<integer>89</integer>
+						<integer>127</integer>
+						<integer>153</integer>
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>480</real>
+						<real>1</real>
 						<real>320</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
+					<key>flipX</key>
+					<false/>
+					<key>flipY</key>
+					<false/>
 					<key>isExpanded</key>
 					<true/>
 					<key>isRelativeAnchorPoint</key>
-					<false/>
-					<key>keyboardEnabled</key>
-					<integer>0</integer>
+					<true/>
 					<key>lockedScaleRatio</key>
 					<true/>
 					<key>memberVarAssignmentName</key>
 					<string></string>
 					<key>memberVarAssignmentType</key>
 					<integer>0</integer>
-					<key>mouseEnabled</key>
-					<integer>1</integer>
 					<key>opacity</key>
-					<integer>114</integer>
+					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>-133.9609375</real>
-						<real>-130.390625</real>
+						<real>238.53515625</real>
+						<real>158.67578125</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>5</real>
+					<real>480</real>
 					<key>scaleY</key>
-					<real>5</real>
+					<real>1</real>
+					<key>spriteFile</key>
+					<string>gameOverGradient.png</string>
 					<key>tag</key>
 					<integer>-1</integer>
-					<key>touchEnabled</key>
-					<integer>1</integer>
 					<key>visible</key>
 					<true/>
 					<key>zOrder</key>
@@ -101,13 +99,13 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>0.0</real>
-						<real>0.0</real>
+						<real>713</real>
+						<real>145</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
 					<key>fontFile</key>
-					<string>betaFont2.fnt</string>
+					<string>titleFontGreen.fnt</string>
 					<key>isExpanded</key>
 					<true/>
 					<key>isRelativeAnchorPoint</key>
@@ -115,30 +113,30 @@
 					<key>lockedScaleRatio</key>
 					<true/>
 					<key>memberVarAssignmentName</key>
-					<string>displayName</string>
+					<string></string>
 					<key>memberVarAssignmentType</key>
-					<integer>2</integer>
+					<integer>0</integer>
 					<key>opacity</key>
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>246.51953125</real>
-						<real>198.40234375</real>
+						<real>243.125</real>
+						<real>283.84765625</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>1.2026952505111694</real>
+					<real>0.2882421612739563</real>
 					<key>scaleY</key>
-					<real>1.2026952505111694</real>
+					<real>0.2882421612739563</real>
 					<key>string</key>
-					<string></string>
+					<string>Top 10 High Score!</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
 					<true/>
 					<key>zOrder</key>
-					<integer>0</integer>
+					<integer>1</integer>
 				</dict>
 			</dict>
 			<dict>
@@ -198,7 +196,7 @@
 					<key>visible</key>
 					<true/>
 					<key>zOrder</key>
-					<integer>0</integer>
+					<integer>1</integer>
 				</dict>
 			</dict>
 			<dict>
@@ -297,15 +295,15 @@
 							<integer>1</integer>
 							<key>position</key>
 							<array>
-								<real>96.56640625</real>
-								<real>131.52734375</real>
+								<real>96.25</real>
+								<real>131.1015625</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>1.1270703077316284</real>
+							<real>0.98078125715255737</real>
 							<key>scaleY</key>
-							<real>1.1270703077316284</real>
+							<real>0.98078125715255737</real>
 							<key>selector</key>
 							<string>endGame</string>
 							<key>spriteFileDisabled</key>
@@ -375,7 +373,7 @@
 					<key>visible</key>
 					<true/>
 					<key>zOrder</key>
-					<integer>0</integer>
+					<integer>1</integer>
 				</dict>
 			</dict>
 			<dict>
@@ -398,13 +396,13 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>713</real>
-						<real>145</real>
+						<real>0.0</real>
+						<real>0.0</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
 					<key>fontFile</key>
-					<string>titleFontGreen.fnt</string>
+					<string>betaFont2.fnt</string>
 					<key>isExpanded</key>
 					<true/>
 					<key>isRelativeAnchorPoint</key>
@@ -412,30 +410,30 @@
 					<key>lockedScaleRatio</key>
 					<true/>
 					<key>memberVarAssignmentName</key>
-					<string></string>
+					<string>displayName</string>
 					<key>memberVarAssignmentType</key>
-					<integer>0</integer>
+					<integer>2</integer>
 					<key>opacity</key>
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>243.125</real>
-						<real>283.84765625</real>
+						<real>246.51953125</real>
+						<real>198.40234375</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>0.2882421612739563</real>
+					<real>1.2026952505111694</real>
 					<key>scaleY</key>
-					<real>0.2882421612739563</real>
+					<real>1.2026952505111694</real>
 					<key>string</key>
-					<string>Top 10 High Score!</string>
+					<string></string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
 					<true/>
 					<key>zOrder</key>
-					<integer>0</integer>
+					<integer>1</integer>
 				</dict>
 			</dict>
 		</array>

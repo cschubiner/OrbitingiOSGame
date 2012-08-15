@@ -1355,7 +1355,7 @@ typedef struct {
         
         int finalScore = score + prevCurrentPtoPScore;
         BOOL isHighScore = [[PlayerStats sharedInstance] isHighScore:finalScore];
-        NSString *ccbFile = isHighScore ? @"GameOverLayerHighScore.ccb" : @"GameOverLayer.ccb";
+        NSString *ccbFile = isHighScore ? @"GameOverHighScoreLayer.ccb" : @"GameOverLayer.ccb";
         NSString *scoreText = isHighScore ? @"" : [NSString stringWithFormat:@"Score: %d",finalScore];
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:ccbFile owner:self];
         
