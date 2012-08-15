@@ -312,23 +312,29 @@ typedef struct {
     galaxy = [galaxies objectAtIndex:3];
     [galaxy setName:@"Galaxy 4"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
-    [galaxy setOptimalPlanetsInThisGalaxy:24];
+    [galaxy setOptimalPlanetsInThisGalaxy:29];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.35];
     
     galaxy = [galaxies objectAtIndex:4];
     [galaxy setName:@"Galaxy 5"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
-    [galaxy setOptimalPlanetsInThisGalaxy:24];
+    [galaxy setOptimalPlanetsInThisGalaxy:31];
+    [galaxy setPercentTimeToAddUponGalaxyCompletion:.32];
+
     
     galaxy = [galaxies objectAtIndex:5];
     [galaxy setName:@"Galaxy 6"];
     [galaxy setNumberOfDifferentPlanetsDrawn:2];
-    [galaxy setOptimalPlanetsInThisGalaxy:24];
+    [galaxy setOptimalPlanetsInThisGalaxy:33];
+    [galaxy setPercentTimeToAddUponGalaxyCompletion:.3];
+
     
     galaxy = [galaxies objectAtIndex:6];
     [galaxy setName:@"Galaxy 7"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:24];
+    [galaxy setOptimalPlanetsInThisGalaxy:35];
+    [galaxy setPercentTimeToAddUponGalaxyCompletion:.3];
+
     
    // for (Galaxy* galaxy in galaxies)
        // [galaxy setOptimalPlanetsInThisGalaxy:15];
