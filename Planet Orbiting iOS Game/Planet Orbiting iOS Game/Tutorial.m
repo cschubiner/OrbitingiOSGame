@@ -79,14 +79,14 @@
     }
     
     if (opacChangingState == 1) {
-        opacTimer-=5;
+        opacTimer-=10;
         opacTimer = clampf(opacTimer, 0, 255);
         if (opacTimer <= 0) {
             opacChangingState = 2;
             currentImageIndex++;
         }
     } else if (opacChangingState == 2) {
-        opacTimer+=5;
+        opacTimer+=10;
         opacTimer = clampf(opacTimer, 0, 255);
         if (opacTimer >= 255) {
             opacChangingState = 0;
@@ -102,7 +102,7 @@
     if (readingTimer > 0)
         readingTimer++;
     
-    if (readingTimer >= 100)
+    if (readingTimer >= 60)
         canTouchScreen = true;
     
     if (currentImageIndex < [images count])

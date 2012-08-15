@@ -18,7 +18,7 @@ const int highScoreLimit = 9;
     NSMutableDictionary *keyValuePairs;
 }
 
-@synthesize isMuted;
+@synthesize isMuted, recentName;
 
 static PlayerStats *sharedInstance = nil;
 
