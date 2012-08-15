@@ -1381,7 +1381,7 @@ typedef struct {
             
             [Flurry logEvent:@"Got a top 10 highscore" withParameters:dictForFlurry];
             
-            [[DDGameKitHelper sharedGameKitHelper] submitScore:finalScore category:@"highscore_leaderboard"];
+            [[DDGameKitHelper sharedGameKitHelper] submitScore:finalScore category:@"highscore_leaderboard22"];
 
             //[displayName setString:recentName];
             [[[[CCDirector sharedDirector] openGLView] window] addSubview:playerNameLabel];
