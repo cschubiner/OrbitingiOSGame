@@ -303,10 +303,11 @@ const float effectsVolumeMainMenu = 1;
     int curBalance = [[UserWallet sharedInstance] getBalance];
     if (curBalance >= [[item.prices objectAtIndex:item.level] intValue]) {
         
+        [self playSound:@"purchase.wav" shouldLoop:false pitch:1];
         [[UserWallet sharedInstance] setBalance:curBalance - [[item.prices objectAtIndex:item.level] intValue]];
         [item setLevel:[item level] + 1];
-        [self refreshUpgradeCells];
         [DataStorage storeData];
+        [self refreshUpgradeCells];
     }
     
     [self removePopupView];
@@ -350,6 +351,8 @@ const float effectsVolumeMainMenu = 1;
         
         muted = ![[PlayerStats sharedInstance] isMuted];        
         [self toggleMute];
+        
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"purchase.wav"];
         
         CCLabelBMFont* hello4 = [[CCLabelBMFont alloc] initWithString:@"Upgrades" fntFile:@"betaFont2.fnt"];
         [hello4 setScale:.8];
@@ -629,6 +632,15 @@ const float effectsVolumeMainMenu = 1;
     NSNumberFormatter *formatter = [NSNumberFormatter new];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     return [formatter stringFromNumber:[NSNumber numberWithInteger:num]];
+}
+
+- (ALuint)playSound:(NSString*)soundFile shouldLoop:(bool)shouldLoop pitch:(float)pitch{
+    //[Kamcord playSound:soundFile loop:shouldLoop];
+    if (shouldLoop)
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:soundFile loop:YES];
+    else
+        return [[SimpleAudioEngine sharedEngine]playEffect:soundFile pitch:pitch pan:0 gain:1];
+    return 0;
 }
 
 #pragma mark GameKit delegate
