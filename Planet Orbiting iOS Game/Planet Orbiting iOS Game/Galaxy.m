@@ -20,7 +20,7 @@
         spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"galaxy%d.pvr.ccz",self.number]];
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[NSString stringWithFormat:@"galaxy%d.plist",self.number]];
         optimalPlanetsInThisGalaxy = 23;
-        percentTimeToAddUponGalaxyCompletion = .2;
+        percentTimeToAddUponGalaxyCompletion = .35;
     }
     return self;
 }

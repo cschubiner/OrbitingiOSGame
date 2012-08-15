@@ -295,25 +295,25 @@ typedef struct {
     [galaxy setName:@"Galaxy 1"];
     [galaxy setNumberOfDifferentPlanetsDrawn:7];
     [galaxy setOptimalPlanetsInThisGalaxy:17];
-    [galaxy setPercentTimeToAddUponGalaxyCompletion:.77777];
+    [galaxy setPercentTimeToAddUponGalaxyCompletion:.56];
     
     galaxy = [galaxies objectAtIndex:1];
     [galaxy setName:@"Galaxy 2"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:21];
-    [galaxy setPercentTimeToAddUponGalaxyCompletion:.488888];
+    [galaxy setPercentTimeToAddUponGalaxyCompletion:.408888];
     
     galaxy = [galaxies objectAtIndex:2];
     [galaxy setName:@"Galaxy 3"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:21];
-    [galaxy setPercentTimeToAddUponGalaxyCompletion:.4];
+    [galaxy setPercentTimeToAddUponGalaxyCompletion:.375];
     
     galaxy = [galaxies objectAtIndex:3];
     [galaxy setName:@"Galaxy 4"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
     [galaxy setOptimalPlanetsInThisGalaxy:24];
-    [galaxy setPercentTimeToAddUponGalaxyCompletion:.3];
+    [galaxy setPercentTimeToAddUponGalaxyCompletion:.35];
     
     galaxy = [galaxies objectAtIndex:4];
     [galaxy setName:@"Galaxy 5"];
@@ -330,8 +330,8 @@ typedef struct {
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:24];
     
-    for (Galaxy* galaxy in galaxies)
-        [galaxy setOptimalPlanetsInThisGalaxy:15];
+   // for (Galaxy* galaxy in galaxies)
+       // [galaxy setOptimalPlanetsInThisGalaxy:15];
 }
 
 - (void)initUpgradedVariables {
@@ -346,7 +346,7 @@ typedef struct {
     else
         [[UpgradeValues sharedInstance] setHasDoubleCoins:false];
     
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:60 + 3*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] level]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:70 + 3*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] level]];
     
     if ([[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] level] >= 1)
         [[UpgradeValues sharedInstance] setHasStartPowerup:true];
