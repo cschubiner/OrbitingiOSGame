@@ -501,7 +501,8 @@ const float effectsVolumeMainMenu = 1;
     
     [[app navController] presentModalViewController:leaderboardViewController animated:YES];
 */
-    [[DDGameKitHelper sharedGameKitHelper]showLeaderboardwithCategory:@"highscore_leaderboard" timeScope:GKLeaderboardTimeScopeAllTime];
+  // [[DDGameKitHelper sharedGameKitHelper]showLeaderboardwithCategory:@"highscore_leaderboard" timeScope:GKLeaderboardTimeScopeAllTime];
+    [[DDGameKitHelper sharedGameKitHelper]showLeaderboard];
 
 }
 
