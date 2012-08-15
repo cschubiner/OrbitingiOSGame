@@ -342,7 +342,7 @@ const float effectsVolumeMainMenu = 1;
         
         [self initUpgradeLayer];
         
-        layer = (CCLayer*)[CCBReader nodeGraphFromFile:@"MainMenuScrolling.ccb" owner:self];
+        layer = (CCLayer*)[CCBReader nodeGraphFromFile:@"MainMenuCCBFile.ccb" owner:self];
         [layer addChild:upgradeLayer];
         
         CCSprite* upgradeTopBar = [CCSprite spriteWithFile:@"upgradesHeader.png"];
@@ -500,7 +500,7 @@ const float effectsVolumeMainMenu = 1;
     
     [[app navController] presentModalViewController:leaderboardViewController animated:YES];
 */
-    [[DDGameKitHelper sharedGameKitHelper]showLeaderboardwithCategory:@"Bear_Jump_Leaderboard" timeScope:GKLeaderboardTimeScopeWeek];
+    [[DDGameKitHelper sharedGameKitHelper]showLeaderboardwithCategory:@"highscore_leaderboard" timeScope:GKLeaderboardTimeScopeAllTime];
 
 }
 
@@ -643,7 +643,8 @@ const float effectsVolumeMainMenu = 1;
     return 0;
 }
 
-#pragma mark GameKit delegate
+/*
+ #pragma mark GameKit delegate
 
 -(void) achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
 {
@@ -655,6 +656,6 @@ const float effectsVolumeMainMenu = 1;
 {
 	AppDelegate *app = (AppDelegate*) [[UIApplication sharedApplication] delegate];
 	[[app navController] dismissModalViewControllerAnimated:YES];
-}
+}*/
 
 @end

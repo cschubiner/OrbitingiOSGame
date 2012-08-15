@@ -39,7 +39,6 @@
 		019A362015C5B61800572B68 /* soundButtonMain.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A361E15C5B61800572B68 /* soundButtonMain.png */; };
 		019A362215C5B62B00572B68 /* soundButtonGame-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A362115C5B62B00572B68 /* soundButtonGame-hd.png */; };
 		019A362415C5B63B00572B68 /* soundButtonGame.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A362315C5B63B00572B68 /* soundButtonGame.png */; };
-		019F158D15C3BA85005F7908 /* MainMenuScrolling.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 019F158C15C3BA85005F7908 /* MainMenuScrolling.ccb */; };
 		01A5EB5E15C6541C005BA93E /* betaFont2-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 01A5EB5A15C6541C005BA93E /* betaFont2-hd.fnt */; };
 		01A5EB5F15C6541C005BA93E /* betaFont2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A5EB5B15C6541C005BA93E /* betaFont2-hd.png */; };
 		01A5EB6015C6541C005BA93E /* betaFont2.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 01A5EB5C15C6541C005BA93E /* betaFont2.fnt */; };
@@ -119,6 +118,7 @@
 		0C8534C615B64D5C0006EAC9 /* PlainFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0C8534C215B64D5C0006EAC9 /* PlainFont.fnt */; };
 		0C8A1E4315DA2EC800600B36 /* iconv2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A1E4215DA2EC800600B36 /* iconv2.png */; };
 		0C8A1E4615DA2ECC00600B36 /* iconv2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A1E4515DA2ECC00600B36 /* iconv2@2x.png */; };
+		0C8A1E5915DB650F00600B36 /* MainMenuCCBFile.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A1E5815DB650F00600B36 /* MainMenuCCBFile.ccb */; };
 		0C9D124115C2513900C3495A /* streak2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D123F15C2513900C3495A /* streak2.png */; };
 		0C9D124B15C25A1C00C3495A /* titleFontGreen-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D124715C25A1C00C3495A /* titleFontGreen-hd.fnt */; };
 		0C9D124C15C25A1C00C3495A /* titleFontGreen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D124815C25A1C00C3495A /* titleFontGreen-hd.png */; };
@@ -413,7 +413,6 @@
 		019A361E15C5B61800572B68 /* soundButtonMain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soundButtonMain.png; sourceTree = "<group>"; };
 		019A362115C5B62B00572B68 /* soundButtonGame-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "soundButtonGame-hd.png"; sourceTree = "<group>"; };
 		019A362315C5B63B00572B68 /* soundButtonGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soundButtonGame.png; sourceTree = "<group>"; };
-		019F158C15C3BA85005F7908 /* MainMenuScrolling.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MainMenuScrolling.ccb; sourceTree = "<group>"; };
 		01A5EB5A15C6541C005BA93E /* betaFont2-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "betaFont2-hd.fnt"; sourceTree = "<group>"; };
 		01A5EB5B15C6541C005BA93E /* betaFont2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betaFont2-hd.png"; sourceTree = "<group>"; };
 		01A5EB5C15C6541C005BA93E /* betaFont2.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = betaFont2.fnt; sourceTree = "<group>"; };
@@ -513,6 +512,7 @@
 		0C8534C215B64D5C0006EAC9 /* PlainFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PlainFont.fnt; sourceTree = "<group>"; };
 		0C8A1E4215DA2EC800600B36 /* iconv2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconv2.png; path = ../iconv2.png; sourceTree = "<group>"; };
 		0C8A1E4515DA2ECC00600B36 /* iconv2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iconv2@2x.png"; path = "../iconv2@2x.png"; sourceTree = "<group>"; };
+		0C8A1E5815DB650F00600B36 /* MainMenuCCBFile.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MainMenuCCBFile.ccb; sourceTree = "<group>"; };
 		0C9D123F15C2513900C3495A /* streak2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = streak2.png; sourceTree = "<group>"; };
 		0C9D124715C25A1C00C3495A /* titleFontGreen-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "titleFontGreen-hd.fnt"; sourceTree = "<group>"; };
 		0C9D124815C25A1C00C3495A /* titleFontGreen-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleFontGreen-hd.png"; sourceTree = "<group>"; };
@@ -1201,6 +1201,7 @@
 		0C7AA60315946939000B58F2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0C8A1E5815DB650F00600B36 /* MainMenuCCBFile.ccb */,
 				011FE3FC15DA1316003C7713 /* Battery */,
 				011FE3F615DA12E8003C7713 /* Buttons */,
 				C43AF01315D4267D001FF7D9 /* Spritesheets */,
@@ -1415,7 +1416,6 @@
 				01A5EB5C15C6541C005BA93E /* betaFont2.fnt */,
 				01A5EB5D15C6541C005BA93E /* betaFont2.png */,
 				C445303115A68880004F8F48 /* btn-test-1.png */,
-				019F158C15C3BA85005F7908 /* MainMenuScrolling.ccb */,
 				014B372115C25C93002EDBCA /* PauseMenuLayer.ccb */,
 				019A361315C539BF00572B68 /* GameOverLayer.ccb */,
 				0193DDF115D672D000350035 /* GameOverLayerHighScore.ccb */,
@@ -1866,7 +1866,6 @@
 				0C9D124E15C25A1C00C3495A /* titleFontGreen.png in Resources */,
 				C4286D4315C3747F00773FA3 /* Default@2x.png in Resources */,
 				C4286D4515C3748300773FA3 /* Default.png in Resources */,
-				019F158D15C3BA85005F7908 /* MainMenuScrolling.ccb in Resources */,
 				0C2E4D1315C4F70B00AB28FC /* pauseButton7-hd.png in Resources */,
 				0C2E4D1415C4F70B00AB28FC /* pauseButton7.png in Resources */,
 				019A361415C539BF00572B68 /* GameOverLayer.ccb in Resources */,
@@ -2043,6 +2042,7 @@
 				01B5AFFE15DB57A8004C6C67 /* submitpressed.png in Resources */,
 				FA18E60E15DB5CB20038E3EC /* purchase.wav in Resources */,
 				01B5B00815DB703A004C6C67 /* GameOverHighScoreLayer.ccb in Resources */,
+				0C8A1E5915DB650F00600B36 /* MainMenuCCBFile.ccb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

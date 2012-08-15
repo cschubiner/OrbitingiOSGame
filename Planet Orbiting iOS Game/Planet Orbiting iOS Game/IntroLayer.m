@@ -10,7 +10,7 @@
 // Import the interfaces
 #import "IntroLayer.h"
 #import "MainMenuLayer.h"
-
+#import "DDGameKitHelper.h"
 
 #pragma mark - IntroLayer
 
@@ -37,6 +37,8 @@
 -(void) onEnter
 {
 	[super onEnter];
+
+    [[DDGameKitHelper sharedGameKitHelper] authenticateLocalPlayer];
 
 	// ask director for the window size
 	CGSize size = [[CCDirector sharedDirector] winSize];
