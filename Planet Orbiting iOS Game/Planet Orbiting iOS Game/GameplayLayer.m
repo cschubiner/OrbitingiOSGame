@@ -38,7 +38,6 @@ const int maxNameLength = 10;
     BOOL muted;
     BOOL scoreAlreadySaved;
     CCMenu *pauseMenu;
-    NSString *recentName;
     CGPoint lastVel;
     float lastAng;
 }
@@ -537,7 +536,7 @@ typedef struct {
         [self addChild:pauseMenu];
         [self UpdateScore];
         
-        recentName = @"PLAYER";
+        recentName = [[PlayerStats sharedInstance] recentName];
         playerNameLabel = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
         
         [Flurry logEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:(int)isInTutorialMode],@"isInTutorialMode",nil]  timed:YES];
@@ -1361,7 +1360,6 @@ typedef struct {
     return YES;
 }
 
-
 - (void)GameOver {
     if (!isGameOver) { // this line ensures that it only runs once
         isGameOver = true;
@@ -1371,26 +1369,26 @@ typedef struct {
         
         int finalScore = score + prevCurrentPtoPScore;
         BOOL isHighScore = [[PlayerStats sharedInstance] isHighScore:finalScore];
-        NSString *ccbFile = isHighScore ? @"GameOverHighScoreLayer.ccb" : @"GameOverLayer.ccb";
+        NSString *ccbFile = isHighScore ? @"GameOverLayerHighScore.ccb" : @"GameOverLayer.ccb";
         NSString *scoreText = isHighScore ? @"" : [NSString stringWithFormat:@"Score: %d",finalScore];
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:ccbFile owner:self];
         
         if (isHighScore) {
-            //[displayName setString:recentName];
             NSDictionary *dictForFlurry = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:finalScore],@"Highscore Value", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned",[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSString stringWithFormat:@"%d galaxies and %d segments",currentGalaxy.number+1,flurrySegmentsVisitedSinceGalaxyJump],@"How far player went",[NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays",nil];
             
             [Flurry logEvent:@"Got a top 10 highscore" withParameters:dictForFlurry];
             
             [[DDGameKitHelper sharedGameKitHelper] submitScore:finalScore category:@"highscore_leaderboard"];
 
-            //[displayName setString:recentName];
             [[[[CCDirector sharedDirector] openGLView] window] addSubview:playerNameLabel];
             [self schedule:@selector(nameDidChange) interval:.05];
             playerNameLabel.delegate = self;
             playerNameLabel.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
             playerNameLabel.autocorrectionType = UITextAutocorrectionTypeNo;
             playerNameLabel.keyboardType = UIKeyboardTypeAlphabet;
-            //playerNameLabel.returnKeyType = UIReturnKeyDone;
+            [displayName setString:recentName];
+            playerNameLabel.text = recentName;
+            playerNameLabel.returnKeyType = UIReturnKeyDone;
             [playerNameLabel becomeFirstResponder];
             
             underscore = [[CCLabelBMFont alloc] initWithString:@"_" fntFile:@"betaFont2.fnt"];
@@ -1564,7 +1562,7 @@ typedef struct {
         //NSLog(@"3");
         [[PlayerStats sharedInstance] addScore:score+prevCurrentPtoPScore withName:playerName];
         //NSLog(@"4");
-        recentName = playerName;
+        [[PlayerStats sharedInstance] setRecentName:playerName];
         [DataStorage storeData];
         if ([[[[[CCDirector sharedDirector] openGLView] window] subviews]containsObject:playerNameLabel])
             [playerNameLabel removeFromSuperview];

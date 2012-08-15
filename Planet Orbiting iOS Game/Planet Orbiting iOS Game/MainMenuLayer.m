@@ -303,7 +303,7 @@ const float effectsVolumeMainMenu = 1;
     int curBalance = [[UserWallet sharedInstance] getBalance];
     if (curBalance >= [[item.prices objectAtIndex:item.level] intValue]) {
         
-        [Flurry logEvent:[NSString stringWithFormat:@"Purchased item %@ at level %d.", item.title, item.level]];
+        [Flurry logEvent:[NSString stringWithFormat:@"Purchased item %@ to get it to level %d.", item.title, item.level]];
         [self playSound:@"purchase.wav" shouldLoop:false pitch:1];
         [[UserWallet sharedInstance] setBalance:curBalance - [[item.prices objectAtIndex:item.level] intValue]];
         [item setLevel:[item level] + 1];
