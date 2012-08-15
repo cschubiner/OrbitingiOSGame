@@ -24,5 +24,6 @@
 - (BOOL)isHighScore:(int)score;
 
 @property (nonatomic, assign) BOOL isMuted;
+@property (nonatomic, retain) NSString *recentName;
 
 @end
