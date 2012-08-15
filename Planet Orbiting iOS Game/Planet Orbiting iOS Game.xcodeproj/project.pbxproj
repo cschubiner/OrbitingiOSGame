@@ -106,6 +106,14 @@
 		0C28EEE115DBA4C500B440DD /* notenoughminerals-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEDB15DBA4C500B440DD /* notenoughminerals-hd.png */; };
 		0C28EEE215DBA4C500B440DD /* yes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEDC15DBA4C500B440DD /* yes-hd.png */; };
 		0C28EEE315DBA4C500B440DD /* yespressed-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEDD15DBA4C500B440DD /* yespressed-hd.png */; };
+		0C28EEEC15DBA80500B440DD /* galaxy5-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEE415DBA80500B440DD /* galaxy5-hd.plist */; };
+		0C28EEED15DBA80500B440DD /* galaxy5-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEE515DBA80500B440DD /* galaxy5-hd.pvr.ccz */; };
+		0C28EEEE15DBA80500B440DD /* galaxy5.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEE615DBA80500B440DD /* galaxy5.plist */; };
+		0C28EEEF15DBA80500B440DD /* galaxy5.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEE715DBA80500B440DD /* galaxy5.pvr.ccz */; };
+		0C28EEF015DBA80500B440DD /* galaxy6-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEE815DBA80500B440DD /* galaxy6-hd.plist */; };
+		0C28EEF115DBA80500B440DD /* galaxy6-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEE915DBA80500B440DD /* galaxy6-hd.pvr.ccz */; };
+		0C28EEF215DBA80500B440DD /* galaxy6.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEEA15DBA80500B440DD /* galaxy6.plist */; };
+		0C28EEF315DBA80500B440DD /* galaxy6.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEEB15DBA80500B440DD /* galaxy6.pvr.ccz */; };
 		0C2AB0B515BE8E43008822F1 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */; };
 		0C2AB0BB15BE8E54008822F1 /* UserWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2AB0B915BE8E54008822F1 /* UserWallet.m */; };
 		0C2DEF02159C20BE0018F0FA /* Zone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2DEF01159C20BE0018F0FA /* Zone.m */; };
@@ -514,6 +522,14 @@
 		0C28EEDB15DBA4C500B440DD /* notenoughminerals-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notenoughminerals-hd.png"; sourceTree = "<group>"; };
 		0C28EEDC15DBA4C500B440DD /* yes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yes-hd.png"; sourceTree = "<group>"; };
 		0C28EEDD15DBA4C500B440DD /* yespressed-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yespressed-hd.png"; sourceTree = "<group>"; };
+		0C28EEE415DBA80500B440DD /* galaxy5-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "galaxy5-hd.plist"; sourceTree = "<group>"; };
+		0C28EEE515DBA80500B440DD /* galaxy5-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "galaxy5-hd.pvr.ccz"; sourceTree = "<group>"; };
+		0C28EEE615DBA80500B440DD /* galaxy5.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = galaxy5.plist; sourceTree = "<group>"; };
+		0C28EEE715DBA80500B440DD /* galaxy5.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = galaxy5.pvr.ccz; sourceTree = "<group>"; };
+		0C28EEE815DBA80500B440DD /* galaxy6-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "galaxy6-hd.plist"; sourceTree = "<group>"; };
+		0C28EEE915DBA80500B440DD /* galaxy6-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "galaxy6-hd.pvr.ccz"; sourceTree = "<group>"; };
+		0C28EEEA15DBA80500B440DD /* galaxy6.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = galaxy6.plist; sourceTree = "<group>"; };
+		0C28EEEB15DBA80500B440DD /* galaxy6.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = galaxy6.pvr.ccz; sourceTree = "<group>"; };
 		0C2AB0B315BE8E43008822F1 /* MainMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
 		0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
 		0C2AB0B815BE8E54008822F1 /* UserWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserWallet.h; sourceTree = "<group>"; };
@@ -1393,6 +1409,14 @@
 				C43AEFF415D42676001FF7D9 /* galaxy4-hd.pvr.ccz */,
 				C43AEFF515D42676001FF7D9 /* galaxy4.plist */,
 				C43AEFF615D42676001FF7D9 /* galaxy4.pvr.ccz */,
+				0C28EEE415DBA80500B440DD /* galaxy5-hd.plist */,
+				0C28EEE515DBA80500B440DD /* galaxy5-hd.pvr.ccz */,
+				0C28EEE615DBA80500B440DD /* galaxy5.plist */,
+				0C28EEE715DBA80500B440DD /* galaxy5.pvr.ccz */,
+				0C28EEE815DBA80500B440DD /* galaxy6-hd.plist */,
+				0C28EEE915DBA80500B440DD /* galaxy6-hd.pvr.ccz */,
+				0C28EEEA15DBA80500B440DD /* galaxy6.plist */,
+				0C28EEEB15DBA80500B440DD /* galaxy6.pvr.ccz */,
 			);
 			name = Spritesheets;
 			sourceTree = "<group>";
@@ -2163,6 +2187,14 @@
 				0C28EEE115DBA4C500B440DD /* notenoughminerals-hd.png in Resources */,
 				0C28EEE215DBA4C500B440DD /* yes-hd.png in Resources */,
 				0C28EEE315DBA4C500B440DD /* yespressed-hd.png in Resources */,
+				0C28EEEC15DBA80500B440DD /* galaxy5-hd.plist in Resources */,
+				0C28EEED15DBA80500B440DD /* galaxy5-hd.pvr.ccz in Resources */,
+				0C28EEEE15DBA80500B440DD /* galaxy5.plist in Resources */,
+				0C28EEEF15DBA80500B440DD /* galaxy5.pvr.ccz in Resources */,
+				0C28EEF015DBA80500B440DD /* galaxy6-hd.plist in Resources */,
+				0C28EEF115DBA80500B440DD /* galaxy6-hd.pvr.ccz in Resources */,
+				0C28EEF215DBA80500B440DD /* galaxy6.plist in Resources */,
+				0C28EEF315DBA80500B440DD /* galaxy6.pvr.ccz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -320,6 +320,18 @@ typedef struct {
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
     [galaxy setOptimalPlanetsInThisGalaxy:24];
     
+    galaxy = [galaxies objectAtIndex:5];
+    [galaxy setName:@"Galaxy 6"];
+    [galaxy setNumberOfDifferentPlanetsDrawn:2];
+    [galaxy setOptimalPlanetsInThisGalaxy:24];
+    
+    galaxy = [galaxies objectAtIndex:6];
+    [galaxy setName:@"Galaxy 7"];
+    [galaxy setNumberOfDifferentPlanetsDrawn:3];
+    [galaxy setOptimalPlanetsInThisGalaxy:24];
+    
+    for (Galaxy* galaxy in galaxies)
+        [galaxy setOptimalPlanetsInThisGalaxy:15];
 }
 
 - (void)initUpgradedVariables {
