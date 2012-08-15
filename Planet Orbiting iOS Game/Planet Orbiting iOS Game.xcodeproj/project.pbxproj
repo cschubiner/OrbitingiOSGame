@@ -84,6 +84,28 @@
 		0C28EEB515DBA1FE00B440DD /* slide8.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEA315DBA1FE00B440DD /* slide8.png */; };
 		0C28EEB615DBA1FE00B440DD /* slide9-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEA415DBA1FE00B440DD /* slide9-hd.png */; };
 		0C28EEB715DBA1FE00B440DD /* slide9.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEA515DBA1FE00B440DD /* slide9.png */; };
+		0C28EEC615DBA3E600B440DD /* asteroidbreakericon-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEB815DBA3E600B440DD /* asteroidbreakericon-hd.png */; };
+		0C28EEC715DBA3E600B440DD /* asteroidbreakericon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEB915DBA3E600B440DD /* asteroidbreakericon.png */; };
+		0C28EEC815DBA3E600B440DD /* batteryupgradeicon-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEBA15DBA3E600B440DD /* batteryupgradeicon-hd.png */; };
+		0C28EEC915DBA3E600B440DD /* batteryupgradeicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEBB15DBA3E600B440DD /* batteryupgradeicon.png */; };
+		0C28EECA15DBA3E600B440DD /* doublecoinicon-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEBC15DBA3E600B440DD /* doublecoinicon-hd.png */; };
+		0C28EECB15DBA3E600B440DD /* doublecoinicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEBD15DBA3E600B440DD /* doublecoinicon.png */; };
+		0C28EECC15DBA3E600B440DD /* magneticon-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEBE15DBA3E600B440DD /* magneticon-hd.png */; };
+		0C28EECD15DBA3E600B440DD /* magneticon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEBF15DBA3E600B440DD /* magneticon.png */; };
+		0C28EECE15DBA3E600B440DD /* randompowerupicon-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEC015DBA3E600B440DD /* randompowerupicon-hd.png */; };
+		0C28EECF15DBA3E600B440DD /* randompowerupicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEC115DBA3E600B440DD /* randompowerupicon.png */; };
+		0C28EED015DBA3E600B440DD /* speedupgradeicon-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEC215DBA3E600B440DD /* speedupgradeicon-hd.png */; };
+		0C28EED115DBA3E600B440DD /* speedupgradeicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEC315DBA3E600B440DD /* speedupgradeicon.png */; };
+		0C28EED215DBA3E600B440DD /* star1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEC415DBA3E600B440DD /* star1-hd.png */; };
+		0C28EED315DBA3E600B440DD /* star1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEC515DBA3E600B440DD /* star1.png */; };
+		0C28EED615DBA49200B440DD /* highscores-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EED415DBA49200B440DD /* highscores-hd.png */; };
+		0C28EED715DBA49200B440DD /* highscorespressed-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EED515DBA49200B440DD /* highscorespressed-hd.png */; };
+		0C28EEDE15DBA4C500B440DD /* maxed-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EED815DBA4C500B440DD /* maxed-hd.png */; };
+		0C28EEDF15DBA4C500B440DD /* no-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EED915DBA4C500B440DD /* no-hd.png */; };
+		0C28EEE015DBA4C500B440DD /* nopressed-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEDA15DBA4C500B440DD /* nopressed-hd.png */; };
+		0C28EEE115DBA4C500B440DD /* notenoughminerals-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEDB15DBA4C500B440DD /* notenoughminerals-hd.png */; };
+		0C28EEE215DBA4C500B440DD /* yes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEDC15DBA4C500B440DD /* yes-hd.png */; };
+		0C28EEE315DBA4C500B440DD /* yespressed-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEDD15DBA4C500B440DD /* yespressed-hd.png */; };
 		0C2AB0B515BE8E43008822F1 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */; };
 		0C2AB0BB15BE8E54008822F1 /* UserWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2AB0B915BE8E54008822F1 /* UserWallet.m */; };
 		0C2DEF02159C20BE0018F0FA /* Zone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2DEF01159C20BE0018F0FA /* Zone.m */; };
@@ -360,17 +382,11 @@
 		C4FBD59F15DB1D6F00E836CB /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FBD59E15DB1D6F00E836CB /* IntroLayer.m */; };
 		CE30F28715AA972E00796589 /* Asteroid.m in Sources */ = {isa = PBXBuildFile; fileRef = CE30F28615AA972E00796589 /* Asteroid.m */; };
 		FA16A0D815D393CB007C52E3 /* UpgradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA16A0D715D393CB007C52E3 /* UpgradeCell.m */; };
-		FA16A14415D60F13007C52E3 /* asteroidbreakericon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA16A13F15D60F13007C52E3 /* asteroidbreakericon.png */; };
-		FA16A14515D60F13007C52E3 /* batteryupgradeicon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA16A14015D60F13007C52E3 /* batteryupgradeicon.png */; };
-		FA16A14615D60F13007C52E3 /* doublecoinicon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA16A14115D60F13007C52E3 /* doublecoinicon.png */; };
-		FA16A14715D60F13007C52E3 /* magneticon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA16A14215D60F13007C52E3 /* magneticon.png */; };
-		FA16A14815D60F13007C52E3 /* speedupgradeicon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA16A14315D60F13007C52E3 /* speedupgradeicon.png */; };
 		FA16A16815D63FE0007C52E3 /* popupSextasy-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA16A16615D63FE0007C52E3 /* popupSextasy-hd.png */; };
 		FA16A16915D63FE0007C52E3 /* popupSextasy.png in Resources */ = {isa = PBXBuildFile; fileRef = FA16A16715D63FE0007C52E3 /* popupSextasy.png */; };
 		FA16A16C15D655BC007C52E3 /* shadeView-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA16A16B15D655BC007C52E3 /* shadeView-hd.png */; };
 		FA16A16E15D655C4007C52E3 /* shadeView.png in Resources */ = {isa = PBXBuildFile; fileRef = FA16A16D15D655C4007C52E3 /* shadeView.png */; };
 		FA18E60E15DB5CB20038E3EC /* purchase.wav in Resources */ = {isa = PBXBuildFile; fileRef = FA18E60D15DB5CB20038E3EC /* purchase.wav */; };
-		FA18E61615DB7C3B0038E3EC /* randompowerupicon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA18E61515DB7C3B0038E3EC /* randompowerupicon.png */; };
 		FA40DCB215D378B500174FB8 /* UpgradeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FA40DCB115D378B500174FB8 /* UpgradeItem.m */; };
 		FA40DCB515D37BFA00174FB8 /* UpgradeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA40DCB415D37BFA00174FB8 /* UpgradeManager.m */; };
 		FA40DCB715D388B200174FB8 /* upgradesHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = FA40DCB615D388B200174FB8 /* upgradesHeader.png */; };
@@ -386,7 +402,6 @@
 		FA70703D15DA27CC0003ACF4 /* upgradepressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA70703C15DA27CC0003ACF4 /* upgradepressed.png */; };
 		FA7E63BC15D0F26E0090C913 /* UpgradeValues.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E63BB15D0F26E0090C913 /* UpgradeValues.m */; };
 		FA7E63F015D251610090C913 /* cellBackground-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7E63EF15D251610090C913 /* cellBackground-hd.png */; };
-		FA7E63F215D256E20090C913 /* star1.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7E63F115D256E20090C913 /* star1.png */; };
 		FA7E640C15D271DE0090C913 /* upgradesHeader-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7E640B15D271DE0090C913 /* upgradesHeader-hd.png */; };
 		FA895CDB15C525B400FA4EC3 /* Light.m in Sources */ = {isa = PBXBuildFile; fileRef = FA895CDA15C525B400FA4EC3 /* Light.m */; };
 		FA9C246F15C2595000139706 /* menumusic_new.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA9C246E15C2595000139706 /* menumusic_new.mp3 */; };
@@ -477,6 +492,28 @@
 		0C28EEA315DBA1FE00B440DD /* slide8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slide8.png; sourceTree = "<group>"; };
 		0C28EEA415DBA1FE00B440DD /* slide9-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slide9-hd.png"; sourceTree = "<group>"; };
 		0C28EEA515DBA1FE00B440DD /* slide9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slide9.png; sourceTree = "<group>"; };
+		0C28EEB815DBA3E600B440DD /* asteroidbreakericon-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "asteroidbreakericon-hd.png"; sourceTree = "<group>"; };
+		0C28EEB915DBA3E600B440DD /* asteroidbreakericon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroidbreakericon.png; sourceTree = "<group>"; };
+		0C28EEBA15DBA3E600B440DD /* batteryupgradeicon-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "batteryupgradeicon-hd.png"; sourceTree = "<group>"; };
+		0C28EEBB15DBA3E600B440DD /* batteryupgradeicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batteryupgradeicon.png; sourceTree = "<group>"; };
+		0C28EEBC15DBA3E600B440DD /* doublecoinicon-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "doublecoinicon-hd.png"; sourceTree = "<group>"; };
+		0C28EEBD15DBA3E600B440DD /* doublecoinicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doublecoinicon.png; sourceTree = "<group>"; };
+		0C28EEBE15DBA3E600B440DD /* magneticon-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magneticon-hd.png"; sourceTree = "<group>"; };
+		0C28EEBF15DBA3E600B440DD /* magneticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magneticon.png; sourceTree = "<group>"; };
+		0C28EEC015DBA3E600B440DD /* randompowerupicon-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "randompowerupicon-hd.png"; sourceTree = "<group>"; };
+		0C28EEC115DBA3E600B440DD /* randompowerupicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = randompowerupicon.png; sourceTree = "<group>"; };
+		0C28EEC215DBA3E600B440DD /* speedupgradeicon-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speedupgradeicon-hd.png"; sourceTree = "<group>"; };
+		0C28EEC315DBA3E600B440DD /* speedupgradeicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speedupgradeicon.png; sourceTree = "<group>"; };
+		0C28EEC415DBA3E600B440DD /* star1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star1-hd.png"; sourceTree = "<group>"; };
+		0C28EEC515DBA3E600B440DD /* star1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star1.png; sourceTree = "<group>"; };
+		0C28EED415DBA49200B440DD /* highscores-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "highscores-hd.png"; sourceTree = "<group>"; };
+		0C28EED515DBA49200B440DD /* highscorespressed-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "highscorespressed-hd.png"; sourceTree = "<group>"; };
+		0C28EED815DBA4C500B440DD /* maxed-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maxed-hd.png"; sourceTree = "<group>"; };
+		0C28EED915DBA4C500B440DD /* no-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no-hd.png"; sourceTree = "<group>"; };
+		0C28EEDA15DBA4C500B440DD /* nopressed-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nopressed-hd.png"; sourceTree = "<group>"; };
+		0C28EEDB15DBA4C500B440DD /* notenoughminerals-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notenoughminerals-hd.png"; sourceTree = "<group>"; };
+		0C28EEDC15DBA4C500B440DD /* yes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yes-hd.png"; sourceTree = "<group>"; };
+		0C28EEDD15DBA4C500B440DD /* yespressed-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yespressed-hd.png"; sourceTree = "<group>"; };
 		0C2AB0B315BE8E43008822F1 /* MainMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
 		0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
 		0C2AB0B815BE8E54008822F1 /* UserWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserWallet.h; sourceTree = "<group>"; };
@@ -901,17 +938,11 @@
 		CE30F28615AA972E00796589 /* Asteroid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Asteroid.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		FA16A0D615D393CB007C52E3 /* UpgradeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeCell.h; sourceTree = "<group>"; };
 		FA16A0D715D393CB007C52E3 /* UpgradeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeCell.m; sourceTree = "<group>"; };
-		FA16A13F15D60F13007C52E3 /* asteroidbreakericon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroidbreakericon.png; sourceTree = "<group>"; };
-		FA16A14015D60F13007C52E3 /* batteryupgradeicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batteryupgradeicon.png; sourceTree = "<group>"; };
-		FA16A14115D60F13007C52E3 /* doublecoinicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doublecoinicon.png; sourceTree = "<group>"; };
-		FA16A14215D60F13007C52E3 /* magneticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magneticon.png; sourceTree = "<group>"; };
-		FA16A14315D60F13007C52E3 /* speedupgradeicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speedupgradeicon.png; sourceTree = "<group>"; };
 		FA16A16615D63FE0007C52E3 /* popupSextasy-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popupSextasy-hd.png"; sourceTree = "<group>"; };
 		FA16A16715D63FE0007C52E3 /* popupSextasy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popupSextasy.png; sourceTree = "<group>"; };
 		FA16A16B15D655BC007C52E3 /* shadeView-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadeView-hd.png"; sourceTree = "<group>"; };
 		FA16A16D15D655C4007C52E3 /* shadeView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadeView.png; sourceTree = "<group>"; };
 		FA18E60D15DB5CB20038E3EC /* purchase.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = purchase.wav; sourceTree = "<group>"; };
-		FA18E61515DB7C3B0038E3EC /* randompowerupicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = randompowerupicon.png; sourceTree = "<group>"; };
 		FA40DCB015D378B500174FB8 /* UpgradeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeItem.h; sourceTree = "<group>"; };
 		FA40DCB115D378B500174FB8 /* UpgradeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeItem.m; sourceTree = "<group>"; };
 		FA40DCB315D37BFA00174FB8 /* UpgradeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeManager.h; sourceTree = "<group>"; };
@@ -930,7 +961,6 @@
 		FA7E63BA15D0F26E0090C913 /* UpgradeValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeValues.h; sourceTree = "<group>"; };
 		FA7E63BB15D0F26E0090C913 /* UpgradeValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeValues.m; sourceTree = "<group>"; };
 		FA7E63EF15D251610090C913 /* cellBackground-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cellBackground-hd.png"; sourceTree = "<group>"; };
-		FA7E63F115D256E20090C913 /* star1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star1.png; sourceTree = "<group>"; };
 		FA7E640B15D271DE0090C913 /* upgradesHeader-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upgradesHeader-hd.png"; sourceTree = "<group>"; };
 		FA895CD915C525B400FA4EC3 /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Light.h; sourceTree = "<group>"; };
 		FA895CDA15C525B400FA4EC3 /* Light.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Light.m; sourceTree = "<group>"; };
@@ -995,6 +1025,12 @@
 				FA706FFD15D8EA670003ACF4 /* notenoughminerals.png */,
 				FA706FFF15D8EA670003ACF4 /* yes.png */,
 				FA70700015D8EA670003ACF4 /* yespressed.png */,
+				0C28EED815DBA4C500B440DD /* maxed-hd.png */,
+				0C28EED915DBA4C500B440DD /* no-hd.png */,
+				0C28EEDA15DBA4C500B440DD /* nopressed-hd.png */,
+				0C28EEDB15DBA4C500B440DD /* notenoughminerals-hd.png */,
+				0C28EEDC15DBA4C500B440DD /* yes-hd.png */,
+				0C28EEDD15DBA4C500B440DD /* yespressed-hd.png */,
 			);
 			name = Popup;
 			sourceTree = "<group>";
@@ -1021,6 +1057,8 @@
 		011FE3FA15DA12FD003C7713 /* Main Menu */ = {
 			isa = PBXGroup;
 			children = (
+				0C28EED415DBA49200B440DD /* highscores-hd.png */,
+				0C28EED515DBA49200B440DD /* highscorespressed-hd.png */,
 				011FE40515DA163E003C7713 /* highscores.png */,
 				011FE40615DA163E003C7713 /* highscorespressed.png */,
 			);
@@ -1765,13 +1803,20 @@
 		FA7E63ED15D251520090C913 /* Store */ = {
 			isa = PBXGroup;
 			children = (
-				FA7E63F115D256E20090C913 /* star1.png */,
-				FA18E61515DB7C3B0038E3EC /* randompowerupicon.png */,
-				FA16A13F15D60F13007C52E3 /* asteroidbreakericon.png */,
-				FA16A14015D60F13007C52E3 /* batteryupgradeicon.png */,
-				FA16A14115D60F13007C52E3 /* doublecoinicon.png */,
-				FA16A14215D60F13007C52E3 /* magneticon.png */,
-				FA16A14315D60F13007C52E3 /* speedupgradeicon.png */,
+				0C28EEB815DBA3E600B440DD /* asteroidbreakericon-hd.png */,
+				0C28EEB915DBA3E600B440DD /* asteroidbreakericon.png */,
+				0C28EEBA15DBA3E600B440DD /* batteryupgradeicon-hd.png */,
+				0C28EEBB15DBA3E600B440DD /* batteryupgradeicon.png */,
+				0C28EEBC15DBA3E600B440DD /* doublecoinicon-hd.png */,
+				0C28EEBD15DBA3E600B440DD /* doublecoinicon.png */,
+				0C28EEBE15DBA3E600B440DD /* magneticon-hd.png */,
+				0C28EEBF15DBA3E600B440DD /* magneticon.png */,
+				0C28EEC015DBA3E600B440DD /* randompowerupicon-hd.png */,
+				0C28EEC115DBA3E600B440DD /* randompowerupicon.png */,
+				0C28EEC215DBA3E600B440DD /* speedupgradeicon-hd.png */,
+				0C28EEC315DBA3E600B440DD /* speedupgradeicon.png */,
+				0C28EEC415DBA3E600B440DD /* star1-hd.png */,
+				0C28EEC515DBA3E600B440DD /* star1.png */,
 				FA40DCB815D388BE00174FB8 /* cellBackground.png */,
 				FA7E63EF15D251610090C913 /* cellBackground-hd.png */,
 				FA40DCB615D388B200174FB8 /* upgradesHeader.png */,
@@ -1945,7 +1990,6 @@
 				FABB361D15CF1E10004F5396 /* upgradecoin.png in Resources */,
 				0CD3054615CFC479007EA286 /* playerSpawnedParticle.plist in Resources */,
 				FA7E63F015D251610090C913 /* cellBackground-hd.png in Resources */,
-				FA7E63F215D256E20090C913 /* star1.png in Resources */,
 				FA7E640C15D271DE0090C913 /* upgradesHeader-hd.png in Resources */,
 				C4C9161515D309C5008105A6 /* coin_label_font-hd.fnt in Resources */,
 				C4C9161615D309C5008105A6 /* coin_label_font-hd.png in Resources */,
@@ -2023,11 +2067,6 @@
 				C43AF0AB15D44317001FF7D9 /* background8.pvr.ccz in Resources */,
 				016A13E015D620D300C5D77D /* popup.png in Resources */,
 				016A13E515D624F600C5D77D /* popup-hd.png in Resources */,
-				FA16A14415D60F13007C52E3 /* asteroidbreakericon.png in Resources */,
-				FA16A14515D60F13007C52E3 /* batteryupgradeicon.png in Resources */,
-				FA16A14615D60F13007C52E3 /* doublecoinicon.png in Resources */,
-				FA16A14715D60F13007C52E3 /* magneticon.png in Resources */,
-				FA16A14815D60F13007C52E3 /* speedupgradeicon.png in Resources */,
 				0C65970F15D62BC800C42296 /* OneByOne.png in Resources */,
 				0C65971315D62C2E00C42296 /* battery-hd.png in Resources */,
 				0C65971415D62C2E00C42296 /* battery.png in Resources */,
@@ -2084,7 +2123,6 @@
 				FA18E60E15DB5CB20038E3EC /* purchase.wav in Resources */,
 				01B5B00815DB703A004C6C67 /* GameOverHighScoreLayer.ccb in Resources */,
 				0C8A1E5915DB650F00600B36 /* MainMenuCCBFile.ccb in Resources */,
-				FA18E61615DB7C3B0038E3EC /* randompowerupicon.png in Resources */,
 				0C28EEA615DBA1FE00B440DD /* slide1-hd.png in Resources */,
 				0C28EEA715DBA1FE00B440DD /* slide1.png in Resources */,
 				0C28EEA815DBA1FE00B440DD /* slide2-hd.png in Resources */,
@@ -2103,6 +2141,28 @@
 				0C28EEB515DBA1FE00B440DD /* slide8.png in Resources */,
 				0C28EEB615DBA1FE00B440DD /* slide9-hd.png in Resources */,
 				0C28EEB715DBA1FE00B440DD /* slide9.png in Resources */,
+				0C28EEC615DBA3E600B440DD /* asteroidbreakericon-hd.png in Resources */,
+				0C28EEC715DBA3E600B440DD /* asteroidbreakericon.png in Resources */,
+				0C28EEC815DBA3E600B440DD /* batteryupgradeicon-hd.png in Resources */,
+				0C28EEC915DBA3E600B440DD /* batteryupgradeicon.png in Resources */,
+				0C28EECA15DBA3E600B440DD /* doublecoinicon-hd.png in Resources */,
+				0C28EECB15DBA3E600B440DD /* doublecoinicon.png in Resources */,
+				0C28EECC15DBA3E600B440DD /* magneticon-hd.png in Resources */,
+				0C28EECD15DBA3E600B440DD /* magneticon.png in Resources */,
+				0C28EECE15DBA3E600B440DD /* randompowerupicon-hd.png in Resources */,
+				0C28EECF15DBA3E600B440DD /* randompowerupicon.png in Resources */,
+				0C28EED015DBA3E600B440DD /* speedupgradeicon-hd.png in Resources */,
+				0C28EED115DBA3E600B440DD /* speedupgradeicon.png in Resources */,
+				0C28EED215DBA3E600B440DD /* star1-hd.png in Resources */,
+				0C28EED315DBA3E600B440DD /* star1.png in Resources */,
+				0C28EED615DBA49200B440DD /* highscores-hd.png in Resources */,
+				0C28EED715DBA49200B440DD /* highscorespressed-hd.png in Resources */,
+				0C28EEDE15DBA4C500B440DD /* maxed-hd.png in Resources */,
+				0C28EEDF15DBA4C500B440DD /* no-hd.png in Resources */,
+				0C28EEE015DBA4C500B440DD /* nopressed-hd.png in Resources */,
+				0C28EEE115DBA4C500B440DD /* notenoughminerals-hd.png in Resources */,
+				0C28EEE215DBA4C500B440DD /* yes-hd.png in Resources */,
+				0C28EEE315DBA4C500B440DD /* yespressed-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
