@@ -11,8 +11,8 @@
 #import "AppDelegate.h"
 #import "DataStorage.h"
 #import "GameplayLayer.h"
-#import "MainMenuLayer.h"
 #import "DataStorage.h"
+#import "IntroLayer.h"
 
 @implementation AppDelegate
 
@@ -36,15 +36,15 @@
     [TestFlight takeOff:@"d617a481887a5d2cf7db0f22b735c89f_MTExODYwMjAxMi0wNy0xOCAxOToxNToyNC43NzQ3NjA"];
     
     [Flurry startSession:@"96GKYS7HQZHNKZJJN2CZ"];
+    [Flurry setUserID:[[UIDevice currentDevice] uniqueIdentifier]];
     
 //    [Kamcord setDeveloperKey:@"d05f73399ff3c1755bd97ec94cb5fdda"
   //           developerSecret:@"prcU7MltdajQ1YVTSeFDtPtywe2zABOmzzpSB5pGP79"
     //                 appName:@"Star Dash"];
     
-#define TESTING 1
-#ifdef TESTING
+
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-#endif
+
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -102,7 +102,7 @@
     [DataStorage fetchData];
     
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-	[director_ pushScene: [MainMenuLayer scene]];
+	[director_ pushScene: [IntroLayer scene]];
     
 	
 	// Create a Navigation Controller with the Director
@@ -175,9 +175,11 @@ void SignalHandler(int sig) {
 -(void)setWasJustBackgrounded:(bool)isItBackgrounded{
     wasJustBackgrounded = isItBackgrounded;
 }
+
 -(void)setChosenLevelNumber:(int)num {
     chosenLevelNumber = num;
 }
+
 -(int)getChosenLevelNumber {
     return chosenLevelNumber;
 }

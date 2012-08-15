@@ -338,6 +338,7 @@
 		C4F11E2115B4D58E008168B0 /* TitleFont-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C4F11E1D15B4D58E008168B0 /* TitleFont-hd.png */; };
 		C4F11E2215B4D58E008168B0 /* TitleFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = C4F11E1E15B4D58E008168B0 /* TitleFont.fnt */; };
 		C4F11E2315B4D58E008168B0 /* TitleFont.png in Resources */ = {isa = PBXBuildFile; fileRef = C4F11E1F15B4D58E008168B0 /* TitleFont.png */; };
+		C4FBD59F15DB1D6F00E836CB /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FBD59E15DB1D6F00E836CB /* IntroLayer.m */; };
 		CE30F28715AA972E00796589 /* Asteroid.m in Sources */ = {isa = PBXBuildFile; fileRef = CE30F28615AA972E00796589 /* Asteroid.m */; };
 		FA16A0D815D393CB007C52E3 /* UpgradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA16A0D715D393CB007C52E3 /* UpgradeCell.m */; };
 		FA16A14415D60F13007C52E3 /* asteroidbreakericon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA16A13F15D60F13007C52E3 /* asteroidbreakericon.png */; };
@@ -858,6 +859,8 @@
 		C4F11E1D15B4D58E008168B0 /* TitleFont-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TitleFont-hd.png"; sourceTree = "<group>"; };
 		C4F11E1E15B4D58E008168B0 /* TitleFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TitleFont.fnt; sourceTree = "<group>"; };
 		C4F11E1F15B4D58E008168B0 /* TitleFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TitleFont.png; sourceTree = "<group>"; };
+		C4FBD59D15DB1D6F00E836CB /* IntroLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
+		C4FBD59E15DB1D6F00E836CB /* IntroLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
 		CE30F28515AA972E00796589 /* Asteroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Asteroid.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		CE30F28615AA972E00796589 /* Asteroid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Asteroid.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		FA16A0D615D393CB007C52E3 /* UpgradeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeCell.h; sourceTree = "<group>"; };
@@ -1058,6 +1061,8 @@
 		0C487AFC159471E800674AB9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0C60EC5815CB8C42005FE434 /* Galaxy.h */,
+				0C60EC5915CB8C42005FE434 /* Galaxy.m */,
 				01FE9B3215BFAE6F007512ED /* DataStorage.h */,
 				01FE9B3315BFAE6F007512ED /* DataStorage.m */,
 				0C487AF9159471E000674AB9 /* CameraObject.h */,
@@ -1167,8 +1172,8 @@
 				0C7AA7541594693D000B58F2 /* AppDelegate.h */,
 				0C7AA7551594693D000B58F2 /* AppDelegate.m */,
 				C49E914A159A48D700BC424D /* Constants.h */,
-				0C60EC5815CB8C42005FE434 /* Galaxy.h */,
-				0C60EC5915CB8C42005FE434 /* Galaxy.m */,
+				C4FBD59D15DB1D6F00E836CB /* IntroLayer.h */,
+				C4FBD59E15DB1D6F00E836CB /* IntroLayer.m */,
 				0C2AB0B315BE8E43008822F1 /* MainMenuLayer.h */,
 				0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */,
 				0C487AF615946E2300674AB9 /* GameplayLayer.h */,
@@ -2165,6 +2170,7 @@
 				C45A45BE15D9E2EB00E343A3 /* vec4.c in Sources */,
 				C45A45C115D9E2F200E343A3 /* mat4stack.c in Sources */,
 				C45A45C215D9E2F200E343A3 /* matrix.c in Sources */,
+				C4FBD59F15DB1D6F00E836CB /* IntroLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2267,8 +2273,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				DEPLOYMENT_POSTPROCESSING = YES;
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_POSTPROCESSING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2296,7 +2302,7 @@
 				PRODUCT_NAME = "Star Dash";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				STRIP_INSTALLED_PRODUCT = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

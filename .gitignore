@@ -14,18 +14,13 @@ build/*
 xcuserdata
 profile
 *.moved-aside
-*.xcodeproj
-*.pbxproj
-*/*.xcodeproj
-*/*.*pbxproj
-*xcodeproj
 *pbjproj
 */bin/x86/*
 *\bin\x86\*
 Planet Orbiting iOS Game/.DS_Store
 */*/.DS_Store
-
 .DS_Store
+Level Creator/Level Creator/Level Creator/bin/x86/Debug/*
 
 Planet Orbiting iOS Game/Planet Orbiting iOS Game/.DS_Store
 

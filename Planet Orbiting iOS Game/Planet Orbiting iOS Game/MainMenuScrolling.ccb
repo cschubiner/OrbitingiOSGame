@@ -1483,6 +1483,66 @@
 											<integer>0</integer>
 										</dict>
 									</dict>
+									<dict>
+										<key>children</key>
+										<array/>
+										<key>class</key>
+										<string>CCMenuItemImage</string>
+										<key>properties</key>
+										<dict>
+											<key>anchorPoint</key>
+											<array>
+												<real>0.5</real>
+												<real>0.5</real>
+											</array>
+											<key>contentSize</key>
+											<array>
+												<real>77</real>
+												<real>77</real>
+											</array>
+											<key>customClass</key>
+											<string></string>
+											<key>isEnabled</key>
+											<true/>
+											<key>isExpanded</key>
+											<true/>
+											<key>isRelativeAnchorPoint</key>
+											<true/>
+											<key>lockedScaleRatio</key>
+											<true/>
+											<key>memberVarAssignmentName</key>
+											<string></string>
+											<key>memberVarAssignmentType</key>
+											<integer>1</integer>
+											<key>position</key>
+											<array>
+												<real>80.55859375</real>
+												<real>19.06640625</real>
+											</array>
+											<key>rotation</key>
+											<real>0.0</real>
+											<key>scaleX</key>
+											<real>0.80000001192092896</real>
+											<key>scaleY</key>
+											<real>0.80000001192092896</real>
+											<key>selector</key>
+											<string>pressedLeaderboardsButton:</string>
+											<key>spriteFileDisabled</key>
+											<string>records.png</string>
+											<key>spriteFileNormal</key>
+											<string>records.png</string>
+											<key>spriteFileSelected</key>
+											<string>records.png</string>
+											<key>tag</key>
+											<integer>0</integer>
+											<key>target</key>
+											<integer>2</integer>
+											<key>visible</key>
+											<true/>
+											<key>zOrder</key>
+											<integer>0</integer>
+										</dict>
+									</dict>
 								</array>
 								<key>class</key>
 								<string>CCMenu</string>
@@ -2789,6 +2849,66 @@
 									<real>0.46800777316093445</real>
 									<key>string</key>
 									<string></string>
+									<key>tag</key>
+									<integer>-1</integer>
+									<key>visible</key>
+									<true/>
+									<key>zOrder</key>
+									<integer>0</integer>
+								</dict>
+							</dict>
+							<dict>
+								<key>children</key>
+								<array/>
+								<key>class</key>
+								<string>CCLabelBMFont</string>
+								<key>properties</key>
+								<dict>
+									<key>anchorPoint</key>
+									<array>
+										<real>0.5</real>
+										<real>0.5</real>
+									</array>
+									<key>color</key>
+									<array>
+										<integer>255</integer>
+										<integer>255</integer>
+										<integer>255</integer>
+									</array>
+									<key>contentSize</key>
+									<array>
+										<real>129</real>
+										<real>67</real>
+									</array>
+									<key>customClass</key>
+									<string></string>
+									<key>fontFile</key>
+									<string>betaFont2.fnt</string>
+									<key>isExpanded</key>
+									<true/>
+									<key>isRelativeAnchorPoint</key>
+									<true/>
+									<key>lockedScaleRatio</key>
+									<true/>
+									<key>memberVarAssignmentName</key>
+									<string></string>
+									<key>memberVarAssignmentType</key>
+									<integer>0</integer>
+									<key>opacity</key>
+									<integer>255</integer>
+									<key>position</key>
+									<array>
+										<real>81.619140625</real>
+										<real>-21.1875</real>
+									</array>
+									<key>rotation</key>
+									<real>0.0</real>
+									<key>scaleX</key>
+									<real>0.40000000596046448</real>
+									<key>scaleY</key>
+									<real>0.40000000596046448</real>
+									<key>string</key>
+									<string>Online</string>
 									<key>tag</key>
 									<integer>-1</integer>
 									<key>visible</key>
