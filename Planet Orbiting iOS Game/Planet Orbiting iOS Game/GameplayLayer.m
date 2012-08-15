@@ -38,7 +38,6 @@ const int maxNameLength = 10;
     BOOL muted;
     BOOL scoreAlreadySaved;
     CCMenu *pauseMenu;
-    NSString *recentName;
     CGPoint lastVel;
     float lastAng;
 }
