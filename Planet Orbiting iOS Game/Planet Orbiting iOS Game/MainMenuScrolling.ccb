@@ -112,7 +112,7 @@
 					<key>duration</key>
 					<real>-1</real>
 					<key>emissionRate</key>
-					<real>200</real>
+					<real>320</real>
 					<key>emitterMode</key>
 					<integer>0</integer>
 					<key>endColor</key>
@@ -132,7 +132,7 @@
 					<key>endSize</key>
 					<integer>5</integer>
 					<key>endSizeVar</key>
-					<integer>1</integer>
+					<integer>3</integer>
 					<key>endSpin</key>
 					<integer>0</integer>
 					<key>endSpinVar</key>
@@ -199,7 +199,7 @@
 					<key>startSize</key>
 					<integer>6</integer>
 					<key>startSizeVar</key>
-					<integer>3</integer>
+					<integer>5</integer>
 					<key>startSpin</key>
 					<integer>0</integer>
 					<key>startSpinVar</key>
@@ -211,7 +211,7 @@
 					<key>tangentialAccelVar</key>
 					<integer>0</integer>
 					<key>totalParticles</key>
-					<integer>200</integer>
+					<integer>320</integer>
 					<key>visible</key>
 					<true/>
 					<key>zOrder</key>

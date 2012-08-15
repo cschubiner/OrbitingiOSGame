@@ -218,8 +218,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>137</real>
-								<real>137</real>
+								<real>68</real>
+								<real>68</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -278,8 +278,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>137</real>
-								<real>137</real>
+								<real>68</real>
+								<real>68</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -297,15 +297,15 @@
 							<integer>1</integer>
 							<key>position</key>
 							<array>
-								<real>90.59375</real>
-								<real>124.171875</real>
+								<real>96.56640625</real>
+								<real>131.52734375</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>0.66710937023162842</real>
+							<real>1.1270703077316284</real>
 							<key>scaleY</key>
-							<real>0.66710937023162842</real>
+							<real>1.1270703077316284</real>
 							<key>selector</key>
 							<string>endGame</string>
 							<key>spriteFileDisabled</key>
