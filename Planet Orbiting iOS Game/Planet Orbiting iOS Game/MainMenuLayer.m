@@ -303,6 +303,7 @@ const float effectsVolumeMainMenu = 1;
     int curBalance = [[UserWallet sharedInstance] getBalance];
     if (curBalance >= [[item.prices objectAtIndex:item.level] intValue]) {
         
+        [Flurry logEvent:[NSString stringWithFormat:@"Purchased item %@ at level %d.", item.title, item.level]];
         [self playSound:@"purchase.wav" shouldLoop:false pitch:1];
         [[UserWallet sharedInstance] setBalance:curBalance - [[item.prices objectAtIndex:item.level] intValue]];
         [item setLevel:[item level] + 1];
@@ -500,7 +501,8 @@ const float effectsVolumeMainMenu = 1;
     
     [[app navController] presentModalViewController:leaderboardViewController animated:YES];
 */
-    [[DDGameKitHelper sharedGameKitHelper]showLeaderboardwithCategory:@"highscore_leaderboard" timeScope:GKLeaderboardTimeScopeAllTime];
+  // [[DDGameKitHelper sharedGameKitHelper]showLeaderboardwithCategory:@"highscore_leaderboard" timeScope:GKLeaderboardTimeScopeAllTime];
+    [[DDGameKitHelper sharedGameKitHelper]showLeaderboard];
 
 }
 

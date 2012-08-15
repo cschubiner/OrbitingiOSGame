@@ -1516,8 +1516,8 @@
 											<integer>1</integer>
 											<key>position</key>
 											<array>
-												<real>80.55859375</real>
-												<real>19.06640625</real>
+												<real>46.02734375</real>
+												<real>-81.92578125</real>
 											</array>
 											<key>rotation</key>
 											<real>0.0</real>
@@ -2877,7 +2877,7 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>129</real>
+										<real>250</real>
 										<real>67</real>
 									</array>
 									<key>customClass</key>
@@ -2898,8 +2898,8 @@
 									<integer>255</integer>
 									<key>position</key>
 									<array>
-										<real>81.619140625</real>
-										<real>-21.1875</real>
+										<real>44.951171875</real>
+										<real>-118.828125</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
@@ -2908,7 +2908,7 @@
 									<key>scaleY</key>
 									<real>0.40000000596046448</real>
 									<key>string</key>
-									<string>Online</string>
+									<string>Game Center</string>
 									<key>tag</key>
 									<integer>-1</integer>
 									<key>visible</key>

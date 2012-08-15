@@ -98,7 +98,7 @@
     
     [items addObject:[[UpgradeItem alloc] initWithTitle:@"Lithium Ion Battery" description:@"Increase your battery's efficiency to allow you to fly deeper into space!" icon:@"batteryupgradeicon.png" prices:[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:1000], [NSNumber numberWithInt:2000], [NSNumber numberWithInt:3000], [NSNumber numberWithInt:5000], [NSNumber numberWithInt:10000], nil] level:[[levelsToUse objectAtIndex:index++] intValue]]];
     
-    [items addObject:[[UpgradeItem alloc] initWithTitle:@"Starting Powerup" description:@"Start each game with a random powerup!" icon:@"asteroidcoin.png" prices:[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0/*4000*/], nil] level:[[levelsToUse objectAtIndex:index++] intValue]]];
+    [items addObject:[[UpgradeItem alloc] initWithTitle:@"Starting Powerup" description:@"Start each game with a random powerup!" icon:@"randompowerupicon.png" prices:[[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0/*4000*/], nil] level:[[levelsToUse objectAtIndex:index++] intValue]]];
     
     
     

@@ -38,6 +38,9 @@ const int maxNameLength = 10;
     BOOL muted;
     BOOL scoreAlreadySaved;
     CCMenu *pauseMenu;
+    NSString *recentName;
+    CGPoint lastVel;
+    float lastAng;
 }
 
 typedef struct {
@@ -728,7 +731,7 @@ typedef struct {
         if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= asteroid.radius * asteroidRadiusCollisionZone && orbitState == 3 && asteroid.sprite.visible) {
             //isHittingAsteroid = true;
             for (Asteroid* a in asteroids) {
-                if (ccpDistance(p, a.sprite.position) <= 80)
+                if (ccpDistance(p, a.sprite.position) <= 100)
                     [a.sprite setVisible:false];
             }
             if (!(player.currentPowerup.type == 1)) {
@@ -828,6 +831,16 @@ typedef struct {
                     player.velocity = ccpAdd(ccpMult(player.velocity, (1-velSoftener)*1), ccpMult(dir3, velSoftener*ccpLength(initialVel)));
                 }
                 
+                
+                CGPoint respawnPoint = ccpAdd(planet.sprite.position, ccpMult(ccpNormalize(ccpSub([[planets objectAtIndex:planet.number + 1] sprite].position, planet.sprite.position)), -lastPlanetVisited.orbitRadius));
+                respawnPoint = ccpSub(respawnPoint, planet.sprite.position);
+                
+                CGPoint curSpot = player.sprite.position;
+                curSpot = ccpSub(curSpot, planet.sprite.position);
+                
+                
+                lastVel = player.velocity;
+                lastAng = ccpAngleSigned(curSpot, respawnPoint);
                 CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
                 player.acceleration = ccpMult(direction, gravity);
             }
@@ -970,7 +983,11 @@ typedef struct {
     [thrustParticle stopSystem];
     // streak.visible = false;
     player.alive = false;
-    player.velocity=ccp(0,.05);
+    
+    
+    lastVel = CGPointApplyAffineTransform(lastVel, CGAffineTransformMakeRotation(lastAng));
+    
+    player.velocity = ccpMult(ccpNormalize(lastVel), .01);//ccp(0, .05);
     player.acceleration=CGPointZero;
     
     [Flurry logEvent:@"Player Died" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSNumber numberWithInt:currentGalaxy.number],@"Galaxy",[NSNumber numberWithInt:numZonesHitInARow],@"Pre-death combo", nil]];
@@ -1448,19 +1465,20 @@ typedef struct {
 }
 
 - (void)UpdateCoins {
-    for (Coin* coin in coins) {
-        
-        CGPoint p = coin.sprite.position;
-        
-        if (player.currentPowerup.type == 2) {
-            if (ccpLength(ccpSub(player.sprite.position, p)) <= 4*(coin.radius + player.sprite.height/1.3) && coin.isAlive && coin.speed < .1) {
-                coin.speed = .5;
-            }
+    if (player.alive)
+        for (Coin* coin in coins) {
             
+            CGPoint p = coin.sprite.position;
+            
+            if (player.currentPowerup.type == 2) {
+                if (ccpLength(ccpSub(player.sprite.position, p)) <= 4*(coin.radius + player.sprite.height/1.3) && coin.isAlive && coin.speed < .1) {
+                    coin.speed = .5;
+                }
+                
+            }
+            if (coin.speed != 0)
+                coin.speed += .5;
         }
-        if (coin.speed != 0)
-            coin.speed += .5;
-    }
 }
 
 - (void) updatePowerupAnimation:(float)dt {
