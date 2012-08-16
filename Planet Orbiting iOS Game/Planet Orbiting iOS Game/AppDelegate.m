@@ -13,6 +13,7 @@
 #import "GameplayLayer.h"
 #import "DataStorage.h"
 #import "IntroLayer.h"
+#import "PlayerStats.h"
 
 @implementation AppDelegate
 
@@ -200,19 +201,42 @@ void SignalHandler(int sig) {
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
+        [Flurry logEvent:@"Application Backgrounded" withParameters:[self getDictionaryOfFlurryParameters]];
 	if( [navController_ visibleViewController] == director_ )
 		[director_ stopAnimation];
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application
 {
+    [Flurry logEvent:@"Application entered foreground"];
 	if( [navController_ visibleViewController] == director_ )
 		[director_ startAnimation];
+}
+
+- (NSMutableDictionary *)getDictionaryOfFlurryParameters
+{
+    NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
+    NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc]init];
+    NSMutableDictionary * keyValuePairs = [[PlayerStats sharedInstance] getKeyValuePairs];
+    for (int i = 0 ; i < highScores.count ; i++) {
+        NSNumber * highscoreObject = [highScores objectAtIndex:i];
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", [highscoreObject intValue]];
+        NSString *scoreName = [keyValuePairs valueForKey:scoreInt ];
+        if (!scoreName) scoreName = @"null";
+        [parameterDict addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:highscoreObject,scoreName, nil]];
+    }
+    [parameterDict addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:
+                                             [NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance",
+                                             [NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays",
+                                             //[[PlayerStats sharedInstance] recentName],@"Player Name",
+                                             nil]];
+    return parameterDict;
 }
 
 // application will be killed
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [Flurry logEvent:@"Application Terminated" withParameters:[self getDictionaryOfFlurryParameters]];
     	[DataStorage storeData];
 	CC_DIRECTOR_END();
 }

@@ -36,6 +36,8 @@
     CCLabelBMFont *name7Label;
     CCLabelBMFont *name8Label;
     CCLabelBMFont *name9Label;
+    CCLabelBMFont *proScoreLabel;
+    CCLabelBMFont *funScoreLabel;
     CCLayer *tutorialLayer;
     CCMenuItemImage *soundButton;
 }

@@ -303,9 +303,12 @@ const float effectsVolumeMainMenu = 1;
     int curBalance = [[UserWallet sharedInstance] getBalance];
     if (curBalance >= [[item.prices objectAtIndex:item.level] intValue]) {
         
-        [Flurry logEvent:[NSString stringWithFormat:@"Purchased item %@ to get it to level %d.", item.title, item.level]];
         [self playSound:@"purchase.wav" shouldLoop:false pitch:1];
-        [[UserWallet sharedInstance] setBalance:curBalance - [[item.prices objectAtIndex:item.level] intValue]];
+        int newBalance = curBalance - [[item.prices objectAtIndex:item.level] intValue];
+        [[UserWallet sharedInstance] setBalance:newBalance];
+        
+        [Flurry logEvent:@"Purchased Item" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:newBalance],@"Coin Balance after purchase",item.title,@"Item Title",[NSNumber numberWithInt:item.level],@"Item Level",nil]];
+
         [item setLevel:[item level] + 1];
         [DataStorage storeData];
         [self refreshUpgradeCells];
@@ -455,6 +458,9 @@ const float effectsVolumeMainMenu = 1;
             [name9Label setString:[[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         }
         
+        [proScoreLabel setString:[NSString stringWithFormat:@"%.0f",[self getProValue]]];
+        [funScoreLabel setString:[NSString stringWithFormat:@"%.0f",[self getFunValue]]];
+        
         [layer setPosition:ccp(-480, -320)];
         [self addChild:layer];
         
@@ -479,14 +485,13 @@ const float effectsVolumeMainMenu = 1;
 }
 
 - (void)pressedBackButton:(id)sender {
-    [Flurry logEvent:@"Went back to menu from store"];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(-480,-320)];
     id ease = [CCEaseInOut actionWithAction:action rate:2];
     [layer runAction: ease];
 }
 
 - (void)pressedStoreButton:(id)sender {
-    [Flurry logEvent:@"Opened Store"];
+    [Flurry logEvent:@"Opened Store" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance" ,nil]];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(-960,-320)];
     id ease = [CCEaseSineInOut actionWithAction:action]; //does this "CCEaseSineInOut" look better than the above "CCEaseInOut"???
     [layer runAction: ease];
@@ -506,9 +511,56 @@ const float effectsVolumeMainMenu = 1;
 
 }
 
+- (int)getHighestScore {
+    NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
+    int highestScore = 0;
+    for (int i = 0 ; i < highScores.count ; i++) {
+        NSNumber * highscoreObject = [highScores objectAtIndex:i];
+        int score = [highscoreObject intValue];
+        if (score>highestScore)
+            highestScore=score;
+    }
+    return highestScore;
+}
+
+-(float) getProValue {
+    float x = ((float)[self getHighestScore])/1000;
+    float value = (-50*cosf(x/35)+50)*100/95;
+    if (isnan(value))
+        return 0;
+    else return value;
+}
+
+-(float)getFunValue {
+    float funValue = [self getProValue];
+        NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
+    float numScores = 0;
+    for (int i = 0 ; i < highScores.count ; i++) {
+        NSNumber * highscoreObject = [highScores objectAtIndex:i];
+        if (highscoreObject&&highscoreObject.intValue >0)
+            numScores++;
+    }
+    float numPlays = [[PlayerStats sharedInstance]getPlays];
+    funValue+= 2.8*numScores + .5*numPlays;
+    if (isnan(funValue))
+        return 0;
+    else return funValue;
+}
 
 - (void)pressedScoresButton:(id)sender {
-    [Flurry logEvent:@"Opened High Scores"];
+    NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
+    NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc]init];
+    NSMutableDictionary * keyValuePairs = [[PlayerStats sharedInstance] getKeyValuePairs];
+    for (int i = 0 ; i < highScores.count ; i++) {
+        NSNumber * highscoreObject = [highScores objectAtIndex:i];
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", [highscoreObject intValue]];
+        NSString *scoreName = [keyValuePairs valueForKey:scoreInt ];
+        if (!scoreName) scoreName = @"null";
+        [parameterDict addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:highscoreObject,scoreName, nil]];
+    }
+  //  NSDictionary *parameterDict2 = [NSDictionary dictionaryWithObjectsAndKeys:highScores.description,@"Scores", nil];
+    
+    [Flurry logEvent:@"Opened High Scores" withParameters:parameterDict];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(0,-320)];
     id ease = [CCEaseSineInOut actionWithAction:action];
     [layer runAction: ease];
