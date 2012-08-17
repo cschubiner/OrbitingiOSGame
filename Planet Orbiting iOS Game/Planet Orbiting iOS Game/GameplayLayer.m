@@ -18,6 +18,7 @@
 #import "Powerup.h"
 #import "UpgradeItem.h"
 #import "UpgradeManager.h"
+#import "Toast.h"
 
 #define pauseLayerTag       100
 #define gameOverLayerTag    200
@@ -1197,6 +1198,16 @@ typedef struct {
                     [cameraLayer reorderChild:spriteSheet z:4];
                 }
                 //NSLog(@"galaxy4");
+                
+                
+                NSString* achievementTitle = @"Asteroid Killer";
+                NSString* achievementDescription = @"Destroy 5 asteroids in the Galaxy 1.";
+                
+                Toast* toast =[[Toast alloc] initWithView:hudLayer text:[NSString stringWithFormat: @"Achievement '%@' completed!\n%@", achievementTitle, achievementDescription]];
+                [toast setFromTop:true];
+                [toast showToast];
+                
+                
                 
                 flurrySegmentsVisitedSinceGalaxyJump = 0;
                 Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];

@@ -414,6 +414,7 @@
 		FA7E640C15D271DE0090C913 /* upgradesHeader-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7E640B15D271DE0090C913 /* upgradesHeader-hd.png */; };
 		FA895CDB15C525B400FA4EC3 /* Light.m in Sources */ = {isa = PBXBuildFile; fileRef = FA895CDA15C525B400FA4EC3 /* Light.m */; };
 		FA9C246F15C2595000139706 /* menumusic_new.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA9C246E15C2595000139706 /* menumusic_new.mp3 */; };
+		FAA406B215DE008500E47C19 /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA406B115DE008500E47C19 /* Toast.m */; };
 		FABB361D15CF1E10004F5396 /* upgradecoin.png in Resources */ = {isa = PBXBuildFile; fileRef = FABB361C15CF1E10004F5396 /* upgradecoin.png */; };
 		FACE0CED15CB963B0055B5DF /* Powerup.m in Sources */ = {isa = PBXBuildFile; fileRef = FACE0CEC15CB963B0055B5DF /* Powerup.m */; };
 		FAF1C64015BCF8A1001136E3 /* Coin.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF1C63F15BCF8A1001136E3 /* Coin.m */; };
@@ -983,6 +984,8 @@
 		FA895CD915C525B400FA4EC3 /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Light.h; sourceTree = "<group>"; };
 		FA895CDA15C525B400FA4EC3 /* Light.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Light.m; sourceTree = "<group>"; };
 		FA9C246E15C2595000139706 /* menumusic_new.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = menumusic_new.mp3; sourceTree = "<group>"; };
+		FAA406B015DE008500E47C19 /* Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Toast.h; path = ../Toast.h; sourceTree = "<group>"; };
+		FAA406B115DE008500E47C19 /* Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Toast.m; path = ../Toast.m; sourceTree = "<group>"; };
 		FABB361C15CF1E10004F5396 /* upgradecoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgradecoin.png; sourceTree = "<group>"; };
 		FACE0CEB15CB963B0055B5DF /* Powerup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Powerup.h; sourceTree = "<group>"; };
 		FACE0CEC15CB963B0055B5DF /* Powerup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Powerup.m; sourceTree = "<group>"; };
@@ -1260,6 +1263,8 @@
 				0C487AFD159471FF00674AB9 /* Basic Stuff - Ignore */,
 				0C487AFC159471E800674AB9 /* Classes */,
 				0C65972315D666D900C42296 /* LevelsFromLevelCreator */,
+				FAA406B015DE008500E47C19 /* Toast.h */,
+				FAA406B115DE008500E47C19 /* Toast.m */,
 				0C7AA7541594693D000B58F2 /* AppDelegate.h */,
 				0C7AA7551594693D000B58F2 /* AppDelegate.m */,
 				C49E914A159A48D700BC424D /* Constants.h */,
@@ -2335,6 +2340,7 @@
 				C45A45C115D9E2F200E343A3 /* mat4stack.c in Sources */,
 				C45A45C215D9E2F200E343A3 /* matrix.c in Sources */,
 				C4FBD59F15DB1D6F00E836CB /* IntroLayer.m in Sources */,
+				FAA406B215DE008500E47C19 /* Toast.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
