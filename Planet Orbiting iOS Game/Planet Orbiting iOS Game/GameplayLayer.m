@@ -19,6 +19,7 @@
 #import "UpgradeItem.h"
 #import "UpgradeManager.h"
 #import "Toast.h"
+#import "GKAchievementHandler.h"
 
 #define pauseLayerTag       100
 #define gameOverLayerTag    200
@@ -1203,11 +1204,10 @@ typedef struct {
                 NSString* achievementTitle = @"Asteroid Killer";
                 NSString* achievementDescription = @"Destroy 5 asteroids in the Galaxy 1.";
                 
-                Toast* toast =[[Toast alloc] initWithView:hudLayer text:[NSString stringWithFormat: @"Achievement '%@' completed!\n%@", achievementTitle, achievementDescription]];
+              /*  Toast* toast =[[Toast alloc] initWithView:hudLayer text:[NSString stringWithFormat: @"Achievement '%@' completed!\n%@", achievementTitle, achievementDescription]];
                 [toast setFromTop:true];
-                [toast showToast];
-                
-                
+                [toast showToast];*/
+                [[GKAchievementHandler defaultHandler] notifyAchievementTitle:[NSString stringWithFormat: @"Achievement '%@' completed!", achievementTitle] andMessage:achievementDescription];
                 
                 flurrySegmentsVisitedSinceGalaxyJump = 0;
                 Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
