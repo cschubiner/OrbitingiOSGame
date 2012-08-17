@@ -2937,7 +2937,7 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>408</real>
+										<real>175</real>
 										<real>67</real>
 									</array>
 									<key>customClass</key>
@@ -2958,8 +2958,8 @@
 									<integer>255</integer>
 									<key>position</key>
 									<array>
-										<real>-114.828125</real>
-										<real>-117.90625</real>
+										<real>-289.50390625</real>
+										<real>-13.97265625</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
@@ -2968,7 +2968,7 @@
 									<key>scaleY</key>
 									<real>0.40000000596046448</real>
 									<key>string</key>
-									<string>ProScore    FunScore</string>
+									<string>ProScore</string>
 									<key>tag</key>
 									<integer>-1</integer>
 									<key>visible</key>
@@ -3018,8 +3018,8 @@
 									<integer>255</integer>
 									<key>position</key>
 									<array>
-										<real>-160.46875</real>
-										<real>-96.80078125</real>
+										<real>-292.84375</real>
+										<real>10.30078125</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
@@ -3078,8 +3078,8 @@
 									<integer>255</integer>
 									<key>position</key>
 									<array>
-										<real>-70.21484375</real>
-										<real>-97.734375</real>
+										<real>-292.8125</real>
+										<real>96.2890625</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
@@ -3089,6 +3089,66 @@
 									<real>0.40000000596046448</real>
 									<key>string</key>
 									<string>21</string>
+									<key>tag</key>
+									<integer>-1</integer>
+									<key>visible</key>
+									<true/>
+									<key>zOrder</key>
+									<integer>0</integer>
+								</dict>
+							</dict>
+							<dict>
+								<key>children</key>
+								<array/>
+								<key>class</key>
+								<string>CCLabelBMFont</string>
+								<key>properties</key>
+								<dict>
+									<key>anchorPoint</key>
+									<array>
+										<real>0.5</real>
+										<real>0.5</real>
+									</array>
+									<key>color</key>
+									<array>
+										<integer>255</integer>
+										<integer>255</integer>
+										<integer>255</integer>
+									</array>
+									<key>contentSize</key>
+									<array>
+										<real>181</real>
+										<real>67</real>
+									</array>
+									<key>customClass</key>
+									<string></string>
+									<key>fontFile</key>
+									<string>betaFont2.fnt</string>
+									<key>isExpanded</key>
+									<true/>
+									<key>isRelativeAnchorPoint</key>
+									<true/>
+									<key>lockedScaleRatio</key>
+									<true/>
+									<key>memberVarAssignmentName</key>
+									<string></string>
+									<key>memberVarAssignmentType</key>
+									<integer>0</integer>
+									<key>opacity</key>
+									<integer>255</integer>
+									<key>position</key>
+									<array>
+										<real>-291.40625</real>
+										<real>76.2421875</real>
+									</array>
+									<key>rotation</key>
+									<real>0.0</real>
+									<key>scaleX</key>
+									<real>0.40000000596046448</real>
+									<key>scaleY</key>
+									<real>0.40000000596046448</real>
+									<key>string</key>
+									<string>FunScore</string>
 									<key>tag</key>
 									<integer>-1</integer>
 									<key>visible</key>
@@ -3508,7 +3568,7 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>172</real>
+										<real>111</real>
 										<real>67</real>
 									</array>
 									<key>customClass</key>
@@ -3529,15 +3589,15 @@
 									<integer>255</integer>
 									<key>position</key>
 									<array>
-										<real>454.990234375</real>
-										<real>199.22265625</real>
+										<real>453.732421875</real>
+										<real>194.046875</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
 									<key>scaleX</key>
-									<real>0.37566405534744263</real>
+									<real>0.49664062261581421</real>
 									<key>scaleY</key>
-									<real>0.37566405534744263</real>
+									<real>0.49664062261581421</real>
 									<key>string</key>
 									<string>2.6.1</string>
 									<key>tag</key>

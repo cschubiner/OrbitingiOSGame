@@ -1519,6 +1519,9 @@ typedef struct {
 }
 
 - (void) Update:(ccTime)dt {
+    if (dt > .2) {
+		dt = 1.0 / 60.0f;
+	}
     //NSLog(@"start");
     if (!paused&&isGameOver==false) {
         totalGameTime+=dt;
