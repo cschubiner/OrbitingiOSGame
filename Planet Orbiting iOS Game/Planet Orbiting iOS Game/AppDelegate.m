@@ -222,7 +222,7 @@ void SignalHandler(int sig) {
         NSNumber * highscoreObject = [highScores objectAtIndex:i];
         NSString *scoreInt = [NSString stringWithFormat:@"%d", [highscoreObject intValue]];
         NSString *scoreName = [keyValuePairs valueForKey:scoreInt ];
-        if (!scoreName) scoreName = @"null";
+        if (!scoreName)
         [parameterDict addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:highscoreObject,scoreName, nil]];
     }
     [parameterDict addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:
