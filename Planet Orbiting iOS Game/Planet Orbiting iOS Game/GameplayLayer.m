@@ -1021,6 +1021,7 @@ typedef struct {
 
 // FIX you don't really need planetIndex passed in because it's just going to spawn at the position of the last thrust point anyway
 - (void)RespawnPlayerAtPlanetIndex:(int)planetIndex asteroidHit:(Asteroid*)asteroidHit {
+    feverModePlanetHitsInARow = 0;
     [feverLabel setString:[NSString stringWithFormat:@""]];
     
     timeDilationCoefficient *= factorToScaleTimeDilationByOnDeath;
