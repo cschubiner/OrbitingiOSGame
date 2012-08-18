@@ -42,7 +42,12 @@ const int maxNameLength = 10;
     CCMenu *pauseMenu;
     CGPoint lastVel;
     float lastAng;
+    
+    int feverModePlanetHitsInARow;
+    float timeInOrbit;
+    CCLabelTTF* feverLabel;
 }
+
 
 typedef struct {
     CGPoint velocity;
@@ -515,6 +520,12 @@ typedef struct {
         currentNumOfCoinLabels = 0;
         currentCoinLabel = 0;
         numCoinsDisplayed = 0;
+        feverModePlanetHitsInARow = 0;
+        timeInOrbit = 0;
+        feverLabel = [CCLabelTTF labelWithString:@" " fontName:@"Marker Felt" fontSize:30];
+        [feverLabel setPosition:ccp(240, feverLabel.boundingBox.size.height*.6)];
+        [hudLayer addChild:feverLabel];
+        
         
         background = [CCSprite spriteWithFile:@"background0.pvr.ccz"];
         background2 = [CCSprite spriteWithFile:@"background1.pvr.ccz"];
@@ -747,14 +758,15 @@ typedef struct {
     //bool isHittingAsteroid = false;
     for (Asteroid* asteroid in asteroids) {
         CGPoint p = asteroid.sprite.position;
-        if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= asteroid.radius * asteroidRadiusCollisionZone && orbitState == 3 && asteroid.sprite.visible) {
-            //isHittingAsteroid = true;
-            for (Asteroid* a in asteroids) {
-                if (ccpDistance(p, a.sprite.position) <= 100)
-                    [a.sprite setVisible:false];
-            }
-            if (!(player.currentPowerup.type == 1)) {
-                [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number asteroidHit:asteroid];
+        if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= asteroid.radius * asteroidRadiusCollisionZone && asteroid.sprite.visible) {
+            if (orbitState == 3 || player.currentPowerup.type == 1) {
+                for (Asteroid* a in asteroids) {
+                    if (ccpDistance(p, a.sprite.position) <= 100)
+                        [a.sprite setVisible:false];
+                }
+                if (!(player.currentPowerup.type == 1)) {
+                    [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number asteroidHit:asteroid];
+                }
             }
         }
     }
@@ -858,8 +870,21 @@ typedef struct {
                 curSpot = ccpSub(curSpot, planet.sprite.position);
                 
                 
+                
                 lastVel = player.velocity;
                 lastAng = ccpAngleSigned(curSpot, respawnPoint);
+                
+                
+                
+                NSLog(@"feverModePlanetHitsInARow: %i, timeInOrbit: %f", feverModePlanetHitsInARow, timeInOrbit);
+                
+                timeInOrbit += dt;
+                
+                if (timeInOrbit > maxTimeInOrbitThatCountsAsGoodSwipe) {
+                    feverModePlanetHitsInARow = 0;
+                    [feverLabel setString:[NSString stringWithFormat:@""]];
+                }
+                
                 CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
                 player.acceleration = ccpMult(direction, gravity);
             }
@@ -915,6 +940,23 @@ typedef struct {
                     
                     orbitState = 3;
                     initialAccelMag = 0;
+                    
+                    
+                        
+                    
+                    if (timeInOrbit <= maxTimeInOrbitThatCountsAsGoodSwipe)
+                        feverModePlanetHitsInARow++;
+                    else
+                        feverModePlanetHitsInARow = 0;
+                    
+                    timeInOrbit = 0;
+                    
+                    
+                    if (feverModePlanetHitsInARow >= minPlanetsInARowForFeverMode)
+                        [feverLabel setString:[NSString stringWithFormat:@"%d Combo!", feverModePlanetHitsInARow]];
+                    else
+                        [feverLabel setString:[NSString stringWithFormat:@""]];
+                    
                     
                 }
             
@@ -979,6 +1021,8 @@ typedef struct {
 
 // FIX you don't really need planetIndex passed in because it's just going to spawn at the position of the last thrust point anyway
 - (void)RespawnPlayerAtPlanetIndex:(int)planetIndex asteroidHit:(Asteroid*)asteroidHit {
+    [feverLabel setString:[NSString stringWithFormat:@""]];
+    
     timeDilationCoefficient *= factorToScaleTimeDilationByOnDeath;
     numZonesHitInARow = 0;
     orbitState = 0;
@@ -1339,6 +1383,11 @@ typedef struct {
 - (void)UpdateParticles:(ccTime)dt {
     [thrustParticle setPosition:player.sprite.position];
     [thrustParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
+    if (feverModePlanetHitsInARow >= minPlanetsInARowForFeverMode)
+        [thrustParticle setEmissionRate:99];
+    else
+        [thrustParticle setEmissionRate:20];
+        
     // [thrustParticle setEmissionRate:ccpLengthSQ(player.velocity)*ccpLength(player.velocity)/2.2f];
     float speedPercent = (timeDilationCoefficient-[[UpgradeValues sharedInstance] absoluteMinTimeDilation])/(absoluteMaxTimeDilation-[[UpgradeValues sharedInstance] absoluteMinTimeDilation]);
     [thrustParticle setEndColor:ccc4FFromccc4B(
@@ -1549,6 +1598,7 @@ typedef struct {
         [self UpdateCoins];
         //NSLog(@"start3");
         [self UpdatePlayer: dt];
+        
         //NSLog(@"start4");
         [self UpdateScore];
         //NSLog(@"start5");

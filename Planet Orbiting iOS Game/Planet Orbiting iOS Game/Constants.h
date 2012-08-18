@@ -67,7 +67,7 @@ const float gravity = .45;
 const float timeToHideStreakAfterRespawn = 1.1;
 
 //radius percentage at which you will collide with a planet
-const float planetRadiusCollisionZone = .9;
+const float planetRadiusCollisionZone = .85;
 
 //percent of the planet orbiting radius that you will respawn at
 const float respawnOrbitRadius = .88;
@@ -135,7 +135,7 @@ const float howFastOrbitPositionGetsFixed = .05;
 
 const float factorToPlaceGravFieldWhenCrossingOverTheMiddle = .84;
 
-const float factorToPlaceGravFieldWhenStayingOutside = .66;
+const float factorToPlaceGravFieldWhenStayingOutside = .7;
 
 const float zoneCollisionFactor = 1.01;
 
@@ -150,3 +150,7 @@ const float amountToIncreaseLightScoreVelocityEachUpdate = .00065;
 const int howMuchCoinsAddToScore = 10;
 
 const float coinAnimationDelay = .02;
+
+const int minPlanetsInARowForFeverMode = 5;
+
+const float maxTimeInOrbitThatCountsAsGoodSwipe = .6;
