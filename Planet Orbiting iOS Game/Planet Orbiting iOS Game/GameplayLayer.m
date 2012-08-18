@@ -867,12 +867,10 @@ typedef struct {
                 respawnPoint = ccpSub(respawnPoint, planet.sprite.position);
                 
                 CGPoint curSpot = player.sprite.position;
-                curSpot = ccpSub(curSpot, planet.sprite.position);
-                
                 
                 
                 lastVel = player.velocity;
-                lastAng = ccpAngleSigned(curSpot, respawnPoint);
+                lastAng = ccpAngleSigned(ccpSub(curSpot, planet.sprite.position), ccpSub(respawnPoint, planet.sprite.position));
                 
                 
                 
