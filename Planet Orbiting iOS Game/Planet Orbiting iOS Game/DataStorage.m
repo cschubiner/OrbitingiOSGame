@@ -12,6 +12,7 @@
 #import "PlayerStats.h"
 #import "UpgradeManager.h"
 #import "UpgradeItem.h"
+#import "ObjectiveManager.h"
 
 @implementation DataStorage
 
@@ -31,12 +32,30 @@
         [levels addObject:number];
     }
     
+    
+    
+    NSMutableArray* groups = [[ObjectiveManager sharedInstance] objectiveGroups];
+    NSMutableArray* completions = [[NSMutableArray alloc] init];
+    
+    for (ObjectiveGroup* group in groups) {
+        NSMutableArray* itemsToAdd = [[NSMutableArray alloc] init];
+        [completions addObject:itemsToAdd];
+        for (ObjectiveItem* item in group.objectiveItems) {
+            NSNumber* completed = [NSNumber numberWithBool:item.completed];
+            [itemsToAdd addObject:completed];
+        }
+        [completions addObject:itemsToAdd];
+    }
+    NSNumber* currentObjectiveGroupNumber = [NSNumber numberWithInt:[[ObjectiveManager sharedInstance] currentObjectiveGroupNumber]];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     [defaults setInteger:coins forKey:@"coin"];
     [defaults setInteger:numPlays forKey:@"plays"];
     [defaults setObject:highScores forKey:@"highscores"];
     [defaults setObject:levels forKey:@"levels"];
+    [defaults setObject:completions forKey:@"objectives"];
+    [defaults setObject:currentObjectiveGroupNumber forKey:@"currentObjectiveGroupNumber"];
     [defaults setObject:nameScorePairs forKey:@"nameScorePairs"];
     [defaults setObject:recentName forKey:@"recentName"];
     
@@ -50,6 +69,8 @@
     int numPlays = [defaults integerForKey:@"plays"];
     NSMutableArray *highScores = [defaults objectForKey:@"highscores"];
     NSMutableArray *levels = [defaults objectForKey:@"levels"];
+    NSMutableArray *objectives = [defaults objectForKey:@"objectives"];
+    NSNumber *currentObjectiveGroupNumber = [defaults objectForKey:@"currentObjectiveGroupNumber"];
     NSMutableDictionary *nameScorePairs = [defaults objectForKey:@"nameScorePairs"];
     NSString *recentName = [defaults objectForKey:@"recentName"];
 
@@ -105,6 +126,44 @@
     upgradeItems = [[NSMutableArray alloc] initWithArray:items];
     
     [[UpgradeManager sharedInstance] setUpgradeItems:upgradeItems];
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    int currGroup = [currentObjectiveGroupNumber intValue];
+    if (!currGroup) {
+        currGroup = 0;
+    }
+    [[ObjectiveManager sharedInstance] setCurrentObjectiveGroupNumber:currGroup];
+    
+    
+    if (!objectives) {
+        NSMutableArray* groups = [[NSMutableArray alloc] init];
+        
+        [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.1 starReward:500
+                                                              item0:[[ObjectiveItem alloc] initWithText:@"Reach the second galaxy"]
+                                                              item1:[[ObjectiveItem alloc] initWithText:@"Purchase an upgrade"]
+                                                              item2:[[ObjectiveItem alloc] initWithText:@"Get 10 stars in one run"]]];
+        
+        [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.2 starReward:700
+                                                              item0:[[ObjectiveItem alloc] initWithText:@"Reach the third galaxy"]
+                                                              item1:[[ObjectiveItem alloc] initWithText:@"Get 15 stars in one run"]
+                                                              item2:[[ObjectiveItem alloc] initWithText:@"Get 20 stars in one run"]]];
+        objectives = groups;
+    }
+    [[ObjectiveManager sharedInstance] setObjectiveGroups:objectives];
+    
+    
+    
+    
+    
+    
 }
 
 @end
