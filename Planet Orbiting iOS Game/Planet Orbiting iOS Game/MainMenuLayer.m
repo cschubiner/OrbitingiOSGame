@@ -376,6 +376,7 @@ const float effectsVolumeMainMenu = 1;
         
         
         
+        
         self.isTouchEnabled = true;
         
         [self initUpgradeLayer];
