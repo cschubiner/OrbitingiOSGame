@@ -290,10 +290,16 @@ const float effectsVolumeMainMenu = 1;
     }
 }
 
--(void)pressedDisabledButton:(id)sender { }
+-(void)pressedDisabledButton:(id)sender {
+}
 
 -(void)pressedCancelButton:(id)sender {
     [self removePopupView];
+}
+
+-(void)pressedObjectiveButton:(id)sender {
+    [Flurry logEvent:@"Pressed objective button"];
+    
 }
 
 -(void)pressedPurchaseButton:(id)sender {
