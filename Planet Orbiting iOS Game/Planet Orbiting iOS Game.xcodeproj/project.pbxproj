@@ -176,6 +176,8 @@
 		0CA9650E15C66249002FB2E8 /* selector.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA9650A15C66249002FB2E8 /* selector.png */; };
 		0CA9650F15C66249002FB2E8 /* slider-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA9650B15C66249002FB2E8 /* slider-hd.png */; };
 		0CA9651015C66249002FB2E8 /* slider.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA9650C15C66249002FB2E8 /* slider.png */; };
+		0CBF1FF915E1AAA000E05CDB /* thrustParticleTexture-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CBF1FF715E1AAA000E05CDB /* thrustParticleTexture-hd.png */; };
+		0CBF1FFA15E1AAA000E05CDB /* thrustParticleTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CBF1FF815E1AAA000E05CDB /* thrustParticleTexture.png */; };
 		0CD3054615CFC479007EA286 /* playerSpawnedParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CD3054515CFC479007EA286 /* playerSpawnedParticle.plist */; };
 		0CFB823915AE733800EADAF3 /* SWOOSH.WAV in Resources */ = {isa = PBXBuildFile; fileRef = 0CFB823815AE733800EADAF3 /* SWOOSH.WAV */; };
 		C4286D4315C3747F00773FA3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C4286D4215C3747F00773FA3 /* Default@2x.png */; };
@@ -613,6 +615,8 @@
 		0CA9650A15C66249002FB2E8 /* selector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selector.png; sourceTree = "<group>"; };
 		0CA9650B15C66249002FB2E8 /* slider-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-hd.png"; sourceTree = "<group>"; };
 		0CA9650C15C66249002FB2E8 /* slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider.png; sourceTree = "<group>"; };
+		0CBF1FF715E1AAA000E05CDB /* thrustParticleTexture-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thrustParticleTexture-hd.png"; sourceTree = "<group>"; };
+		0CBF1FF815E1AAA000E05CDB /* thrustParticleTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thrustParticleTexture.png; sourceTree = "<group>"; };
 		0CD3054515CFC479007EA286 /* playerSpawnedParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = playerSpawnedParticle.plist; sourceTree = "<group>"; };
 		0CFB823815AE733800EADAF3 /* SWOOSH.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SWOOSH.WAV; sourceTree = "<group>"; };
 		C4286D4215C3747F00773FA3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
@@ -1818,6 +1822,8 @@
 		C4E994B715A435EA00C7009D /* Particles */ = {
 			isa = PBXGroup;
 			children = (
+				0CBF1FF715E1AAA000E05CDB /* thrustParticleTexture-hd.png */,
+				0CBF1FF815E1AAA000E05CDB /* thrustParticleTexture.png */,
 				C4E994AE15A435E600C7009D /* cometParticle.plist */,
 				0CD3054515CFC479007EA286 /* playerSpawnedParticle.plist */,
 				0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */,
@@ -2225,6 +2231,8 @@
 				0C28EEF315DBA80500B440DD /* galaxy6.pvr.ccz in Resources */,
 				C4B8D7BA15DDA7F2002D50C6 /* fps_images-hd.png in Resources */,
 				C4B8D7BB15DDA7F2002D50C6 /* fps_images.png in Resources */,
+				0CBF1FF915E1AAA000E05CDB /* thrustParticleTexture-hd.png in Resources */,
+				0CBF1FFA15E1AAA000E05CDB /* thrustParticleTexture.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
