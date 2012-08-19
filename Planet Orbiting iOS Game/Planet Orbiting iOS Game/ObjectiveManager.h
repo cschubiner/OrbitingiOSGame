@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ObjectiveHeader.h"
+#import "GKAchievementHandler.h"
 
 @interface ObjectiveManager : NSObject
 

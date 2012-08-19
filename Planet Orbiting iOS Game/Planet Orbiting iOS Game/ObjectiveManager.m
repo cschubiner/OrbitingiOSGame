@@ -28,6 +28,14 @@ static ObjectiveManager *sharedInstance = nil;
     return ([objective complete] ? true : false);
 }
 
+-(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber {
+    if (currentObjectiveGroupNumber == a_groupNumber) {
+        ObjectiveItem* obj = [self getObjectiveFromGroupNumber:a_groupNumber itemNumber:a_itemNumber];
+        if ([self completeObjective:obj])
+            [[GKAchievementHandler defaultHandler] notifyAchievementTitle:@"Objective Completed!" andMessage:obj.text];
+    }
+}
+
 -(NSMutableArray*)getObjectivesFromGroupNumber:(int)groupNumber {
     ObjectiveGroup* objectives = [objectiveGroups objectAtIndex:groupNumber];
     return objectives.objectiveItems;

@@ -347,13 +347,8 @@ const float effectsVolumeMainMenu = 1;
 }
 
 -(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber {
-    if ([[ObjectiveManager sharedInstance] currentObjectiveGroupNumber] == a_groupNumber) {
-        ObjectiveItem* obj = [[ObjectiveManager sharedInstance] getObjectiveFromGroupNumber:a_groupNumber itemNumber:a_itemNumber];
-        if ([[ObjectiveManager sharedInstance] completeObjective:obj])
-            [[GKAchievementHandler defaultHandler] notifyAchievementTitle:@"Objective Completed!" andMessage:obj.text];
-    }
+    [[ObjectiveManager sharedInstance] completeObjectiveFromGroupNumber:a_groupNumber itemNumber:a_itemNumber];
 }
-
 
 // on "init" you need to initialize your instance
 - (id)init {
