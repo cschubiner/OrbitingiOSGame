@@ -15,6 +15,7 @@
 @property (nonatomic) bool completed;
 
 -(id)initWithText:(NSString*)a_text;
+-(id)initWithText:(NSString*)a_text isCompleted:(bool)a_completed;
 -(bool)complete;
 
 @end

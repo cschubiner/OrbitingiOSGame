@@ -39,7 +39,6 @@
     
     for (ObjectiveGroup* group in groups) {
         NSMutableArray* itemsToAdd = [[NSMutableArray alloc] init];
-        [completions addObject:itemsToAdd];
         for (ObjectiveItem* item in group.objectiveItems) {
             NSNumber* completed = [NSNumber numberWithBool:item.completed];
             [itemsToAdd addObject:completed];
@@ -96,12 +95,13 @@
     
     NSMutableArray *levelsToUse = [[NSMutableArray alloc] init];
     
+    int totalPowerups = 6;
     if (!levels) {
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < totalPowerups; i++) {
             [levelsToUse addObject:[NSNumber numberWithInt:0]];
         }
     } else {
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < totalPowerups; i++) {
             [levelsToUse addObject:[levels objectAtIndex:i]];
         }
     }
@@ -143,26 +143,47 @@
     [[ObjectiveManager sharedInstance] setCurrentObjectiveGroupNumber:currGroup];
     
     
+    
+    
+    
+    NSMutableArray *boolGroupsToUse = [[NSMutableArray alloc] init];
+    
+    int totalObjectiveGroups = 2;
     if (!objectives) {
-        NSMutableArray* groups = [[NSMutableArray alloc] init];
-        
-        [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.1 starReward:500
-                                                              item0:[[ObjectiveItem alloc] initWithText:@"Reach the second galaxy"]
-                                                              item1:[[ObjectiveItem alloc] initWithText:@"Purchase an upgrade"]
-                                                              item2:[[ObjectiveItem alloc] initWithText:@"Get 10 stars in one run"]]];
-        
-        [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.2 starReward:700
-                                                              item0:[[ObjectiveItem alloc] initWithText:@"Reach the third galaxy"]
-                                                              item1:[[ObjectiveItem alloc] initWithText:@"Get 15 stars in one run"]
-                                                              item2:[[ObjectiveItem alloc] initWithText:@"Get 20 stars in one run"]]];
-        objectives = groups;
+        for (int i = 0; i < totalObjectiveGroups; i++) {
+            NSMutableArray *boolsToUse = [[NSMutableArray alloc] init];
+            for (int j = 0; j < 3; j++) {
+                [boolsToUse addObject:[NSNumber numberWithBool:false]];
+            }
+            [boolGroupsToUse addObject:boolsToUse];
+        }
+    } else {
+        for (int i = 0; i < totalObjectiveGroups; i++) {
+            NSMutableArray *boolsToUse = [objectives objectAtIndex:i];
+            for (int j = 0; j < 3; j++) {
+                [boolsToUse addObject:[boolsToUse objectAtIndex:j]];
+            }
+            [boolGroupsToUse addObject:boolsToUse];
+        }
     }
+    
+    NSMutableArray* groups = [[NSMutableArray alloc] init];
+    NSMutableArray* bools = [[NSMutableArray alloc] init];
+    
+    int counter = -1;
+    bools = [boolGroupsToUse objectAtIndex:++counter];
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.1 starReward:500
+                                                          item0:[[ObjectiveItem alloc] initWithText:@"Reach the second galaxy" isCompleted:[[bools objectAtIndex:0] boolValue]]
+                                                          item1:[[ObjectiveItem alloc] initWithText:@"Purchase an upgrade" isCompleted:[[bools objectAtIndex:1] boolValue]]
+                                                          item2:[[ObjectiveItem alloc] initWithText:@"Get 10 stars in one run" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
+    
+    bools = [boolGroupsToUse objectAtIndex:++counter];
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.1 starReward:500
+                                                          item0:[[ObjectiveItem alloc] initWithText:@"Reach the third galaxy" isCompleted:[[bools objectAtIndex:0] boolValue]]
+                                                          item1:[[ObjectiveItem alloc] initWithText:@"Get 15 stars in one run" isCompleted:[[bools objectAtIndex:1] boolValue]]
+                                                          item2:[[ObjectiveItem alloc] initWithText:@"Get 20 stars in one run" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
+    objectives = groups;
     [[ObjectiveManager sharedInstance] setObjectiveGroups:objectives];
-    
-    
-    
-    
-    
     
 }
 

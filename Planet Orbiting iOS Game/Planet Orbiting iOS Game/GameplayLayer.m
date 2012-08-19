@@ -1261,9 +1261,9 @@ typedef struct {
                 
                 
                 
-                /*  Toast* toast =[[Toast alloc] initWithView:hudLayer text:[NSString stringWithFormat: @"Achievement '%@' completed!\n%@", achievementTitle, achievementDescription]];
-                 [toast setFromTop:true];
-                 [toast showToast];*/
+                /*Toast* toast =[[Toast alloc] initWithView:hudLayer text:[NSString stringWithFormat: @"Achievement '%@' completed!\n%@", achievementTitle,achievementDescription]];
+                [toast setFromTop:true];
+                [toast showToast];*/
                 
                 
                 if (currentGalaxy.number == 1)
