@@ -417,6 +417,9 @@
 		FAA406B215DE008500E47C19 /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA406B115DE008500E47C19 /* Toast.m */; };
 		FABB361D15CF1E10004F5396 /* upgradecoin.png in Resources */ = {isa = PBXBuildFile; fileRef = FABB361C15CF1E10004F5396 /* upgradecoin.png */; };
 		FACE0CED15CB963B0055B5DF /* Powerup.m in Sources */ = {isa = PBXBuildFile; fileRef = FACE0CEC15CB963B0055B5DF /* Powerup.m */; };
+		FAD6725915E0413800C06929 /* ObjectiveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD6725815E0413800C06929 /* ObjectiveManager.m */; };
+		FAD6725C15E0439000C06929 /* ObjectiveItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD6725B15E0439000C06929 /* ObjectiveItem.m */; };
+		FAD6725F15E0448C00C06929 /* ObjectiveGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD6725E15E0448C00C06929 /* ObjectiveGroup.m */; };
 		FAF1C64015BCF8A1001136E3 /* Coin.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF1C63F15BCF8A1001136E3 /* Coin.m */; };
 /* End PBXBuildFile section */
 
@@ -989,6 +992,11 @@
 		FABB361C15CF1E10004F5396 /* upgradecoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgradecoin.png; sourceTree = "<group>"; };
 		FACE0CEB15CB963B0055B5DF /* Powerup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Powerup.h; sourceTree = "<group>"; };
 		FACE0CEC15CB963B0055B5DF /* Powerup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Powerup.m; sourceTree = "<group>"; };
+		FAD6725715E0413800C06929 /* ObjectiveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveManager.h; sourceTree = "<group>"; };
+		FAD6725815E0413800C06929 /* ObjectiveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveManager.m; sourceTree = "<group>"; };
+		FAD6725B15E0439000C06929 /* ObjectiveItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveItem.m; sourceTree = "<group>"; };
+		FAD6725E15E0448C00C06929 /* ObjectiveGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveGroup.m; sourceTree = "<group>"; };
+		FAD6726D15E053E600C06929 /* ObjectiveHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveHeader.h; sourceTree = "<group>"; };
 		FAF1C63E15BCF8A1001136E3 /* Coin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coin.h; sourceTree = "<group>"; };
 		FAF1C63F15BCF8A1001136E3 /* Coin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1259,6 +1267,7 @@
 		0C7AA60215946939000B58F2 /* Planet Orbiting iOS Game */ = {
 			isa = PBXGroup;
 			children = (
+				FAD6725515E040B100C06929 /* Objectives */,
 				FA40DCAE15D3788E00174FB8 /* Enhancements */,
 				0C487AFD159471FF00674AB9 /* Basic Stuff - Ignore */,
 				0C487AFC159471E800674AB9 /* Classes */,
@@ -1890,6 +1899,18 @@
 			name = Powerups;
 			sourceTree = "<group>";
 		};
+		FAD6725515E040B100C06929 /* Objectives */ = {
+			isa = PBXGroup;
+			children = (
+				FAD6725715E0413800C06929 /* ObjectiveManager.h */,
+				FAD6725815E0413800C06929 /* ObjectiveManager.m */,
+				FAD6726D15E053E600C06929 /* ObjectiveHeader.h */,
+				FAD6725E15E0448C00C06929 /* ObjectiveGroup.m */,
+				FAD6725B15E0439000C06929 /* ObjectiveItem.m */,
+			);
+			name = Objectives;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2341,6 +2362,9 @@
 				C45A45C215D9E2F200E343A3 /* matrix.c in Sources */,
 				C4FBD59F15DB1D6F00E836CB /* IntroLayer.m in Sources */,
 				FAA406B215DE008500E47C19 /* Toast.m in Sources */,
+				FAD6725915E0413800C06929 /* ObjectiveManager.m in Sources */,
+				FAD6725C15E0439000C06929 /* ObjectiveItem.m in Sources */,
+				FAD6725F15E0448C00C06929 /* ObjectiveGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

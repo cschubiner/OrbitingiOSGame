@@ -367,6 +367,28 @@ typedef struct {
         [[UpgradeValues sharedInstance] setHasStartPowerup:false];
 }
 
+- (void) initObjectives {
+    
+    NSMutableArray* groups = [[NSMutableArray alloc] init];
+    
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.1 starReward:500
+                                                          item0:[[ObjectiveItem alloc] initWithText:@"Reach the second galaxy"]
+                                                          item1:[[ObjectiveItem alloc] initWithText:@"Get 5 stars in one run"]
+                                                          item2:[[ObjectiveItem alloc] initWithText:@"Get 10 stars in one run"]]];
+    
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.2 starReward:700
+                                                          item0:[[ObjectiveItem alloc] initWithText:@"Reach the third galaxy"]
+                                                          item1:[[ObjectiveItem alloc] initWithText:@"Get 15 stars in one run"]
+                                                          item2:[[ObjectiveItem alloc] initWithText:@"Get 20 stars in one run"]]];
+    
+    [[ObjectiveManager sharedInstance] setObjectiveGroups:groups];
+    
+    [[ObjectiveManager sharedInstance] setCurrentObjectiveGroupNumber:1];
+    
+    
+    
+}
+
 /* On "init," initialize the instance */
 - (id)init {
 	// always call "super" init.
@@ -380,6 +402,7 @@ typedef struct {
         isInTutorialMode = false;
         levelNumber = [((AppDelegate*)[[UIApplication sharedApplication]delegate])getChosenLevelNumber];
         [self initUpgradedVariables];
+        [self initObjectives];
         
         planetCounter = 0;
         planets = [[NSMutableArray alloc] init];
@@ -676,8 +699,8 @@ typedef struct {
 - (void)UserTouchedCoin: (Coin*)coin dt:(float)dt{
     
     [[UserWallet sharedInstance] addCoins: ([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1) ];
-    
     score += howMuchCoinsAddToScore*([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1);
+    
     
     currentCoinLabel += ([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1);
     [coin.plusLabel setString:[NSString stringWithFormat:@"+%d", currentCoinLabel]];
@@ -726,6 +749,27 @@ typedef struct {
                            [CCScaleTo actionWithDuration:.03 scale:1.4],
                            [CCScaleTo actionWithDuration:.03 scale:1],
                            nil]];
+    
+    if (numCoinsDisplayed >= 5) {
+        [self completeObjectiveFromGroupNumber:0 itemNumber:1];
+    }
+    if (numCoinsDisplayed >= 10) {
+        [self completeObjectiveFromGroupNumber:0 itemNumber:2];
+    }
+    if (numCoinsDisplayed >= 15) {
+        [self completeObjectiveFromGroupNumber:1 itemNumber:1];
+    }
+    if (numCoinsDisplayed >= 20) {
+        [self completeObjectiveFromGroupNumber:1 itemNumber:2];
+    }
+}
+
+-(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber {
+    if ([[ObjectiveManager sharedInstance] currentObjectiveGroupNumber] == a_groupNumber) {
+        ObjectiveItem* obj = [[ObjectiveManager sharedInstance] getObjectiveFromGroupNumber:a_groupNumber itemNumber:a_itemNumber];
+        if ([[ObjectiveManager sharedInstance] completeObjective:obj])
+            [[GKAchievementHandler defaultHandler] notifyAchievementTitle:@"Objective Completed!" andMessage:obj.text];
+    }
 }
 
 - (ALuint)playSound:(NSString*)soundFile shouldLoop:(bool)shouldLoop pitch:(float)pitch{
@@ -1244,13 +1288,19 @@ typedef struct {
                 //NSLog(@"galaxy4");
                 
                 
-                NSString* achievementTitle = @"Asteroid Killer";
-                NSString* achievementDescription = @"Destroy 5 asteroids in the Galaxy 1.";
                 
-              /*  Toast* toast =[[Toast alloc] initWithView:hudLayer text:[NSString stringWithFormat: @"Achievement '%@' completed!\n%@", achievementTitle, achievementDescription]];
-                [toast setFromTop:true];
-                [toast showToast];*/
-                [[GKAchievementHandler defaultHandler] notifyAchievementTitle:[NSString stringWithFormat: @"Achievement '%@' completed!", achievementTitle] andMessage:achievementDescription];
+                
+                /*  Toast* toast =[[Toast alloc] initWithView:hudLayer text:[NSString stringWithFormat: @"Achievement '%@' completed!\n%@", achievementTitle, achievementDescription]];
+                 [toast setFromTop:true];
+                 [toast showToast];*/
+                
+                
+                if (currentGalaxy.number == 1)
+                    [self completeObjectiveFromGroupNumber:0 itemNumber:0];
+                if (currentGalaxy.number == 2)
+                    [self completeObjectiveFromGroupNumber:1 itemNumber:0];
+                
+                
                 
                 flurrySegmentsVisitedSinceGalaxyJump = 0;
                 Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];

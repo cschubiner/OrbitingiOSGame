@@ -105,7 +105,6 @@
     upgradeItems = [[NSMutableArray alloc] initWithArray:items];
     
     [[UpgradeManager sharedInstance] setUpgradeItems:upgradeItems];
-
 }
 
 @end

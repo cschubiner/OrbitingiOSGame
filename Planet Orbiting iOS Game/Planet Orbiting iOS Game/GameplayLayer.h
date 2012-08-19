@@ -20,6 +20,7 @@
 #import "Light.h"
 #import "Galaxy.h"
 #import "UpgradeValues.h"
+#import "ObjectiveManager.h"
 
 @interface GameplayLayer : CCLayer <UITextViewDelegate> {
     Player *player;

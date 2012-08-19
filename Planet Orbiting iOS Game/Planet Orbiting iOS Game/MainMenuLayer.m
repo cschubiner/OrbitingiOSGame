@@ -312,10 +312,10 @@ const float effectsVolumeMainMenu = 1;
         [self playSound:@"purchase.wav" shouldLoop:false pitch:1];
         int newBalance = curBalance - [[item.prices objectAtIndex:item.level] intValue];
         [[UserWallet sharedInstance] setBalance:newBalance];
+        [item setLevel:[item level] + 1];
         
         [Flurry logEvent:@"Purchased Item" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:newBalance],@"Coin Balance after purchase",item.title,@"Item Title",[NSNumber numberWithInt:item.level],@"Item Level",nil]];
-
-        [item setLevel:[item level] + 1];
+        
         [DataStorage storeData];
         [self refreshUpgradeCells];
     }
