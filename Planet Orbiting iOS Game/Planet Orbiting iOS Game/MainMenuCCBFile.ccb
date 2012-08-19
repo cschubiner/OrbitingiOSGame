@@ -505,66 +505,6 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>103</real>
-										<real>103</real>
-									</array>
-									<key>customClass</key>
-									<string></string>
-									<key>isEnabled</key>
-									<true/>
-									<key>isExpanded</key>
-									<true/>
-									<key>isRelativeAnchorPoint</key>
-									<true/>
-									<key>lockedScaleRatio</key>
-									<true/>
-									<key>memberVarAssignmentName</key>
-									<string></string>
-									<key>memberVarAssignmentType</key>
-									<integer>1</integer>
-									<key>position</key>
-									<array>
-										<real>169.794921875</real>
-										<real>-59.10546875</real>
-									</array>
-									<key>rotation</key>
-									<real>-111.2607421875</real>
-									<key>scaleX</key>
-									<real>-1.660703182220459</real>
-									<key>scaleY</key>
-									<real>-1.660703182220459</real>
-									<key>selector</key>
-									<string>pressedBackButton:</string>
-									<key>spriteFileDisabled</key>
-									<string>play.png</string>
-									<key>spriteFileNormal</key>
-									<string>play.png</string>
-									<key>spriteFileSelected</key>
-									<string>play.png</string>
-									<key>tag</key>
-									<integer>-1</integer>
-									<key>target</key>
-									<integer>2</integer>
-									<key>visible</key>
-									<true/>
-									<key>zOrder</key>
-									<integer>0</integer>
-								</dict>
-							</dict>
-							<dict>
-								<key>children</key>
-								<array/>
-								<key>class</key>
-								<string>CCMenuItemImage</string>
-								<key>properties</key>
-								<dict>
-									<key>anchorPoint</key>
-									<array>
-										<real>0.5</real>
-										<real>0.5</real>
-									</array>
-									<key>contentSize</key>
-									<array>
 										<real>147</real>
 										<real>161</real>
 									</array>
@@ -824,15 +764,15 @@
 											<integer>1</integer>
 											<key>position</key>
 											<array>
-												<real>252.462890625</real>
-												<real>134.125</real>
+												<real>443.298828125</real>
+												<real>255.4453125</real>
 											</array>
 											<key>rotation</key>
 											<real>0.0</real>
 											<key>scaleX</key>
-											<real>0.80000001192092896</real>
+											<real>0.50273442268371582</real>
 											<key>scaleY</key>
-											<real>0.80000001192092896</real>
+											<real>0.50273442268371582</real>
 											<key>selector</key>
 											<string>pressedTutorialButton:</string>
 											<key>spriteFileDisabled</key>
@@ -899,66 +839,6 @@
 									<integer>-1</integer>
 									<key>touchEnabled</key>
 									<integer>1</integer>
-									<key>visible</key>
-									<true/>
-									<key>zOrder</key>
-									<integer>0</integer>
-								</dict>
-							</dict>
-							<dict>
-								<key>children</key>
-								<array/>
-								<key>class</key>
-								<string>CCLabelBMFont</string>
-								<key>properties</key>
-								<dict>
-									<key>anchorPoint</key>
-									<array>
-										<real>0.5</real>
-										<real>0.5</real>
-									</array>
-									<key>color</key>
-									<array>
-										<integer>255</integer>
-										<integer>255</integer>
-										<integer>255</integer>
-									</array>
-									<key>contentSize</key>
-									<array>
-										<real>154</real>
-										<real>67</real>
-									</array>
-									<key>customClass</key>
-									<string></string>
-									<key>fontFile</key>
-									<string>betaFont2.fnt</string>
-									<key>isExpanded</key>
-									<true/>
-									<key>isRelativeAnchorPoint</key>
-									<true/>
-									<key>lockedScaleRatio</key>
-									<true/>
-									<key>memberVarAssignmentName</key>
-									<string></string>
-									<key>memberVarAssignmentType</key>
-									<integer>0</integer>
-									<key>opacity</key>
-									<integer>255</integer>
-									<key>position</key>
-									<array>
-										<real>252.001953125</real>
-										<real>91.55078125</real>
-									</array>
-									<key>rotation</key>
-									<real>0.0</real>
-									<key>scaleX</key>
-									<real>0.40000000596046448</real>
-									<key>scaleY</key>
-									<real>0.40000000596046448</real>
-									<key>string</key>
-									<string>Tutorial</string>
-									<key>tag</key>
-									<integer>-1</integer>
 									<key>visible</key>
 									<true/>
 									<key>zOrder</key>
@@ -1456,8 +1336,8 @@
 											<integer>1</integer>
 											<key>position</key>
 											<array>
-												<real>368.166015625</real>
-												<real>28.92578125</real>
+												<real>371.951171875</real>
+												<real>24.08203125</real>
 											</array>
 											<key>rotation</key>
 											<real>-1.8193359375</real>
@@ -3448,66 +3328,6 @@
 											</array>
 											<key>contentSize</key>
 											<array>
-												<real>66</real>
-												<real>66</real>
-											</array>
-											<key>customClass</key>
-											<string></string>
-											<key>isEnabled</key>
-											<true/>
-											<key>isExpanded</key>
-											<true/>
-											<key>isRelativeAnchorPoint</key>
-											<true/>
-											<key>lockedScaleRatio</key>
-											<true/>
-											<key>memberVarAssignmentName</key>
-											<string></string>
-											<key>memberVarAssignmentType</key>
-											<integer>1</integer>
-											<key>position</key>
-											<array>
-												<real>393.35546875</real>
-												<real>65.841796875</real>
-											</array>
-											<key>rotation</key>
-											<real>0.0</real>
-											<key>scaleX</key>
-											<real>0.89414066076278687</real>
-											<key>scaleY</key>
-											<real>0.89414066076278687</real>
-											<key>selector</key>
-											<string>pressedSendFeedback:</string>
-											<key>spriteFileDisabled</key>
-											<string>feedback.png</string>
-											<key>spriteFileNormal</key>
-											<string>feedback.png</string>
-											<key>spriteFileSelected</key>
-											<string>feedback.png</string>
-											<key>tag</key>
-											<integer>-1</integer>
-											<key>target</key>
-											<integer>2</integer>
-											<key>visible</key>
-											<true/>
-											<key>zOrder</key>
-											<integer>0</integer>
-										</dict>
-									</dict>
-									<dict>
-										<key>children</key>
-										<array/>
-										<key>class</key>
-										<string>CCMenuItemImage</string>
-										<key>properties</key>
-										<dict>
-											<key>anchorPoint</key>
-											<array>
-												<real>0.5</real>
-												<real>0.5</real>
-											</array>
-											<key>contentSize</key>
-											<array>
 												<real>77</real>
 												<real>77</real>
 											</array>
@@ -3602,126 +3422,6 @@
 									<integer>-1</integer>
 									<key>touchEnabled</key>
 									<integer>1</integer>
-									<key>visible</key>
-									<true/>
-									<key>zOrder</key>
-									<integer>0</integer>
-								</dict>
-							</dict>
-							<dict>
-								<key>children</key>
-								<array/>
-								<key>class</key>
-								<string>CCLabelBMFont</string>
-								<key>properties</key>
-								<dict>
-									<key>anchorPoint</key>
-									<array>
-										<real>0.5</real>
-										<real>0.5</real>
-									</array>
-									<key>color</key>
-									<array>
-										<integer>255</integer>
-										<integer>255</integer>
-										<integer>255</integer>
-									</array>
-									<key>contentSize</key>
-									<array>
-										<real>133</real>
-										<real>67</real>
-									</array>
-									<key>customClass</key>
-									<string></string>
-									<key>fontFile</key>
-									<string>betaFont2.fnt</string>
-									<key>isExpanded</key>
-									<true/>
-									<key>isRelativeAnchorPoint</key>
-									<true/>
-									<key>lockedScaleRatio</key>
-									<true/>
-									<key>memberVarAssignmentName</key>
-									<string></string>
-									<key>memberVarAssignmentType</key>
-									<integer>0</integer>
-									<key>opacity</key>
-									<integer>255</integer>
-									<key>position</key>
-									<array>
-										<real>393.056640625</real>
-										<real>24.46484375</real>
-									</array>
-									<key>rotation</key>
-									<real>0.0</real>
-									<key>scaleX</key>
-									<real>0.40000000596046448</real>
-									<key>scaleY</key>
-									<real>0.40000000596046448</real>
-									<key>string</key>
-									<string>Survey</string>
-									<key>tag</key>
-									<integer>-1</integer>
-									<key>visible</key>
-									<true/>
-									<key>zOrder</key>
-									<integer>0</integer>
-								</dict>
-							</dict>
-							<dict>
-								<key>children</key>
-								<array/>
-								<key>class</key>
-								<string>CCLabelBMFont</string>
-								<key>properties</key>
-								<dict>
-									<key>anchorPoint</key>
-									<array>
-										<real>0.5</real>
-										<real>0.5</real>
-									</array>
-									<key>color</key>
-									<array>
-										<integer>255</integer>
-										<integer>255</integer>
-										<integer>255</integer>
-									</array>
-									<key>contentSize</key>
-									<array>
-										<real>111</real>
-										<real>67</real>
-									</array>
-									<key>customClass</key>
-									<string></string>
-									<key>fontFile</key>
-									<string>betaFont2.fnt</string>
-									<key>isExpanded</key>
-									<true/>
-									<key>isRelativeAnchorPoint</key>
-									<true/>
-									<key>lockedScaleRatio</key>
-									<true/>
-									<key>memberVarAssignmentName</key>
-									<string></string>
-									<key>memberVarAssignmentType</key>
-									<integer>0</integer>
-									<key>opacity</key>
-									<integer>255</integer>
-									<key>position</key>
-									<array>
-										<real>453.732421875</real>
-										<real>194.046875</real>
-									</array>
-									<key>rotation</key>
-									<real>0.0</real>
-									<key>scaleX</key>
-									<real>0.49664062261581421</real>
-									<key>scaleY</key>
-									<real>0.49664062261581421</real>
-									<key>string</key>
-									<string>2.6.1</string>
-									<key>tag</key>
-									<integer>-1</integer>
 									<key>visible</key>
 									<true/>
 									<key>zOrder</key>
