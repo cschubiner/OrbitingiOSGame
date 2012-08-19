@@ -18,6 +18,7 @@
 #import "UpgradeManager.h"
 #import "UpgradeCell.h"
 #import "AppDelegate.h"
+#import "GKAchievementHandler.h"
 
 #define tutorialLayerTag    1001
 #define levelLayerTag       1002
@@ -314,6 +315,7 @@ const float effectsVolumeMainMenu = 1;
         [[UserWallet sharedInstance] setBalance:newBalance];
         [item setLevel:[item level] + 1];
         
+        [self completeObjectiveFromGroupNumber:0 itemNumber:1];
         [Flurry logEvent:@"Purchased Item" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:newBalance],@"Coin Balance after purchase",item.title,@"Item Title",[NSNumber numberWithInt:item.level],@"Item Level",nil]];
         
         [DataStorage storeData];
@@ -344,9 +346,40 @@ const float effectsVolumeMainMenu = 1;
                            nil]];
 }
 
+-(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber {
+    if ([[ObjectiveManager sharedInstance] currentObjectiveGroupNumber] == a_groupNumber) {
+        ObjectiveItem* obj = [[ObjectiveManager sharedInstance] getObjectiveFromGroupNumber:a_groupNumber itemNumber:a_itemNumber];
+        if ([[ObjectiveManager sharedInstance] completeObjective:obj])
+            [[GKAchievementHandler defaultHandler] notifyAchievementTitle:@"Objective Completed!" andMessage:obj.text];
+    }
+}
+
+
 // on "init" you need to initialize your instance
 - (id)init {
 	if (self = [super init]) {
+        
+        
+        NSMutableArray* groups = [[NSMutableArray alloc] init];
+        
+        [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.1 starReward:500
+                                                              item0:[[ObjectiveItem alloc] initWithText:@"Reach the second galaxy"]
+                                                              item1:[[ObjectiveItem alloc] initWithText:@"Purchase an upgrade"]
+                                                              item2:[[ObjectiveItem alloc] initWithText:@"Get 10 stars in one run"]]];
+        
+        [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.2 starReward:700
+                                                              item0:[[ObjectiveItem alloc] initWithText:@"Reach the third galaxy"]
+                                                              item1:[[ObjectiveItem alloc] initWithText:@"Get 15 stars in one run"]
+                                                              item2:[[ObjectiveItem alloc] initWithText:@"Get 20 stars in one run"]]];
+        
+        [[ObjectiveManager sharedInstance] setObjectiveGroups:groups];
+        
+        [[ObjectiveManager sharedInstance] setCurrentObjectiveGroupNumber:0];
+        
+        
+        
+        
+        
         
         self.isTouchEnabled = true;
         

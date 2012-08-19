@@ -367,28 +367,6 @@ typedef struct {
         [[UpgradeValues sharedInstance] setHasStartPowerup:false];
 }
 
-- (void) initObjectives {
-    
-    NSMutableArray* groups = [[NSMutableArray alloc] init];
-    
-    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.1 starReward:500
-                                                          item0:[[ObjectiveItem alloc] initWithText:@"Reach the second galaxy"]
-                                                          item1:[[ObjectiveItem alloc] initWithText:@"Get 5 stars in one run"]
-                                                          item2:[[ObjectiveItem alloc] initWithText:@"Get 10 stars in one run"]]];
-    
-    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.2 starReward:700
-                                                          item0:[[ObjectiveItem alloc] initWithText:@"Reach the third galaxy"]
-                                                          item1:[[ObjectiveItem alloc] initWithText:@"Get 15 stars in one run"]
-                                                          item2:[[ObjectiveItem alloc] initWithText:@"Get 20 stars in one run"]]];
-    
-    [[ObjectiveManager sharedInstance] setObjectiveGroups:groups];
-    
-    [[ObjectiveManager sharedInstance] setCurrentObjectiveGroupNumber:1];
-    
-    
-    
-}
-
 /* On "init," initialize the instance */
 - (id)init {
 	// always call "super" init.
@@ -402,7 +380,6 @@ typedef struct {
         isInTutorialMode = false;
         levelNumber = [((AppDelegate*)[[UIApplication sharedApplication]delegate])getChosenLevelNumber];
         [self initUpgradedVariables];
-        [self initObjectives];
         
         planetCounter = 0;
         planets = [[NSMutableArray alloc] init];
@@ -750,9 +727,7 @@ typedef struct {
                            [CCScaleTo actionWithDuration:.03 scale:1],
                            nil]];
     
-    if (numCoinsDisplayed >= 5) {
-        [self completeObjectiveFromGroupNumber:0 itemNumber:1];
-    }
+    
     if (numCoinsDisplayed >= 10) {
         [self completeObjectiveFromGroupNumber:0 itemNumber:2];
     }
