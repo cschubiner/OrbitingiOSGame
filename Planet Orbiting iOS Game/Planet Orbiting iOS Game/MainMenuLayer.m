@@ -305,53 +305,8 @@ const float effectsVolumeMainMenu = 1;
 
 -(void)pressedObjectiveButton:(id)sender {
     [Flurry logEvent:@"Pressed objective button"];
-    missionPopup = [self createMissionPopupWithX:true];
+    missionPopup = [[ObjectiveManager sharedInstance] createMissionPopupWithX:true];
     [self addChild:missionPopup];
-}
-
--(CCLayer*)createMissionPopupWithX:(bool)withX {
-    CCLayer* missionPopup = [[CCLayer alloc] init];
-    CCSprite* bg = [CCSprite spriteWithFile:(withX) ? @"missionsModal.png" : @"missionsBG.png"];
-    [missionPopup addChild:bg];
-    bg.position = ccp(240, 160);
-    
-    CCLabelTTF* missionLabel = [CCLabelTTF labelWithString:@"CURRENT MISSIONS" fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
-    [missionPopup addChild:missionLabel];
-    missionLabel.position = ccp(240, 252);
-    
-    NSMutableArray* objectivesAtThisLevel = [[ObjectiveManager sharedInstance] getObjectivesFromGroupNumber:[[ObjectiveManager sharedInstance] currentObjectiveGroupNumber]];
-    
-    ObjectiveGroup* currentGroup = [[[ObjectiveManager sharedInstance] objectiveGroups] objectAtIndex:[[ObjectiveManager sharedInstance] currentObjectiveGroupNumber]];
-    
-    
-    CCSprite* ind0 = [CCSprite spriteWithFile:([((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:0]) completed]) ? @"missioncomplete.png" : @"yousuck.png"];
-    CCSprite* ind1 = [CCSprite spriteWithFile:([((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:1]) completed]) ? @"missioncomplete.png" : @"yousuck.png"];
-    CCSprite* ind2 = [CCSprite spriteWithFile:([((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:2]) completed]) ? @"missioncomplete.png" : @"yousuck.png"];
-    [missionPopup addChild:ind0];
-    [missionPopup addChild:ind1];
-    [missionPopup addChild:ind2];
-    ind0.position = ccp(104, 209);
-    ind1.position = ccp(104, 154);
-    ind2.position = ccp(104, 100);
-    
-    CCLabelTTF* label0 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:0]) text] dimensions:CGSizeMake(273, 55) hAlignment:UITextAlignmentLeft vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
-    CCLabelTTF* label1 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:1]) text] dimensions:CGSizeMake(273, 55) hAlignment:UITextAlignmentLeft vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
-    CCLabelTTF* label2 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:2]) text] dimensions:CGSizeMake(273, 55) hAlignment:UITextAlignmentLeft vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
-    [missionPopup addChild:label0];
-    [missionPopup addChild:label1];
-    [missionPopup addChild:label2];
-    label0.position = ccp(label0.boundingBox.size.width/2 + 134, 209);
-    label1.position = ccp(label1.boundingBox.size.width/2 + 134, 154);
-    label2.position = ccp(label2.boundingBox.size.width/2 + 134, 100);
-    
-    
-    
-    NSString* footerString = [NSString stringWithFormat:@"REWARD: %.1fx MULTIPLIER AND %@ STARS", currentGroup.scoreMult, [self commaInt:currentGroup.starReward]];
-    
-    CCLabelTTF* footer = [CCLabelTTF labelWithString:footerString fontName:@"HelveticaNeue-CondensedBold" fontSize:16.5];
-    [missionPopup addChild:footer];
-    footer.position = ccp(240, 61);
-    return missionPopup;
 }
 
 -(void)pressedPurchaseButton:(id)sender {
