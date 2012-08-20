@@ -168,6 +168,8 @@
 		0C9D124D15C25A1C00C3495A /* titleFontGreen.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D124915C25A1C00C3495A /* titleFontGreen.fnt */; };
 		0C9D124E15C25A1C00C3495A /* titleFontGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D124A15C25A1C00C3495A /* titleFontGreen.png */; };
 		0CA44A8615E2068B00CA6F8E /* thrustBurstParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CA44A8515E2068B00CA6F8E /* thrustBurstParticle.plist */; };
+		0CA44A9315E2149100CA6F8E /* spaceship-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA44A9115E2149100CA6F8E /* spaceship-hd.png */; };
+		0CA44A9415E2149100CA6F8E /* spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA44A9215E2149100CA6F8E /* spaceship.png */; };
 		0CA964FF15C65C95002FB2E8 /* hudLayer.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 0CA964FE15C65C95002FB2E8 /* hudLayer.ccb */; };
 		0CA9650D15C66249002FB2E8 /* selector-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA9650915C66249002FB2E8 /* selector-hd.png */; };
 		0CA9650E15C66249002FB2E8 /* selector.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA9650A15C66249002FB2E8 /* selector.png */; };
@@ -614,6 +616,8 @@
 		0C9D124915C25A1C00C3495A /* titleFontGreen.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = titleFontGreen.fnt; sourceTree = "<group>"; };
 		0C9D124A15C25A1C00C3495A /* titleFontGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleFontGreen.png; sourceTree = "<group>"; };
 		0CA44A8515E2068B00CA6F8E /* thrustBurstParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = thrustBurstParticle.plist; sourceTree = "<group>"; };
+		0CA44A9115E2149100CA6F8E /* spaceship-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spaceship-hd.png"; sourceTree = "<group>"; };
+		0CA44A9215E2149100CA6F8E /* spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spaceship.png; sourceTree = "<group>"; };
 		0CA964FE15C65C95002FB2E8 /* hudLayer.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = hudLayer.ccb; sourceTree = "<group>"; };
 		0CA9650915C66249002FB2E8 /* selector-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selector-hd.png"; sourceTree = "<group>"; };
 		0CA9650A15C66249002FB2E8 /* selector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selector.png; sourceTree = "<group>"; };
@@ -1334,6 +1338,8 @@
 			isa = PBXGroup;
 			children = (
 				0C8A1E5815DB650F00600B36 /* MainMenuCCBFile.ccb */,
+				0CA44A9115E2149100CA6F8E /* spaceship-hd.png */,
+				0CA44A9215E2149100CA6F8E /* spaceship.png */,
 				011FE3FC15DA1316003C7713 /* Battery */,
 				011FE3F615DA12E8003C7713 /* Buttons */,
 				C43AF01315D4267D001FF7D9 /* Spritesheets */,
@@ -2269,6 +2275,8 @@
 				FAB3892215E2132D002CBC09 /* missioncomplete.png in Resources */,
 				FAB3892515E2133A002CBC09 /* yousuck-hd.png in Resources */,
 				FAB3892615E2133A002CBC09 /* yousuck.png in Resources */,
+				0CA44A9315E2149100CA6F8E /* spaceship-hd.png in Resources */,
+				0CA44A9415E2149100CA6F8E /* spaceship.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

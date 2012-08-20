@@ -94,9 +94,9 @@
 						<real>0.0</real>
 					</array>
 					<key>angle</key>
-					<integer>0</integer>
+					<integer>180</integer>
 					<key>angleVar</key>
-					<integer>360</integer>
+					<integer>0</integer>
 					<key>blendFunc</key>
 					<array>
 						<integer>1</integer>
@@ -130,7 +130,7 @@
 						<real>0.0</real>
 					</array>
 					<key>endSize</key>
-					<integer>5</integer>
+					<integer>8</integer>
 					<key>endSizeVar</key>
 					<integer>3</integer>
 					<key>endSpin</key>
@@ -139,7 +139,7 @@
 					<integer>360</integer>
 					<key>gravity</key>
 					<array>
-						<real>0.0</real>
+						<real>-50</real>
 						<real>0.0</real>
 					</array>
 					<key>isExpanded</key>
@@ -158,12 +158,12 @@
 					<integer>0</integer>
 					<key>posVar</key>
 					<array>
-						<real>720</real>
+						<real>100</real>
 						<real>320</real>
 					</array>
 					<key>position</key>
 					<array>
-						<real>720</real>
+						<real>1580</real>
 						<real>320</real>
 					</array>
 					<key>radialAccel</key>
@@ -177,7 +177,7 @@
 					<key>scaleY</key>
 					<real>1</real>
 					<key>speed</key>
-					<integer>0</integer>
+					<integer>100</integer>
 					<key>speedVar</key>
 					<integer>0</integer>
 					<key>spriteFile</key>
@@ -197,7 +197,7 @@
 						<real>1</real>
 					</array>
 					<key>startSize</key>
-					<integer>6</integer>
+					<integer>10</integer>
 					<key>startSizeVar</key>
 					<integer>5</integer>
 					<key>startSpin</key>
@@ -211,7 +211,7 @@
 					<key>tangentialAccelVar</key>
 					<integer>0</integer>
 					<key>totalParticles</key>
-					<integer>320</integer>
+					<integer>820</integer>
 					<key>visible</key>
 					<true/>
 					<key>zOrder</key>
@@ -604,6 +604,211 @@
 				<array>
 					<dict>
 						<key>children</key>
+						<array/>
+						<key>class</key>
+						<string>CCParticleSystem</string>
+						<key>properties</key>
+						<dict>
+							<key>anchorPoint</key>
+							<array>
+								<real>0.0</real>
+								<real>0.0</real>
+							</array>
+							<key>angle</key>
+							<integer>90</integer>
+							<key>angleVar</key>
+							<integer>10</integer>
+							<key>blendFunc</key>
+							<array>
+								<integer>770</integer>
+								<integer>1</integer>
+							</array>
+							<key>contentSize</key>
+							<array>
+								<real>0.0</real>
+								<real>0.0</real>
+							</array>
+							<key>customClass</key>
+							<string></string>
+							<key>duration</key>
+							<real>-1</real>
+							<key>emissionRate</key>
+							<real>83.333335876464844</real>
+							<key>emitterMode</key>
+							<integer>0</integer>
+							<key>endColor</key>
+							<array>
+								<real>0.0</real>
+								<real>0.0</real>
+								<real>0.0</real>
+								<real>1</real>
+							</array>
+							<key>endColorVar</key>
+							<array>
+								<real>0.0</real>
+								<real>0.0</real>
+								<real>0.0</real>
+								<real>0.0</real>
+							</array>
+							<key>endSize</key>
+							<integer>0</integer>
+							<key>endSizeVar</key>
+							<integer>0</integer>
+							<key>endSpin</key>
+							<integer>0</integer>
+							<key>endSpinVar</key>
+							<integer>0</integer>
+							<key>gravity</key>
+							<array>
+								<real>0.0</real>
+								<real>0.0</real>
+							</array>
+							<key>isExpanded</key>
+							<true/>
+							<key>isRelativeAnchorPoint</key>
+							<true/>
+							<key>life</key>
+							<real>3</real>
+							<key>lifeVar</key>
+							<real>0.25</real>
+							<key>lockedScaleRatio</key>
+							<true/>
+							<key>memberVarAssignmentName</key>
+							<string></string>
+							<key>memberVarAssignmentType</key>
+							<integer>0</integer>
+							<key>posVar</key>
+							<array>
+								<real>40</real>
+								<real>20</real>
+							</array>
+							<key>position</key>
+							<array>
+								<real>17.764930725097656</real>
+								<real>74.27044677734375</real>
+							</array>
+							<key>radialAccel</key>
+							<integer>0</integer>
+							<key>radialAccelVar</key>
+							<integer>0</integer>
+							<key>rotation</key>
+							<real>-90</real>
+							<key>scaleX</key>
+							<real>1</real>
+							<key>scaleY</key>
+							<real>1</real>
+							<key>speed</key>
+							<integer>60</integer>
+							<key>speedVar</key>
+							<integer>20</integer>
+							<key>spriteFile</key>
+							<string>thrustParticleTexture.png</string>
+							<key>startColor</key>
+							<array>
+								<real>0.75999999046325684</real>
+								<real>0.25</real>
+								<real>0.11999999731779099</real>
+								<real>1</real>
+							</array>
+							<key>startColorVar</key>
+							<array>
+								<real>0.0</real>
+								<real>0.0</real>
+								<real>0.0</real>
+								<real>0.0</real>
+							</array>
+							<key>startSize</key>
+							<integer>54</integer>
+							<key>startSizeVar</key>
+							<integer>10</integer>
+							<key>startSpin</key>
+							<integer>0</integer>
+							<key>startSpinVar</key>
+							<integer>0</integer>
+							<key>tag</key>
+							<integer>-1</integer>
+							<key>tangentialAccel</key>
+							<integer>0</integer>
+							<key>tangentialAccelVar</key>
+							<integer>0</integer>
+							<key>totalParticles</key>
+							<integer>350</integer>
+							<key>visible</key>
+							<true/>
+							<key>zOrder</key>
+							<integer>-1</integer>
+						</dict>
+					</dict>
+				</array>
+				<key>class</key>
+				<string>CCSprite</string>
+				<key>properties</key>
+				<dict>
+					<key>anchorPoint</key>
+					<array>
+						<real>0.5</real>
+						<real>0.5</real>
+					</array>
+					<key>blendFunc</key>
+					<array>
+						<integer>1</integer>
+						<integer>771</integer>
+					</array>
+					<key>color</key>
+					<array>
+						<integer>255</integer>
+						<integer>255</integer>
+						<integer>255</integer>
+					</array>
+					<key>contentSize</key>
+					<array>
+						<real>599</real>
+						<real>157</real>
+					</array>
+					<key>customClass</key>
+					<string></string>
+					<key>flipX</key>
+					<false/>
+					<key>flipY</key>
+					<false/>
+					<key>isExpanded</key>
+					<true/>
+					<key>isRelativeAnchorPoint</key>
+					<true/>
+					<key>lockedScaleRatio</key>
+					<true/>
+					<key>memberVarAssignmentName</key>
+					<string></string>
+					<key>memberVarAssignmentType</key>
+					<integer>0</integer>
+					<key>opacity</key>
+					<integer>255</integer>
+					<key>position</key>
+					<array>
+						<real>1165.95703125</real>
+						<real>468.76953125</real>
+					</array>
+					<key>rotation</key>
+					<real>0.0</real>
+					<key>scaleX</key>
+					<real>1.6959764957427979</real>
+					<key>scaleY</key>
+					<real>1.6959764957427979</real>
+					<key>spriteFile</key>
+					<string>spaceship.png</string>
+					<key>tag</key>
+					<integer>-1</integer>
+					<key>visible</key>
+					<true/>
+					<key>zOrder</key>
+					<integer>0</integer>
+				</dict>
+			</dict>
+			<dict>
+				<key>children</key>
+				<array>
+					<dict>
+						<key>children</key>
 						<array>
 							<dict>
 								<key>children</key>
@@ -641,8 +846,8 @@
 											<integer>1</integer>
 											<key>position</key>
 											<array>
-												<real>443.298828125</real>
-												<real>255.4453125</real>
+												<real>539.076171875</real>
+												<real>251.35546875</real>
 											</array>
 											<key>rotation</key>
 											<real>0.0</real>
@@ -1548,9 +1753,9 @@
 									</array>
 									<key>color</key>
 									<array>
-										<integer>255</integer>
-										<integer>248</integer>
-										<integer>0</integer>
+										<integer>173</integer>
+										<integer>159</integer>
+										<integer>139</integer>
 									</array>
 									<key>contentSize</key>
 									<array>
@@ -1575,15 +1780,15 @@
 									<integer>255</integer>
 									<key>position</key>
 									<array>
-										<real>369.46875</real>
-										<real>112.5703125</real>
+										<real>441.15234375</real>
+										<real>101.96484375</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
 									<key>scaleX</key>
-									<real>0.87972652912139893</real>
+									<real>0.43300774693489075</real>
 									<key>scaleY</key>
-									<real>0.87972652912139893</real>
+									<real>0.43300774693489075</real>
 									<key>string</key>
 									<string>Star Dash</string>
 									<key>tag</key>
@@ -3433,7 +3638,7 @@
 			<key>position</key>
 			<array>
 				<real>0.0</real>
-				<real>0.0</real>
+				<real>-320</real>
 			</array>
 			<key>rotation</key>
 			<real>0.0</real>
