@@ -404,6 +404,8 @@ typedef struct {
         [playerSpawnedParticle setVisible:false];
         [playerSpawnedParticle stopSystem];
         thrustParticle = [CCParticleSystemQuad particleWithFile:@"thrustParticle3.plist"];
+        thrustBurstParticle = [CCParticleSystemQuad particleWithFile:@"thrustBurstParticle.plist"];
+        [thrustBurstParticle stopSystem];
         
         CCMenuItem  *pauseButton = [CCMenuItemImage
                                     itemFromNormalImage:@"pauseButton7.png" selectedImage:@"pauseButton7.png"
@@ -561,6 +563,7 @@ typedef struct {
         id sequenceAction = [CCRepeatForever actionWithAction:[CCSequence actions:scaleBiggerAction,[CCDelayTime actionWithDuration:.4],scaleSmallerAction,[CCDelayTime actionWithDuration:.2], nil]];
         batteryGlowScaleAction = [CCSpeed actionWithAction:sequenceAction speed:1];
         [batteryGlowSprite runAction:batteryGlowScaleAction];
+
         
         [self addChild:cameraLayer];
         [self addChild:hudLayer];
@@ -1160,6 +1163,7 @@ typedef struct {
     
     [thrustParticle setPositionType:kCCPositionTypeRelative];
     [cameraLayer addChild:thrustParticle z:2];
+    [cameraLayer addChild:thrustBurstParticle z:2];
     [cameraLayer addChild:streak z:1];
     [spriteSheet addChild:player.sprite z:3];
 }
@@ -1260,6 +1264,10 @@ typedef struct {
                     [cameraLayer addChild:currentGalaxy.spriteSheet z:3];
                     //NSLog(@"galaxy1155");
                     [cameraLayer reorderChild:spriteSheet z:4];
+                    [cameraLayer reorderChild:streak z:4];
+                    [cameraLayer reorderChild:thrustParticle z:4];
+                    [cameraLayer reorderChild:thrustBurstParticle z:4];
+
                 }
                 //NSLog(@"galaxy4");
                 
@@ -1532,7 +1540,7 @@ typedef struct {
     
     if (percentDead<.5) 
     [batteryInnerSprite setColor:ccc3(lerpf(0, 255, percentDead*2), 255, 0)];
-    else [batteryInnerSprite setColor:ccc3(lerpf(0, 255, percentDead), lerpf(255, 0, percentDead*2-1), 0)];
+    else [batteryInnerSprite setColor:ccc3(255, lerpf(255, 0, percentDead    *2-1), 0)];
 
     [batteryGlowScaleAction setSpeed:lerpf(1, 3.6, percentDead)];
     
@@ -1764,6 +1772,10 @@ typedef struct {
 - (void)JustSwiped {
     orbitState = 1;
     targetPlanet = [planets objectAtIndex: (lastPlanetVisited.number + 1)];
+    [thrustBurstParticle setPosition:player.sprite.position];
+    [thrustBurstParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
+    [thrustBurstParticle resetSystem];
+
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {

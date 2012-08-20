@@ -117,6 +117,7 @@
     
     CCParticleSystemQuad * playerSpawnedParticle;
     CCParticleSystemQuad * thrustParticle;
+    CCParticleSystemQuad * thrustBurstParticle;
     CCParticleSystemQuad * cometParticle;
     CCParticleSystemQuad * playerExplosionParticle;
     CGPoint cometVelocity;
