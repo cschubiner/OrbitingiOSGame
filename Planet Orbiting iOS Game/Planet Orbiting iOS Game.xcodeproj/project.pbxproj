@@ -420,6 +420,10 @@
 		FA895CDB15C525B400FA4EC3 /* Light.m in Sources */ = {isa = PBXBuildFile; fileRef = FA895CDA15C525B400FA4EC3 /* Light.m */; };
 		FA9C246F15C2595000139706 /* menumusic_new.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA9C246E15C2595000139706 /* menumusic_new.mp3 */; };
 		FAA406B215DE008500E47C19 /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA406B115DE008500E47C19 /* Toast.m */; };
+		FAB3892115E2132D002CBC09 /* missioncomplete-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB3891F15E2132D002CBC09 /* missioncomplete-hd.png */; };
+		FAB3892215E2132D002CBC09 /* missioncomplete.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB3892015E2132D002CBC09 /* missioncomplete.png */; };
+		FAB3892515E2133A002CBC09 /* yousuck-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB3892315E2133A002CBC09 /* yousuck-hd.png */; };
+		FAB3892615E2133A002CBC09 /* yousuck.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB3892415E2133A002CBC09 /* yousuck.png */; };
 		FABB361D15CF1E10004F5396 /* upgradecoin.png in Resources */ = {isa = PBXBuildFile; fileRef = FABB361C15CF1E10004F5396 /* upgradecoin.png */; };
 		FACE0CED15CB963B0055B5DF /* Powerup.m in Sources */ = {isa = PBXBuildFile; fileRef = FACE0CEC15CB963B0055B5DF /* Powerup.m */; };
 		FAD6725915E0413800C06929 /* ObjectiveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD6725815E0413800C06929 /* ObjectiveManager.m */; };
@@ -999,6 +1003,10 @@
 		FA9C246E15C2595000139706 /* menumusic_new.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = menumusic_new.mp3; sourceTree = "<group>"; };
 		FAA406B015DE008500E47C19 /* Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Toast.h; path = ../Toast.h; sourceTree = "<group>"; };
 		FAA406B115DE008500E47C19 /* Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Toast.m; path = ../Toast.m; sourceTree = "<group>"; };
+		FAB3891F15E2132D002CBC09 /* missioncomplete-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "missioncomplete-hd.png"; sourceTree = "<group>"; };
+		FAB3892015E2132D002CBC09 /* missioncomplete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missioncomplete.png; sourceTree = "<group>"; };
+		FAB3892315E2133A002CBC09 /* yousuck-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yousuck-hd.png"; sourceTree = "<group>"; };
+		FAB3892415E2133A002CBC09 /* yousuck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yousuck.png; sourceTree = "<group>"; };
 		FABB361C15CF1E10004F5396 /* upgradecoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgradecoin.png; sourceTree = "<group>"; };
 		FACE0CEB15CB963B0055B5DF /* Powerup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Powerup.h; sourceTree = "<group>"; };
 		FACE0CEC15CB963B0055B5DF /* Powerup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Powerup.m; sourceTree = "<group>"; };
@@ -1046,6 +1054,10 @@
 		01127FC115E2106200D4EE47 /* Missions */ = {
 			isa = PBXGroup;
 			children = (
+				FAB3891F15E2132D002CBC09 /* missioncomplete-hd.png */,
+				FAB3892015E2132D002CBC09 /* missioncomplete.png */,
+				FAB3892315E2133A002CBC09 /* yousuck-hd.png */,
+				FAB3892415E2133A002CBC09 /* yousuck.png */,
 				01127FC315E2107600D4EE47 /* missionsBG-hd.png */,
 				01127FC415E2107600D4EE47 /* missionsBG.png */,
 			);
@@ -2253,6 +2265,10 @@
 				0CBF200B15E1C68B00E05CDB /* batteryglow-hd.png in Resources */,
 				0CBF200C15E1C68B00E05CDB /* batteryglow.png in Resources */,
 				0CA44A8615E2068B00CA6F8E /* thrustBurstParticle.plist in Resources */,
+				FAB3892115E2132D002CBC09 /* missioncomplete-hd.png in Resources */,
+				FAB3892215E2132D002CBC09 /* missioncomplete.png in Resources */,
+				FAB3892515E2133A002CBC09 /* yousuck-hd.png in Resources */,
+				FAB3892615E2133A002CBC09 /* yousuck.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

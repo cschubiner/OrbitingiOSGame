@@ -301,7 +301,13 @@ const float effectsVolumeMainMenu = 1;
 -(void)pressedObjectiveButton:(id)sender {
     [Flurry logEvent:@"Pressed objective button"];
     
+    CCSprite* bg = [CCSprite spriteWithFile:@"missionsBG.png"];
+    [self addChild:bg];
+    bg.position = ccp(240, 160);
+    
     NSMutableArray* objectivesAtThisLevel = [[ObjectiveManager sharedInstance] getObjectivesFromGroupNumber:[[ObjectiveManager sharedInstance] currentObjectiveGroupNumber]];
+    
+    //CCSprite* ind1 = [CCSprite spriteWithFile:@"missioncomplete.png
     
     CCLabelTTF* label0 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:0]) text] fontName:@"HelveticaNeue-CondensedBold" fontSize:20];
     CCLabelTTF* label1 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:1]) text] fontName:@"HelveticaNeue-CondensedBold" fontSize:20];
