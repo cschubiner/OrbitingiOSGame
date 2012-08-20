@@ -135,6 +135,7 @@
     
     CCSprite * background;
     CCSprite * background2;
+    CCSprite * batteryInnerSprite;
     CCSpriteBatchNode* spriteSheet;
     CCLayer *pauseLayer;
     CCLabelBMFont * gameOverScoreLabel;

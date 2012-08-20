@@ -1276,8 +1276,6 @@ typedef struct {
                 if (currentGalaxy.number == 2)
                     [self completeObjectiveFromGroupNumber:1 itemNumber:0];
                 
-                
-                
                 flurrySegmentsVisitedSinceGalaxyJump = 0;
                 Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
                 timeToAddToTimer = lastGalaxy.percentTimeToAddUponGalaxyCompletion*[[UpgradeValues sharedInstance] maxBatteryTime];
@@ -1532,6 +1530,10 @@ typedef struct {
         [batteryDecreaserSprite setScaleX:lerpf(0, 66, percentDead)];
     }
     
+    if (percentDead<.5) 
+    [batteryInnerSprite setColor:ccc3(lerpf(0, 255, percentDead*2), 255, 0)];
+    else [batteryInnerSprite setColor:ccc3(lerpf(0, 255, percentDead), lerpf(255, 0, percentDead*2-1), 0)];
+
     [batteryGlowScaleAction setSpeed:lerpf(1, 3.6, percentDead)];
     
     //    CCLOG(@"DIST: %f, VEL: %f, LIGHSCORE: %f", light.distanceFromPlayer, light.scoreVelocity, light.score);
