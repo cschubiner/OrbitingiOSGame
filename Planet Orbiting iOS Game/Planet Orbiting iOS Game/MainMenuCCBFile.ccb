@@ -158,12 +158,12 @@
 					<integer>0</integer>
 					<key>posVar</key>
 					<array>
-						<real>100</real>
+						<real>300</real>
 						<real>320</real>
 					</array>
 					<key>position</key>
 					<array>
-						<real>1580</real>
+						<real>1980</real>
 						<real>320</real>
 					</array>
 					<key>radialAccel</key>
@@ -785,8 +785,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>1165.95703125</real>
-						<real>468.76953125</real>
+						<real>1098.96875</real>
+						<real>471.55078125</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
@@ -1753,9 +1753,9 @@
 									</array>
 									<key>color</key>
 									<array>
-										<integer>173</integer>
-										<integer>159</integer>
-										<integer>139</integer>
+										<integer>254</integer>
+										<integer>235</integer>
+										<integer>255</integer>
 									</array>
 									<key>contentSize</key>
 									<array>
@@ -1780,8 +1780,8 @@
 									<integer>255</integer>
 									<key>position</key>
 									<array>
-										<real>441.15234375</real>
-										<real>101.96484375</real>
+										<real>373.95703125</real>
+										<real>105.09375</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
