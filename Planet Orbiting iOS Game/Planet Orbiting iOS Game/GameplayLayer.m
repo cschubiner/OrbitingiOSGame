@@ -558,12 +558,11 @@ typedef struct {
         lastPlanetVisited = [planets objectAtIndex:0];
         layerHudSlider = (CCLayer*)[CCBReader nodeGraphFromFile:@"hudLayer.ccb" owner:self];
         float durationForScaling = .7;
-        id scaleBiggerAction = [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:durationForScaling scale:1.183]];
+        id scaleBiggerAction = [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:durationForScaling scale:.973]];
         id scaleSmallerAction = [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:durationForScaling scale:.858]];
         id sequenceAction = [CCRepeatForever actionWithAction:[CCSequence actions:scaleBiggerAction,[CCDelayTime actionWithDuration:.4],scaleSmallerAction,[CCDelayTime actionWithDuration:.2], nil]];
         batteryGlowScaleAction = [CCSpeed actionWithAction:sequenceAction speed:1];
-        [batteryGlowSprite runAction:batteryGlowScaleAction];
-
+        [batteryGlowSprite setScale:.873];
         
         [self addChild:cameraLayer];
         [self addChild:hudLayer];
@@ -1290,6 +1289,10 @@ typedef struct {
                 if (timeToAddToTimer+light.timeLeft > [[UpgradeValues sharedInstance] maxBatteryTime])
                     timeToAddToTimer = [[UpgradeValues sharedInstance] maxBatteryTime] - light.timeLeft;
                 
+                [batteryGlowSprite setColor:ccc3(0, 255, 0)];
+                [batteryGlowSprite stopAllActions];
+                [batteryGlowSprite runAction:batteryGlowScaleAction];
+                
                 if ([[hudLayer children]containsObject:galaxyLabel]==false)
                     [hudLayer addChild:galaxyLabel];
                 [galaxyLabel setOpacity:1];
@@ -1375,7 +1378,7 @@ typedef struct {
                     flurrySegmentsVisitedSinceGalaxyJump++;
                 }
                 
-                [zone.sprite setColor:ccc3(255, 80, 180)];
+                [zone.sprite setColor:ccc3(140, 140, 140)];
                 zone.hasPlayerHitThisZone = true;
                 zonesReached++;
                 planetsHitSinceNewGalaxy++;
@@ -1527,10 +1530,12 @@ typedef struct {
     timeToAddToTimer-= timerAddSpeed * dt;
     if (timeToAddToTimer>0) {
         light.timeLeft += timerAddSpeed * dt;
-        [batteryGlowSprite setColor:ccc3(0, 255, 0)];
     }
-    else [batteryGlowSprite setColor:ccc3(255, 0, 0)];
-    
+    else
+    {
+        [batteryGlowSprite setColor:ccc3(0, 255,202)];
+        [batteryGlowSprite stopAllActions];
+    }
     light.scoreVelocity += amountToIncreaseLightScoreVelocityEachUpdate*60*dt;
     
     float percentDead = 1-light.timeLeft/[[UpgradeValues sharedInstance] maxBatteryTime];

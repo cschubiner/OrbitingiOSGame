@@ -158,12 +158,12 @@
 					<integer>0</integer>
 					<key>posVar</key>
 					<array>
-						<real>300</real>
+						<real>600</real>
 						<real>320</real>
 					</array>
 					<key>position</key>
 					<array>
-						<real>1980</real>
+						<real>1080</real>
 						<real>320</real>
 					</array>
 					<key>radialAccel</key>
@@ -335,8 +335,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>478.3046875</real>
-						<real>402.921875</real>
+						<real>268.921875</real>
+						<real>308.1640625</real>
 					</array>
 					<key>rotation</key>
 					<real>-221.6787109375</real>
@@ -615,12 +615,12 @@
 								<real>0.0</real>
 							</array>
 							<key>angle</key>
-							<integer>90</integer>
+							<integer>180</integer>
 							<key>angleVar</key>
 							<integer>10</integer>
 							<key>blendFunc</key>
 							<array>
-								<integer>770</integer>
+								<integer>1</integer>
 								<integer>1</integer>
 							</array>
 							<key>contentSize</key>
@@ -660,7 +660,7 @@
 							<integer>0</integer>
 							<key>gravity</key>
 							<array>
-								<real>0.0</real>
+								<real>-100</real>
 								<real>0.0</real>
 							</array>
 							<key>isExpanded</key>
@@ -668,7 +668,7 @@
 							<key>isRelativeAnchorPoint</key>
 							<true/>
 							<key>life</key>
-							<real>3</real>
+							<real>1.5</real>
 							<key>lifeVar</key>
 							<real>0.25</real>
 							<key>lockedScaleRatio</key>
@@ -679,35 +679,35 @@
 							<integer>0</integer>
 							<key>posVar</key>
 							<array>
-								<real>40</real>
-								<real>20</real>
+								<real>15</real>
+								<real>49</real>
 							</array>
 							<key>position</key>
 							<array>
-								<real>17.764930725097656</real>
-								<real>74.27044677734375</real>
+								<real>31.326438903808594</real>
+								<real>76.988273620605469</real>
 							</array>
 							<key>radialAccel</key>
 							<integer>0</integer>
 							<key>radialAccelVar</key>
 							<integer>0</integer>
 							<key>rotation</key>
-							<real>-90</real>
+							<real>0.0</real>
 							<key>scaleX</key>
 							<real>1</real>
 							<key>scaleY</key>
 							<real>1</real>
 							<key>speed</key>
-							<integer>60</integer>
+							<integer>90</integer>
 							<key>speedVar</key>
 							<integer>20</integer>
 							<key>spriteFile</key>
 							<string>thrustParticleTexture.png</string>
 							<key>startColor</key>
 							<array>
-								<real>0.75999999046325684</real>
-								<real>0.25</real>
-								<real>0.11999999731779099</real>
+								<real>0.15966834127902985</real>
+								<real>0.39520281553268433</real>
+								<real>1</real>
 								<real>1</real>
 							</array>
 							<key>startColorVar</key>
@@ -732,7 +732,7 @@
 							<key>tangentialAccelVar</key>
 							<integer>0</integer>
 							<key>totalParticles</key>
-							<integer>350</integer>
+							<integer>950</integer>
 							<key>visible</key>
 							<true/>
 							<key>zOrder</key>

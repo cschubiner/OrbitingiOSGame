@@ -31,9 +31,9 @@
 					</array>
 					<key>color</key>
 					<array>
-						<integer>255</integer>
 						<integer>0</integer>
-						<integer>6</integer>
+						<integer>255</integer>
+						<integer>202</integer>
 					</array>
 					<key>contentSize</key>
 					<array>
@@ -66,9 +66,9 @@
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>0.88058638572692871</real>
+					<real>0.88299214839935303</real>
 					<key>scaleY</key>
-					<real>0.88058638572692871</real>
+					<real>0.88299214839935303</real>
 					<key>spriteFile</key>
 					<string>batteryglow.png</string>
 					<key>tag</key>
@@ -200,7 +200,7 @@
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>0.0</real>
+					<real>15</real>
 					<key>scaleY</key>
 					<real>36.141719818115234</real>
 					<key>spriteFile</key>
