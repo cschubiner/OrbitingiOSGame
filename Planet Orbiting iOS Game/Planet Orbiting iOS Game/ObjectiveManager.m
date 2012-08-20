@@ -18,7 +18,6 @@ static ObjectiveManager *sharedInstance = nil;
     @synchronized([ObjectiveManager class]) {
         if (sharedInstance == nil) {
             sharedInstance = [[ObjectiveManager alloc] init];
-            sharedInstance.currentObjectiveGroupNumber = 0;
         }
     }
     return sharedInstance;
