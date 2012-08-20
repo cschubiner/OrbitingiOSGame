@@ -352,7 +352,7 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] level]];
     
-    [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.9 + .05*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] level]];
+    [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.9 + .037*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] level]];
     
     if ([[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] level] >= 1)
         [[UpgradeValues sharedInstance] setHasDoubleCoins:true];
