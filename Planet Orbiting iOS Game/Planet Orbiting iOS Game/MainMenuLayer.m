@@ -301,7 +301,19 @@ const float effectsVolumeMainMenu = 1;
 -(void)pressedObjectiveButton:(id)sender {
     [Flurry logEvent:@"Pressed objective button"];
     
-}
+    NSMutableArray* objectivesAtThisLevel = [[ObjectiveManager sharedInstance] getObjectivesFromGroupNumber:[[ObjectiveManager sharedInstance] currentObjectiveGroupNumber]];
+    
+    CCLabelTTF* label0 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:0]) text] fontName:@"Helvetica" fontSize:20];
+    CCLabelTTF* label1 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:1]) text] fontName:@"Helvetica" fontSize:20];
+    CCLabelTTF* label2 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:2]) text] fontName:@"Helvetica" fontSize:20];
+    [self addChild:label0];
+    [self addChild:label1];
+    [self addChild:label2];
+    label0.position = ccp(label0.boundingBox.size.width/2 + 100, 220);
+    label1.position = ccp(label1.boundingBox.size.width/2 + 100, 180);
+    label2.position = ccp(label2.boundingBox.size.width/2 + 100, 140);
+    
+    }
 
 -(void)pressedPurchaseButton:(id)sender {
     NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
