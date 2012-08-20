@@ -145,6 +145,8 @@
     NSString *recentName;
     
     CCMenuItemImage *soundButton;
+    
+    CCMotionStreak *streak;
 }
 
 + (CCScene *) scene;

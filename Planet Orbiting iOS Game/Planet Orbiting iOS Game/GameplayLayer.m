@@ -500,6 +500,8 @@ typedef struct {
          // ccc4(0,255,0,255) // green
          target:player.sprite];*/
         
+        streak = [CCMotionStreak streakWithFade:2 minSeg:3 width:streakWidth color:ccc3(0, 255, 153) textureFilename:@"streak2.png"];
+        
         cameraFocusNode = [[CCSprite alloc]init];
         killer = 0;
         orbitState = 0; // 0 = orbiting, 1 = just left orbit and deciding things for state 3; 3 = flying to next planet
@@ -1058,7 +1060,7 @@ typedef struct {
     
     [player.sprite runAction:player.moveAction];
     [thrustParticle stopSystem];
-    // streak.visible = false;
+     streak.visible = false;
     player.alive = false;
     
     
@@ -1124,7 +1126,10 @@ typedef struct {
     }
     else if (player.moveAction.isDone){
         player.alive=true;
-        //      [streak runAction:[CCSequence actions:[CCDelayTime actionWithDuration:timeToHideStreakAfterRespawn],[CCShow action], nil]];
+        id resetStreak = [CCCallBlock actionWithBlock:(^{
+            [streak reset];
+        })];
+        [streak runAction:[CCSequence actions:resetStreak,[CCShow action], nil]];
         [thrustParticle resetSystem];
         
         [playerSpawnedParticle resetSystem];
@@ -1155,7 +1160,7 @@ typedef struct {
     
     [thrustParticle setPositionType:kCCPositionTypeRelative];
     [cameraLayer addChild:thrustParticle z:2];
-    //    [cameraLayer addChild:streak z:1];
+    [cameraLayer addChild:streak z:1];
     [spriteSheet addChild:player.sprite z:3];
 }
 
@@ -1401,6 +1406,9 @@ typedef struct {
 }
 
 - (void)UpdateParticles:(ccTime)dt {
+    //[streak runAction:[CCFollow actionWithTarget:player.sprite]];
+    [streak setPosition:player.sprite.position];
+    
     [thrustParticle setPosition:player.sprite.position];
     [thrustParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
     if (feverModePlanetHitsInARow >= minPlanetsInARowForFeverMode)
@@ -1416,10 +1424,9 @@ typedef struct {
                                                     lerpf(slowParticleColor[1], fastParticleColor[1], speedPercent),
                                                     lerpf(slowParticleColor[2], fastParticleColor[2], speedPercent),
                                                     lerpf(slowParticleColor[3], fastParticleColor[3], speedPercent)))];
-    /*  [streak setColor:ccc4(lerpf(slowStreakColor[0], fastStreakColor[0], speedPercent),
+      [streak setColor:ccc3(lerpf(slowStreakColor[0], fastStreakColor[0], speedPercent),
      lerpf(slowStreakColor[1], fastStreakColor[1], speedPercent),
-     lerpf(slowStreakColor[2], fastStreakColor[2], speedPercent),
-     lerpf(slowStreakColor[3], fastStreakColor[3], speedPercent))];*/
+     lerpf(slowStreakColor[2], fastStreakColor[2], speedPercent))];
     
     if (cometParticle.position.y<0) {
         [cometParticle stopSystem];
