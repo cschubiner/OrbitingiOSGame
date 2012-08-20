@@ -432,129 +432,6 @@
 						<key>children</key>
 						<array/>
 						<key>class</key>
-						<string>CCLabelBMFont</string>
-						<key>properties</key>
-						<dict>
-							<key>anchorPoint</key>
-							<array>
-								<real>0.5</real>
-								<real>0.5</real>
-							</array>
-							<key>color</key>
-							<array>
-								<integer>254</integer>
-								<integer>255</integer>
-								<integer>242</integer>
-							</array>
-							<key>contentSize</key>
-							<array>
-								<real>142</real>
-								<real>67</real>
-							</array>
-							<key>customClass</key>
-							<string></string>
-							<key>fontFile</key>
-							<string>betaFont2.fnt</string>
-							<key>isExpanded</key>
-							<true/>
-							<key>isRelativeAnchorPoint</key>
-							<true/>
-							<key>lockedScaleRatio</key>
-							<true/>
-							<key>memberVarAssignmentName</key>
-							<string></string>
-							<key>memberVarAssignmentType</key>
-							<integer>0</integer>
-							<key>opacity</key>
-							<integer>255</integer>
-							<key>position</key>
-							<array>
-								<real>62.978515625</real>
-								<real>171.498046875</real>
-							</array>
-							<key>rotation</key>
-							<real>0.0</real>
-							<key>scaleX</key>
-							<real>0.29652345180511475</real>
-							<key>scaleY</key>
-							<real>0.29652345180511475</real>
-							<key>string</key>
-							<string>Level 1</string>
-							<key>tag</key>
-							<integer>-1</integer>
-							<key>visible</key>
-							<true/>
-							<key>zOrder</key>
-							<integer>0</integer>
-						</dict>
-					</dict>
-					<dict>
-						<key>children</key>
-						<array>
-							<dict>
-								<key>children</key>
-								<array/>
-								<key>class</key>
-								<string>CCMenuItemImage</string>
-								<key>properties</key>
-								<dict>
-									<key>anchorPoint</key>
-									<array>
-										<real>0.5</real>
-										<real>0.5</real>
-									</array>
-									<key>contentSize</key>
-									<array>
-										<real>147</real>
-										<real>161</real>
-									</array>
-									<key>customClass</key>
-									<string></string>
-									<key>isEnabled</key>
-									<true/>
-									<key>isExpanded</key>
-									<true/>
-									<key>isRelativeAnchorPoint</key>
-									<true/>
-									<key>lockedScaleRatio</key>
-									<true/>
-									<key>memberVarAssignmentName</key>
-									<string></string>
-									<key>memberVarAssignmentType</key>
-									<integer>1</integer>
-									<key>position</key>
-									<array>
-										<real>-95.806640625</real>
-										<real>54.947265625</real>
-									</array>
-									<key>rotation</key>
-									<real>-157.25390625</real>
-									<key>scaleX</key>
-									<real>0.33789065480232239</real>
-									<key>scaleY</key>
-									<real>0.33789065480232239</real>
-									<key>selector</key>
-									<string>startLevel1</string>
-									<key>spriteFileDisabled</key>
-									<string>planet3-1.png</string>
-									<key>spriteFileNormal</key>
-									<string>planet3-1.png</string>
-									<key>spriteFileSelected</key>
-									<string>planet3-1.png</string>
-									<key>spriteFramesFile</key>
-									<string>spriteSheet.plist</string>
-									<key>tag</key>
-									<integer>-1</integer>
-									<key>target</key>
-									<integer>2</integer>
-									<key>visible</key>
-									<true/>
-									<key>zOrder</key>
-									<integer>0</integer>
-								</dict>
-							</dict>
-						</array>
-						<key>class</key>
 						<string>CCMenu</string>
 						<key>properties</key>
 						<dict>
@@ -3535,7 +3412,7 @@
 			<key>contentSize</key>
 			<array>
 				<real>1440</real>
-				<real>640</real>
+				<real>320</real>
 			</array>
 			<key>customClass</key>
 			<string></string>
@@ -3575,7 +3452,7 @@
 		</dict>
 	</dict>
 	<key>stageHeight</key>
-	<integer>640</integer>
+	<integer>320</integer>
 	<key>stageWidth</key>
 	<integer>1440</integer>
 </dict>
