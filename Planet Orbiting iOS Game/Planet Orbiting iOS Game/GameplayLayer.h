@@ -117,6 +117,7 @@
     
     CCParticleSystemQuad * playerSpawnedParticle;
     CCParticleSystemQuad * thrustParticle;
+    CCParticleSystemQuad * thrustBurstParticle;
     CCParticleSystemQuad * cometParticle;
     CCParticleSystemQuad * playerExplosionParticle;
     CGPoint cometVelocity;
@@ -135,6 +136,7 @@
     
     CCSprite * background;
     CCSprite * background2;
+    CCSprite * batteryInnerSprite;
     CCSpriteBatchNode* spriteSheet;
     CCLayer *pauseLayer;
     CCLabelBMFont * gameOverScoreLabel;
@@ -145,6 +147,8 @@
     NSString *recentName;
     
     CCMenuItemImage *soundButton;
+    
+    CCMotionStreak *streak;
 }
 
 + (CCScene *) scene;

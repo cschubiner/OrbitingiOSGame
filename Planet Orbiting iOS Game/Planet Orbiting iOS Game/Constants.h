@@ -63,9 +63,6 @@ const float zoneScaleRelativeToPlanet = 1.7;
 //the gravitational force. increase this to force the orbiting velocity to increase
 const float gravity = .45;
 
-//how long the streak is hidden after the player respawns in seconds
-const float timeToHideStreakAfterRespawn = 1.1;
-
 //radius percentage at which you will collide with a planet
 const float planetRadiusCollisionZone = .85;
 
@@ -142,8 +139,6 @@ const float zoneCollisionFactor = 1.01;
 //THIS IS NOW IN UPGRADE VALUES const float negativeLightStartingScore = 9000;
 
 const float initialLightScoreVelocity = 4;
-
-//THIS IS NOW IN UPGRADE VALUES const float maxBatteryTime = 60;
 
 const float amountToIncreaseLightScoreVelocityEachUpdate = .00065;
 

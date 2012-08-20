@@ -27,7 +27,7 @@
 					<key>blendFunc</key>
 					<array>
 						<integer>1</integer>
-						<integer>1</integer>
+						<integer>771</integer>
 					</array>
 					<key>color</key>
 					<array>
@@ -37,8 +37,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>77</real>
-						<real>46</real>
+						<real>128</real>
+						<real>91</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -61,14 +61,14 @@
 					<key>position</key>
 					<array>
 						<real>42.46099853515625</real>
-						<real>293.4296875</real>
+						<real>295.953125</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>0.85832071304321289</real>
+					<real>0.88058638572692871</real>
 					<key>scaleY</key>
-					<real>0.85832071304321289</real>
+					<real>0.88058638572692871</real>
 					<key>spriteFile</key>
 					<string>batteryglow.png</string>
 					<key>tag</key>
@@ -98,9 +98,9 @@
 					</array>
 					<key>color</key>
 					<array>
+						<integer>0</integer>
 						<integer>255</integer>
-						<integer>255</integer>
-						<integer>255</integer>
+						<integer>0</integer>
 					</array>
 					<key>contentSize</key>
 					<array>
@@ -120,9 +120,9 @@
 					<key>lockedScaleRatio</key>
 					<true/>
 					<key>memberVarAssignmentName</key>
-					<string></string>
+					<string>batteryInnerSprite</string>
 					<key>memberVarAssignmentType</key>
-					<integer>0</integer>
+					<integer>2</integer>
 					<key>opacity</key>
 					<integer>255</integer>
 					<key>position</key>
@@ -137,7 +137,7 @@
 					<key>scaleY</key>
 					<real>1.1387499570846558</real>
 					<key>spriteFile</key>
-					<string>battery.png</string>
+					<string>batteryinner.png</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
@@ -195,7 +195,7 @@
 					<key>position</key>
 					<array>
 						<real>74.5390625</real>
-						<real>294.0159912109375</real>
+						<real>293.5159912109375</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
