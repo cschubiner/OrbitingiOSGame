@@ -21,6 +21,12 @@
     return self;
 }
 
+-(id)initWithText:(NSString*)a_text isCompleted:(bool)a_completed {
+    self = [self initWithText:a_text];
+    self.completed = a_completed;
+    return self;
+}
+
 -(bool)complete {
     if (self.completed)
         return false;

@@ -25,14 +25,14 @@ static ObjectiveManager *sharedInstance = nil;
 }
 
 - (bool)completeObjective:(ObjectiveItem*)objective {
-    return ([objective complete] ? true : false);
+    return [objective complete];
 }
 
 -(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber {
     if (currentObjectiveGroupNumber == a_groupNumber) {
         ObjectiveItem* obj = [self getObjectiveFromGroupNumber:a_groupNumber itemNumber:a_itemNumber];
         if ([self completeObjective:obj])
-            [[GKAchievementHandler defaultHandler] notifyAchievementTitle:@"Objective Completed!" andMessage:obj.text];
+            [[GKAchievementHandler defaultHandler] notifyAchievementTitle:@"Mission Completed!" andMessage:obj.text];
     }
 }
 

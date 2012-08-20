@@ -354,29 +354,6 @@ const float effectsVolumeMainMenu = 1;
 - (id)init {
 	if (self = [super init]) {
         
-        
-        NSMutableArray* groups = [[NSMutableArray alloc] init];
-        
-        [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.1 starReward:500
-                                                              item0:[[ObjectiveItem alloc] initWithText:@"Reach the second galaxy"]
-                                                              item1:[[ObjectiveItem alloc] initWithText:@"Purchase an upgrade"]
-                                                              item2:[[ObjectiveItem alloc] initWithText:@"Get 10 stars in one run"]]];
-        
-        [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.2 starReward:700
-                                                              item0:[[ObjectiveItem alloc] initWithText:@"Reach the third galaxy"]
-                                                              item1:[[ObjectiveItem alloc] initWithText:@"Get 15 stars in one run"]
-                                                              item2:[[ObjectiveItem alloc] initWithText:@"Get 20 stars in one run"]]];
-        
-        [[ObjectiveManager sharedInstance] setObjectiveGroups:groups];
-        
-        [[ObjectiveManager sharedInstance] setCurrentObjectiveGroupNumber:0];
-        
-        
-        
-        
-        
-        
-        
         self.isTouchEnabled = true;
         
         [self initUpgradeLayer];
@@ -510,10 +487,10 @@ const float effectsVolumeMainMenu = 1;
     CCLOG(@"number of plays ever: %i", [[PlayerStats sharedInstance] getPlays]);
     [((AppDelegate*)[[UIApplication sharedApplication]delegate])setChosenLevelNumber:0];
 
-    if ([[PlayerStats sharedInstance] getPlays] == 1) {
+    /*if ([[PlayerStats sharedInstance] getPlays] == 1) {
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[Tutorial scene]]];
         return;
-    }
+    }*/
 
     CCLOG(@"GameplayLayerScene launched, game starting");
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];

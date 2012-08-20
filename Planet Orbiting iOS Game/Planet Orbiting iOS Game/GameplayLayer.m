@@ -889,7 +889,7 @@ typedef struct {
                 
                 
                 
-                NSLog(@"feverModePlanetHitsInARow: %i, timeInOrbit: %f", feverModePlanetHitsInARow, timeInOrbit);
+                //NSLog(@"feverModePlanetHitsInARow: %i, timeInOrbit: %f", feverModePlanetHitsInARow, timeInOrbit);
                 
                 timeInOrbit += dt;
                 
@@ -1261,9 +1261,9 @@ typedef struct {
                 
                 
                 
-                /*  Toast* toast =[[Toast alloc] initWithView:hudLayer text:[NSString stringWithFormat: @"Achievement '%@' completed!\n%@", achievementTitle, achievementDescription]];
-                 [toast setFromTop:true];
-                 [toast showToast];*/
+                /*Toast* toast =[[Toast alloc] initWithView:hudLayer text:[NSString stringWithFormat: @"Achievement '%@' completed!\n%@", achievementTitle,achievementDescription]];
+                [toast setFromTop:true];
+                [toast showToast];*/
                 
                 
                 if (currentGalaxy.number == 1)
@@ -1404,9 +1404,10 @@ typedef struct {
     [thrustParticle setPosition:player.sprite.position];
     [thrustParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
     if (feverModePlanetHitsInARow >= minPlanetsInARowForFeverMode)
-        [thrustParticle setEmissionRate:99];
+        [thrustParticle setEmissionRate:400];
     else
         [thrustParticle setEmissionRate:20];
+
         
     // [thrustParticle setEmissionRate:ccpLengthSQ(player.velocity)*ccpLength(player.velocity)/2.2f];
     float speedPercent = (timeDilationCoefficient-[[UpgradeValues sharedInstance] absoluteMinTimeDilation])/(absoluteMaxTimeDilation-[[UpgradeValues sharedInstance] absoluteMinTimeDilation]);
