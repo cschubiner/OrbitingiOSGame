@@ -74,17 +74,18 @@ typedef struct {
 - (void)CreateCoin:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
     //NSLog(@"started coin");
     Coin *coin = [[Coin alloc]init];
-    coin.sprite = [CCSprite spriteWithSpriteFrameName:@"0.png"];
+    coin.sprite = [CCSprite spriteWithSpriteFrameName:@"15.png"];
     coin.sprite.position = ccp(xPos, yPos);
     [coin.sprite setScale:scale*.8];
     coin.whichSegmentThisObjectIsOriginallyFrom = originalSegmentNumber;
     coin.segmentNumber = makingSegmentNumber;
     coin.number = coins.count;
     coin.whichGalaxyThisObjectBelongsTo  = currentGalaxy.number;
-    [coin.sprite runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:coinAnimation restoreOriginalFrame:NO]]];
+    [coin.sprite runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:coinAnimation]]];
     
-    coin.plusLabel = [CCLabelBMFont labelWithString:@"" fntFile:@"coin_label_font.fnt" ];
-    [hudLayer addChild: coin.plusLabel];
+    coin.movingSprite = [CCSprite spriteWithSpriteFrameName:@"15.png"];
+    coin.movingSprite.scale = coin.sprite.scale*.3;
+    [hudLayer addChild: coin.movingSprite];
     
     [coins addObject:coin];
     [spriteSheet addChild:coin.sprite];
@@ -672,21 +673,14 @@ typedef struct {
     
     
     currentCoinLabel += ([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1);
-    [coin.plusLabel setString:[NSString stringWithFormat:@"+%d", currentCoinLabel]];
     currentNumOfCoinLabels++;
-    [coin.plusLabel setScale:.7];
     
-    id setCoinTargetting = [CCCallBlock actionWithBlock:(^{
-        [coin setIsTargettingScoreLabel:true];
-    })];
+    CGPoint coinPosOnHud = [cameraLayer convertToWorldSpace:coin.sprite.position];
+        coin.movingSprite.position = ccp(coinPosOnHud.x, coinPosOnHud.y );
+
     
-    [coin.plusLabel runAction:[CCSequence actions:
-                               [CCScaleTo actionWithDuration:.2 scale:2*coin.plusLabel.scale],
-                               [CCScaleTo actionWithDuration:.1 scale:1*coin.plusLabel.scale],
-                               [CCDelayTime actionWithDuration:.4],
-                               setCoinTargetting,
-                               [CCSpawn actions:[CCFadeOut actionWithDuration:.3],[CCMoveTo actionWithDuration:.3 position:coinsLabel.position],
-                                //tintScoreYellow,
+    [coin.movingSprite runAction:[CCSequence actions:
+                               [CCSpawn actions:[CCFadeTo actionWithDuration:.3 opacity:200],[CCMoveTo actionWithDuration:.3 position:coinsLabel.position],
                                 nil],
                                [CCHide action],
                                [CCCallFunc actionWithTarget:self selector:@selector(coinDone)],
@@ -717,7 +711,7 @@ typedef struct {
         [zeroCoinsLabel setString:@"00"];
     else
         if (numCoinsDisplayed<100)
-            [zeroCoinsLabel setString:@"0"];
+        [zeroCoinsLabel setString:@"0"];
         else
             [zeroCoinsLabel setVisible:false];
     [coinsLabel setString:[NSString stringWithFormat:@"%d",numCoinsDisplayed]];
@@ -756,11 +750,7 @@ typedef struct {
     
     for (Coin* coin in coins) {
         
-        CGPoint p = coin.sprite.position;
-        CGPoint coinPosOnHud = [cameraLayer convertToWorldSpace:coin.sprite.position];
-        if (coin.isTargettingScoreLabel==false)
-            coin.plusLabel.position = ccp(coinPosOnHud.x, coinPosOnHud.y + 20);
-        
+        CGPoint p = coin.sprite.position;        
         coin.velocity = ccpMult(ccpNormalize(ccpSub(player.sprite.position, p)), coin.speed);
         if (coin.isAlive)
             coin.sprite.position = ccpAdd(coin.sprite.position, coin.velocity);

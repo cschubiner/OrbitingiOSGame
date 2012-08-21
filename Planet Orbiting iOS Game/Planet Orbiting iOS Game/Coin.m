@@ -10,7 +10,7 @@
 
 @implementation Coin
 
-@synthesize isAlive, speed, plusLabel,isTargettingScoreLabel;
+@synthesize isAlive, speed, movingSprite,isTargettingScoreLabel;
 
 -(id) init {
 	// always call "super" init

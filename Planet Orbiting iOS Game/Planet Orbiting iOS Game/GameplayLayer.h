@@ -143,6 +143,8 @@
     CCLayer *pauseLayer;
     CCLabelBMFont * gameOverScoreLabel;
     
+    CCTexture2D * coinTexture;
+    
     UITextView *playerNameLabel;
     CCLabelBMFont *displayName;
     CCLabelBMFont *underscore;
