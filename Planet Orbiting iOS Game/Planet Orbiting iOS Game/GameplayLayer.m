@@ -46,6 +46,7 @@ const int maxNameLength = 10;
     int feverModePlanetHitsInARow;
     float timeInOrbit;
     CCLabelTTF* feverLabel;
+    CCLayer* loadedPauseLayer;
 }
 
 
@@ -381,6 +382,7 @@ typedef struct {
         isInTutorialMode = false;
         levelNumber = [((AppDelegate*)[[UIApplication sharedApplication]delegate])getChosenLevelNumber];
         [self initUpgradedVariables];
+        loadedPauseLayer = [self createPauseLayer];
         
         planetCounter = 0;
         planets = [[NSMutableArray alloc] init];
@@ -1815,11 +1817,50 @@ float lerpf(float a, float b, float t) {
     //[Kamcord showView];
 }
 
+-(CCLayer*)createPauseLayer {
+    CCLayer* layerToAdd = [[CCLayer alloc] init];
+    [layerToAdd addChild:[[ObjectiveManager sharedInstance] createMissionPopupWithX:false]];
+    
+    CCSprite* banner = [CCSprite spriteWithFile:@"banner.png"];
+    banner.position = ccp(240, 298);
+    [layerToAdd addChild:banner];
+    
+    CCLabelTTF* pauseText = [CCLabelTTF labelWithString:@"GAME PAUSED" fontName:@"HelveticaNeue-CondensedBold" fontSize:32];
+    [layerToAdd addChild:pauseText];
+    pauseText.position = ccp(240, 302);
+    
+    CCMenuItem *replay = [CCMenuItemImage
+                          itemFromNormalImage:@"replay.png" selectedImage:@"replaypressed.png" 
+                          target:self selector:@selector(restartGame)];
+    replay.position = ccp(140, 20);
+    
+    CCMenuItem *resume = [CCMenuItemImage
+                          itemFromNormalImage:@"resume.png" selectedImage:@"resumepressed.png" 
+                          target:self selector:@selector(togglePause)];
+    resume.position = ccp(240, 20);
+    
+    CCMenuItem *quit = [CCMenuItemImage
+                        itemFromNormalImage:@"quit.png" selectedImage:@"quitpressed.png"
+                        target:self selector:@selector(endGame)];
+    quit.position = ccp(340, 20);
+    
+    CCMenu* menu = [CCMenu menuWithItems:replay, resume, quit, nil];
+    menu.position = ccp(0, 0);
+    
+    
+    [layerToAdd addChild:menu];
+    
+    return layerToAdd;
+}
+
 - (void)togglePause {
     paused = !paused;
     if (paused) {
         //[Kamcord pause];
-        pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"PauseMenuLayer.ccb" owner:self];
+        
+        
+        
+        pauseLayer = [self createPauseLayer];//(CCLayer*)[CCBReader nodeGraphFromFile:@"PauseMenuLayer.ccb" owner:self];
         [gameOverScoreLabel setString:[NSString stringWithFormat:@"Score: %d",score+prevCurrentPtoPScore]];
         [pauseLayer setTag:pauseLayerTag];
         muted = ![[PlayerStats sharedInstance] isMuted];

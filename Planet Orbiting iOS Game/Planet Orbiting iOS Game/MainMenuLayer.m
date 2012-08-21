@@ -306,11 +306,21 @@ const float effectsVolumeMainMenu = 1;
 }
 
 -(void)enableButtons {
-    
+    [highScoreButton setIsEnabled:true];
+    [objectivesButton setIsEnabled:true];
+    [playButton setIsEnabled:true];
+    [upgradesButton setIsEnabled:true];
+    [tutorialButton setIsEnabled:true];
+    [soundButton setIsEnabled:true];
 }
 
 -(void)disableButtons {
-    
+    [highScoreButton setIsEnabled:false];
+    [objectivesButton setIsEnabled:false];
+    [playButton setIsEnabled:false];
+    [upgradesButton setIsEnabled:false];
+    [tutorialButton setIsEnabled:false];
+    [soundButton setIsEnabled:false];
 }
 
 -(void)pressedObjectiveButton:(id)sender {
