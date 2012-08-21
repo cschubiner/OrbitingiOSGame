@@ -1176,6 +1176,13 @@
 			name = Commerce;
 			sourceTree = "<group>";
 		};
+		014BCCB415E36C920031D84B /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
 		01825CA315DA2F1A0010473B /* Sound */ = {
 			isa = PBXGroup;
 			children = (
@@ -1343,6 +1350,7 @@
 		0C7AA60315946939000B58F2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				014BCCB415E36C920031D84B /* New Group */,
 				0C8A1E5815DB650F00600B36 /* MainMenuCCBFile.ccb */,
 				0CA44A9115E2149100CA6F8E /* spaceship-hd.png */,
 				0CA44A9215E2149100CA6F8E /* spaceship.png */,
