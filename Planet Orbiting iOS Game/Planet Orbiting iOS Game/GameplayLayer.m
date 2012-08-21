@@ -759,7 +759,7 @@ typedef struct {
         for (Asteroid* asteroid in asteroids) {
             CGPoint p = asteroid.sprite.position;
             if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= asteroid.radius * asteroidRadiusCollisionZone && asteroid.sprite.visible) {
-                if (orbitState == kautopilot || player.currentPowerup.type == kasteroidImmunity) {
+                if (orbitState == 3 || player.currentPowerup.type == kasteroidImmunity) {
                     for (Asteroid* a in asteroids) {
                         if (ccpDistance(p, a.sprite.position) <= 100)
                             [a.sprite setVisible:false];
