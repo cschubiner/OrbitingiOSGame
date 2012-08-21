@@ -510,8 +510,6 @@ typedef struct {
         updatesWithBlinking = 999;
         powerupPos = 0;
         powerupVel = 0;
-        currentNumOfCoinLabels = 0;
-        currentCoinLabel = 0;
         numCoinsDisplayed = 0;
         feverModePlanetHitsInARow = 0;
         timeInOrbit = 0;
@@ -671,24 +669,21 @@ typedef struct {
     [[UserWallet sharedInstance] addCoins: ([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1) ];
     score += howMuchCoinsAddToScore*([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1);
     
-    
-    currentCoinLabel += ([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1);
-    currentNumOfCoinLabels++;
-    
     CGPoint coinPosOnHud = [cameraLayer convertToWorldSpace:coin.sprite.position];
-        coin.movingSprite.position = ccp(coinPosOnHud.x, coinPosOnHud.y );
+        coin.movingSprite.position = ccp(coinPosOnHud.x+4, coinPosOnHud.y-4);
 
     
     [coin.movingSprite runAction:[CCSequence actions:
                                [CCSpawn actions:[CCAnimate actionWithAnimation:coinAnimation],
-                                [CCMoveTo actionWithDuration:.3 position:coinsLabel.position],
-                                nil],
+                                [CCSequence actions:[CCMoveTo actionWithDuration:.28 position:coinsLabel.position],[CCHide action],nil], nil],
                                [CCHide action],
                                [CCCallFunc actionWithTarget:self selector:@selector(coinDone)],
                                nil]];
     
-    id scaleAction = [CCScaleTo actionWithDuration:.1 scale:.2*coin.sprite.scale];
-    [coin.sprite runAction:[CCSequence actions:[CCSpawn actions:scaleAction,[CCRotateBy actionWithDuration:.1 angle:360], nil],[CCHide action], nil]];
+    //id scaleAction = [CCScaleTo actionWithDuration:.1 scale:.2*coin.sprite.scale];
+   // [coin.sprite runAction:[CCSequence actions:[CCSpawn actions:scaleAction,[CCRotateBy actionWithDuration:.1 angle:360], nil],[CCHide action], nil]];
+    [coin.sprite setVisible:false];
+    [cameraLayer removeChild:coin.sprite cleanup:YES];
     coin.isAlive = false;
     if (timeSinceGotLastCoin<.4){
         lastCoinPitch +=.1;
@@ -701,11 +696,7 @@ typedef struct {
 }
 
 - (void)coinDone {
-    currentNumOfCoinLabels--;
-    if (currentNumOfCoinLabels <= 0) {
-        currentCoinLabel = 0;
-    }
-    
+
     numCoinsDisplayed += ([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1);
     
     if (numCoinsDisplayed<10)
