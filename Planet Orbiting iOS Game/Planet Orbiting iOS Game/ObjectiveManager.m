@@ -47,6 +47,7 @@ static ObjectiveManager *sharedInstance = nil;
 
 -(CCLayer*)createMissionPopupWithX:(bool)withX {
     CCLayer* mPopup = [[CCLayer alloc] init];
+    
     CCSprite* bg = [CCSprite spriteWithFile:(withX) ? @"missionsModal.png" : @"missionsBG.png"];
     [mPopup addChild:bg];
     bg.position = ccp(240, 160);
@@ -82,9 +83,9 @@ static ObjectiveManager *sharedInstance = nil;
     
     
     
-    NSString* footerString = [NSString stringWithFormat:@"REWARD: %.1fx MULTIPLIER AND %@ STARS", currentGroup.scoreMult, [self commaInt:currentGroup.starReward]];
+    NSString* footerString = [NSString stringWithFormat:@"REWARD: %.1fx MULTIPLIER & %@ STARS", currentGroup.scoreMult, [self commaInt:currentGroup.starReward]];
     
-    CCLabelTTF* footer = [CCLabelTTF labelWithString:footerString fontName:@"HelveticaNeue-CondensedBold" fontSize:16.5];
+    CCLabelTTF* footer = [CCLabelTTF labelWithString:footerString fontName:@"HelveticaNeue-CondensedBold" fontSize:17];
     [mPopup addChild:footer];
     footer.position = ccp(240, 61);
     return mPopup;
