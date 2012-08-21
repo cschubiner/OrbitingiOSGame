@@ -83,7 +83,7 @@ typedef struct {
     coin.whichGalaxyThisObjectBelongsTo  = currentGalaxy.number;
     [coin.sprite runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:coinAnimation]]];
     
-    coin.movingSprite = [CCSprite spriteWithSpriteFrameName:@"15.png"];
+    coin.movingSprite = [CCSprite spriteWithSpriteFrameName:@"25.png"];
     coin.movingSprite.scale = coin.sprite.scale*.3;
     [hudLayer addChild: coin.movingSprite];
     
@@ -680,7 +680,8 @@ typedef struct {
 
     
     [coin.movingSprite runAction:[CCSequence actions:
-                               [CCSpawn actions:[CCFadeTo actionWithDuration:.3 opacity:200],[CCMoveTo actionWithDuration:.3 position:coinsLabel.position],
+                               [CCSpawn actions:[CCAnimate actionWithAnimation:coinAnimation],
+                                [CCMoveTo actionWithDuration:.3 position:coinsLabel.position],
                                 nil],
                                [CCHide action],
                                [CCCallFunc actionWithTarget:self selector:@selector(coinDone)],
