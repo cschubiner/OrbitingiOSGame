@@ -16,6 +16,8 @@
 		014B372215C25C93002EDBCA /* PauseMenuLayer.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 014B372115C25C93002EDBCA /* PauseMenuLayer.ccb */; };
 		014BCCB115E21CB80031D84B /* missionsModal-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 014BCCAF15E21CB80031D84B /* missionsModal-hd.png */; };
 		014BCCB215E21CB80031D84B /* missionsModal.png in Resources */ = {isa = PBXBuildFile; fileRef = 014BCCB015E21CB80031D84B /* missionsModal.png */; };
+		014BCCBC15E36D140031D84B /* upgradeCellSex-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 014BCCBA15E36D140031D84B /* upgradeCellSex-hd.png */; };
+		014BCCBD15E36D140031D84B /* upgradeCellSex.png in Resources */ = {isa = PBXBuildFile; fileRef = 014BCCBB15E36D140031D84B /* upgradeCellSex.png */; };
 		016A13E015D620D300C5D77D /* popup.png in Resources */ = {isa = PBXBuildFile; fileRef = 016A13DF15D620D300C5D77D /* popup.png */; };
 		016A13E515D624F600C5D77D /* popup-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 016A13E415D624F600C5D77D /* popup-hd.png */; };
 		01825C9315DA28540010473B /* quit-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 01825C8715DA28540010473B /* quit-hd.png */; };
@@ -445,6 +447,8 @@
 		014B372115C25C93002EDBCA /* PauseMenuLayer.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PauseMenuLayer.ccb; sourceTree = "<group>"; };
 		014BCCAF15E21CB80031D84B /* missionsModal-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "missionsModal-hd.png"; sourceTree = "<group>"; };
 		014BCCB015E21CB80031D84B /* missionsModal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missionsModal.png; sourceTree = "<group>"; };
+		014BCCBA15E36D140031D84B /* upgradeCellSex-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upgradeCellSex-hd.png"; sourceTree = "<group>"; };
+		014BCCBB15E36D140031D84B /* upgradeCellSex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgradeCellSex.png; sourceTree = "<group>"; };
 		016A13DF15D620D300C5D77D /* popup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popup.png; sourceTree = "<group>"; };
 		016A13E415D624F600C5D77D /* popup-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popup-hd.png"; sourceTree = "<group>"; };
 		01825C8715DA28540010473B /* quit-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "quit-hd.png"; sourceTree = "<group>"; };
@@ -1176,11 +1180,13 @@
 			name = Commerce;
 			sourceTree = "<group>";
 		};
-		014BCCB415E36C920031D84B /* New Group */ = {
+		014BCCB415E36C920031D84B /* Upgrades */ = {
 			isa = PBXGroup;
 			children = (
+				014BCCBA15E36D140031D84B /* upgradeCellSex-hd.png */,
+				014BCCBB15E36D140031D84B /* upgradeCellSex.png */,
 			);
-			name = "New Group";
+			name = Upgrades;
 			sourceTree = "<group>";
 		};
 		01825CA315DA2F1A0010473B /* Sound */ = {
@@ -1350,7 +1356,6 @@
 		0C7AA60315946939000B58F2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				014BCCB415E36C920031D84B /* New Group */,
 				0C8A1E5815DB650F00600B36 /* MainMenuCCBFile.ccb */,
 				0CB8F7A915E3524E00D9FC51 /* score_label_font-hd.fnt */,
 				0CB8F7AA15E3524E00D9FC51 /* score_label_font-hd.png */,
@@ -1359,6 +1364,7 @@
 				0CA44A9115E2149100CA6F8E /* spaceship-hd.png */,
 				0CA44A9215E2149100CA6F8E /* spaceship.png */,
 				011FE3FC15DA1316003C7713 /* Battery */,
+				014BCCB415E36C920031D84B /* Upgrades */,
 				011FE3F615DA12E8003C7713 /* Buttons */,
 				C43AF01315D4267D001FF7D9 /* Spritesheets */,
 				01127FC115E2106200D4EE47 /* Missions */,
@@ -2293,6 +2299,8 @@
 				0CB8F7AE15E3524E00D9FC51 /* score_label_font-hd.png in Resources */,
 				0CB8F7AF15E3524E00D9FC51 /* score_label_font.fnt in Resources */,
 				0CB8F7B015E3524E00D9FC51 /* score_label_font.png in Resources */,
+				014BCCBC15E36D140031D84B /* upgradeCellSex-hd.png in Resources */,
+				014BCCBD15E36D140031D84B /* upgradeCellSex.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
