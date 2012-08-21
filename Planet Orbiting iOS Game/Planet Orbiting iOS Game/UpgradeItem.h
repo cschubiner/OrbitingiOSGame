@@ -12,10 +12,9 @@
 
 @property (nonatomic, retain) NSString* title;
 @property (nonatomic, retain) NSString* description;
-@property (nonatomic, retain) NSString* icon;
-@property (nonatomic, retain) NSMutableArray* prices;
-@property (nonatomic) int level;
+@property (nonatomic, assign) BOOL exclusive;
+@property (nonatomic, assign) BOOL equipped;
 
--(id)initWithTitle:(NSString*)tit description:(NSString*)desc icon:(NSString*)ic prices:(NSMutableArray*)prs level:(int)lvl;
+-(id)initWithTitle:(NSString*)cTitle description:(NSString*)cDescription exclusive:(BOOL)cExclusive equipped:(BOOL)cEquipped;
 
 @end

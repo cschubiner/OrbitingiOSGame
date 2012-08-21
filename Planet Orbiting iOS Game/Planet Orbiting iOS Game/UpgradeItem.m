@@ -10,15 +10,12 @@
 
 @implementation UpgradeItem
 
-@synthesize description, icon, level, prices, title;
-
--(id)initWithTitle:(NSString*)tit description:(NSString*)desc icon:(NSString*)ic prices:(NSMutableArray*)prs level:(int)lvl {
+- (id)initWithTitle:(NSString *)cTitle description:(NSString *)cDescription exclusive:(BOOL)cExclusive equipped:(BOOL)cEquipped {
     if (self = [super init]) {
-        self.title = tit;
-        self.description = desc;
-        self.icon = ic;
-        self.prices = prs;
-        self.level = lvl;
+        self.title = cTitle;
+        self.description = cDescription;
+        self.exclusive = cExclusive;
+        self.equipped = cEquipped;
     }
     return self;
 }
