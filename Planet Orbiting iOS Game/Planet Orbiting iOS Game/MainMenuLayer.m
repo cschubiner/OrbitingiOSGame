@@ -42,6 +42,8 @@ const float effectsVolumeMainMenu = 1;
     CCLayer* shadeView;
     CCLayer* popupView;
     CCSprite* shadeImage;
+    
+    CCLayer* missionPopup;
 }
 @synthesize cells;
 
@@ -69,7 +71,7 @@ const float effectsVolumeMainMenu = 1;
     //[upgradeLayer setContentSize:CGSizeMake(480, 10)];
     
     NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
-
+    
     cells = [[NSMutableArray alloc] init];
     
     for (UpgradeItem* item in upgradeItems) {
@@ -128,6 +130,9 @@ const float effectsVolumeMainMenu = 1;
         location = [[CCDirector sharedDirector] convertToGL:location];
         swipeBeginPoint = location;
         didFingerMove = false;
+        
+        if (swipeBeginPoint.x >= 359 && swipeBeginPoint.x <= 440 && swipeBeginPoint.y >= 214 && swipeBeginPoint.y <= 287)
+            [missionPopup removeFromParentAndCleanup:true];
     }
 }
 
@@ -157,7 +162,7 @@ const float effectsVolumeMainMenu = 1;
         if (!didFingerMove) {
             
             //for (CCLayer* laya in cells) {
-                //CGRect newRect = CGRectMake(upgradeLayer.boundingBox.origin.x + 960, upgradeLayer.boundingBox.origin.x + 680, upgradeLayer.boundingBox.size.width, upgradeLayer.boundingBox.size.height);
+            //CGRect newRect = CGRectMake(upgradeLayer.boundingBox.origin.x + 960, upgradeLayer.boundingBox.origin.x + 680, upgradeLayer.boundingBox.size.width, upgradeLayer.boundingBox.size.height);
             //CCLOG(@"boundingBox: %@", upgradeLayer.boundingBox);
             //CCLOG(@"touch location: %@", location);
             //CCLOG(@"layer position: %@", layer.position);
@@ -222,7 +227,7 @@ const float effectsVolumeMainMenu = 1;
                     desc.position = ccp(240, 200);
                     [popupView addChild:desc];
                     
-                                        
+                    
                     CCMenuItem *cancel = [CCMenuItemImage
                                           itemFromNormalImage:@"no.png" selectedImage:@"nopressed.png"
                                           target:self selector:@selector(pressedCancelButton:)];
@@ -263,10 +268,10 @@ const float effectsVolumeMainMenu = 1;
                     [popupView setScale:0];
                     
                     /*[popupView runAction:[CCSequence actions:
-                                          [CCScaleTo actionWithDuration:.37 scale:1.2],
-                                          [CCScaleTo actionWithDuration:.12 scale:.9],
-                                          [CCScaleTo actionWithDuration:.07 scale:1],
-                                          nil]];*/
+                     [CCScaleTo actionWithDuration:.37 scale:1.2],
+                     [CCScaleTo actionWithDuration:.12 scale:.9],
+                     [CCScaleTo actionWithDuration:.07 scale:1],
+                     nil]];*/
                     
                     
                     //id move = [CCScaleTo actionWithDuration:.8 scale:1];
@@ -300,26 +305,9 @@ const float effectsVolumeMainMenu = 1;
 
 -(void)pressedObjectiveButton:(id)sender {
     [Flurry logEvent:@"Pressed objective button"];
-    
-    CCSprite* bg = [CCSprite spriteWithFile:@"missionsBG.png"];
-    [self addChild:bg];
-    bg.position = ccp(240, 160);
-    
-    NSMutableArray* objectivesAtThisLevel = [[ObjectiveManager sharedInstance] getObjectivesFromGroupNumber:[[ObjectiveManager sharedInstance] currentObjectiveGroupNumber]];
-    
-    //CCSprite* ind1 = [CCSprite spriteWithFile:@"missioncomplete.png
-    
-    CCLabelTTF* label0 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:0]) text] fontName:@"HelveticaNeue-CondensedBold" fontSize:20];
-    CCLabelTTF* label1 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:1]) text] fontName:@"HelveticaNeue-CondensedBold" fontSize:20];
-    CCLabelTTF* label2 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:2]) text] fontName:@"HelveticaNeue-CondensedBold" fontSize:20];
-    [self addChild:label0];
-    [self addChild:label1];
-    [self addChild:label2];
-    label0.position = ccp(label0.boundingBox.size.width/2 + 126, 209);
-    label1.position = ccp(label1.boundingBox.size.width/2 + 126, 154);
-    label2.position = ccp(label2.boundingBox.size.width/2 + 126, 100);
-    
-    }
+    missionPopup = [[ObjectiveManager sharedInstance] createMissionPopupWithX:true];
+    [self addChild:missionPopup];
+}
 
 -(void)pressedPurchaseButton:(id)sender {
     NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
@@ -504,12 +492,12 @@ const float effectsVolumeMainMenu = 1;
     [[PlayerStats sharedInstance] addPlay];
     CCLOG(@"number of plays ever: %i", [[PlayerStats sharedInstance] getPlays]);
     [((AppDelegate*)[[UIApplication sharedApplication]delegate])setChosenLevelNumber:0];
-
+    
     /*if ([[PlayerStats sharedInstance] getPlays] == 1) {
-        [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[Tutorial scene]]];
-        return;
-    }*/
-
+     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[Tutorial scene]]];
+     return;
+     }*/
+    
     CCLOG(@"GameplayLayerScene launched, game starting");
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
 }
@@ -529,16 +517,16 @@ const float effectsVolumeMainMenu = 1;
 
 - (void)pressedLeaderboardsButton:(id)sender {
     [Flurry logEvent:@"Opened gamecenter leaderboards"];
-  /*  GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
-    leaderboardViewController.leaderboardDelegate = self;
-    
-    AppDelegate *app = (AppDelegate*) [[UIApplication sharedApplication] delegate];
-    
-    [[app navController] presentModalViewController:leaderboardViewController animated:YES];
-*/
-  // [[DDGameKitHelper sharedGameKitHelper]showLeaderboardwithCategory:@"highscore_leaderboard" timeScope:GKLeaderboardTimeScopeAllTime];
+    /*  GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
+     leaderboardViewController.leaderboardDelegate = self;
+     
+     AppDelegate *app = (AppDelegate*) [[UIApplication sharedApplication] delegate];
+     
+     [[app navController] presentModalViewController:leaderboardViewController animated:YES];
+     */
+    // [[DDGameKitHelper sharedGameKitHelper]showLeaderboardwithCategory:@"highscore_leaderboard" timeScope:GKLeaderboardTimeScopeAllTime];
     [[DDGameKitHelper sharedGameKitHelper]showLeaderboard];
-
+    
 }
 
 - (int)getHighestScore {
@@ -563,7 +551,7 @@ const float effectsVolumeMainMenu = 1;
 
 -(float)getFunValue {
     float funValue = [self getProValue];
-        NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
+    NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
     float numScores = 0;
     for (int i = 0 ; i < highScores.count ; i++) {
         NSNumber * highscoreObject = [highScores objectAtIndex:i];
@@ -588,7 +576,7 @@ const float effectsVolumeMainMenu = 1;
         if (!scoreName) scoreName = @"null";
         [parameterDict addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:highscoreObject,scoreName, nil]];
     }
-  //  NSDictionary *parameterDict2 = [NSDictionary dictionaryWithObjectsAndKeys:highScores.description,@"Scores", nil];
+    //  NSDictionary *parameterDict2 = [NSDictionary dictionaryWithObjectsAndKeys:highScores.description,@"Scores", nil];
     
     [Flurry logEvent:@"Opened High Scores" withParameters:parameterDict];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(0,-320)];
@@ -612,7 +600,7 @@ const float effectsVolumeMainMenu = 1;
             }
             //UIAlertView* alertview3 = [[UIAlertView alloc] initWithTitle:@"Congratz yo" message:@"You bought something" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
             //[alertview3 show];
-
+            
         }
     } else {
         if (buttonIndex == 1) {
@@ -620,7 +608,7 @@ const float effectsVolumeMainMenu = 1;
             [[UIApplication sharedApplication] openURL:url];
             [Flurry logEvent:@"Launched survey from main menu"];
             [TestFlight passCheckpoint:@"Launched survey from main menu"];
-
+            
         }
     }
     
@@ -671,7 +659,7 @@ const float effectsVolumeMainMenu = 1;
                           cancelButtonTitle:@"Cancel"
                           otherButtonTitles:@"Continue",nil];
     [alert show];
-   
+    
 }
 
 - (void)pressedTutorialButton: (id) sender {
@@ -731,17 +719,17 @@ const float effectsVolumeMainMenu = 1;
 
 /*
  #pragma mark GameKit delegate
-
--(void) achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
-{
-	AppDelegate *app = (AppDelegate*) [[UIApplication sharedApplication] delegate];
-	[[app navController] dismissModalViewControllerAnimated:YES];
-}
-
--(void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
-{
-	AppDelegate *app = (AppDelegate*) [[UIApplication sharedApplication] delegate];
-	[[app navController] dismissModalViewControllerAnimated:YES];
-}*/
+ 
+ -(void) achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
+ {
+ AppDelegate *app = (AppDelegate*) [[UIApplication sharedApplication] delegate];
+ [[app navController] dismissModalViewControllerAnimated:YES];
+ }
+ 
+ -(void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
+ {
+ AppDelegate *app = (AppDelegate*) [[UIApplication sharedApplication] delegate];
+ [[app navController] dismissModalViewControllerAnimated:YES];
+ }*/
 
 @end

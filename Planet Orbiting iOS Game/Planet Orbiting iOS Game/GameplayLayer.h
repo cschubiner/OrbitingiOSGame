@@ -57,6 +57,8 @@
     float powerupVel;
     int numCoinsDisplayed;
     
+    
+    CCLabelBMFont * zeroCoinsLabel;
     float powerupCounter;
     
     int currentNumOfCoinLabels;
@@ -140,6 +142,8 @@
     CCSpriteBatchNode* spriteSheet;
     CCLayer *pauseLayer;
     CCLabelBMFont * gameOverScoreLabel;
+    
+    CCTexture2D * coinTexture;
     
     UITextView *playerNameLabel;
     CCLabelBMFont *displayName;

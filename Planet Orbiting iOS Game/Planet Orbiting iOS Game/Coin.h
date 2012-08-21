@@ -19,6 +19,6 @@
 @property (nonatomic) bool isTargettingScoreLabel;
 @property (nonatomic) bool isAlive;
 @property (nonatomic) float speed;
-@property (nonatomic, retain) CCLabelBMFont* plusLabel;
+@property (nonatomic, retain) CCSprite* movingSprite;
 
 @end
