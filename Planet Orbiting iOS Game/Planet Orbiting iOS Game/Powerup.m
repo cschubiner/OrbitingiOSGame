@@ -19,34 +19,34 @@
         type = t;
         bool shouldBeRand = false;
         
-        if (type == 0) {
+        if (type == krandomPowerup) {
             shouldBeRand = true;
             type = [self RandomBetween:1 maxvalue:2];
         }
         
-        if (type == 1) { //asteroidImmunity
+        if (type == kasteroidImmunity) { //asteroidImmunity
             
             duration = [[UpgradeValues sharedInstance] asteroidImmunityDuration];
             title = @"Asteroid Armor";
             coinSprite = [CCSprite spriteWithSpriteFrameName:@"asteroidbreakercoin.png"];
             glowSprite = [CCSprite spriteWithSpriteFrameName:@"asteroidglowupgrade.png"];
             
-        } else if (type == 2) { //coinMagnet
+        } else if (type == kcoinMagnet) { //coinMagnet
             
             duration = [[UpgradeValues sharedInstance] coinMagnetDuration];
             title = @"Star Magnet";
             coinSprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
             glowSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];
             
-        } else if (type == 3) { //wrapage powerup
+        } else if (type == kautopilot) { //wrapage powerup
             
             duration = 920;
             title = @"Autopilot";
             coinSprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
             glowSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];
             
-        } else { //type needs to be a valid int from the list above
-        }
+        } //else { //type needs to be a valid int from the list above
+     //   }
         
         //if (shouldBeRand)
         //    coinSprite = [CCSprite spriteWithFile:@"upgradecoin.png"];

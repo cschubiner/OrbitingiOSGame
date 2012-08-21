@@ -385,6 +385,8 @@ const float effectsVolumeMainMenu = 1;
         
         [self initUpgradeLayer];
         
+                   
+        
         layer = (CCLayer*)[CCBReader nodeGraphFromFile:@"MainMenuCCBFile.ccb" owner:self];
         [layer addChild:upgradeLayer];
         
@@ -530,7 +532,7 @@ const float effectsVolumeMainMenu = 1;
 }
 
 - (void)pressedStoreButton:(id)sender {
-    [Flurry logEvent:@"Opened Store" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance" ,nil]];
+   [Flurry logEvent:@"Opened Store" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance" ,nil]];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(-960,-320)];
     id ease = [CCEaseSineInOut actionWithAction:action]; //does this "CCEaseSineInOut" look better than the above "CCEaseInOut"???
     [layer runAction: ease];

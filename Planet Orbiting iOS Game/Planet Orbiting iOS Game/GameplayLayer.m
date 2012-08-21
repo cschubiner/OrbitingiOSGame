@@ -755,23 +755,23 @@ typedef struct {
     }
     
     //bool isHittingAsteroid = false;
-    if (player.currentPowerup.type != 3)
+    if (player.currentPowerup.type != kautopilot)
         for (Asteroid* asteroid in asteroids) {
             CGPoint p = asteroid.sprite.position;
             if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= asteroid.radius * asteroidRadiusCollisionZone && asteroid.sprite.visible) {
-                if (orbitState == 3 || player.currentPowerup.type == 1) {
+                if (orbitState == kautopilot || player.currentPowerup.type == kasteroidImmunity) {
                     for (Asteroid* a in asteroids) {
                         if (ccpDistance(p, a.sprite.position) <= 100)
                             [a.sprite setVisible:false];
                     }
-                    if (!(player.currentPowerup.type == 1)) {
+                    if (!(player.currentPowerup.type == kasteroidImmunity)) {
                         [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number asteroidHit:asteroid];
                     }
                 }
             }
         }
     
-    /*if (!(player.currentPowerup.type == 1)) {
+    /*if (!(player.currentPowerup.type == kasteroidImmunity)) {
      if (isHittingAsteroid)
      asteroidSlower -= .1;
      else
@@ -779,7 +779,7 @@ typedef struct {
      asteroidSlower = clampf(asteroidSlower, .13, 1);
      }*/
     
-    if (player.currentPowerup.type != 3)
+    if (player.currentPowerup.type != kautopilot)
         for (Powerup* powerup in powerups) {
             CGPoint p = powerup.coinSprite.position;
             if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= powerup.coinSprite.width * .5 * powerupRadiusCollisionZone) {
@@ -887,7 +887,7 @@ typedef struct {
                 CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
                 player.acceleration = ccpMult(direction, gravity);
                 
-                if (player.currentPowerup.type == 3) {
+                if (player.currentPowerup.type == kautopilot) {
                     [self JustSwiped];
                 }
             }
@@ -944,9 +944,6 @@ typedef struct {
                     orbitState = 3;
                     initialAccelMag = 0;
                     
-                    
-                    
-                    
                     if (timeInOrbit <= maxTimeInOrbitThatCountsAsGoodSwipe)
                         feverModePlanetHitsInARow++;
                     else
@@ -954,15 +951,20 @@ typedef struct {
                     
                     timeInOrbit = 0;
                     
-                    
                     if (feverModePlanetHitsInARow >= minPlanetsInARowForFeverMode)
                         [feverLabel setString:[NSString stringWithFormat:@"%d Combo!", feverModePlanetHitsInARow]];
                     else
                         [feverLabel setString:[NSString stringWithFormat:@""]];
                     
                     
-                    if (player.currentPowerup.type == 3) {
-                        spotGoingTo = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius*.7), targetPlanet.sprite.position);//targetPlanet.sprite.position;
+                    if (player.currentPowerup.type == kautopilot) {
+                        CGPoint targetPoint1 = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius*.85), targetPlanet.sprite.position);
+                        CGPoint targetPoint2 = ccpAdd(ccpMult(dir3, targetPlanet.orbitRadius*.85), targetPlanet.sprite.position);
+                        
+                        if (ccpLengthSQ(ccpSub(ccpSub(targetPoint1, player.sprite.position), player.velocity))<ccpLengthSQ(ccpSub(ccpSub(targetPoint2, player.sprite.position), player.velocity)))
+                        spotGoingTo = targetPoint1;
+                        else
+                            spotGoingTo = targetPoint2;
                     }
                 }
             
@@ -991,7 +993,7 @@ typedef struct {
                 scaler = clampf(scaler, 0, 99999999);
                 
                 player.acceleration = ccpMult(accelToAdd, [[UpgradeValues sharedInstance] absoluteMinTimeDilation]*1.11*gravIncreaser*freeGravityStrength*scaler*asteroidSlower*60*dt);
-                if (player.currentPowerup.type == 3)
+                if (player.currentPowerup.type == kautopilot)
                     player.acceleration = ccpMult(player.acceleration, 1.5);
                 
                 if (initialAccelMag == 0)
@@ -1005,12 +1007,12 @@ typedef struct {
             }
         }
         
-        if (player.currentPowerup.type != 3)
+        if (player.currentPowerup.type != kautopilot)
             if (ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) <= planet.radius * planetRadiusCollisionZone && planet.number >= lastPlanetVisited.number) {
                 [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number asteroidHit:Nil];
             }
         
-        if (player.currentPowerup.type != 3)
+        if (player.currentPowerup.type != kautopilot)
             if (dangerLevel >= 1) {
                 dangerLevel = 0;
                 [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number asteroidHit:Nil];
@@ -1025,7 +1027,7 @@ typedef struct {
     killer++;
     if (orbitState == 0 || orbitState == 2)
         killer = 0;
-    if (player.currentPowerup.type != 3)
+    if (player.currentPowerup.type != kautopilot)
         if (killer > deathAfterThisLong)
             [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number asteroidHit:Nil];
 }
@@ -1487,7 +1489,7 @@ typedef struct {
             
             [[DDGameKitHelper sharedGameKitHelper] submitScore:finalScore category:@"highscore_leaderboard"];
             
-            [[[[CCDirector sharedDirector] openGLView] window] addSubview:playerNameLabel];
+            [[[[CCDirector sharedDirector]view]window]addSubview:playerNameLabel];
             [self schedule:@selector(nameDidChange) interval:.05];
             playerNameLabel.delegate = self;
             playerNameLabel.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
@@ -1582,7 +1584,7 @@ typedef struct {
             
             CGPoint p = coin.sprite.position;
             
-            if (player.currentPowerup.type == 2) {
+            if (player.currentPowerup.type == kcoinMagnet) {
                 if (ccpLength(ccpSub(player.sprite.position, p)) <= 4*(coin.radius + player.sprite.height/1.3) && coin.isAlive && coin.speed < .1) {
                     coin.speed = .5;
                 }
@@ -1681,7 +1683,7 @@ typedef struct {
         //NSLog(@"4");
         [[PlayerStats sharedInstance] setRecentName:playerName];
         [DataStorage storeData];
-        if ([[[[[CCDirector sharedDirector] openGLView] window] subviews]containsObject:playerNameLabel])
+        if ([[[[[CCDirector sharedDirector] view] window] subviews]containsObject:playerNameLabel])
             [playerNameLabel removeFromSuperview];
         
     }
