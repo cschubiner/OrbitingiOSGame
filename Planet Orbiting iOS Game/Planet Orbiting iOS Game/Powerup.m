@@ -38,6 +38,13 @@
             coinSprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
             glowSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];
             
+        } else if (type == 3) { //wrapage powerup
+            
+            duration = 920;
+            title = @"Autopilot";
+            coinSprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
+            glowSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];
+            
         } else { //type needs to be a valid int from the list above
         }
         
