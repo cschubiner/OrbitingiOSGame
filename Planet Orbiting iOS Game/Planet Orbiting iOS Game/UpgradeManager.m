@@ -10,8 +10,6 @@
 
 @implementation UpgradeManager
 
-@synthesize upgradeItems;
-
 static UpgradeManager *sharedInstance = nil;
 
 + (id)sharedInstance {

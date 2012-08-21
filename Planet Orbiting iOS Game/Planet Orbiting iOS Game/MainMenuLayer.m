@@ -95,30 +95,6 @@ const float effectsVolumeMainMenu = 1;
     for (int i = 0; i < [cells count]; i++) {
         UpgradeCell *cell = [cells objectAtIndex:i];
         UpgradeItem *item = [upgradeItems objectAtIndex:i];
-        
-        if ([item.prices count] == 1) {
-            if (item.level == 0)
-                [cell.levelLabel setString:@"Inactive"];
-            else
-                [cell.levelLabel setString:@"Active"];
-            
-            [cell.levelLabel setPosition:ccp(90 + [cell.levelLabel boundingBox].size.width/2, -58)];
-        } else {
-            [cell.levelLabel setString:[NSString stringWithFormat:@"Level %d", item.level]];
-        }
-        if (item.level == [item.prices count])
-            [cell.levelLabel setColor:ccGREEN];
-        
-        if ((item.level < [item.prices count])) {
-            [cell.priceLabel setString:[self commaInt:[[item.prices objectAtIndex:item.level] intValue]]];
-        }  else {
-            
-            if (cell.coinSprite)
-                [cell.coinSprite setVisible:false];
-            
-            if (cell.priceLabel)
-                [cell.priceLabel setString:@""];
-        }
     }
     
     [totalStars setString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]]];
@@ -237,7 +213,7 @@ const float effectsVolumeMainMenu = 1;
                     
                     CCMenu *menu;
                     
-                    if (item.level >= [item.prices count]) {
+                    if (item.equipped) {
                         //else if ([[UserWallet sharedInstance] getBalance] >= [[item.prices objectAtIndex:item.level] intValue]) disp PURCHASE
                         //else disp NOT ENOUGH COINZ
                         CCMenuItem *purchase = [CCMenuItemImage
@@ -246,7 +222,7 @@ const float effectsVolumeMainMenu = 1;
                         purchase.position = ccp(110, -80);
                         
                         menu = [CCMenu menuWithItems:cancel, purchase, nil];
-                    } else if ([[UserWallet sharedInstance] getBalance] >= [[item.prices objectAtIndex:item.level] intValue]) {
+                    } else if ([[UserWallet sharedInstance] getBalance] >= item.price) {
                         
                         CCMenuItem *purchase = [CCMenuItemImage
                                                 itemFromNormalImage:@"yes.png" selectedImage:@"yespressed.png" 
@@ -316,15 +292,14 @@ const float effectsVolumeMainMenu = 1;
     UpgradeItem *item = [upgradeItems objectAtIndex:lastIndexTapped];
     
     int curBalance = [[UserWallet sharedInstance] getBalance];
-    if (curBalance >= [[item.prices objectAtIndex:item.level] intValue]) {
+    if (curBalance >= item.price) {
         
         [self playSound:@"purchase.wav" shouldLoop:false pitch:1];
-        int newBalance = curBalance - [[item.prices objectAtIndex:item.level] intValue];
+        int newBalance = curBalance - item.price;
         [[UserWallet sharedInstance] setBalance:newBalance];
-        [item setLevel:[item level] + 1];
         
         [self completeObjectiveFromGroupNumber:0 itemNumber:1];
-        [Flurry logEvent:@"Purchased Item" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:newBalance],@"Coin Balance after purchase",item.title,@"Item Title",[NSNumber numberWithInt:item.level],@"Item Level",nil]];
+        [Flurry logEvent:@"Purchased Item" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:newBalance],@"Coin Balance after purchase",item.title,@"Item Title",nil]];
         
         [DataStorage storeData];
         [self refreshUpgradeCells];
@@ -593,10 +568,9 @@ const float effectsVolumeMainMenu = 1;
             UpgradeItem *item = [upgradeItems objectAtIndex:lastIndexTapped];
             
             int curBalance = [[UserWallet sharedInstance] getBalance];
-            if (curBalance >= [[item.prices objectAtIndex:item.level] intValue]) {
+            if (curBalance >= item.price) {
                 
-                [[UserWallet sharedInstance] setBalance:curBalance - [[item.prices objectAtIndex:item.level] intValue]];
-                [item setLevel:[item level] + 1];
+                [[UserWallet sharedInstance] setBalance:curBalance - item.price];
                 [self refreshUpgradeCells];
                 [DataStorage storeData];
             }
