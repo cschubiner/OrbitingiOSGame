@@ -327,24 +327,24 @@ typedef struct {
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
     [galaxy setOptimalPlanetsInThisGalaxy:36];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.31];
-
+    
     
     galaxy = [galaxies objectAtIndex:5];
     [galaxy setName:@"Galaxy 6"];
     [galaxy setNumberOfDifferentPlanetsDrawn:2];
     [galaxy setOptimalPlanetsInThisGalaxy:40];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.28];
-
+    
     
     galaxy = [galaxies objectAtIndex:6];
     [galaxy setName:@"Galaxy 7"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:43];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.3];
-
     
-   // for (Galaxy* galaxy in galaxies)
-       // [galaxy setOptimalPlanetsInThisGalaxy:15];
+    
+    // for (Galaxy* galaxy in galaxies)
+    // [galaxy setOptimalPlanetsInThisGalaxy:15];
 }
 
 - (void)initUpgradedVariables {
@@ -415,18 +415,6 @@ typedef struct {
         pauseMenu.position = CGPointZero;
         
         if (!isInTutorialMode) {
-            scoreLabel = [CCLabelBMFont labelWithString:@"0" fntFile:@"score_label_font.fnt"];
-            scoreLabel.position = ccp(10 + [scoreLabel boundingBox].size.width/2, 15);
-            [hudLayer addChild: scoreLabel];
-            
-            CCSprite* starSprite = [CCSprite spriteWithFile:@"star1.png"];
-            [starSprite setScale:.15];
-            [hudLayer addChild:starSprite];
-            [starSprite setPosition:ccp(480 - 15, 16)];
-            
-            coinsLabel = [CCLabelBMFont labelWithString:@"0" fntFile:@"star_label_font.fnt"];
-            coinsLabel.position = ccp(480 - 15 - [coinsLabel boundingBox].size.width/2 - 12, 15);
-            [hudLayer addChild: coinsLabel];
         }
         else {
             tutImage1 = [CCSprite spriteWithFile:@"screen1.png"];
@@ -533,7 +521,7 @@ typedef struct {
         
         background = [CCSprite spriteWithFile:@"background0.pvr.ccz"];
         background2 = [CCSprite spriteWithFile:@"background1.pvr.ccz"];
-        [background setPosition:ccp(size.width/2+14,size.height/5+2)];        
+        [background setPosition:ccp(size.width/2+14,size.height/5+2)];
         [background2 setPosition:ccp(size.width/2+14,size.height/5+2)];
         [self addChild:background];
         
@@ -725,7 +713,15 @@ typedef struct {
     
     numCoinsDisplayed += ([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1);
     
-    [coinsLabel setString:[NSString stringWithFormat:@"%i",numCoinsDisplayed]];
+    if (numCoinsDisplayed<10)
+        [zeroCoinsLabel setString:@"00"];
+    else
+        if (numCoinsDisplayed<100)
+            [zeroCoinsLabel setString:@"0"];
+        else
+            [zeroCoinsLabel setVisible:false];
+    [coinsLabel setString:[NSString stringWithFormat:@"%d",numCoinsDisplayed]];
+    
     [coinsLabel runAction:[CCSequence actions:
                            [CCScaleTo actionWithDuration:.03 scale:1.4],
                            [CCScaleTo actionWithDuration:.03 scale:1],
@@ -959,7 +955,7 @@ typedef struct {
                     initialAccelMag = 0;
                     
                     
-                        
+                    
                     
                     if (timeInOrbit <= maxTimeInOrbitThatCountsAsGoodSwipe)
                         feverModePlanetHitsInARow++;
@@ -1062,7 +1058,7 @@ typedef struct {
     
     [player.sprite runAction:player.moveAction];
     [thrustParticle stopSystem];
-     streak.visible = false;
+    streak.visible = false;
     player.alive = false;
     
     
@@ -1266,7 +1262,7 @@ typedef struct {
                     [cameraLayer reorderChild:streak z:4];
                     [cameraLayer reorderChild:thrustParticle z:4];
                     [cameraLayer reorderChild:thrustBurstParticle z:4];
-
+                    
                 }
                 //NSLog(@"galaxy4");
                 
@@ -1274,8 +1270,8 @@ typedef struct {
                 
                 
                 /*Toast* toast =[[Toast alloc] initWithView:hudLayer text:[NSString stringWithFormat: @"Achievement '%@' completed!\n%@", achievementTitle,achievementDescription]];
-                [toast setFromTop:true];
-                [toast showToast];*/
+                 [toast setFromTop:true];
+                 [toast showToast];*/
                 
                 
                 if (currentGalaxy.number == 1)
@@ -1374,7 +1370,7 @@ typedef struct {
                 }
                 
                 if (zone.number==0||((Planet*)[planets objectAtIndex:zone.number-1]).whichSegmentThisObjectIsOriginallyFrom!=lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom) {
-                NSLog(@"Entering galaxy %d segment %d (1-based index)",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1);
+                    NSLog(@"Entering galaxy %d segment %d (1-based index)",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1);
                     flurrySegmentsVisitedSinceGalaxyJump++;
                 }
                 
@@ -1405,12 +1401,10 @@ typedef struct {
     if (tempScore > score)
         score = tempScore;
     [scoreLabel setString:[NSString stringWithFormat:@"%d",score]];
-    scoreLabel.position = ccp(10 + [scoreLabel boundingBox].size.width/2, 15);
     
     //int numCoins = [[UserWallet sharedInstance] getBalance];
     //int coinsDiff = numCoins - startingCoins;
     //[coinsLabel setString:[NSString stringWithFormat:@"%i",coinsDiff]];
-    coinsLabel.position = ccp(480 - 15 - [coinsLabel boundingBox].size.width/2 - 12, 15);
     
 }
 
@@ -1424,8 +1418,8 @@ typedef struct {
         [thrustParticle setEmissionRate:400];
     else
         [thrustParticle setEmissionRate:20];
-
-        
+    
+    
     // [thrustParticle setEmissionRate:ccpLengthSQ(player.velocity)*ccpLength(player.velocity)/2.2f];
     float speedPercent = (timeDilationCoefficient-[[UpgradeValues sharedInstance] absoluteMinTimeDilation])/(absoluteMaxTimeDilation-[[UpgradeValues sharedInstance] absoluteMinTimeDilation]);
     [thrustParticle setEndColor:ccc4FFromccc4B(
@@ -1433,9 +1427,9 @@ typedef struct {
                                                     lerpf(slowParticleColor[1], fastParticleColor[1], speedPercent),
                                                     lerpf(slowParticleColor[2], fastParticleColor[2], speedPercent),
                                                     lerpf(slowParticleColor[3], fastParticleColor[3], speedPercent)))];
-      [streak setColor:ccc3(lerpf(slowStreakColor[0], fastStreakColor[0], speedPercent),
-     lerpf(slowStreakColor[1], fastStreakColor[1], speedPercent),
-     lerpf(slowStreakColor[2], fastStreakColor[2], speedPercent))];
+    [streak setColor:ccc3(lerpf(slowStreakColor[0], fastStreakColor[0], speedPercent),
+                          lerpf(slowStreakColor[1], fastStreakColor[1], speedPercent),
+                          lerpf(slowStreakColor[2], fastStreakColor[2], speedPercent))];
     
     if (cometParticle.position.y<0) {
         [cometParticle stopSystem];
@@ -1494,7 +1488,7 @@ typedef struct {
             [Flurry logEvent:@"Got a top 10 highscore" withParameters:dictForFlurry];
             
             [[DDGameKitHelper sharedGameKitHelper] submitScore:finalScore category:@"highscore_leaderboard"];
-
+            
             [[[[CCDirector sharedDirector] openGLView] window] addSubview:playerNameLabel];
             [self schedule:@selector(nameDidChange) interval:.05];
             playerNameLabel.delegate = self;
@@ -1543,10 +1537,10 @@ typedef struct {
         [batteryDecreaserSprite setScaleX:lerpf(0, 66, percentDead)];
     }
     
-    if (percentDead<.5) 
-    [batteryInnerSprite setColor:ccc3(lerpf(0, 255, percentDead*2), 255, 0)];
+    if (percentDead<.5)
+        [batteryInnerSprite setColor:ccc3(lerpf(0, 255, percentDead*2), 255, 0)];
     else [batteryInnerSprite setColor:ccc3(255, lerpf(255, 0, percentDead    *2-1), 0)];
-
+    
     [batteryGlowScaleAction setSpeed:lerpf(1, 3.6, percentDead)];
     
     //    CCLOG(@"DIST: %f, VEL: %f, LIGHSCORE: %f", light.distanceFromPlayer, light.scoreVelocity, light.score);
@@ -1634,7 +1628,7 @@ typedef struct {
         
         [self UpdateGalaxies:dt];
         //NSLog(@"start2");
-        if (player.alive) {  
+        if (player.alive) {
             [self UpdatePlanets];
             //NSLog(@"start1");
         }
@@ -1780,7 +1774,7 @@ typedef struct {
     [thrustBurstParticle setPosition:player.sprite.position];
     [thrustBurstParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
     [thrustBurstParticle resetSystem];
-
+    
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {

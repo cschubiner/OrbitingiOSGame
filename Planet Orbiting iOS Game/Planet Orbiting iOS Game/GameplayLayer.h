@@ -57,6 +57,8 @@
     float powerupVel;
     int numCoinsDisplayed;
     
+    
+    CCLabelBMFont * zeroCoinsLabel;
     float powerupCounter;
     
     int currentNumOfCoinLabels;
