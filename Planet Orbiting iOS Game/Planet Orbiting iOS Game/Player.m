@@ -12,11 +12,10 @@
 
 @synthesize thrustEndPoint,thrustBeginPoint, mass, isInZone, coins, moveAction, rotationAtLastThrust, positionAtLastThrust, currentPowerup;
 
--(id) init
-{
+-(id) init {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
-	if( (self=[super init])) {
+	if (self = [super init]) {
         mass = 1;
         coins = 0;
         currentPowerup = nil;
