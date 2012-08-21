@@ -133,6 +133,7 @@ const float effectsVolumeMainMenu = 1;
         
         if (swipeBeginPoint.x >= 359 && swipeBeginPoint.x <= 440 && swipeBeginPoint.y >= 214 && swipeBeginPoint.y <= 287) {
             [missionPopup removeFromParentAndCleanup:true];
+            [self enableButtons];
         }
     }
 }
@@ -304,11 +305,19 @@ const float effectsVolumeMainMenu = 1;
     [self removePopupView];
 }
 
+-(void)enableButtons {
+    
+}
+
+-(void)disableButtons {
+    
+}
+
 -(void)pressedObjectiveButton:(id)sender {
     [Flurry logEvent:@"Pressed objective button"];
     missionPopup = [[ObjectiveManager sharedInstance] createMissionPopupWithX:true];
-    
     [self addChild:missionPopup];
+    [self disableButtons];
 }
 
 -(void)pressedPurchaseButton:(id)sender {
