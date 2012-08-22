@@ -474,7 +474,7 @@ typedef struct {
         if (/*[[UpgradeValues sharedInstance] hasStartPowerup]*/true) {
             CGPoint planPos = [[planets objectAtIndex:0] sprite].position;
             CGPoint pToUse = ccpAdd(ccpSub(planPos, player.sprite.position), planPos);
-            [self CreatePowerup:pToUse.x yPos:pToUse.y scale:1 type:3];
+            [self CreatePowerup:pToUse.x yPos:pToUse.y scale:1 type:4]; //make type 0 for random, 4 for head start
         }
         cameraDistToUse = 1005.14;
         [cameraLayer setScale:.43608];
@@ -610,8 +610,11 @@ typedef struct {
 - (void)UpdateCamera:(float)dt {
     if (player.alive) {
         player.velocity = ccpAdd(player.velocity, player.acceleration);
-        if (player.currentPowerup.type == kautopilot)
-            player.velocity = ccpMult(player.velocity, 1.67);
+        if (player.currentPowerup.type == kheadStart)
+            player.velocity = ccpMult(player.velocity, 1.6);
+        else if (player.currentPowerup.type == kautopilot)
+            player.velocity = ccpMult(player.velocity, 1.1);
+        
         player.sprite.position = ccpAdd(ccpMult(player.velocity, 60*dt*timeDilationCoefficient*asteroidSlower), player.sprite.position);
     }
     
@@ -794,7 +797,7 @@ typedef struct {
     }
     
     //bool isHittingAsteroid = false;
-    if (player.currentPowerup.type != kautopilot)
+    if (!(player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart))
         for (Asteroid* asteroid in asteroids) {
             CGPoint p = asteroid.sprite.position;
             if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= asteroid.radius * asteroidRadiusCollisionZone && asteroid.sprite.visible) {
@@ -818,7 +821,7 @@ typedef struct {
      asteroidSlower = clampf(asteroidSlower, .13, 1);
      }*/
     
-    if (player.currentPowerup.type != kautopilot)
+    if (!(player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart))
         for (Powerup* powerup in powerups) {
             CGPoint p = powerup.coinSprite.position;
             if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= powerup.coinSprite.width * .5 * powerupRadiusCollisionZone) {
@@ -926,7 +929,7 @@ typedef struct {
                 CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
                 player.acceleration = ccpMult(direction, gravity);
                 
-                if (player.currentPowerup.type == kautopilot) {
+                if (player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart) {
                     [self JustSwiped];
                 }
             }
@@ -996,7 +999,7 @@ typedef struct {
                         [feverLabel setString:[NSString stringWithFormat:@""]];
                     
                     
-                    if (player.currentPowerup.type == kautopilot) {
+                    if (player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart) {
                         CGPoint targetPoint1 = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius*.7), targetPlanet.sprite.position);
                         CGPoint targetPoint2 = ccpAdd(ccpMult(dir3, targetPlanet.orbitRadius*.7), targetPlanet.sprite.position);
                         
@@ -1032,8 +1035,10 @@ typedef struct {
                 scaler = clampf(scaler, 0, 99999999);
                 
                 player.acceleration = ccpMult(accelToAdd, [[UpgradeValues sharedInstance] absoluteMinTimeDilation]*1.11*gravIncreaser*freeGravityStrength*scaler*asteroidSlower*60*dt);
-                if (player.currentPowerup.type == kautopilot)
+                if (player.currentPowerup.type == kheadStart)
                     player.acceleration = ccpMult(player.acceleration, 11);
+                else if (player.currentPowerup.type == kautopilot)
+                    player.acceleration = ccpMult(player.acceleration, 2);
                 
                 if (initialAccelMag == 0)
                     initialAccelMag = ccpLength(player.acceleration);
@@ -1046,12 +1051,12 @@ typedef struct {
             }
         }
         
-        if (player.currentPowerup.type != kautopilot)
+        if (!(player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart))
             if (ccpLength(ccpSub(player.sprite.position, planet.sprite.position)) <= planet.radius * planetRadiusCollisionZone && planet.number >= lastPlanetVisited.number) {
                 [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number asteroidHit:Nil];
             }
         
-        if (player.currentPowerup.type != kautopilot)
+        if (!(player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart))
             if (dangerLevel >= 1) {
                 dangerLevel = 0;
                 [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number asteroidHit:Nil];
@@ -1066,7 +1071,7 @@ typedef struct {
     killer++;
     if (orbitState == 0 || orbitState == 2)
         killer = 0;
-    if (player.currentPowerup.type != kautopilot)
+    if (!(player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart))
         if (killer > deathAfterThisLong)
             [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number asteroidHit:Nil];
 }

@@ -21,7 +21,7 @@
         
         if (type == krandomPowerup) {
             shouldBeRand = true;
-            type = [self RandomBetween:1 maxvalue:2];
+            type = [self RandomBetween:1 maxvalue:3];
         }
         
         if (type == kasteroidImmunity) { //asteroidImmunity
@@ -38,10 +38,17 @@
             coinSprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
             glowSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];
             
-        } else if (type == kautopilot) { //wrapage powerup
+        } else if (type == kautopilot) { //autopilot powerup
+            
+            duration = 5*60*1.7; //JJ's headstart lasts 5 seconds
+            title = @"Autopilot";
+            coinSprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
+            glowSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];
+            
+        } else if (type == kheadStart) { //wrapage powerup
             
             duration = 5*60; //JJ's headstart lasts 5 seconds
-            title = @"Autopilot";
+            title = @"Head Start";
             coinSprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
             glowSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];
             

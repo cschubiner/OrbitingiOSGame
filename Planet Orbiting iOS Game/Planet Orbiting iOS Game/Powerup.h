@@ -18,7 +18,8 @@ enum PowerupTypes {
     krandomPowerup,
     kasteroidImmunity,
     kcoinMagnet,
-    kautopilot
+    kautopilot,
+    kheadStart
 };
 
 @property (nonatomic, assign) CCSprite* coinSprite;
