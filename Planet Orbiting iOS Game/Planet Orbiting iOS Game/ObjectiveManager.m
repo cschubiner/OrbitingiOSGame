@@ -27,11 +27,14 @@ static ObjectiveManager *sharedInstance = nil;
     return [objective complete];
 }
 
--(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber {
+-(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber view:(CCLayer*)view {
     if (currentObjectiveGroupNumber == a_groupNumber) {
         ObjectiveItem* obj = [self getObjectiveFromGroupNumber:a_groupNumber itemNumber:a_itemNumber];
-        if ([self completeObjective:obj])
-            [[GKAchievementHandler defaultHandler] notifyAchievementTitle:@"Mission Completed!" andMessage:obj.text];
+        if ([self completeObjective:obj]) {
+            //[[GKAchievementHandler defaultHandler] notifyAchievementTitle:@"Mission Completed!" andMessage:obj.text];
+            Toast* toast =[[Toast alloc] initWithView:view text:obj.text];
+            [toast showToast];
+        }
     }
 }
 

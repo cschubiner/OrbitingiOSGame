@@ -40,7 +40,7 @@
             
         } else if (type == kautopilot) { //wrapage powerup
             
-            duration = 920;
+            duration = 5*60; //JJ's headstart lasts 5 seconds
             title = @"Autopilot";
             coinSprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
             glowSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];

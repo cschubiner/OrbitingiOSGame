@@ -610,6 +610,8 @@ typedef struct {
 - (void)UpdateCamera:(float)dt {
     if (player.alive) {
         player.velocity = ccpAdd(player.velocity, player.acceleration);
+        if (player.currentPowerup.type == kautopilot)
+            player.velocity = ccpMult(player.velocity, 1.67);
         player.sprite.position = ccpAdd(ccpMult(player.velocity, 60*dt*timeDilationCoefficient*asteroidSlower), player.sprite.position);
     }
     
@@ -765,7 +767,7 @@ typedef struct {
 }
 
 -(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber {
-    [[ObjectiveManager sharedInstance] completeObjectiveFromGroupNumber:a_groupNumber itemNumber:a_itemNumber];
+    [[ObjectiveManager sharedInstance] completeObjectiveFromGroupNumber:a_groupNumber itemNumber:a_itemNumber view:self];
 }
 
 - (ALuint)playSound:(NSString*)soundFile shouldLoop:(bool)shouldLoop pitch:(float)pitch{
@@ -995,8 +997,8 @@ typedef struct {
                     
                     
                     if (player.currentPowerup.type == kautopilot) {
-                        CGPoint targetPoint1 = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius*.85), targetPlanet.sprite.position);
-                        CGPoint targetPoint2 = ccpAdd(ccpMult(dir3, targetPlanet.orbitRadius*.85), targetPlanet.sprite.position);
+                        CGPoint targetPoint1 = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius*.7), targetPlanet.sprite.position);
+                        CGPoint targetPoint2 = ccpAdd(ccpMult(dir3, targetPlanet.orbitRadius*.7), targetPlanet.sprite.position);
                         
                         if (ccpLengthSQ(ccpSub(ccpSub(targetPoint1, player.sprite.position), player.velocity))<ccpLengthSQ(ccpSub(ccpSub(targetPoint2, player.sprite.position), player.velocity)))
                         spotGoingTo = targetPoint1;
@@ -1031,7 +1033,7 @@ typedef struct {
                 
                 player.acceleration = ccpMult(accelToAdd, [[UpgradeValues sharedInstance] absoluteMinTimeDilation]*1.11*gravIncreaser*freeGravityStrength*scaler*asteroidSlower*60*dt);
                 if (player.currentPowerup.type == kautopilot)
-                    player.acceleration = ccpMult(player.acceleration, 1.5);
+                    player.acceleration = ccpMult(player.acceleration, 11);
                 
                 if (initialAccelMag == 0)
                     initialAccelMag = ccpLength(player.acceleration);
@@ -1315,7 +1317,8 @@ typedef struct {
                     
                 }
                 //NSLog(@"galaxy4");
-                                
+
+                
                 if (currentGalaxy.number == 1)
                     [self completeObjectiveFromGroupNumber:0 itemNumber:0];
                 if (currentGalaxy.number == 2)
