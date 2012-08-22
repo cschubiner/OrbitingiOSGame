@@ -305,30 +305,36 @@ typedef struct {
     [galaxy setNumberOfDifferentPlanetsDrawn:7];
     [galaxy setOptimalPlanetsInThisGalaxy:17];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.56];
+    [galaxy setGalaxyColor: ccc3(45, 53, 147)]; //a dark blue
     
     galaxy = [galaxies objectAtIndex:1];
     [galaxy setName:@"Galaxy 2"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:21];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.408888];
+    [galaxy setGalaxyColor: ccc3(0, 103, 3)];
     
     galaxy = [galaxies objectAtIndex:2];
     [galaxy setName:@"Galaxy 3"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:26];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.375];
+    [galaxy setGalaxyColor: ccc3(114, 0, 115)];
     
     galaxy = [galaxies objectAtIndex:3];
     [galaxy setName:@"Galaxy 4"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
     [galaxy setOptimalPlanetsInThisGalaxy:33];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.321];
+    [galaxy setGalaxyColor: ccc3(0, 130, 115)];
+
     
     galaxy = [galaxies objectAtIndex:4];
     [galaxy setName:@"Galaxy 5"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
     [galaxy setOptimalPlanetsInThisGalaxy:36];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.31];
+    [galaxy setGalaxyColor: ccc3(154, 86, 0)];
     
     
     galaxy = [galaxies objectAtIndex:5];
@@ -336,14 +342,16 @@ typedef struct {
     [galaxy setNumberOfDifferentPlanetsDrawn:2];
     [galaxy setOptimalPlanetsInThisGalaxy:40];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.28];
-    
+    [galaxy setGalaxyColor: ccc3(42, 112, 199)];
+
     
     galaxy = [galaxies objectAtIndex:6];
     [galaxy setName:@"Galaxy 7"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:43];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.3];
-    
+    [galaxy setGalaxyColor: ccc3(161,163,42)];
+
     
     // for (Galaxy* galaxy in galaxies)
     // [galaxy setOptimalPlanetsInThisGalaxy:15];
@@ -390,7 +398,7 @@ typedef struct {
         zones = [[NSMutableArray alloc] init];
         powerups = [[NSMutableArray alloc] init];
         coins = [[NSMutableArray alloc] init];
-        
+        backgroundStars = [[NSMutableArray alloc]init];
         
         hudLayer = [[CCLayer alloc] init];
         cameraLayer = [[CCLayer alloc] init];
@@ -434,6 +442,10 @@ typedef struct {
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.WAV"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"buttonpress.mp3"];
         
+        
+        backgroundSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"backgroundStars.pvr.ccz"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"backgroundStars.plist"];
+
         spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"generalSpritesheet.pvr.ccz"];
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"generalSpritesheet.plist"];
         
@@ -519,13 +531,37 @@ typedef struct {
         [feverLabel setPosition:ccp(240, feverLabel.boundingBox.size.height*.6)];
         [hudLayer addChild:feverLabel];
         
-        
-        background = [CCSprite spriteWithFile:@"background0.pvr.ccz"];
-        background2 = [CCSprite spriteWithFile:@"background1.pvr.ccz"];
-        [background setPosition:ccp(size.width/2+14,size.height/5+2)];
-        [background2 setPosition:ccp(size.width/2+14,size.height/5+2)];
-        [self addChild:background];
-        
+        backgroundClouds = [CCSprite spriteWithSpriteFrameName:@"backgroundClouds.png"];
+        [backgroundClouds setPosition:ccp(size.width/2,size.height/2)];
+        [backgroundClouds setColor:currentGalaxy.galaxyColor];
+        [backgroundSpriteSheet addChild:backgroundClouds];
+
+        int numStars = 74;
+        int numSectors = 7;
+        for (int i = 0 ; i <= numStars; i++) {
+            int sector = i/(numStars/numSectors);
+            if (sector == numSectors)
+                sector = [self RandomBetween:0 maxvalue:numSectors-1];
+            CCSprite * star = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"bstar%d-hd.png",i]];
+            for (int j = 0 ; j < 4; j++) {
+                [star setPosition:ccp([self randomValueBetween:(480*sector)/numSectors andValue:(480*(sector+1))/numSectors],[self randomValueBetween:0 andValue:320])];
+                bool collidesWithOtherStar = false;
+                for (CCSprite * star2 in backgroundStars) {
+                    if (CGRectContainsRect(star.boundingBox, star2.boundingBox)){
+                       // [star setVisible:false];
+                        collidesWithOtherStar = true;
+                        break;
+                    }
+                }
+                if (collidesWithOtherStar ==false) {
+                    //NSLog(@"star pos: %f,%f between %d and %d",star.position.x,star.position.y,(480*(sector))/numSectors,(480*(sector+1))/numSectors);
+                    [backgroundSpriteSheet addChild:star];
+                    [backgroundStars addObject:star];
+                }
+            }
+            
+        }
+                
         [self addChild:cometParticle];
         cometParticle.position = ccp([self RandomBetween:0 maxvalue:390],325);
         cometVelocity = ccp([self RandomBetween:-10 maxvalue:10]/5,-[self RandomBetween:1 maxvalue:23]/5);
@@ -538,7 +574,6 @@ typedef struct {
         [light.sprite setColor:ccc3(0, 0, 0)]; //this makes the light black!
         
         light.scoreVelocity = initialLightScoreVelocity;
-        //  glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         light.hasPutOnLight = false;
         
         [cameraLayer addChild:currentGalaxy.spriteSheet];
@@ -553,6 +588,8 @@ typedef struct {
         batteryGlowScaleAction = [CCSpeed actionWithAction:sequenceAction speed:1];
         [batteryGlowSprite setScale:.873];
         
+        [backgroundSpriteSheet setPosition:CGPointZero];
+        [self addChild:backgroundSpriteSheet];
         [self addChild:cameraLayer];
         [self addChild:hudLayer];
         if (!isInTutorialMode&&levelNumber == 0)
@@ -1223,7 +1260,20 @@ typedef struct {
             //NSLog(@"galaxy113");
             float percentofthewaytonext = firstToPlayerDistance/firsttonextDistance;
             percentofthewaytonext*=1.18;
+            
             if (percentofthewaytonext>1) percentofthewaytonext = 1;
+            
+            Galaxy * thisGalaxy = [galaxies objectAtIndex:lastPlanetVisited.whichGalaxyThisObjectBelongsTo];
+            Galaxy * nextGalaxy2 = [galaxies objectAtIndex:targetPlanet.whichGalaxyThisObjectBelongsTo];
+            
+            ccColor3B lastColor = thisGalaxy.galaxyColor;
+            ccColor3B nextColor = nextGalaxy2.galaxyColor;
+            
+            [backgroundClouds setColor:ccc3(lerpf(lastColor.r, nextColor.r, percentofthewaytonext),
+                                            lerpf(lastColor.g, nextColor.g, percentofthewaytonext),
+                                            lerpf(lastColor.b, nextColor.b, percentofthewaytonext))];
+            
+   /*         if (percentofthewaytonext>1) percentofthewaytonext = 1;
             if ([[self children]containsObject:background]) {
                 if ([[self children]containsObject:background2]==false) {
                     // //NSLog(@"galaxy114");
@@ -1246,7 +1296,7 @@ typedef struct {
                 if (![[self children]containsObject:background])
                     [self addChild:background];
                 [self removeChild:background2 cleanup:YES];
-            }
+            }*/
             //NSLog(@"galaxy3");
             if (percentofthewaytonext>.85&&justDisplayedGalaxyLabel==false&&(int)galaxyLabel.opacity<=0)
             {
@@ -1265,15 +1315,7 @@ typedef struct {
                     
                 }
                 //NSLog(@"galaxy4");
-                
-                
-                
-                
-                /*Toast* toast =[[Toast alloc] initWithView:hudLayer text:[NSString stringWithFormat: @"Achievement '%@' completed!\n%@", achievementTitle,achievementDescription]];
-                 [toast setFromTop:true];
-                 [toast showToast];*/
-                
-                
+                                
                 if (currentGalaxy.number == 1)
                     [self completeObjectiveFromGroupNumber:0 itemNumber:0];
                 if (currentGalaxy.number == 2)
@@ -1300,16 +1342,12 @@ typedef struct {
         }
         else {
             cameraShouldFocusOnPlayer=false;
-            [background setOpacity:255];
+            //[background setOpacity:255];
         }
     }
     //NSLog(@"galaxy5");
     if ((int)galaxyLabel.opacity <=0&&justDisplayedGalaxyLabel==false&&[[hudLayer children]containsObject:galaxyLabel])
         [hudLayer removeChild:galaxyLabel cleanup:NO];
-    if ((int)[background opacity]<=0&&[[self children]containsObject:background])
-        [self removeChild:background cleanup:NO];
-    if ((int)[background2 opacity]<=0&&[[self children]containsObject:background2])
-        [self removeChild:background2 cleanup:NO];
     
     if (levelNumber !=0) {
         if (planetsHitFlurry >= [planets count]) {
@@ -1615,6 +1653,20 @@ typedef struct {
     
 }
 
+- (void)UpdateBackgroundStars {
+    for (CCSprite * star in backgroundStars) {
+        //  CGPoint camLayerVelocity = ccpSub(cameraFocusNode.position, cameraLayerLastPosition);
+        float angle = ccpToAngle(player.velocity);
+        if (angle>=0 && angle <=90)
+            star.position = ccpAdd(star.position,  ccpMult(player.velocity, -1*cameraLayer.scale*.1));
+        
+        
+        if (star.position.x<0-star.width/2 || star.position.y <0-star.height/2) { //if star is off-screen
+            star.position = ccp([self RandomBetween:star.width/2 maxvalue:480*1.8],[self RandomBetween:320+star.height/2 maxvalue:320+5*star.height/2]);
+        }
+    }
+}
+
 - (void) Update:(ccTime)dt {
     if (dt > .2) {
 		dt = 1.0 / 60.0f;
@@ -1642,6 +1694,9 @@ typedef struct {
         [self UpdateCamera:dt];
         //NSLog(@"start6");
         [self UpdateParticles:dt];
+        
+        [self UpdateBackgroundStars];
+        
         //NSLog(@"start7");
         if (levelNumber==0) {
             [self UpdateLight:dt];

@@ -135,6 +135,10 @@
 		0C65971E15D6351F00C42296 /* OneByOne-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C65971D15D6351F00C42296 /* OneByOne-hd.png */; };
 		0C65972415D666D900C42296 /* LevelsFromLevelCreator in Resources */ = {isa = PBXBuildFile; fileRef = 0C65972315D666D900C42296 /* LevelsFromLevelCreator */; };
 		0C68283215BF0CCA00BF09C0 /* playerExplosionParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */; };
+		0C6CC93E15E49B58008CC4DF /* backgroundStars-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C6CC93A15E49B58008CC4DF /* backgroundStars-hd.plist */; };
+		0C6CC93F15E49B58008CC4DF /* backgroundStars-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C6CC93B15E49B58008CC4DF /* backgroundStars-hd.pvr.ccz */; };
+		0C6CC94015E49B58008CC4DF /* backgroundStars.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C6CC93C15E49B58008CC4DF /* backgroundStars.plist */; };
+		0C6CC94115E49B58008CC4DF /* backgroundStars.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C6CC93D15E49B58008CC4DF /* backgroundStars.pvr.ccz */; };
 		0C7AA5F315946939000B58F2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F215946939000B58F2 /* QuartzCore.framework */; };
 		0C7AA5F515946939000B58F2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F415946939000B58F2 /* OpenGLES.framework */; };
 		0C7AA5F715946939000B58F2 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA5F615946939000B58F2 /* OpenAL.framework */; };
@@ -207,42 +211,6 @@
 		C43AF01915D43043001FF7D9 /* generalSpritesheet-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF01515D43043001FF7D9 /* generalSpritesheet-hd.pvr.ccz */; };
 		C43AF01A15D43043001FF7D9 /* generalSpritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AF01615D43043001FF7D9 /* generalSpritesheet.plist */; };
 		C43AF01B15D43043001FF7D9 /* generalSpritesheet.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF01715D43043001FF7D9 /* generalSpritesheet.pvr.ccz */; };
-		C43AF06815D44056001FF7D9 /* background0-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AF06415D44056001FF7D9 /* background0-hd.plist */; };
-		C43AF06915D44056001FF7D9 /* background0-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF06515D44056001FF7D9 /* background0-hd.pvr.ccz */; };
-		C43AF06A15D44056001FF7D9 /* background0.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AF06615D44056001FF7D9 /* background0.plist */; };
-		C43AF06B15D44056001FF7D9 /* background0.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF06715D44056001FF7D9 /* background0.pvr.ccz */; };
-		C43AF08C15D44317001FF7D9 /* background1-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AF06C15D44317001FF7D9 /* background1-hd.plist */; };
-		C43AF08D15D44317001FF7D9 /* background1-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF06D15D44317001FF7D9 /* background1-hd.pvr.ccz */; };
-		C43AF08E15D44317001FF7D9 /* background1.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AF06E15D44317001FF7D9 /* background1.plist */; };
-		C43AF08F15D44317001FF7D9 /* background1.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF06F15D44317001FF7D9 /* background1.pvr.ccz */; };
-		C43AF09015D44317001FF7D9 /* background2-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AF07015D44317001FF7D9 /* background2-hd.plist */; };
-		C43AF09115D44317001FF7D9 /* background2-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF07115D44317001FF7D9 /* background2-hd.pvr.ccz */; };
-		C43AF09215D44317001FF7D9 /* background2.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AF07215D44317001FF7D9 /* background2.plist */; };
-		C43AF09315D44317001FF7D9 /* background2.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF07315D44317001FF7D9 /* background2.pvr.ccz */; };
-		C43AF09415D44317001FF7D9 /* background3-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AF07415D44317001FF7D9 /* background3-hd.plist */; };
-		C43AF09515D44317001FF7D9 /* background3-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF07515D44317001FF7D9 /* background3-hd.pvr.ccz */; };
-		C43AF09615D44317001FF7D9 /* background3.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AF07615D44317001FF7D9 /* background3.plist */; };
-		C43AF09715D44317001FF7D9 /* background3.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF07715D44317001FF7D9 /* background3.pvr.ccz */; };
-		C43AF09815D44317001FF7D9 /* background4-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AF07815D44317001FF7D9 /* background4-hd.plist */; };
-		C43AF09915D44317001FF7D9 /* background4-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF07915D44317001FF7D9 /* background4-hd.pvr.ccz */; };
-		C43AF09A15D44317001FF7D9 /* background4.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AF07A15D44317001FF7D9 /* background4.plist */; };
-		C43AF09B15D44317001FF7D9 /* background4.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF07B15D44317001FF7D9 /* background4.pvr.ccz */; };
-		C43AF09C15D44317001FF7D9 /* background5-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AF07C15D44317001FF7D9 /* background5-hd.plist */; };
-		C43AF09D15D44317001FF7D9 /* background5-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF07D15D44317001FF7D9 /* background5-hd.pvr.ccz */; };
-		C43AF09E15D44317001FF7D9 /* background5.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AF07E15D44317001FF7D9 /* background5.plist */; };
-		C43AF09F15D44317001FF7D9 /* background5.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF07F15D44317001FF7D9 /* background5.pvr.ccz */; };
-		C43AF0A015D44317001FF7D9 /* background6-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AF08015D44317001FF7D9 /* background6-hd.plist */; };
-		C43AF0A115D44317001FF7D9 /* background6-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF08115D44317001FF7D9 /* background6-hd.pvr.ccz */; };
-		C43AF0A215D44317001FF7D9 /* background6.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AF08215D44317001FF7D9 /* background6.plist */; };
-		C43AF0A315D44317001FF7D9 /* background6.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF08315D44317001FF7D9 /* background6.pvr.ccz */; };
-		C43AF0A415D44317001FF7D9 /* background7-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AF08415D44317001FF7D9 /* background7-hd.plist */; };
-		C43AF0A515D44317001FF7D9 /* background7-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF08515D44317001FF7D9 /* background7-hd.pvr.ccz */; };
-		C43AF0A615D44317001FF7D9 /* background7.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AF08615D44317001FF7D9 /* background7.plist */; };
-		C43AF0A715D44317001FF7D9 /* background7.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF08715D44317001FF7D9 /* background7.pvr.ccz */; };
-		C43AF0A815D44317001FF7D9 /* background8-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AF08815D44317001FF7D9 /* background8-hd.plist */; };
-		C43AF0A915D44317001FF7D9 /* background8-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF08915D44317001FF7D9 /* background8-hd.pvr.ccz */; };
-		C43AF0AA15D44317001FF7D9 /* background8.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AF08A15D44317001FF7D9 /* background8.plist */; };
-		C43AF0AB15D44317001FF7D9 /* background8.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF08B15D44317001FF7D9 /* background8.pvr.ccz */; };
 		C43F5E6C15C70352003BDF73 /* DDGameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C43F5E6415C70352003BDF73 /* DDGameKitHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C43F5E6E15C70352003BDF73 /* DDGameKitHelperDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43F5E6915C70352003BDF73 /* DDGameKitHelperDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C43F5E7315C7043F003BDF73 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C43F5E7215C7043F003BDF73 /* GameKit.framework */; };
@@ -583,6 +551,10 @@
 		0C65971D15D6351F00C42296 /* OneByOne-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OneByOne-hd.png"; sourceTree = "<group>"; };
 		0C65972315D666D900C42296 /* LevelsFromLevelCreator */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LevelsFromLevelCreator; sourceTree = "<group>"; };
 		0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = playerExplosionParticle.plist; sourceTree = "<group>"; };
+		0C6CC93A15E49B58008CC4DF /* backgroundStars-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "backgroundStars-hd.plist"; sourceTree = "<group>"; };
+		0C6CC93B15E49B58008CC4DF /* backgroundStars-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "backgroundStars-hd.pvr.ccz"; sourceTree = "<group>"; };
+		0C6CC93C15E49B58008CC4DF /* backgroundStars.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = backgroundStars.plist; sourceTree = "<group>"; };
+		0C6CC93D15E49B58008CC4DF /* backgroundStars.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = backgroundStars.pvr.ccz; sourceTree = "<group>"; };
 		0C7AA5EE15946939000B58F2 /* Star Dash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Star Dash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C7AA5F215946939000B58F2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0C7AA5F415946939000B58F2 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -661,42 +633,6 @@
 		C43AF01515D43043001FF7D9 /* generalSpritesheet-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "generalSpritesheet-hd.pvr.ccz"; sourceTree = "<group>"; };
 		C43AF01615D43043001FF7D9 /* generalSpritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = generalSpritesheet.plist; sourceTree = "<group>"; };
 		C43AF01715D43043001FF7D9 /* generalSpritesheet.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = generalSpritesheet.pvr.ccz; sourceTree = "<group>"; };
-		C43AF06415D44056001FF7D9 /* background0-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "background0-hd.plist"; sourceTree = "<group>"; };
-		C43AF06515D44056001FF7D9 /* background0-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background0-hd.pvr.ccz"; sourceTree = "<group>"; };
-		C43AF06615D44056001FF7D9 /* background0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = background0.plist; sourceTree = "<group>"; };
-		C43AF06715D44056001FF7D9 /* background0.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = background0.pvr.ccz; sourceTree = "<group>"; };
-		C43AF06C15D44317001FF7D9 /* background1-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "background1-hd.plist"; sourceTree = "<group>"; };
-		C43AF06D15D44317001FF7D9 /* background1-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background1-hd.pvr.ccz"; sourceTree = "<group>"; };
-		C43AF06E15D44317001FF7D9 /* background1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = background1.plist; sourceTree = "<group>"; };
-		C43AF06F15D44317001FF7D9 /* background1.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = background1.pvr.ccz; sourceTree = "<group>"; };
-		C43AF07015D44317001FF7D9 /* background2-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "background2-hd.plist"; sourceTree = "<group>"; };
-		C43AF07115D44317001FF7D9 /* background2-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background2-hd.pvr.ccz"; sourceTree = "<group>"; };
-		C43AF07215D44317001FF7D9 /* background2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = background2.plist; sourceTree = "<group>"; };
-		C43AF07315D44317001FF7D9 /* background2.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = background2.pvr.ccz; sourceTree = "<group>"; };
-		C43AF07415D44317001FF7D9 /* background3-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "background3-hd.plist"; sourceTree = "<group>"; };
-		C43AF07515D44317001FF7D9 /* background3-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background3-hd.pvr.ccz"; sourceTree = "<group>"; };
-		C43AF07615D44317001FF7D9 /* background3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = background3.plist; sourceTree = "<group>"; };
-		C43AF07715D44317001FF7D9 /* background3.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = background3.pvr.ccz; sourceTree = "<group>"; };
-		C43AF07815D44317001FF7D9 /* background4-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "background4-hd.plist"; sourceTree = "<group>"; };
-		C43AF07915D44317001FF7D9 /* background4-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background4-hd.pvr.ccz"; sourceTree = "<group>"; };
-		C43AF07A15D44317001FF7D9 /* background4.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = background4.plist; sourceTree = "<group>"; };
-		C43AF07B15D44317001FF7D9 /* background4.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = background4.pvr.ccz; sourceTree = "<group>"; };
-		C43AF07C15D44317001FF7D9 /* background5-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "background5-hd.plist"; sourceTree = "<group>"; };
-		C43AF07D15D44317001FF7D9 /* background5-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background5-hd.pvr.ccz"; sourceTree = "<group>"; };
-		C43AF07E15D44317001FF7D9 /* background5.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = background5.plist; sourceTree = "<group>"; };
-		C43AF07F15D44317001FF7D9 /* background5.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = background5.pvr.ccz; sourceTree = "<group>"; };
-		C43AF08015D44317001FF7D9 /* background6-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "background6-hd.plist"; sourceTree = "<group>"; };
-		C43AF08115D44317001FF7D9 /* background6-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background6-hd.pvr.ccz"; sourceTree = "<group>"; };
-		C43AF08215D44317001FF7D9 /* background6.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = background6.plist; sourceTree = "<group>"; };
-		C43AF08315D44317001FF7D9 /* background6.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = background6.pvr.ccz; sourceTree = "<group>"; };
-		C43AF08415D44317001FF7D9 /* background7-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "background7-hd.plist"; sourceTree = "<group>"; };
-		C43AF08515D44317001FF7D9 /* background7-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background7-hd.pvr.ccz"; sourceTree = "<group>"; };
-		C43AF08615D44317001FF7D9 /* background7.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = background7.plist; sourceTree = "<group>"; };
-		C43AF08715D44317001FF7D9 /* background7.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = background7.pvr.ccz; sourceTree = "<group>"; };
-		C43AF08815D44317001FF7D9 /* background8-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "background8-hd.plist"; sourceTree = "<group>"; };
-		C43AF08915D44317001FF7D9 /* background8-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background8-hd.pvr.ccz"; sourceTree = "<group>"; };
-		C43AF08A15D44317001FF7D9 /* background8.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = background8.plist; sourceTree = "<group>"; };
-		C43AF08B15D44317001FF7D9 /* background8.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = background8.pvr.ccz; sourceTree = "<group>"; };
 		C43F5E6415C70352003BDF73 /* DDGameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDGameKitHelper.m; sourceTree = "<group>"; };
 		C43F5E6515C70352003BDF73 /* DDGameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGameKitHelper.h; sourceTree = "<group>"; };
 		C43F5E6815C70352003BDF73 /* DDGameKitHelperDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGameKitHelperDelegate.h; sourceTree = "<group>"; };
@@ -1360,6 +1296,10 @@
 		0C7AA60315946939000B58F2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0C6CC93A15E49B58008CC4DF /* backgroundStars-hd.plist */,
+				0C6CC93B15E49B58008CC4DF /* backgroundStars-hd.pvr.ccz */,
+				0C6CC93C15E49B58008CC4DF /* backgroundStars.plist */,
+				0C6CC93D15E49B58008CC4DF /* backgroundStars.pvr.ccz */,
 				0C8A1E5815DB650F00600B36 /* MainMenuCCBFile.ccb */,
 				0CB8F7A915E3524E00D9FC51 /* score_label_font-hd.fnt */,
 				0CB8F7AA15E3524E00D9FC51 /* score_label_font-hd.png */,
@@ -1397,42 +1337,6 @@
 		0CAFE09215CE8570008C549E /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
-				C43AF06415D44056001FF7D9 /* background0-hd.plist */,
-				C43AF06515D44056001FF7D9 /* background0-hd.pvr.ccz */,
-				C43AF06615D44056001FF7D9 /* background0.plist */,
-				C43AF06715D44056001FF7D9 /* background0.pvr.ccz */,
-				C43AF06C15D44317001FF7D9 /* background1-hd.plist */,
-				C43AF06D15D44317001FF7D9 /* background1-hd.pvr.ccz */,
-				C43AF06E15D44317001FF7D9 /* background1.plist */,
-				C43AF06F15D44317001FF7D9 /* background1.pvr.ccz */,
-				C43AF07015D44317001FF7D9 /* background2-hd.plist */,
-				C43AF07115D44317001FF7D9 /* background2-hd.pvr.ccz */,
-				C43AF07215D44317001FF7D9 /* background2.plist */,
-				C43AF07315D44317001FF7D9 /* background2.pvr.ccz */,
-				C43AF07415D44317001FF7D9 /* background3-hd.plist */,
-				C43AF07515D44317001FF7D9 /* background3-hd.pvr.ccz */,
-				C43AF07615D44317001FF7D9 /* background3.plist */,
-				C43AF07715D44317001FF7D9 /* background3.pvr.ccz */,
-				C43AF07815D44317001FF7D9 /* background4-hd.plist */,
-				C43AF07915D44317001FF7D9 /* background4-hd.pvr.ccz */,
-				C43AF07A15D44317001FF7D9 /* background4.plist */,
-				C43AF07B15D44317001FF7D9 /* background4.pvr.ccz */,
-				C43AF07C15D44317001FF7D9 /* background5-hd.plist */,
-				C43AF07D15D44317001FF7D9 /* background5-hd.pvr.ccz */,
-				C43AF07E15D44317001FF7D9 /* background5.plist */,
-				C43AF07F15D44317001FF7D9 /* background5.pvr.ccz */,
-				C43AF08015D44317001FF7D9 /* background6-hd.plist */,
-				C43AF08115D44317001FF7D9 /* background6-hd.pvr.ccz */,
-				C43AF08215D44317001FF7D9 /* background6.plist */,
-				C43AF08315D44317001FF7D9 /* background6.pvr.ccz */,
-				C43AF08415D44317001FF7D9 /* background7-hd.plist */,
-				C43AF08515D44317001FF7D9 /* background7-hd.pvr.ccz */,
-				C43AF08615D44317001FF7D9 /* background7.plist */,
-				C43AF08715D44317001FF7D9 /* background7.pvr.ccz */,
-				C43AF08815D44317001FF7D9 /* background8-hd.plist */,
-				C43AF08915D44317001FF7D9 /* background8-hd.pvr.ccz */,
-				C43AF08A15D44317001FF7D9 /* background8.plist */,
-				C43AF08B15D44317001FF7D9 /* background8.pvr.ccz */,
 			);
 			name = Backgrounds;
 			sourceTree = "<group>";
@@ -2144,42 +2048,6 @@
 				C43AF01915D43043001FF7D9 /* generalSpritesheet-hd.pvr.ccz in Resources */,
 				C43AF01A15D43043001FF7D9 /* generalSpritesheet.plist in Resources */,
 				C43AF01B15D43043001FF7D9 /* generalSpritesheet.pvr.ccz in Resources */,
-				C43AF06815D44056001FF7D9 /* background0-hd.plist in Resources */,
-				C43AF06915D44056001FF7D9 /* background0-hd.pvr.ccz in Resources */,
-				C43AF06A15D44056001FF7D9 /* background0.plist in Resources */,
-				C43AF06B15D44056001FF7D9 /* background0.pvr.ccz in Resources */,
-				C43AF08C15D44317001FF7D9 /* background1-hd.plist in Resources */,
-				C43AF08D15D44317001FF7D9 /* background1-hd.pvr.ccz in Resources */,
-				C43AF08E15D44317001FF7D9 /* background1.plist in Resources */,
-				C43AF08F15D44317001FF7D9 /* background1.pvr.ccz in Resources */,
-				C43AF09015D44317001FF7D9 /* background2-hd.plist in Resources */,
-				C43AF09115D44317001FF7D9 /* background2-hd.pvr.ccz in Resources */,
-				C43AF09215D44317001FF7D9 /* background2.plist in Resources */,
-				C43AF09315D44317001FF7D9 /* background2.pvr.ccz in Resources */,
-				C43AF09415D44317001FF7D9 /* background3-hd.plist in Resources */,
-				C43AF09515D44317001FF7D9 /* background3-hd.pvr.ccz in Resources */,
-				C43AF09615D44317001FF7D9 /* background3.plist in Resources */,
-				C43AF09715D44317001FF7D9 /* background3.pvr.ccz in Resources */,
-				C43AF09815D44317001FF7D9 /* background4-hd.plist in Resources */,
-				C43AF09915D44317001FF7D9 /* background4-hd.pvr.ccz in Resources */,
-				C43AF09A15D44317001FF7D9 /* background4.plist in Resources */,
-				C43AF09B15D44317001FF7D9 /* background4.pvr.ccz in Resources */,
-				C43AF09C15D44317001FF7D9 /* background5-hd.plist in Resources */,
-				C43AF09D15D44317001FF7D9 /* background5-hd.pvr.ccz in Resources */,
-				C43AF09E15D44317001FF7D9 /* background5.plist in Resources */,
-				C43AF09F15D44317001FF7D9 /* background5.pvr.ccz in Resources */,
-				C43AF0A015D44317001FF7D9 /* background6-hd.plist in Resources */,
-				C43AF0A115D44317001FF7D9 /* background6-hd.pvr.ccz in Resources */,
-				C43AF0A215D44317001FF7D9 /* background6.plist in Resources */,
-				C43AF0A315D44317001FF7D9 /* background6.pvr.ccz in Resources */,
-				C43AF0A415D44317001FF7D9 /* background7-hd.plist in Resources */,
-				C43AF0A515D44317001FF7D9 /* background7-hd.pvr.ccz in Resources */,
-				C43AF0A615D44317001FF7D9 /* background7.plist in Resources */,
-				C43AF0A715D44317001FF7D9 /* background7.pvr.ccz in Resources */,
-				C43AF0A815D44317001FF7D9 /* background8-hd.plist in Resources */,
-				C43AF0A915D44317001FF7D9 /* background8-hd.pvr.ccz in Resources */,
-				C43AF0AA15D44317001FF7D9 /* background8.plist in Resources */,
-				C43AF0AB15D44317001FF7D9 /* background8.pvr.ccz in Resources */,
 				016A13E015D620D300C5D77D /* popup.png in Resources */,
 				016A13E515D624F600C5D77D /* popup-hd.png in Resources */,
 				0C65970F15D62BC800C42296 /* OneByOne.png in Resources */,
@@ -2309,6 +2177,10 @@
 				FA254AD815E37CDC00DB695E /* resume.png in Resources */,
 				FA254AD915E37CDC00DB695E /* resumepressed-hd.png in Resources */,
 				FA254ADA15E37CDC00DB695E /* resumepressed.png in Resources */,
+				0C6CC93E15E49B58008CC4DF /* backgroundStars-hd.plist in Resources */,
+				0C6CC93F15E49B58008CC4DF /* backgroundStars-hd.pvr.ccz in Resources */,
+				0C6CC94015E49B58008CC4DF /* backgroundStars.plist in Resources */,
+				0C6CC94115E49B58008CC4DF /* backgroundStars.pvr.ccz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

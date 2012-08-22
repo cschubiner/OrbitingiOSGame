@@ -133,8 +133,9 @@
     int numZonesHitInARow;
     int currentPtoPscore;
     
-    CCSprite * background;
-    CCSprite * background2;
+    NSMutableArray * backgroundStars;
+    CCSpriteBatchNode* backgroundSpriteSheet;
+    CCSprite * backgroundClouds;
     CCSprite * batteryInnerSprite;
     CCSpriteBatchNode* spriteSheet;
     CCLayer *pauseLayer;
