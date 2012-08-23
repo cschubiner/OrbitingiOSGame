@@ -13,10 +13,11 @@
 @property (nonatomic, retain) NSString* title;
 @property (nonatomic, retain) NSString* description;
 @property (nonatomic, assign) int price;
+@property (nonatomic, assign) int type;
 @property (nonatomic, assign) BOOL exclusive;
 @property (nonatomic, assign) BOOL purchased;
 @property (nonatomic, assign) BOOL equipped;
 
-- (id)initWithTitle:(NSString*)cTitle description:(NSString*)cDescription price:(int)cPrice exclusive:(BOOL)cExclusive purchased:(BOOL)cPurchased equipped:(BOOL)cEquipped;
+- (id)initWithTitle:(NSString*)cTitle description:(NSString*)cDescription price:(int)cPrice type:(int)cType exclusive:(BOOL)cExclusive purchased:(BOOL)cPurchased equipped:(BOOL)cEquipped;
 
 @end

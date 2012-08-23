@@ -84,20 +84,6 @@
         [cell0 setPosition:ccp(240, 27)];
          [cell1 setPosition:ccp(240, 27+55)];*/
         
-        NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
-        
-        cells = [[NSMutableArray alloc] init];
-        
-        for (UpgradeItem* item in upgradeItems) {
-            UpgradeCell *cell = [[UpgradeCell alloc] initWithUpgradeItem:item];
-            [cells addObject:cell];
-        }
-        
-        for (int i = 0; i < [cells count]; i++) {
-            CCLayer* cell = (CCLayer*)[cells objectAtIndex:i];
-            [scrollView addChild:cell];
-            [cell setPosition:ccp(240, 27 + 55*i)];
-        }
         
         totalStars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"Marker Felt" fontSize:22];
         [self addChild: totalStars];
@@ -110,7 +96,7 @@
         [starSprite setPosition:ccp(420, 320 - topBar.boundingBox.size.height/2)];
         
         cells = [[NSMutableArray alloc] init];
-        //[self initUpgradeLayer];
+        [self initUpgradeLayer];
         
         float scrollViewHeight = 110;
         

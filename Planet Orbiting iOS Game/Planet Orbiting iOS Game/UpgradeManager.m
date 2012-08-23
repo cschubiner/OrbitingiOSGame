@@ -23,4 +23,11 @@ static UpgradeManager *sharedInstance = nil;
     return sharedInstance;
 }
 
+- (id)init {
+    if (self = [super init]) {
+        self.upgradeItems = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
 @end
