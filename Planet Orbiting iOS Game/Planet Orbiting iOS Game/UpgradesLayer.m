@@ -246,8 +246,8 @@
             
         } else {
             enterVelocity = 0;
-            velocity*=.88;
-            float counterScaler = 10/counter;
+            velocity*=.95;
+            float counterScaler = 20/counter;
             if (counterScaler > 1)
                 counterScaler= 1;
             velocity*=counterScaler;
