@@ -20,5 +20,6 @@
 @property (nonatomic, retain) NSArray* segments;
 @property (nonatomic, retain) NSString* name;
 @property (nonatomic, retain) CCSpriteBatchNode* spriteSheet;
+@property (nonatomic) ccColor3B galaxyColor;
 -(id)initWithSegments:(NSArray*)levelSegments;
 @end

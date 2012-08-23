@@ -60,10 +60,7 @@
     
     CCLabelBMFont * zeroCoinsLabel;
     float powerupCounter;
-    
-    int currentNumOfCoinLabels;
-    int currentCoinLabel;
-    
+        
     NSArray * galaxies;
     Galaxy* currentGalaxy;
     Galaxy* nextGalaxy;
@@ -136,8 +133,9 @@
     int numZonesHitInARow;
     int currentPtoPscore;
     
-    CCSprite * background;
-    CCSprite * background2;
+    NSMutableArray * backgroundStars;
+    CCSpriteBatchNode* backgroundSpriteSheet;
+    CCSprite * backgroundClouds;
     CCSprite * batteryInnerSprite;
     CCSpriteBatchNode* spriteSheet;
     CCLayer *pauseLayer;

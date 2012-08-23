@@ -10,6 +10,7 @@
 #import "ObjectiveHeader.h"
 #import "GKAchievementHandler.h"
 #import "cocos2d.h"
+#import "Toast.h"
 
 @interface ObjectiveManager : NSObject
 
@@ -23,5 +24,7 @@
 -(NSMutableArray*)getObjectivesFromGroupNumber:(int)groupNumber;
 -(ObjectiveItem*)getObjectiveFromGroupNumber:(int)groupNumber itemNumber:(int)itemNumber;
 -(CCLayer*)createMissionPopupWithX:(bool)withX;
+
+-(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber view:(CCLayer*)view;
 
 @end

@@ -109,6 +109,7 @@ const float effectsVolumeMainMenu = 1;
         
         if (swipeBeginPoint.x >= 359 && swipeBeginPoint.x <= 440 && swipeBeginPoint.y >= 214 && swipeBeginPoint.y <= 287) {
             [missionPopup removeFromParentAndCleanup:true];
+            [self enableButtons];
         }
     }
 }
@@ -280,11 +281,29 @@ const float effectsVolumeMainMenu = 1;
     [self removePopupView];
 }
 
+-(void)enableButtons {
+    [highScoreButton setIsEnabled:true];
+    [objectivesButton setIsEnabled:true];
+    [playButton setIsEnabled:true];
+    [upgradesButton setIsEnabled:true];
+    [tutorialButton setIsEnabled:true];
+    [soundButton setIsEnabled:true];
+}
+
+-(void)disableButtons {
+    [highScoreButton setIsEnabled:false];
+    [objectivesButton setIsEnabled:false];
+    [playButton setIsEnabled:false];
+    [upgradesButton setIsEnabled:false];
+    [tutorialButton setIsEnabled:false];
+    [soundButton setIsEnabled:false];
+}
+
 -(void)pressedObjectiveButton:(id)sender {
     [Flurry logEvent:@"Pressed objective button"];
     missionPopup = [[ObjectiveManager sharedInstance] createMissionPopupWithX:true];
-    
     [self addChild:missionPopup];
+    [self disableButtons];
 }
 
 -(void)pressedPurchaseButton:(id)sender {
@@ -330,7 +349,7 @@ const float effectsVolumeMainMenu = 1;
 }
 
 -(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber {
-    [[ObjectiveManager sharedInstance] completeObjectiveFromGroupNumber:a_groupNumber itemNumber:a_itemNumber];
+    [[ObjectiveManager sharedInstance] completeObjectiveFromGroupNumber:a_groupNumber itemNumber:a_itemNumber view:self];
 }
 
 // on "init" you need to initialize your instance
@@ -340,6 +359,8 @@ const float effectsVolumeMainMenu = 1;
         self.isTouchEnabled = true;
         
         [self initUpgradeLayer];
+        
+                   
         
         layer = (CCLayer*)[CCBReader nodeGraphFromFile:@"MainMenuCCBFile.ccb" owner:self];
         [layer addChild:upgradeLayer];
@@ -486,7 +507,7 @@ const float effectsVolumeMainMenu = 1;
 }
 
 - (void)pressedStoreButton:(id)sender {
-    [Flurry logEvent:@"Opened Store" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance" ,nil]];
+   [Flurry logEvent:@"Opened Store" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance" ,nil]];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(-960,-320)];
     id ease = [CCEaseSineInOut actionWithAction:action]; //does this "CCEaseSineInOut" look better than the above "CCEaseInOut"???
     [layer runAction: ease];

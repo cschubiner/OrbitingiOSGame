@@ -40,7 +40,12 @@
     CCLabelBMFont *proScoreLabel;
     CCLabelBMFont *funScoreLabel;
     CCLayer *tutorialLayer;
-    CCMenuItemImage *soundButton;
+    CCMenuItemImage * highScoreButton;
+    CCMenuItemImage * objectivesButton;
+    CCMenuItemImage * playButton;
+    CCMenuItemImage * upgradesButton;
+    CCMenuItemImage * tutorialButton;
+    CCMenuItemImage * soundButton;
 }
 
 + (CCScene *)scene;

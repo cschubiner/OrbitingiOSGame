@@ -19,27 +19,41 @@
         type = t;
         bool shouldBeRand = false;
         
-        if (type == 0) {
+        if (type == krandomPowerup) {
             shouldBeRand = true;
-            type = [self RandomBetween:1 maxvalue:2];
+            type = [self RandomBetween:1 maxvalue:3];
         }
         
-        if (type == 1) { //asteroidImmunity
+        if (type == kasteroidImmunity) { //asteroidImmunity
             
             duration = [[UpgradeValues sharedInstance] asteroidImmunityDuration];
             title = @"Asteroid Armor";
             coinSprite = [CCSprite spriteWithSpriteFrameName:@"asteroidbreakercoin.png"];
             glowSprite = [CCSprite spriteWithSpriteFrameName:@"asteroidglowupgrade.png"];
             
-        } else if (type == 2) { //coinMagnet
+        } else if (type == kcoinMagnet) { //coinMagnet
             
             duration = [[UpgradeValues sharedInstance] coinMagnetDuration];
             title = @"Star Magnet";
             coinSprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
             glowSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];
             
-        } else { //type needs to be a valid int from the list above
-        }
+        } else if (type == kautopilot) { //autopilot powerup
+            
+            duration = 5*60*1.7; //JJ's headstart lasts 5 seconds
+            title = @"Autopilot";
+            coinSprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
+            glowSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];
+            
+        } else if (type == kheadStart) { //wrapage powerup
+            
+            duration = 350; //JJ's headstart lasts 5 seconds
+            title = @"Head Start";
+            coinSprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
+            glowSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];
+            
+        } //else { //type needs to be a valid int from the list above
+     //   }
         
         //if (shouldBeRand)
         //    coinSprite = [CCSprite spriteWithFile:@"upgradecoin.png"];

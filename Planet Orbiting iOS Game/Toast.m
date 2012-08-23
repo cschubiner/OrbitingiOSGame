@@ -45,7 +45,7 @@
     toastView.position = fromPos;
     
     id moveIn = [CCMoveTo actionWithDuration:.5 position:toPos];
-    id wait = [CCDelayTime actionWithDuration:1];
+    id wait = [CCDelayTime actionWithDuration:2];
     id moveOut = [CCMoveTo actionWithDuration:2 position:fromPos];
     id actions = [CCSequence actions:moveIn, wait, moveOut, nil];
     [toastView runAction:actions];
@@ -59,21 +59,19 @@
 
 -(CCLayer*)makeToastView:(NSString*)a_text fontSize:(float)a_fontSize{
     
-    CCSprite* background = [CCSprite spriteWithFile:@"OneByOne.png"];
-    [background setColor:ccc3(137, 137, 137)];
+    CCSprite* background = [CCSprite spriteWithFile:@"missionsPopup.png"];
     
-    CCLabelTTF* label = [CCLabelTTF labelWithString:a_text fontName:@"Marker Felt" fontSize:a_fontSize];
+    CCSprite* ind0 = [CCSprite spriteWithFile:@"missioncomplete.png"];
+    ind0.position = ccp(-background.boundingBox.size.width/2 + 30, 0);
     
-    label.color = ccc3(255, 255, 255);
-    
-    label.position = CGPointMake(0, 0);
+    CCLabelTTF* label = [CCLabelTTF labelWithString:a_text dimensions:CGSizeMake(273, 55) hAlignment:UITextAlignmentLeft vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+    label.position = ccp(label.boundingBox.size.width/2 - background.boundingBox.size.width/2 + 60, 0);
     
     
     CCLayer* layerToAdd = [[CCLayer alloc] init];
-    [layerToAdd setContentSize:CGSizeMake(480, label.boundingBox.size.height)];
-    background.scaleX = 480;
-    background.scaleY = label.boundingBox.size.height;
+    [layerToAdd setContentSize:CGSizeMake(background.boundingBox.size.width, background.boundingBox.size.height)];
     [layerToAdd addChild:background];
+    [layerToAdd addChild:ind0];
     [layerToAdd addChild:label];
     
     
