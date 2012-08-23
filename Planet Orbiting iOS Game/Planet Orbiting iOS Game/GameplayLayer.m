@@ -334,7 +334,6 @@ typedef struct {
     [galaxy setOptimalPlanetsInThisGalaxy:33];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.321];
     [galaxy setGalaxyColor: ccc3(0, 130, 115)];
-
     
     galaxy = [galaxies objectAtIndex:4];
     [galaxy setName:@"Galaxy 5"];
@@ -343,7 +342,6 @@ typedef struct {
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.31];
     [galaxy setGalaxyColor: ccc3(154, 86, 0)];
     
-    
     galaxy = [galaxies objectAtIndex:5];
     [galaxy setName:@"Galaxy 6"];
     [galaxy setNumberOfDifferentPlanetsDrawn:2];
@@ -351,7 +349,6 @@ typedef struct {
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.28];
     [galaxy setGalaxyColor: ccc3(42, 112, 199)];
 
-    
     galaxy = [galaxies objectAtIndex:6];
     [galaxy setName:@"Galaxy 7"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
@@ -359,26 +356,25 @@ typedef struct {
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.3];
     [galaxy setGalaxyColor: ccc3(161,163,42)];
 
-    
     // for (Galaxy* galaxy in galaxies)
     // [galaxy setOptimalPlanetsInThisGalaxy:15];
 }
 
 - (void)initUpgradedVariables {
-    [[UpgradeValues sharedInstance] setCoinMagnetDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:0] level]];
+    [[UpgradeValues sharedInstance] setCoinMagnetDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:0] equipped]];
     
-    [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] level]];
+    [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] equipped]];
     
-    [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.9 + .037*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] level]];
+    [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.9 + .037*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] equipped]];
     
-    if ([[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] level] >= 1)
+    if ([[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped])
         [[UpgradeValues sharedInstance] setHasDoubleCoins:true];
     else
         [[UpgradeValues sharedInstance] setHasDoubleCoins:false];
     
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:70 + 3*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] level]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:70 + 3*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
     
-    if ([[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] level] >= 1)
+    if ([[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped])
         [[UpgradeValues sharedInstance] setHasStartPowerup:true];
     else
         [[UpgradeValues sharedInstance] setHasStartPowerup:false];
