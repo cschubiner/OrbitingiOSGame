@@ -15,6 +15,7 @@
     CCLayer* scrollView;
     
     float screenHeight;
+    float scrollViewHeight;
     float counter;
     float currentCenter;
     float startingCenter;
@@ -53,57 +54,30 @@
 	if ((self = [super init])) {
         self.isTouchEnabled= TRUE;
         
-        
-        
-        
-        //self.view = [[UIView alloc] initWithFrame:glassImageView.frame];
-        //[self.view setCenter:backgroundImage.center];
-        
-        screenHeight = 320;
-        scrollView = [[CCLayer alloc] init]; //[[UIView alloc] initWithFrame:CGRectMake(0, 50, 110, 600)];
-        //[scrollView setBackgroundColor:[UIColor greenColor]];
-        
-        
-        
-        
+        screenHeight = 280;
+        scrollView = [[CCLayer alloc] init];
         [self addChild:scrollView];
-        
-        
-        //continueLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", [[UpgradeManager sharedInstance] buttonPushed]] fontName:@"Marker Felt" fontSize:22];
         
         CCSprite* topBar = [CCSprite spriteWithFile:@"banner.png"];
         [self addChild:topBar];
         [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2)];
         
-        /*CCSprite* cell0 = [CCSprite spriteWithFile:@"upgradeCellSex.png"];
-        CCSprite* cell1 = [CCSprite spriteWithFile:@"upgradeCellSex.png"];
-        
-        [scrollView addChild:cell0];
-        [scrollView addChild:cell1];
-        
-        [cell0 setPosition:ccp(240, 27)];
-         [cell1 setPosition:ccp(240, 27+55)];*/
-        
-        
         totalStars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"Marker Felt" fontSize:22];
         [self addChild: totalStars];
         [totalStars setPosition:ccp(400 - [totalStars boundingBox].size.width/2, 320 - topBar.boundingBox.size.height/2)];
-        
         
         CCSprite* starSprite = [CCSprite spriteWithFile:@"star1.png"];
         [starSprite setScale:.2];
         [self addChild:starSprite];
         [starSprite setPosition:ccp(420, 320 - topBar.boundingBox.size.height/2)];
         
-        cells = [[NSMutableArray alloc] init];
         [self initUpgradeLayer];
         
-        float scrollViewHeight = 110;
         
         
         
         currentCenter = 320-topBar.boundingBox.size.height*.85-scrollViewHeight;
-        [scrollView setPosition:CGPointMake(scrollView.position.x, currentCenter)];
+        [scrollView setPosition:CGPointMake(0, currentCenter)];
         startingCenter = currentCenter;
         endingCenter = startingCenter + scrollViewHeight - screenHeight;
         if (endingCenter < 0) {
@@ -125,29 +99,49 @@
 	return self;
 }
 
+/*
+ 
+ -(void)pressedPurchaseButton:(id)sender {
+ 
+ int curBalance = [[UserWallet sharedInstance] getBalance];
+ if (curBalance >= item.price) {
+ 
+ [self playSound:@"purchase.wav" shouldLoop:false pitch:1];
+ int newBalance = curBalance - item.price;
+ [[UserWallet sharedInstance] setBalance:newBalance];
+ 
+ [self completeObjectiveFromGroupNumber:0 itemNumber:1];
+ [Flurry logEvent:@"Purchased Item" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:newBalance],@"Coin Balance after purchase",item.title,@"Item Title",nil]];
+ 
+ [DataStorage storeData];
+ }
+ 
+ [self removePopupView];
+ }
+*/
+
 - (void) initUpgradeLayer {
-    //upgradeLayer = [[CCLayer alloc] init];
-    //startingUpgradeLayerPos = ccp(960, 640);
-    //[upgradeLayer setPosition:startingUpgradeLayerPos];
-    //[upgradeLayer setContentSize:CGSizeMake(480, 10)];
-    
+    scrollViewHeight = 0;
     NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
     
     cells = [[NSMutableArray alloc] init];
     
     for (UpgradeItem* item in upgradeItems) {
-        UpgradeCell *cell = [[UpgradeCell alloc] initWithUpgradeItem:item];
-        [cells addObject:cell];
+        if (item.type == 0) {
+            UpgradeCell *cell = [[UpgradeCell alloc] initWithUpgradeItem:item];
+            [cells addObject:cell];
+        }
     }
     
     
     for (int i = 0; i < [cells count]; i++) {
         CCLayer* cell = (CCLayer*)[cells objectAtIndex:i];
         [scrollView addChild:cell];
-        [cell setPosition:ccp(240, 27 + 55*i)];
+        [cell setPosition:ccp(0, 320+60-55*i)];
+        scrollViewHeight += 55;
     }
     
-    //[self refreshUpgradeCells];
+    [self refreshUpgradeCells];
 }
 
 
@@ -197,8 +191,8 @@
     
     position += velocity;
     [scrollView setPosition:CGPointMake(scrollView.position.x, position)];
-    NSLog(@"velocity: %f, position: %f", velocity, position);
-    
+    //NSLog(@"velocity: %f, position: %f", velocity, position);
+    NSLog(@"cur center: %f", currentCenter);
     
     counter += .5;
     

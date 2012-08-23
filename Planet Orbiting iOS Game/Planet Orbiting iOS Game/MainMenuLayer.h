@@ -51,5 +51,4 @@
 
 + (CCScene *)scene;
 +(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber;
-@property (nonatomic, retain) NSMutableArray *cells;
 @end

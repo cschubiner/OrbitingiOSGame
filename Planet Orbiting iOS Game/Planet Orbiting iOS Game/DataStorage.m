@@ -105,7 +105,7 @@
     }
     
     NSMutableArray* upgrades = [[NSMutableArray alloc] init];
-
+    
     if (!upgradeCodes) {
         [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Star Magnet" description:@"Increase the duration and effective range of the Star Magnet powerup." price:10 type:0 exclusive:NO purchased:NO equipped:NO]];
         [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Armor" description:@"Increase the duration of the Asteroid Armor powerup." price:2000 type:0 exclusive:NO purchased:NO equipped:NO]];

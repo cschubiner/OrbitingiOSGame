@@ -14,9 +14,7 @@
 #import "PowerupManager.h"
 #import "DataStorage.h"
 #import "PlayerStats.h"
-#import "UpgradeItem.h"
 #import "UpgradeManager.h"
-#import "UpgradeCell.h"
 #import "GKAchievementHandler.h"
 
 #define tutorialLayerTag    1001
@@ -30,21 +28,11 @@ const float effectsVolumeMainMenu = 1;
 @implementation MainMenuLayer {
     
     BOOL muted;
-    CCLayer *upgradeLayer;
     CGPoint swipeBeginPoint;
     CGPoint swipeEndPoint;
-    CGPoint startingUpgradeLayerPos;
-    float upgradeLayerHeight;
-    bool didFingerMove;
-    int lastIndexTapped;
-    CCLabelTTF* totalStars;
-    CCLayer* shadeView;
-    CCLayer* popupView;
-    CCSprite* shadeImage;
     
     CCLayer* missionPopup;
 }
-@synthesize cells;
 
 // returns a singleton scene
 + (CCScene *)scene {
@@ -63,219 +51,17 @@ const float effectsVolumeMainMenu = 1;
 
 //- (CCLayer*)createCellWithTitle:(NSString*)title spriteName:(NSString*)spriteName readableCost:(NSString*)readableCost {
 
-- (void) initUpgradeLayer {
-    upgradeLayer = [[CCLayer alloc] init];
-    startingUpgradeLayerPos = ccp(960, 640);
-    [upgradeLayer setPosition:startingUpgradeLayerPos];
-    //[upgradeLayer setContentSize:CGSizeMake(480, 10)];
-    
-    NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
-    
-    cells = [[NSMutableArray alloc] init];
-    
-    for (UpgradeItem* item in upgradeItems) {
-        UpgradeCell *cell = [[UpgradeCell alloc] initWithUpgradeItem:item];
-        [cells addObject:cell];
-    }
-    
-    upgradeLayerHeight = 0;
-    for (int i = 0; i < [cells count]; i++) {
-        CCLayer* cell = (CCLayer*)[cells objectAtIndex:i];
-        [upgradeLayer addChild:cell];
-        [cell setPosition:ccp(0, -80*i - 55)];
-        upgradeLayerHeight += 80;
-    }
-    
-    [self refreshUpgradeCells];
-}
-
-- (void)refreshUpgradeCells {
-    NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
-    for (int i = 0; i < [cells count]; i++) {
-        UpgradeCell *cell = [cells objectAtIndex:i];
-        UpgradeItem *item = [upgradeItems objectAtIndex:i];
-    }
-    
-    [totalStars setString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]]];
-}
-
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
         swipeBeginPoint = location;
-        didFingerMove = false;
         
         if (swipeBeginPoint.x >= 359 && swipeBeginPoint.x <= 440 && swipeBeginPoint.y >= 214 && swipeBeginPoint.y <= 287) {
             [missionPopup removeFromParentAndCleanup:true];
             [self enableButtons];
         }
     }
-}
-
-- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInView:[touch view]];
-        location = [[CCDirector sharedDirector] convertToGL:location];
-        swipeEndPoint = location;
-        didFingerMove = true;
-        CGPoint swipeVector = ccpSub(swipeEndPoint, swipeBeginPoint);
-        [upgradeLayer setPosition:CGPointMake(upgradeLayer.position.x, ccpAdd(upgradeLayer.position, swipeVector).y)];
-        swipeBeginPoint = swipeEndPoint;
-        if (upgradeLayer.position.y < startingUpgradeLayerPos.y)
-            [upgradeLayer setPosition:startingUpgradeLayerPos];
-        if (upgradeLayer.position.y > startingUpgradeLayerPos.y + upgradeLayerHeight - (320 - 55))
-            [upgradeLayer setPosition:ccp(upgradeLayer.position.x, startingUpgradeLayerPos.y + upgradeLayerHeight - (320 - 55))];
-        
-        //CCLOG(@"pos: %f, maxPerhaps; %f", upgradeLayer.position.y, startingUpgradeLayerPos.y + upgradeLayerHeight);
-        //CCLOG(@"startingPos: %f, height; %f", startingUpgradeLayerPos.y, upgradeLayerHeight);
-    }
-}
-
-- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInView:[touch view]];
-        location = [[CCDirector sharedDirector] convertToGL:location];
-        if (!didFingerMove) {
-            
-            //for (CCLayer* laya in cells) {
-            //CGRect newRect = CGRectMake(upgradeLayer.boundingBox.origin.x + 960, upgradeLayer.boundingBox.origin.x + 680, upgradeLayer.boundingBox.size.width, upgradeLayer.boundingBox.size.height);
-            //CCLOG(@"boundingBox: %@", upgradeLayer.boundingBox);
-            //CCLOG(@"touch location: %@", location);
-            //CCLOG(@"layer position: %@", layer.position);
-            
-            int i = 0;
-            for (CCLayer* laya in cells) {
-                CGRect box = laya.boundingBox;
-                
-                box = CGRectMake(box.origin.x + upgradeLayer.boundingBox.origin.x, box.origin.y + upgradeLayer.boundingBox.origin.y, box.size.width, box.size.height);
-                
-                CGPoint point = ccp(location.x + layer.position.x + 960*2, location.y + layer.position.y + 320*3 - 160*1.5);
-                
-                
-                //CCLOG(@"cell y: %f, height: %f", box.origin.y, box.size.height);
-                //CCLOG(@"point y: %f", point.y);
-                
-                if (CGRectContainsPoint(box, point) && point.y < 720-55) {
-                    
-                    //if (CGRectContainsPoint(upgradeLayer.boundingBox, ccp(location.x + layer.position.x + 960*2, location.y + layer.position.y + 320*3))) {
-                    
-                    lastIndexTapped = i;
-                    
-                    NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
-                    UpgradeItem *item = [upgradeItems objectAtIndex:lastIndexTapped];
-                    
-                    
-                    /*UIAlertView* alertview2 = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:item.title, lastIndexTapped] message:item.description delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Purchase", nil];
-                     [alertview2 setTag:upgradeAlertTag];
-                     [alertview2 show];*/
-                    
-                    
-                    self.isTouchEnabled = false;
-                    
-                    shadeView = [[CCLayer alloc] init];
-                    [layer addChild:shadeView];
-                    [shadeView setPosition:ccp(960, 320)];
-                    [shadeView setContentSize:CGSizeMake(480, 320)];
-                    
-                    shadeImage = [CCSprite spriteWithFile:@"shadeView.png"];
-                    [shadeImage setPosition:ccp(240, 160)];
-                    [shadeView addChild:shadeImage];
-                    
-                    popupView = [[CCLayer alloc] init];
-                    [layer addChild:popupView];
-                    [popupView setPosition:ccp(960, 320)];
-                    [popupView setContentSize:CGSizeMake(480, 320)];
-                    
-                    CCSprite* lol = [CCSprite spriteWithFile:@"popup.png"];
-                    [lol setPosition:ccp(240, 160)];
-                    [popupView addChild:lol];
-                    
-                    
-                    
-                    CCLabelBMFont* title = [[CCLabelBMFont alloc] initWithString:item.title fntFile:@"betaFont2.fnt"];
-                    [title setScale:.7];
-                    title.position = ccp(240, 255);
-                    [popupView addChild:title];
-                    
-                    
-                    CCLabelBMFont* desc = [[CCLabelBMFont alloc] initWithString:item.description fntFile:@"PlainFont.fnt" width:260 alignment:UITextAlignmentLeft];
-                    [desc setScale:1.2];
-                    desc.position = ccp(240, 200);
-                    [popupView addChild:desc];
-                    
-                    
-                    CCMenuItem *cancel = [CCMenuItemImage
-                                          itemFromNormalImage:@"no.png" selectedImage:@"nopressed.png"
-                                          target:self selector:@selector(pressedCancelButton:)];
-                    cancel.position = ccp(-110, -80);
-                    
-                    
-                    CCMenu *menu;
-                    
-                    if (item.equipped) {
-                        //else if ([[UserWallet sharedInstance] getBalance] >= [[item.prices objectAtIndex:item.level] intValue]) disp PURCHASE
-                        //else disp NOT ENOUGH COINZ
-                        CCMenuItem *purchase = [CCMenuItemImage
-                                                itemFromNormalImage:@"maxed.png" selectedImage:@"maxed.png" 
-                                                target:self selector:@selector(pressedDisabledButton:)];
-                        purchase.position = ccp(110, -80);
-                        
-                        menu = [CCMenu menuWithItems:cancel, purchase, nil];
-                    } else if ([[UserWallet sharedInstance] getBalance] >= item.price) {
-                        
-                        CCMenuItem *purchase = [CCMenuItemImage
-                                                itemFromNormalImage:@"yes.png" selectedImage:@"yespressed.png" 
-                                                target:self selector:@selector(pressedPurchaseButton:)];
-                        purchase.position = ccp(110, -80);
-                        
-                        menu = [CCMenu menuWithItems:cancel, purchase, nil];
-                    } else {
-                        
-                        CCMenuItem *purchase = [CCMenuItemImage
-                                                itemFromNormalImage:@"notenoughminerals.png" selectedImage:@"notenoughminerals.png" 
-                                                target:self selector:@selector(pressedDisabledButton:)];
-                        purchase.position = ccp(110, -80);
-                        
-                        menu = [CCMenu menuWithItems:cancel, purchase, nil];
-                    }
-                    
-                    [popupView addChild:menu];
-                    
-                    [popupView setScale:0];
-                    
-                    /*[popupView runAction:[CCSequence actions:
-                     [CCScaleTo actionWithDuration:.37 scale:1.2],
-                     [CCScaleTo actionWithDuration:.12 scale:.9],
-                     [CCScaleTo actionWithDuration:.07 scale:1],
-                     nil]];*/
-                    
-                    
-                    //id move = [CCScaleTo actionWithDuration:.8 scale:1];
-                    //id action = [CCEaseBounceOut actionWithAction:move];
-                    //[popupView runAction: action];
-                    
-                    
-                    
-                    id move = [CCScaleTo actionWithDuration:.5 scale:1];
-                    id action = [CCEaseBounceOut actionWithAction:move];
-                    [popupView runAction: action];
-                    
-                    [shadeImage runAction:[CCSequence actions:
-                                           [CCFadeIn actionWithDuration:.4],
-                                           nil]];
-                }
-                i++;
-            }
-        }
-    }
-}
-
--(void)pressedDisabledButton:(id)sender {
-}
-
--(void)pressedCancelButton:(id)sender {
-    [self removePopupView];
 }
 
 -(void)enableButtons {
@@ -303,48 +89,6 @@ const float effectsVolumeMainMenu = 1;
     [self disableButtons];
 }
 
--(void)pressedPurchaseButton:(id)sender {
-    NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
-    UpgradeItem *item = [upgradeItems objectAtIndex:lastIndexTapped];
-    
-    int curBalance = [[UserWallet sharedInstance] getBalance];
-    if (curBalance >= item.price) {
-        
-        [self playSound:@"purchase.wav" shouldLoop:false pitch:1];
-        int newBalance = curBalance - item.price;
-        [[UserWallet sharedInstance] setBalance:newBalance];
-        
-        [self completeObjectiveFromGroupNumber:0 itemNumber:1];
-        [Flurry logEvent:@"Purchased Item" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:newBalance],@"Coin Balance after purchase",item.title,@"Item Title",nil]];
-        
-        [DataStorage storeData];
-        [self refreshUpgradeCells];
-    }
-    
-    [self removePopupView];
-}
-
--(void)removePopupView {
-    
-    
-    id removeViews = [CCCallBlock actionWithBlock:(^{
-        [shadeView removeFromParentAndCleanup:true];
-        [popupView removeFromParentAndCleanup:true];
-        self.isTouchEnabled = true;
-    })];
-    
-    id move = [CCScaleTo actionWithDuration:.4 scale:0];
-    id action = [CCEaseSineInOut actionWithAction:move];
-    [popupView runAction:[CCSequence actions:
-                          action,
-                          removeViews,
-                          nil]];
-    
-    [shadeImage runAction:[CCSequence actions:
-                           [CCFadeOut actionWithDuration:.3],
-                           nil]];
-}
-
 -(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber {
     [[ObjectiveManager sharedInstance] completeObjectiveFromGroupNumber:a_groupNumber itemNumber:a_itemNumber view:self];
 }
@@ -355,35 +99,17 @@ const float effectsVolumeMainMenu = 1;
         
         self.isTouchEnabled = true;
         
-        [self initUpgradeLayer];
         
                    
         
         layer = (CCLayer*)[CCBReader nodeGraphFromFile:@"MainMenuCCBFile.ccb" owner:self];
-        [layer addChild:upgradeLayer];
         
-        CCSprite* upgradeTopBar = [CCSprite spriteWithFile:@"upgradesHeader.png"];
-        [layer addChild:upgradeTopBar];
-        [upgradeTopBar setPosition:ccp(960 + upgradeTopBar.width/2, 640-upgradeTopBar.height/2)];
         
         muted = ![[PlayerStats sharedInstance] isMuted];        
         [self toggleMute];
         
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"purchase.wav"];
         
-        CCLabelBMFont* hello4 = [[CCLabelBMFont alloc] initWithString:@"Upgrades" fntFile:@"betaFont2.fnt"];
-        [hello4 setScale:.8];
-        hello4.position = ccp(1200, 640-30);
-        [layer addChild:hello4];
-        
-        CCSprite* starSprite = [CCSprite spriteWithFile:@"star1.png"];
-        [starSprite setScale:.2];
-        [layer addChild:starSprite];
-        [starSprite setPosition:ccp(1200 - 480/2 + 480-starSprite.width/2-8, 640-29)];
-        
-        totalStars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"Marker Felt" fontSize:22];
-        [layer addChild: totalStars];
-        [totalStars setPosition:ccp(1200 - 480/2 + 480 - 40 - [totalStars boundingBox].size.width/2, 640-30)];
         
         NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
         
@@ -578,36 +304,6 @@ const float effectsVolumeMainMenu = 1;
     id ease = [CCEaseSineInOut actionWithAction:action];
     [layer runAction: ease];
 }
-
--(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (alertView.tag == upgradeAlertTag) {
-        if (buttonIndex == 1) {
-            NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
-            UpgradeItem *item = [upgradeItems objectAtIndex:lastIndexTapped];
-            
-            int curBalance = [[UserWallet sharedInstance] getBalance];
-            if (curBalance >= item.price) {
-                
-                [[UserWallet sharedInstance] setBalance:curBalance - item.price];
-                [self refreshUpgradeCells];
-                [DataStorage storeData];
-            }
-            //UIAlertView* alertview3 = [[UIAlertView alloc] initWithTitle:@"Congratz yo" message:@"You bought something" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
-            //[alertview3 show];
-            
-        }
-    } else {
-        if (buttonIndex == 1) {
-            NSURL *url = [NSURL URLWithString:@"https://docs.google.com/spreadsheet/viewform?formkey=dGwxbVRnd1diQTlKTkpBUE5mRHRBMGc6MQ#gid=0"];//"http://www.surveymonkey.com/s/VJJ3RGJ"];
-            [[UIApplication sharedApplication] openURL:url];
-            [Flurry logEvent:@"Launched survey from main menu"];
-            [TestFlight passCheckpoint:@"Launched survey from main menu"];
-            
-        }
-    }
-    
-}
-
 - (void)pressedLevelsButton: (id) sender {
     [Flurry logEvent:@"Pressed Levels Button"];
     CCLOG(@"levels layer launched");
