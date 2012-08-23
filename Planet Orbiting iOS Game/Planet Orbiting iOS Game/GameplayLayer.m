@@ -776,7 +776,7 @@ typedef struct {
     float scalerToUse = numerator/240; //CCLOG(@"num: %f, newAng: %f", numerator, newAng);
     
     if ([cameraLayer scale]<.3) {
-        NSLog(@"\n\n\nALERT: cameraLayer scale should be bigger this this, we prob has an error");
+        // NSLog(@"\n\n\nALERT: cameraLayer scale should be bigger this this, we prob has an error");
         [cameraLayer setScale:.3];
     }
     
