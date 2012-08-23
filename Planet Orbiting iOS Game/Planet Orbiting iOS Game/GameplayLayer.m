@@ -23,6 +23,7 @@
 
 #define pauseLayerTag       100
 #define gameOverLayerTag    200
+#define LOADING_LAYER_TAG   212
 
 const float musicVolumeGameplay = 1;
 const float effectsVolumeGameplay = 1;
@@ -225,9 +226,15 @@ typedef struct {
     if (abs(currentGalaxy.optimalPlanetsInThisGalaxy-planetsHitSinceNewGalaxy)<abs(currentGalaxy.optimalPlanetsInThisGalaxy-futurePlanetCount))
         return false;
     
+    int levelFlipper;
+    if ([self RandomBetween:0 maxvalue:100]>50) {
+        levelFlipper = -1; //flip segment
+    }
+    else levelFlipper = 1; //don't flip segment
+    
     for (int i = 0 ; i < [chosenSegment count]; i++) {
         LevelObjectReturner * returner = [chosenSegment objectAtIndex:i];
-        CGPoint newPos = ccpRotateByAngle(ccp(returner.pos.x+(indicatorPos).x,returner.pos.y+(indicatorPos).y), indicatorPos, rotationOfSegment);
+        CGPoint newPos = ccpRotateByAngle(ccp(returner.pos.x+(indicatorPos).x,levelFlipper*returner.pos.y+(indicatorPos).y), indicatorPos, rotationOfSegment);
         if (i == [chosenSegment count]-1) {
             indicatorPos = newPos;
             break;
@@ -377,232 +384,246 @@ typedef struct {
         [[UpgradeValues sharedInstance] setHasStartPowerup:false];
 }
 
+- (void)startGame {
+    [self removeChildByTag:LOADING_LAYER_TAG cleanup:YES];
+    [self addChild:cometParticle];
+    [self addChild:backgroundSpriteSheet];
+    [self addChild:cameraLayer];
+    [self addChild:hudLayer];
+    if (!isInTutorialMode&&levelNumber == 0)
+        [self addChild:layerHudSlider];
+    [self addChild:pauseMenu];
+    [self schedule:@selector(Update:) interval:0];// this makes the update loop loop!!!!
+    //[Kamcord startRecording];
+}
+
+- (void)loadEverything {
+    [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setGalaxyCounter:0];
+    isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsInTutorialMode];
+    isInTutorialMode = false;
+    levelNumber = [((AppDelegate*)[[UIApplication sharedApplication]delegate])getChosenLevelNumber];
+    [self initUpgradedVariables];
+    loadedPauseLayer = [self createPauseLayer];
+    
+    directionPlanetSegmentsGoIn = [self randomValueBetween:defaultDirectionPlanetSegmentsGoIn-directionPlanetSegmentsGoInVariance andValue:defaultDirectionPlanetSegmentsGoIn+directionPlanetSegmentsGoInVariance];
+    
+    planetCounter = 0;
+    planets = [[NSMutableArray alloc] init];
+    asteroids = [[NSMutableArray alloc] init];
+    zones = [[NSMutableArray alloc] init];
+    powerups = [[NSMutableArray alloc] init];
+    coins = [[NSMutableArray alloc] init];
+    backgroundStars = [[NSMutableArray alloc]init];
+    
+    hudLayer = [[CCLayer alloc] init];
+    cameraLayer = [[CCLayer alloc] init];
+    [cameraLayer setAnchorPoint:CGPointZero];
+    
+    cometParticle = [CCParticleSystemQuad particleWithFile:@"cometParticle.plist"];
+    playerExplosionParticle = [CCParticleSystemQuad particleWithFile:@"playerExplosionParticle.plist"];
+    [cameraLayer addChild:playerExplosionParticle];
+    [playerExplosionParticle setVisible:false];
+    [playerExplosionParticle stopSystem];
+    
+    playerSpawnedParticle = [CCParticleSystemQuad particleWithFile:@"playerSpawnedParticle.plist"];
+    [hudLayer addChild:playerSpawnedParticle];
+    [playerSpawnedParticle setVisible:false];
+    [playerSpawnedParticle stopSystem];
+    thrustParticle = [CCParticleSystemQuad particleWithFile:@"thrustParticle3.plist"];
+    thrustBurstParticle = [CCParticleSystemQuad particleWithFile:@"thrustBurstParticle.plist"];
+    [thrustBurstParticle stopSystem];
+    
+    CCMenuItem  *pauseButton = [CCMenuItemImage
+                                itemFromNormalImage:@"pauseButton7.png" selectedImage:@"pauseButton7.png"
+                                target:self selector:@selector(togglePause)];
+    pauseButton.position = ccp(457, 298);
+    pauseMenu = [CCMenu menuWithItems:pauseButton, nil];
+    pauseMenu.position = CGPointZero;
+    
+    if (isInTutorialMode) {
+        tutImage1 = [CCSprite spriteWithFile:@"screen1.png"];
+        tutImage2 = [CCSprite spriteWithFile:@"screen2.png"];
+        tutImage3 = [CCSprite spriteWithFile:@"screen3.png"];
+    }
+    
+    powerupLabel = [CCLabelTTF labelWithString:@" " fontName:@"HelveticaNeue-CondensedBold" fontSize:44];
+    powerupLabel.position = ccp(-[powerupLabel boundingBox].size.width/2, 160);
+    [hudLayer addChild: powerupLabel];
+    
+    [self playSound:@"kick_shock.mp3" shouldLoop:YES pitch:1];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"bomb.wav"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.WAV"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"buttonpress.mp3"];
+    
+    
+    backgroundSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"backgroundStars.pvr.ccz"];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"backgroundStars.plist"];
+    
+    spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"generalSpritesheet.pvr.ccz"];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"generalSpritesheet.plist"];
+    
+    coinAnimationFrames = [[NSMutableArray alloc]init];
+    for (int i = 0; i <= 29; ++i) {
+        [coinAnimationFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%d.png", i]]];
+    }
+    coinAnimation = [[CCAnimation alloc ]initWithFrames:coinAnimationFrames delay:coinAnimationDelay];
+    
+    [self CreateGalaxies];
+    currentGalaxy = [galaxies objectAtIndex:0];
+    nextGalaxy = [galaxies objectAtIndex:1];
+    [self setGalaxyProperties];
+    indicatorPos = CGPointZero;
+    for (int j = 0 ; j < numberOfSegmentsAtATime; j++) {
+        [self CreateSegment];
+    }
+    
+    player = [[Player alloc]init];
+    player.sprite = [CCSprite spriteWithSpriteFrameName:@"playercute.png"];
+    player.alive=true;
+    [player.sprite setScale:playerSizeScale];
+    player.segmentNumber = -10;
+    // player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn)), -distanceBetweenGalaxies*8));
+    player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
+    if (/*[[UpgradeValues sharedInstance] hasStartPowerup]*/true) {
+        CGPoint planPos = [[planets objectAtIndex:0] sprite].position;
+        CGPoint pToUse = ccpAdd(ccpSub(planPos, player.sprite.position), planPos);
+        [self CreatePowerup:pToUse.x yPos:pToUse.y scale:1 type:4]; //make type 0 for random, 4 for head start
+    }
+    cameraDistToUse = 1005.14;
+    [cameraLayer setScale:.43608];
+    [cameraLayer setPosition:ccp(98.4779,67.6401)];
+    cameraLastFocusPosition = ccp(325.808,213.3);
+    [cameraFocusNode setPosition:ccp(142.078,93.0159)];
+    galaxyLabel = [[CCLabelTTF alloc]initWithString:currentGalaxy.name fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+    [galaxyLabel setAnchorPoint:ccp(.5f,.5f)];
+    [galaxyLabel setPosition:ccp(240,45)];
+    
+    id fadeAction = [CCFadeIn actionWithDuration:.8];
+    id action2 = [CCSequence actions:[CCSpawn actions:fadeAction,[CCScaleTo actionWithDuration:.3 scale:1], nil], nil] ;
+    id repeatAction = [CCRepeat actionWithAction:[CCSequence actions:[CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.8 scale:1.0f]],[CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.8 scale:1]], nil] times:2];
+    galaxyLabelAction = [CCSequence actions:action2,repeatAction, [CCFadeOut actionWithDuration:.8],nil];
+    [galaxyLabel runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1.1], galaxyLabelAction,nil]];
+    justDisplayedGalaxyLabel = true;
+    
+    [hudLayer addChild:galaxyLabel];
+    
+    float streakWidth = streakWidthWITHOUTRetinaDisplay;
+    if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsRetinaDisplay])
+        streakWidth = streakWidthOnRetinaDisplay;
+    /* streak=[CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak2.png" width:streakWidth length:32 color:// ccc4(153,102,0, 255)  //orange
+     //ccc4(255,255,255, 255) // white
+     // ccc4(255,255,0,255) // yellow
+     //  ccc4(0,0,255,255) // blue
+     ccc4(0,255,153,255) // blue green
+     // ccc4(0,255,0,255) // green
+     target:player.sprite];*/
+    
+    streak = [CCMotionStreak streakWithFade:2 minSeg:3 width:streakWidth color:ccc3(0, 255, 153) textureFilename:@"streak2.png"];
+    
+    cameraFocusNode = [[CCSprite alloc]init];
+    killer = 0;
+    orbitState = 0; // 0 = orbiting, 1 = just left orbit and deciding things for state 3; 3 = flying to next planet
+    velSoftener = 1;
+    initialAccelMag = 0;
+    isOnFirstRun = true;
+    timeDilationCoefficient = [[UpgradeValues sharedInstance] absoluteMinTimeDilation];
+    dangerLevel = 0;
+    swipeVector = ccp(0, -1);
+    gravIncreaser = 1;
+    updatesSinceLastPlanet = 0;
+    asteroidSlower = 1;
+    powerupCounter = 0;
+    updatesWithoutBlinking = 0;
+    updatesWithBlinking = 999;
+    powerupPos = 0;
+    powerupVel = 0;
+    numCoinsDisplayed = 0;
+    feverModePlanetHitsInARow = 0;
+    timeInOrbit = 0;
+    feverLabel = [CCLabelTTF labelWithString:@" " fontName:@"HelveticaNeue-CondensedBold" fontSize:30];
+    [feverLabel setPosition:ccp(240, feverLabel.boundingBox.size.height*.6)];
+    [hudLayer addChild:feverLabel];
+    
+    backgroundClouds = [CCSprite spriteWithSpriteFrameName:@"backgroundClouds.png"];
+    [backgroundClouds setPosition:ccp(size.width/2,size.height/2)];
+    [backgroundClouds setColor:currentGalaxy.galaxyColor];
+    [backgroundSpriteSheet addChild:backgroundClouds];
+    
+    int numStars = 74;
+    int numSectors = 7;
+    for (int i = 0 ; i <= numStars; i++) {
+        int sector = i/(numStars/numSectors);
+        if (sector == numSectors)
+            sector = [self RandomBetween:0 maxvalue:numSectors-1];
+        CCSprite * star = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"bstar%d-hd.png",i]];
+        for (int j = 0 ; j < 4; j++) {
+            [star setPosition:ccp([self randomValueBetween:(480*sector)/numSectors andValue:(480*(sector+1))/numSectors],[self randomValueBetween:0 andValue:320])];
+            bool collidesWithOtherStar = false;
+            for (CCSprite * star2 in backgroundStars) {
+                if (CGRectContainsRect(star.boundingBox, star2.boundingBox)){
+                    // [star setVisible:false];
+                    collidesWithOtherStar = true;
+                    break;
+                }
+            }
+            if (collidesWithOtherStar ==false) {
+                //NSLog(@"star pos: %f,%f between %d and %d",star.position.x,star.position.y,(480*(sector))/numSectors,(480*(sector+1))/numSectors);
+                [backgroundSpriteSheet addChild:star];
+                [backgroundStars addObject:star];
+            }
+        }
+        
+    }
+    
+    
+    cometParticle.position = ccp([self RandomBetween:0 maxvalue:390],325);
+    cometVelocity = ccp([self RandomBetween:-10 maxvalue:10]/5,-[self RandomBetween:1 maxvalue:23]/5);
+    [self resetVariablesForNewGame];
+    
+    light = [[Light alloc] init];
+    
+    light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
+    [light.sprite setPosition:CGPointZero];
+    [light.sprite setColor:ccc3(0, 0, 0)]; //this makes the light black!
+    
+    light.scoreVelocity = initialLightScoreVelocity;
+    light.hasPutOnLight = false;
+    
+    [cameraLayer addChild:currentGalaxy.spriteSheet];
+    [cameraLayer addChild:spriteSheet];
+    
+    lastPlanetVisited = [planets objectAtIndex:0];
+    layerHudSlider = (CCLayer*)[CCBReader nodeGraphFromFile:@"hudLayer.ccb" owner:self];
+    float durationForScaling = .7;
+    id scaleBiggerAction = [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:durationForScaling scale:.973]];
+    id scaleSmallerAction = [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:durationForScaling scale:.858]];
+    id sequenceAction = [CCRepeatForever actionWithAction:[CCSequence actions:scaleBiggerAction,[CCDelayTime actionWithDuration:.4],scaleSmallerAction,[CCDelayTime actionWithDuration:.2], nil]];
+    batteryGlowScaleAction = [CCSpeed actionWithAction:sequenceAction speed:1];
+    [batteryGlowSprite setScale:.873];
+    
+    [backgroundSpriteSheet setPosition:CGPointZero];
+    [self UpdateScore];
+    
+    recentName = [[PlayerStats sharedInstance] recentName];
+    playerNameLabel = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    
+    [Flurry logEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:(int)isInTutorialMode],@"isInTutorialMode",nil]  timed:YES];    
+    [self scheduleOnce:@selector(startGame) delay:1.5];
+}
+
 /* On "init," initialize the instance */
 - (id)init {
 	// always call "super" init.
 	// Apple recommends to re-assign "self" with the "super" return value
 	if ((self = [super init])) {
-        startingCoins = [[UserWallet sharedInstance] getBalance];
         size = [[CCDirector sharedDirector] winSize];
+        startingCoins = [[UserWallet sharedInstance] getBalance];
         self.isTouchEnabled= TRUE;
-        [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setGalaxyCounter:0];
-        isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsInTutorialMode];
-        isInTutorialMode = false;
-        levelNumber = [((AppDelegate*)[[UIApplication sharedApplication]delegate])getChosenLevelNumber];
-        [self initUpgradedVariables];
-        loadedPauseLayer = [self createPauseLayer];
         
-        planetCounter = 0;
-        planets = [[NSMutableArray alloc] init];
-        asteroids = [[NSMutableArray alloc] init];
-        zones = [[NSMutableArray alloc] init];
-        powerups = [[NSMutableArray alloc] init];
-        coins = [[NSMutableArray alloc] init];
-        backgroundStars = [[NSMutableArray alloc]init];
-        
-        hudLayer = [[CCLayer alloc] init];
-        cameraLayer = [[CCLayer alloc] init];
-        [cameraLayer setAnchorPoint:CGPointZero];
-        
-        cometParticle = [CCParticleSystemQuad particleWithFile:@"cometParticle.plist"];
-        playerExplosionParticle = [CCParticleSystemQuad particleWithFile:@"playerExplosionParticle.plist"];
-        [cameraLayer addChild:playerExplosionParticle];
-        [playerExplosionParticle setVisible:false];
-        [playerExplosionParticle stopSystem];
-        
-        playerSpawnedParticle = [CCParticleSystemQuad particleWithFile:@"playerSpawnedParticle.plist"];
-        [hudLayer addChild:playerSpawnedParticle];
-        [playerSpawnedParticle setVisible:false];
-        [playerSpawnedParticle stopSystem];
-        thrustParticle = [CCParticleSystemQuad particleWithFile:@"thrustParticle3.plist"];
-        thrustBurstParticle = [CCParticleSystemQuad particleWithFile:@"thrustBurstParticle.plist"];
-        [thrustBurstParticle stopSystem];
-        
-        CCMenuItem  *pauseButton = [CCMenuItemImage
-                                    itemFromNormalImage:@"pauseButton7.png" selectedImage:@"pauseButton7.png"
-                                    target:self selector:@selector(togglePause)];
-        pauseButton.position = ccp(457, 298);
-        pauseMenu = [CCMenu menuWithItems:pauseButton, nil];
-        pauseMenu.position = CGPointZero;
-        
-        if (!isInTutorialMode) {
-        }
-        else {
-            tutImage1 = [CCSprite spriteWithFile:@"screen1.png"];
-            tutImage2 = [CCSprite spriteWithFile:@"screen2.png"];
-            tutImage3 = [CCSprite spriteWithFile:@"screen3.png"];
-        }
-        
-        powerupLabel = [CCLabelTTF labelWithString:@" " fontName:@"HelveticaNeue-CondensedBold" fontSize:44];
-        powerupLabel.position = ccp(-[powerupLabel boundingBox].size.width/2, 160);
-        [hudLayer addChild: powerupLabel];
-        
-        [self playSound:@"kick_shock.mp3" shouldLoop:YES pitch:1];
-        [[SimpleAudioEngine sharedEngine] preloadEffect:@"bomb.wav"];
-        [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.WAV"];
-        [[SimpleAudioEngine sharedEngine] preloadEffect:@"buttonpress.mp3"];
-        
-        
-        backgroundSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"backgroundStars.pvr.ccz"];
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"backgroundStars.plist"];
-
-        spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"generalSpritesheet.pvr.ccz"];
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"generalSpritesheet.plist"];
-        
-        coinAnimationFrames = [[NSMutableArray alloc]init];
-        for (int i = 0; i <= 29; ++i) {
-            [coinAnimationFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%d.png", i]]];
-        }
-        coinAnimation = [[CCAnimation alloc ]initWithFrames:coinAnimationFrames delay:coinAnimationDelay];
-        
-        [self CreateGalaxies];
-        currentGalaxy = [galaxies objectAtIndex:0];
-        nextGalaxy = [galaxies objectAtIndex:1];
-        [self setGalaxyProperties];
-        indicatorPos = CGPointZero;
-        for (int j = 0 ; j < numberOfSegmentsAtATime; j++) {
-            [self CreateSegment];
-        }
-        
-        player = [[Player alloc]init];
-        player.sprite = [CCSprite spriteWithSpriteFrameName:@"playercute.png"];
-        player.alive=true;
-        [player.sprite setScale:playerSizeScale];
-        player.segmentNumber = -10;
-        // player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn)), -distanceBetweenGalaxies*8));
-        player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
-        if (/*[[UpgradeValues sharedInstance] hasStartPowerup]*/true) {
-            CGPoint planPos = [[planets objectAtIndex:0] sprite].position;
-            CGPoint pToUse = ccpAdd(ccpSub(planPos, player.sprite.position), planPos);
-            [self CreatePowerup:pToUse.x yPos:pToUse.y scale:1 type:4]; //make type 0 for random, 4 for head start
-        }
-        cameraDistToUse = 1005.14;
-        [cameraLayer setScale:.43608];
-        [cameraLayer setPosition:ccp(98.4779,67.6401)];
-        cameraLastFocusPosition = ccp(325.808,213.3);
-        [cameraFocusNode setPosition:ccp(142.078,93.0159)];
-        galaxyLabel = [[CCLabelTTF alloc]initWithString:currentGalaxy.name fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
-        [galaxyLabel setAnchorPoint:ccp(.5f,.5f)];
-        [galaxyLabel setPosition:ccp(240,45)];
-        
-        id fadeAction = [CCFadeIn actionWithDuration:.8];
-        id action2 = [CCSequence actions:[CCSpawn actions:fadeAction,[CCScaleTo actionWithDuration:.3 scale:1], nil], nil] ;
-        id repeatAction = [CCRepeat actionWithAction:[CCSequence actions:[CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.8 scale:1.0f]],[CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.8 scale:1]], nil] times:2];
-        galaxyLabelAction = [CCSequence actions:action2,repeatAction, [CCFadeOut actionWithDuration:.8],nil];
-        [galaxyLabel runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1.1], galaxyLabelAction,nil]];
-        justDisplayedGalaxyLabel = true;
-        
-        [hudLayer addChild:galaxyLabel];
-        
-        float streakWidth = streakWidthWITHOUTRetinaDisplay;
-        if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsRetinaDisplay])
-            streakWidth = streakWidthOnRetinaDisplay;
-        /* streak=[CCLayerStreak streakWithFade:2 minSeg:3 image:@"streak2.png" width:streakWidth length:32 color:// ccc4(153,102,0, 255)  //orange
-         //ccc4(255,255,255, 255) // white
-         // ccc4(255,255,0,255) // yellow
-         //  ccc4(0,0,255,255) // blue
-         ccc4(0,255,153,255) // blue green
-         // ccc4(0,255,0,255) // green
-         target:player.sprite];*/
-        
-        streak = [CCMotionStreak streakWithFade:2 minSeg:3 width:streakWidth color:ccc3(0, 255, 153) textureFilename:@"streak2.png"];
-        
-        cameraFocusNode = [[CCSprite alloc]init];
-        killer = 0;
-        orbitState = 0; // 0 = orbiting, 1 = just left orbit and deciding things for state 3; 3 = flying to next planet
-        velSoftener = 1;
-        initialAccelMag = 0;
-        isOnFirstRun = true;
-        timeDilationCoefficient = [[UpgradeValues sharedInstance] absoluteMinTimeDilation];
-        dangerLevel = 0;
-        swipeVector = ccp(0, -1);
-        gravIncreaser = 1;
-        updatesSinceLastPlanet = 0;
-        asteroidSlower = 1;
-        powerupCounter = 0;
-        updatesWithoutBlinking = 0;
-        updatesWithBlinking = 999;
-        powerupPos = 0;
-        powerupVel = 0;
-        numCoinsDisplayed = 0;
-        feverModePlanetHitsInARow = 0;
-        timeInOrbit = 0;
-        feverLabel = [CCLabelTTF labelWithString:@" " fontName:@"HelveticaNeue-CondensedBold" fontSize:30];
-        [feverLabel setPosition:ccp(240, feverLabel.boundingBox.size.height*.6)];
-        [hudLayer addChild:feverLabel];
-        
-        backgroundClouds = [CCSprite spriteWithSpriteFrameName:@"backgroundClouds.png"];
-        [backgroundClouds setPosition:ccp(size.width/2,size.height/2)];
-        [backgroundClouds setColor:currentGalaxy.galaxyColor];
-        [backgroundSpriteSheet addChild:backgroundClouds];
-
-        int numStars = 74;
-        int numSectors = 7;
-        for (int i = 0 ; i <= numStars; i++) {
-            int sector = i/(numStars/numSectors);
-            if (sector == numSectors)
-                sector = [self RandomBetween:0 maxvalue:numSectors-1];
-            CCSprite * star = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"bstar%d-hd.png",i]];
-            for (int j = 0 ; j < 4; j++) {
-                [star setPosition:ccp([self randomValueBetween:(480*sector)/numSectors andValue:(480*(sector+1))/numSectors],[self randomValueBetween:0 andValue:320])];
-                bool collidesWithOtherStar = false;
-                for (CCSprite * star2 in backgroundStars) {
-                    if (CGRectContainsRect(star.boundingBox, star2.boundingBox)){
-                       // [star setVisible:false];
-                        collidesWithOtherStar = true;
-                        break;
-                    }
-                }
-                if (collidesWithOtherStar ==false) {
-                    //NSLog(@"star pos: %f,%f between %d and %d",star.position.x,star.position.y,(480*(sector))/numSectors,(480*(sector+1))/numSectors);
-                    [backgroundSpriteSheet addChild:star];
-                    [backgroundStars addObject:star];
-                }
-            }
-            
-        }
-                
-        [self addChild:cometParticle];
-        cometParticle.position = ccp([self RandomBetween:0 maxvalue:390],325);
-        cometVelocity = ccp([self RandomBetween:-10 maxvalue:10]/5,-[self RandomBetween:1 maxvalue:23]/5);
-        [self resetVariablesForNewGame];
-        
-        light = [[Light alloc] init];
-        
-        light.sprite = [CCSprite spriteWithFile:@"OneByOne.png"];
-        [light.sprite setPosition:CGPointZero];
-        [light.sprite setColor:ccc3(0, 0, 0)]; //this makes the light black!
-        
-        light.scoreVelocity = initialLightScoreVelocity;
-        light.hasPutOnLight = false;
-        
-        [cameraLayer addChild:currentGalaxy.spriteSheet];
-        [cameraLayer addChild:spriteSheet];
-        
-        lastPlanetVisited = [planets objectAtIndex:0];
-        layerHudSlider = (CCLayer*)[CCBReader nodeGraphFromFile:@"hudLayer.ccb" owner:self];
-        float durationForScaling = .7;
-        id scaleBiggerAction = [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:durationForScaling scale:.973]];
-        id scaleSmallerAction = [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:durationForScaling scale:.858]];
-        id sequenceAction = [CCRepeatForever actionWithAction:[CCSequence actions:scaleBiggerAction,[CCDelayTime actionWithDuration:.4],scaleSmallerAction,[CCDelayTime actionWithDuration:.2], nil]];
-        batteryGlowScaleAction = [CCSpeed actionWithAction:sequenceAction speed:1];
-        [batteryGlowSprite setScale:.873];
-        
-        [backgroundSpriteSheet setPosition:CGPointZero];
-        [self addChild:backgroundSpriteSheet];
-        [self addChild:cameraLayer];
-        [self addChild:hudLayer];
-        if (!isInTutorialMode&&levelNumber == 0)
-            [self addChild:layerHudSlider];
-        [self addChild:pauseMenu];
-        [self UpdateScore];
-        
-        recentName = [[PlayerStats sharedInstance] recentName];
-        playerNameLabel = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-        
-        [Flurry logEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:(int)isInTutorialMode],@"isInTutorialMode",nil]  timed:YES];
-        [self schedule:@selector(Update:) interval:0]; // this makes the update loop loop!!!!
-        //[Kamcord startRecording];
+        loadingLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"LoadingLayerCCB.ccb" owner:self];
+        [self addChild:loadingLayer z:0 tag:LOADING_LAYER_TAG];
+        [self scheduleOnce:@selector(loadEverything) delay:.4];
+       // [self loadEverything];
 	}
 	return self;
 }
@@ -611,7 +632,7 @@ typedef struct {
     if (player.alive) {
         player.velocity = ccpAdd(player.velocity, player.acceleration);
         if (player.currentPowerup.type == kheadStart)
-            player.velocity = ccpMult(player.velocity, 1.5);
+            player.velocity = ccpMult(player.velocity, 1.6);
         else if (player.currentPowerup.type == kautopilot)
             player.velocity = ccpMult(player.velocity, 1.1);
         
@@ -1428,8 +1449,7 @@ typedef struct {
                 currentPtoPscore=0;
                 prevCurrentPtoPScore=0;
                 numZonesHitInARow++;
-                if (player.currentPowerup.type != kheadStart)
-                    timeDilationCoefficient += timeDilationIncreaseRate;
+                timeDilationCoefficient += timeDilationIncreaseRate;
                 planetsHitFlurry++;
                 /*  if (zonesReached>=[zones count]) {
                  [[UIApplication sharedApplication]setStatusBarOrientation:UIInterfaceOrientationPortrait];

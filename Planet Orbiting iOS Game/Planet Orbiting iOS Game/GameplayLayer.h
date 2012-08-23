@@ -133,6 +133,14 @@
     int numZonesHitInARow;
     int currentPtoPscore;
     
+    CCLayer * loadingLayer;
+    CCLabelBMFont * loadingHelperTextLabel;
+    CCLabelBMFont * loadingLabel;
+    
+    float directionPlanetSegmentsGoIn;
+    
+    bool isFinishedLoading;
+    
     NSMutableArray * backgroundStars;
     CCSpriteBatchNode* backgroundSpriteSheet;
     CCSprite * backgroundClouds;
