@@ -513,7 +513,7 @@ typedef struct {
         velSoftener = 1;
         initialAccelMag = 0;
         isOnFirstRun = true;
-        timeDilationCoefficient = 1;
+        timeDilationCoefficient = [[UpgradeValues sharedInstance] absoluteMinTimeDilation];
         dangerLevel = 0;
         swipeVector = ccp(0, -1);
         gravIncreaser = 1;
@@ -611,7 +611,7 @@ typedef struct {
     if (player.alive) {
         player.velocity = ccpAdd(player.velocity, player.acceleration);
         if (player.currentPowerup.type == kheadStart)
-            player.velocity = ccpMult(player.velocity, 1.6);
+            player.velocity = ccpMult(player.velocity, 1.5);
         else if (player.currentPowerup.type == kautopilot)
             player.velocity = ccpMult(player.velocity, 1.1);
         
@@ -1428,7 +1428,8 @@ typedef struct {
                 currentPtoPscore=0;
                 prevCurrentPtoPScore=0;
                 numZonesHitInARow++;
-                timeDilationCoefficient += timeDilationIncreaseRate;
+                if (player.currentPowerup.type != kheadStart)
+                    timeDilationCoefficient += timeDilationIncreaseRate;
                 planetsHitFlurry++;
                 /*  if (zonesReached>=[zones count]) {
                  [[UIApplication sharedApplication]setStatusBarOrientation:UIInterfaceOrientationPortrait];
