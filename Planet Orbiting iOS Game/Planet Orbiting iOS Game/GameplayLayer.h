@@ -133,9 +133,14 @@
     int numZonesHitInARow;
     int currentPtoPscore;
     
+    CCSprite * coinsLabelStarSprite;
+    
+    CCLayerColor * loadingLayerBackground;
     CCLayer * loadingLayer;
     CCLabelBMFont * loadingHelperTextLabel;
     CCLabelBMFont * loadingLabel;
+    CCLabelBMFont * loadingDidYouKnowLabel;
+    bool loading_playerHasReachedFirstPlanet;
     
     float directionPlanetSegmentsGoIn;
     

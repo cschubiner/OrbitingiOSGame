@@ -37,8 +37,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>480</real>
-						<real>320</real>
+						<real>64</real>
+						<real>64</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -499,9 +499,9 @@
 					<key>lockedScaleRatio</key>
 					<true/>
 					<key>memberVarAssignmentName</key>
-					<string></string>
+					<string>coinsLabelStarSprite</string>
 					<key>memberVarAssignmentType</key>
-					<integer>0</integer>
+					<integer>2</integer>
 					<key>opacity</key>
 					<integer>255</integer>
 					<key>position</key>
@@ -576,7 +576,7 @@
 					<key>scaleY</key>
 					<real>1.0319530963897705</real>
 					<key>string</key>
-					<string>1</string>
+					<string>0</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>

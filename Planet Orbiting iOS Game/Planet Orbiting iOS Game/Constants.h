@@ -19,11 +19,15 @@ const float zoomMultiplier = .85*.95f*1.06f;
 const float cameraZoomSpeed = .025;
 //changes how quickly the camera changes position
 const float cameraMovementSpeed = .06;
-//how much more times the camera focuses on the first focus node compared to the second
-const float cameraScaleFocusedOnFocusPosOne = 1.6f;
+//how much more times the camera focuses on the first focus node compared to the second focus node
+const float cameraScaleFocusedOnFocusPosOne = 1.4f;
 
 const float streakWidthOnRetinaDisplay = 31;
 const float streakWidthWITHOUTRetinaDisplay = streakWidthOnRetinaDisplay/2;
+
+//how quickly the loading label that provides helper text moves along the screen. higher numbers make it move slower.
+const float loadingHelperLabelMoveTime = 12.1;
+const float loadingTimeDilationAsPlayerIsGoingToFirstPlanet = .68;
 
 //For optimization, whenever more segments than this are present, the oldest one will be deleted
 const int numberOfSegmentsAtATime = 3;
