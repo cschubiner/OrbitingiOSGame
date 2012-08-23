@@ -105,6 +105,13 @@
     }
     
     NSMutableArray* upgrades = [[NSMutableArray alloc] init];
+        
+    //0 = SPACESHIP TRAILS
+    //1 = ROCKETSHIPS
+    //2 = UPGRADES
+    //3 = POWERUPS
+    //4 = STARS
+    //5 = PERKS
     
     if (!upgradeCodes) {
         [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Star Magnet" description:@"Increase the duration and effective range of the Star Magnet powerup." price:10 type:3 exclusive:NO purchased:NO equipped:NO]];

@@ -22,7 +22,7 @@
         fromTop = true;
         fadeInTime = .5;
         waitTime = 3;
-        fadeOutTime = 1.5;
+        fadeOutTime = .5;
     }
     return self;
 }
@@ -36,10 +36,10 @@
     CGPoint toPos;
     if (fromTop) {
         fromPos = CGPointMake(view.boundingBox.size.width/2, view.boundingBox.size.height + toastView.boundingBox.size.height/2);
-        toPos = CGPointMake(view.boundingBox.size.width/2, view.boundingBox.size.height - toastView.boundingBox.size.height/2);
+        toPos = CGPointMake(view.boundingBox.size.width/2, view.boundingBox.size.height - toastView.boundingBox.size.height/2+1);
     } else {
         fromPos = CGPointMake(view.boundingBox.size.width/2, -toastView.boundingBox.size.height/2);
-        toPos = CGPointMake(view.boundingBox.size.width/2, toastView.boundingBox.size.height/2);
+        toPos = CGPointMake(view.boundingBox.size.width/2, toastView.boundingBox.size.height/2-1);
     }
     
     toastView.position = fromPos;
