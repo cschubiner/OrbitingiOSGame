@@ -47,7 +47,7 @@
             
         } else if (type == kheadStart) { //wrapage powerup
             
-            duration = 5*60; //JJ's headstart lasts 5 seconds
+            duration = 350; //JJ's headstart lasts 5 seconds
             title = @"Head Start";
             coinSprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
             glowSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];
