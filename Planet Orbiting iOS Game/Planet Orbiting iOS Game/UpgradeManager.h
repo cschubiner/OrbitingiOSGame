@@ -11,6 +11,7 @@
 @interface UpgradeManager : NSObject
 
 @property (nonatomic, retain) NSMutableArray* upgradeItems;
+@property (nonatomic) int buttonPushed;
 
 + (id)sharedInstance;
 
