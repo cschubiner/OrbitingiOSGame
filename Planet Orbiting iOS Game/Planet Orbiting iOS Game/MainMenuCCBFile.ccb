@@ -944,7 +944,7 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>169</real>
+						<real>221</real>
 						<real>67</real>
 					</array>
 					<key>customClass</key>
@@ -975,7 +975,7 @@
 					<key>scaleY</key>
 					<real>0.40000000596046448</real>
 					<key>string</key>
-					<string>Trail Mix</string>
+					<string>Space Tails</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
@@ -1004,7 +1004,7 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>258</real>
+						<real>101</real>
 						<real>67</real>
 					</array>
 					<key>customClass</key>
@@ -1035,7 +1035,7 @@
 					<key>scaleY</key>
 					<real>0.40000000596046448</real>
 					<key>string</key>
-					<string>Stars, t noob</string>
+					<string>Stars</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
