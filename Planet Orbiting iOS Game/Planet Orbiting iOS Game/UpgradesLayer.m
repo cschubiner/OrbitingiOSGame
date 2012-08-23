@@ -10,6 +10,8 @@
 #import "UpgradeItem.h"
 #import "UpgradeCell.h"
 #import "UserWallet.h"
+#import "CCDirector.h"
+#import "MainMenuLayer.h"
 
 @implementation UpgradesLayer {
     CCLayer* scrollView;
@@ -62,6 +64,22 @@
         [self addChild:topBar];
         [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2)];
         
+        CCSprite* botBar = [CCSprite spriteWithFile:@"upgradeFooter.png"];
+        [self addChild:botBar];
+        botBar.scaleY = .4;
+        [botBar setPosition: ccp(240, botBar.boundingBox.size.height/2)];
+        
+        CCMenuItem *quit = [CCMenuItemImage
+                            itemFromNormalImage:@"quit.png" selectedImage:@"quitpressed.png"
+                            target:self selector:@selector(backButtonPressed)];
+        quit.position = ccp(55, 320-17);
+        quit.scale = .9;
+        
+        CCMenu* menu = [CCMenu menuWithItems:quit, nil];
+        menu.position = ccp(0, 0);
+        
+        [self addChild:menu];
+        
         totalStars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"Marker Felt" fontSize:22];
         [self addChild: totalStars];
         [totalStars setPosition:ccp(400 - [totalStars boundingBox].size.width/2, 320 - topBar.boundingBox.size.height/2)];
@@ -74,12 +92,10 @@
         [self initUpgradeLayer];
         
         
-        
-        
-        currentCenter = 320-topBar.boundingBox.size.height*.85-scrollViewHeight;
-        [scrollView setPosition:CGPointMake(0, currentCenter)];
-        startingCenter = currentCenter;
+        startingCenter = 320-topBar.boundingBox.size.height*.85-scrollViewHeight;
         endingCenter = startingCenter + scrollViewHeight - screenHeight;
+        currentCenter = startingCenter;
+        [scrollView setPosition:CGPointMake(0, currentCenter)];
         if (endingCenter < 0) {
             endingCenter = 0;
             endingCenter += startingCenter;
@@ -97,6 +113,10 @@
         [self schedule:@selector(Update:) interval:0];
 	}
 	return self;
+}
+
+- (void) backButtonPressed {
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
 }
 
 /*
@@ -130,15 +150,14 @@
         if (item.type == 0) {
             UpgradeCell *cell = [[UpgradeCell alloc] initWithUpgradeItem:item];
             [cells addObject:cell];
+            scrollViewHeight += 55;
         }
     }
-    
     
     for (int i = 0; i < [cells count]; i++) {
         CCLayer* cell = (CCLayer*)[cells objectAtIndex:i];
         [scrollView addChild:cell];
         [cell setPosition:ccp(0, 320+60-55*i)];
-        scrollViewHeight += 55;
     }
     
     [self refreshUpgradeCells];
@@ -174,8 +193,8 @@
                 velocity = 0;
                 position = currentCenter;
             } else {
-                if (fabsf(dif) <= 8)
-                    dif *= 1.8;
+                //if (fabsf(dif) <= 8)
+                //    dif *= 1.8;
                 velocity = dif*.045*powf(counter, .6) + 1*enterVelocity/counter;
             }
             
@@ -192,7 +211,7 @@
     position += velocity;
     [scrollView setPosition:CGPointMake(scrollView.position.x, position)];
     //NSLog(@"velocity: %f, position: %f", velocity, position);
-    NSLog(@"cur center: %f", currentCenter);
+    NSLog(@"cur center: %f, height: %f", currentCenter, scrollViewHeight);
     
     counter += .5;
     

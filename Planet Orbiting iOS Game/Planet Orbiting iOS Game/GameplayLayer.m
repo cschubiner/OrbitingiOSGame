@@ -311,7 +311,7 @@ typedef struct {
     [galaxy setNumberOfDifferentPlanetsDrawn:7];
     [galaxy setOptimalPlanetsInThisGalaxy:17];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.56];
-    [galaxy setGalaxyColor: ccc3(45, 53, 147)]; //a dark blue
+    [galaxy setGalaxyColor: ccc3(45*.5, 53*.5, 147*.5)]; //a dark blue
     
     galaxy = [galaxies objectAtIndex:1];
     [galaxy setName:@"Galaxy 2"];
