@@ -13,6 +13,7 @@
 #import "Flurry.h"
 #import "AppDelegate.h"
 #import "ObjectiveManager.h"
+#import "UpgradesLayer.h"
 
 @interface MainMenuLayer : CCLayer <UIAlertViewDelegate,GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>{
     CCLayer* layer;

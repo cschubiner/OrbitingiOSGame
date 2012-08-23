@@ -17,7 +17,6 @@
 #import "UpgradeItem.h"
 #import "UpgradeManager.h"
 #import "UpgradeCell.h"
-#import "AppDelegate.h"
 #import "GKAchievementHandler.h"
 
 #define tutorialLayerTag    1001
@@ -701,6 +700,46 @@ const float effectsVolumeMainMenu = 1;
     //[self addChild:tutorialLayer];
     
     // [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
+}
+
+- (void)pressedRocketTrailsButton: (id) sender {
+    [Flurry logEvent:@"Pressed Rocket Trails Button"];
+    [[UpgradeManager sharedInstance] setButtonPushed:0];
+    [self pressedAnUpgradeButton];
+}
+
+- (void)pressedRocketShipsButton: (id) sender {
+    [Flurry logEvent:@"Pressed Rocketships Button"];
+    [[UpgradeManager sharedInstance] setButtonPushed:1];
+    [self pressedAnUpgradeButton];
+}
+
+- (void)pressedUpgradesButton: (id) sender {
+    [Flurry logEvent:@"Pressed Upgrades Button"];
+    [[UpgradeManager sharedInstance] setButtonPushed:2];
+    [self pressedAnUpgradeButton];
+}
+
+- (void)pressedPowerupsButton: (id) sender {
+    [Flurry logEvent:@"Pressed Powerups Button"];
+    [[UpgradeManager sharedInstance] setButtonPushed:3];
+    [self pressedAnUpgradeButton];
+}
+
+- (void)pressedStarsButton: (id) sender {
+    [Flurry logEvent:@"Pressed Stars Button"];
+    [[UpgradeManager sharedInstance] setButtonPushed:4];
+    [self pressedAnUpgradeButton];
+}
+
+- (void)pressedPerksButton: (id) sender {
+    [Flurry logEvent:@"Pressed Perks Button"];
+    [[UpgradeManager sharedInstance] setButtonPushed:5];
+    [self pressedAnUpgradeButton];
+}
+
+- (void)pressedAnUpgradeButton {
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[UpgradesLayer scene]]];
 }
 
 - (void)removeTutorialLayer {

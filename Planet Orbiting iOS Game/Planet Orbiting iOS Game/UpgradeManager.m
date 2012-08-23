@@ -10,7 +10,7 @@
 
 @implementation UpgradeManager
 
-@synthesize upgradeItems;
+@synthesize upgradeItems, buttonPushed;
 
 static UpgradeManager *sharedInstance = nil;
 
