@@ -407,7 +407,7 @@ const float effectsVolumeMainMenu = 1;
 }
 
 - (void)pressedAnUpgradeButton {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[UpgradesLayer scene]]];
+    [[CCDirector sharedDirector] replaceScene:[UpgradesLayer scene]];//[CCTransitionCrossFade transitionWithDuration:0.5 scene:[UpgradesLayer scene]]];
 }
 
 - (void)removeTutorialLayer {

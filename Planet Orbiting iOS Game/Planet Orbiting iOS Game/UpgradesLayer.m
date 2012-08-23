@@ -28,6 +28,7 @@
     CGPoint swipeEndPoint;
     CGPoint swipeBeginPoint;
     bool isTouchingScreen;
+    int indexPushed;
     
     
     NSMutableArray* cells;
@@ -55,14 +56,35 @@
 	// Apple recommends to re-assign "self" with the "super" return value
 	if ((self = [super init])) {
         self.isTouchEnabled= TRUE;
+        indexPushed = [[UpgradeManager sharedInstance] buttonPushed];
         
-        screenHeight = 280;
+        
         scrollView = [[CCLayer alloc] init];
         [self addChild:scrollView];
         
         CCSprite* topBar = [CCSprite spriteWithFile:@"banner.png"];
         [self addChild:topBar];
         [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2)];
+        
+        NSString* stringToUse;
+        
+        int ind = 0;
+        if (indexPushed == ind++)
+            stringToUse = @"SPACESHIP TRAILS";
+        else if (indexPushed == ind++)
+            stringToUse = @"ROCKETSHIPS";
+        else if (indexPushed == ind++)
+            stringToUse = @"UPGRADES";
+        else if (indexPushed == ind++)
+            stringToUse = @"POWERUPS";
+        else if (indexPushed == ind++)
+            stringToUse = @"STARS";
+        else if (indexPushed == ind++)
+            stringToUse = @"PERKS";
+        
+        CCLabelTTF* pauseText = [CCLabelTTF labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:32];
+        [self addChild:pauseText];
+        pauseText.position = ccp(240, 302);
         
         CCSprite* botBar = [CCSprite spriteWithFile:@"upgradeFooter.png"];
         [self addChild:botBar];
@@ -80,27 +102,34 @@
         
         [self addChild:menu];
         
-        totalStars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"Marker Felt" fontSize:22];
-        [self addChild: totalStars];
-        [totalStars setPosition:ccp(400 - [totalStars boundingBox].size.width/2, 320 - topBar.boundingBox.size.height/2)];
-        
         CCSprite* starSprite = [CCSprite spriteWithFile:@"star1.png"];
         [starSprite setScale:.2];
         [self addChild:starSprite];
-        [starSprite setPosition:ccp(420, 320 - topBar.boundingBox.size.height/2)];
+        [starSprite setPosition:ccp(480 - 10 - starSprite.boundingBox.size.width/2, 302)];
+        
+        totalStars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
+        [self addChild: totalStars];
+        [totalStars setAnchorPoint:ccp(1, .5)];
+        [totalStars setPosition:ccp(480 - 10 - starSprite.boundingBox.size.width - 5, 302)];
         
         [self initUpgradeLayer];
         
         
-        startingCenter = 320-topBar.boundingBox.size.height*.85-scrollViewHeight;
-        endingCenter = startingCenter + scrollViewHeight - screenHeight;
+        screenHeight = 280;
+        startingCenter = screenHeight;//320-40;//-scrollViewHeight;
+        //endingCenter = startingCenter - scrollViewHeight + screenHeight;
         currentCenter = startingCenter;
-        [scrollView setPosition:CGPointMake(0, currentCenter)];
-        if (endingCenter < 0) {
-            endingCenter = 0;
-            endingCenter += startingCenter;
+        position = currentCenter;
+        [scrollView setAnchorPoint:ccp(0, 1)];
+        [scrollView setPosition:CGPointMake(0, position)];
+        if (scrollViewHeight <= screenHeight) {
+            endingCenter = startingCenter;
+        } else {
+            endingCenter = startingCenter + (scrollViewHeight - screenHeight);
         }
-        endingCenter = startingCenter*2-endingCenter;
+        //endingCenter = startingCenter*2-endingCenter;
+        enterVelocity = 0;
+        velocity = 0;
         
         counter = 1;
         
@@ -157,7 +186,8 @@
     for (int i = 0; i < [cells count]; i++) {
         CCLayer* cell = (CCLayer*)[cells objectAtIndex:i];
         [scrollView addChild:cell];
-        [cell setPosition:ccp(0, 320+60-55*i)];
+        [cell setAnchorPoint:ccp(0, 1)];
+        [cell setPosition:ccp(0, -55*i)];
     }
     
     [self refreshUpgradeCells];
@@ -210,14 +240,12 @@
     
     position += velocity;
     [scrollView setPosition:CGPointMake(scrollView.position.x, position)];
-    //NSLog(@"velocity: %f, position: %f", velocity, position);
-    NSLog(@"cur center: %f, height: %f", currentCenter, scrollViewHeight);
+    NSLog(@"velocity: %f, position: %f", velocity, position);
+    //NSLog(@"cur center: %f, height: %f, startingCenter: %f, endingCenter: %f", currentCenter, scrollViewHeight, startingCenter, endingCenter);
     
     counter += .5;
     
 }
-
-
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *touch in touches) {
@@ -235,14 +263,14 @@
 }
 
 - (bool)isOutOfBounds {
-    if (position > startingCenter || position < endingCenter)
+    if (position < startingCenter || position > endingCenter)
         return true;
     else
         return false;
 }
 
 - (float)getGoodPosition {
-    if (position > startingCenter)
+    if (position < startingCenter)
         return startingCenter;
     else
         return endingCenter;
