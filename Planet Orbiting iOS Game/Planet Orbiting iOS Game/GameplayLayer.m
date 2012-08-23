@@ -628,7 +628,7 @@ typedef struct {
     if (player.alive) {
         player.velocity = ccpAdd(player.velocity, player.acceleration);
         if (player.currentPowerup.type == kheadStart)
-            player.velocity = ccpMult(player.velocity, 1.6);
+            player.velocity = ccpMult(player.velocity, 1.4);
         else if (player.currentPowerup.type == kautopilot)
             player.velocity = ccpMult(player.velocity, 1.1);
         
@@ -1053,7 +1053,7 @@ typedef struct {
                 
                 player.acceleration = ccpMult(accelToAdd, [[UpgradeValues sharedInstance] absoluteMinTimeDilation]*1.11*gravIncreaser*freeGravityStrength*scaler*asteroidSlower*60*dt);
                 if (player.currentPowerup.type == kheadStart)
-                    player.acceleration = ccpMult(player.acceleration, 11);
+                    player.acceleration = ccpMult(player.acceleration, 9);
                 else if (player.currentPowerup.type == kautopilot)
                     player.acceleration = ccpMult(player.acceleration, 2);
                 
