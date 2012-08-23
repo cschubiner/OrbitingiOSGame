@@ -93,6 +93,12 @@
             [cells addObject:cell];
         }
         
+        for (int i = 0; i < [cells count]; i++) {
+            CCLayer* cell = (CCLayer*)[cells objectAtIndex:i];
+            [scrollView addChild:cell];
+            [cell setPosition:ccp(240, 27 + 55*i)];
+        }
+        
         totalStars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"Marker Felt" fontSize:22];
         [self addChild: totalStars];
         [totalStars setPosition:ccp(400 - [totalStars boundingBox].size.width/2, 320 - topBar.boundingBox.size.height/2)];
@@ -104,7 +110,7 @@
         [starSprite setPosition:ccp(420, 320 - topBar.boundingBox.size.height/2)];
         
         cells = [[NSMutableArray alloc] init];
-        [self initUpgradeLayer];
+        //[self initUpgradeLayer];
         
         float scrollViewHeight = 110;
         
@@ -160,7 +166,7 @@
 
 
 - (void)refreshUpgradeCells {
-    NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
+    //NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
     for (int i = 0; i < [cells count]; i++) {
         //UpgradeCell *cell = [cells objectAtIndex:i];
         //UpgradeItem *item = [upgradeItems objectAtIndex:i];
