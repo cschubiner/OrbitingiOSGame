@@ -526,7 +526,7 @@ typedef struct {
     velSoftener = 1;
     initialAccelMag = 0;
     isOnFirstRun = true;
-    timeDilationCoefficient = 1;
+    timeDilationCoefficient = [[UpgradeValues sharedInstance] absoluteMinTimeDilation];
     dangerLevel = 0;
     swipeVector = ccp(0, -1);
     gravIncreaser = 1;
