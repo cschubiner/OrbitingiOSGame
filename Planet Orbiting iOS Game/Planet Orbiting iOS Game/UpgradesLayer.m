@@ -39,6 +39,11 @@
         [self addChild:topBar];
         [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2)];
         
+        CCSprite* cell0 = [CCSprite spriteWithFile:@"upgradeCellSex"];
+        CCSprite* cell1 = [CCSprite spriteWithFile:@"upgradeCellSex"];
+        
+        
+        
         [self schedule:@selector(Update:) interval:0];
 	}
 	return self;
