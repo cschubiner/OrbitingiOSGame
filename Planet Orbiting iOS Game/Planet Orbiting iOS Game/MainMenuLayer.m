@@ -200,7 +200,11 @@ const float effectsVolumeMainMenu = 1;
         [proScoreLabel setString:[NSString stringWithFormat:@"%.0f",[self getProValue]]];
         [funScoreLabel setString:[NSString stringWithFormat:@"%.0f",[self getFunValue]]];
         
-        [layer setPosition:ccp(-480, -320)];
+        if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getCameFromUpgrades])
+            [layer setPosition:ccp(-480*2, -320)];
+        else
+            [layer setPosition:ccp(-480, -320)];
+        [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setCameFromUpgrades:false];
         [self addChild:layer];
         
         [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic_new.mp3" loop:YES];

@@ -70,18 +70,17 @@
         
         NSString* stringToUse;
         
-        int ind = 0;
-        if (indexPushed == ind++)
+        if (indexPushed == 0)
             stringToUse = @"SPACESHIP TRAILS";
-        else if (indexPushed == ind++)
+        else if (indexPushed == 1)
             stringToUse = @"ROCKETSHIPS";
-        else if (indexPushed == ind++)
+        else if (indexPushed == 2)
             stringToUse = @"UPGRADES";
-        else if (indexPushed == ind++)
+        else if (indexPushed == 3)
             stringToUse = @"POWERUPS";
-        else if (indexPushed == ind++)
+        else if (indexPushed == 4)
             stringToUse = @"STARS";
-        else if (indexPushed == ind++)
+        else if (indexPushed == 5)
             stringToUse = @"PERKS";
         
         CCLabelTTF* pauseText = [CCLabelTTF labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:32];
@@ -151,7 +150,8 @@
 }
 
 - (void) backButtonPressed {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
+    [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setCameFromUpgrades:true];
+    [[CCDirector sharedDirector] replaceScene:[MainMenuLayer scene]];//[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
 }
 
 /*
@@ -182,7 +182,7 @@
     cells = [[NSMutableArray alloc] init];
     
     for (UpgradeItem* item in upgradeItems) {
-        if (item.type == 0) {
+        if (item.type == indexPushed) {
             UpgradeCell *cell = [[UpgradeCell alloc] initWithUpgradeItem:item];
             [cells addObject:cell];
             scrollViewHeight += 55;

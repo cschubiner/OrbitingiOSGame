@@ -19,6 +19,14 @@
 
 @synthesize window=window_, navController=navController_, director=director_;
 
+-(bool)getCameFromUpgrades {
+    return cameFromUpgrades;
+}
+
+-(void)setCameFromUpgrades:(bool)didComeFromUpgrades {
+    cameFromUpgrades = didComeFromUpgrades;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // installs HandleExceptions as the Uncaught Exception Handler
@@ -46,6 +54,8 @@
 
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
 
+    cameFromUpgrades = false;
+    
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     

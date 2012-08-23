@@ -21,6 +21,7 @@
     bool wasJustBackgrounded;
     int galaxyCounter;
     
+    bool cameFromUpgrades;
 }
 
 @property (nonatomic, retain) UIWindow *window;
@@ -36,6 +37,9 @@
 -(void)setWasJustBackgrounded:(bool)isItBackgrounded;
 -(int)getGalaxyCounter;
 -(void)setGalaxyCounter:(int)count;
+
+-(bool)getCameFromUpgrades;
+-(void)setCameFromUpgrades:(bool)didComeFromUpgrades;
 
 
 @end
