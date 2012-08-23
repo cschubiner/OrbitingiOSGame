@@ -37,7 +37,7 @@
         
         CCSprite* topBar = [CCSprite spriteWithFile:@"banner.png"];
         [self addChild:topBar];
-        [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.width/2)];
+        [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2)];
         
         [self schedule:@selector(Update:) interval:0];
 	}

@@ -1449,7 +1449,8 @@ typedef struct {
                 currentPtoPscore=0;
                 prevCurrentPtoPScore=0;
                 numZonesHitInARow++;
-                timeDilationCoefficient += timeDilationIncreaseRate;
+                if (player.currentPowerup.type != kheadStart)
+                    timeDilationCoefficient += timeDilationIncreaseRate;
                 planetsHitFlurry++;
                 /*  if (zonesReached>=[zones count]) {
                  [[UIApplication sharedApplication]setStatusBarOrientation:UIInterfaceOrientationPortrait];
@@ -1932,17 +1933,17 @@ float lerpf(float a, float b, float t) {
     CCMenuItem *replay = [CCMenuItemImage
                           itemFromNormalImage:@"replay.png" selectedImage:@"replaypressed.png" 
                           target:self selector:@selector(restartGame)];
-    replay.position = ccp(140, 20);
+    replay.position = ccp(240, 20);
     
     CCMenuItem *resume = [CCMenuItemImage
                           itemFromNormalImage:@"resume.png" selectedImage:@"resumepressed.png" 
                           target:self selector:@selector(togglePause)];
-    resume.position = ccp(240, 20);
+    resume.position = ccp(340, 20);
     
     CCMenuItem *quit = [CCMenuItemImage
                         itemFromNormalImage:@"quit.png" selectedImage:@"quitpressed.png"
                         target:self selector:@selector(endGame)];
-    quit.position = ccp(340, 20);
+    quit.position = ccp(140, 20);
     
     CCMenu* menu = [CCMenu menuWithItems:replay, resume, quit, nil];
     menu.position = ccp(0, 0);
