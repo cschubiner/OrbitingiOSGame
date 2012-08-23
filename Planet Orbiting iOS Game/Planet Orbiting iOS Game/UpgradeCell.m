@@ -34,7 +34,7 @@
         [self addChild:coinSprite];
         [coinSprite setPosition:ccp(480-coinSprite.width/2-8, -27)];
         
-        priceLabel = [CCLabelTTF labelWithString:[self commaInt:item.price]  fontName:@"Marker Felt" fontSize:18];
+        priceLabel = [CCLabelTTF labelWithString:[self commaInt:item.price]  fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
         [self addChild: priceLabel];
         [priceLabel setPosition:ccp(480 - 37 - [priceLabel boundingBox].size.width/2, -27)];
         

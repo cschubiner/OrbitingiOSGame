@@ -66,7 +66,7 @@
         
         CCSprite* topBar = [CCSprite spriteWithFile:@"banner.png"];
         [self addChild:topBar];
-        [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2)];
+        [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2 + 1)];
         
         NSString* stringToUse;
         
@@ -86,17 +86,17 @@
         
         CCLabelTTF* pauseText = [CCLabelTTF labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:32];
         [self addChild:pauseText];
-        pauseText.position = ccp(240, 302);
+        pauseText.position = ccp(240, 303);
         
         CCSprite* botBar = [CCSprite spriteWithFile:@"upgradeFooter.png"];
         [self addChild:botBar];
-        botBar.scaleY = .4;
+        botBar.scaleY = .5;
         [botBar setPosition: ccp(240, botBar.boundingBox.size.height/2)];
         
         CCMenuItem *quit = [CCMenuItemImage
                             itemFromNormalImage:@"quit.png" selectedImage:@"quitpressed.png"
                             target:self selector:@selector(backButtonPressed)];
-        quit.position = ccp(55, 320-17);
+        quit.position = ccp(55, 320-16);
         quit.scale = .9;
         
         CCMenu* menu = [CCMenu menuWithItems:quit, nil];
@@ -107,12 +107,12 @@
         CCSprite* starSprite = [CCSprite spriteWithFile:@"star1.png"];
         [starSprite setScale:.2];
         [self addChild:starSprite];
-        [starSprite setPosition:ccp(480 - 10 - starSprite.boundingBox.size.width/2, 302)];
+        [starSprite setPosition:ccp(480 - 10 - starSprite.boundingBox.size.width/2, 303)];
         
         totalStars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
         [self addChild: totalStars];
         [totalStars setAnchorPoint:ccp(1, .5)];
-        [totalStars setPosition:ccp(480 - 10 - starSprite.boundingBox.size.width - 5, 302)];
+        [totalStars setPosition:ccp(480 - 10 - starSprite.boundingBox.size.width - 5, 303)];
         
         [self initUpgradeLayer];
         
@@ -128,7 +128,7 @@
 }
 
 -(void) initScrollStuff {
-    screenHeight = 280;
+    screenHeight = 285;
     startingCenter = screenHeight;//320-40;//-scrollViewHeight;
     //endingCenter = startingCenter - scrollViewHeight + screenHeight;
     currentCenter = startingCenter;
@@ -241,7 +241,7 @@
             } else {
                 //if (fabsf(dif) <= 8)
                 //    dif *= 1.8;
-                velocity = dif2*.033*powf(counter, .6) + 1*enterVelocity/counter;
+                velocity = dif2*.02*counter + 1*enterVelocity/counter;
             }
             
         } else {
