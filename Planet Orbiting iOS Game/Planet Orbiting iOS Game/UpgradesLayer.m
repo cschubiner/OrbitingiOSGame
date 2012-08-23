@@ -20,6 +20,7 @@
     float scrollViewHeight;
     float counter;
     float currentCenter;
+    float centerGoingTo;
     float startingCenter;
     float endingCenter;
     float position;
@@ -28,6 +29,7 @@
     CGPoint swipeEndPoint;
     CGPoint swipeBeginPoint;
     bool isTouchingScreen;
+    bool wasTouchingScreen;
     int indexPushed;
     
     
@@ -115,33 +117,37 @@
         [self initUpgradeLayer];
         
         
-        screenHeight = 280;
-        startingCenter = screenHeight;//320-40;//-scrollViewHeight;
-        //endingCenter = startingCenter - scrollViewHeight + screenHeight;
-        currentCenter = startingCenter;
-        position = currentCenter;
-        [scrollView setAnchorPoint:ccp(0, 1)];
-        [scrollView setPosition:CGPointMake(0, position)];
-        if (scrollViewHeight <= screenHeight) {
-            endingCenter = startingCenter;
-        } else {
-            endingCenter = startingCenter + (scrollViewHeight - screenHeight);
-        }
-        //endingCenter = startingCenter*2-endingCenter;
-        enterVelocity = 0;
-        velocity = 0;
         
-        counter = 1;
-        
-        isTouchingScreen = false;
-        
-        
+        [self initScrollStuff];
         
         
         
         [self schedule:@selector(Update:) interval:0];
 	}
 	return self;
+}
+
+-(void) initScrollStuff {
+    screenHeight = 280;
+    startingCenter = screenHeight;//320-40;//-scrollViewHeight;
+    //endingCenter = startingCenter - scrollViewHeight + screenHeight;
+    currentCenter = startingCenter;
+    position = currentCenter;
+    [scrollView setAnchorPoint:ccp(0, 1)];
+    [scrollView setPosition:CGPointMake(0, position)];
+    if (scrollViewHeight <= screenHeight) {
+        endingCenter = startingCenter;
+    } else {
+        endingCenter = startingCenter + (scrollViewHeight - screenHeight);
+    }
+    //endingCenter = startingCenter*2-endingCenter;
+    enterVelocity = 0;
+    velocity = 0;
+    
+    counter = 1;
+    
+    isTouchingScreen = false;
+    wasTouchingScreen = false;
 }
 
 - (void) backButtonPressed {
@@ -211,21 +217,31 @@
             if (enterVelocity == 0) {
                 enterVelocity = velocity;
                 counter = 1;
-                //centerToUse = [self getGoodPosition];
+                currentCenter = [self getGoodPosition];
+                centerGoingTo = currentCenter;
             }
-            currentCenter = [self getGoodPosition];
             
-            float dif = currentCenter - position;
+            float dif1 = currentCenter - position;
             
-            if (dif == 0)
+            if (fabsf(dif1) <= 20) {
+                if (dif1 < 0)
+                    centerGoingTo -= .2;
+                else
+                    centerGoingTo += .2;
+            } else {
+                centerGoingTo = currentCenter;
+            }
+            
+            float dif2 = centerGoingTo - position;
+            if (dif1 == 0)
                 return;
-            if (fabsf(dif) <= .2) {
+            if (fabsf(dif1) <= .2) {
                 velocity = 0;
                 position = currentCenter;
             } else {
                 //if (fabsf(dif) <= 8)
                 //    dif *= 1.8;
-                velocity = dif*.045*powf(counter, .6) + 1*enterVelocity/counter;
+                velocity = dif2*.033*powf(counter, .6) + 1*enterVelocity/counter;
             }
             
         } else {
@@ -243,11 +259,23 @@
     NSLog(@"velocity: %f, position: %f", velocity, position);
     //NSLog(@"cur center: %f, height: %f, startingCenter: %f, endingCenter: %f", currentCenter, scrollViewHeight, startingCenter, endingCenter);
     
+    
+    
+    
+    if (isTouchingScreen && wasTouchingScreen) {
+        velocity = 0;
+    }
+    
+    if (isTouchingScreen)
+        wasTouchingScreen = true;
+    
+    
     counter += .5;
     
 }
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    wasTouchingScreen = false;
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
