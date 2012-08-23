@@ -26,7 +26,7 @@ const float streakWidthOnRetinaDisplay = 31;
 const float streakWidthWITHOUTRetinaDisplay = streakWidthOnRetinaDisplay/2;
 
 //how quickly the loading label that provides helper text moves along the screen. higher numbers make it move slower.
-const float loadingHelperLabelMoveTime = 12.1;
+const float loadingHelperLabelMoveTime = 9.1;
 const float loadingTimeDilationAsPlayerIsGoingToFirstPlanet = .68;
 
 //For optimization, whenever more segments than this are present, the oldest one will be deleted

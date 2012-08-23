@@ -490,7 +490,7 @@ typedef struct {
     player.alive=true;
     [player.sprite setScale:playerSizeScale];
     player.segmentNumber = -10;
-     player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(90)), -distanceBetweenGalaxies*200));
+     player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(85)), -3200*200));
    // player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
     if (/*[[UpgradeValues sharedInstance] hasStartPowerup]*/true) {
         CGPoint planPos = [[planets objectAtIndex:0] sprite].position;
@@ -639,8 +639,26 @@ typedef struct {
         self.isTouchEnabled= TRUE;
         
         loadingLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"LoadingLayerCCB.ccb" owner:self];
+        
+         NSArray * helperTextArray = [NSArray arrayWithObjects:
+                                      @"Stars increase your score and let you buy upgrades in the store!",
+                                      @"Asteroids kill you; be sure to avoid them!",
+                                      @"Swipe in the direction you want to move!",
+                                      @"Star Dash was created by Clay Schubiner, Alex Blickenstaff, Jeff Grimes, and Michael Arbeed.",
+                                      @"Complete missions to increase your score multiplier and earn more stars.",
+                                      @"Purchase upgrades by tapping \"Upgrades\" on the main menu.",
+                                      @"Have suggestions? Submit feedback by tapping \"Survey\" on the main menu.",
+                                      @"Star Dash generates levels randomly to give you a unique experience every time you play!",
+                                      @"Orbit planets as few times as possible to get the highest possible score.",
+                                      @"Your time is limited; keep on eye on the battery in the lower-left corner of the screen.",
+                                      @"Your battery recharges as you move between galaxies",
+                                      @"Each galaxy brings new challenges for you to conquer!",
+         nil];
+        
+        [loadingHelperTextLabel setString:[helperTextArray objectAtIndex:[self RandomBetween:0 maxvalue:helperTextArray.count-1]]];
+        
         [self addChild:loadingLayer z:0 tag:LOADING_LAYER_TAG];
-        CGPoint startPosition = ccp(100,loadingHelperTextLabel.position.y);
+        CGPoint startPosition = ccp(MAX(480-loadingHelperTextLabel.boundingBox.size.width+79,79),loadingHelperTextLabel.position.y);
         [loadingHelperTextLabel setPosition:startPosition];
         
         id moveLoadingLabelToStartPosition = [CCCallBlock actionWithBlock:(^{
@@ -655,8 +673,11 @@ typedef struct {
         })];
         
         [loadingHelperTextLabel setOpacity:0];
-        float fadeInTime = 1.2;
-        [loadingHelperTextLabel runAction:[CCSequence actions:[CCSpawn actions:[CCFadeIn actionWithDuration:fadeInTime], [CCMoveBy actionWithDuration:fadeInTime position:ccp(-80*fadeInTime/4.0,0)],nil],
+        float fadeInTime = 1.4;
+        id fadeInAction = [CCFadeIn actionWithDuration:fadeInTime];
+        [loadingHelperTextLabel runAction:[CCSequence actions:[CCSpawn actions:fadeInAction,
+                                                               [CCMoveBy actionWithDuration:fadeInTime position:ccp(-80*fadeInTime/4.0,0)],
+                                                               nil],
                                            repeatScrollingLeftAction,
                                            nil] ];
         
