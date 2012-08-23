@@ -286,8 +286,6 @@ const float effectsVolumeMainMenu = 1;
                     id action = [CCEaseBounceOut actionWithAction:move];
                     [popupView runAction: action];
                     
-                    
-                    
                     [shadeImage runAction:[CCSequence actions:
                                            [CCFadeIn actionWithDuration:.4],
                                            nil]];

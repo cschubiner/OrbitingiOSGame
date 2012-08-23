@@ -28,8 +28,10 @@ const float streakWidthWITHOUTRetinaDisplay = streakWidthOnRetinaDisplay/2;
 //For optimization, whenever more segments than this are present, the oldest one will be deleted
 const int numberOfSegmentsAtATime = 3;
 //This is the general direction the planet segments head in in degrees from 0. 
-const float directionPlanetSegmentsGoIn= 33.3910034413;
-//The maximum number of degrees that the segment of planets can be rotated from the direction (see above)
+const float defaultDirectionPlanetSegmentsGoIn= 33.3910034413;
+//this is the variance of the direction all planet segments go in. it changes everytime you run the game (press play)
+const float directionPlanetSegmentsGoInVariance = 20;
+//The maximum number of degrees that the segment of planets can be rotated from the direction (directionPlanetSegmentsGoIn)
 const float segmentRotationVariation = 20;//30;
 
 //how quickly the player's spaceship rotates when the direction of his velocity changes
