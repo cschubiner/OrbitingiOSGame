@@ -363,7 +363,7 @@ typedef struct {
     [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:400];
     [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.9];
         [[UpgradeValues sharedInstance] setHasDoubleCoins:false];
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:70];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:10];
         [[UpgradeValues sharedInstance] setHasStartPowerup:false];
     
     /* FIX ALL THIS CODE!!! upgradeItems is unititialized.
@@ -1674,6 +1674,12 @@ typedef struct {
             
             [underscore runAction: [CCRepeatForever actionWithAction: [CCBlink actionWithDuration:5 blinks:5]]];
         }
+        
+        [starStashLabel setString:[NSString stringWithFormat:@"%d",[[UserWallet sharedInstance]getBalance]]];
+        id increaseNumber = [CCCallBlock actionWithBlock:(^{
+            [starStashLabel setString:[NSString stringWithFormat:@"%d",starStashLabel.string.intValue+1]];
+        })];
+        [starStashLabel runAction:[CCSequence actions:[CCRepeat actionWithAction:[CCSequence actions:increaseNumber,[CCDelayTime actionWithDuration:.01], nil] times:510], nil]];
         
         [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
         

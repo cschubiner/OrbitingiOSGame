@@ -113,7 +113,7 @@
     int levelNumber;
     
     float totalSecondsAlive;
-    
+    CCLabelBMFont * starStashLabel;
     CCParticleSystemQuad * playerSpawnedParticle;
     CCParticleSystemQuad * thrustParticle;
     CCParticleSystemQuad * thrustBurstParticle;
