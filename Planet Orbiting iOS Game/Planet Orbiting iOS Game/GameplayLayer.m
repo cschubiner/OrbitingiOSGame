@@ -359,15 +359,7 @@ typedef struct {
 }
 
 - (void)initUpgradedVariables {
-    [[UpgradeValues sharedInstance] setCoinMagnetDuration:400];
-    [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:400];
-    [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.9];
-        [[UpgradeValues sharedInstance] setHasDoubleCoins:false];
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:10];
-        [[UpgradeValues sharedInstance] setHasStartPowerup:false];
-    
-    /* FIX ALL THIS CODE!!! upgradeItems is unititialized.
-    [[UpgradeValues sharedInstance] setCoinMagnetDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:0] equipped]];  //this line crashes because upgradeItems is unititialized. fix it t GO!!!
+    [[UpgradeValues sharedInstance] setCoinMagnetDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:0] equipped]];
     
     [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] equipped]];
     
@@ -383,7 +375,7 @@ typedef struct {
     if ([[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped])
         [[UpgradeValues sharedInstance] setHasStartPowerup:true];
     else
-        [[UpgradeValues sharedInstance] setHasStartPowerup:false];*/
+        [[UpgradeValues sharedInstance] setHasStartPowerup:false];
 }
 
 - (void)startGame {
