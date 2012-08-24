@@ -363,7 +363,7 @@ typedef struct {
     [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:400];
     [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.9];
         [[UpgradeValues sharedInstance] setHasDoubleCoins:false];
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:10];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:65];
         [[UpgradeValues sharedInstance] setHasStartPowerup:false];
     
     /* FIX ALL THIS CODE!!! upgradeItems is unititialized.
