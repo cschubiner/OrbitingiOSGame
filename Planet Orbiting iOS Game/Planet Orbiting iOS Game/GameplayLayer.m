@@ -2041,7 +2041,7 @@ float lerpf(float a, float b, float t) {
     pauseText.position = ccp(240, 302);
     
     CCMenuItem *replay = [CCMenuItemImage
-                          itemFromNormalImage:@"replay.png" selectedImage:@"replaypressed.png"
+                          itemFromNormalImage:@"retry.png" selectedImage:@"retrypressed.png"
                           target:self selector:@selector(restartGame)];
     replay.position = ccp(240, 20);
     
@@ -2051,7 +2051,7 @@ float lerpf(float a, float b, float t) {
     resume.position = ccp(340, 20);
     
     CCMenuItem *quit = [CCMenuItemImage
-                        itemFromNormalImage:@"quit.png" selectedImage:@"quitpressed.png"
+                        itemFromNormalImage:@"giveup.png" selectedImage:@"giveuppressed.png"
                         target:self selector:@selector(endGame)];
     quit.position = ccp(140, 20);
     
