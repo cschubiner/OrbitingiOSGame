@@ -2046,9 +2046,9 @@ float lerpf(float a, float b, float t) {
     banner.position = ccp(240, 298);
     [layerToAdd addChild:banner];
     
-    CCLabelTTF* pauseText = [CCLabelTTF labelWithString:@"GAME PAUSED" fontName:@"HelveticaNeue-CondensedBold" fontSize:32];
+    CCLabelTTF* pauseText = [CCLabelTTF labelWithString:@"GAME PAUSED" fontName:@"HelveticaNeue-CondensedBold" fontSize:38];
     [layerToAdd addChild:pauseText];
-    pauseText.position = ccp(240, 302);
+    pauseText.position = ccp(240, 299);
     
     CCMenuItem *replay = [CCMenuItemImage
                           itemFromNormalImage:@"retry.png" selectedImage:@"retrypressed.png"

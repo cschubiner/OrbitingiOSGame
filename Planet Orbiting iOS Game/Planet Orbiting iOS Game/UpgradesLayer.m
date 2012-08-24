@@ -83,9 +83,9 @@
         else if (indexPushed == 5)
             stringToUse = @"PERKS";
         
-        CCLabelTTF* pauseText = [CCLabelTTF labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:32];
+        CCLabelTTF* pauseText = [CCLabelTTF labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:38];
         [self addChild:pauseText];
-        pauseText.position = ccp(240, 303);
+        pauseText.position = ccp(240, 299);
         
         CCSprite* botBar = [CCSprite spriteWithFile:@"upgradeFooter.png"];
         [self addChild:botBar];
@@ -127,7 +127,7 @@
 }
 
 -(void) initScrollStuff {
-    screenHeight = 285;
+    screenHeight = 275;
     startingCenter = screenHeight;//320-40;//-scrollViewHeight;
     //endingCenter = startingCenter - scrollViewHeight + screenHeight;
     currentCenter = startingCenter;
