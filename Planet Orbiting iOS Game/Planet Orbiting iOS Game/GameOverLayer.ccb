@@ -608,9 +608,9 @@
 							<key>spriteFileDisabled</key>
 							<string>quit.png</string>
 							<key>spriteFileNormal</key>
-							<string>giveup.png</string>
+							<string>quit.png</string>
 							<key>spriteFileSelected</key>
-							<string>giveuppressed.png</string>
+							<string>quitpressed.png</string>
 							<key>tag</key>
 							<integer>1</integer>
 							<key>target</key>

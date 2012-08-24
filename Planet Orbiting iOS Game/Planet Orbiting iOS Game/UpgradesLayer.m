@@ -95,7 +95,7 @@
         CCMenuItem *quit = [CCMenuItemImage
                             itemFromNormalImage:@"back.png" selectedImage:@"backpressed.png"
                             target:self selector:@selector(backButtonPressed)];
-        quit.position = ccp(55, 320-16);
+        quit.position = ccp(60, 299);
         //quit.scale = 1.7;
         
         CCMenu* menu = [CCMenu menuWithItems:quit, nil];
@@ -106,12 +106,12 @@
         CCSprite* starSprite = [CCSprite spriteWithFile:@"star1.png"];
         [starSprite setScale:.2];
         [self addChild:starSprite];
-        [starSprite setPosition:ccp(480 - 10 - starSprite.boundingBox.size.width/2, 303)];
+        [starSprite setPosition:ccp(480 - 10 - starSprite.boundingBox.size.width/2, 299)];
         
         totalStars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
         [self addChild: totalStars];
         [totalStars setAnchorPoint:ccp(1, .5)];
-        [totalStars setPosition:ccp(480 - 10 - starSprite.boundingBox.size.width - 5, 303)];
+        [totalStars setPosition:ccp(480 - 10 - starSprite.boundingBox.size.width - 5, 299)];
         
         [self initUpgradeLayer];
         

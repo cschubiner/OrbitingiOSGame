@@ -2048,7 +2048,7 @@ float lerpf(float a, float b, float t) {
     
     CCLabelTTF* pauseText = [CCLabelTTF labelWithString:@"GAME PAUSED" fontName:@"HelveticaNeue-CondensedBold" fontSize:38];
     [layerToAdd addChild:pauseText];
-    pauseText.position = ccp(240, 299);
+    pauseText.position = ccp(240, 300);
     
     CCMenuItem *replay = [CCMenuItemImage
                           itemFromNormalImage:@"retry.png" selectedImage:@"retrypressed.png"
@@ -2061,7 +2061,7 @@ float lerpf(float a, float b, float t) {
     resume.position = ccp(360, 20);
     
     CCMenuItem *quit = [CCMenuItemImage
-                        itemFromNormalImage:@"giveup.png" selectedImage:@"giveuppressed.png"
+                        itemFromNormalImage:@"quit.png" selectedImage:@"quitpressed.png"
                         target:self selector:@selector(endGame)];
     quit.position = ccp(120, 20);
     
@@ -2069,7 +2069,7 @@ float lerpf(float a, float b, float t) {
                    itemFromNormalImage:@"sound.png" selectedImage:@"soundpressed.png"
                    target:self selector:@selector(toggleMute)];
     CCMenuItem *sound = soundButton;
-    sound.position = ccp(452, 305);
+    sound.position = ccp(449, 300);
     
     
     CCMenu* menu = [CCMenu menuWithItems:replay, resume, quit, sound, nil];
@@ -2112,9 +2112,9 @@ float lerpf(float a, float b, float t) {
     } else {
         [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0];
         [[SimpleAudioEngine sharedEngine] setEffectsVolume:0];
-        [soundButton setNormalImage:[CCSprite spriteWithFile:@"muted.png"]];
-        [soundButton setSelectedImage:[CCSprite spriteWithFile:@"mutedpressed.png"]];
-        [soundButton setDisabledImage:[CCSprite spriteWithFile:@"muted.png"]];
+        [soundButton setNormalImage:[CCSprite spriteWithFile:@"soundmuted.png"]];
+        [soundButton setSelectedImage:[CCSprite spriteWithFile:@"soundmutedpressed.png"]];
+        [soundButton setDisabledImage:[CCSprite spriteWithFile:@"soundmuted.png"]];
     }
     [[PlayerStats sharedInstance] setIsMuted:muted];
 }
