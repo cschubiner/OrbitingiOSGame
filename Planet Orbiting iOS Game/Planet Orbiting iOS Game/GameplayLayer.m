@@ -40,7 +40,6 @@ const int maxNameLength = 10;
     BOOL paused;
     BOOL muted;
     BOOL scoreAlreadySaved;
-    CCMenu *pauseMenu;
     CGPoint lastVel;
     float lastAng;
     
@@ -394,7 +393,6 @@ typedef struct {
     [self addChild:hudLayer];
     if (!isInTutorialMode&&levelNumber == 0)
         [self addChild:layerHudSlider];
-    [self addChild:pauseMenu];
     
     
     [self reorderChild:loadingLayer z:30];
@@ -449,12 +447,9 @@ typedef struct {
     thrustBurstParticle = [CCParticleSystemQuad particleWithFile:@"thrustBurstParticle.plist"];
     [thrustBurstParticle stopSystem];
     
-    CCMenuItem  *pauseButton = [CCMenuItemImage
-                                itemFromNormalImage:@"pauseButton7.png" selectedImage:@"pauseButton7.png"
-                                target:self selector:@selector(togglePause)];
+    CCSprite *pauseButton =  [CCSprite spriteWithFile:@"pauseButton7.png"];
     pauseButton.position = ccp(457, 298);
-    pauseMenu = [CCMenu menuWithItems:pauseButton, nil];
-    pauseMenu.position = CGPointZero;
+    [hudLayer addChild:pauseButton];
     
     if (isInTutorialMode) {
         tutImage1 = [CCSprite spriteWithFile:@"screen1.png"];
@@ -652,7 +647,6 @@ typedef struct {
                                       @"Stars increase your score and let you buy upgrades in the store!",
                                       @"Asteroids kill you; be sure to avoid them!",
                                       @"Swipe in the direction you want to move!",
-                                      @"Star Dash was created by Clay Schubiner, Alex Blickenstaff, Jeff Grimes, and Michael Arbeed.",
                                       @"Complete missions to increase your score multiplier and earn more stars.",
                                       @"Purchase upgrades by tapping \"Upgrades\" on the main menu.",
                                       @"Have suggestions? Submit feedback by tapping \"Survey\" on the main menu.",
@@ -1920,7 +1914,8 @@ typedef struct {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
         if (location.x >= 7 * size.width/8 && location.y >= 5*size.height/6) {
-            [self togglePause];
+            if (!paused)
+                [self togglePause];
         }
         if (loading_playerHasReachedFirstPlanet==false)
             return;
@@ -2047,18 +2042,25 @@ float lerpf(float a, float b, float t) {
     CCMenuItem *resume = [CCMenuItemImage
                           itemFromNormalImage:@"resume.png" selectedImage:@"resumepressed.png"
                           target:self selector:@selector(togglePause)];
-    resume.position = ccp(340, 20);
+    resume.position = ccp(360, 20);
     
     CCMenuItem *quit = [CCMenuItemImage
                         itemFromNormalImage:@"giveup.png" selectedImage:@"giveuppressed.png"
                         target:self selector:@selector(endGame)];
-    quit.position = ccp(140, 20);
+    quit.position = ccp(120, 20);
     
-    CCMenu* menu = [CCMenu menuWithItems:replay, resume, quit, nil];
+    CCMenuItem *sound = [CCMenuItemImage
+                        itemFromNormalImage:@"sound.png" selectedImage:@"soundpressed.png"
+                        target:self selector:@selector(endGame)];
+    sound.position = ccp(450, 300);
+    
+    
+    CCMenu* menu = [CCMenu menuWithItems:replay, resume, quit, sound, nil];
     menu.position = ccp(0, 0);
     
     
     [layerToAdd addChild:menu];
+    
     
     return layerToAdd;
 }
