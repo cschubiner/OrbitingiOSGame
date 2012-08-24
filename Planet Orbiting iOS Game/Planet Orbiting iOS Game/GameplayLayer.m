@@ -433,6 +433,9 @@ typedef struct {
     cameraLayer = [[CCLayer alloc] init];
     [cameraLayer setAnchorPoint:CGPointZero];
     
+    starStashParticle = [CCParticleSystemQuad particleWithFile:@"starStashParticle.plist"];
+    [starStashParticle stopSystem];
+    
     cometParticle = [CCParticleSystemQuad particleWithFile:@"cometParticle.plist"];
     playerExplosionParticle = [CCParticleSystemQuad particleWithFile:@"playerExplosionParticle.plist"];
     [cameraLayer addChild:playerExplosionParticle];
@@ -1677,9 +1680,16 @@ typedef struct {
         
         [starStashLabel setString:[NSString stringWithFormat:@"%d",[[UserWallet sharedInstance]getBalance]]];
         id increaseNumber = [CCCallBlock actionWithBlock:(^{
-            [starStashLabel setString:[NSString stringWithFormat:@"%d",starStashLabel.string.intValue+1]];
+            [starStashLabel setString:[NSString stringWithFormat:@"%d",starStashLabel.string.intValue+[self RandomBetween:2 maxvalue:5]]];
         })];
-        [starStashLabel runAction:[CCSequence actions:[CCRepeat actionWithAction:[CCSequence actions:increaseNumber,[CCDelayTime actionWithDuration:.01], nil] times:510], nil]];
+        id displayParticles = [CCCallBlock actionWithBlock:(^{
+            [self addChild:starStashParticle];
+            [starStashParticle setPosition:starStashLabel.position];
+            [starStashParticle resetSystem];
+        })];
+        [starStashLabel runAction:[CCSequence actions:[CCRepeat actionWithAction:[CCSequence actions:increaseNumber,
+                                                                                  [CCDelayTime actionWithDuration:.003],
+                                                                                  nil] times:510],displayParticles, nil]];
         
         [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
         
