@@ -45,6 +45,7 @@ namespace Level_Creator
         SpriteFont font;
         SpriteFont biggerFont;
         string toDisplay;
+        float whereToDisplayFirstErrorMessageY;
         const float defaultPlanetScaleSize = 1;
         const float minPlanetScale = 1;
         const float defaultAsteroidScaleSize = 1;// .87552f;
@@ -58,6 +59,7 @@ namespace Level_Creator
         float currentPlanetScale;
         float currentFrameScale;
         float currentZoneScale;
+        bool thereIsAnError;
         float currentCoinScale;
         KeyboardState lastKeyboardState;
         Vector2 offset;
@@ -482,7 +484,7 @@ namespace Level_Creator
                     + "     Powerup Type: " + powerupTypeString +"("+currentPowerupType.ToString()+")";
 
                 if (posArray.Count > 1)
-                    toDisplay += "     Last Planet Distance: "+(posArray[posArray.Count - 2].pos - posArray[posArray.Count - 1].pos).Length().ToString();
+                    toDisplay += "     Last Planet Distance: " + getDistanceBetweenLastPlanets().ToString();
 
                 int offsetPixels = 200;
                 if (keyboardState.IsKeyDown(Keys.Up) && lastKeyboardState.IsKeyUp(Keys.Up))
@@ -508,20 +510,116 @@ namespace Level_Creator
             }
         }
 
+        private float getDistanceBetweenLastPlanets()
+        {
+            return (posArray[posArray.Count - 2].pos - posArray[posArray.Count - 1].pos).Length();
+        }
+
+       
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            if (timeSinceOutput<150)
-                GraphicsDevice.Clear(new Color(51,255,0));
+            if (timeSinceOutput < 150)
+            {
+                if (thereIsAnError==false)
+                GraphicsDevice.Clear(new Color(51, 255, 0));
+                else
+                    GraphicsDevice.Clear(new Color(255, 0, 0));
+            }
             else
-            GraphicsDevice.Clear(Color.Black);
+                GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
 
             spriteBatch.DrawString(font, "'P'= Powerup (scroll changes type).     'A' = Asteroid      'C' = Coin      'D' = Delete      'L' = Load (from input.txt)      'R' = Rotate\n'O' outputs code to \"output.txt\" in the exe's directory.     'F' displays iPhone's frame size.     Middle click to delete.      Arrow keys scroll.\n" + toDisplay, new Vector2(10, 
                 graphics.GraphicsDevice.Viewport.Height - 65), Color.Red);
+
+            whereToDisplayFirstErrorMessageY = 80;
+            thereIsAnError = false;
+
+            try
+            {
+            bool stuffLeftOfFirstPlanet = false;
+            bool stuffRightOfLastPlanet = false;
+            bool coinNotScaleOne = false;
+
+
+            if (posArrayPowerups.Count > 2)
+                displayMessage(false, "There are more than two powerups placed");
+            if (posArrayForFrame.Count < 1)
+                displayMessage(false, "There are no frames placed. Use frames (the 'f' key) to align flight paths.");
+            if (getDistanceBetweenLastPlanets() < 352.0f)
+                displayMessage(false, "The distance between the last two placed planets is probably too small.");
+            if (getDistanceBetweenLastPlanets() > 935.0f)
+                displayMessage(false, "The distance between the last two placed planets is probably too big.");
+
+            if (posArray.Count > 7)
+                displayMessage(false, "There are more than 7 planets placed.");
+            
+            foreach (posScaleStruct pstruct in posArrayCoin)
+            {
+                if (pstruct.pos.X < posArray[0].pos.X)
+                    stuffLeftOfFirstPlanet = true;
+                if (pstruct.pos.X > posArray[posArray.Count - 1].pos.X)
+                    stuffRightOfLastPlanet = true;
+
+                if (coinNotScaleOne == false)
+                    if (Math.Abs(pstruct.scale - 1) > .05)
+                        coinNotScaleOne = true;
+            }
+            if (coinNotScaleOne)
+                displayMessage(false, "Not all coins placed have a scale of 1.");
+
+            if (posArray.Count < 4)
+                displayMessage(true, "There are less than 4 planets placed.");
+            if (Math.Abs(posArray[0].scale - 1) > .05f)
+                displayMessage(true, "The first planet's scale is not 1.");
+            if (Math.Abs(posArray[posArray.Count - 1].scale - 1) > .05)
+                displayMessage(true, "The last planet's scale is not 1.");
+
+            foreach (posScaleStruct pstruct in posArrayAsteroid)
+            {
+                if (pstruct.pos.X < posArray[0].pos.X)
+                    stuffLeftOfFirstPlanet = true;
+                if (pstruct.pos.X > posArray[posArray.Count-1].pos.X)
+                    stuffRightOfLastPlanet = true;
+            }
+            if (stuffLeftOfFirstPlanet == false || stuffRightOfLastPlanet ==false)
+             foreach (posScaleStruct pstruct in posArrayAsteroid)
+            {
+                if (pstruct.pos.X < posArray[0].pos.X)
+                    stuffLeftOfFirstPlanet = true;
+                if (pstruct.pos.X > posArray[posArray.Count - 1].pos.X)
+                    stuffRightOfLastPlanet = true;
+            }
+            if (stuffLeftOfFirstPlanet == false || stuffRightOfLastPlanet == false)
+            foreach (posScaleStruct pstruct in posArrayPowerups)
+            {
+                if (pstruct.pos.X < posArray[0].pos.X)
+                    stuffLeftOfFirstPlanet = true;
+                if (pstruct.pos.X > posArray[posArray.Count - 1].pos.X)
+                    stuffRightOfLastPlanet = true;
+            }
+            if (stuffLeftOfFirstPlanet == false || stuffRightOfLastPlanet == false)
+           
+
+            if (stuffLeftOfFirstPlanet)
+                displayMessage(true, "Objects are placed before the first planet");
+            if (stuffRightOfLastPlanet)
+                displayMessage(true, "Objects are placed after the last planet");
+            
+             for (int i = 1; i < posArray.Count; i++) {
+                 if (posArray[i].pos.X < posArray[i - 1].pos.X) {
+                     displayMessage(true, "The planets do not go from left to right.");
+                     break;
+                 }
+             }
+          
+            }
+            catch { }
 
             int index = 0;
             foreach (posScaleStruct pstruct in posArray)
@@ -577,6 +675,21 @@ namespace Level_Creator
             
             spriteBatch.End();
             base.Draw(gameTime);
+        }
+
+        private void displayMessage(bool isError, string message)
+        {
+            if (isError)
+                thereIsAnError = true;
+            string initialText = "Warning: ";
+            Color color = Color.Yellow;
+            if (isError)
+            {
+                initialText = "ERROR: ";
+                color = Color.Red;
+            }
+            spriteBatch.DrawString(font, initialText + message, new Vector2(20, whereToDisplayFirstErrorMessageY), color);
+            whereToDisplayFirstErrorMessageY += 22;
         }
 
         private Vector2 DrawHelperString(int index, Vector2 pos, float scale)
