@@ -39,25 +39,16 @@
     NSMutableArray *upgrades = [[UpgradeManager sharedInstance] upgradeItems];
     NSMutableArray *upgradeCodes = [[NSMutableArray alloc] init];
     for (UpgradeItem *item in upgrades) {
-        BOOL A = item.exclusive;
-        BOOL B = item.purchased;
-        BOOL C = item.equipped;
-        if (A && B && C) {
+        BOOL A = item.purchased;
+        BOOL B = item.equipped;
+        if (A && B) {
             [upgradeCodes addObject:[NSNumber numberWithInt:0]];
-        } else if (A && B && !C) {
+        } else if (A && !B) {
             [upgradeCodes addObject:[NSNumber numberWithInt:1]];
-        } else if (A && !B && C) {
+        } else if (!A && B) {
             [upgradeCodes addObject:[NSNumber numberWithInt:2]];
-        } else if (A && !B && !C) {
-            [upgradeCodes addObject:[NSNumber numberWithInt:3]];
-        } else if (!A && B && C) {
-            [upgradeCodes addObject:[NSNumber numberWithInt:4]];
-        } else if (!A && B && !C) {
-            [upgradeCodes addObject:[NSNumber numberWithInt:5]];
-        } else if (!A && !B && C) {
-            [upgradeCodes addObject:[NSNumber numberWithInt:6]];
         } else {
-            [upgradeCodes addObject:[NSNumber numberWithInt:7]];
+            [upgradeCodes addObject:[NSNumber numberWithInt:3]];
         }
     }
     
@@ -114,26 +105,15 @@
     //5 = PERKS
     
     if (!upgradeCodes) {
-        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Star Magnet" description:@"Increase the duration and effective range of the Star Magnet powerup." price:10 type:3 exclusive:NO purchased:NO equipped:NO]];
-        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Armor" description:@"Increase the duration of the Asteroid Armor powerup." price:2000 type:3 exclusive:NO purchased:NO equipped:NO]];
-        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Nitrous Rocket" description:@"Increase the strength of your rocket to fly faster through space." price:4000 type:3 exclusive:NO purchased:NO equipped:NO]];
-        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Double Stars" description:@"A great long-term investment - each star you collect is worth two." price:8000 type:3 exclusive:NO purchased:NO equipped:NO]];
-        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Lithium Ion Battery" description:@"Increase your battery's efficiency to allow you to fly deeper into space." price:16000 type:3 exclusive:NO purchased:NO equipped:NO]];
-        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Starting Powerup" description:@"Start each game with a random powerup." price:32000 type:3 exclusive:NO purchased:NO equipped:NO]];
+        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Star Magnet" description:@"Increase the duration and effective range of the Star Magnet powerup." price:10 type:3 purchased:NO equipped:NO]];
+        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Armor" description:@"Increase the duration of the Asteroid Armor powerup." price:2000 type:3 purchased:NO equipped:NO]];
+        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Nitrous Rocket" description:@"Increase the strength of your rocket to fly faster through space." price:4000 type:3 purchased:NO equipped:NO]];
+        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Double Stars" description:@"A great long-term investment - each star you collect is worth two." price:8000 type:3 purchased:NO equipped:NO]];
+        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Lithium Ion Battery" description:@"Increase your battery's efficiency to allow you to fly deeper into space." price:16000 type:3 purchased:NO equipped:NO]];
+        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Starting Powerup" description:@"Start each game with a random powerup." price:32000 type:3 purchased:NO equipped:NO]];
         
         
-        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Star Magnet" description:@"Increase the duration and effective range of the Star Magnet powerup." price:10 type:3 exclusive:NO purchased:NO equipped:NO]];
-        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Armor" description:@"Increase the duration of the Asteroid Armor powerup." price:2000 type:3 exclusive:NO purchased:NO equipped:NO]];
-        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Nitrous Rocket" description:@"Increase the strength of your rocket to fly faster through space." price:4000 type:3 exclusive:NO purchased:NO equipped:NO]];
-        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Double Stars" description:@"A great long-term investment - each star you collect is worth two." price:8000 type:3 exclusive:NO purchased:NO equipped:NO]];
-        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Lithium Ion Battery" description:@"Increase your battery's efficiency to allow you to fly deeper into space." price:16000 type:3 exclusive:NO purchased:NO equipped:NO]];
-        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Starting Powerup" description:@"Start each game with a random powerup." price:32000 type:3 exclusive:NO purchased:NO equipped:NO]];
-        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Star Magnet" description:@"Increase the duration and effective range of the Star Magnet powerup." price:10 type:3 exclusive:NO purchased:NO equipped:NO]];
-        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Armor" description:@"Increase the duration of the Asteroid Armor powerup." price:2000 type:3 exclusive:NO purchased:NO equipped:NO]];
-        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Nitrous Rocket" description:@"Increase the strength of your rocket to fly faster through space." price:4000 type:3 exclusive:NO purchased:NO equipped:NO]];
-        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Double Stars" description:@"A great long-term investment - each star you collect is worth two." price:8000 type:3 exclusive:NO purchased:NO equipped:NO]];
-        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Lithium Ion Battery" description:@"Increase your battery's efficiency to allow you to fly deeper into space." price:16000 type:3 exclusive:NO purchased:NO equipped:NO]];
-        [upgrades addObject:[[UpgradeItem alloc] initWithTitle:@"Starting Powerup" description:@"Start each game with a random powerup." price:32000 type:3 exclusive:NO purchased:NO equipped:NO]];
+        
         
         
         [[UpgradeManager sharedInstance] setUpgradeItems:upgrades];
@@ -142,35 +122,15 @@
             NSNumber *number = [upgradeCodes objectAtIndex:i];
             UpgradeItem *item = [[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:i];
             if ([number intValue] == 0) {
-                item.exclusive = YES;
                 item.purchased = YES;
                 item.equipped = YES;
             } else if ([number intValue] == 1) {
-                item.exclusive = YES;
                 item.purchased = YES;
                 item.equipped = NO;
             } else if ([number intValue] == 2) {
-                item.exclusive = YES;
-                item.purchased = NO;
-                item.equipped = YES;
-            } else if ([number intValue] == 3) {
-                item.exclusive = YES;
-                item.purchased = NO;
-                item.equipped = NO;
-            } else if ([number intValue] == 4) {
-                item.exclusive = NO;
-                item.purchased = YES;
-                item.equipped = YES;
-            } else if ([number intValue] == 5) {
-                item.exclusive = NO;
-                item.purchased = YES;
-                item.equipped = NO;
-            } else if ([number intValue] == 6) {
-                item.exclusive = NO;
                 item.purchased = NO;
                 item.equipped = YES;
             } else {
-                item.exclusive = NO;
                 item.purchased = NO;
                 item.equipped = NO;
             }
