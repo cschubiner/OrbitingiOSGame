@@ -209,6 +209,10 @@
 		C43AF01915D43043001FF7D9 /* generalSpritesheet-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF01515D43043001FF7D9 /* generalSpritesheet-hd.pvr.ccz */; };
 		C43AF01A15D43043001FF7D9 /* generalSpritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AF01615D43043001FF7D9 /* generalSpritesheet.plist */; };
 		C43AF01B15D43043001FF7D9 /* generalSpritesheet.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AF01715D43043001FF7D9 /* generalSpritesheet.pvr.ccz */; };
+		C43BA06115E840230011CD1D /* countdown_font-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = C43BA05D15E840230011CD1D /* countdown_font-hd.fnt */; };
+		C43BA06215E840230011CD1D /* countdown_font-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C43BA05E15E840230011CD1D /* countdown_font-hd.png */; };
+		C43BA06315E840230011CD1D /* countdown_font.fnt in Resources */ = {isa = PBXBuildFile; fileRef = C43BA05F15E840230011CD1D /* countdown_font.fnt */; };
+		C43BA06415E840230011CD1D /* countdown_font.png in Resources */ = {isa = PBXBuildFile; fileRef = C43BA06015E840230011CD1D /* countdown_font.png */; };
 		C43F5E6C15C70352003BDF73 /* DDGameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C43F5E6415C70352003BDF73 /* DDGameKitHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C43F5E6E15C70352003BDF73 /* DDGameKitHelperDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43F5E6915C70352003BDF73 /* DDGameKitHelperDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C43F5E7315C7043F003BDF73 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C43F5E7215C7043F003BDF73 /* GameKit.framework */; };
@@ -652,6 +656,10 @@
 		C43AF01515D43043001FF7D9 /* generalSpritesheet-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "generalSpritesheet-hd.pvr.ccz"; sourceTree = "<group>"; };
 		C43AF01615D43043001FF7D9 /* generalSpritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = generalSpritesheet.plist; sourceTree = "<group>"; };
 		C43AF01715D43043001FF7D9 /* generalSpritesheet.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = generalSpritesheet.pvr.ccz; sourceTree = "<group>"; };
+		C43BA05D15E840230011CD1D /* countdown_font-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "countdown_font-hd.fnt"; sourceTree = "<group>"; };
+		C43BA05E15E840230011CD1D /* countdown_font-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "countdown_font-hd.png"; sourceTree = "<group>"; };
+		C43BA05F15E840230011CD1D /* countdown_font.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = countdown_font.fnt; sourceTree = "<group>"; };
+		C43BA06015E840230011CD1D /* countdown_font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = countdown_font.png; sourceTree = "<group>"; };
 		C43F5E6415C70352003BDF73 /* DDGameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDGameKitHelper.m; sourceTree = "<group>"; };
 		C43F5E6515C70352003BDF73 /* DDGameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGameKitHelper.h; sourceTree = "<group>"; };
 		C43F5E6815C70352003BDF73 /* DDGameKitHelperDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGameKitHelperDelegate.h; sourceTree = "<group>"; };
@@ -1349,6 +1357,10 @@
 		0C7AA60315946939000B58F2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C43BA05D15E840230011CD1D /* countdown_font-hd.fnt */,
+				C43BA05E15E840230011CD1D /* countdown_font-hd.png */,
+				C43BA05F15E840230011CD1D /* countdown_font.fnt */,
+				C43BA06015E840230011CD1D /* countdown_font.png */,
 				0C87DA6715E76CF8009254CE /* starStashParticle.plist */,
 				0C87DA6815E76CF8009254CE /* starStashParticleTexture-hd.png */,
 				0C87DA6915E76CF8009254CE /* starStashParticleTexture.png */,
@@ -2250,6 +2262,10 @@
 				FA36364315E7765700D41409 /* soundmutedpressed.png in Resources */,
 				FA36364415E7765700D41409 /* soundpressed-hd.png in Resources */,
 				FA36364515E7765700D41409 /* soundpressed.png in Resources */,
+				C43BA06115E840230011CD1D /* countdown_font-hd.fnt in Resources */,
+				C43BA06215E840230011CD1D /* countdown_font-hd.png in Resources */,
+				C43BA06315E840230011CD1D /* countdown_font.fnt in Resources */,
+				C43BA06415E840230011CD1D /* countdown_font.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
