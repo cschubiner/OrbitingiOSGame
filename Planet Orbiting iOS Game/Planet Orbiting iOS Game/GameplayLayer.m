@@ -362,7 +362,7 @@ typedef struct {
     [[UpgradeValues sharedInstance] setCoinMagnetDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:0] equipped]];
     
     [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] equipped]];
-    
+     
     [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.9 + .037*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] equipped]];
     
     if ([[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped])
@@ -424,6 +424,9 @@ typedef struct {
     hudLayer = [[CCLayer alloc] init];
     cameraLayer = [[CCLayer alloc] init];
     [cameraLayer setAnchorPoint:CGPointZero];
+    
+    starStashParticle = [CCParticleSystemQuad particleWithFile:@"starStashParticle.plist"];
+    [starStashParticle stopSystem];
     
     cometParticle = [CCParticleSystemQuad particleWithFile:@"cometParticle.plist"];
     playerExplosionParticle = [CCParticleSystemQuad particleWithFile:@"playerExplosionParticle.plist"];
@@ -1669,9 +1672,16 @@ typedef struct {
         
         [starStashLabel setString:[NSString stringWithFormat:@"%d",[[UserWallet sharedInstance]getBalance]]];
         id increaseNumber = [CCCallBlock actionWithBlock:(^{
-            [starStashLabel setString:[NSString stringWithFormat:@"%d",starStashLabel.string.intValue+1]];
+            [starStashLabel setString:[NSString stringWithFormat:@"%d",starStashLabel.string.intValue+[self RandomBetween:2 maxvalue:5]]];
         })];
-        [starStashLabel runAction:[CCSequence actions:[CCRepeat actionWithAction:[CCSequence actions:increaseNumber,[CCDelayTime actionWithDuration:.01], nil] times:510], nil]];
+        id displayParticles = [CCCallBlock actionWithBlock:(^{
+            [self addChild:starStashParticle];
+            [starStashParticle setPosition:starStashLabel.position];
+            [starStashParticle resetSystem];
+        })];
+        [starStashLabel runAction:[CCSequence actions:[CCRepeat actionWithAction:[CCSequence actions:increaseNumber,
+                                                                                  [CCDelayTime actionWithDuration:.003],
+                                                                                  nil] times:510],displayParticles, nil]];
         
         [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
         
@@ -2028,9 +2038,9 @@ float lerpf(float a, float b, float t) {
     banner.position = ccp(240, 298);
     [layerToAdd addChild:banner];
     
-    CCLabelTTF* pauseText = [CCLabelTTF labelWithString:@"GAME PAUSED" fontName:@"HelveticaNeue-CondensedBold" fontSize:32];
+    CCLabelTTF* pauseText = [CCLabelTTF labelWithString:@"GAME PAUSED" fontName:@"HelveticaNeue-CondensedBold" fontSize:38];
     [layerToAdd addChild:pauseText];
-    pauseText.position = ccp(240, 302);
+    pauseText.position = ccp(240, 301);
     
     CCMenuItem *replay = [CCMenuItemImage
                           itemFromNormalImage:@"retry.png" selectedImage:@"retrypressed.png"
@@ -2043,7 +2053,7 @@ float lerpf(float a, float b, float t) {
     resume.position = ccp(360, 20);
     
     CCMenuItem *quit = [CCMenuItemImage
-                        itemFromNormalImage:@"giveup.png" selectedImage:@"giveuppressed.png"
+                        itemFromNormalImage:@"quit.png" selectedImage:@"quitpressed.png"
                         target:self selector:@selector(endGame)];
     quit.position = ccp(120, 20);
     
@@ -2051,7 +2061,7 @@ float lerpf(float a, float b, float t) {
                    itemFromNormalImage:@"sound.png" selectedImage:@"soundpressed.png"
                    target:self selector:@selector(toggleMute)];
     CCMenuItem *sound = soundButton;
-    sound.position = ccp(452, 305);
+    sound.position = ccp(449, 301);
     
     
     CCMenu* menu = [CCMenu menuWithItems:replay, resume, quit, sound, nil];
@@ -2094,9 +2104,9 @@ float lerpf(float a, float b, float t) {
     } else {
         [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0];
         [[SimpleAudioEngine sharedEngine] setEffectsVolume:0];
-        [soundButton setNormalImage:[CCSprite spriteWithFile:@"muted.png"]];
-        [soundButton setSelectedImage:[CCSprite spriteWithFile:@"mutedpressed.png"]];
-        [soundButton setDisabledImage:[CCSprite spriteWithFile:@"muted.png"]];
+        [soundButton setNormalImage:[CCSprite spriteWithFile:@"soundmuted.png"]];
+        [soundButton setSelectedImage:[CCSprite spriteWithFile:@"soundmutedpressed.png"]];
+        [soundButton setDisabledImage:[CCSprite spriteWithFile:@"soundmuted.png"]];
     }
     [[PlayerStats sharedInstance] setIsMuted:muted];
 }

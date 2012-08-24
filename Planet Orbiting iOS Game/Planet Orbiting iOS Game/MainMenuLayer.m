@@ -204,10 +204,12 @@ const float effectsVolumeMainMenu = 1;
             [layer setPosition:ccp(-480*2, -320)];
         else
             [layer setPosition:ccp(-480, -320)];
-        [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setCameFromUpgrades:false];
         [self addChild:layer];
         
-        [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic_new.mp3" loop:YES];
+        if (![((AppDelegate*)[[UIApplication sharedApplication]delegate]) getCameFromUpgrades])
+            [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic_new.mp3" loop:YES];
+        
+        [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setCameFromUpgrades:false];
 	}
 	return self;
 }

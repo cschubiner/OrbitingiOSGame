@@ -114,6 +114,7 @@
     
     float totalSecondsAlive;
     CCLabelBMFont * starStashLabel;
+    CCParticleSystemQuad * starStashParticle;
     CCParticleSystemQuad * playerSpawnedParticle;
     CCParticleSystemQuad * thrustParticle;
     CCParticleSystemQuad * thrustBurstParticle;
