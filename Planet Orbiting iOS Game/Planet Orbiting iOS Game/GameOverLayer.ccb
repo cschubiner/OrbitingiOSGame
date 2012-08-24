@@ -804,8 +804,8 @@
 				<dict>
 					<key>anchorPoint</key>
 					<array>
-						<real>0.0</real>
-						<real>0.0</real>
+						<real>0.5</real>
+						<real>0.5</real>
 					</array>
 					<key>color</key>
 					<array>
@@ -836,8 +836,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>203.078125</real>
-						<real>129.73828125</real>
+						<real>230</real>
+						<real>142.95703125</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
