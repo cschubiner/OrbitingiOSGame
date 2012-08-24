@@ -2048,7 +2048,7 @@ float lerpf(float a, float b, float t) {
     
     CCLabelTTF* pauseText = [CCLabelTTF labelWithString:@"GAME PAUSED" fontName:@"HelveticaNeue-CondensedBold" fontSize:38];
     [layerToAdd addChild:pauseText];
-    pauseText.position = ccp(240, 300);
+    pauseText.position = ccp(240, 301);
     
     CCMenuItem *replay = [CCMenuItemImage
                           itemFromNormalImage:@"retry.png" selectedImage:@"retrypressed.png"
@@ -2069,7 +2069,7 @@ float lerpf(float a, float b, float t) {
                    itemFromNormalImage:@"sound.png" selectedImage:@"soundpressed.png"
                    target:self selector:@selector(toggleMute)];
     CCMenuItem *sound = soundButton;
-    sound.position = ccp(449, 300);
+    sound.position = ccp(449, 301);
     
     
     CCMenu* menu = [CCMenu menuWithItems:replay, resume, quit, sound, nil];
