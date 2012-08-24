@@ -370,7 +370,7 @@ typedef struct {
     [[UpgradeValues sharedInstance] setCoinMagnetDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:0] equipped]];  //this line crashes because upgradeItems is unititialized. fix it t GO!!!
     
     [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] equipped]];
-    
+     
     [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.9 + .037*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] equipped]];
     
     if ([[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped])
