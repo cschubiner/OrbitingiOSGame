@@ -2049,10 +2049,11 @@ float lerpf(float a, float b, float t) {
                         target:self selector:@selector(endGame)];
     quit.position = ccp(120, 20);
     
-    CCMenuItem *sound = [CCMenuItemImage
-                        itemFromNormalImage:@"sound.png" selectedImage:@"soundpressed.png"
-                        target:self selector:@selector(endGame)];
-    sound.position = ccp(450, 300);
+    soundButton = [CCMenuItemImage
+                   itemFromNormalImage:@"sound.png" selectedImage:@"soundpressed.png"
+                   target:self selector:@selector(toggleMute)];
+    CCMenuItem *sound = soundButton;
+    sound.position = ccp(452, 305);
     
     
     CCMenu* menu = [CCMenu menuWithItems:replay, resume, quit, sound, nil];
@@ -2095,9 +2096,9 @@ float lerpf(float a, float b, float t) {
     } else {
         [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0];
         [[SimpleAudioEngine sharedEngine] setEffectsVolume:0];
-        [soundButton setNormalImage:[CCSprite spriteWithFile:@"soundoff.png"]];
-        [soundButton setSelectedImage:[CCSprite spriteWithFile:@"soundoffpressed.png"]];
-        [soundButton setDisabledImage:[CCSprite spriteWithFile:@"soundoff.png"]];
+        [soundButton setNormalImage:[CCSprite spriteWithFile:@"muted.png"]];
+        [soundButton setSelectedImage:[CCSprite spriteWithFile:@"mutedpressed.png"]];
+        [soundButton setDisabledImage:[CCSprite spriteWithFile:@"muted.png"]];
     }
     [[PlayerStats sharedInstance] setIsMuted:muted];
 }
