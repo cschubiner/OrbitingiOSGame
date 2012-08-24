@@ -44,10 +44,13 @@
     
     toastView.position = fromPos;
     
-    id moveIn = [CCMoveTo actionWithDuration:.5 position:toPos];
-    id wait = [CCDelayTime actionWithDuration:2];
-    id moveOut = [CCMoveTo actionWithDuration:2 position:fromPos];
-    id actions = [CCSequence actions:moveIn, wait, moveOut, nil];
+    id moveIn = [CCMoveTo actionWithDuration:fadeInTime position:toPos];
+    id wait = [CCDelayTime actionWithDuration:waitTime];
+    id moveOut = [CCMoveTo actionWithDuration:fadeOutTime position:fromPos];
+    id removeLoadingLayer = [CCCallBlock actionWithBlock:(^{
+        [view removeChild:toastView cleanup:YES];
+    })];
+    id actions = [CCSequence actions:moveIn, wait, moveOut, removeLoadingLayer, nil];
     [toastView runAction:actions];
     toastView.zOrder = INT_MAX;
     
