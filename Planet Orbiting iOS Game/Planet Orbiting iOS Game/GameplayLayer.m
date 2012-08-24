@@ -732,7 +732,7 @@ typedef struct {
         player.acceleration = CGPointZero;
     }
     
-    // camera code follows -----------------------------
+    //camera code follows -----------------------------
     Planet * nextPlanet;
     if (lastPlanetVisited.number +1 < [planets count])
         nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
@@ -1678,8 +1678,7 @@ typedef struct {
             [pauseLayer addChild:underscore];
             [underscore setPosition:ccp(displayName.position.x + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, displayName.position.y)];
             
-            id action = [CCBlink actionWithDuration:1 blinks:1];
-            [underscore runAction: [CCRepeatForever actionWithAction: action]];
+            [underscore runAction: [CCRepeatForever actionWithAction: [CCBlink actionWithDuration:5 blinks:5]]];
         }
         
         [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
