@@ -12,6 +12,8 @@
 #import "UserWallet.h"
 #import "CCDirector.h"
 #import "MainMenuLayer.h"
+#import "SimpleAudioEngine.h"
+#import "DataStorage.h"
 
 @implementation UpgradesLayer {
     CCLayer* scrollView;
@@ -34,7 +36,7 @@
     bool moved;
     
     CCLayer* purchaseLayer;
-    
+    UpgradeItem* pushedItem;
     
     NSMutableArray* upgradeIndecesHere;
     NSMutableArray* cells;
@@ -64,6 +66,7 @@
         self.isTouchEnabled= TRUE;
         indexPushed = [[UpgradeManager sharedInstance] buttonPushed];
         
+        [[UserWallet sharedInstance] setBalance:10000];
         
         scrollView = [[CCLayer alloc] init];
         [self addChild:scrollView];
@@ -87,7 +90,7 @@
         else if (indexPushed == 5)
             stringToUse = @"PERKS";
         
-        CCLabelTTF* pauseText = [CCLabelTTF labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:38];
+        CCLabelTTF* pauseText = [CCLabelTTF labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:32];
         [self addChild:pauseText];
         pauseText.position = ccp(240, 299);
         
@@ -181,16 +184,17 @@
         [cell setPosition:ccp(0, -55*i)];
     }
     
-    [self refreshUpgradeCells];
+    //[self refreshUpgradeCells];
 }
 
 
 - (void)refreshUpgradeCells {
-    //NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
-    for (int i = 0; i < [cells count]; i++) {
-        //UpgradeCell *cell = [cells objectAtIndex:i];
-        //UpgradeItem *item = [upgradeItems objectAtIndex:i];
-    }
+
+    [scrollView removeFromParentAndCleanup:true];
+    scrollView = [[CCLayer alloc] init];
+    [self addChild:scrollView];
+    
+    [self initUpgradeLayer];
     
     [totalStars setString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]]];
 }
@@ -334,6 +338,7 @@
 }
 
 - (void) tappedUpgrade:(UpgradeItem*)item {
+    pushedItem = item;
     purchaseLayer = [self createPurchaseDialogWithItem:item];
     [self addChild:purchaseLayer];
     self.isTouchEnabled = false;
@@ -354,15 +359,37 @@
     label0.position = ccp(240, 160);
     [purchaseLayer addChild:label0];
     
-    CCMenuItem *resume = [CCMenuItemImage
-                          itemFromNormalImage:@"resume.png" selectedImage:@"resumepressed.png"
-                          target:self selector:@selector(pressedPurchaseButton)];
-    resume.position = ccp(360, 20);
+    CCMenuItem *resume;
+    
+    
+    
+    if (item.purchased) {
+        
+        int pushed = [[UpgradeManager sharedInstance] buttonPushed];
+        if (pushed == 0 || pushed == 1 || pushed == 5) {
+            resume = [CCMenuItemImage
+                      itemFromNormalImage:@"equip.png" selectedImage:@"equippressed.png"
+                      target:self selector:@selector(pressedEquipButton)];
+        } else {
+            
+            resume = [CCMenuItemImage
+                      itemFromNormalImage:@"purchasedisabled.png" selectedImage:@"purchasedisabled.png"
+                      target:self selector:@selector(pressedEquipButton)];
+        }
+        
+    }
+    
+    
+    
+    
+    resume.scale = 1.3;
+    resume.position = ccp(340, 22);
     
     CCMenuItem *quit = [CCMenuItemImage
-                        itemFromNormalImage:@"back.png" selectedImage:@"backpressed.png"
+                        itemFromNormalImage:@"cancel.png" selectedImage:@"cancelpressed.png"
                         target:self selector:@selector(removePurchasePopup)];
-    quit.position = ccp(120, 20);
+    quit.scale = 1.3;
+    quit.position = ccp(140, 22);
     
     
     CCMenu* menu = [CCMenu menuWithItems:resume, quit, nil];
@@ -377,8 +404,38 @@
     self.isTouchEnabled = true;
 }
 
-- (void) pressedPurchaseButton {
+- (void) pressedEquipButton {
     
+}
+
+- (void) pressedPurchaseButton {
+    int curBalance = [[UserWallet sharedInstance] getBalance];
+    
+    
+    if (curBalance >= pushedItem.price) {
+        
+        [self playSound:@"purchase.wav" shouldLoop:false pitch:1];
+        int newBalance = curBalance - pushedItem.price;
+        [[UserWallet sharedInstance] setBalance:newBalance];
+        
+        int pushed = [[UpgradeManager sharedInstance] buttonPushed];
+        if (pushed == 0 || pushed == 1 || pushed == 5) {
+            for (int i = 0; i < [upgradeIndecesHere count]; i++) {
+                [[UpgradeManager sharedInstance] setUpgradeIndex:[[upgradeIndecesHere objectAtIndex:i] intValue] equipped:false];
+            }
+        }
+        
+        [[UpgradeManager sharedInstance] setUpgradeIndex:pushedItem.number purchased:true equipped:true];
+        
+        [self completeObjectiveFromGroupNumber:0 itemNumber:1];
+        
+        [DataStorage storeData];
+        [self refreshUpgradeCells];
+
+    }
+    
+    [self removePurchasePopup];
+
 }
 
 /*
@@ -415,7 +472,20 @@
 
 
 
+- (ALuint)playSound:(NSString*)soundFile shouldLoop:(bool)shouldLoop pitch:(float)pitch{
+    //[Kamcord playSound:soundFile loop:shouldLoop];
+    if (shouldLoop)
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:soundFile loop:YES];
+    else
+        return [[SimpleAudioEngine sharedEngine]playEffect:soundFile pitch:pitch pan:0 gain:1];
+    return 0;
+}
 
+
+
+-(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber {
+    [[ObjectiveManager sharedInstance] completeObjectiveFromGroupNumber:a_groupNumber itemNumber:a_itemNumber view:self];
+}
 
 
 
