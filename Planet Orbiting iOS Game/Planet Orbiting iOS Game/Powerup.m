@@ -40,7 +40,7 @@
             
         } else if (type == kautopilot) { //autopilot powerup
             
-            duration = 5*60*1.7; //JJ's headstart lasts 5 seconds
+            duration = [[UpgradeValues sharedInstance] autopilotDuration]; //JJ's headstart lasts 5 seconds
             title = @"Autopilot";
             coinSprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
             glowSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];

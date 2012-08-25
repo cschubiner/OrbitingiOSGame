@@ -413,6 +413,7 @@
 		FA00EC3215E8BF1D00C745BC /* purchasepressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA00EC2C15E8BF1D00C745BC /* purchasepressed.png */; };
 		FA00EC3915E8C6CE00C745BC /* doorClose1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA00EC3715E8C6CE00C745BC /* doorClose1.mp3 */; };
 		FA00EC3A15E8C6CE00C745BC /* doorClose2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA00EC3815E8C6CE00C745BC /* doorClose2.mp3 */; };
+		FA00EC3E15E95FFA00C745BC /* CreditsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FA00EC3D15E95FFA00C745BC /* CreditsLayer.m */; };
 		FA16A0D815D393CB007C52E3 /* UpgradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA16A0D715D393CB007C52E3 /* UpgradeCell.m */; };
 		FA16A16815D63FE0007C52E3 /* popupSextasy-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA16A16615D63FE0007C52E3 /* popupSextasy-hd.png */; };
 		FA16A16915D63FE0007C52E3 /* popupSextasy.png in Resources */ = {isa = PBXBuildFile; fileRef = FA16A16715D63FE0007C52E3 /* popupSextasy.png */; };
@@ -1025,6 +1026,8 @@
 		FA00EC2C15E8BF1D00C745BC /* purchasepressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purchasepressed.png; sourceTree = "<group>"; };
 		FA00EC3715E8C6CE00C745BC /* doorClose1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = doorClose1.mp3; sourceTree = "<group>"; };
 		FA00EC3815E8C6CE00C745BC /* doorClose2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = doorClose2.mp3; sourceTree = "<group>"; };
+		FA00EC3C15E95FFA00C745BC /* CreditsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsLayer.h; sourceTree = "<group>"; };
+		FA00EC3D15E95FFA00C745BC /* CreditsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsLayer.m; sourceTree = "<group>"; };
 		FA16A0D615D393CB007C52E3 /* UpgradeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeCell.h; sourceTree = "<group>"; };
 		FA16A0D715D393CB007C52E3 /* UpgradeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeCell.m; sourceTree = "<group>"; };
 		FA16A16615D63FE0007C52E3 /* popupSextasy-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popupSextasy-hd.png"; sourceTree = "<group>"; };
@@ -1417,6 +1420,8 @@
 				0C1662C815CEA56B00C0D0B9 /* Tutorial.m */,
 				FAC7E08715E5FC3900465756 /* UpgradesLayer.h */,
 				FAC7E08815E5FC3900465756 /* UpgradesLayer.m */,
+				FA00EC3C15E95FFA00C745BC /* CreditsLayer.h */,
+				FA00EC3D15E95FFA00C745BC /* CreditsLayer.m */,
 				01FE9B3A15BFC2C9007512ED /* PlayerStats.h */,
 				01FE9B3B15BFC2C9007512ED /* PlayerStats.m */,
 				C445304D15A68888004F8F48 /* CocosBuilder  */,
@@ -2563,6 +2568,7 @@
 				FAD6725C15E0439000C06929 /* ObjectiveItem.m in Sources */,
 				FAD6725F15E0448C00C06929 /* ObjectiveGroup.m in Sources */,
 				FAC7E08915E5FC3900465756 /* UpgradesLayer.m in Sources */,
+				FA00EC3E15E95FFA00C745BC /* CreditsLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

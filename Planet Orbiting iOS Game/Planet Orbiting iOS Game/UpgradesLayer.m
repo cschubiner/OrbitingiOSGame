@@ -78,7 +78,7 @@
         NSString* stringToUse;
         
         if (indexPushed == 0)
-            stringToUse = @"SPACESHIP TRAILS";
+            stringToUse = @"SPACESHIP TRAIL";
         else if (indexPushed == 1)
             stringToUse = @"ROCKETSHIPS";
         else if (indexPushed == 2)
@@ -340,6 +340,7 @@
 }
 
 - (void) tappedUpgrade:(UpgradeItem*)item {
+    [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
     pushedItem = item;
     purchaseLayer = [self createPurchaseDialogWithItem:item];
     [self addChild:purchaseLayer];
@@ -396,7 +397,7 @@
     
     CCMenuItem *quit = [CCMenuItemImage
                         itemFromNormalImage:@"cancel.png" selectedImage:@"cancelpressed.png"
-                        target:self selector:@selector(removePurchasePopup)];
+                        target:self selector:@selector(pushedCancelButton)];
     quit.scale = 1.3;
     quit.position = ccp(140, 22);
     
@@ -409,9 +410,13 @@
 }
 
 - (void) removePurchasePopup {
-    [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
     [purchaseLayer removeFromParentAndCleanup:true];
     self.isTouchEnabled = true;
+}
+
+- (void) pushedCancelButton {
+    [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
+    [self removePurchasePopup];
 }
 
 - (void) pressedDisabledButton {
@@ -419,7 +424,6 @@
 }
 
 - (void) pressedEquipButton {
-    
     [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
     
     for (int i = 0; i < [upgradeIndecesHere count]; i++) {

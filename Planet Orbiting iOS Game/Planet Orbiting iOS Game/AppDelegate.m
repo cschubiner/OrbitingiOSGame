@@ -27,6 +27,14 @@
     cameFromUpgrades = didComeFromUpgrades;
 }
 
+-(bool)getCameFromCredits {
+    return cameFromCredits;
+}
+
+-(void)setCameFromCredits:(bool)didComeFromCredits {
+    cameFromCredits = didComeFromCredits;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // installs HandleExceptions as the Uncaught Exception Handler
@@ -53,8 +61,9 @@
     
 
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-
+    
     cameFromUpgrades = false;
+    cameFromCredits = false;
     
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

@@ -21,7 +21,7 @@
         fontSize = 20;
         fromTop = true;
         fadeInTime = .5;
-        waitTime = 3;
+        waitTime = 1.5;
         fadeOutTime = .5;
     }
     return self;

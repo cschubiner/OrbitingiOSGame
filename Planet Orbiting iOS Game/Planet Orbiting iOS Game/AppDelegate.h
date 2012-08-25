@@ -22,6 +22,7 @@
     int galaxyCounter;
     
     bool cameFromUpgrades;
+    bool cameFromCredits;
 }
 
 @property (nonatomic, retain) UIWindow *window;
@@ -40,6 +41,9 @@
 
 -(bool)getCameFromUpgrades;
 -(void)setCameFromUpgrades:(bool)didComeFromUpgrades;
+
+-(bool)getCameFromCredits;
+-(void)setCameFromCredits:(bool)didComeFromCredits;
 
 
 @end

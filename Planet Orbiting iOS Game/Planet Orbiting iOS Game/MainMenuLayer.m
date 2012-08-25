@@ -206,7 +206,7 @@ const float effectsVolumeMainMenu = 1;
             [layer setPosition:ccp(-480, -320)];
         [self addChild:layer];
         
-        if (![((AppDelegate*)[[UIApplication sharedApplication]delegate]) getCameFromUpgrades])
+        if (!([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getCameFromUpgrades] || [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getCameFromCredits]))
             [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic_new.mp3" loop:YES];
         
         [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setCameFromUpgrades:false];
@@ -382,11 +382,16 @@ const float effectsVolumeMainMenu = 1;
     [self pressedAnUpgradeButton];
 }
 
+//- (void)pressedRocketShipsButton: (id) sender {
+//    [Flurry logEvent:@"Pressed Rocketships Button"];
+//    [[UpgradeManager sharedInstance] setButtonPushed:1];
+//    [self pressedAnUpgradeButton];
+//}
+
 - (void)pressedRocketShipsButton: (id) sender {
-    [Flurry logEvent:@"Pressed Rocketships Button"];
-    [[UpgradeManager sharedInstance] setButtonPushed:1];
-    [self pressedAnUpgradeButton];
-}
+    [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
+    [[CCDirector sharedDirector] replaceScene:[CreditsLayer scene]];
+    }
 
 - (void)pressedUpgradesButton: (id) sender {
     [Flurry logEvent:@"Pressed Upgrades Button"];

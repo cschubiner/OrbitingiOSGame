@@ -372,9 +372,17 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setMaxBatteryTime:7 + 100*3*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
     
-    [[UpgradeValues sharedInstance] setHasStartPowerup:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped]];
+    [[UpgradeValues sharedInstance] setHasStarMagnet:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped]];
     
-    [[UpgradeValues sharedInstance] setHasHeadStart:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:6] equipped]];
+    [[UpgradeValues sharedInstance] setHasAsteroidArmor:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:6] equipped]];
+    
+    [[UpgradeValues sharedInstance] setHasAutoPilot:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:7] equipped]];
+    
+    [[UpgradeValues sharedInstance] setHasStartPowerup:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:8] equipped]];
+    
+    [[UpgradeValues sharedInstance] setHasHeadStart:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:9] equipped]];
+    
+    [[UpgradeValues sharedInstance] setAutopilotDuration:5*60*1.3 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:10] equipped]];
 }
 
 - (void)startGame {
@@ -496,9 +504,15 @@ typedef struct {
     CGPoint pToUse = ccpAdd(ccpMult(ccpNormalize(ccpSub(planPos, [[planets objectAtIndex:1] sprite].position)), -1*[[planets objectAtIndex:0] orbitRadius]), planPos);
     
     if ([[UpgradeValues sharedInstance] hasHeadStart])
-        [self CreatePowerup:pToUse.x yPos:pToUse.y scale:1 type:4]; //make type 0 for random, 4 for head start
+        [self CreatePowerup:pToUse.x yPos:pToUse.y scale:1 type:kheadStart];
     else if ([[UpgradeValues sharedInstance] hasStartPowerup])
-        [self CreatePowerup:pToUse.x yPos:pToUse.y scale:1 type:0]; //make type 0 for random, 4 for head start
+        [self CreatePowerup:pToUse.x yPos:pToUse.y scale:1 type:krandomPowerup];
+    else if ([[UpgradeValues sharedInstance] hasStarMagnet])
+        [self CreatePowerup:pToUse.x yPos:pToUse.y scale:1 type:kcoinMagnet];
+    else if ([[UpgradeValues sharedInstance] hasAsteroidArmor])
+        [self CreatePowerup:pToUse.x yPos:pToUse.y scale:1 type:kasteroidImmunity];
+    else if ([[UpgradeValues sharedInstance] hasAutoPilot])
+        [self CreatePowerup:pToUse.x yPos:pToUse.y scale:1 type:kautopilot];
     
     cameraDistToUse = 1005.14;
     [cameraLayer setScale:.43608];

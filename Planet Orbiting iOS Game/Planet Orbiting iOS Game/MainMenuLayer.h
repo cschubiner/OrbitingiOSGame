@@ -14,6 +14,7 @@
 #import "AppDelegate.h"
 #import "ObjectiveManager.h"
 #import "UpgradesLayer.h"
+#import "CreditsLayer.h"
 
 @interface MainMenuLayer : CCLayer <UIAlertViewDelegate,GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>{
     CCLayer* layer;

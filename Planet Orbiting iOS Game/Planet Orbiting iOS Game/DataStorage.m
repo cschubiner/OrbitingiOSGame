@@ -105,19 +105,27 @@
     // 5 = PERKS
     
     int countingNumber = 0;
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Star Magnet" description:@"Increase the duration and effective range of the Star Magnet powerup." price:10 type:3 purchased:NO equipped:NO number:countingNumber++]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Star Magnet" description:@"Increase the duration and effective range of the Star Magnet powerup." price:1000 type:3 purchased:NO equipped:NO number:countingNumber++]];
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Armor" description:@"Increase the duration of the Asteroid Armor powerup." price:2000 type:3 purchased:NO equipped:NO number:countingNumber++]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Nitrous Rocket" description:@"Increase the strength of your rocket to fly faster through space." price:4000 type:2 purchased:NO equipped:NO number:countingNumber++]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Nitrous Rocket" description:@"Increase the strength of your rocket to fly faster through space." price:5000 type:2 purchased:NO equipped:NO number:countingNumber++]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Double Stars" description:@"A great long-term investment - each star you collect is worth two." price:8000 type:2 purchased:NO equipped:NO number:countingNumber++]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Double Stars" description:@"A great long-term investment - each star you collect is worth two." price:15000 type:2 purchased:NO equipped:NO number:countingNumber++]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Lithium Ion Battery" description:@"Increase your battery's efficiency to allow you to fly deeper into space." price:16000 type:2 purchased:NO equipped:NO number:countingNumber++]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Lithium Ion Battery" description:@"Increase your battery's efficiency to allow you to fly deeper into space." price:11000 type:2 purchased:NO equipped:NO number:countingNumber++]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Starting Powerup" description:@"Start each game with a random powerup." price:32000 type:5 purchased:NO equipped:NO number:countingNumber++]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Starting Star Magnet" description:@"Start each game with the Star Magnet powerup." price:2000 type:5 purchased:NO equipped:NO number:countingNumber++]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Head Start" description:@"Start each game with a huge speed boost!" price:5000 type:5 purchased:NO equipped:NO number:countingNumber++]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Starting Asteroid Armor" description:@"Start each game with the Asteroid Armor powerup." price:4000 type:5 purchased:NO equipped:NO number:countingNumber++]];
+    
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Starting Autopilot" description:@"Start each game with the Autopilot powerup." price:8000 type:5 purchased:NO equipped:NO number:countingNumber++]];
+    
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Starting Random Powerup" description:@"Start each game with a random powerup." price:4000 type:5 purchased:NO equipped:NO number:countingNumber++]];
+    
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Head Start" description:@"Start each game with a huge speed boost!" price:20000 type:5 purchased:NO equipped:NO number:countingNumber++]];
+    
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Autopilot" description:@"Increase the duration of the Autopilot powerup." price:4000 type:3 purchased:NO equipped:NO number:countingNumber++]];
     
     
     if (upgradeCodes) {
