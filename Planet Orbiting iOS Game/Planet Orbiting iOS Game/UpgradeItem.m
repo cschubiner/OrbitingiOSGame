@@ -10,7 +10,7 @@
 
 @implementation UpgradeItem
 
-- (id)initWithTitle:(NSString *)cTitle description:(NSString *)cDescription price:(int)cPrice type:(int)cType purchased:(BOOL)cPurchased equipped:(BOOL)cEquipped {
+- (id)initWithTitle:(NSString *)cTitle description:(NSString *)cDescription price:(int)cPrice type:(int)cType purchased:(BOOL)cPurchased equipped:(BOOL)cEquipped number:(int)a_number {
     if (self = [super init]) {
         self.title = cTitle;
         self.description = cDescription;
@@ -18,6 +18,7 @@
         self.type = cType;
         self.purchased = cPurchased;
         self.equipped = cEquipped;
+        self.number = a_number;
     }
     return self;
 }

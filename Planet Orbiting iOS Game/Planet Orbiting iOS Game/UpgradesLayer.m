@@ -31,8 +31,10 @@
     bool isTouchingScreen;
     bool wasTouchingScreen;
     int indexPushed;
+    bool moved;
     
     
+    NSMutableArray* upgradeIndecesHere;
     NSMutableArray* cells;
     CCLabelTTF* totalStars;
 }
@@ -179,10 +181,12 @@
     scrollViewHeight = 0;
     NSMutableArray *upgradeItems = [[UpgradeManager sharedInstance] upgradeItems];
     
+    upgradeIndecesHere = [[NSMutableArray alloc] init];
     cells = [[NSMutableArray alloc] init];
     
     for (UpgradeItem* item in upgradeItems) {
         if (item.type == indexPushed) {
+            [upgradeIndecesHere addObject:[NSNumber numberWithInt:item.number]];
             UpgradeCell *cell = [[UpgradeCell alloc] initWithUpgradeItem:item];
             [cells addObject:cell];
             scrollViewHeight += 55;
@@ -256,7 +260,7 @@
     
     position += velocity;
     [scrollView setPosition:CGPointMake(scrollView.position.x, position)];
-    NSLog(@"velocity: %f, position: %f", velocity, position);
+    //NSLog(@"velocity: %f, position: %f", velocity, position);
     //NSLog(@"cur center: %f, height: %f, startingCenter: %f, endingCenter: %f", currentCenter, scrollViewHeight, startingCenter, endingCenter);
     
     
@@ -276,6 +280,7 @@
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     wasTouchingScreen = false;
+    moved = true;
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
@@ -308,11 +313,11 @@
     isTouchingScreen = true;
     velocity = 0;
     enterVelocity = 0;
+    moved = false;
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
         swipeBeginPoint = location;
-        
     }
 }
 
@@ -324,6 +329,26 @@
         location = [[CCDirector sharedDirector] convertToGL:location];
         swipeBeginPoint = location;
         
+        
+        
+        if (!moved && location.y < 275) {
+            NSMutableArray* upgrades = [[UpgradeManager sharedInstance] upgradeItems];
+            
+            NSLog(@"scrollviewPos: %f, tap y value: %f", scrollView.position.y, location.y);
+            float dif = scrollView.position.y - location.y;
+            
+            
+            int totalUpgrades = [upgradeIndecesHere count];
+            
+            for (int i = 0; i < totalUpgrades; i++) {
+                if (dif > 0 && dif < 55*(i + 1)) {
+                    NSLog(@"dif: %f", dif);
+                    NSLog(@"tapped: %@", ((UpgradeItem*)[upgrades objectAtIndex:[[upgradeIndecesHere objectAtIndex: i] intValue]]).title);
+                    break;
+                }
+            }
+            
+        }
     }
 }
 
@@ -331,9 +356,6 @@
     isTouchingScreen = false;
     counter = 1;
 }
-
-
-
 
 - (NSString*)commaInt:(int)num {
     NSNumberFormatter *formatter = [NSNumberFormatter new];

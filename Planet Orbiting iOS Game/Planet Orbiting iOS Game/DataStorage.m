@@ -104,15 +104,16 @@
     // 4 = STARS
     // 5 = PERKS
     
-    if (!upgradeCodes) {
-        [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Star Magnet" description:@"Increase the duration and effective range of the Star Magnet powerup." price:10 type:3 purchased:NO equipped:NO]];
-        [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Armor" description:@"Increase the duration of the Asteroid Armor powerup." price:2000 type:3 purchased:NO equipped:NO]];
-        [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Nitrous Rocket" description:@"Increase the strength of your rocket to fly faster through space." price:4000 type:3 purchased:NO equipped:NO]];
-        [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Double Stars" description:@"A great long-term investment - each star you collect is worth two." price:8000 type:3 purchased:NO equipped:NO]];
-        [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Lithium Ion Battery" description:@"Increase your battery's efficiency to allow you to fly deeper into space." price:16000 type:3 purchased:NO equipped:NO]];
-        [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Starting Powerup" description:@"Start each game with a random powerup." price:32000 type:3 purchased:NO equipped:NO]];
-    } else {
-        for (int i = 0; i < [[[UpgradeManager sharedInstance] upgradeItems] count]; i++) {
+    int countingNumber = 0;
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Star Magnet" description:@"Increase the duration and effective range of the Star Magnet powerup." price:10 type:3 purchased:NO equipped:NO number:countingNumber++]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Asteroid Armor" description:@"Increase the duration of the Asteroid Armor powerup." price:2000 type:3 purchased:NO equipped:NO number:countingNumber++]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Nitrous Rocket" description:@"Increase the strength of your rocket to fly faster through space." price:4000 type:3 purchased:NO equipped:NO number:countingNumber++]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Double Stars" description:@"A great long-term investment - each star you collect is worth two." price:8000 type:3 purchased:NO equipped:NO number:countingNumber++]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Lithium Ion Battery" description:@"Increase your battery's efficiency to allow you to fly deeper into space." price:16000 type:3 purchased:NO equipped:NO number:countingNumber++]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Starting Powerup" description:@"Start each game with a random powerup." price:32000 type:3 purchased:NO equipped:NO number:countingNumber++]];
+    
+    if (upgradeCodes) {
+        for (int i = 0; i < [upgradeCodes count]; i++) {
             NSNumber *number = [upgradeCodes objectAtIndex:i];
             UpgradeItem *item = [[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:i];
             if ([number intValue] == 0) {
