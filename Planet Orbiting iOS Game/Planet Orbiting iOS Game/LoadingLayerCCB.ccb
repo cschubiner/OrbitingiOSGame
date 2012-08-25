@@ -130,7 +130,7 @@
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
-							<true/>
+							<false/>
 							<key>zOrder</key>
 							<integer>0</integer>
 						</dict>
@@ -190,7 +190,7 @@
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
-							<true/>
+							<false/>
 							<key>zOrder</key>
 							<integer>0</integer>
 						</dict>

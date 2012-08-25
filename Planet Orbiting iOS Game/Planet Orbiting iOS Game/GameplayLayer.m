@@ -24,6 +24,8 @@
 #define pauseLayerTag       100
 #define gameOverLayerTag    200
 #define LOADING_LAYER_TAG   212
+#define LABEL_0_TAG 1219
+
 
 const float musicVolumeGameplay = 1;
 const float effectsVolumeGameplay = 1;
@@ -399,6 +401,7 @@ typedef struct {
     [loadingDidYouKnowLabel runAction:[CCFadeOut actionWithDuration:fadeOutDuration*.5]];
     [loadingLayerBackground runAction:[CCSequence actions:
                                        [CCFadeOut actionWithDuration:fadeOutDuration],removeLoadingLayer, nil]];
+    [[self getChildByTag:LABEL_0_TAG]runAction:[CCFadeOut actionWithDuration:fadeOutDuration*.5]];
     
     [self schedule:@selector(Update:) interval:0];// this makes the update loop loop!!!!
     //[Kamcord startRecording];
@@ -670,6 +673,15 @@ typedef struct {
                                                                                   nil]]];
         })];
         
+        
+        CCLabelTTF* label0 = [CCLabelTTF labelWithString:[helperTextArray objectAtIndex:[self RandomBetween:0 maxvalue:helperTextArray.count-1]] dimensions:CGSizeMake(size.width-40, 55) hAlignment:UITextAlignmentCenter vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+        
+        label0.position = ccp(size.width/2,size.height/2);
+        [label0 setAnchorPoint:ccp(.5,.5)];
+        [label0 setTag:LABEL_0_TAG];
+        [loadingLayer addChild:label0];
+
+        
         [loadingHelperTextLabel setOpacity:0];
         float fadeInTime = 1.4;
         id fadeInAction = [CCFadeIn actionWithDuration:fadeInTime];
@@ -677,7 +689,7 @@ typedef struct {
                                                                [CCMoveBy actionWithDuration:fadeInTime position:ccp(-80*fadeInTime/4.0,0)],
                                                                nil],
                                            repeatScrollingLeftAction,
-                                           nil] ];
+                                           nil]];
         
         id loadingLabelSetOneZero = [CCCallBlock actionWithBlock:(^{
             [loadingLabel setString:@"loading."];
