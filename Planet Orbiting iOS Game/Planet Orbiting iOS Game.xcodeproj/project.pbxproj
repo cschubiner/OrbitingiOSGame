@@ -161,6 +161,10 @@
 		0C9D124C15C25A1C00C3495A /* titleFontGreen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D124815C25A1C00C3495A /* titleFontGreen-hd.png */; };
 		0C9D124D15C25A1C00C3495A /* titleFontGreen.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D124915C25A1C00C3495A /* titleFontGreen.fnt */; };
 		0C9D124E15C25A1C00C3495A /* titleFontGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D124A15C25A1C00C3495A /* titleFontGreen.png */; };
+		0CA3AF3D15E89E9000064D38 /* play_button-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA3AF3B15E89E9000064D38 /* play_button-hd.png */; };
+		0CA3AF3E15E89E9000064D38 /* play_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA3AF3C15E89E9000064D38 /* play_button.png */; };
+		0CA3AF4615E8A03800064D38 /* squareScreenshot-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA3AF4415E8A03800064D38 /* squareScreenshot-hd.png */; };
+		0CA3AF4715E8A03800064D38 /* squareScreenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA3AF4515E8A03800064D38 /* squareScreenshot.png */; };
 		0CA44A8615E2068B00CA6F8E /* thrustBurstParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CA44A8515E2068B00CA6F8E /* thrustBurstParticle.plist */; };
 		0CA44A9315E2149100CA6F8E /* spaceship-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA44A9115E2149100CA6F8E /* spaceship-hd.png */; };
 		0CA44A9415E2149100CA6F8E /* spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA44A9215E2149100CA6F8E /* spaceship.png */; };
@@ -608,6 +612,10 @@
 		0C9D124815C25A1C00C3495A /* titleFontGreen-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleFontGreen-hd.png"; sourceTree = "<group>"; };
 		0C9D124915C25A1C00C3495A /* titleFontGreen.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = titleFontGreen.fnt; sourceTree = "<group>"; };
 		0C9D124A15C25A1C00C3495A /* titleFontGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleFontGreen.png; sourceTree = "<group>"; };
+		0CA3AF3B15E89E9000064D38 /* play_button-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play_button-hd.png"; sourceTree = "<group>"; };
+		0CA3AF3C15E89E9000064D38 /* play_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_button.png; sourceTree = "<group>"; };
+		0CA3AF4415E8A03800064D38 /* squareScreenshot-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "squareScreenshot-hd.png"; sourceTree = "<group>"; };
+		0CA3AF4515E8A03800064D38 /* squareScreenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = squareScreenshot.png; sourceTree = "<group>"; };
 		0CA44A8515E2068B00CA6F8E /* thrustBurstParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = thrustBurstParticle.plist; sourceTree = "<group>"; };
 		0CA44A9115E2149100CA6F8E /* spaceship-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spaceship-hd.png"; sourceTree = "<group>"; };
 		0CA44A9215E2149100CA6F8E /* spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spaceship.png; sourceTree = "<group>"; };
@@ -1357,6 +1365,10 @@
 		0C7AA60315946939000B58F2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0CA3AF4415E8A03800064D38 /* squareScreenshot-hd.png */,
+				0CA3AF4515E8A03800064D38 /* squareScreenshot.png */,
+				0CA3AF3B15E89E9000064D38 /* play_button-hd.png */,
+				0CA3AF3C15E89E9000064D38 /* play_button.png */,
 				C43BA05D15E840230011CD1D /* countdown_font-hd.fnt */,
 				C43BA05E15E840230011CD1D /* countdown_font-hd.png */,
 				C43BA05F15E840230011CD1D /* countdown_font.fnt */,
@@ -2266,6 +2278,10 @@
 				C43BA06215E840230011CD1D /* countdown_font-hd.png in Resources */,
 				C43BA06315E840230011CD1D /* countdown_font.fnt in Resources */,
 				C43BA06415E840230011CD1D /* countdown_font.png in Resources */,
+				0CA3AF3D15E89E9000064D38 /* play_button-hd.png in Resources */,
+				0CA3AF3E15E89E9000064D38 /* play_button.png in Resources */,
+				0CA3AF4615E8A03800064D38 /* squareScreenshot-hd.png in Resources */,
+				0CA3AF4715E8A03800064D38 /* squareScreenshot.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
