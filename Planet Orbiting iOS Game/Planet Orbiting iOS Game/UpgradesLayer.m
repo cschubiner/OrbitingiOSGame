@@ -420,31 +420,36 @@
         [[UpgradeManager sharedInstance] setUpgradeIndex:[[upgradeIndecesHere objectAtIndex:i] intValue] equipped:false];
     }
     [[UpgradeManager sharedInstance] setUpgradeIndex:pushedItem.number purchased:true equipped:true];
+    
+    [DataStorage storeData];
+    [self refreshUpgradeCells];
+    
+    [self removePurchasePopup];
 }
 
 - (void) pressedPurchaseButton {
     int curBalance = [[UserWallet sharedInstance] getBalance];
     
     
-        
-        [self playSound:@"purchase.wav" shouldLoop:false pitch:1];
-        int newBalance = curBalance - pushedItem.price;
-        [[UserWallet sharedInstance] setBalance:newBalance];
-        
-        int pushed = [[UpgradeManager sharedInstance] buttonPushed];
-        if (pushed == 0 || pushed == 1 || pushed == 5) {
-            for (int i = 0; i < [upgradeIndecesHere count]; i++) {
-                [[UpgradeManager sharedInstance] setUpgradeIndex:[[upgradeIndecesHere objectAtIndex:i] intValue] equipped:false];
-            }
+    
+    [self playSound:@"purchase.wav" shouldLoop:false pitch:1];
+    int newBalance = curBalance - pushedItem.price;
+    [[UserWallet sharedInstance] setBalance:newBalance];
+    
+    int pushed = [[UpgradeManager sharedInstance] buttonPushed];
+    if (pushed == 0 || pushed == 1 || pushed == 5) {
+        for (int i = 0; i < [upgradeIndecesHere count]; i++) {
+            [[UpgradeManager sharedInstance] setUpgradeIndex:[[upgradeIndecesHere objectAtIndex:i] intValue] equipped:false];
         }
-        
-        [[UpgradeManager sharedInstance] setUpgradeIndex:pushedItem.number purchased:true equipped:true];
-        
-        [self completeObjectiveFromGroupNumber:0 itemNumber:1];
-        
-        [DataStorage storeData];
-        [self refreshUpgradeCells];
-
+    }
+    
+    [[UpgradeManager sharedInstance] setUpgradeIndex:pushedItem.number purchased:true equipped:true];
+    
+    [self completeObjectiveFromGroupNumber:0 itemNumber:1];
+    
+    [DataStorage storeData];
+    [self refreshUpgradeCells];
+    
     
     
     [self removePurchasePopup];
