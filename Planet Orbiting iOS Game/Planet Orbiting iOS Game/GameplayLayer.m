@@ -346,14 +346,14 @@ typedef struct {
     [galaxy setOptimalPlanetsInThisGalaxy:40];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.28];
     [galaxy setGalaxyColor: ccc3(42, 112, 199)];
-
+    
     galaxy = [galaxies objectAtIndex:6];
     [galaxy setName:@"Galaxy 7"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:43];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.3];
     [galaxy setGalaxyColor: ccc3(161,163,42)];
-
+    
     // for (Galaxy* galaxy in galaxies)
     // [galaxy setOptimalPlanetsInThisGalaxy:15];
 }
@@ -362,7 +362,7 @@ typedef struct {
     [[UpgradeValues sharedInstance] setCoinMagnetDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:0] equipped]];
     
     [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] equipped]];
-     
+    
     [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.9 + .037*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] equipped]];
     
     if ([[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped])
@@ -488,8 +488,8 @@ typedef struct {
     player.alive=true;
     [player.sprite setScale:playerSizeScale];
     player.segmentNumber = -10;
-     player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(85)), -3200*200));
-   // player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
+    player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(85)), -3200*200));
+    // player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
     if (/*[[UpgradeValues sharedInstance] hasStartPowerup]*/true) {
         CGPoint planPos = [[planets objectAtIndex:0] sprite].position;
         CGPoint pToUse = ccpAdd(ccpSub(planPos, player.sprite.position), planPos);
@@ -638,19 +638,19 @@ typedef struct {
         
         loadingLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"LoadingLayerCCB.ccb" owner:self];
         
-         NSArray * helperTextArray = [NSArray arrayWithObjects:
-                                      @"Stars increase your score and let you buy upgrades in the store!",
-                                      @"Asteroids kill you; be sure to avoid them!",
-                                      @"Swipe in the direction you want to move!",
-                                      @"Complete missions to increase your score multiplier and earn more stars.",
-                                      @"Purchase upgrades by tapping \"Upgrades\" on the main menu.",
-                                      @"Have suggestions? Submit feedback by tapping \"Survey\" on the main menu.",
-                                      @"Star Dash generates levels randomly to give you a unique experience every time you play!",
-                                      @"Orbit planets as few times as possible to get the highest possible score.",
-                                      @"Your time is limited; keep on eye on the battery in the lower-left corner of the screen.",
-                                      @"Your battery recharges as you move between galaxies",
-                                      @"Each galaxy brings new challenges for you to conquer!",
-         nil];
+        NSArray * helperTextArray = [NSArray arrayWithObjects:
+                                     @"Stars increase your score and let you buy upgrades in the store!",
+                                     @"Asteroids kill you; be sure to avoid them!",
+                                     @"Swipe in the direction you want to move!",
+                                     @"Complete missions to increase your score multiplier and earn more stars.",
+                                     @"Purchase upgrades by tapping \"Upgrades\" on the main menu.",
+                                     @"Have suggestions? Submit feedback by tapping \"Survey\" on the main menu.",
+                                     @"Star Dash generates levels randomly to give you a unique experience every time you play!",
+                                     @"Orbit planets as few times as possible to get the highest possible score.",
+                                     @"Your time is limited; keep on eye on the battery in the lower-left corner of the screen.",
+                                     @"Your battery recharges as you move between galaxies",
+                                     @"Each galaxy brings new challenges for you to conquer!",
+                                     nil];
         
         [loadingHelperTextLabel setString:[helperTextArray objectAtIndex:[self RandomBetween:0 maxvalue:helperTextArray.count-1]]];
         
@@ -1337,7 +1337,7 @@ typedef struct {
     //NSLog(@"galaxy0");
     
     if (lastPlanetVisited.number==0) {
-    //    cameraShouldFocusOnPlayer = false;
+        //    cameraShouldFocusOnPlayer = false;
     }
     else {
         //NSLog(@"galaxy");
@@ -1627,9 +1627,17 @@ typedef struct {
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range
  replacementText:(NSString *)text {
     if([text isEqualToString:@"\n"]) {
-        [self endGame];
+        [self hideKeyboard];
     }
     return YES;
+}
+
+- (void)showKeyboard {
+    [playerNameLabel becomeFirstResponder];
+}
+
+- (void)hideKeyboard {
+    [playerNameLabel resignFirstResponder];
 }
 
 - (void)GameOver {
@@ -1637,45 +1645,42 @@ typedef struct {
         isGameOver = true;
         if ([[self children]containsObject:layerHudSlider])
             [self removeChild:layerHudSlider cleanup:YES];
-        //[Kamcord stopRecording];
-        
-        
+        // [Kamcord stopRecording];
         
         int finalScore = score + prevCurrentPtoPScore;
         BOOL isHighScore = [[PlayerStats sharedInstance] isHighScore:finalScore];
-        NSString *ccbFile = isHighScore ? @"GameOverLayerHighScore.ccb" : @"GameOverLayer.ccb";
-        NSString *scoreText = isHighScore ? @"" : [NSString stringWithFormat:@"Score: %d",finalScore];
+        NSString *ccbFile = @"GameOverLayer.ccb";
+        NSString *scoreText = [NSString stringWithFormat:@"Score: %d",finalScore];
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:ccbFile owner:self];
         
-        finalScore = 50010;
-        numCoinsDisplayed = 312;
+        finalScore = 69669;
+        numCoinsDisplayed = 69;
         
         int rateOfScoreIncrease = finalScore / 840;
         
+        NSDictionary *dictForFlurry = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:finalScore],@"Highscore Value", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned",[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSString stringWithFormat:@"%d galaxies and %d segments",currentGalaxy.number+1,flurrySegmentsVisitedSinceGalaxyJump],@"How far player went",[NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays",[[PlayerStats sharedInstance] recentName],@"Player Name",nil];
+        
         if (isHighScore) {
-            NSDictionary *dictForFlurry = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:finalScore],@"Highscore Value", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned",[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSString stringWithFormat:@"%d galaxies and %d segments",currentGalaxy.number+1,flurrySegmentsVisitedSinceGalaxyJump],@"How far player went",[NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays",[[PlayerStats sharedInstance] recentName],@"Player Name",nil];
-            
             [Flurry logEvent:@"Got a top 10 highscore" withParameters:dictForFlurry];
-            
-            [[DDGameKitHelper sharedGameKitHelper] submitScore:finalScore category:@"highscore_leaderboard"];
-            
-            [[[[CCDirector sharedDirector]view]window]addSubview:playerNameLabel];
-            [self schedule:@selector(nameDidChange) interval:.05];
-            playerNameLabel.delegate = self;
-            playerNameLabel.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
-            playerNameLabel.autocorrectionType = UITextAutocorrectionTypeNo;
-            playerNameLabel.keyboardType = UIKeyboardTypeAlphabet;
-            [displayName setString:recentName];
-            playerNameLabel.text = recentName;
-            playerNameLabel.returnKeyType = UIReturnKeyDone;
-            [playerNameLabel becomeFirstResponder];
-            
-            underscore = [[CCLabelBMFont alloc] initWithString:@"_" fntFile:@"betaFont2.fnt"];
-            [pauseLayer addChild:underscore];
-            [underscore setPosition:ccp(displayName.position.x + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, displayName.position.y)];
-            
-            [underscore runAction: [CCRepeatForever actionWithAction: [CCBlink actionWithDuration:5 blinks:5]]];
         }
+        
+        [[DDGameKitHelper sharedGameKitHelper] submitScore:finalScore category:@"highscore_leaderboard"];
+        
+        [[[[CCDirector sharedDirector]view]window]addSubview:playerNameLabel];
+        [self schedule:@selector(nameDidChange) interval:.05];
+        playerNameLabel.delegate = self;
+        playerNameLabel.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+        playerNameLabel.autocorrectionType = UITextAutocorrectionTypeNo;
+        playerNameLabel.keyboardType = UIKeyboardTypeAlphabet;
+        [displayName setString:recentName];
+        playerNameLabel.text = recentName;
+        playerNameLabel.returnKeyType = UIReturnKeyDone;
+        
+        underscore = [[CCLabelBMFont alloc] initWithString:@"_" fntFile:@"betaFont2.fnt"];
+        [pauseLayer addChild:underscore];
+        [underscore setPosition:ccp(displayName.position.x + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, displayName.position.y)];
+        
+        [underscore runAction: [CCRepeatForever actionWithAction: [CCBlink actionWithDuration:5 blinks:5]]];
         
         [starStashLabel setString:[NSString stringWithFormat:@"%d",numCoinsDisplayed]];//[[UserWallet sharedInstance]getBalance]]];
         [gameOverScoreLabel setString:@"0"];
@@ -1698,14 +1703,14 @@ typedef struct {
         
         
         [gameOverScoreLabel runAction:[CCSequence actions:[CCRepeat actionWithAction:[CCSequence actions:increaseNumber,
-                                                                                  [CCDelayTime actionWithDuration:.003],
-                                                                                  nil] times:finalScore/rateOfScoreIncrease],setNumber,displayParticles, nil]];
+                                                                                      [CCDelayTime actionWithDuration:.003],
+                                                                                      nil] times:finalScore/rateOfScoreIncrease],setNumber,displayParticles, nil]];
         
         [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
         
         [pauseLayer setTag:gameOverLayerTag];
         [self addChild:pauseLayer];
-       // [gameOverScoreLabel setString:scoreText];
+        // [gameOverScoreLabel setString:scoreText];
         
         scoreAlreadySaved = YES;
     }
@@ -1940,7 +1945,7 @@ typedef struct {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
         if (location.x >= 7 * size.width/8 && location.y >= 5*size.height/6) {
-            if (!paused)
+            if (!paused && !isGameOver)
                 [self togglePause];
         }
         if (loading_playerHasReachedFirstPlanet==false)
@@ -1950,8 +1955,12 @@ typedef struct {
         [player setThrustBeginPoint:location];
         //playerIsTouchingScreen=true;
         //}
+        
+        if (location.x >= 7 * size.width/8 && location.y >= 5*size.height/6) {
+            [self showKeyboard];
+        } else
+            [self hideKeyboard];
     }
-    
 }
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
