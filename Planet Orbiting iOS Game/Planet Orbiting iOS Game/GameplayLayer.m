@@ -368,17 +368,13 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.9 + .037*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] equipped]];
     
-    if ([[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped])
-        [[UpgradeValues sharedInstance] setHasDoubleCoins:true];
-    else
-        [[UpgradeValues sharedInstance] setHasDoubleCoins:false];
+    [[UpgradeValues sharedInstance] setHasDoubleCoins:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped]];
     
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:7 + 3*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:7 + 100*3*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
     
-    if ([[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped])
-        [[UpgradeValues sharedInstance] setHasStartPowerup:true];
-    else
-        [[UpgradeValues sharedInstance] setHasStartPowerup:false];
+    [[UpgradeValues sharedInstance] setHasStartPowerup:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped]];
+    
+    [[UpgradeValues sharedInstance] setHasHeadStart:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:6] equipped]];
 }
 
 - (void)startGame {
@@ -494,11 +490,16 @@ typedef struct {
     player.segmentNumber = -10;
     player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(85)), -3200*200));
     // player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
-    if (/*[[UpgradeValues sharedInstance] hasStartPowerup]*/true) {
-        CGPoint planPos = [[planets objectAtIndex:0] sprite].position;
-        CGPoint pToUse = ccpAdd(ccpSub(planPos, player.sprite.position), planPos);
+    
+    
+    CGPoint planPos = [[planets objectAtIndex:0] sprite].position;
+    CGPoint pToUse = ccpAdd(ccpMult(ccpNormalize(ccpSub(planPos, [[planets objectAtIndex:1] sprite].position)), -1*[[planets objectAtIndex:0] orbitRadius]), planPos);
+    
+    if ([[UpgradeValues sharedInstance] hasHeadStart])
         [self CreatePowerup:pToUse.x yPos:pToUse.y scale:1 type:4]; //make type 0 for random, 4 for head start
-    }
+    else if ([[UpgradeValues sharedInstance] hasStartPowerup])
+        [self CreatePowerup:pToUse.x yPos:pToUse.y scale:1 type:0]; //make type 0 for random, 4 for head start
+    
     cameraDistToUse = 1005.14;
     [cameraLayer setScale:.43608];
     [cameraLayer setPosition:ccp(98.4779,67.6401)];
@@ -1931,6 +1932,7 @@ typedef struct {
          }
          }*/
         //NSLog(@"6");
+        [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
         //        [[CCDirector sharedDirector] pushScene:[MainMenuLayer scene]];
         
@@ -1945,6 +1947,7 @@ typedef struct {
 }
 
 - (void)restartGame {
+    [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     [Flurry logEvent:@"restarted game"];
     scoreAlreadySaved = NO;
     if ([[PlayerStats sharedInstance] getPlays] == 1) {
@@ -2120,6 +2123,7 @@ float lerpf(float a, float b, float t) {
 }
 
 - (void)togglePause {
+    [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     paused = !paused;
     if (paused) {
         //[Kamcord pause];

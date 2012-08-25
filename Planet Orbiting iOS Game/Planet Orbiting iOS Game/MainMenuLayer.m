@@ -413,6 +413,8 @@ const float effectsVolumeMainMenu = 1;
 }
 
 - (void)pressedAnUpgradeButton {
+    
+    [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     [[CCDirector sharedDirector] replaceScene:[UpgradesLayer scene]];//[CCTransitionCrossFade transitionWithDuration:0.5 scene:[UpgradesLayer scene]]];
 }
 
@@ -431,9 +433,9 @@ const float effectsVolumeMainMenu = 1;
     } else {
         [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0];
         [[SimpleAudioEngine sharedEngine] setEffectsVolume:0];
-        [soundButton setNormalImage:[CCSprite spriteWithFile:@"soundoff.png"]];
-        [soundButton setSelectedImage:[CCSprite spriteWithFile:@"soundoffpressed.png"]];
-        [soundButton setDisabledImage:[CCSprite spriteWithFile:@"soundoff.png"]];
+        [soundButton setNormalImage:[CCSprite spriteWithFile:@"soundmuted.png"]];
+        [soundButton setSelectedImage:[CCSprite spriteWithFile:@"soundmutedpressed.png"]];
+        [soundButton setDisabledImage:[CCSprite spriteWithFile:@"soundmuted.png"]];
     }
     [[PlayerStats sharedInstance] setIsMuted:muted];
 }

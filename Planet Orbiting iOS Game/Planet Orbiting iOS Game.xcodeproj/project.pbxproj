@@ -411,6 +411,8 @@
 		FA00EC2615E8BF0100C745BC /* purchased.png in Resources */ = {isa = PBXBuildFile; fileRef = FA00EC2015E8BF0100C745BC /* purchased.png */; };
 		FA00EC3115E8BF1D00C745BC /* purchasepressed-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA00EC2B15E8BF1D00C745BC /* purchasepressed-hd.png */; };
 		FA00EC3215E8BF1D00C745BC /* purchasepressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA00EC2C15E8BF1D00C745BC /* purchasepressed.png */; };
+		FA00EC3915E8C6CE00C745BC /* doorClose1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA00EC3715E8C6CE00C745BC /* doorClose1.mp3 */; };
+		FA00EC3A15E8C6CE00C745BC /* doorClose2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA00EC3815E8C6CE00C745BC /* doorClose2.mp3 */; };
 		FA16A0D815D393CB007C52E3 /* UpgradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA16A0D715D393CB007C52E3 /* UpgradeCell.m */; };
 		FA16A16815D63FE0007C52E3 /* popupSextasy-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA16A16615D63FE0007C52E3 /* popupSextasy-hd.png */; };
 		FA16A16915D63FE0007C52E3 /* popupSextasy.png in Resources */ = {isa = PBXBuildFile; fileRef = FA16A16715D63FE0007C52E3 /* popupSextasy.png */; };
@@ -1021,6 +1023,8 @@
 		FA00EC2A15E8BF1D00C745BC /* purchasedisabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purchasedisabled.png; sourceTree = "<group>"; };
 		FA00EC2B15E8BF1D00C745BC /* purchasepressed-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purchasepressed-hd.png"; sourceTree = "<group>"; };
 		FA00EC2C15E8BF1D00C745BC /* purchasepressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purchasepressed.png; sourceTree = "<group>"; };
+		FA00EC3715E8C6CE00C745BC /* doorClose1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = doorClose1.mp3; sourceTree = "<group>"; };
+		FA00EC3815E8C6CE00C745BC /* doorClose2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = doorClose2.mp3; sourceTree = "<group>"; };
 		FA16A0D615D393CB007C52E3 /* UpgradeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeCell.h; sourceTree = "<group>"; };
 		FA16A0D715D393CB007C52E3 /* UpgradeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeCell.m; sourceTree = "<group>"; };
 		FA16A16615D63FE0007C52E3 /* popupSextasy-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popupSextasy-hd.png"; sourceTree = "<group>"; };
@@ -1510,6 +1514,8 @@
 		0CFB823A15AE733B00EADAF3 /* Effects */ = {
 			isa = PBXGroup;
 			children = (
+				FA00EC3715E8C6CE00C745BC /* doorClose1.mp3 */,
+				FA00EC3815E8C6CE00C745BC /* doorClose2.mp3 */,
 				FA18E60D15DB5CB20038E3EC /* purchase.wav */,
 				0CFB823815AE733800EADAF3 /* SWOOSH.WAV */,
 				FA48C83615BE84DC00FA6F32 /* buttonpress.mp3 */,
@@ -2414,6 +2420,8 @@
 				FA00EC3215E8BF1D00C745BC /* purchasepressed.png in Resources */,
 				01E43A0915E8C2C200C95C58 /* upgrades2.png in Resources */,
 				01E43A0A15E8C2C200C95C58 /* upgrades2pressed.png in Resources */,
+				FA00EC3915E8C6CE00C745BC /* doorClose1.mp3 in Resources */,
+				FA00EC3A15E8C6CE00C745BC /* doorClose2.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

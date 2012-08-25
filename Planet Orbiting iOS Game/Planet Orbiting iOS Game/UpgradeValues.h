@@ -14,9 +14,10 @@
 @property (nonatomic) float asteroidImmunityDuration;
 @property (nonatomic) float coinMagnetDuration;
 @property (nonatomic) float absoluteMinTimeDilation;
-@property (nonatomic) int hasDoubleCoins;
+@property (nonatomic) bool hasDoubleCoins;
 @property (nonatomic) float maxBatteryTime;
-@property (nonatomic) int hasStartPowerup;
+@property (nonatomic) bool hasStartPowerup;
+@property (nonatomic) bool hasHeadStart;
 
 + (id)sharedInstance;
 

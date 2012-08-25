@@ -66,7 +66,7 @@
         self.isTouchEnabled= TRUE;
         indexPushed = [[UpgradeManager sharedInstance] buttonPushed];
         
-        [[UserWallet sharedInstance] setBalance:10000];
+        [[UserWallet sharedInstance] setBalance:1000000];
         
         scrollView = [[CCLayer alloc] init];
         [self addChild:scrollView];
@@ -90,7 +90,7 @@
         else if (indexPushed == 5)
             stringToUse = @"PERKS";
         
-        CCLabelTTF* pauseText = [CCLabelTTF labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:32];
+        CCLabelTTF* pauseText = [CCLabelTTF labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:31];
         [self addChild:pauseText];
         pauseText.position = ccp(240, 299);
         
@@ -113,12 +113,12 @@
         CCSprite* starSprite = [CCSprite spriteWithFile:@"star1.png"];
         [starSprite setScale:.2];
         [self addChild:starSprite];
-        [starSprite setPosition:ccp(480 - 10 - starSprite.boundingBox.size.width/2, 299)];
+        [starSprite setPosition:ccp(480 - 6 - starSprite.boundingBox.size.width/2, 299)];
         
         totalStars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
         [self addChild: totalStars];
         [totalStars setAnchorPoint:ccp(1, .5)];
-        [totalStars setPosition:ccp(480 - 10 - starSprite.boundingBox.size.width - 5, 299)];
+        [totalStars setPosition:ccp(480 - 6 - starSprite.boundingBox.size.width - 3, 299)];
         
         [self initUpgradeLayer];
         
@@ -157,6 +157,7 @@
 }
 
 - (void) backButtonPressed {
+    [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
     [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setCameFromUpgrades:true];
     [[CCDirector sharedDirector] replaceScene:[MainMenuLayer scene]];//[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
 }
@@ -193,6 +194,7 @@
     [scrollView removeFromParentAndCleanup:true];
     scrollView = [[CCLayer alloc] init];
     [self addChild:scrollView];
+    [scrollView setZOrder:-1];
     
     [self initUpgradeLayer];
     
@@ -407,6 +409,7 @@
 }
 
 - (void) removePurchasePopup {
+    [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
     [purchaseLayer removeFromParentAndCleanup:true];
     self.isTouchEnabled = true;
 }
@@ -416,6 +419,9 @@
 }
 
 - (void) pressedEquipButton {
+    
+    [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
+    
     for (int i = 0; i < [upgradeIndecesHere count]; i++) {
         [[UpgradeManager sharedInstance] setUpgradeIndex:[[upgradeIndecesHere objectAtIndex:i] intValue] equipped:false];
     }
@@ -428,11 +434,10 @@
 }
 
 - (void) pressedPurchaseButton {
-    int curBalance = [[UserWallet sharedInstance] getBalance];
-    
-    
     
     [self playSound:@"purchase.wav" shouldLoop:false pitch:1];
+    
+    int curBalance = [[UserWallet sharedInstance] getBalance];
     int newBalance = curBalance - pushedItem.price;
     [[UserWallet sharedInstance] setBalance:newBalance];
     
