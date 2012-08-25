@@ -33,6 +33,8 @@
     int indexPushed;
     bool moved;
     
+    CCLayer* purchaseLayer;
+    
     
     NSMutableArray* upgradeIndecesHere;
     NSMutableArray* cells;
@@ -155,27 +157,6 @@
     [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setCameFromUpgrades:true];
     [[CCDirector sharedDirector] replaceScene:[MainMenuLayer scene]];//[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
 }
-
-/*
- 
- -(void)pressedPurchaseButton:(id)sender {
- 
- int curBalance = [[UserWallet sharedInstance] getBalance];
- if (curBalance >= item.price) {
- 
- [self playSound:@"purchase.wav" shouldLoop:false pitch:1];
- int newBalance = curBalance - item.price;
- [[UserWallet sharedInstance] setBalance:newBalance];
- 
- [self completeObjectiveFromGroupNumber:0 itemNumber:1];
- [Flurry logEvent:@"Purchased Item" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:newBalance],@"Coin Balance after purchase",item.title,@"Item Title",nil]];
- 
- [DataStorage storeData];
- }
- 
- [self removePopupView];
- }
-*/
 
 - (void) initUpgradeLayer {
     scrollViewHeight = 0;
@@ -343,7 +324,7 @@
             for (int i = 0; i < totalUpgrades; i++) {
                 if (dif > 0 && dif < 55*(i + 1)) {
                     NSLog(@"dif: %f", dif);
-                    NSLog(@"tapped: %@", ((UpgradeItem*)[upgrades objectAtIndex:[[upgradeIndecesHere objectAtIndex: i] intValue]]).title);
+                    [self tappedUpgrade:[upgrades objectAtIndex:[[upgradeIndecesHere objectAtIndex: i] intValue]]];
                     break;
                 }
             }
@@ -351,6 +332,56 @@
         }
     }
 }
+
+- (void) tappedUpgrade:(UpgradeItem*)item {
+    
+    //NSLog(@"tapped: %@", item.title);
+    purchaseLayer = [self createPurchaseDialogWithItem:item];
+    [self addChild:purchaseLayer];
+}
+
+- (CCLayer*)createPurchaseDialogWithItem: (UpgradeItem*) item {
+    purchaseLayer = [[CCLayer alloc] init];
+    
+    CCSprite* popup = [CCSprite spriteWithFile:@"missionsBG.png"];
+    popup.position = ccp(240, 160);
+    [purchaseLayer addChild:popup];
+    
+    CCLabelTTF* title = [CCLabelTTF labelWithString:item.title fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
+    title.position = ccp(240, 252);
+    [purchaseLayer addChild:title];
+    
+    CCLabelTTF* label0 = [CCLabelTTF labelWithString:item.description dimensions:CGSizeMake(273, 55) hAlignment:UITextAlignmentLeft vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+    label0.position = ccp(240, 160);
+    [purchaseLayer addChild:label0];
+    
+    return purchaseLayer;
+}
+
+- (void) removePurchasePopup {
+    [purchaseLayer removeFromParentAndCleanup:true];
+}
+
+/*
+ 
+ -(void)pressedPurchaseButton:(id)sender {
+ 
+ int curBalance = [[UserWallet sharedInstance] getBalance];
+ if (curBalance >= item.price) {
+ 
+ [self playSound:@"purchase.wav" shouldLoop:false pitch:1];
+ int newBalance = curBalance - item.price;
+ [[UserWallet sharedInstance] setBalance:newBalance];
+ 
+ [self completeObjectiveFromGroupNumber:0 itemNumber:1];
+ [Flurry logEvent:@"Purchased Item" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:newBalance],@"Coin Balance after purchase",item.title,@"Item Title",nil]];
+ 
+ [DataStorage storeData];
+ }
+ 
+ [self removePopupView];
+ }
+ */
 
 - (void)ccTouchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
     isTouchingScreen = false;
