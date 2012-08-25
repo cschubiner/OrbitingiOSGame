@@ -370,7 +370,7 @@ typedef struct {
     else
         [[UpgradeValues sharedInstance] setHasDoubleCoins:false];
     
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:70 + 3*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:7 + 3*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
     
     if ([[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped])
         [[UpgradeValues sharedInstance] setHasStartPowerup:true];
@@ -1639,11 +1639,18 @@ typedef struct {
             [self removeChild:layerHudSlider cleanup:YES];
         //[Kamcord stopRecording];
         
+        
+        
         int finalScore = score + prevCurrentPtoPScore;
         BOOL isHighScore = [[PlayerStats sharedInstance] isHighScore:finalScore];
         NSString *ccbFile = isHighScore ? @"GameOverLayerHighScore.ccb" : @"GameOverLayer.ccb";
         NSString *scoreText = isHighScore ? @"" : [NSString stringWithFormat:@"Score: %d",finalScore];
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:ccbFile owner:self];
+        
+        finalScore = 50010;
+        numCoinsDisplayed = 312;
+        
+        int rateOfScoreIncrease = finalScore / 840;
         
         if (isHighScore) {
             NSDictionary *dictForFlurry = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:finalScore],@"Highscore Value", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned",[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSString stringWithFormat:@"%d galaxies and %d segments",currentGalaxy.number+1,flurrySegmentsVisitedSinceGalaxyJump],@"How far player went",[NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays",[[PlayerStats sharedInstance] recentName],@"Player Name",nil];
@@ -1670,24 +1677,35 @@ typedef struct {
             [underscore runAction: [CCRepeatForever actionWithAction: [CCBlink actionWithDuration:5 blinks:5]]];
         }
         
-        [starStashLabel setString:[NSString stringWithFormat:@"%d",[[UserWallet sharedInstance]getBalance]]];
+        [starStashLabel setString:[NSString stringWithFormat:@"%d",numCoinsDisplayed]];//[[UserWallet sharedInstance]getBalance]]];
+        [gameOverScoreLabel setString:@"0"];
+        
         id increaseNumber = [CCCallBlock actionWithBlock:(^{
-            [starStashLabel setString:[NSString stringWithFormat:@"%d",starStashLabel.string.intValue+[self RandomBetween:2 maxvalue:5]]];
+            [gameOverScoreLabel setString:[NSString stringWithFormat:@"%d",gameOverScoreLabel.string.intValue+[self RandomBetween:rateOfScoreIncrease-1 maxvalue:rateOfScoreIncrease+1]]];
         })];
+        id setNumber = [CCCallBlock actionWithBlock:(^{
+            [gameOverScoreLabel setString:[NSString stringWithFormat:@"%d",finalScore]];
+        })];
+        
+        
         id displayParticles = [CCCallBlock actionWithBlock:(^{
             [self addChild:starStashParticle];
-            [starStashParticle setPosition:starStashLabel.position];
+            [starStashParticle setPosition:gameOverScoreLabel.position];
             [starStashParticle resetSystem];
         })];
-        [starStashLabel runAction:[CCSequence actions:[CCRepeat actionWithAction:[CCSequence actions:increaseNumber,
+        
+        
+        
+        
+        [gameOverScoreLabel runAction:[CCSequence actions:[CCRepeat actionWithAction:[CCSequence actions:increaseNumber,
                                                                                   [CCDelayTime actionWithDuration:.003],
-                                                                                  nil] times:510],displayParticles, nil]];
+                                                                                  nil] times:finalScore/rateOfScoreIncrease],setNumber,displayParticles, nil]];
         
         [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
         
         [pauseLayer setTag:gameOverLayerTag];
         [self addChild:pauseLayer];
-        [gameOverScoreLabel setString:scoreText];
+       // [gameOverScoreLabel setString:scoreText];
         
         scoreAlreadySaved = YES;
     }

@@ -751,8 +751,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>330.38671875</real>
-						<real>198.58984375</real>
+						<real>347.953125</real>
+						<real>260.18359375</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
@@ -871,8 +871,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>391.92578125</real>
-						<real>211.38671875</real>
+						<real>384.57421875</real>
+						<real>227.95703125</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
@@ -899,7 +899,7 @@
 				<dict>
 					<key>anchorPoint</key>
 					<array>
-						<real>0.5</real>
+						<real>1</real>
 						<real>0.5</real>
 					</array>
 					<key>color</key>
@@ -910,7 +910,7 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>48</real>
+						<real>36</real>
 						<real>25</real>
 					</array>
 					<key>customClass</key>
@@ -931,8 +931,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>75.125</real>
-						<real>215.640625</real>
+						<real>103.38671875</real>
+						<real>215.59765625</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
@@ -941,7 +941,7 @@
 					<key>scaleY</key>
 					<real>1.195742130279541</real>
 					<key>string</key>
-					<string>1010</string>
+					<string>845</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
