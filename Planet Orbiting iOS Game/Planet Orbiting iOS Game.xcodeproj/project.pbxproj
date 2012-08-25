@@ -1236,6 +1236,13 @@
 			name = Upgrades;
 			sourceTree = "<group>";
 		};
+		01600CBB15E8BD590061CD62 /* GameOver */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = GameOver;
+			sourceTree = "<group>";
+		};
 		01825CA315DA2F1A0010473B /* Sound */ = {
 			isa = PBXGroup;
 			children = (
@@ -1428,6 +1435,7 @@
 				0CB8F7AC15E3524E00D9FC51 /* score_label_font.png */,
 				0CA44A9115E2149100CA6F8E /* spaceship-hd.png */,
 				0CA44A9215E2149100CA6F8E /* spaceship.png */,
+				01600CBB15E8BD590061CD62 /* GameOver */,
 				011FE3FC15DA1316003C7713 /* Battery */,
 				014BCCB415E36C920031D84B /* Upgrades */,
 				011FE3F615DA12E8003C7713 /* Buttons */,
