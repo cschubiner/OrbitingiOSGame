@@ -396,7 +396,7 @@ typedef struct {
     })];
     
     float fadeOutDuration = 4;
-    [[self getChildByTag:LABEL_0_TAG]runAction:[CCFadeOut actionWithDuration:fadeOutDuration*.5]];
+    [loadingLabelHelperText2 runAction:[CCFadeOut actionWithDuration:fadeOutDuration*.5]];
     [loadingLabel runAction:[CCFadeOut actionWithDuration:fadeOutDuration*.5]];
     [loadingHelperTextLabel runAction:[CCFadeOut actionWithDuration:fadeOutDuration*.5]];
     [loadingDidYouKnowLabel runAction:[CCFadeOut actionWithDuration:fadeOutDuration*.5]];
@@ -674,12 +674,11 @@ typedef struct {
         })];
         
         
-        CCLabelTTF* label0 = [CCLabelTTF labelWithString:[helperTextArray objectAtIndex:[self RandomBetween:0 maxvalue:helperTextArray.count-1]] dimensions:CGSizeMake(size.width*.3, 90) hAlignment:UITextAlignmentCenter vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+        CCLabelTTF* loadingLabelHelperText2 = [CCLabelTTF labelWithString:[helperTextArray objectAtIndex:[self RandomBetween:0 maxvalue:helperTextArray.count-1]] dimensions:CGSizeMake(size.width*.499999999999999999999999, 90) hAlignment:UITextAlignmentCenter vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
         
-        label0.position = ccp(size.width/2,size.height/2);
-        [label0 setAnchorPoint:ccp(.5,.5)];
-        [label0 setTag:LABEL_0_TAG];
-        [loadingLayer addChild:label0];
+        loadingLabelHelperText2.position = ccp(size.width/2,size.height/2);
+        [loadingLabelHelperText2 setAnchorPoint:ccp(.5,.5)];
+        [loadingLayer addChild:loadingLabelHelperText2];
 
         
         [loadingHelperTextLabel setOpacity:0];

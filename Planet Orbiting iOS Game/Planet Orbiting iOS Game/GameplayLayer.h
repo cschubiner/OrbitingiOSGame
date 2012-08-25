@@ -112,6 +112,8 @@
     CGPoint swipeVector;
     int levelNumber;
     
+    CCLabelTTF * loadingLabelHelperText2;
+    
     float totalSecondsAlive;
     CCLabelBMFont * starStashLabel;
     CCParticleSystemQuad * starStashParticle;
