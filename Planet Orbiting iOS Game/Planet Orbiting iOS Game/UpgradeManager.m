@@ -7,6 +7,7 @@
 //
 
 #import "UpgradeManager.h"
+#import "UpgradeItem.h"
 
 @implementation UpgradeManager
 
@@ -28,6 +29,22 @@ static UpgradeManager *sharedInstance = nil;
         self.upgradeItems = [[NSMutableArray alloc] init];
     }
     return self;
+}
+
+- (void)setUpgradeIndex:(int)index purchased:(BOOL)pPurchased equipped:(BOOL)pEquipped {
+    UpgradeItem *item = [self.upgradeItems objectAtIndex:index];
+    [item setPurchased:pPurchased];
+    [item setEquipped:pEquipped];
+}
+
+- (void)setUpgradeIndex:(int)index purchased:(BOOL)pPurchased {
+    UpgradeItem *item = [self.upgradeItems objectAtIndex:index];
+    [item setPurchased:pPurchased];
+}
+
+- (void)setUpgradeIndex:(int)index equipped:(BOOL)pEquipped {
+    UpgradeItem *item = [self.upgradeItems objectAtIndex:index];
+    [item setEquipped:pEquipped];
 }
 
 @end

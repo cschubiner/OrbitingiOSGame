@@ -15,4 +15,8 @@
 
 + (id)sharedInstance;
 
+- (void)setUpgradeIndex:(int)index purchased:(BOOL)pPurchased equipped:(BOOL)pEquipped;
+- (void)setUpgradeIndex:(int)index purchased:(BOOL)pPurchased;
+- (void)setUpgradeIndex:(int)index equipped:(BOOL)pEquipped;
+
 @end
