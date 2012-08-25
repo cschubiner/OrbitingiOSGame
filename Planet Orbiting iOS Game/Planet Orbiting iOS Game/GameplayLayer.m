@@ -396,12 +396,12 @@ typedef struct {
     })];
     
     float fadeOutDuration = 4;
+    [[self getChildByTag:LABEL_0_TAG]runAction:[CCFadeOut actionWithDuration:fadeOutDuration*.5]];
     [loadingLabel runAction:[CCFadeOut actionWithDuration:fadeOutDuration*.5]];
     [loadingHelperTextLabel runAction:[CCFadeOut actionWithDuration:fadeOutDuration*.5]];
     [loadingDidYouKnowLabel runAction:[CCFadeOut actionWithDuration:fadeOutDuration*.5]];
     [loadingLayerBackground runAction:[CCSequence actions:
                                        [CCFadeOut actionWithDuration:fadeOutDuration],removeLoadingLayer, nil]];
-    [[self getChildByTag:LABEL_0_TAG]runAction:[CCFadeOut actionWithDuration:fadeOutDuration*.5]];
     
     [self schedule:@selector(Update:) interval:0];// this makes the update loop loop!!!!
     //[Kamcord startRecording];
@@ -674,7 +674,7 @@ typedef struct {
         })];
         
         
-        CCLabelTTF* label0 = [CCLabelTTF labelWithString:[helperTextArray objectAtIndex:[self RandomBetween:0 maxvalue:helperTextArray.count-1]] dimensions:CGSizeMake(size.width-40, 55) hAlignment:UITextAlignmentCenter vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+        CCLabelTTF* label0 = [CCLabelTTF labelWithString:[helperTextArray objectAtIndex:[self RandomBetween:0 maxvalue:helperTextArray.count-1]] dimensions:CGSizeMake(size.width*.3, 90) hAlignment:UITextAlignmentCenter vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
         
         label0.position = ccp(size.width/2,size.height/2);
         [label0 setAnchorPoint:ccp(.5,.5)];
