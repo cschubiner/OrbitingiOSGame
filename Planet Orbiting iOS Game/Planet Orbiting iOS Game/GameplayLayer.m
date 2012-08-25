@@ -47,6 +47,7 @@ const int maxNameLength = 10;
     float timeInOrbit;
     CCLabelTTF* feverLabel;
     CCLayer* loadedPauseLayer;
+    NSString *blankAvoiderName;
 }
 
 
@@ -1633,11 +1634,24 @@ typedef struct {
 }
 
 - (void)showKeyboard {
+    blankAvoiderName = [playerNameLabel text];
     [playerNameLabel becomeFirstResponder];
+    [playerNameLabel setText:@""];
+    [displayName setString:@""];
+    underscore = [[CCLabelBMFont alloc] initWithString:@"_" fntFile:@"betaFont2.fnt"];
+    [pauseLayer addChild:underscore];
+    [underscore setPosition:ccp(displayName.position.x + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, displayName.position.y)];
+    [underscore runAction: [CCRepeatForever actionWithAction: [CCBlink actionWithDuration:5 blinks:5]]];
 }
 
 - (void)hideKeyboard {
+    if ([[playerNameLabel text] isEqualToString:@""]) {
+        [playerNameLabel setText:blankAvoiderName];
+        [displayName setString:blankAvoiderName];
+    }
     [playerNameLabel resignFirstResponder];
+    [underscore removeFromParentAndCleanup:YES];
+    underscore = nil;
 }
 
 - (void)GameOver {
@@ -1675,12 +1689,6 @@ typedef struct {
         [displayName setString:recentName];
         playerNameLabel.text = recentName;
         playerNameLabel.returnKeyType = UIReturnKeyDone;
-        
-        underscore = [[CCLabelBMFont alloc] initWithString:@"_" fntFile:@"betaFont2.fnt"];
-        [pauseLayer addChild:underscore];
-        [underscore setPosition:ccp(displayName.position.x + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, displayName.position.y)];
-        
-        [underscore runAction: [CCRepeatForever actionWithAction: [CCBlink actionWithDuration:5 blinks:5]]];
         
         [starStashLabel setString:[NSString stringWithFormat:@"%d",numCoinsDisplayed]];//[[UserWallet sharedInstance]getBalance]]];
         [gameOverScoreLabel setString:@"0"];
