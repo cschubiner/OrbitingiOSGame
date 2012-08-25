@@ -374,12 +374,19 @@
             
             resume = [CCMenuItemImage
                       itemFromNormalImage:@"purchasedisabled.png" selectedImage:@"purchasedisabled.png"
-                      target:self selector:@selector(pressedEquipButton)];
+                      target:self selector:@selector(pressedDisabledButton)];
         }
         
+    } else if ([[UserWallet sharedInstance] getBalance] < pushedItem.price) {
+        
+        resume = [CCMenuItemImage
+                  itemFromNormalImage:@"purchasedisabled.png" selectedImage:@"purchasedisabled.png"
+                  target:self selector:@selector(pressedDisabledButton)];
+    } else {
+        resume = [CCMenuItemImage
+                  itemFromNormalImage:@"purchase.png" selectedImage:@"purchasepressed.png"
+                  target:self selector:@selector(pressedPurchaseButton)];
     }
-    
-    
     
     
     resume.scale = 1.3;
@@ -404,15 +411,21 @@
     self.isTouchEnabled = true;
 }
 
-- (void) pressedEquipButton {
+- (void) pressedDisabledButton {
     
+}
+
+- (void) pressedEquipButton {
+    for (int i = 0; i < [upgradeIndecesHere count]; i++) {
+        [[UpgradeManager sharedInstance] setUpgradeIndex:[[upgradeIndecesHere objectAtIndex:i] intValue] equipped:false];
+    }
+    [[UpgradeManager sharedInstance] setUpgradeIndex:pushedItem.number purchased:true equipped:true];
 }
 
 - (void) pressedPurchaseButton {
     int curBalance = [[UserWallet sharedInstance] getBalance];
     
     
-    if (curBalance >= pushedItem.price) {
         
         [self playSound:@"purchase.wav" shouldLoop:false pitch:1];
         int newBalance = curBalance - pushedItem.price;
@@ -432,7 +445,7 @@
         [DataStorage storeData];
         [self refreshUpgradeCells];
 
-    }
+    
     
     [self removePurchasePopup];
 
