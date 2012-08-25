@@ -1649,7 +1649,7 @@ typedef struct {
     [playerNameLabel becomeFirstResponder];
     [playerNameLabel setText:@""];
     [displayName setString:@""];
-    underscore = [[CCLabelBMFont alloc] initWithString:@"_" fntFile:@"betaFont2.fnt"];
+    underscore = [[CCLabelBMFont alloc] initWithString:@"_" fntFile:@"score_label_font.fnt"];
     [pauseLayer addChild:underscore];
     [underscore setPosition:ccp(displayName.position.x + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, displayName.position.y)];
     [underscore runAction: [CCRepeatForever actionWithAction: [CCBlink actionWithDuration:5 blinks:5]]];
