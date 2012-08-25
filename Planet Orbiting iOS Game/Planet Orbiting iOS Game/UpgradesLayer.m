@@ -334,10 +334,9 @@
 }
 
 - (void) tappedUpgrade:(UpgradeItem*)item {
-    
-    //NSLog(@"tapped: %@", item.title);
     purchaseLayer = [self createPurchaseDialogWithItem:item];
     [self addChild:purchaseLayer];
+    self.isTouchEnabled = false;
 }
 
 - (CCLayer*)createPurchaseDialogWithItem: (UpgradeItem*) item {
@@ -355,11 +354,31 @@
     label0.position = ccp(240, 160);
     [purchaseLayer addChild:label0];
     
+    CCMenuItem *resume = [CCMenuItemImage
+                          itemFromNormalImage:@"resume.png" selectedImage:@"resumepressed.png"
+                          target:self selector:@selector(pressedPurchaseButton)];
+    resume.position = ccp(360, 20);
+    
+    CCMenuItem *quit = [CCMenuItemImage
+                        itemFromNormalImage:@"back.png" selectedImage:@"backpressed.png"
+                        target:self selector:@selector(removePurchasePopup)];
+    quit.position = ccp(120, 20);
+    
+    
+    CCMenu* menu = [CCMenu menuWithItems:resume, quit, nil];
+    menu.position = ccp(0, 0);
+    [purchaseLayer addChild:menu];
+    
     return purchaseLayer;
 }
 
 - (void) removePurchasePopup {
     [purchaseLayer removeFromParentAndCleanup:true];
+    self.isTouchEnabled = true;
+}
+
+- (void) pressedPurchaseButton {
+    
 }
 
 /*

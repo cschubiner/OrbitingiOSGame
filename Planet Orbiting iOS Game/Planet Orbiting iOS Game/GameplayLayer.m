@@ -2081,7 +2081,6 @@ float lerpf(float a, float b, float t) {
     CCMenuItem *sound = soundButton;
     sound.position = ccp(449, 301);
     
-    
     CCMenu* menu = [CCMenu menuWithItems:replay, resume, quit, sound, nil];
     menu.position = ccp(0, 0);
     
