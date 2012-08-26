@@ -210,6 +210,7 @@ const float effectsVolumeMainMenu = 1;
             [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic_new.mp3" loop:YES];
         
         [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setCameFromUpgrades:false];
+        [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setCameFromCredits:false];
 	}
 	return self;
 }
