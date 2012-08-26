@@ -22,6 +22,13 @@
 @property (nonatomic) bool hasAutoPilot;
 @property (nonatomic) bool hasStartPowerup;
 @property (nonatomic) bool hasHeadStart;
+@property (nonatomic) bool hasGreenShip;
+@property (nonatomic) bool hasBlueShip;
+@property (nonatomic) bool hasGoldShip;
+@property (nonatomic) bool hasOrangeShip;
+@property (nonatomic) bool hasRedShip;
+@property (nonatomic) bool hasPurpleShip;
+@property (nonatomic) bool hasPinkShip;
 
 + (id)sharedInstance;
 
