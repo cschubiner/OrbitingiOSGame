@@ -110,58 +110,52 @@
 }
 
 - (void) initCredits {
-    
-    
-    CCLabelTTF* credits0 = [CCLabelTTF labelWithString:@"- DESIGN -" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+    CCLabelTTF* credits0 = [CCLabelTTF labelWithString:@"- ALEX BLICKENSTAFF -" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
     [scrollView addChild:credits0];
     [credits0 setAnchorPoint:ccp(.5, 1)];
     credits0.position = ccp(240, -5);
     
-    CCLabelTTF* credits1 = [CCLabelTTF labelWithString:@"ALEX BLICKENSTAFF\nCLAY SCHUBINER" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+    CCLabelTTF* credits1 = [CCLabelTTF labelWithString:@"Lead Programming\nGame Design\nLevel Design" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
     [scrollView addChild:credits1];
     [credits1 setAnchorPoint:ccp(.5, 1)];
     credits1.position = ccp(240, credits0.position.y - credits0.boundingBox.size.height - 10);
     
-    
-    CCLabelTTF* credits2 = [CCLabelTTF labelWithString:@"- LEAD PROGRAMMING -" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+    CCLabelTTF* credits2 = [CCLabelTTF labelWithString:@"- CLAY SCHUBINER -" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
     [scrollView addChild:credits2];
     [credits2 setAnchorPoint:ccp(.5, 1)];
     credits2.position = ccp(240, credits1.position.y - credits1.boundingBox.size.height - 35);
     
-    CCLabelTTF* credits3 = [CCLabelTTF labelWithString:@"ALEX BLICKENSTAFF\nCLAY SCHUBINER" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+    CCLabelTTF* credits3 = [CCLabelTTF labelWithString:@"Lead Programming\nGame Design\nLevel Design" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
     [scrollView addChild:credits3];
     [credits3 setAnchorPoint:ccp(.5, 1)];
     credits3.position = ccp(240, credits2.position.y - credits2.boundingBox.size.height - 10);
     
-    
-    CCLabelTTF* credits4 = [CCLabelTTF labelWithString:@"- ADDITIONAL PROGRAMMING -" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+    CCLabelTTF* credits4 = [CCLabelTTF labelWithString:@"- JEFF GRIMES -" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
     [scrollView addChild:credits4];
     [credits4 setAnchorPoint:ccp(.5, 1)];
     credits4.position = ccp(240, credits3.position.y - credits3.boundingBox.size.height - 35);
     
-    CCLabelTTF* credits5 = [CCLabelTTF labelWithString:@"JEFF GRIMES" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+    CCLabelTTF* credits5 = [CCLabelTTF labelWithString:@"Support Programming\nGame Design\nLevel Design" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
     [scrollView addChild:credits5];
     [credits5 setAnchorPoint:ccp(.5, 1)];
     credits5.position = ccp(240, credits4.position.y - credits4.boundingBox.size.height - 10);
     
-    
-    CCLabelTTF* credits6 = [CCLabelTTF labelWithString:@"- ART -" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+    CCLabelTTF* credits6 = [CCLabelTTF labelWithString:@"- MICHAEL ARBEED -" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
     [scrollView addChild:credits6];
     [credits6 setAnchorPoint:ccp(.5, 1)];
     credits6.position = ccp(240, credits5.position.y - credits5.boundingBox.size.height - 35);
     
-    CCLabelTTF* credits7 = [CCLabelTTF labelWithString:@"MICHAEL ARBEED" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+    CCLabelTTF* credits7 = [CCLabelTTF labelWithString:@"Artwork\nLevel Design" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
     [scrollView addChild:credits7];
     [credits7 setAnchorPoint:ccp(.5, 1)];
     credits7.position = ccp(240, credits6.position.y - credits6.boundingBox.size.height - 10);
     
-    
-    CCLabelTTF* credits8 = [CCLabelTTF labelWithString:@"- LEVEL DESIGN -" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+    CCLabelTTF* credits8 = [CCLabelTTF labelWithString:@"- ALEX MARK -" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
     [scrollView addChild:credits8];
     [credits8 setAnchorPoint:ccp(.5, 1)];
     credits8.position = ccp(240, credits7.position.y - credits7.boundingBox.size.height - 35);
     
-    CCLabelTTF* credits9 = [CCLabelTTF labelWithString:@"MICHAEL ARBEED\nALEX BLICKENSTAFF\nCRAIG COLLINS\nJEFF GRIMES\nCLAY SCHUBINER" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+    CCLabelTTF* credits9 = [CCLabelTTF labelWithString:@"Speared Numerous Whales\nCreated AlexMarkText.zip File\nBroke the Hand by Adding Comments" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
     [scrollView addChild:credits9];
     [credits9 setAnchorPoint:ccp(.5, 1)];
     credits9.position = ccp(240, credits8.position.y - credits8.boundingBox.size.height - 10);

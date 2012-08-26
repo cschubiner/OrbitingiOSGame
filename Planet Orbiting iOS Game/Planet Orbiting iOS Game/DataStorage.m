@@ -169,7 +169,6 @@
                 item.equipped = NO;
             }
         }
-
     }
         
     int currGroup = [currentObjectiveGroupNumber intValue];
@@ -177,11 +176,7 @@
         currGroup = 0;
     }
     [[ObjectiveManager sharedInstance] setCurrentObjectiveGroupNumber:currGroup];
-    
-    
-    
-    
-    
+ 
     NSMutableArray *boolGroupsToUse = [[NSMutableArray alloc] init];
     
     int totalObjectiveGroups = 2;
@@ -219,11 +214,8 @@
                                                           item1:[[ObjectiveItem alloc] initWithText:@"Get 15 stars in one run" isCompleted:[[bools objectAtIndex:1] boolValue]]
                                                           item2:[[ObjectiveItem alloc] initWithText:@"Get 20 stars in one run" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
-    
-    
     objectives = groups;
     [[ObjectiveManager sharedInstance] setObjectiveGroups:objectives];
-    
 }
 
 @end
