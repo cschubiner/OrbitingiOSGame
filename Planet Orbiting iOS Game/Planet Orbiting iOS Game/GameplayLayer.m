@@ -29,7 +29,7 @@
 
 const float musicVolumeGameplay = 1;
 const float effectsVolumeGameplay = 1;
-const int maxNameLength = 10;
+const int maxNameLength = 8;
 
 @implementation GameplayLayer {
     int planetCounter;
@@ -50,6 +50,7 @@ const int maxNameLength = 10;
     CCLabelTTF* feverLabel;
     CCLayer* loadedPauseLayer;
     NSString *blankAvoiderName;
+    BOOL keyboardIsShowing;
 }
 
 
@@ -1641,7 +1642,11 @@ typedef struct {
         [displayName setString:[newName stringByReplacingOccurrencesOfString:@"\n" withString:@""]];
     }
     [playerNameLabel setText:displayName.string];
-    [underscore setPosition:ccp(displayName.position.x + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, displayName.position.y)];
+    if (newName.length == 0) {
+        [underscore setPosition:displayName.position];
+        return;
+    }
+    [underscore setPosition:ccp(displayName.position.x + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2 + 5, displayName.position.y)];
 }
 
 - (BOOL)textViewShouldReturn:(UITextView*)textView {
@@ -1660,17 +1665,20 @@ typedef struct {
 }
 
 - (void)showKeyboard {
+    keyboardIsShowing = YES;
     blankAvoiderName = [playerNameLabel text];
     [playerNameLabel becomeFirstResponder];
     [playerNameLabel setText:@""];
     [displayName setString:@""];
     underscore = [[CCLabelBMFont alloc] initWithString:@"_" fntFile:@"score_label_font.fnt"];
     [pauseLayer addChild:underscore];
-    [underscore setPosition:ccp(displayName.position.x + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, displayName.position.y)];
+  //  [underscore setPosition:ccp(displayName.position.x + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, displayName.position.y)];
+    [underscore setPosition:displayName.position];
     [underscore runAction: [CCRepeatForever actionWithAction: [CCBlink actionWithDuration:5 blinks:5]]];
 }
 
 - (void)hideKeyboard {
+    keyboardIsShowing = NO;
     if ([[playerNameLabel text] isEqualToString:@""]) {
         [playerNameLabel setText:blankAvoiderName];
         [displayName setString:blankAvoiderName];
@@ -1992,10 +2000,11 @@ typedef struct {
         //playerIsTouchingScreen=true;
         //}
         
-        if (location.x >= 7 * size.width/8 && location.y >= 5*size.height/6) {
+        if (!keyboardIsShowing && location.x >= 7 * size.width/8 && location.y >= 5*size.height/6) {
             [self showKeyboard];
-        } else
+        } else {
             [self hideKeyboard];
+        }
     }
 }
 
