@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 
 @implementation Galaxy
-@synthesize number,segments,backgroundSprite,name,numberOfDifferentPlanetsDrawn,spriteSheet,optimalPlanetsInThisGalaxy,percentTimeToAddUponGalaxyCompletion,galaxyColor;
+@synthesize number,segments,backgroundSprite,name,numberOfDifferentPlanetsDrawn,spriteSheet,optimalPlanetsInThisGalaxy,percentTimeToAddUponGalaxyCompletion,galaxyColor,didFree,numberOfPlanetsCreatedAlready;
 
 -(id)initWithSegments:(NSArray *)levelsegments{
     if ((self = [super init])) {
@@ -21,7 +21,7 @@
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[NSString stringWithFormat:@"galaxy%d.plist",self.number]];
         optimalPlanetsInThisGalaxy = 23;
         percentTimeToAddUponGalaxyCompletion = .35;
-
+        didFree = false;
         galaxyColor = ccc3(45, 53, 147); //a dark blue
     }
     return self;
