@@ -350,7 +350,38 @@
         [highScore15 setAnchorPoint:ccp(.5, 1)];
         highScore15.position = ccp(240, highScore14.position.y - highScore14.boundingBox.size.height - 10);
     }
-    
+    if (highScore16Int != 0) {
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore16Int];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        highScore16 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+        [scrollView addChild:highScore16];
+        [highScore16 setAnchorPoint:ccp(.5, 1)];
+        highScore16.position = ccp(240, highScore15.position.y - highScore15.boundingBox.size.height - 10);
+    }
+    if (highScore17Int != 0) {
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore17Int];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        highScore17 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+        [scrollView addChild:highScore17];
+        [highScore17 setAnchorPoint:ccp(.5, 1)];
+        highScore17.position = ccp(240, highScore16.position.y - highScore16.boundingBox.size.height - 10);
+    }
+    if (highScore18Int != 0) {
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore18Int];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        highScore18 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+        [scrollView addChild:highScore18];
+        [highScore18 setAnchorPoint:ccp(.5, 1)];
+        highScore18.position = ccp(240, highScore17.position.y - highScore17.boundingBox.size.height - 10);
+    }
+    if (highScore19Int != 0) {
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore19Int];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        highScore19 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+        [scrollView addChild:highScore19];
+        [highScore19 setAnchorPoint:ccp(.5, 1)];
+        highScore19.position = ccp(240, highScore18.position.y - highScore18.boundingBox.size.height - 10);
+    }
     
     scrollViewHeight = -highScore19.position.y + highScore19.boundingBox.size.height + 20;
 }
