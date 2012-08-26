@@ -29,7 +29,7 @@
 
 const float musicVolumeGameplay = 1;
 const float effectsVolumeGameplay = 1;
-const int maxNameLength = 8;
+const int maxNameLength = 10;
 
 @implementation GameplayLayer {
     int planetCounter;

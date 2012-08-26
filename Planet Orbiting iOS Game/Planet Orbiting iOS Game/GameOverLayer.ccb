@@ -751,15 +751,15 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>344.79296875</real>
-						<real>277.984375</real>
+						<real>351.69140625</real>
+						<real>278.96484375</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>1.5829687118530273</real>
+					<real>1.0366015434265137</real>
 					<key>scaleY</key>
-					<real>1.5829687118530273</real>
+					<real>1.0366015434265137</real>
 					<key>string</key>
 					<string>123456789</string>
 					<key>tag</key>
