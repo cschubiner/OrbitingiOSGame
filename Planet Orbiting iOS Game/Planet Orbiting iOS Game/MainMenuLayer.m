@@ -59,6 +59,7 @@ const float effectsVolumeMainMenu = 1;
         swipeBeginPoint = location;
         
         if (swipeBeginPoint.x >= 359 && swipeBeginPoint.x <= 440 && swipeBeginPoint.y >= 214 && swipeBeginPoint.y <= 287) {
+            [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
             [missionPopup removeFromParentAndCleanup:true];
             [self enableButtons];
         }
@@ -84,6 +85,7 @@ const float effectsVolumeMainMenu = 1;
 }
 
 -(void)pressedObjectiveButton:(id)sender {
+    [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     [Flurry logEvent:@"Pressed objective button"];
     missionPopup = [[ObjectiveManager sharedInstance] createMissionPopupWithX:true];
     [self addChild:missionPopup];

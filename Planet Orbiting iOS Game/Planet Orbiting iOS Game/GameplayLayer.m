@@ -494,7 +494,7 @@ typedef struct {
     for (int i = 0; i <= 29; ++i) {
         [coinAnimationFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%d.png", i]]];
     }
-    coinAnimation = [[CCAnimation alloc ]initWithFrames:coinAnimationFrames delay:coinAnimationDelay];
+    coinAnimation = [[CCAnimation alloc ]initWithSpriteFrames:coinAnimationFrames delay:coinAnimationDelay];
     
     [self CreateGalaxies];
     currentGalaxy = [galaxies objectAtIndex:0];
@@ -1760,7 +1760,7 @@ typedef struct {
         int finalScore = score + prevCurrentPtoPScore;
         BOOL isHighScore = [[PlayerStats sharedInstance] isHighScore:finalScore];
         NSString *ccbFile = @"GameOverLayer.ccb";
-        NSString *scoreText = [NSString stringWithFormat:@"Score: %d",finalScore];
+        //NSString *scoreText = [NSString stringWithFormat:@"Score: %d",finalScore];
         pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:ccbFile owner:self];
         
         finalScore = 69669;
@@ -2176,22 +2176,22 @@ float lerpf(float a, float b, float t) {
     pauseText.position = ccp(240, 301);
     
     CCMenuItem *replay = [CCMenuItemImage
-                          itemFromNormalImage:@"retry.png" selectedImage:@"retrypressed.png"
+                          itemWithNormalImage:@"retry.png" selectedImage:@"retrypressed.png"
                           target:self selector:@selector(restartGame)];
     replay.position = ccp(240, 20);
     
     CCMenuItem *resume = [CCMenuItemImage
-                          itemFromNormalImage:@"resume.png" selectedImage:@"resumepressed.png"
+                          itemWithNormalImage:@"resume.png" selectedImage:@"resumepressed.png"
                           target:self selector:@selector(togglePause)];
     resume.position = ccp(360, 20);
     
     CCMenuItem *quit = [CCMenuItemImage
-                        itemFromNormalImage:@"quit.png" selectedImage:@"quitpressed.png"
+                        itemWithNormalImage:@"quit.png" selectedImage:@"quitpressed.png"
                         target:self selector:@selector(endGame)];
     quit.position = ccp(120, 20);
     
     soundButton = [CCMenuItemImage
-                   itemFromNormalImage:@"sound.png" selectedImage:@"soundpressed.png"
+                   itemWithNormalImage:@"sound.png" selectedImage:@"soundpressed.png"
                    target:self selector:@selector(toggleMute)];
     CCMenuItem *sound = soundButton;
     sound.position = ccp(449, 301);

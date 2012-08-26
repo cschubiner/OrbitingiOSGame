@@ -27,4 +27,7 @@
 
 -(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber view:(CCLayer*)view;
 
+-(float)getscoreMultFromGroupNumber:(int)a_groupNumber;
+-(int)getStarRewardFromGroupNumber:(int)a_groupNumber;
+
 @end

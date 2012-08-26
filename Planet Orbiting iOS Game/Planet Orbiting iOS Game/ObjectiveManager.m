@@ -48,6 +48,16 @@ static ObjectiveManager *sharedInstance = nil;
     return [objectives.objectiveItems objectAtIndex:itemNumber];
 }
 
+-(float)getscoreMultFromGroupNumber:(int)a_groupNumber {
+    ObjectiveGroup* objectives = [objectiveGroups objectAtIndex:a_groupNumber];
+    return objectives.scoreMult;
+}
+
+-(int)getStarRewardFromGroupNumber:(int)a_groupNumber {
+    ObjectiveGroup* objectives = [objectiveGroups objectAtIndex:a_groupNumber];
+    return objectives.starReward;
+}
+
 -(CCLayer*)createMissionPopupWithX:(bool)withX {
     CCLayer* mPopup = [[CCLayer alloc] init];
     

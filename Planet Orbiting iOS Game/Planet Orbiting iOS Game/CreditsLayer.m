@@ -86,7 +86,7 @@
         [botBar setPosition: ccp(240, botBar.boundingBox.size.height/2)];
         
         CCMenuItem *quit = [CCMenuItemImage
-                            itemFromNormalImage:@"back.png" selectedImage:@"backpressed.png"
+                            itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
                             target:self selector:@selector(backButtonPressed)];
         quit.position = ccp(60, 299);
         //quit.scale = 1.7;

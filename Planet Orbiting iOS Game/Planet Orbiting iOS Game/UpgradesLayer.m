@@ -100,7 +100,7 @@
         [botBar setPosition: ccp(240, botBar.boundingBox.size.height/2)];
         
         CCMenuItem *quit = [CCMenuItemImage
-                            itemFromNormalImage:@"back.png" selectedImage:@"backpressed.png"
+                            itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
                             target:self selector:@selector(backButtonPressed)];
         quit.position = ccp(60, 299);
         //quit.scale = 1.7;
@@ -373,23 +373,23 @@
         int pushed = [[UpgradeManager sharedInstance] buttonPushed];
         if (pushed == 0 || pushed == 1 || pushed == 5) {
             resume = [CCMenuItemImage
-                      itemFromNormalImage:@"equip.png" selectedImage:@"equippressed.png"
+                      itemWithNormalImage:@"equip.png" selectedImage:@"equippressed.png"
                       target:self selector:@selector(pressedEquipButton)];
         } else {
             
             resume = [CCMenuItemImage
-                      itemFromNormalImage:@"purchasedisabled.png" selectedImage:@"purchasedisabled.png"
+                      itemWithNormalImage:@"purchasedisabled.png" selectedImage:@"purchasedisabled.png"
                       target:self selector:@selector(pressedDisabledButton)];
         }
         
     } else if ([[UserWallet sharedInstance] getBalance] < pushedItem.price) {
         
         resume = [CCMenuItemImage
-                  itemFromNormalImage:@"purchasedisabled.png" selectedImage:@"purchasedisabled.png"
+                  itemWithNormalImage:@"purchasedisabled.png" selectedImage:@"purchasedisabled.png"
                   target:self selector:@selector(pressedDisabledButton)];
     } else {
         resume = [CCMenuItemImage
-                  itemFromNormalImage:@"purchase.png" selectedImage:@"purchasepressed.png"
+                  itemWithNormalImage:@"purchase.png" selectedImage:@"purchasepressed.png"
                   target:self selector:@selector(pressedPurchaseButton)];
     }
     
@@ -398,7 +398,7 @@
     resume.position = ccp(340, 22);
     
     CCMenuItem *quit = [CCMenuItemImage
-                        itemFromNormalImage:@"cancel.png" selectedImage:@"cancelpressed.png"
+                        itemWithNormalImage:@"cancel.png" selectedImage:@"cancelpressed.png"
                         target:self selector:@selector(pushedCancelButton)];
     quit.scale = 1.3;
     quit.position = ccp(140, 22);
@@ -426,7 +426,7 @@
 }
 
 - (void) pressedEquipButton {
-    [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
+    [self playSound:@"click.mp3" shouldLoop:false pitch:1];
     
     for (int i = 0; i < [upgradeIndecesHere count]; i++) {
         [[UpgradeManager sharedInstance] setUpgradeIndex:[[upgradeIndecesHere objectAtIndex:i] intValue] equipped:false];

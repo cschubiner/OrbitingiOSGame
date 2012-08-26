@@ -13,6 +13,7 @@
 #import "UserWallet.h"
 #import "CCDirector.h"
 #import "MainMenuLayer.h"
+#import "DDGameKitHelper.h"
 #import "SimpleAudioEngine.h"
 #import "DataStorage.h"
 
@@ -86,12 +87,17 @@
         [botBar setPosition: ccp(240, botBar.boundingBox.size.height/2)];
         
         CCMenuItem *quit = [CCMenuItemImage
-                            itemFromNormalImage:@"back.png" selectedImage:@"backpressed.png"
+                            itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
                             target:self selector:@selector(backButtonPressed)];
         quit.position = ccp(60, 299);
+        
+        CCMenuItem *gameCenter = [CCMenuItemImage
+                            itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
+                            target:self selector:@selector(gameCenterButtonPressed)];
+        gameCenter.position = ccp(480-60, 299);
         //quit.scale = 1.7;
         
-        CCMenu* menu = [CCMenu menuWithItems:quit, nil];
+        CCMenu* menu = [CCMenu menuWithItems:quit, gameCenter, nil];
         menu.position = ccp(0, 0);
         
         [self addChild:menu];
@@ -107,6 +113,12 @@
         [self schedule:@selector(Update:) interval:0];
 	}
 	return self;
+}
+
+- (void) gameCenterButtonPressed {
+    [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
+    [Flurry logEvent:@"Opened gamecenter leaderboards"];
+    [[DDGameKitHelper sharedGameKitHelper]showLeaderboard];
 }
 
 - (void) initCredits {

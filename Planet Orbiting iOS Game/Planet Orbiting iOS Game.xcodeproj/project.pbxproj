@@ -419,6 +419,7 @@
 		FA00EC4615E9BB4F00C745BC /* notpurchased.png in Resources */ = {isa = PBXBuildFile; fileRef = FA00EC4415E9BB4F00C745BC /* notpurchased.png */; };
 		FA00EC4D15EA1B0C00C745BC /* doorClose2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA00EC4C15EA1B0C00C745BC /* doorClose2.mp3 */; };
 		FA00EC5015EA235100C745BC /* HighScoresLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FA00EC4F15EA235100C745BC /* HighScoresLayer.m */; };
+		FA00EC5A15EA3AD300C745BC /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA00EC5915EA3AD300C745BC /* click.mp3 */; };
 		FA16A0D815D393CB007C52E3 /* UpgradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA16A0D715D393CB007C52E3 /* UpgradeCell.m */; };
 		FA16A16815D63FE0007C52E3 /* popupSextasy-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA16A16615D63FE0007C52E3 /* popupSextasy-hd.png */; };
 		FA16A16915D63FE0007C52E3 /* popupSextasy.png in Resources */ = {isa = PBXBuildFile; fileRef = FA16A16715D63FE0007C52E3 /* popupSextasy.png */; };
@@ -1037,6 +1038,7 @@
 		FA00EC4C15EA1B0C00C745BC /* doorClose2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = doorClose2.mp3; sourceTree = "<group>"; };
 		FA00EC4E15EA235100C745BC /* HighScoresLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HighScoresLayer.h; path = ../HighScoresLayer.h; sourceTree = "<group>"; };
 		FA00EC4F15EA235100C745BC /* HighScoresLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HighScoresLayer.m; path = ../HighScoresLayer.m; sourceTree = "<group>"; };
+		FA00EC5915EA3AD300C745BC /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click.mp3; sourceTree = "<group>"; };
 		FA16A0D615D393CB007C52E3 /* UpgradeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeCell.h; sourceTree = "<group>"; };
 		FA16A0D715D393CB007C52E3 /* UpgradeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeCell.m; sourceTree = "<group>"; };
 		FA16A16615D63FE0007C52E3 /* popupSextasy-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popupSextasy-hd.png"; sourceTree = "<group>"; };
@@ -1532,6 +1534,7 @@
 		0CFB823A15AE733B00EADAF3 /* Effects */ = {
 			isa = PBXGroup;
 			children = (
+				FA00EC5915EA3AD300C745BC /* click.mp3 */,
 				FA00EC3715E8C6CE00C745BC /* doorClose1.mp3 */,
 				FA00EC4C15EA1B0C00C745BC /* doorClose2.mp3 */,
 				FA18E60D15DB5CB20038E3EC /* purchase.wav */,
@@ -2444,6 +2447,7 @@
 				FA00EC4D15EA1B0C00C745BC /* doorClose2.mp3 in Resources */,
 				01A2E27715EA2B41006D0CB6 /* goldBorder-hd.png in Resources */,
 				01A2E27815EA2B41006D0CB6 /* goldBorder.png in Resources */,
+				FA00EC5A15EA3AD300C745BC /* click.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
