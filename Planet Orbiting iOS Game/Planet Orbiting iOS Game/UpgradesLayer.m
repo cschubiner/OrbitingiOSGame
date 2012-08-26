@@ -169,12 +169,21 @@
     upgradeIndecesHere = [[NSMutableArray alloc] init];
     cells = [[NSMutableArray alloc] init];
     
-    for (UpgradeItem* item in upgradeItems) {
-        if (item.type == indexPushed) {
-            [upgradeIndecesHere addObject:[NSNumber numberWithInt:item.number]];
-            UpgradeCell *cell = [[UpgradeCell alloc] initWithUpgradeItem:item];
-            [cells addObject:cell];
-            scrollViewHeight += 55;
+    if (indexPushed == 4) {
+        
+        /*[upgradeIndecesHere addObject:[NSNumber numberWithInt:item.number]];
+        UpgradeCell *cell = [[UpgradeCell alloc] initWithUpgradeItem:[[UpgradeItem alloc] initWithTitle:<#(NSString *)#> description:<#(NSString *)#> price:<#(int)#> type:<#(int)#> purchased:<#(BOOL)#> equipped:<#(BOOL)#> number:<#(int)#>];
+        [cells addObject:cell];
+        scrollViewHeight += 55;*/
+    } else {
+        
+        for (UpgradeItem* item in upgradeItems) {
+            if (item.type == indexPushed) {
+                [upgradeIndecesHere addObject:[NSNumber numberWithInt:item.number]];
+                UpgradeCell *cell = [[UpgradeCell alloc] initWithUpgradeItem:item];
+                [cells addObject:cell];
+                scrollViewHeight += 55;
+            }
         }
     }
     
@@ -274,7 +283,7 @@
         swipeEndPoint = location;
         
         velocity = swipeEndPoint.y - swipeBeginPoint.y;
-        if (position > startingCenter || position < endingCenter) {
+        if (position < startingCenter || position > endingCenter) {
             velocity *= .5;
         }
         
