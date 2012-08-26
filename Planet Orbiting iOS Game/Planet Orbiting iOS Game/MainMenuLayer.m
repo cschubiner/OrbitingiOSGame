@@ -16,6 +16,7 @@
 #import "PlayerStats.h"
 #import "UpgradeManager.h"
 #import "GKAchievementHandler.h"
+#import "HighScoresLayer.h"
 
 #define tutorialLayerTag    1001
 #define levelLayerTag       1002
@@ -294,6 +295,7 @@ const float effectsVolumeMainMenu = 1;
 }
 
 - (void)pressedScoresButton:(id)sender {
+    /*
     NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
     NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc]init];
     NSMutableDictionary * keyValuePairs = [[PlayerStats sharedInstance] getKeyValuePairs];
@@ -309,7 +311,10 @@ const float effectsVolumeMainMenu = 1;
     [Flurry logEvent:@"Opened High Scores" withParameters:parameterDict];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(0,-320)];
     id ease = [CCEaseSineInOut actionWithAction:action];
-    [layer runAction: ease];
+    [layer runAction: ease];*/
+    
+    [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
+    [[CCDirector sharedDirector] replaceScene:[HighScoresLayer scene]];
 }
 - (void)pressedLevelsButton: (id) sender {
     [Flurry logEvent:@"Pressed Levels Button"];
