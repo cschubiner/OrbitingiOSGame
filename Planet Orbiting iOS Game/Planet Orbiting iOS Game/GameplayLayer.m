@@ -1057,8 +1057,7 @@ typedef struct {
                 }
             }
             else
-                if (orbitState == 1)
-                {
+                if (orbitState == 1) {
                     velSoftener = 0;
                     gravIncreaser = 1;
                     [self playSound:@"SWOOSH.WAV" shouldLoop:false pitch:1];
@@ -1505,11 +1504,13 @@ typedef struct {
         [self DisposeAllContentsOfArray:zones shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:asteroids shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:coins shouldRemoveFromArray:true];
+        
     
         if (currentGalaxy.number>0) {
             Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
             [lastGalaxy.spriteSheet removeAllChildrenWithCleanup:YES];
             [lastGalaxy.spriteSheet removeFromParentAndCleanup:YES];
+            [[CCTextureCache sharedTextureCache] removeUnusedTextures];
         }
         //NSLog(@"galaxy6");
         makingSegmentNumber--;
