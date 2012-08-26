@@ -11,7 +11,7 @@
 @implementation UpgradeValues
 
 // values set in initUpgradedVariables in gameplaylayer.m
-@synthesize asteroidImmunityDuration, coinMagnetDuration, autopilotDuration, absoluteMinTimeDilation, hasDoubleCoins, maxBatteryTime, hasAsteroidArmor, hasAutoPilot, hasStarMagnet, hasStartPowerup, hasHeadStart;
+@synthesize asteroidImmunityDuration, coinMagnetDuration, autopilotDuration, absoluteMinTimeDilation, hasDoubleCoins, maxBatteryTime, hasAsteroidArmor, hasAutoPilot, hasStarMagnet, hasStartPowerup, hasHeadStart, hasBlueShip, hasGoldShip, hasGreenShip, hasOrangeShip, hasPinkShip, hasPurpleShip, hasRedShip;
 
 static UpgradeValues *sharedInstance = nil;
 

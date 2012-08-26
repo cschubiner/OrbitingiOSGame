@@ -383,6 +383,20 @@ typedef struct {
     [[UpgradeValues sharedInstance] setHasHeadStart:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:9] equipped]];
     
     [[UpgradeValues sharedInstance] setAutopilotDuration:5*60*1.3 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:10] equipped]];
+    
+    [[UpgradeValues sharedInstance] setHasGreenShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:17] equipped]];
+    
+    [[UpgradeValues sharedInstance] setHasBlueShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:18] equipped]];
+    
+    [[UpgradeValues sharedInstance] setHasGoldShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:19] equipped]];
+    
+    [[UpgradeValues sharedInstance] setHasOrangeShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:20] equipped]];
+    
+    [[UpgradeValues sharedInstance] setHasRedShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:21] equipped]];
+    
+    [[UpgradeValues sharedInstance] setHasPurpleShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:22] equipped]];
+    
+    [[UpgradeValues sharedInstance] setHasPinkShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:23] equipped]];
 }
 
 - (void)startGame {
@@ -498,6 +512,21 @@ typedef struct {
     player.segmentNumber = -10;
     player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(defaultDirectionPlanetSegmentsGoIn)), -3200*200));
     // player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
+    if ([[UpgradeValues sharedInstance] hasGreenShip]) {
+        player.sprite.color = ccGREEN;
+    } else if ([[UpgradeValues sharedInstance] hasBlueShip]) {
+        player.sprite.color = ccBLUE;
+    } else if ([[UpgradeValues sharedInstance] hasGoldShip]) {
+        player.sprite.color = ccYELLOW;
+    } else if ([[UpgradeValues sharedInstance] hasOrangeShip]) {
+        player.sprite.color = ccORANGE;
+    } else if ([[UpgradeValues sharedInstance] hasRedShip]) {
+        player.sprite.color = ccRED;
+    } else if ([[UpgradeValues sharedInstance] hasPurpleShip]) {
+        player.sprite.color = ccMAGENTA;
+    } else if ([[UpgradeValues sharedInstance] hasPinkShip]) {
+        player.sprite.color = ccc3(255, 20, 147);
+    }
     
     
     CGPoint planPos = [[planets objectAtIndex:0] sprite].position;

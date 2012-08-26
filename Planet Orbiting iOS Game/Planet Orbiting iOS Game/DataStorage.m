@@ -136,6 +136,20 @@
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"1,000,000 Stars" description:@"Get 1,000,000 stars." price:999 type:4 purchased:NO equipped:NO number:16]];
     
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Green Spaceship" description:@"Turn your spaceship green." price:5000 type:1 purchased:NO equipped:NO number:17]];
+    
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Blue Spaceship" description:@"Turn your spaceship blue" price:5000 type:1 purchased:NO equipped:NO number:18]];
+    
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Golden Spaceship" description:@"Turn your spaceship gold." price:10000 type:1 purchased:NO equipped:NO number:19]];
+    
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Orange Spaceship" description:@"Turn your spaceship orange." price:5000 type:1 purchased:NO equipped:NO number:20]];
+    
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Red Spaceship" description:@"Turn your spaceship red." price:5000 type:1 purchased:NO equipped:NO number:21]];
+    
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Purple Spaceship" description:@"Turn your spaceship purple." price:5000 type:1 purchased:NO equipped:NO number:22]];
+    
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Pink Spaceship" description:@"Turn your spaceship pink." price:5000 type:1 purchased:NO equipped:NO number:23]];
+    
     
     if (upgradeCodes) {
         for (int i = 0; i < [upgradeCodes count]; i++) {

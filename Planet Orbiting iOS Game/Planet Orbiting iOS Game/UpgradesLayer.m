@@ -78,7 +78,7 @@
         NSString* stringToUse;
         
         if (indexPushed == 0)
-            stringToUse = @"SPACESHIP TRAIL";
+            stringToUse = @"SPACESHIP TRAILS";
         else if (indexPushed == 1)
             stringToUse = @"ROCKETSHIPS";
         else if (indexPushed == 2)
@@ -90,7 +90,7 @@
         else if (indexPushed == 5)
             stringToUse = @"PERKS";
         
-        CCLabelTTF* pauseText = [CCLabelTTF labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:31];
+        CCLabelTTF* pauseText = [CCLabelTTF labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:30];
         [self addChild:pauseText];
         pauseText.position = ccp(240, 299);
         
