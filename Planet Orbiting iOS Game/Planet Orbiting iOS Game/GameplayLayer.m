@@ -1355,6 +1355,12 @@ typedef struct {
                 [lastGalaxy.spriteSheet removeChild:object.sprite cleanup:YES];
             if ([[currentGalaxy.spriteSheet children]containsObject:object.sprite])
                 [currentGalaxy.spriteSheet removeChild:object.sprite cleanup:YES];
+            
+            [object.sprite removeAllChildrenWithCleanup:YES];
+            [object.sprite removeFromParentAndCleanup:YES];
+            [object removeAllChildrenWithCleanup:YES];
+            [object removeFromParentAndCleanup:YES];
+
             if (shouldRemove) {
                 [array removeObject:object];
                 i--;
@@ -1500,6 +1506,12 @@ typedef struct {
         [self DisposeAllContentsOfArray:zones shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:asteroids shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:coins shouldRemoveFromArray:true];
+    
+        if (currentGalaxy.number>0) {
+            Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
+            [lastGalaxy.spriteSheet removeAllChildrenWithCleanup:YES];
+            [lastGalaxy.spriteSheet removeFromParentAndCleanup:YES];
+        }
         //NSLog(@"galaxy6");
         makingSegmentNumber--;
         
