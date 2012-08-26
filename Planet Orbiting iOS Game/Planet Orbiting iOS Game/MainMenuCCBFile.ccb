@@ -799,9 +799,9 @@
 						<real>0.0</real>
 					</array>
 					<key>endSize</key>
-					<integer>40</integer>
+					<integer>64</integer>
 					<key>endSizeVar</key>
-					<integer>0</integer>
+					<integer>64</integer>
 					<key>endSpin</key>
 					<integer>0</integer>
 					<key>endSpinVar</key>
@@ -832,8 +832,8 @@
 					</array>
 					<key>position</key>
 					<array>
-						<real>681.734375</real>
-						<real>482.681640625</real>
+						<real>686.7578125</real>
+						<real>483.236328125</real>
 					</array>
 					<key>radialAccel</key>
 					<integer>0</integer>
@@ -866,7 +866,7 @@
 						<real>0.0</real>
 					</array>
 					<key>startSize</key>
-					<integer>53</integer>
+					<integer>15</integer>
 					<key>startSizeVar</key>
 					<integer>10</integer>
 					<key>startSpin</key>
