@@ -169,6 +169,7 @@
     upgradeIndecesHere = [[NSMutableArray alloc] init];
     cells = [[NSMutableArray alloc] init];
     
+    
     for (UpgradeItem* item in upgradeItems) {
         if (item.type == indexPushed) {
             [upgradeIndecesHere addObject:[NSNumber numberWithInt:item.number]];
@@ -177,6 +178,7 @@
             scrollViewHeight += 55;
         }
     }
+    
     
     for (int i = 0; i < [cells count]; i++) {
         CCLayer* cell = (CCLayer*)[cells objectAtIndex:i];
@@ -274,7 +276,7 @@
         swipeEndPoint = location;
         
         velocity = swipeEndPoint.y - swipeBeginPoint.y;
-        if (position > startingCenter || position < endingCenter) {
+        if (position < startingCenter || position > endingCenter) {
             velocity *= .5;
         }
         
@@ -358,7 +360,7 @@
     title.position = ccp(240, 252);
     [purchaseLayer addChild:title];
     
-    CCLabelTTF* label0 = [CCLabelTTF labelWithString:item.description dimensions:CGSizeMake(273, 55) hAlignment:UITextAlignmentLeft vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+    CCLabelTTF* label0 = [CCLabelTTF labelWithString:item.description dimensions:CGSizeMake(273, 110) hAlignment:UITextAlignmentLeft vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
     label0.position = ccp(240, 160);
     [purchaseLayer addChild:label0];
     

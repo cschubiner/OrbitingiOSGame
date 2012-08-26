@@ -270,7 +270,7 @@
         swipeEndPoint = location;
         
         velocity = swipeEndPoint.y - swipeBeginPoint.y;
-        if (position > startingCenter || position < endingCenter) {
+        if (position < startingCenter || position > endingCenter) {
             velocity *= .5;
         }
         

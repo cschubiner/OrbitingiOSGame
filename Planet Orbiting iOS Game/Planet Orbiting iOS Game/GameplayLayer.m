@@ -50,7 +50,6 @@ const int maxNameLength = 8;
     CCLabelTTF* feverLabel;
     CCLayer* loadedPauseLayer;
     NSString *blankAvoiderName;
-    BOOL keyboardIsShowing;
 }
 
 
@@ -503,6 +502,7 @@ typedef struct {
     
     CGPoint planPos = [[planets objectAtIndex:0] sprite].position;
     CGPoint pToUse = ccpAdd(ccpMult(ccpNormalize(ccpSub(planPos, [[planets objectAtIndex:1] sprite].position)), -1*[[planets objectAtIndex:0] orbitRadius]), planPos);
+    pToUse = ccpAdd(planPos, ccp(0, [[planets objectAtIndex:0] orbitRadius]));
     
     if ([[UpgradeValues sharedInstance] hasHeadStart])
         [self CreatePowerup:pToUse.x yPos:pToUse.y scale:1 type:kheadStart];
@@ -1010,56 +1010,78 @@ typedef struct {
             }
             
             if (orbitState == 0) {
-                dangerLevel = 0;
-                CGPoint a = ccpSub(player.sprite.position, planet.sprite.position);
-                if (ccpLength(a) != planet.orbitRadius) {
-                    player.sprite.position = ccpAdd(player.sprite.position, ccpMult(ccpNormalize(a), (planet.orbitRadius - ccpLength(a))*howFastOrbitPositionGetsFixed*timeDilationCoefficient*60*dt/[[UpgradeValues sharedInstance] absoluteMinTimeDilation]));
-                }
-                
-                velSoftener += 1/updatesToMakeOrbitVelocityPerfect*60*dt;
-                velSoftener = clampf(velSoftener, 0, 1);
-                
-                CGPoint dir2 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(M_PI/2)));
-                CGPoint dir3 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(-M_PI/2)));
-                if (ccpLength(ccpSub(ccpAdd(a, dir2), ccpAdd(a, player.velocity))) < ccpLength(ccpSub(ccpAdd(a, dir3), ccpAdd(a, player.velocity)))) { //up is closer
-                    player.velocity = ccpAdd(ccpMult(player.velocity, (1-velSoftener)*1), ccpMult(dir2, velSoftener*ccpLength(initialVel)));
+                if (!loading_playerHasReachedFirstPlanet) {
                     
-                }
-                else {
-                    player.velocity = ccpAdd(ccpMult(player.velocity, (1-velSoftener)*1), ccpMult(dir3, velSoftener*ccpLength(initialVel)));
-                }
-                
-                
-                CGPoint respawnPoint = ccpAdd(planet.sprite.position, ccpMult(ccpNormalize(ccpSub([[planets objectAtIndex:planet.number + 1] sprite].position, planet.sprite.position)), -lastPlanetVisited.orbitRadius));
-                respawnPoint = ccpSub(respawnPoint, planet.sprite.position);
-                
-                CGPoint curSpot = player.sprite.position;
-                
-                
-                lastVel = player.velocity;
-                lastAng = ccpAngleSigned(ccpSub(curSpot, planet.sprite.position), ccpSub(respawnPoint, planet.sprite.position));
-                
-                
-                
-                //NSLog(@"feverModePlanetHitsInARow: %i, timeInOrbit: %f", feverModePlanetHitsInARow, timeInOrbit);
-                
-                timeInOrbit += dt;
-                
-                if (timeInOrbit > maxTimeInOrbitThatCountsAsGoodSwipe) {
-                    feverModePlanetHitsInARow = 0;
-                    [feverLabel setString:[NSString stringWithFormat:@""]];
-                }
-                
-                CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
-                player.acceleration = ccpMult(direction, gravity);
-                
-                if (player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart) {
-                    [self JustSwiped];
+                    dangerLevel = 0;
+                    
+                    CGPoint a = ccpSub(player.sprite.position, planet.sprite.position);
+                    
+                    player.sprite.position = ccpAdd(player.sprite.position, ccpMult(ccpNormalize(a), (planet.orbitRadius*.0 - ccpLength(a))*howFastOrbitPositionGetsFixed*timeDilationCoefficient*60*dt/[[UpgradeValues sharedInstance] absoluteMinTimeDilation]));
+                    
+                    velSoftener += 1/updatesToMakeOrbitVelocityPerfect*60*dt;
+                    velSoftener = clampf(velSoftener, 0, 1);
+                    
+                    CGPoint dir2 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(M_PI/2)));
+                    CGPoint dir3 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(-M_PI/2)));
+                    if (ccpLength(ccpSub(ccpAdd(a, dir2), ccpAdd(a, player.velocity))) < ccpLength(ccpSub(ccpAdd(a, dir3), ccpAdd(a, player.velocity)))) { //up is closer
+                        player.velocity = ccpAdd(ccpMult(player.velocity, (1-velSoftener)*1), ccpMult(dir2, velSoftener*ccpLength(initialVel)));
+                        
+                    }
+                    else {
+                        player.velocity = ccpAdd(ccpMult(player.velocity, (1-velSoftener)*1), ccpMult(dir3, velSoftener*ccpLength(initialVel)));
+                    }
+                    
+                } else {
+                    dangerLevel = 0;
+                    CGPoint a = ccpSub(player.sprite.position, planet.sprite.position);
+                    if (ccpLength(a) != planet.orbitRadius) {
+                        player.sprite.position = ccpAdd(player.sprite.position, ccpMult(ccpNormalize(a), (planet.orbitRadius - ccpLength(a))*howFastOrbitPositionGetsFixed*timeDilationCoefficient*60*dt/[[UpgradeValues sharedInstance] absoluteMinTimeDilation]));
+                    }
+                    
+                    velSoftener += 1/updatesToMakeOrbitVelocityPerfect*60*dt;
+                    velSoftener = clampf(velSoftener, 0, 1);
+                    
+                    CGPoint dir2 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(M_PI/2)));
+                    CGPoint dir3 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(-M_PI/2)));
+                    if (ccpLength(ccpSub(ccpAdd(a, dir2), ccpAdd(a, player.velocity))) < ccpLength(ccpSub(ccpAdd(a, dir3), ccpAdd(a, player.velocity)))) { //up is closer
+                        player.velocity = ccpAdd(ccpMult(player.velocity, (1-velSoftener)*1), ccpMult(dir2, velSoftener*ccpLength(initialVel)));
+                        
+                    }
+                    else {
+                        player.velocity = ccpAdd(ccpMult(player.velocity, (1-velSoftener)*1), ccpMult(dir3, velSoftener*ccpLength(initialVel)));
+                    }
+                    
+                    
+                    CGPoint respawnPoint = ccpAdd(planet.sprite.position, ccpMult(ccpNormalize(ccpSub([[planets objectAtIndex:planet.number + 1] sprite].position, planet.sprite.position)), -lastPlanetVisited.orbitRadius));
+                    respawnPoint = ccpSub(respawnPoint, planet.sprite.position);
+                    
+                    CGPoint curSpot = player.sprite.position;
+                    
+                    
+                    lastVel = player.velocity;
+                    lastAng = ccpAngleSigned(ccpSub(curSpot, planet.sprite.position), ccpSub(respawnPoint, planet.sprite.position));
+                    
+                    
+                    
+                    //NSLog(@"feverModePlanetHitsInARow: %i, timeInOrbit: %f", feverModePlanetHitsInARow, timeInOrbit);
+                    
+                    timeInOrbit += dt;
+                    
+                    if (timeInOrbit > maxTimeInOrbitThatCountsAsGoodSwipe) {
+                        feverModePlanetHitsInARow = 0;
+                        [feverLabel setString:[NSString stringWithFormat:@""]];
+                    }
+                    
+                    CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
+                    player.acceleration = ccpMult(direction, gravity);
+                    
+                    if (player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart) {
+                        [self JustSwiped];
+                    }
                 }
             }
             else
-                if (orbitState == 1)
-                {
+                if (orbitState == 1) {
                     velSoftener = 0;
                     gravIncreaser = 1;
                     [self playSound:@"SWOOSH.WAV" shouldLoop:false pitch:1];
@@ -1355,6 +1377,12 @@ typedef struct {
                 [lastGalaxy.spriteSheet removeChild:object.sprite cleanup:YES];
             if ([[currentGalaxy.spriteSheet children]containsObject:object.sprite])
                 [currentGalaxy.spriteSheet removeChild:object.sprite cleanup:YES];
+            
+            [object.sprite removeAllChildrenWithCleanup:YES];
+            [object.sprite removeFromParentAndCleanup:YES];
+            [object removeAllChildrenWithCleanup:YES];
+            [object removeFromParentAndCleanup:YES];
+
             if (shouldRemove) {
                 [array removeObject:object];
                 i--;
@@ -1500,6 +1528,14 @@ typedef struct {
         [self DisposeAllContentsOfArray:zones shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:asteroids shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:coins shouldRemoveFromArray:true];
+        
+    
+        if (currentGalaxy.number>0) {
+            Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
+            [lastGalaxy.spriteSheet removeAllChildrenWithCleanup:YES];
+            [lastGalaxy.spriteSheet removeFromParentAndCleanup:YES];
+            [[CCTextureCache sharedTextureCache] removeUnusedTextures];
+        }
         //NSLog(@"galaxy6");
         makingSegmentNumber--;
         
@@ -1646,11 +1682,7 @@ typedef struct {
         [displayName setString:[newName stringByReplacingOccurrencesOfString:@"\n" withString:@""]];
     }
     [playerNameLabel setText:displayName.string];
-    if (newName.length == 0) {
-        [underscore setPosition:displayName.position];
-        return;
-    }
-    [underscore setPosition:ccp(displayName.position.x + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2 + 5, displayName.position.y)];
+    [underscore setPosition:ccp(displayName.position.x + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, displayName.position.y)];
 }
 
 - (BOOL)textViewShouldReturn:(UITextView*)textView {
@@ -1669,20 +1701,17 @@ typedef struct {
 }
 
 - (void)showKeyboard {
-    keyboardIsShowing = YES;
     blankAvoiderName = [playerNameLabel text];
     [playerNameLabel becomeFirstResponder];
     [playerNameLabel setText:@""];
     [displayName setString:@""];
     underscore = [[CCLabelBMFont alloc] initWithString:@"_" fntFile:@"score_label_font.fnt"];
     [pauseLayer addChild:underscore];
-  //  [underscore setPosition:ccp(displayName.position.x + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, displayName.position.y)];
-    [underscore setPosition:displayName.position];
+    [underscore setPosition:ccp(displayName.position.x + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, displayName.position.y)];
     [underscore runAction: [CCRepeatForever actionWithAction: [CCBlink actionWithDuration:5 blinks:5]]];
 }
 
 - (void)hideKeyboard {
-    keyboardIsShowing = NO;
     if ([[playerNameLabel text] isEqualToString:@""]) {
         [playerNameLabel setText:blankAvoiderName];
         [displayName setString:blankAvoiderName];
@@ -2004,11 +2033,10 @@ typedef struct {
         //playerIsTouchingScreen=true;
         //}
         
-        if (!keyboardIsShowing && location.x >= 7 * size.width/8 && location.y >= 5*size.height/6) {
+        if (location.x >= 7 * size.width/8 && location.y >= 5*size.height/6) {
             [self showKeyboard];
-        } else {
+        } else
             [self hideKeyboard];
-        }
     }
 }
 
