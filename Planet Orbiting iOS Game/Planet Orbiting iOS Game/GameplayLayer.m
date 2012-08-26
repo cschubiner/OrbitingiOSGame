@@ -370,7 +370,7 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setHasDoubleCoins:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped]];
     
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:7 + 100*3*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:60 + 3*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
     
     [[UpgradeValues sharedInstance] setHasStarMagnet:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped]];
     
@@ -496,7 +496,7 @@ typedef struct {
     player.alive=true;
     [player.sprite setScale:playerSizeScale];
     player.segmentNumber = -10;
-    player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(85)), -3200*200));
+    player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(defaultDirectionPlanetSegmentsGoIn)), -3200*200));
     // player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
     
     
@@ -689,13 +689,12 @@ typedef struct {
         })];
         
         
-        CCLabelTTF* loadingLabelHelperText2 = [CCLabelTTF labelWithString:[helperTextArray objectAtIndex:[self RandomBetween:0 maxvalue:helperTextArray.count-1]] dimensions:CGSizeMake(size.width*.499999999999999999999999, 90) hAlignment:UITextAlignmentCenter vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+        loadingLabelHelperText2 = [CCLabelTTF labelWithString:[helperTextArray objectAtIndex:[self RandomBetween:0 maxvalue:helperTextArray.count-1]] dimensions:CGSizeMake(size.width*.499999999999999999999999, 90) hAlignment:UITextAlignmentCenter vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
         
         loadingLabelHelperText2.position = ccp(size.width/2,size.height/2);
         [loadingLabelHelperText2 setAnchorPoint:ccp(.5,.5)];
-        [loadingLayer addChild:loadingLabelHelperText2];
+        [loadingLayerBackground addChild:loadingLabelHelperText2];
 
-        
         [loadingHelperTextLabel setOpacity:0];
         float fadeInTime = 1.4;
         id fadeInAction = [CCFadeIn actionWithDuration:fadeInTime];
@@ -1341,13 +1340,18 @@ typedef struct {
 }
 
 - (void)DisposeAllContentsOfArray:(NSMutableArray*)array shouldRemoveFromArray:(bool)shouldRemove{
-    
+    Galaxy * lastGalaxy = nil;
+    if (currentGalaxy.number>0)
+        lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
     for (int i = 0 ; i < [array count]; i++) {
         CameraObject * object = [array objectAtIndex:i];
         object.segmentNumber--;
         if (object.segmentNumber == -1 ) {
             if ([[spriteSheet children]containsObject:object.sprite])
                 [spriteSheet removeChild:object.sprite cleanup:YES];
+            if (lastGalaxy)
+            if ([[lastGalaxy.spriteSheet children]containsObject:object.sprite])
+                [lastGalaxy.spriteSheet removeChild:object.sprite cleanup:YES];
             if ([[currentGalaxy.spriteSheet children]containsObject:object.sprite])
                 [currentGalaxy.spriteSheet removeChild:object.sprite cleanup:YES];
             if (shouldRemove) {
