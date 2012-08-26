@@ -540,6 +540,10 @@ namespace Level_Creator
             whereToDisplayFirstErrorMessageY = 80;
             thereIsAnError = false;
 
+
+            if (posArray.Count > 7)
+                displayMessage(false, "There are more than 7 planets placed.");
+
             try
             {
             bool stuffLeftOfFirstPlanet = false;
@@ -555,9 +559,6 @@ namespace Level_Creator
                 displayMessage(false, "The distance between the last two placed planets is probably too small.");
             if (getDistanceBetweenLastPlanets() > 935.0f)
                 displayMessage(false, "The distance between the last two placed planets is probably too big.");
-
-            if (posArray.Count > 7)
-                displayMessage(false, "There are more than 7 planets placed.");
             
             foreach (posScaleStruct pstruct in posArrayCoin)
             {
@@ -573,8 +574,6 @@ namespace Level_Creator
             if (coinNotScaleOne)
                 displayMessage(false, "Not all coins placed have a scale of 1.");
 
-            if (posArray.Count < 4)
-                displayMessage(true, "There are less than 4 planets placed.");
             if (Math.Abs(posArray[0].scale - 1) > .05f)
                 displayMessage(true, "The first planet's scale is not 1.");
             if (Math.Abs(posArray[posArray.Count - 1].scale - 1) > .05)
@@ -620,6 +619,9 @@ namespace Level_Creator
           
             }
             catch { }
+
+            if (posArray.Count < 4)
+                displayMessage(true, "There are less than 4 planets placed.");
 
             int index = 0;
             foreach (posScaleStruct pstruct in posArray)

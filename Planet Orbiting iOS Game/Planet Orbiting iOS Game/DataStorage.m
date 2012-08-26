@@ -94,8 +94,6 @@
     } else {
         [[PlayerStats sharedInstance] setRecentName:@"PLAYER"];
     }
-    
-    NSMutableArray* upgrades = [[NSMutableArray alloc] init];
         
     // 0 = SPACESHIP TRAILS
     // 1 = ROCKETSHIPS

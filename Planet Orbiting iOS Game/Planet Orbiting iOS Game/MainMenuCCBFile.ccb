@@ -16,75 +16,6 @@
 				<key>children</key>
 				<array/>
 				<key>class</key>
-				<string>CCSprite</string>
-				<key>properties</key>
-				<dict>
-					<key>anchorPoint</key>
-					<array>
-						<real>0.5</real>
-						<real>0.5</real>
-					</array>
-					<key>blendFunc</key>
-					<array>
-						<integer>770</integer>
-						<integer>771</integer>
-					</array>
-					<key>color</key>
-					<array>
-						<integer>133</integer>
-						<integer>203</integer>
-						<integer>255</integer>
-					</array>
-					<key>contentSize</key>
-					<array>
-						<real>64</real>
-						<real>64</real>
-					</array>
-					<key>customClass</key>
-					<string></string>
-					<key>flipX</key>
-					<false/>
-					<key>flipY</key>
-					<false/>
-					<key>isExpanded</key>
-					<true/>
-					<key>isRelativeAnchorPoint</key>
-					<true/>
-					<key>lockedScaleRatio</key>
-					<true/>
-					<key>memberVarAssignmentName</key>
-					<string></string>
-					<key>memberVarAssignmentType</key>
-					<integer>0</integer>
-					<key>opacity</key>
-					<integer>255</integer>
-					<key>position</key>
-					<array>
-						<real>776.06640625</real>
-						<real>346.64453125</real>
-					</array>
-					<key>rotation</key>
-					<real>21.376953125</real>
-					<key>scaleX</key>
-					<real>3.6130468845367432</real>
-					<key>scaleY</key>
-					<real>3.6130468845367432</real>
-					<key>spriteFile</key>
-					<string>background0.png</string>
-					<key>spriteFramesFile</key>
-					<string>background0.plist</string>
-					<key>tag</key>
-					<integer>-1</integer>
-					<key>visible</key>
-					<true/>
-					<key>zOrder</key>
-					<integer>-2</integer>
-				</dict>
-			</dict>
-			<dict>
-				<key>children</key>
-				<array/>
-				<key>class</key>
 				<string>CCParticleSystem</string>
 				<key>properties</key>
 				<dict>
@@ -281,75 +212,6 @@
 					<string>spriteSheet.plist</string>
 					<key>tag</key>
 					<integer>-1</integer>
-					<key>visible</key>
-					<true/>
-					<key>zOrder</key>
-					<integer>0</integer>
-				</dict>
-			</dict>
-			<dict>
-				<key>children</key>
-				<array/>
-				<key>class</key>
-				<string>CCSprite</string>
-				<key>properties</key>
-				<dict>
-					<key>anchorPoint</key>
-					<array>
-						<real>0.5</real>
-						<real>0.5</real>
-					</array>
-					<key>blendFunc</key>
-					<array>
-						<integer>770</integer>
-						<integer>771</integer>
-					</array>
-					<key>color</key>
-					<array>
-						<integer>255</integer>
-						<integer>255</integer>
-						<integer>255</integer>
-					</array>
-					<key>contentSize</key>
-					<array>
-						<real>158</real>
-						<real>141</real>
-					</array>
-					<key>customClass</key>
-					<string></string>
-					<key>flipX</key>
-					<false/>
-					<key>flipY</key>
-					<false/>
-					<key>isExpanded</key>
-					<true/>
-					<key>isRelativeAnchorPoint</key>
-					<true/>
-					<key>lockedScaleRatio</key>
-					<true/>
-					<key>memberVarAssignmentName</key>
-					<string></string>
-					<key>memberVarAssignmentType</key>
-					<integer>0</integer>
-					<key>opacity</key>
-					<integer>255</integer>
-					<key>position</key>
-					<array>
-						<real>268.921875</real>
-						<real>308.1640625</real>
-					</array>
-					<key>rotation</key>
-					<real>-221.6787109375</real>
-					<key>scaleX</key>
-					<real>1.1147265434265137</real>
-					<key>scaleY</key>
-					<real>1.1147265434265137</real>
-					<key>spriteFile</key>
-					<string>planet2-0.png</string>
-					<key>spriteFramesFile</key>
-					<string>spriteSheet.plist</string>
-					<key>tag</key>
-					<integer>0</integer>
 					<key>visible</key>
 					<true/>
 					<key>zOrder</key>
@@ -2176,8 +2038,8 @@
 											</array>
 											<key>contentSize</key>
 											<array>
-												<real>92</real>
-												<real>30</real>
+												<real>122</real>
+												<real>40</real>
 											</array>
 											<key>customClass</key>
 											<string></string>
@@ -2199,7 +2061,7 @@
 												<real>24.08203125</real>
 											</array>
 											<key>rotation</key>
-											<real>-1.8193359375</real>
+											<real>0.0</real>
 											<key>scaleX</key>
 											<real>1.1091797351837158</real>
 											<key>scaleY</key>
@@ -3697,8 +3559,8 @@
 									<integer>255</integer>
 									<key>position</key>
 									<array>
-										<real>44.951171875</real>
-										<real>-118.828125</real>
+										<real>48.080078125</real>
+										<real>-123.05078125</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
@@ -4187,8 +4049,8 @@
 											</array>
 											<key>contentSize</key>
 											<array>
-												<real>77</real>
-												<real>77</real>
+												<real>36</real>
+												<real>36</real>
 											</array>
 											<key>customClass</key>
 											<string></string>
