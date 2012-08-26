@@ -99,14 +99,9 @@ const float effectsVolumeMainMenu = 1;
 // on "init" you need to initialize your instance
 - (id)init {
 	if (self = [super init]) {
-        
         self.isTouchEnabled = true;
-        
-        
-                   
-        
+
         layer = (CCLayer*)[CCBReader nodeGraphFromFile:@"MainMenuCCBFile.ccb" owner:self];
-        
         
         muted = ![[PlayerStats sharedInstance] isMuted];        
         [self toggleMute];

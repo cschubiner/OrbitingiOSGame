@@ -11,6 +11,6 @@
 
 @interface HighScoresLayer : CCLayer
 
-+ (CCScene *) scene;
++ (CCScene *)scene;
 
 @end

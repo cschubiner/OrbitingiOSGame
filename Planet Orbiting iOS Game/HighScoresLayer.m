@@ -16,6 +16,7 @@
 #import "DDGameKitHelper.h"
 #import "SimpleAudioEngine.h"
 #import "DataStorage.h"
+#import "PlayerStats.h"
 
 @implementation HighScoresLayer {
     CCLayer* scrollView;
@@ -92,8 +93,8 @@
         quit.position = ccp(60, 299);
         
         CCMenuItem *gameCenter = [CCMenuItemImage
-                            itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
-                            target:self selector:@selector(gameCenterButtonPressed)];
+                                  itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
+                                  target:self selector:@selector(gameCenterButtonPressed)];
         gameCenter.position = ccp(480-60, 299);
         //quit.scale = 1.7;
         
@@ -101,87 +102,260 @@
         menu.position = ccp(0, 0);
         
         [self addChild:menu];
-        
-        
-        [self initCredits];
-        
-        
+        [self initHighScore];
         [self initScrollStuff];
-        
-        
         
         [self schedule:@selector(Update:) interval:0];
 	}
 	return self;
 }
 
-- (void) gameCenterButtonPressed {
+- (void)gameCenterButtonPressed {
     [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
     [Flurry logEvent:@"Opened gamecenter leaderboards"];
     [[DDGameKitHelper sharedGameKitHelper]showLeaderboard];
 }
 
-- (void) initCredits {
+- (void)initHighScore {
+    NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
+    
+    int highScore0Int;
+    int highScore1Int;
+    int highScore2Int;
+    int highScore3Int;
+    int highScore4Int;
+    int highScore5Int;
+    int highScore6Int;
+    int highScore7Int;
+    int highScore8Int;
+    int highScore9Int;
+    int highScore10Int;
+    int highScore11Int;
+    int highScore12Int;
+    int highScore13Int;
+    int highScore14Int;
+    int highScore15Int;
+    int highScore16Int;
+    int highScore17Int;
+    int highScore18Int;
+    int highScore19Int;
+    
+    if (highScores && [highScores count] > 0) {
+        highScore0Int = [[highScores objectAtIndex:0] intValue];
+    }
+    if (highScores && [highScores count] > 1) {
+        highScore1Int = [[highScores objectAtIndex:1] intValue];
+    }
+    if (highScores && [highScores count] > 2) {
+        highScore2Int = [[highScores objectAtIndex:2] intValue];
+    }
+    if (highScores && [highScores count] > 3) {
+        highScore3Int = [[highScores objectAtIndex:3] intValue];
+    }
+    if (highScores && [highScores count] > 4) {
+        highScore4Int = [[highScores objectAtIndex:4] intValue];
+    }
+    if (highScores && [highScores count] > 5) {
+        highScore5Int = [[highScores objectAtIndex:5] intValue];
+    }
+    if (highScores && [highScores count] > 6) {
+        highScore6Int = [[highScores objectAtIndex:6] intValue];
+    }
+    if (highScores && [highScores count] > 7) {
+        highScore7Int = [[highScores objectAtIndex:7] intValue];
+    }
+    if (highScores && [highScores count] > 8) {
+        highScore8Int = [[highScores objectAtIndex:8] intValue];
+    }
+    if (highScores && [highScores count] > 9) {
+        highScore9Int = [[highScores objectAtIndex:9] intValue];
+    }
+    if (highScores && [highScores count] > 10) {
+        highScore10Int = [[highScores objectAtIndex:10] intValue];
+    }
+    if (highScores && [highScores count] > 11) {
+        highScore11Int = [[highScores objectAtIndex:11] intValue];
+    }
+    if (highScores && [highScores count] > 12) {
+        highScore12Int = [[highScores objectAtIndex:12] intValue];
+    }
+    if (highScores && [highScores count] > 13) {
+        highScore13Int = [[highScores objectAtIndex:13] intValue];
+    }
+    if (highScores && [highScores count] > 14) {
+        highScore14Int = [[highScores objectAtIndex:14] intValue];
+    }
+    if (highScores && [highScores count] > 15) {
+        highScore15Int = [[highScores objectAtIndex:15] intValue];
+    }
+    if (highScores && [highScores count] > 16) {
+        highScore16Int = [[highScores objectAtIndex:16] intValue];
+    }
+    if (highScores && [highScores count] > 17) {
+        highScore17Int = [[highScores objectAtIndex:17] intValue];
+    }
+    if (highScores && [highScores count] > 18) {
+        highScore18Int = [[highScores objectAtIndex:18] intValue];
+    }
+    if (highScores && [highScores count] > 19) {
+        highScore19Int = [[highScores objectAtIndex:19] intValue];
+    }
+    
+    CCLabelTTF *highScore0;
+    CCLabelTTF *highScore1;
+    CCLabelTTF *highScore2;
+    CCLabelTTF *highScore3;
+    CCLabelTTF *highScore4;
+    CCLabelTTF *highScore5;
+    CCLabelTTF *highScore6;
+    CCLabelTTF *highScore7;
+    CCLabelTTF *highScore8;
+    CCLabelTTF *highScore9;
+    CCLabelTTF *highScore10;
+    CCLabelTTF *highScore11;
+    CCLabelTTF *highScore12;
+    CCLabelTTF *highScore13;
+    CCLabelTTF *highScore14;
+    CCLabelTTF *highScore15;
+    CCLabelTTF *highScore16;
+    CCLabelTTF *highScore17;
+    CCLabelTTF *highScore18;
+    CCLabelTTF *highScore19;
+    
+    if (highScore0Int != 0) {
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore0Int];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        highScore0 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+        [scrollView addChild:highScore0];
+        [highScore0 setAnchorPoint:ccp(.5, 1)];
+        highScore0.position = ccp(240, -5);
+    }
+    if (highScore1Int != 0) {
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore1Int];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        highScore1 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+        [scrollView addChild:highScore1];
+        [highScore1 setAnchorPoint:ccp(.5, 1)];
+        highScore1.position = ccp(240, highScore0.position.y - highScore0.boundingBox.size.height - 10);
+    }
+    if (highScore2Int != 0) {
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore2Int];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        highScore2 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+        [scrollView addChild:highScore2];
+        [highScore2 setAnchorPoint:ccp(.5, 1)];
+        highScore2.position = ccp(240, highScore1.position.y - highScore1.boundingBox.size.height - 10);
+    }
+    if (highScore3Int != 0) {
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore3Int];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        highScore3 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+        [scrollView addChild:highScore3];
+        [highScore3 setAnchorPoint:ccp(.5, 1)];
+        highScore3.position = ccp(240, highScore2.position.y - highScore2.boundingBox.size.height - 10);
+    }
+    if (highScore4Int != 0) {
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore4Int];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        highScore4 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+        [scrollView addChild:highScore3];
+        [highScore4 setAnchorPoint:ccp(.5, 1)];
+        highScore4.position = ccp(240, highScore3.position.y - highScore3.boundingBox.size.height - 10);
+    }
+    if (highScore5Int != 0) {
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore5Int];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        highScore5 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+        [scrollView addChild:highScore5];
+        [highScore5 setAnchorPoint:ccp(.5, 1)];
+        highScore5.position = ccp(240, highScore4.position.y - highScore4.boundingBox.size.height - 10);
+    }
+    if (highScore6Int != 0) {
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore6Int];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        highScore6 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+        [scrollView addChild:highScore6];
+        [highScore6 setAnchorPoint:ccp(.5, 1)];
+        highScore6.position = ccp(240, highScore5.position.y - highScore5.boundingBox.size.height - 10);
+    }
+    if (highScore7Int != 0) {
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore7Int];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        highScore7 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+        [scrollView addChild:highScore7];
+        [highScore7 setAnchorPoint:ccp(.5, 1)];
+        highScore7.position = ccp(240, highScore6.position.y - highScore6.boundingBox.size.height - 10);
+    }
+    if (highScore8Int != 0) {
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore8Int];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        highScore8 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+        [scrollView addChild:highScore8];
+        [highScore8 setAnchorPoint:ccp(.5, 1)];
+        highScore8.position = ccp(240, highScore7.position.y - highScore7.boundingBox.size.height - 10);
+    }
+    if (highScore9Int != 0) {
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore9Int];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        highScore9 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+        [scrollView addChild:highScore9];
+        [highScore9 setAnchorPoint:ccp(.5, 1)];
+        highScore9.position = ccp(240, highScore9.position.y - highScore9.boundingBox.size.height - 10);
+    }
+    if (highScore10Int != 0) {
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore10Int];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        highScore10 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+        [scrollView addChild:highScore10];
+        [highScore10 setAnchorPoint:ccp(.5, 1)];
+        highScore10.position = ccp(240, highScore9.position.y - highScore9.boundingBox.size.height - 10);
+    }
+    if (highScore11Int != 0) {
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore11Int];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        highScore11 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+        [scrollView addChild:highScore11];
+        [highScore11 setAnchorPoint:ccp(.5, 1)];
+        highScore11.position = ccp(240, highScore10.position.y - highScore10.boundingBox.size.height - 10);
+    }
+    if (highScore12Int != 0) {
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore12Int];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        highScore12 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+        [scrollView addChild:highScore12];
+        [highScore12 setAnchorPoint:ccp(.5, 1)];
+        highScore12.position = ccp(240, highScore11.position.y - highScore11.boundingBox.size.height - 10);
+    }
+    if (highScore13Int != 0) {
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore13Int];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        highScore13 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+        [scrollView addChild:highScore13];
+        [highScore13 setAnchorPoint:ccp(.5, 1)];
+        highScore13.position = ccp(240, highScore12.position.y - highScore12.boundingBox.size.height - 10);
+    }
+    if (highScore14Int != 0) {
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore14Int];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        highScore14 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+        [scrollView addChild:highScore14];
+        [highScore14 setAnchorPoint:ccp(.5, 1)];
+        highScore14.position = ccp(240, highScore13.position.y - highScore13.boundingBox.size.height - 10);
+    }
+    if (highScore15Int != 0) {
+        NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore15Int];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        highScore15 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+        [scrollView addChild:highScore15];
+        [highScore15 setAnchorPoint:ccp(.5, 1)];
+        highScore15.position = ccp(240, highScore14.position.y - highScore14.boundingBox.size.height - 10);
+    }
     
     
-    CCLabelTTF* credits0 = [CCLabelTTF labelWithString:@"- DESIGN -" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
-    [scrollView addChild:credits0];
-    [credits0 setAnchorPoint:ccp(.5, 1)];
-    credits0.position = ccp(240, -5);
-    
-    CCLabelTTF* credits1 = [CCLabelTTF labelWithString:@"ALEX BLICKENSTAFF\nCLAY SCHUBINER" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
-    [scrollView addChild:credits1];
-    [credits1 setAnchorPoint:ccp(.5, 1)];
-    credits1.position = ccp(240, credits0.position.y - credits0.boundingBox.size.height - 10);
-    
-    
-    CCLabelTTF* credits2 = [CCLabelTTF labelWithString:@"- LEAD PROGRAMMING -" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
-    [scrollView addChild:credits2];
-    [credits2 setAnchorPoint:ccp(.5, 1)];
-    credits2.position = ccp(240, credits1.position.y - credits1.boundingBox.size.height - 35);
-    
-    CCLabelTTF* credits3 = [CCLabelTTF labelWithString:@"ALEX BLICKENSTAFF\nCLAY SCHUBINER" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
-    [scrollView addChild:credits3];
-    [credits3 setAnchorPoint:ccp(.5, 1)];
-    credits3.position = ccp(240, credits2.position.y - credits2.boundingBox.size.height - 10);
-    
-    
-    CCLabelTTF* credits4 = [CCLabelTTF labelWithString:@"- ADDITIONAL PROGRAMMING -" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
-    [scrollView addChild:credits4];
-    [credits4 setAnchorPoint:ccp(.5, 1)];
-    credits4.position = ccp(240, credits3.position.y - credits3.boundingBox.size.height - 35);
-    
-    CCLabelTTF* credits5 = [CCLabelTTF labelWithString:@"JEFF GRIMES" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
-    [scrollView addChild:credits5];
-    [credits5 setAnchorPoint:ccp(.5, 1)];
-    credits5.position = ccp(240, credits4.position.y - credits4.boundingBox.size.height - 10);
-    
-    
-    CCLabelTTF* credits6 = [CCLabelTTF labelWithString:@"- ART -" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
-    [scrollView addChild:credits6];
-    [credits6 setAnchorPoint:ccp(.5, 1)];
-    credits6.position = ccp(240, credits5.position.y - credits5.boundingBox.size.height - 35);
-    
-    CCLabelTTF* credits7 = [CCLabelTTF labelWithString:@"MICHAEL ARBEED" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
-    [scrollView addChild:credits7];
-    [credits7 setAnchorPoint:ccp(.5, 1)];
-    credits7.position = ccp(240, credits6.position.y - credits6.boundingBox.size.height - 10);
-    
-    
-    CCLabelTTF* credits8 = [CCLabelTTF labelWithString:@"- LEVEL DESIGN -" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
-    [scrollView addChild:credits8];
-    [credits8 setAnchorPoint:ccp(.5, 1)];
-    credits8.position = ccp(240, credits7.position.y - credits7.boundingBox.size.height - 35);
-    
-    CCLabelTTF* credits9 = [CCLabelTTF labelWithString:@"MICHAEL ARBEED\nALEX BLICKENSTAFF\nCRAIG COLLINS\nJEFF GRIMES\nCLAY SCHUBINER" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
-    [scrollView addChild:credits9];
-    [credits9 setAnchorPoint:ccp(.5, 1)];
-    credits9.position = ccp(240, credits8.position.y - credits8.boundingBox.size.height - 10);
-    
-    scrollViewHeight = -credits9.position.y + credits9.boundingBox.size.height + 20;
+    scrollViewHeight = -highScore19.position.y + highScore19.boundingBox.size.height + 20;
 }
 
--(void) initScrollStuff {
+- (void)initScrollStuff {
     screenHeight = 275;
     startingCenter = screenHeight;//320-40;//-scrollViewHeight;
     //endingCenter = startingCenter - scrollViewHeight + screenHeight;
