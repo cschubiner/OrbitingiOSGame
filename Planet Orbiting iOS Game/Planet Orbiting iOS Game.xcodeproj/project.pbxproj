@@ -2635,11 +2635,13 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_FAST_MATH = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Planet Orbiting iOS Game/Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = NO;
 				"GCC_THUMB_SUPPORT[arch=armv7]" = YES;
+				GCC_UNROLL_LOOPS = NO;
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "Planet Orbiting iOS Game/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
@@ -2649,6 +2651,8 @@
 					"\"$(SRCROOT)/Planet Orbiting iOS Game/FlurryAnalytics\"",
 					"\"$(SRCROOT)/Planet Orbiting iOS Game/Flurry\"",
 				);
+				"OTHER_CFLAGS[arch=armv6]" = "-mno-thumb";
+				"OTHER_CFLAGS[arch=armv7]" = "";
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lxml2",
@@ -2681,11 +2685,13 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				GCC_FAST_MATH = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Planet Orbiting iOS Game/Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
-				"GCC_THUMB_SUPPORT[arch=armv6]" = NO;
-				"GCC_THUMB_SUPPORT[arch=armv7]" = YES;
+				"GCC_THUMB_SUPPORT[arch=armv6]" = YES;
+				"GCC_THUMB_SUPPORT[arch=armv7]" = NO;
+				GCC_UNROLL_LOOPS = YES;
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "Planet Orbiting iOS Game/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
@@ -2695,6 +2701,11 @@
 					"\"$(SRCROOT)/Planet Orbiting iOS Game/FlurryAnalytics\"",
 					"\"$(SRCROOT)/Planet Orbiting iOS Game/Flurry\"",
 				);
+				"OTHER_CFLAGS[arch=armv6]" = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"-mno-thumb",
+				);
+				"OTHER_CFLAGS[arch=armv7]" = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lxml2",
