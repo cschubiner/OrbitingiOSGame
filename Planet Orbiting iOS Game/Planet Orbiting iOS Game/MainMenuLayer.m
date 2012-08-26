@@ -394,10 +394,16 @@ const float effectsVolumeMainMenu = 1;
 //    [self pressedAnUpgradeButton];
 //}
 
-- (void)pressedRocketShipsButton: (id) sender {
+- (void)pressedCreditsButton {
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     [[CCDirector sharedDirector] replaceScene:[CreditsLayer scene]];
-    }
+}
+
+- (void)pressedRocketShipsButton: (id) sender {
+    [Flurry logEvent:@"Pressed Rocketships Button"];
+    [[UpgradeManager sharedInstance] setButtonPushed:1];
+    [self pressedAnUpgradeButton];
+}
 
 - (void)pressedUpgradesButton: (id) sender {
     [Flurry logEvent:@"Pressed Upgrades Button"];
