@@ -325,8 +325,6 @@ const float effectsVolumeMainMenu = 1;
     [missionCompletionScreen addChild:starExplosion];
     [starExplosion stopSystem];
     
-    [[UserWallet sharedInstance] setBalance:20000];
-    
     shouldPlayCoinSound = true;
     coinPitch = .8;
     coinPitchCounter = 0;

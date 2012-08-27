@@ -214,6 +214,8 @@
                                                           item1:[[ObjectiveItem alloc] initWithText:@"Get 15 stars in one run" isCompleted:[[bools objectAtIndex:1] boolValue]]
                                                           item2:[[ObjectiveItem alloc] initWithText:@"Get 20 stars in one run" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
+    
+    [[ObjectiveManager sharedInstance] setMaxObjectiveGroupNumber:counter];
     objectives = groups;
     [[ObjectiveManager sharedInstance] setObjectiveGroups:objectives];
 }

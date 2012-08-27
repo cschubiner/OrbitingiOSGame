@@ -10,7 +10,7 @@
 
 @implementation ObjectiveManager
 
-@synthesize objectiveGroups, currentObjectiveGroupNumber;
+@synthesize objectiveGroups, currentObjectiveGroupNumber, maxObjectiveGroupNumber;
 
 static ObjectiveManager *sharedInstance = nil;
 
@@ -78,6 +78,13 @@ static ObjectiveManager *sharedInstance = nil;
     CCLabelTTF* missionLabel = [CCLabelTTF labelWithString:@"CURRENT MISSIONS" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
     [mPopup addChild:missionLabel];
     missionLabel.position = ccp(240, 246);
+    
+    
+    
+    if ([[ObjectiveManager sharedInstance] currentObjectiveGroupNumber] > [[ObjectiveManager sharedInstance] maxObjectiveGroupNumber]) {
+        [missionLabel setString:@"NO MORE MISSIONS"];
+        return mPopup;
+    }
     
     NSMutableArray* objectivesAtThisLevel = [[ObjectiveManager sharedInstance] getObjectivesFromGroupNumber:[[ObjectiveManager sharedInstance] currentObjectiveGroupNumber]];
     

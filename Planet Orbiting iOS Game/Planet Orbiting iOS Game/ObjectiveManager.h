@@ -16,6 +16,7 @@
 
 @property (nonatomic, retain) NSMutableArray* objectiveGroups;
 @property (nonatomic) int currentObjectiveGroupNumber;
+@property (nonatomic) int maxObjectiveGroupNumber;
 
 + (id)sharedInstance;
 
