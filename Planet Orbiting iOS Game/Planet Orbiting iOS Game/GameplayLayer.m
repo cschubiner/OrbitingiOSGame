@@ -51,6 +51,8 @@ const int maxNameLength = 8;
     CCLayer* loadedPauseLayer;
     NSString *blankAvoiderName;
     BOOL isKeyboardShowing;
+    
+    BOOL pauseEnabled;
 }
 
 
@@ -1441,6 +1443,7 @@ typedef struct {
         if (
             //nextPlanet.whichGalaxyThisObjectBelongsTo > lastPlanetVisited.whichGalaxyThisObjectBelongsTo||
             targetPlanet.whichGalaxyThisObjectBelongsTo>lastPlanetVisited.whichGalaxyThisObjectBelongsTo || loading_playerHasReachedFirstPlanet==false) {
+            pauseEnabled = NO;
             cameraShouldFocusOnPlayer=true;
             //NSLog(@"galaxy112");
             
@@ -1641,6 +1644,7 @@ typedef struct {
                     [scoreLabel runAction:fadeInAction];
                     [zeroCoinsLabel runAction:fadeInAction];
                     loading_playerHasReachedFirstPlanet = true;
+                    pauseEnabled = YES;
                     score = 0;
                     tempScore = 0;
                 }
@@ -2214,6 +2218,9 @@ float lerpf(float a, float b, float t) {
 }
 
 - (void)togglePause {
+    if (!pauseEnabled) {
+        return;
+    }
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     paused = !paused;
     if (paused) {
