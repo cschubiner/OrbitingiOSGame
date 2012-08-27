@@ -61,13 +61,13 @@ static ObjectiveManager *sharedInstance = nil;
 -(CCLayer*)createMissionPopupWithX:(bool)withX {
     CCLayer* mPopup = [[CCLayer alloc] init];
     
-    CCSprite* bg = [CCSprite spriteWithFile:(withX) ? @"missionsModal.png" : @"missionsBG.png"];
+    CCSprite* bg = [CCSprite spriteWithFile:(withX) ? @"popup2.png" : @"popup.png"];
     [mPopup addChild:bg];
     bg.position = ccp(240, 160);
     
-    CCLabelTTF* missionLabel = [CCLabelTTF labelWithString:@"CURRENT MISSIONS" fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
+    CCLabelTTF* missionLabel = [CCLabelTTF labelWithString:@"CURRENT MISSIONS" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
     [mPopup addChild:missionLabel];
-    missionLabel.position = ccp(240, 252);
+    missionLabel.position = ccp(240, 246);
     
     NSMutableArray* objectivesAtThisLevel = [[ObjectiveManager sharedInstance] getObjectivesFromGroupNumber:[[ObjectiveManager sharedInstance] currentObjectiveGroupNumber]];
     
@@ -80,9 +80,9 @@ static ObjectiveManager *sharedInstance = nil;
     [mPopup addChild:ind0];
     [mPopup addChild:ind1];
     [mPopup addChild:ind2];
-    ind0.position = ccp(104, 209);
-    ind1.position = ccp(104, 154);
-    ind2.position = ccp(104, 100);
+    ind0.position = ccp(108, 211);
+    ind1.position = ccp(108, 161);
+    ind2.position = ccp(108, 112);
     
     CCLabelTTF* label0 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:0]) text] dimensions:CGSizeMake(273, 55) hAlignment:UITextAlignmentLeft vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
 
@@ -92,9 +92,9 @@ static ObjectiveManager *sharedInstance = nil;
     [mPopup addChild:label0];
     [mPopup addChild:label1];
     [mPopup addChild:label2];
-    label0.position = ccp(label0.boundingBox.size.width/2 + 134, 209);
-    label1.position = ccp(label1.boundingBox.size.width/2 + 134, 154);
-    label2.position = ccp(label2.boundingBox.size.width/2 + 134, 100);
+    label0.position = ccp(label0.boundingBox.size.width/2 + 134, 211);
+    label1.position = ccp(label1.boundingBox.size.width/2 + 134, 161);
+    label2.position = ccp(label2.boundingBox.size.width/2 + 134, 112);
     
     
     
@@ -102,7 +102,7 @@ static ObjectiveManager *sharedInstance = nil;
     
     CCLabelTTF* footer = [CCLabelTTF labelWithString:footerString fontName:@"HelveticaNeue-CondensedBold" fontSize:17];
     [mPopup addChild:footer];
-    footer.position = ccp(240, 61);
+    footer.position = ccp(240, 74);
     return mPopup;
 }
 

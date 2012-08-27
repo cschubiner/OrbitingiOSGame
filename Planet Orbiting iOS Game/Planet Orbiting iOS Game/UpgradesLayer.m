@@ -352,56 +352,70 @@
 - (CCLayer*)createPurchaseDialogWithItem: (UpgradeItem*) item {
     purchaseLayer = [[CCLayer alloc] init];
     
-    CCSprite* popup = [CCSprite spriteWithFile:@"missionsBG.png"];
+    CCSprite* popup = [CCSprite spriteWithFile:@"popup3.png"];
     popup.position = ccp(240, 160);
     [purchaseLayer addChild:popup];
     
-    CCLabelTTF* title = [CCLabelTTF labelWithString:item.title fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
-    title.position = ccp(240, 252);
+    CCLabelTTF* title = [CCLabelTTF labelWithString:item.title fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+    title.position = ccp(240, 247);
     [purchaseLayer addChild:title];
     
-    CCLabelTTF* label0 = [CCLabelTTF labelWithString:item.description dimensions:CGSizeMake(273, 110) hAlignment:UITextAlignmentLeft vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
-    label0.position = ccp(240, 160);
+    CCLabelTTF* label0 = [CCLabelTTF labelWithString:item.description dimensions:CGSizeMake(273, 113) hAlignment:UITextAlignmentLeft vAlignment:kCCVerticalTextAlignmentTop lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:20];
+    label0.position = ccp(90, 230);
+    label0.anchorPoint = ccp(0, 1);
     [purchaseLayer addChild:label0];
     
     CCMenuItem *resume;
     
     
-    
-    if (item.purchased) {
+    if (item.equipped) {
         
-        int pushed = [[UpgradeManager sharedInstance] buttonPushed];
-        if (pushed == 0 || pushed == 1 || pushed == 5) {
-            resume = [CCMenuItemImage
-                      itemWithNormalImage:@"equip.png" selectedImage:@"equippressed.png"
-                      target:self selector:@selector(pressedEquipButton)];
-        } else {
+        resume = [CCMenuItemImage
+                  itemWithNormalImage:@"unequip.png" selectedImage:@"unequipressed.png"
+                  target:self selector:@selector(pressedUnequipButton)];
+        
+    } else {
+        
+        if (item.purchased) {
+            
+            //int pushed = [[UpgradeManager sharedInstance] buttonPushed];
+            //if (pushed == 0 || pushed == 1 || pushed == 5) {
+                resume = [CCMenuItemImage
+                          itemWithNormalImage:@"equip.png" selectedImage:@"equippressed.png"
+                          target:self selector:@selector(pressedEquipButton)];
+            //} else {
+                
+            //    resume = [CCMenuItemImage
+            //              itemWithNormalImage:@"purchasedisabled.png" selectedImage:@"purchasedisabled.png"
+            //              target:self selector:@selector(pressedDisabledButton)];
+            //}
+            
+        } else if ([[UserWallet sharedInstance] getBalance] < pushedItem.price) {
             
             resume = [CCMenuItemImage
                       itemWithNormalImage:@"purchasedisabled.png" selectedImage:@"purchasedisabled.png"
                       target:self selector:@selector(pressedDisabledButton)];
+        } else {
+            /*resume = [CCMenuItemImage
+                      itemWithNormalImage:@"purchase.png" selectedImage:@"purchasepressed.png"
+                      target:self selector:@selector(pressedPurchaseButton)];*/
+            
+            
+            resume = [CCMenuItemImage
+                      itemWithNormalImage:@"purchase.png" selectedImage:@"purchasepressed.png"
+                      target:self selector:@selector(pressedPurchaseButton)];
         }
-        
-    } else if ([[UserWallet sharedInstance] getBalance] < pushedItem.price) {
-        
-        resume = [CCMenuItemImage
-                  itemWithNormalImage:@"purchasedisabled.png" selectedImage:@"purchasedisabled.png"
-                  target:self selector:@selector(pressedDisabledButton)];
-    } else {
-        resume = [CCMenuItemImage
-                  itemWithNormalImage:@"purchase.png" selectedImage:@"purchasepressed.png"
-                  target:self selector:@selector(pressedPurchaseButton)];
     }
     
     
     resume.scale = 1.3;
-    resume.position = ccp(340, 22);
+    resume.position = ccp(320, 88);
     
     CCMenuItem *quit = [CCMenuItemImage
                         itemWithNormalImage:@"cancel.png" selectedImage:@"cancelpressed.png"
                         target:self selector:@selector(pushedCancelButton)];
     quit.scale = 1.3;
-    quit.position = ccp(140, 22);
+    quit.position = ccp(160, 88);
     
     
     CCMenu* menu = [CCMenu menuWithItems:resume, quit, nil];
@@ -428,10 +442,25 @@
 - (void) pressedEquipButton {
     [self playSound:@"click.mp3" shouldLoop:false pitch:1];
     
-    for (int i = 0; i < [upgradeIndecesHere count]; i++) {
-        [[UpgradeManager sharedInstance] setUpgradeIndex:[[upgradeIndecesHere objectAtIndex:i] intValue] equipped:false];
+    int pushed = [[UpgradeManager sharedInstance] buttonPushed];
+    if (pushed == 0 || pushed == 1 || pushed == 5) {
+        for (int i = 0; i < [upgradeIndecesHere count]; i++) {
+            [[UpgradeManager sharedInstance] setUpgradeIndex:[[upgradeIndecesHere objectAtIndex:i] intValue] equipped:false];
+        }
     }
+    
     [[UpgradeManager sharedInstance] setUpgradeIndex:pushedItem.number purchased:true equipped:true];
+    
+    [DataStorage storeData];
+    [self refreshUpgradeCells];
+    
+    [self removePurchasePopup];
+}
+
+- (void) pressedUnequipButton {
+    [self playSound:@"click.mp3" shouldLoop:false pitch:1];
+    
+    [[UpgradeManager sharedInstance] setUpgradeIndex:pushedItem.number equipped:false];
     
     [DataStorage storeData];
     [self refreshUpgradeCells];
