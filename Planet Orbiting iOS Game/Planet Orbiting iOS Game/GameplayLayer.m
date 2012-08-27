@@ -42,8 +42,7 @@ const int maxNameLength = 8;
     BOOL paused;
     BOOL muted;
     BOOL scoreAlreadySaved;
-    CGPoint lastVel;
-    float lastAng;
+    bool wasGoingClockwise;
     
     int feverModePlanetHitsInARow;
     float timeInOrbit;
@@ -1079,22 +1078,13 @@ typedef struct {
                     CGPoint dir3 = ccpNormalize(CGPointApplyAffineTransform(a, CGAffineTransformMakeRotation(-M_PI/2)));
                     if (ccpLength(ccpSub(ccpAdd(a, dir2), ccpAdd(a, player.velocity))) < ccpLength(ccpSub(ccpAdd(a, dir3), ccpAdd(a, player.velocity)))) { //up is closer
                         player.velocity = ccpAdd(ccpMult(player.velocity, (1-velSoftener)*1), ccpMult(dir2, velSoftener*ccpLength(initialVel)));
+                        wasGoingClockwise = false;
                         
                     }
                     else {
                         player.velocity = ccpAdd(ccpMult(player.velocity, (1-velSoftener)*1), ccpMult(dir3, velSoftener*ccpLength(initialVel)));
+                        wasGoingClockwise = true;
                     }
-                    
-                    
-                    CGPoint respawnPoint = ccpAdd(planet.sprite.position, ccpMult(ccpNormalize(ccpSub([[planets objectAtIndex:planet.number + 1] sprite].position, planet.sprite.position)), -lastPlanetVisited.orbitRadius));
-                    respawnPoint = ccpSub(respawnPoint, planet.sprite.position);
-                    
-                    CGPoint curSpot = player.sprite.position;
-                    
-                    
-                    lastVel = player.velocity;
-                    lastAng = ccpAngleSigned(ccpSub(curSpot, planet.sprite.position), ccpSub(respawnPoint, planet.sprite.position));
-                    
                     
                     
                     //NSLog(@"feverModePlanetHitsInARow: %i, timeInOrbit: %f", feverModePlanetHitsInARow, timeInOrbit);
@@ -1285,10 +1275,14 @@ typedef struct {
     streak.visible = false;
     player.alive = false;
     
+    CGPoint vel = ccpSub(pToGoTo, curPlanetPos);
+    if (wasGoingClockwise)
+        vel = CGPointApplyAffineTransform(vel, CGAffineTransformMakeRotation(-M_PI/2));
+    else
+        vel = CGPointApplyAffineTransform(vel, CGAffineTransformMakeRotation(M_PI/2));
     
-    lastVel = CGPointApplyAffineTransform(lastVel, CGAffineTransformMakeRotation(lastAng));
     
-    player.velocity = ccpMult(ccpNormalize(lastVel), .01);//ccp(0, .05);
+    player.velocity = ccpMult(ccpNormalize(vel), 9);//ccp(0, .05);
     player.acceleration=CGPointZero;
     
     [Flurry logEvent:@"Player Died" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSNumber numberWithInt:currentGalaxy.number],@"Galaxy",[NSNumber numberWithInt:numZonesHitInARow],@"Pre-death combo", nil]];

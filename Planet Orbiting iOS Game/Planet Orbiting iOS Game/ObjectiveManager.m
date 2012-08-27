@@ -27,15 +27,17 @@ static ObjectiveManager *sharedInstance = nil;
     return [objective complete];
 }
 
--(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber view:(CCLayer*)view {
+-(bool)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber view:(CCLayer*)view {
     if (currentObjectiveGroupNumber == a_groupNumber) {
         ObjectiveItem* obj = [self getObjectiveFromGroupNumber:a_groupNumber itemNumber:a_itemNumber];
         if ([self completeObjective:obj]) {
             //[[GKAchievementHandler defaultHandler] notifyAchievementTitle:@"Mission Completed!" andMessage:obj.text];
             Toast* toast =[[Toast alloc] initWithView:view text:obj.text];
             [toast showToast];
+            return true;
         }
     }
+    return false;
 }
 
 -(NSMutableArray*)getObjectivesFromGroupNumber:(int)groupNumber {
@@ -115,11 +117,18 @@ static ObjectiveManager *sharedInstance = nil;
     
     
     
-    NSString* footerString = [NSString stringWithFormat:@"COMPLETE TO EARN %@ STARS", [self commaInt:currentGroup.starReward]];
+    NSString* footerString = [NSString stringWithFormat:@"COMPLETE TO EARN %@", [self commaInt:currentGroup.starReward]];
     
     CCLabelTTF* footer = [CCLabelTTF labelWithString:footerString fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
     [mPopup addChild:footer];
     footer.position = ccp(240, 74);
+    
+    
+    CCSprite* starSprite = [CCSprite spriteWithFile:@"staricon.png"];
+    [mPopup addChild:starSprite];
+    starSprite.scale = .42;
+    starSprite.position = ccpAdd(footer.position, ccp(footer.boundingBox.size.width/2 + 12, 2));
+    
     return mPopup;
 }
 
