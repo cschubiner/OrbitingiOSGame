@@ -31,6 +31,8 @@
 		019A361415C539BF00572B68 /* GameOverLayer.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 019A361315C539BF00572B68 /* GameOverLayer.ccb */; };
 		01A2E27715EA2B41006D0CB6 /* goldBorder-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A2E27515EA2B41006D0CB6 /* goldBorder-hd.png */; };
 		01A2E27815EA2B41006D0CB6 /* goldBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A2E27615EA2B41006D0CB6 /* goldBorder.png */; };
+		01A2E28C15EB48AB006D0CB6 /* polaroid-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A2E28A15EB48AB006D0CB6 /* polaroid-hd.png */; };
+		01A2E28D15EB48AB006D0CB6 /* polaroid.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A2E28B15EB48AB006D0CB6 /* polaroid.png */; };
 		01A5EB5E15C6541C005BA93E /* betaFont2-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 01A5EB5A15C6541C005BA93E /* betaFont2-hd.fnt */; };
 		01A5EB5F15C6541C005BA93E /* betaFont2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A5EB5B15C6541C005BA93E /* betaFont2-hd.png */; };
 		01A5EB6015C6541C005BA93E /* betaFont2.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 01A5EB5C15C6541C005BA93E /* betaFont2.fnt */; };
@@ -501,6 +503,8 @@
 		019A362315C5B63B00572B68 /* soundButtonGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soundButtonGame.png; sourceTree = "<group>"; };
 		01A2E27515EA2B41006D0CB6 /* goldBorder-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "goldBorder-hd.png"; sourceTree = "<group>"; };
 		01A2E27615EA2B41006D0CB6 /* goldBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldBorder.png; sourceTree = "<group>"; };
+		01A2E28A15EB48AB006D0CB6 /* polaroid-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "polaroid-hd.png"; sourceTree = "<group>"; };
+		01A2E28B15EB48AB006D0CB6 /* polaroid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = polaroid.png; sourceTree = "<group>"; };
 		01A5EB5A15C6541C005BA93E /* betaFont2-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "betaFont2-hd.fnt"; sourceTree = "<group>"; };
 		01A5EB5B15C6541C005BA93E /* betaFont2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betaFont2-hd.png"; sourceTree = "<group>"; };
 		01A5EB5C15C6541C005BA93E /* betaFont2.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = betaFont2.fnt; sourceTree = "<group>"; };
@@ -1281,6 +1285,8 @@
 		01600CBB15E8BD590061CD62 /* GameOver */ = {
 			isa = PBXGroup;
 			children = (
+				01A2E28A15EB48AB006D0CB6 /* polaroid-hd.png */,
+				01A2E28B15EB48AB006D0CB6 /* polaroid.png */,
 				01A2E27515EA2B41006D0CB6 /* goldBorder-hd.png */,
 				01A2E27615EA2B41006D0CB6 /* goldBorder.png */,
 				01E43A0715E8C2C200C95C58 /* upgrades2.png */,
@@ -2476,6 +2482,8 @@
 				FA5492CB15EAFC7A00285707 /* purchasedisabled.png in Resources */,
 				FA5492CC15EAFC7A00285707 /* purchasepressed-hd.png in Resources */,
 				FA5492CD15EAFC7A00285707 /* purchasepressed.png in Resources */,
+				01A2E28C15EB48AB006D0CB6 /* polaroid-hd.png in Resources */,
+				01A2E28D15EB48AB006D0CB6 /* polaroid.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -366,8 +366,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>131.13671875</real>
-						<real>23.9765625</real>
+						<real>130.8671875</real>
+						<real>13.40625</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
@@ -567,144 +567,7 @@
 			</dict>
 			<dict>
 				<key>children</key>
-				<array>
-					<dict>
-						<key>children</key>
-						<array/>
-						<key>class</key>
-						<string>CCLayerColor</string>
-						<key>properties</key>
-						<dict>
-							<key>accelerometerEnabled</key>
-							<integer>0</integer>
-							<key>anchorPoint</key>
-							<array>
-								<real>0.0</real>
-								<real>0.0</real>
-							</array>
-							<key>blendFunc</key>
-							<array>
-								<integer>1</integer>
-								<integer>771</integer>
-							</array>
-							<key>color</key>
-							<array>
-								<integer>174</integer>
-								<integer>211</integer>
-								<integer>214</integer>
-							</array>
-							<key>contentSize</key>
-							<array>
-								<real>480</real>
-								<real>480</real>
-							</array>
-							<key>customClass</key>
-							<string></string>
-							<key>isExpanded</key>
-							<true/>
-							<key>isRelativeAnchorPoint</key>
-							<false/>
-							<key>keyboardEnabled</key>
-							<integer>0</integer>
-							<key>lockedScaleRatio</key>
-							<true/>
-							<key>memberVarAssignmentName</key>
-							<string></string>
-							<key>memberVarAssignmentType</key>
-							<integer>0</integer>
-							<key>mouseEnabled</key>
-							<integer>1</integer>
-							<key>opacity</key>
-							<integer>255</integer>
-							<key>position</key>
-							<array>
-								<real>-7.9320793151855469</real>
-								<real>-8.2911777496337891</real>
-							</array>
-							<key>rotation</key>
-							<real>0.0</real>
-							<key>scaleX</key>
-							<real>0.34496095776557922</real>
-							<key>scaleY</key>
-							<real>0.34496095776557922</real>
-							<key>tag</key>
-							<integer>-5</integer>
-							<key>touchEnabled</key>
-							<integer>1</integer>
-							<key>visible</key>
-							<true/>
-							<key>zOrder</key>
-							<integer>-1</integer>
-						</dict>
-					</dict>
-					<dict>
-						<key>children</key>
-						<array/>
-						<key>class</key>
-						<string>CCSprite</string>
-						<key>properties</key>
-						<dict>
-							<key>anchorPoint</key>
-							<array>
-								<real>0.5</real>
-								<real>0.5</real>
-							</array>
-							<key>blendFunc</key>
-							<array>
-								<integer>1</integer>
-								<integer>771</integer>
-							</array>
-							<key>color</key>
-							<array>
-								<integer>255</integer>
-								<integer>255</integer>
-								<integer>255</integer>
-							</array>
-							<key>contentSize</key>
-							<array>
-								<real>103</real>
-								<real>103</real>
-							</array>
-							<key>customClass</key>
-							<string></string>
-							<key>flipX</key>
-							<false/>
-							<key>flipY</key>
-							<false/>
-							<key>isExpanded</key>
-							<true/>
-							<key>isRelativeAnchorPoint</key>
-							<true/>
-							<key>lockedScaleRatio</key>
-							<true/>
-							<key>memberVarAssignmentName</key>
-							<string></string>
-							<key>memberVarAssignmentType</key>
-							<integer>0</integer>
-							<key>opacity</key>
-							<integer>160</integer>
-							<key>position</key>
-							<array>
-								<real>74.97894287109375</real>
-								<real>73.002891540527344</real>
-							</array>
-							<key>rotation</key>
-							<real>0.0</real>
-							<key>scaleX</key>
-							<real>0.89390617609024048</real>
-							<key>scaleY</key>
-							<real>0.89390617609024048</real>
-							<key>spriteFile</key>
-							<string>play.png</string>
-							<key>tag</key>
-							<integer>-1</integer>
-							<key>visible</key>
-							<true/>
-							<key>zOrder</key>
-							<integer>0</integer>
-						</dict>
-					</dict>
-				</array>
+				<array/>
 				<key>class</key>
 				<string>CCSprite</string>
 				<key>properties</key>
@@ -716,7 +579,7 @@
 					</array>
 					<key>blendFunc</key>
 					<array>
-						<integer>1</integer>
+						<integer>770</integer>
 						<integer>771</integer>
 					</array>
 					<key>color</key>
@@ -727,8 +590,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>150</real>
-						<real>150</real>
+						<real>172</real>
+						<real>193</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -745,22 +608,22 @@
 					<key>memberVarAssignmentName</key>
 					<string></string>
 					<key>memberVarAssignmentType</key>
-					<integer>0</integer>
+					<integer>2</integer>
 					<key>opacity</key>
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>131.01626586914062</real>
-						<real>115.80368804931641</real>
+						<real>130.91470336914062</real>
+						<real>114.30759429931641</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>0.904296875</real>
+					<real>0.82792967557907104</real>
 					<key>scaleY</key>
-					<real>0.904296875</real>
+					<real>0.82792967557907104</real>
 					<key>spriteFile</key>
-					<string>squareScreenshot.png</string>
+					<string>polaroid.png</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
