@@ -17,6 +17,7 @@
 #import "UpgradeManager.h"
 #import "GKAchievementHandler.h"
 #import "HighScoresLayer.h"
+#import "StoreLayer.h"
 
 #define tutorialLayerTag    1001
 #define levelLayerTag       1002
@@ -562,12 +563,15 @@ const float effectsVolumeMainMenu = 1;
 - (void)pressedStoreButton:(id)sender {
     
     
-    
-    
     [Flurry logEvent:@"Opened Store" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance" ,nil]];
-    id action = [CCMoveTo actionWithDuration:.8f position:ccp(-960,-320)];
-    id ease = [CCEaseSineInOut actionWithAction:action]; //does this "CCEaseSineInOut" look better than the above "CCEaseInOut"???
-    [layer runAction: ease];
+    
+    [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
+    [[CCDirector sharedDirector] replaceScene:[StoreLayer scene]];
+    
+    
+    //id action = [CCMoveTo actionWithDuration:.8f position:ccp(-960,-320)];
+    //id ease = [CCEaseSineInOut actionWithAction:action]; //does this "CCEaseSineInOut" look better than the above "CCEaseInOut"???
+    //[layer runAction: ease];
 }
 
 -(void)createNewPopup {

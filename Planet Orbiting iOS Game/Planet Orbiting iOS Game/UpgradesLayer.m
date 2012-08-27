@@ -14,6 +14,7 @@
 #import "MainMenuLayer.h"
 #import "SimpleAudioEngine.h"
 #import "DataStorage.h"
+#import "StoreLayer.h"
 
 @implementation UpgradesLayer {
     CCLayer* scrollView;
@@ -158,8 +159,8 @@
 
 - (void) backButtonPressed {
     [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
-    [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setCameFromUpgrades:true];
-    [[CCDirector sharedDirector] replaceScene:[MainMenuLayer scene]];//[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
+    //[((AppDelegate*)[[UIApplication sharedApplication]delegate]) setCameFromUpgrades:true];
+    [[CCDirector sharedDirector] replaceScene:[StoreLayer scene]];//[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
 }
 
 - (void) initUpgradeLayer {
