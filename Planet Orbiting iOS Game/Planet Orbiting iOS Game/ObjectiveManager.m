@@ -58,8 +58,18 @@ static ObjectiveManager *sharedInstance = nil;
     return objectives.starReward;
 }
 
--(CCLayer*)createMissionPopupWithX:(bool)withX {
+-(CCLayer*)createMissionPopupWithX:(bool)withX withDark:(bool)a_hasDark {
     CCLayer* mPopup = [[CCLayer alloc] init];
+    
+    if (a_hasDark) {
+        CCSprite* dark = [CCSprite spriteWithFile:@"OneByOne.png"];
+        [mPopup addChild:dark];
+        dark.position = ccp(240, 160);
+        dark.color = ccBLACK;
+        dark.opacity = 190;
+        dark.scaleX = 480;
+        dark.scaleY = 320;
+    }
     
     CCSprite* bg = [CCSprite spriteWithFile:(withX) ? @"popup2.png" : @"popup.png"];
     [mPopup addChild:bg];
@@ -98,12 +108,31 @@ static ObjectiveManager *sharedInstance = nil;
     
     
     
-    NSString* footerString = [NSString stringWithFormat:@"REWARD: %.1fx MULTIPLIER & %@ STARS", currentGroup.scoreMult, [self commaInt:currentGroup.starReward]];
+    NSString* footerString = [NSString stringWithFormat:@"COMPLETE TO EARN %@ STARS", [self commaInt:currentGroup.starReward]];
     
-    CCLabelTTF* footer = [CCLabelTTF labelWithString:footerString fontName:@"HelveticaNeue-CondensedBold" fontSize:17];
+    CCLabelTTF* footer = [CCLabelTTF labelWithString:footerString fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
     [mPopup addChild:footer];
     footer.position = ccp(240, 74);
     return mPopup;
+}
+
+-(bool)checkIsDoneWithAllMissionsOnThisGroupNumber {
+    NSMutableArray* objItems = [self getObjectivesFromGroupNumber:currentObjectiveGroupNumber];
+    bool isAllDone = true;
+    for (ObjectiveItem* item in objItems) {
+        if (!item.completed) {
+            isAllDone = false;
+            break;
+        }
+    }
+    return isAllDone;
+}
+
+-(void)uncompleteObjectivesFromCurrentGroupNumber {
+    NSMutableArray* objItems = [self getObjectivesFromGroupNumber:currentObjectiveGroupNumber];
+    for (ObjectiveItem* item in objItems) {
+        item.completed = false;
+    }
 }
 
 - (NSString*)commaInt:(int)num {

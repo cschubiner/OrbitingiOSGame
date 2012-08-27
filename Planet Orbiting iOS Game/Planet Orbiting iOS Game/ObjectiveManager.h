@@ -23,11 +23,15 @@
 
 -(NSMutableArray*)getObjectivesFromGroupNumber:(int)groupNumber;
 -(ObjectiveItem*)getObjectiveFromGroupNumber:(int)groupNumber itemNumber:(int)itemNumber;
--(CCLayer*)createMissionPopupWithX:(bool)withX;
+-(CCLayer*)createMissionPopupWithX:(bool)withX withDark:(bool)a_hasDark;
 
 -(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber view:(CCLayer*)view;
 
+-(void)uncompleteObjectivesFromCurrentGroupNumber;
+
 -(float)getscoreMultFromGroupNumber:(int)a_groupNumber;
 -(int)getStarRewardFromGroupNumber:(int)a_groupNumber;
+
+-(bool)checkIsDoneWithAllMissionsOnThisGroupNumber;
 
 @end

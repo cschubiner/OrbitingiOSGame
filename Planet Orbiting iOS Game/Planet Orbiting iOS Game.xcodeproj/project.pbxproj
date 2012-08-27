@@ -473,6 +473,7 @@
 		FA5492CB15EAFC7A00285707 /* purchasedisabled.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5492C515EAFC7A00285707 /* purchasedisabled.png */; };
 		FA5492CC15EAFC7A00285707 /* purchasepressed-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5492C615EAFC7A00285707 /* purchasepressed-hd.png */; };
 		FA5492CD15EAFC7A00285707 /* purchasepressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5492C715EAFC7A00285707 /* purchasepressed.png */; };
+		FA5492D015EB4A3900285707 /* checkmarkExplosionParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA5492CF15EB4A3900285707 /* checkmarkExplosionParticle.plist */; };
 		FA70700115D8EA670003ACF4 /* maxed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA706FF915D8EA670003ACF4 /* maxed.png */; };
 		FA70700315D8EA670003ACF4 /* no.png in Resources */ = {isa = PBXBuildFile; fileRef = FA706FFB15D8EA670003ACF4 /* no.png */; };
 		FA70700415D8EA670003ACF4 /* nopressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA706FFC15D8EA670003ACF4 /* nopressed.png */; };
@@ -1135,6 +1136,7 @@
 		FA5492C515EAFC7A00285707 /* purchasedisabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purchasedisabled.png; sourceTree = "<group>"; };
 		FA5492C615EAFC7A00285707 /* purchasepressed-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purchasepressed-hd.png"; sourceTree = "<group>"; };
 		FA5492C715EAFC7A00285707 /* purchasepressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purchasepressed.png; sourceTree = "<group>"; };
+		FA5492CF15EB4A3900285707 /* checkmarkExplosionParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = checkmarkExplosionParticle.plist; sourceTree = "<group>"; };
 		FA706FF915D8EA670003ACF4 /* maxed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maxed.png; sourceTree = "<group>"; };
 		FA706FFB15D8EA670003ACF4 /* no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no.png; sourceTree = "<group>"; };
 		FA706FFC15D8EA670003ACF4 /* nopressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nopressed.png; sourceTree = "<group>"; };
@@ -2075,6 +2077,7 @@
 		C4E994B715A435EA00C7009D /* Particles */ = {
 			isa = PBXGroup;
 			children = (
+				FA5492CF15EB4A3900285707 /* checkmarkExplosionParticle.plist */,
 				0CA44A8515E2068B00CA6F8E /* thrustBurstParticle.plist */,
 				0CBF1FF715E1AAA000E05CDB /* thrustParticleTexture-hd.png */,
 				0CBF1FF815E1AAA000E05CDB /* thrustParticleTexture.png */,
@@ -2612,6 +2615,7 @@
 				01A2E2CC15EB5D07006D0CB6 /* missions.png in Resources */,
 				01A2E2CD15EB5D07006D0CB6 /* missionspressed-hd.png in Resources */,
 				01A2E2CE15EB5D07006D0CB6 /* missionspressed.png in Resources */,
+				FA5492D015EB4A3900285707 /* checkmarkExplosionParticle.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

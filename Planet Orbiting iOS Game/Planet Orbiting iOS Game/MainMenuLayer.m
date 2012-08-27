@@ -33,6 +33,12 @@ const float effectsVolumeMainMenu = 1;
     CGPoint swipeEndPoint;
     
     CCLayer* missionPopup;
+    CCLayer* missionCompletionScreen;
+    CCLayer* mPopup;
+    int starIntForAnimation;
+    bool shouldPlayCoinSound;
+    float coinPitch;
+    int coinPitchCounter;
 }
 
 // returns a singleton scene
@@ -87,7 +93,7 @@ const float effectsVolumeMainMenu = 1;
 -(void)pressedObjectiveButton:(id)sender {
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     [Flurry logEvent:@"Pressed objective button"];
-    missionPopup = [[ObjectiveManager sharedInstance] createMissionPopupWithX:true];
+    missionPopup = [[ObjectiveManager sharedInstance] createMissionPopupWithX:true withDark:true];
     [self addChild:missionPopup];
     [self disableButtons];
 }
@@ -100,10 +106,10 @@ const float effectsVolumeMainMenu = 1;
 - (id)init {
 	if (self = [super init]) {
         self.isTouchEnabled = true;
-
+        
         layer = (CCLayer*)[CCBReader nodeGraphFromFile:@"MainMenuCCBFile.ccb" owner:self];
         
-        muted = ![[PlayerStats sharedInstance] isMuted];        
+        muted = ![[PlayerStats sharedInstance] isMuted];
         [self toggleMute];
         
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"purchase.wav"];
@@ -235,10 +241,278 @@ const float effectsVolumeMainMenu = 1;
 }
 
 - (void)pressedStoreButton:(id)sender {
-   [Flurry logEvent:@"Opened Store" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance" ,nil]];
+    
+    if ([[ObjectiveManager sharedInstance] checkIsDoneWithAllMissionsOnThisGroupNumber]) {
+        
+    }
+    
+    [self completeObjectiveFromGroupNumber:0 itemNumber:0];
+    [self completeObjectiveFromGroupNumber:0 itemNumber:1];
+    [self completeObjectiveFromGroupNumber:0 itemNumber:2];
+    
+    
+    
+    
+    missionCompletionScreen = [[CCLayer alloc] init];
+    
+    
+    CCSprite* dark = [CCSprite spriteWithFile:@"OneByOne.png"];
+    [missionCompletionScreen addChild:dark];
+    dark.position = ccp(240, 160);
+    dark.color = ccBLACK;
+    dark.opacity = 220;
+    dark.scaleX = 480;
+    dark.scaleY = 320;
+    
+    
+    
+    
+    mPopup = [[CCLayer alloc] init];
+    
+    CCSprite* bg = [CCSprite spriteWithFile: @"popup.png"];
+    [mPopup addChild:bg];
+    bg.position = ccp(240, 160);
+    
+    CCLabelTTF* missionLabel = [CCLabelTTF labelWithString:@"CURRENT MISSIONS" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+    [mPopup addChild:missionLabel];
+    missionLabel.position = ccp(240, 246);
+    
+    NSMutableArray* objectivesAtThisLevel = [[ObjectiveManager sharedInstance] getObjectivesFromGroupNumber:[[ObjectiveManager sharedInstance] currentObjectiveGroupNumber]];
+    
+    ObjectiveGroup* currentGroup = [[[ObjectiveManager sharedInstance] objectiveGroups] objectAtIndex:[[ObjectiveManager sharedInstance] currentObjectiveGroupNumber]];
+    
+    
+    //CCSprite* ind0 = [CCSprite spriteWithFile:([((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:0]) completed]) ? @"missioncomplete.png" : @"yousuck.png"];
+    //CCSprite* ind1 = [CCSprite spriteWithFile:([((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:1]) completed]) ? @"missioncomplete.png" : @"yousuck.png"];
+    //CCSprite* ind2 = [CCSprite spriteWithFile:([((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:2]) completed]) ? @"missioncomplete.png" : @"yousuck.png"];
+    CCSprite* ind0 = [CCSprite spriteWithFile:@"yousuck.png"];
+    CCSprite* ind1 = [CCSprite spriteWithFile:@"yousuck.png"];
+    CCSprite* ind2 = [CCSprite spriteWithFile:@"yousuck.png"];
+    [mPopup addChild:ind0];
+    [mPopup addChild:ind1];
+    [mPopup addChild:ind2];
+    ind0.position = ccp(108, 211);
+    ind1.position = ccp(108, 161);
+    ind2.position = ccp(108, 112);
+    
+    CCLabelTTF* label0 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:0]) text] dimensions:CGSizeMake(273, 55) hAlignment:UITextAlignmentLeft vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+    CCLabelTTF* label1 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:1]) text] dimensions:CGSizeMake(273, 55) hAlignment:UITextAlignmentLeft vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+    CCLabelTTF* label2 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:2]) text] dimensions:CGSizeMake(273, 55) hAlignment:UITextAlignmentLeft vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+    [mPopup addChild:label0];
+    [mPopup addChild:label1];
+    [mPopup addChild:label2];
+    label0.position = ccp(label0.boundingBox.size.width/2 + 134, 211);
+    label1.position = ccp(label1.boundingBox.size.width/2 + 134, 161);
+    label2.position = ccp(label2.boundingBox.size.width/2 + 134, 112);
+    
+    
+    
+    NSString* footerString = [NSString stringWithFormat:@"COMPLETE TO EARN %@ STARS", [self commaInt:currentGroup.starReward]];
+    
+    CCLabelTTF* footer = [CCLabelTTF labelWithString:footerString fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+    [mPopup addChild:footer];
+    footer.position = ccp(240, 74);
+    
+    
+    [missionCompletionScreen addChild:mPopup];
+    mPopup.position = ccp(-480, -19);
+    
+    CCParticleSystemQuad* checkExplosion = [CCParticleSystemQuad particleWithFile:@"checkmarkExplosionParticle.plist"];
+    [missionCompletionScreen addChild:checkExplosion];
+    [checkExplosion stopSystem];
+    
+    CCParticleSystemQuad* starExplosion = [CCParticleSystemQuad particleWithFile:@"starStashParticle.plist"];
+    [missionCompletionScreen addChild:starExplosion];
+    [starExplosion stopSystem];
+    
+    [[UserWallet sharedInstance] setBalance:20000];
+    
+    shouldPlayCoinSound = true;
+    coinPitch = .8;
+    coinPitchCounter = 0;
+    starIntForAnimation = [[UserWallet sharedInstance] getBalance];
+    CCLabelTTF* starCountLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", [self commaInt:starIntForAnimation]] fontName:@"HelveticaNeue-CondensedBold" fontSize:48];
+    starCountLabel.color = ccYELLOW;
+    [missionCompletionScreen addChild:starCountLabel];
+    starCountLabel.position = ccp(240, 320 + starCountLabel.boundingBox.size.height);
+    
+    int finalScore = [[UserWallet sharedInstance] getBalance] + [[ObjectiveManager sharedInstance] getStarRewardFromGroupNumber:[[ObjectiveManager sharedInstance] currentObjectiveGroupNumber]];
+    
+    int rateOfScoreIncrease = (finalScore-[[UserWallet sharedInstance] getBalance]) / 100;
+    
+    id changeChecks = [CCSequence actions:
+                       
+                       [CCCallBlock actionWithBlock:(^{
+    })],
+                       
+                       [CCDelayTime actionWithDuration:.2],
+                       
+                       [CCCallBlock actionWithBlock:(^{
+        [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
+        [checkExplosion setPosition:ccpSub(ind0.position, ccp(0, ind0.boundingBox.size.height/2))];
+        [checkExplosion resetSystem];
+        [ind0 setTexture:[[CCTextureCache sharedTextureCache] addImage:@"missioncomplete.png"]];
+    })],
+                       
+                       [CCDelayTime actionWithDuration:1],
+                       
+                       [CCCallBlock actionWithBlock:(^{
+        [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
+        [checkExplosion setPosition:ccpSub(ind1.position, ccp(0, ind1.boundingBox.size.height/2))];
+        [checkExplosion resetSystem];
+        [ind1 setTexture:[[CCTextureCache sharedTextureCache] addImage:@"missioncomplete.png"]];
+    })],
+                       
+                       [CCDelayTime actionWithDuration:1],
+                       
+                       [CCCallBlock actionWithBlock:(^{
+        [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
+        [checkExplosion setPosition:ccpSub(ind2.position, ccp(0, ind2.boundingBox.size.height/2))];
+        [checkExplosion resetSystem];
+        [ind2 setTexture:[[CCTextureCache sharedTextureCache] addImage:@"missioncomplete.png"]];
+    })],
+                       
+                       [CCDelayTime actionWithDuration:1],
+                       
+                       [CCCallBlock actionWithBlock:(^{
+        [starCountLabel runAction:[CCEaseBounceInOut actionWithAction:[CCMoveTo actionWithDuration:.7 position:ccp(240, 280)]]];
+    })],
+                       
+                       [CCDelayTime actionWithDuration:.5],
+                       
+                       [CCCallBlock actionWithBlock:(^{
+        /*while (starInt < [[UserWallet sharedInstance] getBalance] + [[ObjectiveManager sharedInstance] getStarRewardFromGroupNumber:[[ObjectiveManager sharedInstance] currentObjectiveGroupNumber]]) {
+         [starCountLabel setString:[NSString stringWithFormat:@"%@", [self commaInt:starInt]]];
+         }*/
+        
+        
+        
+        id increaseNumber = [CCCallBlock actionWithBlock:(^{
+            if (shouldPlayCoinSound)
+                [self playSound:@"buttonpress.mp3" shouldLoop:false pitch:coinPitch];
+            [self addToStarInt: [self RandomBetween:rateOfScoreIncrease-1 maxvalue:rateOfScoreIncrease+1]];
+            [starCountLabel setString:[NSString stringWithFormat:@"%@",[self commaInt:starIntForAnimation]]];
+        })];
+        id setNumber = [CCCallBlock actionWithBlock:(^{
+            [starCountLabel setString:[NSString stringWithFormat:@"%@", [self commaInt:finalScore]]];
+        })];
+        id displayParticles = [CCCallBlock actionWithBlock:(^{
+            [starExplosion setPosition:starCountLabel.position];
+            [starExplosion resetSystem];
+            [[UserWallet sharedInstance] setBalance:finalScore];
+        })];
+        
+        
+        
+        
+        
+        
+        [starCountLabel runAction:[CCSequence actions:[CCRepeat actionWithAction:[CCSequence actions:increaseNumber,
+                                                                                  [CCDelayTime actionWithDuration:.0166667],
+                                                                                  nil] times:(finalScore-[[UserWallet sharedInstance] getBalance])/rateOfScoreIncrease],setNumber,displayParticles,
+                                   
+                                   [CCDelayTime actionWithDuration:.5],
+                                   
+                                   
+                                   [CCCallBlock actionWithBlock:(^{
+            [mPopup runAction:[CCEaseSineIn actionWithAction:[CCMoveTo actionWithDuration:.7 position:ccp(480, -19)]]];
+            [[ObjectiveManager sharedInstance] setCurrentObjectiveGroupNumber: [[ObjectiveManager sharedInstance] currentObjectiveGroupNumber] + 1];
+        })],
+                                   
+                                   [CCDelayTime actionWithDuration:.7],
+                                   
+                                   [CCCallBlock actionWithBlock:(^{
+            [self createNewPopup];
+            [missionCompletionScreen addChild:mPopup];
+            [mPopup runAction:[CCEaseBounceInOut actionWithAction:[CCMoveTo actionWithDuration:.7 position:ccp(0, -19)]]];
+        })],
+                                   
+                                   
+                                   
+                                   [CCDelayTime actionWithDuration:.8],
+                                   
+                                   [CCCallBlock actionWithBlock:(^{
+            CCMenuItem *quit = [CCMenuItemImage
+                                itemWithNormalImage:@"cancel.png" selectedImage:@"cancelpressed.png"
+                                target:self selector:@selector(pushedContinueButton)];
+            quit.position = ccp(336, -quit.boundingBox.size.height);
+            [quit runAction:[CCEaseBounceInOut actionWithAction:[CCMoveTo actionWithDuration:.7 position:ccp(336, 20)]]];
+            
+            
+            CCMenu* menu = [CCMenu menuWithItems:quit, nil];
+            menu.position = ccp(0, 0);
+            [missionCompletionScreen addChild:menu];
+        })],
+                                   
+                                   
+                                   nil]];
+        
+        
+        
+    })],
+                       
+                       
+                       
+                       nil];
+    
+    //id stuffAfterExplosion = [CCSequence actions:
+                              
+
+    
+    [mPopup runAction: [CCSequence actions:
+                        [CCEaseElasticInOut actionWithAction:[CCMoveTo actionWithDuration:1.1 position:ccp(0, -19)]],
+                        changeChecks,
+                        nil]];
+    
+    
+    
+    /*
+     id moveLoadingLabelToStartPosition = [CCCallBlock actionWithBlock:(^{
+     [loadingHelperTextLabel setPosition:startPosition];
+     })];
+     
+     id repeatScrollingLeftAction = [CCCallBlock actionWithBlock:(^{
+     [loadingHelperTextLabel runAction: [CCRepeatForever actionWithAction:[CCSequence actions:
+     [CCMoveTo actionWithDuration:loadingHelperLabelMoveTime*loadingHelperTextLabel.boundingBox.size.width/529.313538 position:ccp(-loadingHelperTextLabel.boundingBox.size.width-20,loadingHelperTextLabel.position.y)],
+     moveLoadingLabelToStartPosition,
+     nil]]];
+     })];
+     */
+    
+    
+    [self addChild:missionCompletionScreen];
+    self.isTouchEnabled = false;
+    [self disableButtons];
+    
+    
+    [Flurry logEvent:@"Opened Store" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance" ,nil]];
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(-960,-320)];
     id ease = [CCEaseSineInOut actionWithAction:action]; //does this "CCEaseSineInOut" look better than the above "CCEaseInOut"???
-    [layer runAction: ease];
+    //[layer runAction: ease];
+}
+
+-(void)createNewPopup {
+    mPopup = [[ObjectiveManager sharedInstance] createMissionPopupWithX:false withDark:false];
+    
+    mPopup.position = ccp(-480, -19);
+}
+
+- (void) addToStarInt:(int)whatToAdd {
+    starIntForAnimation += whatToAdd;
+    coinPitchCounter++;
+    if (coinPitchCounter >= 11) {
+        coinPitchCounter = 0;
+        coinPitch += .1;
+        shouldPlayCoinSound = true;
+    } else {
+        shouldPlayCoinSound = false;
+    }
+}
+
+- (void) pushedContinueButton {
+    [missionCompletionScreen removeFromParentAndCleanup:true];
+    self.isTouchEnabled = true;
+    [self enableButtons];
 }
 
 - (void)pressedLeaderboardsButton:(id)sender {
@@ -293,22 +567,22 @@ const float effectsVolumeMainMenu = 1;
 
 - (void)pressedScoresButton:(id)sender {
     /*
-    NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
-    NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc]init];
-    NSMutableDictionary * keyValuePairs = [[PlayerStats sharedInstance] getKeyValuePairs];
-    for (int i = 0 ; i < highScores.count ; i++) {
-        NSNumber * highscoreObject = [highScores objectAtIndex:i];
-        NSString *scoreInt = [NSString stringWithFormat:@"%d", [highscoreObject intValue]];
-        NSString *scoreName = [keyValuePairs valueForKey:scoreInt ];
-        if (!scoreName) scoreName = @"null";
-        [parameterDict addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:highscoreObject,scoreName, nil]];
-    }
-    //  NSDictionary *parameterDict2 = [NSDictionary dictionaryWithObjectsAndKeys:highScores.description,@"Scores", nil];
-    
-    [Flurry logEvent:@"Opened High Scores" withParameters:parameterDict];
-    id action = [CCMoveTo actionWithDuration:.8f position:ccp(0,-320)];
-    id ease = [CCEaseSineInOut actionWithAction:action];
-    [layer runAction: ease];*/
+     NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
+     NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc]init];
+     NSMutableDictionary * keyValuePairs = [[PlayerStats sharedInstance] getKeyValuePairs];
+     for (int i = 0 ; i < highScores.count ; i++) {
+     NSNumber * highscoreObject = [highScores objectAtIndex:i];
+     NSString *scoreInt = [NSString stringWithFormat:@"%d", [highscoreObject intValue]];
+     NSString *scoreName = [keyValuePairs valueForKey:scoreInt ];
+     if (!scoreName) scoreName = @"null";
+     [parameterDict addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:highscoreObject,scoreName, nil]];
+     }
+     //  NSDictionary *parameterDict2 = [NSDictionary dictionaryWithObjectsAndKeys:highScores.description,@"Scores", nil];
+     
+     [Flurry logEvent:@"Opened High Scores" withParameters:parameterDict];
+     id action = [CCMoveTo actionWithDuration:.8f position:ccp(0,-320)];
+     id ease = [CCEaseSineInOut actionWithAction:action];
+     [layer runAction: ease];*/
     
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     [[CCDirector sharedDirector] replaceScene:[HighScoresLayer scene]];
@@ -467,6 +741,13 @@ const float effectsVolumeMainMenu = 1;
     else
         return [[SimpleAudioEngine sharedEngine]playEffect:soundFile pitch:pitch pan:0 gain:1];
     return 0;
+}
+
+
+
+- (int)RandomBetween:(int)minvalue maxvalue:(int)maxvalue  {
+    int randomNumber = minvalue+  arc4random() % (1+maxvalue-minvalue);
+    return randomNumber;
 }
 
 /*

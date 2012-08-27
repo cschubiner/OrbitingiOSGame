@@ -387,6 +387,8 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setAutopilotDuration:5*60*1.3 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:10] equipped]];
     
+    [[UpgradeValues sharedInstance] setHasPinkStars:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:11] equipped]];
+    
     [[UpgradeValues sharedInstance] setHasGreenShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:17] equipped]];
     
     [[UpgradeValues sharedInstance] setHasBlueShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:18] equipped]];
@@ -2176,7 +2178,7 @@ float lerpf(float a, float b, float t) {
 
 -(CCLayer*)createPauseLayer {
     CCLayer* layerToAdd = [[CCLayer alloc] init];
-    [layerToAdd addChild:[[ObjectiveManager sharedInstance] createMissionPopupWithX:false]];
+    [layerToAdd addChild:[[ObjectiveManager sharedInstance] createMissionPopupWithX:false withDark:true]];
     
     CCSprite* banner = [CCSprite spriteWithFile:@"banner.png"];
     banner.position = ccp(240, 298);
