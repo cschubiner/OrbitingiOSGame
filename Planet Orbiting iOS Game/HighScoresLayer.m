@@ -264,7 +264,7 @@
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore4Int];
         NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore4 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
-        [scrollView addChild:highScore3];
+        [scrollView addChild:highScore4];
         [highScore4 setAnchorPoint:ccp(.5, 1)];
         highScore4.position = ccp(240, highScore3.position.y - highScore3.boundingBox.size.height - 10);
         lowestText = highScore4;
@@ -311,7 +311,7 @@
         highScore9 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore9];
         [highScore9 setAnchorPoint:ccp(.5, 1)];
-        highScore9.position = ccp(240, highScore9.position.y - highScore9.boundingBox.size.height - 10);
+        highScore9.position = ccp(240, highScore8.position.y - highScore8.boundingBox.size.height - 10);
         lowestText = highScore9;
     }
     if (highScore10Int != 0) {
