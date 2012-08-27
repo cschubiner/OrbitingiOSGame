@@ -61,6 +61,10 @@
 		01A2E2C215EB5BDA006D0CB6 /* storepressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A2E2BA15EB5BDA006D0CB6 /* storepressed.png */; };
 		01A2E2C515EB5C56006D0CB6 /* mainmenubanner-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A2E2C315EB5C56006D0CB6 /* mainmenubanner-hd.png */; };
 		01A2E2C615EB5C56006D0CB6 /* mainmenubanner.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A2E2C415EB5C56006D0CB6 /* mainmenubanner.png */; };
+		01A2E2CB15EB5D07006D0CB6 /* missions-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A2E2C715EB5D07006D0CB6 /* missions-hd.png */; };
+		01A2E2CC15EB5D07006D0CB6 /* missions.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A2E2C815EB5D07006D0CB6 /* missions.png */; };
+		01A2E2CD15EB5D07006D0CB6 /* missionspressed-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A2E2C915EB5D07006D0CB6 /* missionspressed-hd.png */; };
+		01A2E2CE15EB5D07006D0CB6 /* missionspressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A2E2CA15EB5D07006D0CB6 /* missionspressed.png */; };
 		01A5EB5E15C6541C005BA93E /* betaFont2-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 01A5EB5A15C6541C005BA93E /* betaFont2-hd.fnt */; };
 		01A5EB5F15C6541C005BA93E /* betaFont2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A5EB5B15C6541C005BA93E /* betaFont2-hd.png */; };
 		01A5EB6015C6541C005BA93E /* betaFont2.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 01A5EB5C15C6541C005BA93E /* betaFont2.fnt */; };
@@ -561,6 +565,10 @@
 		01A2E2BA15EB5BDA006D0CB6 /* storepressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = storepressed.png; sourceTree = "<group>"; };
 		01A2E2C315EB5C56006D0CB6 /* mainmenubanner-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainmenubanner-hd.png"; sourceTree = "<group>"; };
 		01A2E2C415EB5C56006D0CB6 /* mainmenubanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainmenubanner.png; sourceTree = "<group>"; };
+		01A2E2C715EB5D07006D0CB6 /* missions-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "missions-hd.png"; sourceTree = "<group>"; };
+		01A2E2C815EB5D07006D0CB6 /* missions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missions.png; sourceTree = "<group>"; };
+		01A2E2C915EB5D07006D0CB6 /* missionspressed-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "missionspressed-hd.png"; sourceTree = "<group>"; };
+		01A2E2CA15EB5D07006D0CB6 /* missionspressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missionspressed.png; sourceTree = "<group>"; };
 		01A5EB5A15C6541C005BA93E /* betaFont2-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "betaFont2-hd.fnt"; sourceTree = "<group>"; };
 		01A5EB5B15C6541C005BA93E /* betaFont2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "betaFont2-hd.png"; sourceTree = "<group>"; };
 		01A5EB5C15C6541C005BA93E /* betaFont2.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = betaFont2.fnt; sourceTree = "<group>"; };
@@ -1544,6 +1552,10 @@
 		0C7AA60315946939000B58F2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				01A2E2C715EB5D07006D0CB6 /* missions-hd.png */,
+				01A2E2C815EB5D07006D0CB6 /* missions.png */,
+				01A2E2C915EB5D07006D0CB6 /* missionspressed-hd.png */,
+				01A2E2CA15EB5D07006D0CB6 /* missionspressed.png */,
 				01A2E2C315EB5C56006D0CB6 /* mainmenubanner-hd.png */,
 				01A2E2C415EB5C56006D0CB6 /* mainmenubanner.png */,
 				01A2E2B315EB5BDA006D0CB6 /* scores-hd.png */,
@@ -2596,6 +2608,10 @@
 				01A2E2C215EB5BDA006D0CB6 /* storepressed.png in Resources */,
 				01A2E2C515EB5C56006D0CB6 /* mainmenubanner-hd.png in Resources */,
 				01A2E2C615EB5C56006D0CB6 /* mainmenubanner.png in Resources */,
+				01A2E2CB15EB5D07006D0CB6 /* missions-hd.png in Resources */,
+				01A2E2CC15EB5D07006D0CB6 /* missions.png in Resources */,
+				01A2E2CD15EB5D07006D0CB6 /* missionspressed-hd.png in Resources */,
+				01A2E2CE15EB5D07006D0CB6 /* missionspressed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

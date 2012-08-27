@@ -61,7 +61,7 @@
 						<real>0.0</real>
 					</array>
 					<key>endSize</key>
-					<integer>8</integer>
+					<integer>6</integer>
 					<key>endSizeVar</key>
 					<integer>3</integer>
 					<key>endSpin</key>
@@ -108,7 +108,7 @@
 					<key>scaleY</key>
 					<real>1</real>
 					<key>speed</key>
-					<integer>60</integer>
+					<integer>20</integer>
 					<key>speedVar</key>
 					<integer>0</integer>
 					<key>spriteFile</key>
@@ -128,9 +128,9 @@
 						<real>1</real>
 					</array>
 					<key>startSize</key>
-					<integer>10</integer>
+					<integer>8</integer>
 					<key>startSizeVar</key>
-					<integer>5</integer>
+					<integer>3</integer>
 					<key>startSpin</key>
 					<integer>0</integer>
 					<key>startSpinVar</key>
@@ -233,8 +233,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>480</real>
-								<real>49</real>
+								<real>576</real>
+								<real>58</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -257,16 +257,16 @@
 							<key>position</key>
 							<array>
 								<real>720</real>
-								<real>319</real>
+								<real>369.140625</real>
 							</array>
 							<key>rotation</key>
-							<real>180</real>
+							<real>0.0</real>
 							<key>scaleX</key>
 							<real>1</real>
 							<key>scaleY</key>
 							<real>1</real>
 							<key>spriteFile</key>
-							<string>banner.png</string>
+							<string>mainmenubanner.png</string>
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>visible</key>
@@ -1405,15 +1405,15 @@
 													<integer>2</integer>
 													<key>position</key>
 													<array>
-														<real>291.068359375</real>
+														<real>292.068359375</real>
 														<real>-106.69140625</real>
 													</array>
 													<key>rotation</key>
 													<real>0.0</real>
 													<key>scaleX</key>
-													<real>0.78550785779953003</real>
+													<real>1</real>
 													<key>scaleY</key>
-													<real>0.78550785779953003</real>
+													<real>1</real>
 													<key>selector</key>
 													<string>pressedStoreButton:</string>
 													<key>spriteFileDisabled</key>
@@ -1677,15 +1677,15 @@
 											<integer>2</integer>
 											<key>position</key>
 											<array>
-												<real>196.46875</real>
-												<real>-118.677734375</real>
+												<real>207.46875</real>
+												<real>-117.677734375</real>
 											</array>
 											<key>rotation</key>
 											<real>0.0</real>
 											<key>scaleX</key>
-											<real>0.80000001192092896</real>
+											<real>1</real>
 											<key>scaleY</key>
-											<real>0.80000001192092896</real>
+											<real>1</real>
 											<key>selector</key>
 											<string>pressedScoresButton:</string>
 											<key>spriteFileDisabled</key>
@@ -1737,15 +1737,15 @@
 											<integer>2</integer>
 											<key>position</key>
 											<array>
-												<real>372.091796875</real>
-												<real>-60.984375</real>
+												<real>327.478515625</real>
+												<real>162.09765625</real>
 											</array>
 											<key>rotation</key>
 											<real>0.0</real>
 											<key>scaleX</key>
-											<real>1.1091797351837158</real>
+											<real>0.67453134059906006</real>
 											<key>scaleY</key>
-											<real>1.1091797351837158</real>
+											<real>0.67453134059906006</real>
 											<key>selector</key>
 											<string>startGame:</string>
 											<key>spriteFileDisabled</key>
@@ -1778,7 +1778,7 @@
 											</array>
 											<key>contentSize</key>
 											<array>
-												<real>122</real>
+												<real>123</real>
 												<real>40</real>
 											</array>
 											<key>customClass</key>
@@ -1797,23 +1797,23 @@
 											<integer>2</integer>
 											<key>position</key>
 											<array>
-												<real>376.0546875</real>
-												<real>-118.111328125</real>
+												<real>382.07421875</real>
+												<real>-117.787109375</real>
 											</array>
 											<key>rotation</key>
 											<real>0.0</real>
 											<key>scaleX</key>
-											<real>0.80000001192092896</real>
+											<real>1</real>
 											<key>scaleY</key>
-											<real>0.80000001192092896</real>
+											<real>1</real>
 											<key>selector</key>
 											<string>pressedObjectiveButton:</string>
 											<key>spriteFileDisabled</key>
-											<string>retry.png</string>
+											<string>missions.png</string>
 											<key>spriteFileNormal</key>
-											<string>retry.png</string>
+											<string>missions.png</string>
 											<key>spriteFileSelected</key>
-											<string>retrypressed.png</string>
+											<string>missionspressed.png</string>
 											<key>tag</key>
 											<integer>0</integer>
 											<key>target</key>
