@@ -222,6 +222,8 @@
     CCLabelTTF *highScore18;
     CCLabelTTF *highScore19;
     
+    CCLabelTTF *lowestText;
+    
     if (highScore0Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore0Int];
         NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
@@ -229,6 +231,7 @@
         [scrollView addChild:highScore0];
         [highScore0 setAnchorPoint:ccp(.5, 1)];
         highScore0.position = ccp(240, -5);
+        lowestText = highScore0;
     }
     if (highScore1Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore1Int];
@@ -237,6 +240,7 @@
         [scrollView addChild:highScore1];
         [highScore1 setAnchorPoint:ccp(.5, 1)];
         highScore1.position = ccp(240, highScore0.position.y - highScore0.boundingBox.size.height - 10);
+        lowestText = highScore1;
     }
     if (highScore2Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore2Int];
@@ -245,6 +249,7 @@
         [scrollView addChild:highScore2];
         [highScore2 setAnchorPoint:ccp(.5, 1)];
         highScore2.position = ccp(240, highScore1.position.y - highScore1.boundingBox.size.height - 10);
+        lowestText = highScore2;
     }
     if (highScore3Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore3Int];
@@ -253,6 +258,7 @@
         [scrollView addChild:highScore3];
         [highScore3 setAnchorPoint:ccp(.5, 1)];
         highScore3.position = ccp(240, highScore2.position.y - highScore2.boundingBox.size.height - 10);
+        lowestText = highScore3;
     }
     if (highScore4Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore4Int];
@@ -261,6 +267,7 @@
         [scrollView addChild:highScore3];
         [highScore4 setAnchorPoint:ccp(.5, 1)];
         highScore4.position = ccp(240, highScore3.position.y - highScore3.boundingBox.size.height - 10);
+        lowestText = highScore4;
     }
     if (highScore5Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore5Int];
@@ -269,6 +276,7 @@
         [scrollView addChild:highScore5];
         [highScore5 setAnchorPoint:ccp(.5, 1)];
         highScore5.position = ccp(240, highScore4.position.y - highScore4.boundingBox.size.height - 10);
+        lowestText = highScore5;
     }
     if (highScore6Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore6Int];
@@ -277,6 +285,7 @@
         [scrollView addChild:highScore6];
         [highScore6 setAnchorPoint:ccp(.5, 1)];
         highScore6.position = ccp(240, highScore5.position.y - highScore5.boundingBox.size.height - 10);
+        lowestText = highScore6;
     }
     if (highScore7Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore7Int];
@@ -285,6 +294,7 @@
         [scrollView addChild:highScore7];
         [highScore7 setAnchorPoint:ccp(.5, 1)];
         highScore7.position = ccp(240, highScore6.position.y - highScore6.boundingBox.size.height - 10);
+        lowestText = highScore7;
     }
     if (highScore8Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore8Int];
@@ -293,6 +303,7 @@
         [scrollView addChild:highScore8];
         [highScore8 setAnchorPoint:ccp(.5, 1)];
         highScore8.position = ccp(240, highScore7.position.y - highScore7.boundingBox.size.height - 10);
+        lowestText = highScore8;
     }
     if (highScore9Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore9Int];
@@ -301,6 +312,7 @@
         [scrollView addChild:highScore9];
         [highScore9 setAnchorPoint:ccp(.5, 1)];
         highScore9.position = ccp(240, highScore9.position.y - highScore9.boundingBox.size.height - 10);
+        lowestText = highScore9;
     }
     if (highScore10Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore10Int];
@@ -309,6 +321,7 @@
         [scrollView addChild:highScore10];
         [highScore10 setAnchorPoint:ccp(.5, 1)];
         highScore10.position = ccp(240, highScore9.position.y - highScore9.boundingBox.size.height - 10);
+        lowestText = highScore10;
     }
     if (highScore11Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore11Int];
@@ -317,6 +330,7 @@
         [scrollView addChild:highScore11];
         [highScore11 setAnchorPoint:ccp(.5, 1)];
         highScore11.position = ccp(240, highScore10.position.y - highScore10.boundingBox.size.height - 10);
+        lowestText = highScore11;
     }
     if (highScore12Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore12Int];
@@ -325,6 +339,7 @@
         [scrollView addChild:highScore12];
         [highScore12 setAnchorPoint:ccp(.5, 1)];
         highScore12.position = ccp(240, highScore11.position.y - highScore11.boundingBox.size.height - 10);
+        lowestText = highScore12;
     }
     if (highScore13Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore13Int];
@@ -333,6 +348,7 @@
         [scrollView addChild:highScore13];
         [highScore13 setAnchorPoint:ccp(.5, 1)];
         highScore13.position = ccp(240, highScore12.position.y - highScore12.boundingBox.size.height - 10);
+        lowestText = highScore13;
     }
     if (highScore14Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore14Int];
@@ -341,6 +357,7 @@
         [scrollView addChild:highScore14];
         [highScore14 setAnchorPoint:ccp(.5, 1)];
         highScore14.position = ccp(240, highScore13.position.y - highScore13.boundingBox.size.height - 10);
+        lowestText = highScore14;
     }
     if (highScore15Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore15Int];
@@ -349,6 +366,7 @@
         [scrollView addChild:highScore15];
         [highScore15 setAnchorPoint:ccp(.5, 1)];
         highScore15.position = ccp(240, highScore14.position.y - highScore14.boundingBox.size.height - 10);
+        lowestText = highScore15;
     }
     if (highScore16Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore16Int];
@@ -357,6 +375,7 @@
         [scrollView addChild:highScore16];
         [highScore16 setAnchorPoint:ccp(.5, 1)];
         highScore16.position = ccp(240, highScore15.position.y - highScore15.boundingBox.size.height - 10);
+        lowestText = highScore16;
     }
     if (highScore17Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore17Int];
@@ -365,6 +384,7 @@
         [scrollView addChild:highScore17];
         [highScore17 setAnchorPoint:ccp(.5, 1)];
         highScore17.position = ccp(240, highScore16.position.y - highScore16.boundingBox.size.height - 10);
+        lowestText = highScore17;
     }
     if (highScore18Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore18Int];
@@ -373,6 +393,7 @@
         [scrollView addChild:highScore18];
         [highScore18 setAnchorPoint:ccp(.5, 1)];
         highScore18.position = ccp(240, highScore17.position.y - highScore17.boundingBox.size.height - 10);
+        lowestText = highScore18;
     }
     if (highScore19Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore19Int];
@@ -381,9 +402,10 @@
         [scrollView addChild:highScore19];
         [highScore19 setAnchorPoint:ccp(.5, 1)];
         highScore19.position = ccp(240, highScore18.position.y - highScore18.boundingBox.size.height - 10);
+        lowestText = highScore19;
     }
     
-    scrollViewHeight = -highScore19.position.y + highScore19.boundingBox.size.height + 20;
+    scrollViewHeight = -lowestText.position.y + lowestText.boundingBox.size.height + 20;
 }
 
 - (void)initScrollStuff {

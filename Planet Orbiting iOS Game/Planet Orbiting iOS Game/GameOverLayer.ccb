@@ -366,8 +366,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>127.3671875</real>
-						<real>28.53125</real>
+						<real>131.13671875</real>
+						<real>23.9765625</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
@@ -589,9 +589,9 @@
 							</array>
 							<key>color</key>
 							<array>
-								<integer>52</integer>
-								<integer>52</integer>
-								<integer>52</integer>
+								<integer>174</integer>
+								<integer>211</integer>
+								<integer>214</integer>
 							</array>
 							<key>contentSize</key>
 							<array>
@@ -750,8 +750,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>127.55142211914062</real>
-						<real>119.90525054931641</real>
+						<real>131.01626586914062</real>
+						<real>115.80368804931641</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
