@@ -98,8 +98,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>122</real>
-								<real>40</real>
+								<real>286</real>
+								<real>93</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -117,23 +117,23 @@
 							<integer>1</integer>
 							<key>position</key>
 							<array>
-								<real>36.94921875</real>
-								<real>-39.6640625</real>
+								<real>42.4453125</real>
+								<real>-43.61328125</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>1.8052264451980591</real>
+							<real>0.80000001192092896</real>
 							<key>scaleY</key>
-							<real>1.8052264451980591</real>
+							<real>0.80000001192092896</real>
 							<key>selector</key>
 							<string>endGame</string>
 							<key>spriteFileDisabled</key>
-							<string>quit.png</string>
+							<string>storelarge.png</string>
 							<key>spriteFileNormal</key>
-							<string>quit.png</string>
+							<string>storelarge.png</string>
 							<key>spriteFileSelected</key>
-							<string>quitpressed.png</string>
+							<string>storelargepressed.png</string>
 							<key>tag</key>
 							<integer>1</integer>
 							<key>target</key>
@@ -158,8 +158,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>122</real>
-								<real>40</real>
+								<real>172</real>
+								<real>193</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -177,23 +177,83 @@
 							<integer>1</integer>
 							<key>position</key>
 							<array>
-								<real>37.3046875</real>
-								<real>-109.29296875</real>
+								<real>-177.8125</real>
+								<real>0.453125</real>
+							</array>
+							<key>rotation</key>
+							<real>-8.4609375</real>
+							<key>scaleX</key>
+							<real>0.80000001192092896</real>
+							<key>scaleY</key>
+							<real>0.80000001192092896</real>
+							<key>selector</key>
+							<string>endGame</string>
+							<key>spriteFileDisabled</key>
+							<string>polaroid2.png</string>
+							<key>spriteFileNormal</key>
+							<string>polaroid2.png</string>
+							<key>spriteFileSelected</key>
+							<string>polaroid2pressed.png</string>
+							<key>tag</key>
+							<integer>1</integer>
+							<key>target</key>
+							<integer>2</integer>
+							<key>visible</key>
+							<true/>
+							<key>zOrder</key>
+							<integer>0</integer>
+						</dict>
+					</dict>
+					<dict>
+						<key>children</key>
+						<array/>
+						<key>class</key>
+						<string>CCMenuItemImage</string>
+						<key>properties</key>
+						<dict>
+							<key>anchorPoint</key>
+							<array>
+								<real>0.5</real>
+								<real>0.5</real>
+							</array>
+							<key>contentSize</key>
+							<array>
+								<real>286</real>
+								<real>93</real>
+							</array>
+							<key>customClass</key>
+							<string></string>
+							<key>isEnabled</key>
+							<true/>
+							<key>isExpanded</key>
+							<true/>
+							<key>isRelativeAnchorPoint</key>
+							<true/>
+							<key>lockedScaleRatio</key>
+							<true/>
+							<key>memberVarAssignmentName</key>
+							<string></string>
+							<key>memberVarAssignmentType</key>
+							<integer>1</integer>
+							<key>position</key>
+							<array>
+								<real>42.71484375</real>
+								<real>-104.50390625</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>1.8028514385223389</real>
+							<real>0.80000001192092896</real>
 							<key>scaleY</key>
-							<real>1.8028514385223389</real>
+							<real>0.80000001192092896</real>
 							<key>selector</key>
 							<string>restartGame</string>
 							<key>spriteFileDisabled</key>
-							<string>replay.png</string>
+							<string>replaylarge.png</string>
 							<key>spriteFileNormal</key>
-							<string>retry.png</string>
+							<string>replaylarge.png</string>
 							<key>spriteFileSelected</key>
-							<string>retrypressed.png</string>
+							<string>replaylargepressed.png</string>
 							<key>tag</key>
 							<integer>1</integer>
 							<key>target</key>
@@ -306,15 +366,15 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>131.87109375</real>
-						<real>240.16796875</real>
+						<real>403.19140625</real>
+						<real>202.890625</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>0.2898828387260437</real>
+					<real>0.2264062911272049</real>
 					<key>scaleY</key>
-					<real>0.2898828387260437</real>
+					<real>0.2264062911272049</real>
 					<key>spriteFile</key>
 					<string>star1.png</string>
 					<key>tag</key>
@@ -366,15 +426,15 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>130.8671875</real>
-						<real>13.40625</real>
+						<real>148.42578125</real>
+						<real>30.45703125</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>0.54207015037536621</real>
+					<real>0.5071873664855957</real>
 					<key>scaleY</key>
-					<real>0.54207015037536621</real>
+					<real>0.5071873664855957</real>
 					<key>string</key>
 					<string>Share your gameplay video for 100 stars!</string>
 					<key>tag</key>
@@ -426,8 +486,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>338.05078125</real>
-						<real>232.1328125</real>
+						<real>102.25390625</real>
+						<real>256.23828125</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
@@ -486,8 +546,8 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>338.0703125</real>
-						<real>261.58203125</real>
+						<real>102.875</real>
+						<real>285.4453125</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
@@ -525,7 +585,7 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>83</real>
+						<real>75</real>
 						<real>39</real>
 					</array>
 					<key>customClass</key>
@@ -546,17 +606,17 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>85.8359375</real>
-						<real>285.390625</real>
+						<real>356.37109375</real>
+						<real>256.2734375</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>1.5769529342651367</real>
+					<real>2.5240621566772461</real>
 					<key>scaleY</key>
-					<real>1.5769529342651367</real>
+					<real>2.5240621566772461</real>
 					<key>string</key>
-					<string>44,405</string>
+					<string>44405</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
@@ -579,7 +639,7 @@
 					</array>
 					<key>blendFunc</key>
 					<array>
-						<integer>770</integer>
+						<integer>1</integer>
 						<integer>771</integer>
 					</array>
 					<key>color</key>
@@ -590,8 +650,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>172</real>
-						<real>193</real>
+						<real>24</real>
+						<real>75</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -608,28 +668,28 @@
 					<key>memberVarAssignmentName</key>
 					<string></string>
 					<key>memberVarAssignmentType</key>
-					<integer>2</integer>
+					<integer>0</integer>
 					<key>opacity</key>
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>130.91470336914062</real>
-						<real>114.30759429931641</real>
+						<real>71.68359375</real>
+						<real>80.19140625</real>
 					</array>
 					<key>rotation</key>
-					<real>0.0</real>
+					<real>8.2021484375</real>
 					<key>scaleX</key>
-					<real>0.82792967557907104</real>
+					<real>1.043515682220459</real>
 					<key>scaleY</key>
-					<real>0.82792967557907104</real>
+					<real>1.043515682220459</real>
 					<key>spriteFile</key>
-					<string>polaroid.png</string>
+					<string>arrow.png</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
 					<true/>
 					<key>zOrder</key>
-					<integer>1</integer>
+					<integer>0</integer>
 				</dict>
 			</dict>
 			<dict>
@@ -673,15 +733,15 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>105.76953125</real>
-						<real>239.98046875</real>
+						<real>381.7265625</real>
+						<real>201.71875</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>2.0265624523162842</real>
+					<real>2.1275782585144043</real>
 					<key>scaleY</key>
-					<real>2.0265624523162842</real>
+					<real>2.1275782585144043</real>
 					<key>string</key>
 					<string>845</string>
 					<key>tag</key>
