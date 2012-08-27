@@ -2069,7 +2069,7 @@ typedef struct {
         //playerIsTouchingScreen=true;
         //}
         
-        if (!isKeyboardShowing && location.x >= 7 * size.width/8 && location.y >= 5*size.height/6) {
+        if (!isKeyboardShowing && location.x >= size.width/3 && location.y >= 4*size.height/5) {
             [self showKeyboard];
         } else
             [self hideKeyboard];

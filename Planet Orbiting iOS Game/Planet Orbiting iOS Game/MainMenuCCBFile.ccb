@@ -43,7 +43,7 @@
 					<key>duration</key>
 					<real>-1</real>
 					<key>emissionRate</key>
-					<real>320</real>
+					<real>270</real>
 					<key>emitterMode</key>
 					<integer>0</integer>
 					<key>endColor</key>
@@ -108,7 +108,7 @@
 					<key>scaleY</key>
 					<real>1</real>
 					<key>speed</key>
-					<integer>100</integer>
+					<integer>60</integer>
 					<key>speedVar</key>
 					<integer>0</integer>
 					<key>spriteFile</key>
@@ -142,7 +142,7 @@
 					<key>tangentialAccelVar</key>
 					<integer>0</integer>
 					<key>totalParticles</key>
-					<integer>820</integer>
+					<integer>270</integer>
 					<key>visible</key>
 					<true/>
 					<key>zOrder</key>
@@ -1417,11 +1417,11 @@
 													<key>selector</key>
 													<string>pressedStoreButton:</string>
 													<key>spriteFileDisabled</key>
-													<string>retry.png</string>
+													<string>store.png</string>
 													<key>spriteFileNormal</key>
-													<string>retry.png</string>
+													<string>store.png</string>
 													<key>spriteFileSelected</key>
-													<string>retrypressed.png</string>
+													<string>storepressed.png</string>
 													<key>tag</key>
 													<integer>-1</integer>
 													<key>target</key>
@@ -1689,11 +1689,11 @@
 											<key>selector</key>
 											<string>pressedScoresButton:</string>
 											<key>spriteFileDisabled</key>
-											<string>retry.png</string>
+											<string>scores.png</string>
 											<key>spriteFileNormal</key>
-											<string>retry.png</string>
+											<string>scores.png</string>
 											<key>spriteFileSelected</key>
-											<string>retrypressed.png</string>
+											<string>scorespressed.png</string>
 											<key>tag</key>
 											<integer>0</integer>
 											<key>target</key>
@@ -1857,8 +1857,8 @@
 											<integer>2</integer>
 											<key>position</key>
 											<array>
-												<real>175.36328125</real>
-												<real>158.595703125</real>
+												<real>171.4140625</real>
+												<real>158.751953125</real>
 											</array>
 											<key>rotation</key>
 											<real>0.0</real>
@@ -1869,11 +1869,11 @@
 											<key>selector</key>
 											<string>pressedCreditsButton</string>
 											<key>spriteFileDisabled</key>
-											<string>sound.png</string>
+											<string>credits.png</string>
 											<key>spriteFileNormal</key>
-											<string>sound.png</string>
+											<string>credits.png</string>
 											<key>spriteFileSelected</key>
-											<string>soundpressed.png</string>
+											<string>creditspressed.png</string>
 											<key>tag</key>
 											<integer>0</integer>
 											<key>target</key>

@@ -177,8 +177,8 @@
 							<integer>1</integer>
 							<key>position</key>
 							<array>
-								<real>-177.8125</real>
-								<real>0.453125</real>
+								<real>-188.8984375</real>
+								<real>4.82421875</real>
 							</array>
 							<key>rotation</key>
 							<real>-8.4609375</real>
@@ -405,8 +405,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>450</real>
-						<real>39</real>
+						<real>230</real>
+						<real>78</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -426,17 +426,18 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>148.42578125</real>
-						<real>30.45703125</real>
+						<real>154.5859375</real>
+						<real>32.8203125</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>0.5071873664855957</real>
+					<real>0.68800771236419678</real>
 					<key>scaleY</key>
-					<real>0.5071873664855957</real>
+					<real>0.68800771236419678</real>
 					<key>string</key>
-					<string>Share your gameplay video for 100 stars!</string>
+					<string>Share your gameplay
+video for 100 stars!</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
@@ -673,11 +674,11 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>71.68359375</real>
-						<real>80.19140625</real>
+						<real>64.44140625</real>
+						<real>77.4375</real>
 					</array>
 					<key>rotation</key>
-					<real>8.2021484375</real>
+					<real>2.0576171875</real>
 					<key>scaleX</key>
 					<real>1.043515682220459</real>
 					<key>scaleY</key>
