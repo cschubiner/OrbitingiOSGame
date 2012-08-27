@@ -396,10 +396,6 @@
                       itemWithNormalImage:@"purchasedisabled.png" selectedImage:@"purchasedisabled.png"
                       target:self selector:@selector(pressedDisabledButton)];
         } else {
-            /*resume = [CCMenuItemImage
-                      itemWithNormalImage:@"purchase.png" selectedImage:@"purchasepressed.png"
-                      target:self selector:@selector(pressedPurchaseButton)];*/
-            
             
             resume = [CCMenuItemImage
                       itemWithNormalImage:@"purchase.png" selectedImage:@"purchasepressed.png"

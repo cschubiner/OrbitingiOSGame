@@ -22,6 +22,7 @@
 @property (nonatomic) bool hasAutoPilot;
 @property (nonatomic) bool hasStartPowerup;
 @property (nonatomic) bool hasHeadStart;
+@property (nonatomic) bool hasPinkStars;
 @property (nonatomic) bool hasGreenShip;
 @property (nonatomic) bool hasBlueShip;
 @property (nonatomic) bool hasGoldShip;

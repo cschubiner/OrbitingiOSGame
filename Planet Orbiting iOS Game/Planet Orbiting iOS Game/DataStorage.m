@@ -108,7 +108,7 @@
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Nitrous Rocket" description:@"Increase the strength of your rocket to fly faster through space." price:5000 type:2 purchased:NO equipped:NO number:2]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Double Stars" description:@"A great long-term investment - each star you collect is worth two." price:199 type:4 purchased:NO equipped:NO number:3]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Double Stars" description:@"A great long-term investment! Each star you collect is worth two." price:199 type:4 purchased:NO equipped:NO number:3]];
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Lithium Ion Battery" description:@"Increase your battery's efficiency to allow you to fly deeper into space." price:11000 type:2 purchased:NO equipped:NO number:4]];
     
@@ -203,7 +203,7 @@
     
     int counter = -1;
     bools = [boolGroupsToUse objectAtIndex:++counter];
-    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.1 starReward:500
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.1 starReward:5000
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Reach the second galaxy" isCompleted:[[bools objectAtIndex:0] boolValue]]
                                                           item1:[[ObjectiveItem alloc] initWithText:@"Purchase an upgrade" isCompleted:[[bools objectAtIndex:1] boolValue]]
                                                           item2:[[ObjectiveItem alloc] initWithText:@"Get 10 stars in one run" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
