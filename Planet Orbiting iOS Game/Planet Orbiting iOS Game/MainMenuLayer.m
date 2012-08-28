@@ -415,6 +415,7 @@ const float effectsVolumeMainMenu = 1;
                 [self playSound:@"buttonpress.mp3" shouldLoop:false pitch:coinPitch];
             [self addToStarInt: [self RandomBetween:rateOfScoreIncrease-1 maxvalue:rateOfScoreIncrease+1]];
             [starCountLabel setString:[NSString stringWithFormat:@"%@",[self commaInt:starIntForAnimation]]];
+            [starSprite setPosition:ccp(starCountLabel.boundingBox.size.width/2 + 20, 4)];
         })];
         id setNumber = [CCCallBlock actionWithBlock:(^{
             [starCountLabel setString:[NSString stringWithFormat:@"%@", [self commaInt:finalScore]]];
@@ -489,7 +490,7 @@ const float effectsVolumeMainMenu = 1;
                                    
                                    [CCCallBlock actionWithBlock:(^{
             CCMenuItem *quit = [CCMenuItemImage
-                                itemWithNormalImage:@"cancel.png" selectedImage:@"cancelpressed.png"
+                                itemWithNormalImage:@"done.png" selectedImage:@"donepressed.png"
                                 target:self selector:@selector(pushedContinueButton)];
             quit.position = ccp(336, -quit.boundingBox.size.height);
             [quit runAction:[CCEaseBounceInOut actionWithAction:[CCMoveTo actionWithDuration:.7 position:ccp(336, 20)]]];

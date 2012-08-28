@@ -20,6 +20,7 @@
 #import "UpgradeManager.h"
 #import "Toast.h"
 #import "GKAchievementHandler.h"
+#import "StoreLayer.h"
 
 #define pauseLayerTag       100
 #define gameOverLayerTag    200
@@ -335,7 +336,7 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setHasDoubleCoins:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped]];
     
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:60 + 3*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:65 + 3*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
     
     [[UpgradeValues sharedInstance] setHasStarMagnet:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped]];
     
@@ -1392,7 +1393,6 @@ typedef struct {
         if (
             //nextPlanet.whichGalaxyThisObjectBelongsTo > lastPlanetVisited.whichGalaxyThisObjectBelongsTo||
             targetPlanet.whichGalaxyThisObjectBelongsTo>lastPlanetVisited.whichGalaxyThisObjectBelongsTo || loading_playerHasReachedFirstPlanet==false) {
-            pauseEnabled = NO;
             cameraShouldFocusOnPlayer=true;
             //NSLog(@"galaxy112");
             
@@ -1711,67 +1711,123 @@ typedef struct {
             [self removeChild:layerHudSlider cleanup:YES];
         // [Kamcord stopRecording];
         
-        int finalScore = score + prevCurrentPtoPScore;
-        BOOL isHighScore = [[PlayerStats sharedInstance] isHighScore:finalScore];
-        NSString *ccbFile = @"GameOverLayer.ccb";
-        //NSString *scoreText = [NSString stringWithFormat:@"Score: %d",finalScore];
-        pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:ccbFile owner:self];
+        CCSprite* dark = [CCSprite spriteWithFile:@"OneByOne.png"];
+        [self addChild:dark];
+        //[dark setZOrder:112];
+        dark.position = ccp(240, 160);
+        dark.color = ccBLACK;
+        dark.opacity = 0;
+        dark.scaleX = 480;
+        dark.scaleY = 320;
+        //dark.visible = false;
         
-       // finalScore = 69669;
-        //numCoinsDisplayed = 69;
         
-        int rateOfScoreIncrease = finalScore / 640;
+        [playerExplosionParticle resetSystem];
+        [playerExplosionParticle setPosition:player.sprite.position];
+        [playerExplosionParticle setVisible:true];
+        player.sprite.visible = false;
+        if (player.currentPowerup)
+            player.currentPowerup.glowSprite.visible = false;
+        [thrustParticle stopSystem];
         
-        NSDictionary *dictForFlurry = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:finalScore],@"Highscore Value", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned",[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSString stringWithFormat:@"%d galaxies and %d segments",currentGalaxy.number+1,flurrySegmentsVisitedSinceGalaxyJump],@"How far player went",[NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays",[[PlayerStats sharedInstance] recentName],@"Player Name",nil];
         
-        if (isHighScore) {
-            [Flurry logEvent:@"Got a top 10 highscore" withParameters:dictForFlurry];
-        }
-        
-        [[DDGameKitHelper sharedGameKitHelper] submitScore:finalScore category:@"highscore_leaderboard"];
-        
-        [[[[CCDirector sharedDirector]view]window]addSubview:playerNameLabel];
-        [self schedule:@selector(nameDidChange) interval:.05];
-        playerNameLabel.delegate = self;
-        playerNameLabel.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
-        playerNameLabel.autocorrectionType = UITextAutocorrectionTypeNo;
-        playerNameLabel.keyboardType = UIKeyboardTypeAlphabet;
-        [displayName setString:recentName];
-        playerNameLabel.text = recentName;
-        playerNameLabel.returnKeyType = UIReturnKeyDone;
-        
-        [starStashLabel setString:[NSString stringWithFormat:@"%d",numCoinsDisplayed]];//[[UserWallet sharedInstance]getBalance]]];
-        [gameOverScoreLabel setString:@"0"];
-        
-        id increaseNumber = [CCCallBlock actionWithBlock:(^{
-            [gameOverScoreLabel setString:[NSString stringWithFormat:@"%d",gameOverScoreLabel.string.intValue+[self RandomBetween:rateOfScoreIncrease-1 maxvalue:rateOfScoreIncrease+1]]];
-        })];
-        id setNumber = [CCCallBlock actionWithBlock:(^{
-            [gameOverScoreLabel setString:[NSString stringWithFormat:@"%d",finalScore]];
+        id gameOverBlock = [CCCallBlock actionWithBlock:(^{
+            [dark setVisible:false];
+            [self startGameOver];
         })];
         
         
-        id displayParticles = [CCCallBlock actionWithBlock:(^{
-            [self addChild:starStashParticle];
-            [starStashParticle setPosition:gameOverScoreLabel.position];
-            [starStashParticle resetSystem];
-        })];
-        
-        
-        
-        
-        [gameOverScoreLabel runAction:[CCSequence actions:[CCRepeat actionWithAction:[CCSequence actions:increaseNumber,
-                                                                                      [CCDelayTime actionWithDuration:.003],
-                                                                                      nil] times:finalScore/rateOfScoreIncrease],setNumber,displayParticles, nil]];
-        
-        [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
-        
-        [pauseLayer setTag:gameOverLayerTag];
-        [self addChild:pauseLayer];
-        // [gameOverScoreLabel setString:scoreText];
-        
-        scoreAlreadySaved = YES;
+        [dark runAction:[CCSequence actions:
+                         [CCFadeTo actionWithDuration:2 opacity:200],
+                         gameOverBlock,
+                         nil]];
+       
     }
+}
+
+-(void) startGameOver {
+    int finalScore = score + prevCurrentPtoPScore;
+    BOOL isHighScore = [[PlayerStats sharedInstance] isHighScore:finalScore];
+    NSString *ccbFile = @"GameOverLayer.ccb";
+    //NSString *scoreText = [NSString stringWithFormat:@"Score: %d",finalScore];
+    pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:ccbFile owner:self];
+    
+    //finalScore = 69669;
+    //numCoinsDisplayed = 69;
+    
+    int rateOfScoreIncrease = finalScore / 640;
+    
+    NSDictionary *dictForFlurry = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:finalScore],@"Highscore Value", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned",[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSString stringWithFormat:@"%d galaxies and %d segments",currentGalaxy.number+1,flurrySegmentsVisitedSinceGalaxyJump],@"How far player went",[NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays",[[PlayerStats sharedInstance] recentName],@"Player Name",nil];
+    
+    if (isHighScore) {
+        [Flurry logEvent:@"Got a top 10 highscore" withParameters:dictForFlurry];
+    }
+    
+    [[DDGameKitHelper sharedGameKitHelper] submitScore:finalScore category:@"highscore_leaderboard"];
+    
+    [[[[CCDirector sharedDirector]view]window]addSubview:playerNameLabel];
+    [self schedule:@selector(nameDidChange) interval:.05];
+    playerNameLabel.delegate = self;
+    playerNameLabel.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    playerNameLabel.autocorrectionType = UITextAutocorrectionTypeNo;
+    playerNameLabel.keyboardType = UIKeyboardTypeAlphabet;
+    [displayName setString:recentName];
+    playerNameLabel.text = recentName;
+    playerNameLabel.returnKeyType = UIReturnKeyDone;
+    
+    //starStashSprite.position = ccpAdd(starStashLabel.position, ccp(30, 0));
+    [starStashLabel setString:[NSString stringWithFormat:@"%d",numCoinsDisplayed]];//[[UserWallet sharedInstance]getBalance]]];
+    [gameOverScoreLabel setString:@"0"];
+    
+    id increaseNumber = [CCCallBlock actionWithBlock:(^{
+        [gameOverScoreLabel setString:[NSString stringWithFormat:@"%d",gameOverScoreLabel.string.intValue+[self RandomBetween:rateOfScoreIncrease-1 maxvalue:rateOfScoreIncrease+1]]];
+    })];
+    id setNumber = [CCCallBlock actionWithBlock:(^{
+        [gameOverScoreLabel setString:[NSString stringWithFormat:@"%d",finalScore]];
+    })];
+    
+    
+    id displayParticles = [CCCallBlock actionWithBlock:(^{
+        [self addChild:starStashParticle];
+        [starStashParticle setScale:2.5];
+        [starStashParticle setPosition:gameOverScoreLabel.position];
+        [starStashParticle resetSystem];
+    })];
+    
+    id pulsate = [CCCallBlock actionWithBlock:(^{
+        [gameOverScoreLabel runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
+                                                                         [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.4 scale:2.8]],
+                                                                         [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.4 scale:2.5]],
+                                                                         nil]
+                                       ]];
+    })];
+    
+    
+    [gameOverScoreLabel runAction:[CCSequence actions:[CCRepeat actionWithAction:[CCSequence actions:increaseNumber,
+                                                                                  [CCDelayTime actionWithDuration:.003],
+                                                                                  nil] times:finalScore/rateOfScoreIncrease],setNumber,displayParticles, pulsate, nil]];
+    
+    [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
+    
+    [pauseLayer setTag:gameOverLayerTag];
+    [self addChild:pauseLayer];
+    // [gameOverScoreLabel setString:scoreText];
+    
+    scoreAlreadySaved = YES;
+}
+
+- (void)pressedStoreButton {
+    
+    
+    [Flurry logEvent:@"Opened Store" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance" ,nil]];
+    
+    [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
+    [[CCDirector sharedDirector] replaceScene:[StoreLayer scene]];
+    
+    
+    //id action = [CCMoveTo actionWithDuration:.8f position:ccp(-960,-320)];
+    //id ease = [CCEaseSineInOut actionWithAction:action]; //does this "CCEaseSineInOut" look better than the above "CCEaseInOut"???
+    //[layer runAction: ease];
 }
 
 - (void)UpdateLight:(float)dt {
@@ -2015,7 +2071,7 @@ typedef struct {
         //playerIsTouchingScreen=true;
         //}
         
-        if (!isKeyboardShowing && location.x >= size.width/3 && location.y >= 4*size.height/5) {
+        if (!isKeyboardShowing && location.x <= size.width/3 && location.y >= 4*size.height/5) {
             [self showKeyboard];
         } else
             [self hideKeyboard];
