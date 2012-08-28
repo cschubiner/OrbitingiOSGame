@@ -343,8 +343,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>144</real>
-						<real>137</real>
+						<real>116</real>
+						<real>129</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -359,24 +359,24 @@
 					<key>lockedScaleRatio</key>
 					<true/>
 					<key>memberVarAssignmentName</key>
-					<string></string>
+					<string>starStashSprite</string>
 					<key>memberVarAssignmentType</key>
-					<integer>0</integer>
+					<integer>2</integer>
 					<key>opacity</key>
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>403.19140625</real>
-						<real>202.890625</real>
+						<real>401.37890625</real>
+						<real>204.2421875</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>0.2264062911272049</real>
+					<real>0.76027345657348633</real>
 					<key>scaleY</key>
-					<real>0.2264062911272049</real>
+					<real>0.76027345657348633</real>
 					<key>spriteFile</key>
-					<string>star1.png</string>
+					<string>staricon.png</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
