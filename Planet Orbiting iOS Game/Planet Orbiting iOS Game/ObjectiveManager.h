@@ -16,6 +16,7 @@
 
 @property (nonatomic, retain) NSMutableArray* objectiveGroups;
 @property (nonatomic) int currentObjectiveGroupNumber;
+@property (nonatomic) int maxObjectiveGroupNumber;
 
 + (id)sharedInstance;
 
@@ -25,7 +26,7 @@
 -(ObjectiveItem*)getObjectiveFromGroupNumber:(int)groupNumber itemNumber:(int)itemNumber;
 -(CCLayer*)createMissionPopupWithX:(bool)withX withDark:(bool)a_hasDark;
 
--(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber view:(CCLayer*)view;
+-(bool)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber view:(CCLayer*)view;
 
 -(void)uncompleteObjectivesFromCurrentGroupNumber;
 

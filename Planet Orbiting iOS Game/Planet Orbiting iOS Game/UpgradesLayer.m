@@ -14,6 +14,7 @@
 #import "MainMenuLayer.h"
 #import "SimpleAudioEngine.h"
 #import "DataStorage.h"
+#import "StoreLayer.h"
 
 @implementation UpgradesLayer {
     CCLayer* scrollView;
@@ -110,15 +111,15 @@
         
         [self addChild:menu];
         
-        CCSprite* starSprite = [CCSprite spriteWithFile:@"star1.png"];
-        [starSprite setScale:.2];
+        CCSprite* starSprite = [CCSprite spriteWithFile:@"staricon.png"];
+        [starSprite setScale:.6];
         [self addChild:starSprite];
-        [starSprite setPosition:ccp(480 - 6 - starSprite.boundingBox.size.width/2, 299)];
+        [starSprite setPosition:ccp(480 - 22, 301)];
         
         totalStars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
         [self addChild: totalStars];
         [totalStars setAnchorPoint:ccp(1, .5)];
-        [totalStars setPosition:ccp(480 - 6 - starSprite.boundingBox.size.width - 3, 299)];
+        [totalStars setPosition:ccp(480 - 40, 299)];
         
         [self initUpgradeLayer];
         
@@ -158,8 +159,8 @@
 
 - (void) backButtonPressed {
     [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
-    [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setCameFromUpgrades:true];
-    [[CCDirector sharedDirector] replaceScene:[MainMenuLayer scene]];//[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
+    //[((AppDelegate*)[[UIApplication sharedApplication]delegate]) setCameFromUpgrades:true];
+    [[CCDirector sharedDirector] replaceScene:[StoreLayer scene]];//[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
 }
 
 - (void) initUpgradeLayer {

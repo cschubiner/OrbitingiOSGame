@@ -17,6 +17,7 @@
 #import "UpgradeManager.h"
 #import "GKAchievementHandler.h"
 #import "HighScoresLayer.h"
+#import "StoreLayer.h"
 
 #define tutorialLayerTag    1001
 #define levelLayerTag       1002
@@ -99,7 +100,10 @@ const float effectsVolumeMainMenu = 1;
 }
 
 -(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber {
-    [[ObjectiveManager sharedInstance] completeObjectiveFromGroupNumber:a_groupNumber itemNumber:a_itemNumber view:self];
+    bool didComplete = [[ObjectiveManager sharedInstance] completeObjectiveFromGroupNumber:a_groupNumber itemNumber:a_itemNumber view:self];
+    if ([[ObjectiveManager sharedInstance] checkIsDoneWithAllMissionsOnThisGroupNumber] && didComplete) {
+        [self finishedAllMissions];
+    }
 }
 
 // on "init" you need to initialize your instance
@@ -240,15 +244,12 @@ const float effectsVolumeMainMenu = 1;
     [layer runAction: ease];
 }
 
-- (void)pressedStoreButton:(id)sender {
+- (void) finishedAllMissions {
     
-    if ([[ObjectiveManager sharedInstance] checkIsDoneWithAllMissionsOnThisGroupNumber]) {
-        
-    }
     
-    [self completeObjectiveFromGroupNumber:0 itemNumber:0];
-    [self completeObjectiveFromGroupNumber:0 itemNumber:1];
-    [self completeObjectiveFromGroupNumber:0 itemNumber:2];
+    //[self completeObjectiveFromGroupNumber:0 itemNumber:0];
+    //[self completeObjectiveFromGroupNumber:0 itemNumber:1];
+    //[self completeObjectiveFromGroupNumber:0 itemNumber:2];
     
     
     
@@ -258,14 +259,22 @@ const float effectsVolumeMainMenu = 1;
     
     CCSprite* dark = [CCSprite spriteWithFile:@"OneByOne.png"];
     [missionCompletionScreen addChild:dark];
+    [dark setZOrder:-11];
     dark.position = ccp(240, 160);
     dark.color = ccBLACK;
-    dark.opacity = 220;
+    dark.opacity = 240;
     dark.scaleX = 480;
     dark.scaleY = 320;
     
+    CCSprite* ray0 = [CCSprite spriteWithFile:@"sunray.png"];
+    [missionCompletionScreen addChild:ray0];
+    ray0.position = ccp(240, 160-19);
+    [ray0 setVisible:false];
     
-    
+    CCSprite* ray1 = [CCSprite spriteWithFile:@"sunray.png"];
+    [missionCompletionScreen addChild:ray1];
+    ray1.position = ccp(240, 160-19);
+    [ray1 setVisible:false];
     
     mPopup = [[CCLayer alloc] init];
     
@@ -307,11 +316,16 @@ const float effectsVolumeMainMenu = 1;
     
     
     
-    NSString* footerString = [NSString stringWithFormat:@"COMPLETE TO EARN %@ STARS", [self commaInt:currentGroup.starReward]];
+    NSString* footerString = [NSString stringWithFormat:@"COMPLETE TO EARN %@", [self commaInt:currentGroup.starReward]];
     
     CCLabelTTF* footer = [CCLabelTTF labelWithString:footerString fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
     [mPopup addChild:footer];
     footer.position = ccp(240, 74);
+    
+    CCSprite* starSprite0 = [CCSprite spriteWithFile:@"staricon.png"];
+    [mPopup addChild:starSprite0];
+    starSprite0.scale = .42;
+    starSprite0.position = ccpAdd(footer.position, ccp(footer.boundingBox.size.width/2 + 12, 2));
     
     
     [missionCompletionScreen addChild:mPopup];
@@ -325,16 +339,25 @@ const float effectsVolumeMainMenu = 1;
     [missionCompletionScreen addChild:starExplosion];
     [starExplosion stopSystem];
     
-    [[UserWallet sharedInstance] setBalance:20000];
-    
     shouldPlayCoinSound = true;
     coinPitch = .8;
     coinPitchCounter = 0;
+    
+    CCLayer* starsLayer = [[CCLayer alloc] init];
+    [missionCompletionScreen addChild:starsLayer];
+    starsLayer.position = ccp(240, 320 + 30);
+    [starsLayer setAnchorPoint:ccp(0, 0)];
+    
     starIntForAnimation = [[UserWallet sharedInstance] getBalance];
     CCLabelTTF* starCountLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", [self commaInt:starIntForAnimation]] fontName:@"HelveticaNeue-CondensedBold" fontSize:48];
     starCountLabel.color = ccYELLOW;
-    [missionCompletionScreen addChild:starCountLabel];
-    starCountLabel.position = ccp(240, 320 + starCountLabel.boundingBox.size.height);
+    [starsLayer addChild:starCountLabel];
+    starCountLabel.position = ccp(0, 0);//ccp(240, 320 + starCountLabel.boundingBox.size.height);
+    
+    CCSprite* starSprite = [CCSprite spriteWithFile:@"staricon.png"];
+    [starsLayer addChild:starSprite];
+    starSprite.position = ccp(starCountLabel.boundingBox.size.width/2 + 20, 4);
+    
     
     int finalScore = [[UserWallet sharedInstance] getBalance] + [[ObjectiveManager sharedInstance] getStarRewardFromGroupNumber:[[ObjectiveManager sharedInstance] currentObjectiveGroupNumber]];
     
@@ -372,13 +395,13 @@ const float effectsVolumeMainMenu = 1;
         [ind2 setTexture:[[CCTextureCache sharedTextureCache] addImage:@"missioncomplete.png"]];
     })],
                        
-                       [CCDelayTime actionWithDuration:1],
+                       [CCDelayTime actionWithDuration:.4],
                        
                        [CCCallBlock actionWithBlock:(^{
-        [starCountLabel runAction:[CCEaseBounceInOut actionWithAction:[CCMoveTo actionWithDuration:.7 position:ccp(240, 280)]]];
+        [starsLayer runAction:[CCEaseBounceInOut actionWithAction:[CCMoveTo actionWithDuration:.7 position:ccp(240, 284)]]];
     })],
                        
-                       [CCDelayTime actionWithDuration:.5],
+                       [CCDelayTime actionWithDuration:.7],
                        
                        [CCCallBlock actionWithBlock:(^{
         /*while (starInt < [[UserWallet sharedInstance] getBalance] + [[ObjectiveManager sharedInstance] getStarRewardFromGroupNumber:[[ObjectiveManager sharedInstance] currentObjectiveGroupNumber]]) {
@@ -397,10 +420,16 @@ const float effectsVolumeMainMenu = 1;
             [starCountLabel setString:[NSString stringWithFormat:@"%@", [self commaInt:finalScore]]];
         })];
         id displayParticles = [CCCallBlock actionWithBlock:(^{
-            [starExplosion setPosition:starCountLabel.position];
+            [starExplosion setPosition:starsLayer.position];
             [starExplosion resetSystem];
             [[UserWallet sharedInstance] setBalance:finalScore];
-        })];
+            
+            [starsLayer runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
+                                                                         [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.4 scale:1.3]],
+                                                                         [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.4 scale:1]],
+                                                                         nil]
+                                       ]];
+            })];
         
         
         
@@ -411,7 +440,8 @@ const float effectsVolumeMainMenu = 1;
                                                                                   [CCDelayTime actionWithDuration:.0166667],
                                                                                   nil] times:(finalScore-[[UserWallet sharedInstance] getBalance])/rateOfScoreIncrease],setNumber,displayParticles,
                                    
-                                   [CCDelayTime actionWithDuration:.5],
+                                   [CCDelayTime actionWithDuration:.3],
+                                   
                                    
                                    
                                    [CCCallBlock actionWithBlock:(^{
@@ -419,17 +449,43 @@ const float effectsVolumeMainMenu = 1;
             [[ObjectiveManager sharedInstance] setCurrentObjectiveGroupNumber: [[ObjectiveManager sharedInstance] currentObjectiveGroupNumber] + 1];
         })],
                                    
-                                   [CCDelayTime actionWithDuration:.7],
+                                   [CCDelayTime actionWithDuration:.5],
                                    
                                    [CCCallBlock actionWithBlock:(^{
             [self createNewPopup];
             [missionCompletionScreen addChild:mPopup];
-            [mPopup runAction:[CCEaseBounceInOut actionWithAction:[CCMoveTo actionWithDuration:.7 position:ccp(0, -19)]]];
+            [mPopup runAction:[CCEaseElasticInOut actionWithAction:[CCMoveTo actionWithDuration:1.1 position:ccp(0, -19)]]];
+        })],
+                                   
+                                   [CCDelayTime actionWithDuration:.35],
+                                   
+                                   [CCCallBlock actionWithBlock:(^{
+            
+            [self playSound:@"popupSwoosh.mp3" shouldLoop:false pitch:1];
+        })],
+                                   
+                                   [CCDelayTime actionWithDuration:1-.35],
+                                   
+                                   [CCCallBlock actionWithBlock:(^{
+            [ray0 setRotation:.5];
+            [ray0 setZOrder:-1];
+            [ray0 setScale:4];
+            [ray0 setOpacity:150];
+            [ray0 setVisible:true];
+            [ray0 runAction:[CCRepeatForever actionWithAction:[CCRotateBy actionWithDuration:.01666667 angle:.5]]];
+            
+            [ray1 setZOrder:-1];
+            [ray1 setScale:4];
+            [ray1 setOpacity:150];
+            [ray1 setVisible:true];
+            [ray1 runAction:[CCRepeatForever actionWithAction:[CCRotateBy actionWithDuration:.01666667 angle:-.5]]];
+            
         })],
                                    
                                    
+                                   [CCDelayTime actionWithDuration:.5],
                                    
-                                   [CCDelayTime actionWithDuration:.8],
+                                   
                                    
                                    [CCCallBlock actionWithBlock:(^{
             CCMenuItem *quit = [CCMenuItemImage
@@ -456,12 +512,31 @@ const float effectsVolumeMainMenu = 1;
                        nil];
     
     //id stuffAfterExplosion = [CCSequence actions:
-                              
-
+    
+    
+    
     
     [mPopup runAction: [CCSequence actions:
                         [CCEaseElasticInOut actionWithAction:[CCMoveTo actionWithDuration:1.1 position:ccp(0, -19)]],
+                        
                         changeChecks,
+                        nil]];
+    
+    [mPopup runAction: [CCSequence actions:
+                        
+                        [CCDelayTime actionWithDuration:.35],
+                        
+                        [CCCallBlock actionWithBlock:(^{
+        
+        [self playSound:@"popupSwoosh.mp3" shouldLoop:false pitch:1];
+    })],
+                        
+                        [CCDelayTime actionWithDuration:.6-.35],
+                        
+                        [CCCallBlock actionWithBlock:(^{
+        
+        //[self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
+    })],
                         nil]];
     
     
@@ -483,11 +558,19 @@ const float effectsVolumeMainMenu = 1;
     [self addChild:missionCompletionScreen];
     self.isTouchEnabled = false;
     [self disableButtons];
+}
+
+- (void)pressedStoreButton:(id)sender {
     
     
     [Flurry logEvent:@"Opened Store" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance" ,nil]];
-    id action = [CCMoveTo actionWithDuration:.8f position:ccp(-960,-320)];
-    id ease = [CCEaseSineInOut actionWithAction:action]; //does this "CCEaseSineInOut" look better than the above "CCEaseInOut"???
+    
+    [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
+    [[CCDirector sharedDirector] replaceScene:[StoreLayer scene]];
+    
+    
+    //id action = [CCMoveTo actionWithDuration:.8f position:ccp(-960,-320)];
+    //id ease = [CCEaseSineInOut actionWithAction:action]; //does this "CCEaseSineInOut" look better than the above "CCEaseInOut"???
     //[layer runAction: ease];
 }
 
@@ -502,7 +585,7 @@ const float effectsVolumeMainMenu = 1;
     coinPitchCounter++;
     if (coinPitchCounter >= 11) {
         coinPitchCounter = 0;
-        coinPitch += .1;
+        coinPitch += .12;
         shouldPlayCoinSound = true;
     } else {
         shouldPlayCoinSound = false;
@@ -666,8 +749,9 @@ const float effectsVolumeMainMenu = 1;
 //}
 
 - (void)pressedCreditsButton {
-    [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
-    [[CCDirector sharedDirector] replaceScene:[CreditsLayer scene]];
+    [self finishedAllMissions];
+    //[self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
+    //[[CCDirector sharedDirector] replaceScene:[CreditsLayer scene]];
 }
 
 - (void)pressedRocketShipsButton: (id) sender {
