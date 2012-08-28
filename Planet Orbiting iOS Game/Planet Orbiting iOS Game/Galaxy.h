@@ -16,12 +16,10 @@
 @property (nonatomic) int number;
 @property (nonatomic) int optimalPlanetsInThisGalaxy;
 @property (nonatomic) int numberOfDifferentPlanetsDrawn;
-@property (nonatomic) int numberOfPlanetsCreatedAlready;
 @property (nonatomic) float percentTimeToAddUponGalaxyCompletion;
 @property (nonatomic, retain) NSArray* segments;
 @property (nonatomic, retain) NSString* name;
 @property (nonatomic, retain) CCSpriteBatchNode* spriteSheet;
 @property (nonatomic) ccColor3B galaxyColor;
-@property (nonatomic,assign) bool didFree;
 -(id)initWithSegments:(NSArray*)levelSegments;
 @end
