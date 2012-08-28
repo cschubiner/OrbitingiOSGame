@@ -1445,7 +1445,6 @@ typedef struct {
         if (
             //nextPlanet.whichGalaxyThisObjectBelongsTo > lastPlanetVisited.whichGalaxyThisObjectBelongsTo||
             targetPlanet.whichGalaxyThisObjectBelongsTo>lastPlanetVisited.whichGalaxyThisObjectBelongsTo || loading_playerHasReachedFirstPlanet==false) {
-            pauseEnabled = NO;
             cameraShouldFocusOnPlayer=true;
             //NSLog(@"galaxy112");
             
@@ -2075,7 +2074,7 @@ typedef struct {
         //playerIsTouchingScreen=true;
         //}
         
-        if (!isKeyboardShowing && location.x >= size.width/3 && location.y >= 4*size.height/5) {
+        if (!isKeyboardShowing && location.x <= size.width/3 && location.y >= 4*size.height/5) {
             [self showKeyboard];
         } else
             [self hideKeyboard];
