@@ -82,6 +82,8 @@ typedef struct {
     //NSLog(@"started coin");
     Coin *coin = [[Coin alloc]init];
     coin.sprite = [CCSprite spriteWithSpriteFrameName:@"15.png"];
+    if ([[UpgradeValues sharedInstance] hasPinkStars])
+        coin.sprite.color = ccc3(255, 20, 147);
     coin.sprite.position = ccp(xPos, yPos);
     [coin.sprite setScale:scale*.8];
     coin.whichSegmentThisObjectIsOriginallyFrom = originalSegmentNumber;
@@ -93,6 +95,9 @@ typedef struct {
     coin.movingSprite = [CCSprite spriteWithSpriteFrameName:@"25.png"];
     coin.movingSprite.scale = coin.sprite.scale*.3;
     [hudLayer addChild: coin.movingSprite];
+    if ([[UpgradeValues sharedInstance] hasPinkStars])
+        coin.movingSprite.color = ccc3(255, 20, 147);
+    coin.movingSprite.position = ccp(-20, -20);
     
     [coins addObject:coin];
     [spriteSheet addChild:coin.sprite];

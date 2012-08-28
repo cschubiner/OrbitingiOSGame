@@ -257,14 +257,11 @@ const float effectsVolumeMainMenu = 1;
     missionCompletionScreen = [[CCLayer alloc] init];
     
     
-    CCSprite* dark = [CCSprite spriteWithFile:@"OneByOne.png"];
+    CCSprite* dark = [CCSprite spriteWithFile:@"black.png"];
     [missionCompletionScreen addChild:dark];
     [dark setZOrder:-11];
     dark.position = ccp(240, 160);
-    dark.color = ccBLACK;
     dark.opacity = 240;
-    dark.scaleX = 480;
-    dark.scaleY = 320;
     
     CCSprite* ray0 = [CCSprite spriteWithFile:@"sunray.png"];
     [missionCompletionScreen addChild:ray0];
@@ -349,14 +346,14 @@ const float effectsVolumeMainMenu = 1;
     [starsLayer setAnchorPoint:ccp(0, 0)];
     
     starIntForAnimation = [[UserWallet sharedInstance] getBalance];
-    CCLabelTTF* starCountLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", [self commaInt:starIntForAnimation]] fontName:@"HelveticaNeue-CondensedBold" fontSize:48];
+    CCLabelTTF* starCountLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", [self commaInt:starIntForAnimation]] fontName:@"HelveticaNeue-CondensedBold" fontSize:54];
     starCountLabel.color = ccYELLOW;
     [starsLayer addChild:starCountLabel];
-    starCountLabel.position = ccp(0, 0);//ccp(240, 320 + starCountLabel.boundingBox.size.height);
+    starCountLabel.position = ccp(-20, 0);//ccp(240, 320 + starCountLabel.boundingBox.size.height);
     
     CCSprite* starSprite = [CCSprite spriteWithFile:@"staricon.png"];
     [starsLayer addChild:starSprite];
-    starSprite.position = ccp(starCountLabel.boundingBox.size.width/2 + 20, 4);
+    starSprite.position = ccp(starCountLabel.boundingBox.size.width/2 - 20 + 20, 4);
     
     
     int finalScore = [[UserWallet sharedInstance] getBalance] + [[ObjectiveManager sharedInstance] getStarRewardFromGroupNumber:[[ObjectiveManager sharedInstance] currentObjectiveGroupNumber]];
@@ -368,7 +365,7 @@ const float effectsVolumeMainMenu = 1;
                        [CCCallBlock actionWithBlock:(^{
     })],
                        
-                       [CCDelayTime actionWithDuration:.2],
+                       [CCDelayTime actionWithDuration:.1],
                        
                        [CCCallBlock actionWithBlock:(^{
         [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
@@ -377,7 +374,7 @@ const float effectsVolumeMainMenu = 1;
         [ind0 setTexture:[[CCTextureCache sharedTextureCache] addImage:@"missioncomplete.png"]];
     })],
                        
-                       [CCDelayTime actionWithDuration:1],
+                       [CCDelayTime actionWithDuration:.7],
                        
                        [CCCallBlock actionWithBlock:(^{
         [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
@@ -386,7 +383,7 @@ const float effectsVolumeMainMenu = 1;
         [ind1 setTexture:[[CCTextureCache sharedTextureCache] addImage:@"missioncomplete.png"]];
     })],
                        
-                       [CCDelayTime actionWithDuration:1],
+                       [CCDelayTime actionWithDuration:.7],
                        
                        [CCCallBlock actionWithBlock:(^{
         [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
@@ -401,7 +398,7 @@ const float effectsVolumeMainMenu = 1;
         [starsLayer runAction:[CCEaseBounceInOut actionWithAction:[CCMoveTo actionWithDuration:.7 position:ccp(240, 284)]]];
     })],
                        
-                       [CCDelayTime actionWithDuration:.7],
+                       [CCDelayTime actionWithDuration:.4],
                        
                        [CCCallBlock actionWithBlock:(^{
         /*while (starInt < [[UserWallet sharedInstance] getBalance] + [[ObjectiveManager sharedInstance] getStarRewardFromGroupNumber:[[ObjectiveManager sharedInstance] currentObjectiveGroupNumber]]) {
@@ -415,21 +412,37 @@ const float effectsVolumeMainMenu = 1;
                 [self playSound:@"buttonpress.mp3" shouldLoop:false pitch:coinPitch];
             [self addToStarInt: [self RandomBetween:rateOfScoreIncrease-1 maxvalue:rateOfScoreIncrease+1]];
             [starCountLabel setString:[NSString stringWithFormat:@"%@",[self commaInt:starIntForAnimation]]];
-            [starSprite setPosition:ccp(starCountLabel.boundingBox.size.width/2 + 20, 4)];
+            [starSprite setPosition:ccp(starCountLabel.boundingBox.size.width/2 - 20 + 20, 4)];
         })];
         id setNumber = [CCCallBlock actionWithBlock:(^{
             [starCountLabel setString:[NSString stringWithFormat:@"%@", [self commaInt:finalScore]]];
         })];
         id displayParticles = [CCCallBlock actionWithBlock:(^{
+            [self playSound:@"levelup.mp3" shouldLoop:false pitch:1];
             [starExplosion setPosition:starsLayer.position];
             [starExplosion resetSystem];
             [[UserWallet sharedInstance] setBalance:finalScore];
             
             [starsLayer runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
-                                                                         [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.4 scale:1.3]],
+                                                                         [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.4 scale:1.2]],
                                                                          [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.4 scale:1]],
                                                                          nil]
                                        ]];
+            
+            
+            
+            [ray0 setRotation:.5];
+            [ray0 setZOrder:-1];
+            [ray0 setScale:4];
+            [ray0 setOpacity:150];
+            [ray0 setVisible:true];
+            [ray0 runAction:[CCRepeatForever actionWithAction:[CCRotateBy actionWithDuration:.01666667 angle:.5]]];
+            
+            [ray1 setZOrder:-1];
+            [ray1 setScale:4];
+            [ray1 setOpacity:150];
+            [ray1 setVisible:true];
+            [ray1 runAction:[CCRepeatForever actionWithAction:[CCRotateBy actionWithDuration:.01666667 angle:-.5]]];
             })];
         
         
@@ -441,7 +454,7 @@ const float effectsVolumeMainMenu = 1;
                                                                                   [CCDelayTime actionWithDuration:.0166667],
                                                                                   nil] times:(finalScore-[[UserWallet sharedInstance] getBalance])/rateOfScoreIncrease],setNumber,displayParticles,
                                    
-                                   [CCDelayTime actionWithDuration:.3],
+                                   [CCDelayTime actionWithDuration:.8],
                                    
                                    
                                    
@@ -466,7 +479,7 @@ const float effectsVolumeMainMenu = 1;
         })],
                                    
                                    [CCDelayTime actionWithDuration:1-.35],
-                                   
+                                   /*
                                    [CCCallBlock actionWithBlock:(^{
             [ray0 setRotation:.5];
             [ray0 setZOrder:-1];
@@ -484,7 +497,7 @@ const float effectsVolumeMainMenu = 1;
         })],
                                    
                                    
-                                   [CCDelayTime actionWithDuration:.5],
+                                   [CCDelayTime actionWithDuration:.5],*/
                                    
                                    
                                    
