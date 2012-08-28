@@ -469,6 +469,7 @@
 		FA20FD3615ECADD3008F2F17 /* levelup.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA20FD3515ECADD3008F2F17 /* levelup.mp3 */; };
 		FA20FD3A15ECB5FF008F2F17 /* black.png in Resources */ = {isa = PBXBuildFile; fileRef = FA20FD3815ECB5FF008F2F17 /* black.png */; };
 		FA20FD3B15ECB5FF008F2F17 /* black-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA20FD3915ECB5FF008F2F17 /* black-hd.png */; };
+		FA20FD4215ECB9A4008F2F17 /* MissionsCompleteLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FA20FD4115ECB9A4008F2F17 /* MissionsCompleteLayer.m */; };
 		FA40DCB215D378B500174FB8 /* UpgradeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FA40DCB115D378B500174FB8 /* UpgradeItem.m */; };
 		FA40DCB515D37BFA00174FB8 /* UpgradeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA40DCB415D37BFA00174FB8 /* UpgradeManager.m */; };
 		FA40DCB715D388B200174FB8 /* upgradesHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = FA40DCB615D388B200174FB8 /* upgradesHeader.png */; };
@@ -1143,6 +1144,8 @@
 		FA20FD3515ECADD3008F2F17 /* levelup.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = levelup.mp3; sourceTree = "<group>"; };
 		FA20FD3815ECB5FF008F2F17 /* black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black.png; sourceTree = "<group>"; };
 		FA20FD3915ECB5FF008F2F17 /* black-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "black-hd.png"; sourceTree = "<group>"; };
+		FA20FD4015ECB9A4008F2F17 /* MissionsCompleteLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MissionsCompleteLayer.h; path = ../MissionsCompleteLayer.h; sourceTree = "<group>"; };
+		FA20FD4115ECB9A4008F2F17 /* MissionsCompleteLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MissionsCompleteLayer.m; path = ../MissionsCompleteLayer.m; sourceTree = "<group>"; };
 		FA40DCB015D378B500174FB8 /* UpgradeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeItem.h; sourceTree = "<group>"; };
 		FA40DCB115D378B500174FB8 /* UpgradeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeItem.m; sourceTree = "<group>"; };
 		FA40DCB315D37BFA00174FB8 /* UpgradeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeManager.h; sourceTree = "<group>"; };
@@ -1574,6 +1577,8 @@
 				FA00EC3D15E95FFA00C745BC /* CreditsLayer.m */,
 				FA00EC4E15EA235100C745BC /* HighScoresLayer.h */,
 				FA00EC4F15EA235100C745BC /* HighScoresLayer.m */,
+				FA20FD4015ECB9A4008F2F17 /* MissionsCompleteLayer.h */,
+				FA20FD4115ECB9A4008F2F17 /* MissionsCompleteLayer.m */,
 				01FE9B3A15BFC2C9007512ED /* PlayerStats.h */,
 				01FE9B3B15BFC2C9007512ED /* PlayerStats.m */,
 				C445304D15A68888004F8F48 /* CocosBuilder  */,
@@ -2813,6 +2818,7 @@
 				FA00EC3E15E95FFA00C745BC /* CreditsLayer.m in Sources */,
 				FA00EC5015EA235100C745BC /* HighScoresLayer.m in Sources */,
 				FA5492E415EC24E100285707 /* StoreLayer.m in Sources */,
+				FA20FD4215ECB9A4008F2F17 /* MissionsCompleteLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

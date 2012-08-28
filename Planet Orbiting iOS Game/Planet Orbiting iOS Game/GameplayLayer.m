@@ -21,6 +21,7 @@
 #import "Toast.h"
 #import "GKAchievementHandler.h"
 #import "StoreLayer.h"
+#import "MissionsCompleteLayer.h"
 
 #define pauseLayerTag       100
 #define gameOverLayerTag    200
@@ -1732,6 +1733,10 @@ typedef struct {
         
         id gameOverBlock = [CCCallBlock actionWithBlock:(^{
             [dark setVisible:false];
+            if ([[ObjectiveManager sharedInstance] checkIsDoneWithAllMissionsOnThisGroupNumber]) {
+                if ([[ObjectiveManager sharedInstance] currentObjectiveGroupNumber] < [[ObjectiveManager sharedInstance] maxObjectiveGroupNumber])
+                    [[CCDirector sharedDirector] pushScene:[MissionsCompleteLayer scene]];
+            }
             [self startGameOver];
         })];
         

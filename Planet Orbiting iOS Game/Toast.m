@@ -20,9 +20,9 @@
         text = a_text;
         fontSize = 20;
         fromTop = true;
-        fadeInTime = .5;
-        waitTime = 1.5;
-        fadeOutTime = .5;
+        fadeInTime = .3;
+        waitTime = 1.8;
+        fadeOutTime = .3;
     }
     return self;
 }
