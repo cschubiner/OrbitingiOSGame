@@ -415,6 +415,7 @@ const float effectsVolumeMainMenu = 1;
                 [self playSound:@"buttonpress.mp3" shouldLoop:false pitch:coinPitch];
             [self addToStarInt: [self RandomBetween:rateOfScoreIncrease-1 maxvalue:rateOfScoreIncrease+1]];
             [starCountLabel setString:[NSString stringWithFormat:@"%@",[self commaInt:starIntForAnimation]]];
+            [starSprite setPosition:ccp(starCountLabel.boundingBox.size.width/2 + 20, 4)];
         })];
         id setNumber = [CCCallBlock actionWithBlock:(^{
             [starCountLabel setString:[NSString stringWithFormat:@"%@", [self commaInt:finalScore]]];
