@@ -31,8 +31,11 @@
 -(void)uncompleteObjectivesFromCurrentGroupNumber;
 
 -(float)getscoreMultFromGroupNumber:(int)a_groupNumber;
+-(float)getscoreMultFromCurrentGroupNumber;
 -(int)getStarRewardFromGroupNumber:(int)a_groupNumber;
 
 -(bool)checkIsDoneWithAllMissionsOnThisGroupNumber;
+
+-(bool)shouldDisplayLevelUpAnimation;
 
 @end

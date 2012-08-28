@@ -541,9 +541,8 @@
 
 -(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber {
     bool didComplete = [[ObjectiveManager sharedInstance] completeObjectiveFromGroupNumber:a_groupNumber itemNumber:a_itemNumber view:self];
-    if ([[ObjectiveManager sharedInstance] checkIsDoneWithAllMissionsOnThisGroupNumber] && didComplete) {
-        if ([[ObjectiveManager sharedInstance] currentObjectiveGroupNumber] < [[ObjectiveManager sharedInstance] maxObjectiveGroupNumber])
-            [[CCDirector sharedDirector] pushScene:[MissionsCompleteLayer scene]];
+    if ([[ObjectiveManager sharedInstance] shouldDisplayLevelUpAnimation] && didComplete) {
+        [[CCDirector sharedDirector] pushScene:[MissionsCompleteLayer scene]];
     }
     
 }

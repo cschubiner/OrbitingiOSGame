@@ -88,7 +88,7 @@
         CCMenuItem *quit = [CCMenuItemImage
                             itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
                             target:self selector:@selector(backButtonPressed)];
-        quit.position = ccp(60, 299);
+        quit.position = ccp(41, 299);
         //quit.scale = 1.7;
         
         CCMenu* menu = [CCMenu menuWithItems:quit, nil];
@@ -142,17 +142,17 @@
     credits7.position = ccp(240, credits6.position.y - credits6.boundingBox.size.height - 10);
     
     
-    /*CCLabelTTF* credits8 = [CCLabelTTF labelWithString:@"- LEVEL DESIGN -" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
+    CCLabelTTF* credits8 = [CCLabelTTF labelWithString:@"- LEVEL DESIGN -" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
      [scrollView addChild:credits8];
      [credits8 setAnchorPoint:ccp(.5, 1)];
      credits8.position = ccp(240, credits7.position.y - credits7.boundingBox.size.height - 35);
      
-     CCLabelTTF* credits9 = [CCLabelTTF labelWithString:@"MICHAEL ARBEED\nALEX BLICKENSTAFF\nCRAIG COLLINS\nJEFF GRIMES\nCLAY SCHUBINER" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+     CCLabelTTF* credits9 = [CCLabelTTF labelWithString:@"CRAIG COLLINS" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
      [scrollView addChild:credits9];
      [credits9 setAnchorPoint:ccp(.5, 1)];
-     credits9.position = ccp(240, credits8.position.y - credits8.boundingBox.size.height - 10);*/
+     credits9.position = ccp(240, credits8.position.y - credits8.boundingBox.size.height - 10);
     
-    scrollViewHeight = -credits7.position.y + credits7.boundingBox.size.height + 20;
+    scrollViewHeight = -credits9.position.y + credits9.boundingBox.size.height + 20;
 }
 
 -(void) initScrollStuff {

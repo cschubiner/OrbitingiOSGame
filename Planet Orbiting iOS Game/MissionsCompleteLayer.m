@@ -298,6 +298,7 @@
                                        
                                        
                                        [CCCallBlock actionWithBlock:(^{
+                [DataStorage storeData];
                 CCMenuItem *quit = [CCMenuItemImage
                                     itemWithNormalImage:@"done.png" selectedImage:@"donepressed.png"
                                     target:self selector:@selector(pushedContinueButton)];

@@ -342,7 +342,7 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setHasDoubleCoins:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped]];
     
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:65 + 3*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:60 + 5*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
     
     [[UpgradeValues sharedInstance] setHasStarMagnet:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped]];
     
@@ -1733,9 +1733,8 @@ typedef struct {
         
         id gameOverBlock = [CCCallBlock actionWithBlock:(^{
             [dark setVisible:false];
-            if ([[ObjectiveManager sharedInstance] checkIsDoneWithAllMissionsOnThisGroupNumber]) {
-                if ([[ObjectiveManager sharedInstance] currentObjectiveGroupNumber] < [[ObjectiveManager sharedInstance] maxObjectiveGroupNumber])
-                    [[CCDirector sharedDirector] pushScene:[MissionsCompleteLayer scene]];
+            if ([[ObjectiveManager sharedInstance] shouldDisplayLevelUpAnimation]) {
+                [[CCDirector sharedDirector] pushScene:[MissionsCompleteLayer scene]];
             }
             [self startGameOver];
         })];
@@ -1910,11 +1909,11 @@ typedef struct {
 - (void) updatePowerupAnimation:(float)dt {
     
     if (powerupPos <= 250)
-        powerupVel = 15;
+        powerupVel = 15*1.5;
     else if (powerupPos <= 430)
-        powerupVel = 2.3;
+        powerupVel = 2.3*1.5;
     else
-        powerupVel = 18;
+        powerupVel = 18*1.5;
     
     if (powerupPos > 480 + [powerupLabel boundingBox].size.width) {
         paused = false;

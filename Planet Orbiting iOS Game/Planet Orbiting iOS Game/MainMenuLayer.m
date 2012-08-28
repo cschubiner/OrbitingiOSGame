@@ -391,10 +391,9 @@ const float effectsVolumeMainMenu = 1;
 //}
 
 - (void)pressedCreditsButton {
-    //[self finishedAllMissions];
-    //[self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
-    //[[CCDirector sharedDirector] replaceScene:[CreditsLayer scene]];
-    [[CCDirector sharedDirector] pushScene:[MissionsCompleteLayer scene]];
+    [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
+    [[CCDirector sharedDirector] replaceScene:[CreditsLayer scene]];
+    //[[CCDirector sharedDirector] pushScene:[MissionsCompleteLayer scene]];
 }
 
 - (void)pressedRocketShipsButton: (id) sender {

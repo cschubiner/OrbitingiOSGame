@@ -51,8 +51,14 @@ static ObjectiveManager *sharedInstance = nil;
 }
 
 -(float)getscoreMultFromGroupNumber:(int)a_groupNumber {
+    if (a_groupNumber > maxObjectiveGroupNumber)
+        a_groupNumber = maxObjectiveGroupNumber;
     ObjectiveGroup* objectives = [objectiveGroups objectAtIndex:a_groupNumber];
     return objectives.scoreMult;
+}
+
+-(float)getscoreMultFromCurrentGroupNumber {
+    return [self getscoreMultFromGroupNumber:currentObjectiveGroupNumber];
 }
 
 -(int)getStarRewardFromGroupNumber:(int)a_groupNumber {
@@ -142,6 +148,16 @@ static ObjectiveManager *sharedInstance = nil;
         }
     }
     return isAllDone;
+}
+
+-(bool)shouldDisplayLevelUpAnimation {
+    if (currentObjectiveGroupNumber > maxObjectiveGroupNumber)
+        return false;
+    if ([self checkIsDoneWithAllMissionsOnThisGroupNumber]) {
+        if ([self currentObjectiveGroupNumber] < [self maxObjectiveGroupNumber] + 1)
+            return true;
+    }
+    return false;
 }
 
 -(void)uncompleteObjectivesFromCurrentGroupNumber {
