@@ -328,8 +328,8 @@ typedef struct {
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.3];
     [galaxy setGalaxyColor: ccc3(161,163,42)];
     
-     for (Galaxy* galaxy in galaxies)
-     [galaxy setOptimalPlanetsInThisGalaxy:11];
+    // for (Galaxy* galaxy in galaxies)
+    // [galaxy setOptimalPlanetsInThisGalaxy:11];
 }
 
 - (void)initUpgradedVariables {
@@ -1174,9 +1174,9 @@ typedef struct {
                     player.acceleration = ccpMult(ccpNormalize(player.acceleration), initialAccelMag);
             }
             
-          //  if (ccpLength(ccpSub(player.sprite.position, targetPlanet.sprite.position)) <= targetPlanet.orbitRadius) {
-          //      orbitState = 0;
-           // }
+           // if (ccpLength(ccpSub(player.sprite.position, targetPlanet.sprite.position)) <= targetPlanet.orbitRadius) {
+            //    orbitState = 0;
+          // }
         }
         
         if (!(player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart))
@@ -1429,12 +1429,28 @@ typedef struct {
             
             if (percentofthewaytonext>.85&&justDisplayedGalaxyLabel==false&&(int)galaxyLabel.opacity<=0)
             {
-                if ([[cameraLayer children]containsObject:currentGalaxy.spriteSheet]==false) {
+                if (currentGalaxy.number>0) {
                     Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
+                   
+                            for (CCSprite * sprite in lastGalaxy.spriteSheet.children) {
+                                [sprite removeAllChildrenWithCleanup:YES];
+                                [sprite removeFromParentAndCleanup:YES];
+                            }
+                            //for (CCSprite * sprite in spriteSheet.children) {
+                            //    [sprite removeAllChildrenWithCleanup:YES];
+                            //     [sprite removeFromParentAndCleanup:YES];
+                            //   }
+                            //  [spriteSheet removeAllChildrenWithCleanup:YES];
+                            // [spriteSheet removeFromParentAndCleanup:YES];
+                            [lastGalaxy.spriteSheet removeAllChildrenWithCleanup:YES];
+                            [lastGalaxy.spriteSheet removeFromParentAndCleanup:YES];
+                            //[[CCSpriteFrameCache sharedSpriteFrameCache] removeUnusedSpriteFrames];
+                            //[[CCTextureCache sharedTextureCache] removeUnusedTextures];
+                    
                     if ([[cameraLayer children]containsObject:lastGalaxy.spriteSheet]) {
                         [cameraLayer removeChild:lastGalaxy.spriteSheet cleanup:YES];
-                        //[[lastGalaxy spriteSheet]release];
-                    }
+                        }
+                    
                     [cameraLayer addChild:currentGalaxy.spriteSheet z:3];
                     //NSLog(@"galaxy1155");
                     [cameraLayer reorderChild:spriteSheet z:4];
@@ -1486,34 +1502,12 @@ typedef struct {
         [self DisposeAllContentsOfArray:asteroids shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:coins shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:powerups shouldRemoveFromArray:YES];
-        
-        if (currentGalaxy.number>0) {
-            if (lastPlanetVisited.whichGalaxyThisObjectBelongsTo != targetPlanet.whichGalaxyThisObjectBelongsTo) {
-                Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
-                for (CCSprite * sprite in lastGalaxy.spriteSheet.children) {
-                    [sprite removeAllChildrenWithCleanup:YES];
-                    [sprite removeFromParentAndCleanup:YES];
-                }
-                //for (CCSprite * sprite in spriteSheet.children) {
-                //    [sprite removeAllChildrenWithCleanup:YES];
-                //     [sprite removeFromParentAndCleanup:YES];
-                //   }
-              //  [spriteSheet removeAllChildrenWithCleanup:YES];
-               // [spriteSheet removeFromParentAndCleanup:YES];
-                [lastGalaxy.spriteSheet removeAllChildrenWithCleanup:YES];
-                [lastGalaxy.spriteSheet removeFromParentAndCleanup:YES];
-                [[CCSpriteFrameCache sharedSpriteFrameCache] removeUnusedSpriteFrames];
-                [[CCTextureCache sharedTextureCache] removeUnusedTextures];
-            }
-        }
       
         [self RenumberCamObjectArray:planets];
         [self RenumberCamObjectArray:zones];
         [self RenumberCamObjectArray:asteroids];
         [self RenumberCamObjectArray:powerups];
         [self RenumberCamObjectArray:coins];
-
-
         
         //NSLog(@"galaxy6");
         makingSegmentNumber--;
@@ -1561,14 +1555,14 @@ typedef struct {
                 zone.hasPlayerHitThisZone = true;
                 player.isInZone = true;
 
-            //    if (i >0)
-              //      if ([[zones objectAtIndex:i - 1]hasPlayerHitThisZone]) {
+                if (i >0)
+                   if ([[zones objectAtIndex:i - 1]hasPlayerHitThisZone]) {
                     lastPlanetVisited = [planets objectAtIndex:zone.number];
-                targetPlanet = lastPlanetVisited;
+                    targetPlanet = lastPlanetVisited;
                     updatesSinceLastPlanet = 0;
-               // }
+                }
                 
-                CCLOG(@"lastplanet: %d targetplanet = %d lastplanethitzone: %d nextplanethitzone: %d",lastPlanetVisited.number,targetPlanet.number,(int)zone.hasPlayerHitThisZone,(int)((Zone*)[zones objectAtIndex:zone.number+1]).hasPlayerHitThisZone);
+               // CCLOG(@"lastplanet: %d targetplanet = %d lastplanethitzone: %d nextplanethitzone: %d",lastPlanetVisited.number,targetPlanet.number,(int)zone.hasPlayerHitThisZone,(int)((Zone*)[zones objectAtIndex:zone.number+1]).hasPlayerHitThisZone);
              
                 orbitState = 0;
                 

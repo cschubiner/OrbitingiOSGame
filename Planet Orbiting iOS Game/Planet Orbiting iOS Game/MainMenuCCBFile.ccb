@@ -257,7 +257,7 @@
 							<key>position</key>
 							<array>
 								<real>714</real>
-								<real>368.140625</real>
+								<real>367.140625</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -1406,7 +1406,7 @@
 													<key>position</key>
 													<array>
 														<real>231.068359375</real>
-														<real>-107.69140625</real>
+														<real>-108.69140625</real>
 													</array>
 													<key>rotation</key>
 													<real>0.0</real>
@@ -1678,7 +1678,7 @@
 											<key>position</key>
 											<array>
 												<real>249.46875</real>
-												<real>-118.677734375</real>
+												<real>-119.677734375</real>
 											</array>
 											<key>rotation</key>
 											<real>0.0</real>
@@ -1798,7 +1798,7 @@
 											<key>position</key>
 											<array>
 												<real>375.07421875</real>
-												<real>-118.787109375</real>
+												<real>-119.787109375</real>
 											</array>
 											<key>rotation</key>
 											<real>0.0</real>
@@ -1858,7 +1858,7 @@
 											<key>position</key>
 											<array>
 												<real>163.0078125</real>
-												<real>-118.861328125</real>
+												<real>-119.861328125</real>
 											</array>
 											<key>rotation</key>
 											<real>0.0</real>
@@ -3269,7 +3269,7 @@
 											<key>position</key>
 											<array>
 												<real>511.05859375</real>
-												<real>-86.15234375</real>
+												<real>-86.652000427246094</real>
 											</array>
 											<key>rotation</key>
 											<real>0.0</real>
