@@ -20,6 +20,7 @@
 #import "UpgradeManager.h"
 #import "Toast.h"
 #import "GKAchievementHandler.h"
+#import "StoreLayer.h"
 
 #define pauseLayerTag       100
 #define gameOverLayerTag    200
@@ -1804,8 +1805,8 @@ typedef struct {
     //NSString *scoreText = [NSString stringWithFormat:@"Score: %d",finalScore];
     pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:ccbFile owner:self];
     
-    finalScore = 69669;
-    numCoinsDisplayed = 69;
+    //finalScore = 69669;
+    //numCoinsDisplayed = 69;
     
     int rateOfScoreIncrease = finalScore / 640;
     
@@ -1827,6 +1828,7 @@ typedef struct {
     playerNameLabel.text = recentName;
     playerNameLabel.returnKeyType = UIReturnKeyDone;
     
+    starStashSprite.position = ccpAdd(starStashLabel.position, ccp(30, 0));
     [starStashLabel setString:[NSString stringWithFormat:@"%d",numCoinsDisplayed]];//[[UserWallet sharedInstance]getBalance]]];
     [gameOverScoreLabel setString:@"0"];
     
@@ -1865,6 +1867,20 @@ typedef struct {
     // [gameOverScoreLabel setString:scoreText];
     
     scoreAlreadySaved = YES;
+}
+
+- (void)pressedStoreButton {
+    
+    
+    [Flurry logEvent:@"Opened Store" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance" ,nil]];
+    
+    [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
+    [[CCDirector sharedDirector] replaceScene:[StoreLayer scene]];
+    
+    
+    //id action = [CCMoveTo actionWithDuration:.8f position:ccp(-960,-320)];
+    //id ease = [CCEaseSineInOut actionWithAction:action]; //does this "CCEaseSineInOut" look better than the above "CCEaseInOut"???
+    //[layer runAction: ease];
 }
 
 - (void)UpdateLight:(float)dt {
