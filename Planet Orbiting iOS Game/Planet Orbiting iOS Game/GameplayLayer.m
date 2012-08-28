@@ -1828,7 +1828,7 @@ typedef struct {
     playerNameLabel.text = recentName;
     playerNameLabel.returnKeyType = UIReturnKeyDone;
     
-    starStashSprite.position = ccpAdd(starStashLabel.position, ccp(30, 0));
+    //starStashSprite.position = ccpAdd(starStashLabel.position, ccp(30, 0));
     [starStashLabel setString:[NSString stringWithFormat:@"%d",numCoinsDisplayed]];//[[UserWallet sharedInstance]getBalance]]];
     [gameOverScoreLabel setString:@"0"];
     

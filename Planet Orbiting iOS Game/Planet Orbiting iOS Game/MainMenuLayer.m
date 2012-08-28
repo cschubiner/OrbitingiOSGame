@@ -490,7 +490,7 @@ const float effectsVolumeMainMenu = 1;
                                    
                                    [CCCallBlock actionWithBlock:(^{
             CCMenuItem *quit = [CCMenuItemImage
-                                itemWithNormalImage:@"cancel.png" selectedImage:@"cancelpressed.png"
+                                itemWithNormalImage:@"done.png" selectedImage:@"donepressed.png"
                                 target:self selector:@selector(pushedContinueButton)];
             quit.position = ccp(336, -quit.boundingBox.size.height);
             [quit runAction:[CCEaseBounceInOut actionWithAction:[CCMoveTo actionWithDuration:.7 position:ccp(336, 20)]]];

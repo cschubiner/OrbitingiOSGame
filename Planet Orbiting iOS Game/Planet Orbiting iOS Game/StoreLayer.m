@@ -71,7 +71,7 @@
         CCMenuItem *quit = [CCMenuItemImage
                             itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
                             target:self selector:@selector(backButtonPressed)];
-        quit.position = ccp(60, 299);
+        quit.position = ccp(41, 299);
         
         
         CCMenuItem *perks = [CCMenuItemImage

@@ -462,6 +462,10 @@
 		FA16A16C15D655BC007C52E3 /* shadeView-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA16A16B15D655BC007C52E3 /* shadeView-hd.png */; };
 		FA16A16E15D655C4007C52E3 /* shadeView.png in Resources */ = {isa = PBXBuildFile; fileRef = FA16A16D15D655C4007C52E3 /* shadeView.png */; };
 		FA18E60E15DB5CB20038E3EC /* purchase.wav in Resources */ = {isa = PBXBuildFile; fileRef = FA18E60D15DB5CB20038E3EC /* purchase.wav */; };
+		FA20FD2C15EC97F4008F2F17 /* done-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA20FD2815EC97F4008F2F17 /* done-hd.png */; };
+		FA20FD2D15EC97F4008F2F17 /* done.png in Resources */ = {isa = PBXBuildFile; fileRef = FA20FD2915EC97F4008F2F17 /* done.png */; };
+		FA20FD2E15EC97F4008F2F17 /* donepressed-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA20FD2A15EC97F4008F2F17 /* donepressed-hd.png */; };
+		FA20FD2F15EC97F4008F2F17 /* donepressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA20FD2B15EC97F4008F2F17 /* donepressed.png */; };
 		FA40DCB215D378B500174FB8 /* UpgradeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FA40DCB115D378B500174FB8 /* UpgradeItem.m */; };
 		FA40DCB515D37BFA00174FB8 /* UpgradeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA40DCB415D37BFA00174FB8 /* UpgradeManager.m */; };
 		FA40DCB715D388B200174FB8 /* upgradesHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = FA40DCB615D388B200174FB8 /* upgradesHeader.png */; };
@@ -1129,6 +1133,10 @@
 		FA16A16B15D655BC007C52E3 /* shadeView-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadeView-hd.png"; sourceTree = "<group>"; };
 		FA16A16D15D655C4007C52E3 /* shadeView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadeView.png; sourceTree = "<group>"; };
 		FA18E60D15DB5CB20038E3EC /* purchase.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = purchase.wav; sourceTree = "<group>"; };
+		FA20FD2815EC97F4008F2F17 /* done-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "done-hd.png"; sourceTree = "<group>"; };
+		FA20FD2915EC97F4008F2F17 /* done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = done.png; sourceTree = "<group>"; };
+		FA20FD2A15EC97F4008F2F17 /* donepressed-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "donepressed-hd.png"; sourceTree = "<group>"; };
+		FA20FD2B15EC97F4008F2F17 /* donepressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = donepressed.png; sourceTree = "<group>"; };
 		FA40DCB015D378B500174FB8 /* UpgradeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeItem.h; sourceTree = "<group>"; };
 		FA40DCB115D378B500174FB8 /* UpgradeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeItem.m; sourceTree = "<group>"; };
 		FA40DCB315D37BFA00174FB8 /* UpgradeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeManager.h; sourceTree = "<group>"; };
@@ -1236,6 +1244,10 @@
 				FAB3892015E2132D002CBC09 /* missioncomplete.png */,
 				FA00EBE315E8AD8D00C745BC /* yousuck-hd.png */,
 				FA00EBE415E8AD8D00C745BC /* yousuck.png */,
+				FA20FD2815EC97F4008F2F17 /* done-hd.png */,
+				FA20FD2915EC97F4008F2F17 /* done.png */,
+				FA20FD2A15EC97F4008F2F17 /* donepressed-hd.png */,
+				FA20FD2B15EC97F4008F2F17 /* donepressed.png */,
 			);
 			name = Missions;
 			sourceTree = "<group>";
@@ -2641,6 +2653,10 @@
 				FA5492E015EB8A7900285707 /* sunray-hd.png in Resources */,
 				FA5492E115EB8A7900285707 /* sunray.png in Resources */,
 				FA5492E615EC847A00285707 /* menumusic_new.mp3 in Resources */,
+				FA20FD2C15EC97F4008F2F17 /* done-hd.png in Resources */,
+				FA20FD2D15EC97F4008F2F17 /* done.png in Resources */,
+				FA20FD2E15EC97F4008F2F17 /* donepressed-hd.png in Resources */,
+				FA20FD2F15EC97F4008F2F17 /* donepressed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
