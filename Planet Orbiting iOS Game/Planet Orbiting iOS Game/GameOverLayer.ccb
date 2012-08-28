@@ -127,7 +127,7 @@
 							<key>scaleY</key>
 							<real>0.80000001192092896</real>
 							<key>selector</key>
-							<string>endGame</string>
+							<string>pressedStoreButton</string>
 							<key>spriteFileDisabled</key>
 							<string>storelarge.png</string>
 							<key>spriteFileNormal</key>
