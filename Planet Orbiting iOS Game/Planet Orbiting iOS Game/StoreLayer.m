@@ -54,6 +54,20 @@
         [self addChild:pauseText];
         pauseText.position = ccp(240, 299);
         
+        
+        
+        CCSprite* starSprite = [CCSprite spriteWithFile:@"staricon.png"];
+        [starSprite setScale:.6];
+        [self addChild:starSprite];
+        [starSprite setPosition:ccp(480 - 22, 301)];
+        
+        CCLabelTTF* totalStars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
+        [self addChild: totalStars];
+        [totalStars setAnchorPoint:ccp(1, .5)];
+        [totalStars setPosition:ccp(480 - 40, 299)];
+        
+        
+        
         CCMenuItem *quit = [CCMenuItemImage
                             itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
                             target:self selector:@selector(backButtonPressed)];
