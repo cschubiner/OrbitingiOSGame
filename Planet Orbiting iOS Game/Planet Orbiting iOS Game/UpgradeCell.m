@@ -18,7 +18,7 @@
         [self addChild:backgroundSprite];
         [backgroundSprite setPosition:ccp(backgroundSprite.width/2, -backgroundSprite.height/2)];
         
-        CCSprite* upgradeSprite = [CCSprite spriteWithFile:@"missioncomplete.png"];
+        CCSprite* upgradeSprite ;//= [CCSprite spriteWithFile:@"missioncomplete.png"];
         if (item.equipped)
             upgradeSprite = [CCSprite spriteWithFile:@"equipped.png"];
         else if (item.purchased)

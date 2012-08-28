@@ -9,7 +9,7 @@
 #import "Light.h"
 @implementation Light
 
-@synthesize sprite,timeLeft, stage, hasPutOnLight, score, scoreVelocity, distanceFromPlayer;
+@synthesize sprite,timeLeft, stage, hasPutOnLight, scoreVelocity, distanceFromPlayer;
 
 
 

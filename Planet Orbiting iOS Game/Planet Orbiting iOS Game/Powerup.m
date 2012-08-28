@@ -10,7 +10,7 @@
 
 @implementation Powerup
 
-@synthesize coinSprite, glowSprite, type, duration, title;
+@synthesize  glowSprite, type, duration, title;
 
 -(id) initWithType:(int)t {
 	// always call "super" init
@@ -28,28 +28,28 @@
             
             duration = [[UpgradeValues sharedInstance] asteroidImmunityDuration];
             title = @"Asteroid Armor";
-            coinSprite = [CCSprite spriteWithSpriteFrameName:@"asteroidbreakercoin.png"];
+            self.sprite = [CCSprite spriteWithSpriteFrameName:@"asteroidbreakercoin.png"];
             glowSprite = [CCSprite spriteWithSpriteFrameName:@"asteroidglowupgrade.png"];
             
         } else if (type == kcoinMagnet) { //coinMagnet
             
             duration = [[UpgradeValues sharedInstance] coinMagnetDuration];
             title = @"Star Magnet";
-            coinSprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
+            self.sprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
             glowSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];
             
         } else if (type == kautopilot) { //autopilot powerup
             
             duration = [[UpgradeValues sharedInstance] autopilotDuration]; //JJ's headstart lasts 5 seconds
             title = @"Autopilot";
-            coinSprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
+            self.sprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
             glowSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];
             
         } else if (type == kheadStart) { //wrapage powerup
             
             duration = 350; //JJ's headstart lasts 5 seconds
             title = @"Head Start";
-            coinSprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
+            self.sprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
             glowSprite = [CCSprite spriteWithSpriteFrameName:@"coinglowglowupgrade.png"];
             
         } //else { //type needs to be a valid int from the list above

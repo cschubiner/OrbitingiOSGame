@@ -96,7 +96,6 @@
     
     int originalSegmentNumber;
     int flurrySegmentsVisitedSinceGalaxyJump;
-    bool isInTutorialMode;
     CCSprite* tutImage1;
     CCSprite* tutImage2;
     CCSprite* tutImage3;
@@ -110,7 +109,8 @@
     int orbitState; // 0 = orbiting; 1 = just left orbit and deciding things for state 2; 3 = flying to next planet
     Planet* targetPlanet;
     CGPoint swipeVector;
-    int levelNumber;
+    
+    int lastOrigSegmentNum;
     
     CCLabelTTF * loadingLabelHelperText2;
     
