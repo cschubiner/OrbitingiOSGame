@@ -10,7 +10,7 @@
 
 @implementation ObjectiveManager
 
-@synthesize objectiveGroups, currentObjectiveGroupNumber;
+@synthesize objectiveGroups, currentObjectiveGroupNumber, maxObjectiveGroupNumber;
 
 static ObjectiveManager *sharedInstance = nil;
 
@@ -27,15 +27,17 @@ static ObjectiveManager *sharedInstance = nil;
     return [objective complete];
 }
 
--(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber view:(CCLayer*)view {
+-(bool)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber view:(CCLayer*)view {
     if (currentObjectiveGroupNumber == a_groupNumber) {
         ObjectiveItem* obj = [self getObjectiveFromGroupNumber:a_groupNumber itemNumber:a_itemNumber];
         if ([self completeObjective:obj]) {
             //[[GKAchievementHandler defaultHandler] notifyAchievementTitle:@"Mission Completed!" andMessage:obj.text];
             Toast* toast =[[Toast alloc] initWithView:view text:obj.text];
             [toast showToast];
+            return true;
         }
     }
+    return false;
 }
 
 -(NSMutableArray*)getObjectivesFromGroupNumber:(int)groupNumber {
@@ -48,16 +50,43 @@ static ObjectiveManager *sharedInstance = nil;
     return [objectives.objectiveItems objectAtIndex:itemNumber];
 }
 
--(CCLayer*)createMissionPopupWithX:(bool)withX {
+-(float)getscoreMultFromGroupNumber:(int)a_groupNumber {
+    ObjectiveGroup* objectives = [objectiveGroups objectAtIndex:a_groupNumber];
+    return objectives.scoreMult;
+}
+
+-(int)getStarRewardFromGroupNumber:(int)a_groupNumber {
+    ObjectiveGroup* objectives = [objectiveGroups objectAtIndex:a_groupNumber];
+    return objectives.starReward;
+}
+
+-(CCLayer*)createMissionPopupWithX:(bool)withX withDark:(bool)a_hasDark {
     CCLayer* mPopup = [[CCLayer alloc] init];
     
-    CCSprite* bg = [CCSprite spriteWithFile:(withX) ? @"missionsModal.png" : @"missionsBG.png"];
+    if (a_hasDark) {
+        CCSprite* dark = [CCSprite spriteWithFile:@"OneByOne.png"];
+        [mPopup addChild:dark];
+        dark.position = ccp(240, 160);
+        dark.color = ccBLACK;
+        dark.opacity = 190;
+        dark.scaleX = 480;
+        dark.scaleY = 320;
+    }
+    
+    CCSprite* bg = [CCSprite spriteWithFile:(withX) ? @"popup2.png" : @"popup.png"];
     [mPopup addChild:bg];
     bg.position = ccp(240, 160);
     
-    CCLabelTTF* missionLabel = [CCLabelTTF labelWithString:@"CURRENT MISSIONS" fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
+    CCLabelTTF* missionLabel = [CCLabelTTF labelWithString:@"CURRENT MISSIONS" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
     [mPopup addChild:missionLabel];
-    missionLabel.position = ccp(240, 252);
+    missionLabel.position = ccp(240, 246);
+    
+    
+    
+    if ([[ObjectiveManager sharedInstance] currentObjectiveGroupNumber] > [[ObjectiveManager sharedInstance] maxObjectiveGroupNumber]) {
+        [missionLabel setString:@"NO MORE MISSIONS"];
+        return mPopup;
+    }
     
     NSMutableArray* objectivesAtThisLevel = [[ObjectiveManager sharedInstance] getObjectivesFromGroupNumber:[[ObjectiveManager sharedInstance] currentObjectiveGroupNumber]];
     
@@ -70,9 +99,9 @@ static ObjectiveManager *sharedInstance = nil;
     [mPopup addChild:ind0];
     [mPopup addChild:ind1];
     [mPopup addChild:ind2];
-    ind0.position = ccp(104, 209);
-    ind1.position = ccp(104, 154);
-    ind2.position = ccp(104, 100);
+    ind0.position = ccp(108, 211);
+    ind1.position = ccp(108, 161);
+    ind2.position = ccp(108, 112);
     
     CCLabelTTF* label0 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:0]) text] dimensions:CGSizeMake(273, 55) hAlignment:UITextAlignmentLeft vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
 
@@ -82,18 +111,44 @@ static ObjectiveManager *sharedInstance = nil;
     [mPopup addChild:label0];
     [mPopup addChild:label1];
     [mPopup addChild:label2];
-    label0.position = ccp(label0.boundingBox.size.width/2 + 134, 209);
-    label1.position = ccp(label1.boundingBox.size.width/2 + 134, 154);
-    label2.position = ccp(label2.boundingBox.size.width/2 + 134, 100);
+    label0.position = ccp(label0.boundingBox.size.width/2 + 134, 211);
+    label1.position = ccp(label1.boundingBox.size.width/2 + 134, 161);
+    label2.position = ccp(label2.boundingBox.size.width/2 + 134, 112);
     
     
     
-    NSString* footerString = [NSString stringWithFormat:@"REWARD: %.1fx MULTIPLIER & %@ STARS", currentGroup.scoreMult, [self commaInt:currentGroup.starReward]];
+    NSString* footerString = [NSString stringWithFormat:@"COMPLETE TO EARN %@", [self commaInt:currentGroup.starReward]];
     
-    CCLabelTTF* footer = [CCLabelTTF labelWithString:footerString fontName:@"HelveticaNeue-CondensedBold" fontSize:17];
+    CCLabelTTF* footer = [CCLabelTTF labelWithString:footerString fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
     [mPopup addChild:footer];
-    footer.position = ccp(240, 61);
+    footer.position = ccp(240, 74);
+    
+    
+    CCSprite* starSprite = [CCSprite spriteWithFile:@"staricon.png"];
+    [mPopup addChild:starSprite];
+    starSprite.scale = .42;
+    starSprite.position = ccpAdd(footer.position, ccp(footer.boundingBox.size.width/2 + 12, 2));
+    
     return mPopup;
+}
+
+-(bool)checkIsDoneWithAllMissionsOnThisGroupNumber {
+    NSMutableArray* objItems = [self getObjectivesFromGroupNumber:currentObjectiveGroupNumber];
+    bool isAllDone = true;
+    for (ObjectiveItem* item in objItems) {
+        if (!item.completed) {
+            isAllDone = false;
+            break;
+        }
+    }
+    return isAllDone;
+}
+
+-(void)uncompleteObjectivesFromCurrentGroupNumber {
+    NSMutableArray* objItems = [self getObjectivesFromGroupNumber:currentObjectiveGroupNumber];
+    for (ObjectiveItem* item in objItems) {
+        item.completed = false;
+    }
 }
 
 - (NSString*)commaInt:(int)num {
