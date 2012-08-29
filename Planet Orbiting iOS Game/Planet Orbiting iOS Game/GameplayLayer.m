@@ -380,6 +380,24 @@ typedef struct {
     [[UpgradeValues sharedInstance] setHasPurpleShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:22] equipped]];
     
     [[UpgradeValues sharedInstance] setHasPinkShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:23] equipped]];
+    
+    [[UpgradeValues sharedInstance] setHasGreenTrail:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:24] equipped]];
+    
+    [[UpgradeValues sharedInstance] setHasBlueTrail:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:25] equipped]];
+    
+    [[UpgradeValues sharedInstance] setHasGoldTrail:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:26] equipped]];
+    
+    [[UpgradeValues sharedInstance] setHasOrangeTrail:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:27] equipped]];
+    
+    [[UpgradeValues sharedInstance] setHasRedTrail:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:28] equipped]];
+    
+    [[UpgradeValues sharedInstance] setHasPurpleTrail:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:29] equipped]];
+    
+    [[UpgradeValues sharedInstance] setHasPinkTrail:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:30] equipped]];
+    
+    [[UpgradeValues sharedInstance] setHasBlackTrail:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:31] equipped]];
+    
+    [[UpgradeValues sharedInstance] setHasBrownTrail:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:32] equipped]];
 }
 
 - (void)startGame {
@@ -553,7 +571,30 @@ typedef struct {
      // ccc4(0,255,0,255) // green
      target:player.sprite];*/
     
-    streak = [CCMotionStreak streakWithFade:2 minSeg:3 width:streakWidth color:ccc3(0, 255, 153) textureFilename:@"streak2.png"];
+    streak = [CCMotionStreak streakWithFade:2 minSeg:3 width:streakWidth color:ccc3(255, 255, 255/*255, 153*/) textureFilename:@"streak2.png"];
+    
+    
+    if ([[UpgradeValues sharedInstance] hasGreenTrail]) {
+        streak.color = ccGREEN;
+    } else if ([[UpgradeValues sharedInstance] hasBlueTrail]) {
+        streak.color = ccBLUE;
+    } else if ([[UpgradeValues sharedInstance] hasGoldTrail]) {
+        streak.color = ccYELLOW;
+    } else if ([[UpgradeValues sharedInstance] hasOrangeTrail]) {
+        streak.color = ccORANGE;
+    } else if ([[UpgradeValues sharedInstance] hasRedTrail]) {
+        streak.color = ccRED;
+    } else if ([[UpgradeValues sharedInstance] hasPurpleTrail]) {
+        streak.color = ccMAGENTA;
+    } else if ([[UpgradeValues sharedInstance] hasPinkTrail]) {
+        streak.color = ccc3(255, 20, 147);
+    } else if ([[UpgradeValues sharedInstance] hasBlackTrail]) {
+        streak.color = ccBLACK;
+    } else if ([[UpgradeValues sharedInstance] hasBrownTrail]) {
+        streak.color = ccc3(139, 69, 19);
+    }
+    
+    
     
     cameraFocusNode = [[CCSprite alloc]init];
     killer = 0;
@@ -1648,9 +1689,9 @@ typedef struct {
                                                     lerpf(slowParticleColor[1], fastParticleColor[1], speedPercent),
                                                     lerpf(slowParticleColor[2], fastParticleColor[2], speedPercent),
                                                     lerpf(slowParticleColor[3], fastParticleColor[3], speedPercent)))];
-    [streak setColor:ccc3(lerpf(slowStreakColor[0], fastStreakColor[0], speedPercent),
+    /*[streak setColor:ccc3(lerpf(slowStreakColor[0], fastStreakColor[0], speedPercent),
                           lerpf(slowStreakColor[1], fastStreakColor[1], speedPercent),
-                          lerpf(slowStreakColor[2], fastStreakColor[2], speedPercent))];
+                          lerpf(slowStreakColor[2], fastStreakColor[2], speedPercent))];*/
     
     if (cometParticle.position.y<0) {
         [cometParticle stopSystem];
@@ -1984,7 +2025,7 @@ typedef struct {
     if (player.currentPowerup != nil)
         [self completeObjectiveFromGroupNumber:1 itemNumber:0];
     
-    if (asteroidsCrashedInto >= 2)
+    if (score >= 10000)
         [self completeObjectiveFromGroupNumber:1 itemNumber:1];
     
     if (numTimesSwiped >= 25)
@@ -2010,6 +2051,11 @@ typedef struct {
         [self completeObjectiveFromGroupNumber:4 itemNumber:1];
     
     
+    
+    if (asteroidsCrashedInto >= 7)
+        [self completeObjectiveFromGroupNumber:5 itemNumber:1];
+    
+    
 }
 
 - (void) CheckMissionsGalaxyChange {
@@ -2032,12 +2078,23 @@ typedef struct {
     if (currentGalaxy.number == 3)
         [self completeObjectiveFromGroupNumber:4 itemNumber:2];
     
+    
+    
+    
+    if (currentGalaxy.number == 2 && asteroidsCrashedInto == 0)
+        [self completeObjectiveFromGroupNumber:5 itemNumber:0];
+    
 }
 
 - (void) CheckEndGameMissions {
     
     if (score >= 12000 && score <= 13000)
         [self completeObjectiveFromGroupNumber:2 itemNumber:2];
+    
+    
+    
+    if (numCoinsDisplayed >= 150 && numCoinsDisplayed <= 160)
+        [self completeObjectiveFromGroupNumber:5 itemNumber:2];
     
 }
 

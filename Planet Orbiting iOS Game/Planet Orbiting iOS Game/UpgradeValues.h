@@ -30,6 +30,15 @@
 @property (nonatomic) bool hasRedShip;
 @property (nonatomic) bool hasPurpleShip;
 @property (nonatomic) bool hasPinkShip;
+@property (nonatomic) bool hasGreenTrail;
+@property (nonatomic) bool hasBlueTrail;
+@property (nonatomic) bool hasGoldTrail;
+@property (nonatomic) bool hasOrangeTrail;
+@property (nonatomic) bool hasRedTrail;
+@property (nonatomic) bool hasPurpleTrail;
+@property (nonatomic) bool hasPinkTrail;
+@property (nonatomic) bool hasBlackTrail;
+@property (nonatomic) bool hasBrownTrail;
 
 + (id)sharedInstance;
 

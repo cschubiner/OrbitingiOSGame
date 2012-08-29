@@ -150,6 +150,24 @@
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Pink Spaceship" description:@"Turn your spaceship pink." price:5000 type:1 purchased:NO equipped:NO number:23]];
     
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Green Trail" description:@"Turn your trail green." price:2000 type:0 purchased:NO equipped:NO number:24]];
+    
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Blue Trail" description:@"Turn your trail blue" price:2000 type:0 purchased:NO equipped:NO number:25]];
+    
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Golden Trail" description:@"Turn your trail gold." price:5000 type:0 purchased:NO equipped:NO number:26]];
+    
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Orange Trail" description:@"Turn your trail orange." price:2000 type:0 purchased:NO equipped:NO number:27]];
+    
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Red Trail" description:@"Turn your trail red." price:2000 type:0 purchased:NO equipped:NO number:28]];
+    
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Purple Trail" description:@"Turn your trail purple." price:2000 type:0 purchased:NO equipped:NO number:29]];
+    
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Pink Trail" description:@"Turn your trail pink." price:2000 type:0 purchased:NO equipped:NO number:30]];
+    
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Black Trail" description:@"Turn your trail black." price:2000 type:0 purchased:NO equipped:NO number:31]];
+    
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Brown Trail" description:@"Turn your trail brown." price:2000 type:0 purchased:NO equipped:NO number:32]];
+    
     
     if (upgradeCodes) {
         for (int i = 0; i < [upgradeCodes count]; i++) {
@@ -179,7 +197,7 @@
  
     NSMutableArray *boolGroupsToUse = [[NSMutableArray alloc] init];
     
-    int totalObjectiveGroups = 5;
+    int totalObjectiveGroups = 6;
     if (!objectives) {
         for (int i = 0; i < totalObjectiveGroups; i++) {
             NSMutableArray *boolsToUse = [[NSMutableArray alloc] init];
@@ -210,7 +228,7 @@
     bools = [boolGroupsToUse objectAtIndex:1];
     [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.1 starReward:300
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Pick up a powerup" isCompleted:[[bools objectAtIndex:0] boolValue]]
-                                                          item1:[[ObjectiveItem alloc] initWithText:@"Crash into 2 asteroids in one game" isCompleted:[[bools objectAtIndex:1] boolValue]]
+                                                          item1:[[ObjectiveItem alloc] initWithText:@"Reach a score of 10,000" isCompleted:[[bools objectAtIndex:1] boolValue]]
                                                           item2:[[ObjectiveItem alloc] initWithText:@"Swipe 25 times in one game" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     bools = [boolGroupsToUse objectAtIndex:2];
@@ -230,6 +248,12 @@
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Reach the third galaxy without dying" isCompleted:[[bools objectAtIndex:0] boolValue]]
                                                           item1:[[ObjectiveItem alloc] initWithText:@"Reach a score of 24,000" isCompleted:[[bools objectAtIndex:1] boolValue]]
                                                           item2:[[ObjectiveItem alloc] initWithText:@"Reach the fourth galaxy" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
+    
+    bools = [boolGroupsToUse objectAtIndex:5];
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.3 starReward:1100
+                                                          item0:[[ObjectiveItem alloc] initWithText:@"Reach the third galaxy without hitting any asteroids" isCompleted:[[bools objectAtIndex:0] boolValue]]
+                                                          item1:[[ObjectiveItem alloc] initWithText:@"Crash into 7 asteroids in one game" isCompleted:[[bools objectAtIndex:1] boolValue]]
+                                                          item2:[[ObjectiveItem alloc] initWithText:@"Finish a game having collected between 150 & 160 stars" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     
     [[ObjectiveManager sharedInstance] setMaxObjectiveGroupNumber:totalObjectiveGroups - 1];

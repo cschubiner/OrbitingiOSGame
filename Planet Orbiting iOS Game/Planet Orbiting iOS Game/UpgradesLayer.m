@@ -82,7 +82,7 @@
         if (indexPushed == 0)
             stringToUse = @"SPACESHIP TRAILS";
         else if (indexPushed == 1)
-            stringToUse = @"ROCKETSHIPS";
+            stringToUse = @"SPACESHIPS";
         else if (indexPushed == 2)
             stringToUse = @"UPGRADES";
         else if (indexPushed == 3)
@@ -94,7 +94,7 @@
         
         CCLabelTTF* pauseText = [CCLabelTTF labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:30];
         [self addChild:pauseText];
-        pauseText.position = ccp(240, 299);
+        pauseText.position = ccp(240-10, 299);
         
         CCSprite* botBar = [CCSprite spriteWithFile:@"upgradeFooter.png"];
         [self addChild:botBar];

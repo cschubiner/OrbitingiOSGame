@@ -152,11 +152,13 @@ const float effectsVolumeMainMenu = 1;
         dark.opacity = 0;
         
         startAnimation = false;
+        [self disableButtons];
         [playerAndParticleNode runAction:[CCSequence actions:
                                           [CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:1.5 position:ccp(200, 480)]],
                                           [CCCallBlock actionWithBlock:(^{
             position = ccp(200, 480);
             startAnimation = true;
+            [self enableButtons];
             [beginLabel setVisible:true];
             [beginLabel setOpacity:0];
             [beginLabel runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
@@ -178,6 +180,7 @@ const float effectsVolumeMainMenu = 1;
 
 - (void) tappedToStart {
     isDoingEndAnimation = true;
+    [self disableButtons];
     
     [topBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:1.5 position:ccp(0, 100)]]];
     [bottomBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:1.5 position:ccp(0, 270)]]];
@@ -205,14 +208,14 @@ const float effectsVolumeMainMenu = 1;
     
     [playerAndParticleNode runAction:[CCEaseSineInOut actionWithAction: [CCScaleTo actionWithDuration:3 scale:playerAndParticleNode.scale*.2]]];
     
-    acceleration = ccp(.1, acceleration.y);
+    acceleration = ccp(.12, acceleration.y);
 }
 
 - (void) Update:(ccTime)dt {
     difVector = ccpSub(ccp(200, 480), position);
-    float multer = .002;
-    float var = .022;
-    float xVarMult = .5;
+    float multer = .0022;
+    float var = .021;
+    float xVarMult = .6;
     
     float xAccel = acceleration.x;
     
