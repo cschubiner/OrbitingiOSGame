@@ -58,6 +58,8 @@ const int maxNameLength = 8;
     int asteroidsDestroyedWithArmor;
     int numTimesSwiped;
     int numTimesDied;
+    
+    CCParticleSystemQuad * powerupParticle;
 }
 
 
@@ -283,55 +285,58 @@ typedef struct {
 }
 
 - (void)setGalaxyProperties {
+    
+    float darkScaler = .35;
+    
     Galaxy* galaxy;
     galaxy = [galaxies objectAtIndex:0];
     [galaxy setName:@"Galaxy 1"];
     [galaxy setNumberOfDifferentPlanetsDrawn:7];
     [galaxy setOptimalPlanetsInThisGalaxy:17];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.56];
-    [galaxy setGalaxyColor: ccc3(45*.5, 53*.5, 147*.5)]; //a dark blue
+    [galaxy setGalaxyColor: ccc3(45*darkScaler, 53*darkScaler, 147*darkScaler)]; //a dark blue
     
     galaxy = [galaxies objectAtIndex:1];
     [galaxy setName:@"Galaxy 2"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:21];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.408888];
-    [galaxy setGalaxyColor: ccc3(0, 103, 3)];
+    [galaxy setGalaxyColor: ccc3(0, 103*darkScaler, 3*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:2];
     [galaxy setName:@"Galaxy 3"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:26];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.375];
-    [galaxy setGalaxyColor: ccc3(114, 0, 115)];
+    [galaxy setGalaxyColor: ccc3(114*darkScaler, 0, 115*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:3];
     [galaxy setName:@"Galaxy 4"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
     [galaxy setOptimalPlanetsInThisGalaxy:33];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.321];
-    [galaxy setGalaxyColor: ccc3(0, 130, 115)];
+    [galaxy setGalaxyColor: ccc3(0, 130*darkScaler, 115*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:4];
     [galaxy setName:@"Galaxy 5"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
     [galaxy setOptimalPlanetsInThisGalaxy:36];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.31];
-    [galaxy setGalaxyColor: ccc3(154, 86, 0)];
+    [galaxy setGalaxyColor: ccc3(154*darkScaler, 86*darkScaler, 0)];
     
     galaxy = [galaxies objectAtIndex:5];
     [galaxy setName:@"Galaxy 6"];
     [galaxy setNumberOfDifferentPlanetsDrawn:2];
     [galaxy setOptimalPlanetsInThisGalaxy:40];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.28];
-    [galaxy setGalaxyColor: ccc3(42, 112, 199)];
+    [galaxy setGalaxyColor: ccc3(42*darkScaler, 112*darkScaler, 199*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:6];
     [galaxy setName:@"Galaxy 7"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:43];
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.3];
-    [galaxy setGalaxyColor: ccc3(161,163,42)];
+    [galaxy setGalaxyColor: ccc3(161*darkScaler, 163*darkScaler, 42*darkScaler)];
     
     // for (Galaxy* galaxy in galaxies)
     // [galaxy setOptimalPlanetsInThisGalaxy:11];
@@ -422,6 +427,12 @@ typedef struct {
     hudLayer = [[CCLayer alloc] init];
     cameraLayer = [[CCLayer alloc] init];
     [cameraLayer setAnchorPoint:CGPointZero];
+    
+    powerupParticle = [CCParticleSystemQuad particleWithFile:@"powerupGottenExplosionTexture.plist"];
+    [powerupParticle stopSystem];
+    [cameraLayer addChild:powerupParticle];
+    [powerupParticle setZOrder:INT_MAX];
+    [powerupParticle setScale:1.2];
     
     starStashParticle = [CCParticleSystemQuad particleWithFile:@"starStashParticle.plist"];
     [starStashParticle stopSystem];
@@ -959,6 +970,11 @@ typedef struct {
                     powerupCounter = 0;
                     updatesWithBlinking = 0;
                     updatesWithoutBlinking = 99999;
+                    
+                    
+                    [powerupParticle setPosition:player.sprite.position];
+                    [powerupParticle resetSystem];
+                    
                 }
             }
         }
@@ -1913,6 +1929,7 @@ typedef struct {
     else
         powerupVel = 18*1.5;
     
+    powerupPos = 999;
     if (powerupPos > 480 + [powerupLabel boundingBox].size.width) {
         paused = false;
         isDisplayingPowerupAnimation = false;
@@ -1921,6 +1938,7 @@ typedef struct {
     powerupPos += powerupVel*60*dt;
     [powerupLabel setString:player.currentPowerup.title];
     powerupLabel.position = ccp(-[powerupLabel boundingBox].size.width/2 + powerupPos, 160);
+    powerupLabel.position = ccp(- 500, 500);
     
 }
 

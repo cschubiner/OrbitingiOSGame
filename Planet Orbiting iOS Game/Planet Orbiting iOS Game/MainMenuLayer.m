@@ -35,6 +35,13 @@ const float effectsVolumeMainMenu = 1;
     CGPoint swipeEndPoint;
     
     CCLayer* missionPopup;
+    
+    CGPoint position;
+    CGPoint velocity;
+    CGPoint acceleration;
+    CGPoint difVector;
+    CCSprite* dark;
+    bool isDoingEndAnimation;
 }
 
 // returns a singleton scene
@@ -69,7 +76,7 @@ const float effectsVolumeMainMenu = 1;
         }
         
         if (swipeBeginPoint.y >= 40 && objectivesButton.isEnabled) {
-            [self startGame:self];
+            [self tappedToStart];
         }
         
         
@@ -116,113 +123,80 @@ const float effectsVolumeMainMenu = 1;
         
         CCLabelTTF* beginLabel = [CCLabelTTF labelWithString:@"TAP ANYWHERE TO BEGIN!" fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
         [self addChild: beginLabel];
-        [beginLabel setPosition:ccp(240, 60)];
+        [beginLabel setZOrder:INT_MAX-1];
+        [beginLabel setPosition:ccp(200, 60)];
         
         [beginLabel runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
                                                                  [CCFadeTo actionWithDuration:.45 opacity:255],
                                                                  [CCDelayTime actionWithDuration:.3],
                                                                  [CCFadeTo actionWithDuration:.3 opacity:0],
                                                                  nil]]];
-        
-        
-        NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
-        
-        int highScore1Int;
-        int highScore2Int;
-        int highScore3Int;
-        int highScore4Int;
-        int highScore5Int;
-        int highScore6Int;
-        int highScore7Int;
-        int highScore8Int;
-        int highScore9Int;
-        
-        if (highScores && [highScores count] > 0) {
-            highScore1Int = [[highScores objectAtIndex:0] intValue];
-        }
-        if (highScores && [highScores count] > 1) {
-            highScore2Int = [[highScores objectAtIndex:1] intValue];
-        }
-        if (highScores && [highScores count] > 2) {
-            highScore3Int = [[highScores objectAtIndex:2] intValue];
-        }
-        if (highScores && [highScores count] > 3) {
-            highScore4Int = [[highScores objectAtIndex:3] intValue];
-        }
-        if (highScores && [highScores count] > 4) {
-            highScore5Int = [[highScores objectAtIndex:4] intValue];
-        }
-        if (highScores && [highScores count] > 5) {
-            highScore6Int = [[highScores objectAtIndex:5] intValue];
-        }
-        if (highScores && [highScores count] > 6) {
-            highScore7Int = [[highScores objectAtIndex:6] intValue];
-        }
-        if (highScores && [highScores count] > 7) {
-            highScore8Int = [[highScores objectAtIndex:7] intValue];
-        }
-        if (highScores && [highScores count] > 8) {
-            highScore9Int = [[highScores objectAtIndex:8] intValue];
-        }
-        
-        if (highScore1Int != 0) {
-            NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore1Int];
-            [highScore1Label setString:scoreInt];
-            [name1Label setString:[[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
-        }
-        if (highScore2Int != 0) {
-            NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore2Int];
-            [highScore2Label setString:scoreInt];
-            [name2Label setString:[[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
-        }
-        if (highScore3Int != 0) {
-            NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore3Int];
-            [highScore3Label setString:scoreInt];
-            [name3Label setString:[[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
-        }
-        if (highScore4Int != 0) {
-            NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore4Int];
-            [highScore4Label setString:scoreInt];
-            [name4Label setString:[[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
-        }
-        if (highScore5Int != 0) {
-            NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore5Int];
-            [highScore5Label setString:scoreInt];
-            [name5Label setString:[[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
-        }
-        if (highScore6Int != 0) {
-            NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore6Int];
-            [highScore6Label setString:scoreInt];
-            [name6Label setString:[[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
-        }
-        if (highScore7Int != 0) {
-            NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore7Int];
-            [highScore7Label setString:scoreInt];
-            [name7Label setString:[[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
-        }
-        if (highScore8Int != 0) {
-            NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore8Int];
-            [highScore8Label setString:scoreInt];
-            [name8Label setString:[[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
-        }
-        if (highScore9Int != 0) {
-            NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore9Int];
-            [highScore9Label setString:scoreInt];
-            [name9Label setString:[[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
-        }
-        
+                
         [proScoreLabel setString:[NSString stringWithFormat:@"%.0f",[self getProValue]]];
         [funScoreLabel setString:[NSString stringWithFormat:@"%.0f",[self getFunValue]]];
         
-        [layer setPosition:ccp(-480, -320)];
+        //[layer setPosition:ccp(-480, -320)];
         [self addChild:layer];
         
         
         if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getShouldPlayMenuMusic])
             [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic_new.mp3" loop:YES];
         
+        position = ccp(200, 485);
+        [playerAndParticleNode setPosition:position];
+        isDoingEndAnimation = false;
+        
+        
+        dark = [CCSprite spriteWithFile:@"black.png"];
+        [dark setAnchorPoint:ccp(0, 0)];
+        [self addChild:dark];
+        [dark setZOrder:INT_MAX];
+        dark.opacity = 0;
+        
+        
+        [self schedule:@selector(Update:) interval:0];
+        
 	}
 	return self;
+}
+
+- (void) tappedToStart {
+    isDoingEndAnimation = true;
+    
+    [dark runAction:[CCSequence actions:
+                     [CCDelayTime actionWithDuration:.5],
+                     [CCFadeTo actionWithDuration:2 opacity:255],
+                     [CCCallBlock actionWithBlock:(^{
+        
+        [self startGame:self];
+    })],
+                     
+                     nil]];
+    
+    
+    [playerAndParticleNode runAction:[CCEaseSineInOut actionWithAction: [CCScaleTo actionWithDuration:4 scale:playerAndParticleNode.scale*.1]]];
+    
+    acceleration = ccp(.1, acceleration.y);
+}
+
+- (void) Update:(ccTime)dt {
+    difVector = ccpSub(ccp(200, 480), position);
+    float multer = .002;
+    float var = .022;
+    float xVarMult = .5;
+    
+    float xAccel = acceleration.x;
+    
+    if (!isDoingEndAnimation)
+        xAccel = [self randomValueBetween:ccpMult(difVector, multer).x-var*xVarMult andValue:ccpMult(difVector, multer).x+var*xVarMult];
+    float yAccel = [self randomValueBetween:ccpMult(difVector, multer).y-var andValue:ccpMult(difVector, multer).y+var];
+    
+        acceleration = ccp(xAccel, yAccel);
+    
+    
+    velocity = ccpAdd(velocity, ccpMult(acceleration, 60*dt));
+    position = ccpAdd(position, velocity);
+    playerAndParticleNode.position = position;
 }
 
 // this is called (magically?) by cocosbuilder when the start button is pressed
@@ -490,6 +464,12 @@ const float effectsVolumeMainMenu = 1;
 - (int)RandomBetween:(int)minvalue maxvalue:(int)maxvalue  {
     int randomNumber = minvalue+  arc4random() % (1+maxvalue-minvalue);
     return randomNumber;
+}
+
+
+
+- (float) randomValueBetween:(float)low andValue:(float)high {
+    return (((float) arc4random() / 0xFFFFFFFFu) * (high - low)) + low;
 }
 
 /*

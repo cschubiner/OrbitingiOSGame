@@ -48,6 +48,8 @@
     CCMenuItemImage * upgradesButton;
     CCMenuItemImage * tutorialButton;
     CCMenuItemImage * soundButton;
+    
+    CCNode* playerAndParticleNode;
 }
 
 + (CCScene *)scene;

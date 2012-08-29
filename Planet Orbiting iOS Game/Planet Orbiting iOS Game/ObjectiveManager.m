@@ -85,7 +85,6 @@ static ObjectiveManager *sharedInstance = nil;
     missionLabel.position = ccp(240, 246);
     
     
-    
     if ([[ObjectiveManager sharedInstance] currentObjectiveGroupNumber] > [[ObjectiveManager sharedInstance] maxObjectiveGroupNumber]) {
         [missionLabel setString:@"ALL MISSIONS COMPLETE!"];
         return mPopup;
