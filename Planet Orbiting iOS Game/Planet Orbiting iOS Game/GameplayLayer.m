@@ -54,6 +54,10 @@ const int maxNameLength = 8;
     BOOL isKeyboardShowing;
     
     BOOL pauseEnabled;
+    int asteroidsCrashedInto;
+    int asteroidsDestroyedWithArmor;
+    int numTimesSwiped;
+    int numTimesDied;
 }
 
 
@@ -476,7 +480,7 @@ typedef struct {
     player.alive=true;
     [player.sprite setScale:playerSizeScale];
     player.segmentNumber = -10;
-    player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(defaultDirectionPlanetSegmentsGoIn)), -3200*200));
+    player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(defaultDirectionPlanetSegmentsGoIn)), -3200*100));
     // player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
     if ([[UpgradeValues sharedInstance] hasGreenShip]) {
         player.sprite.color = ccGREEN;
@@ -563,6 +567,11 @@ typedef struct {
     feverLabel = [CCLabelTTF labelWithString:@" " fontName:@"HelveticaNeue-CondensedBold" fontSize:30];
     [feverLabel setPosition:ccp(240, feverLabel.boundingBox.size.height*.6)];
     [hudLayer addChild:feverLabel];
+    
+    asteroidsCrashedInto = 0;
+    asteroidsDestroyedWithArmor = 0;
+    numTimesSwiped = 0;
+    numTimesDied = 0;
     
     backgroundClouds = [CCSprite spriteWithSpriteFrameName:@"backgroundClouds.png"];
     [backgroundClouds setPosition:ccp(size.width/2,size.height/2)];
@@ -874,15 +883,6 @@ typedef struct {
                            nil]];
     
     
-    if (numCoinsDisplayed >= 10) {
-        [self completeObjectiveFromGroupNumber:0 itemNumber:2];
-    }
-    if (numCoinsDisplayed >= 15) {
-        [self completeObjectiveFromGroupNumber:1 itemNumber:1];
-    }
-    if (numCoinsDisplayed >= 20) {
-        [self completeObjectiveFromGroupNumber:1 itemNumber:2];
-    }
 }
 
 -(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber {
@@ -919,10 +919,14 @@ typedef struct {
             if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= asteroid.radius * asteroidRadiusCollisionZone && asteroid.sprite.visible) {
                 if (orbitState == 3 || player.currentPowerup.type == kasteroidImmunity) {
                     for (Asteroid* a in asteroids) {
-                        if (ccpDistance(p, a.sprite.position) <= 100)
+                        if (ccpDistance(p, a.sprite.position) <= 100) {
                             [a.sprite setVisible:false];
+                            if (player.currentPowerup.type == kasteroidImmunity)
+                                asteroidsDestroyedWithArmor++;
+                        }
                     }
                     if (!(player.currentPowerup.type == kasteroidImmunity)) {
+                        asteroidsCrashedInto++;
                         [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number asteroidHit:asteroid];
                     }
                 }
@@ -1207,6 +1211,7 @@ typedef struct {
 
 // FIX you don't really need planetIndex passed in because it's just going to spawn at the position of the last thrust point anyway
 - (void)RespawnPlayerAtPlanetIndex:(int)planetIndex asteroidHit:(Asteroid*)asteroidHit {
+    numTimesDied++;
     feverModePlanetHitsInARow = 0;
     [feverLabel setString:[NSString stringWithFormat:@""]];
     
@@ -1462,11 +1467,8 @@ typedef struct {
                 }
                 //NSLog(@"galaxy4");
                 
+                [self CheckMissionsGalaxyChange];
                 
-                if (currentGalaxy.number == 1)
-                    [self completeObjectiveFromGroupNumber:0 itemNumber:0];
-                if (currentGalaxy.number == 2)
-                    [self completeObjectiveFromGroupNumber:1 itemNumber:0];
                 
                 flurrySegmentsVisitedSinceGalaxyJump = 0;
                 Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
@@ -1610,6 +1612,9 @@ typedef struct {
         score = tempScore;
     [scoreLabel setString:[NSString stringWithFormat:@"%d",score]];
     
+    if (!loading_playerHasReachedFirstPlanet)
+        score = 0;
+    
     //int numCoins = [[UserWallet sharedInstance] getBalance];
     //int coinsDiff = numCoins - startingCoins;
     //[coinsLabel setString:[NSString stringWithFormat:@"%i",coinsDiff]];
@@ -1739,9 +1744,10 @@ typedef struct {
             [self startGameOver];
         })];
         
+        [self CheckEndGameMissions];
         
         [dark runAction:[CCSequence actions:
-                         [CCFadeTo actionWithDuration:2 opacity:200],
+                         [CCFadeTo actionWithDuration:2 opacity:240],
                          gameOverBlock,
                          nil]];
        
@@ -1956,6 +1962,78 @@ typedef struct {
 //    [self UpdateLight:dt];
 }
 
+- (void) CheckMissions {
+    
+    NSLog(@"died: %i", numTimesDied);
+    
+    if (numCoinsDisplayed >= 10)
+        [self completeObjectiveFromGroupNumber:0 itemNumber:0];
+    
+    if (score >= 5000)
+        [self completeObjectiveFromGroupNumber:0 itemNumber:1];
+    
+    
+    
+    if (player.currentPowerup != nil)
+        [self completeObjectiveFromGroupNumber:1 itemNumber:0];
+    
+    if (asteroidsCrashedInto >= 2)
+        [self completeObjectiveFromGroupNumber:1 itemNumber:1];
+    
+    if (numTimesSwiped >= 25)
+        [self completeObjectiveFromGroupNumber:1 itemNumber:2];
+    
+    
+    
+    if (numCoinsDisplayed >= 100)
+        [self completeObjectiveFromGroupNumber:2 itemNumber:1];
+    
+    
+    
+    if (asteroidsDestroyedWithArmor >= 5)
+        [self completeObjectiveFromGroupNumber:3 itemNumber:0];
+    
+    if (numCoinsDisplayed >= 150) {
+        [self completeObjectiveFromGroupNumber:3 itemNumber:2];
+    }
+    
+    
+    
+    if (score >= 24000)
+        [self completeObjectiveFromGroupNumber:4 itemNumber:1];
+    
+    
+}
+
+- (void) CheckMissionsGalaxyChange {
+    
+    if (currentGalaxy.number == 1)
+        [self completeObjectiveFromGroupNumber:0 itemNumber:2];
+    
+    
+    
+    
+    if (currentGalaxy.number == 2)
+        [self completeObjectiveFromGroupNumber:2 itemNumber:0];
+    
+    
+    
+    
+    if (currentGalaxy.number == 2 & numTimesDied == 0)
+        [self completeObjectiveFromGroupNumber:4 itemNumber:0];
+    
+    if (currentGalaxy.number == 3)
+        [self completeObjectiveFromGroupNumber:4 itemNumber:2];
+    
+}
+
+- (void) CheckEndGameMissions {
+    
+    if (score >= 12000 && score <= 13000)
+        [self completeObjectiveFromGroupNumber:2 itemNumber:2];
+    
+}
+
 - (void) Update:(ccTime)dt {
     if (dt > .2) {
 		dt = 1.0 / 60.0f;
@@ -1976,6 +2054,8 @@ typedef struct {
         [self UpdateCoins];
         //NSLog(@"start3");
         [self UpdatePlayer: dt];
+        
+        [self CheckMissions];
         
         //NSLog(@"start5");
         [self UpdateCamera:dt];
@@ -2099,7 +2179,8 @@ typedef struct {
     
     if (ccpLength(swipeVector) >= minSwipeStrength && orbitState == 0 && !playerIsTouchingScreen && player.alive) {
         playerIsTouchingScreen = true;
-            [self JustSwiped];
+        [self JustSwiped];
+        numTimesSwiped++;
     }
 }
 

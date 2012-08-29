@@ -110,6 +110,10 @@
         
         [self addChild:menu];
         
+        
+        
+        if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getShouldPlayMenuMusic])
+            [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic_new.mp3" loop:YES];
   
         
 //        [self schedule:@selector(Update:) interval:0];
@@ -161,7 +165,7 @@
 
 - (void) backButtonPressed {
     [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
-    [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setCameFromCredits:true];
+    [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setShouldPlayMenuMusic:false];
     [[CCDirector sharedDirector] replaceScene:[MainMenuLayer scene]];//[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
 }
 

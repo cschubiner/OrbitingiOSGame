@@ -70,13 +70,10 @@ static ObjectiveManager *sharedInstance = nil;
     CCLayer* mPopup = [[CCLayer alloc] init];
     
     if (a_hasDark) {
-        CCSprite* dark = [CCSprite spriteWithFile:@"OneByOne.png"];
+        CCSprite* dark = [CCSprite spriteWithFile:@"black.png"];
         [mPopup addChild:dark];
         dark.position = ccp(240, 160);
-        dark.color = ccBLACK;
-        dark.opacity = 190;
-        dark.scaleX = 480;
-        dark.scaleY = 320;
+        dark.opacity = 200;
     }
     
     CCSprite* bg = [CCSprite spriteWithFile:(withX) ? @"popup2.png" : @"popup.png"];
@@ -90,7 +87,7 @@ static ObjectiveManager *sharedInstance = nil;
     
     
     if ([[ObjectiveManager sharedInstance] currentObjectiveGroupNumber] > [[ObjectiveManager sharedInstance] maxObjectiveGroupNumber]) {
-        [missionLabel setString:@"NO MORE MISSIONS"];
+        [missionLabel setString:@"ALL MISSIONS COMPLETE!"];
         return mPopup;
     }
     
@@ -109,11 +106,11 @@ static ObjectiveManager *sharedInstance = nil;
     ind1.position = ccp(108, 161);
     ind2.position = ccp(108, 112);
     
-    CCLabelTTF* label0 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:0]) text] dimensions:CGSizeMake(273, 55) hAlignment:UITextAlignmentLeft vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+    CCLabelTTF* label0 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:0]) text] dimensions:CGSizeMake(268, 55) hAlignment:UITextAlignmentLeft vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
 
 
-    CCLabelTTF* label1 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:1]) text] dimensions:CGSizeMake(273, 55) hAlignment:UITextAlignmentLeft vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
-    CCLabelTTF* label2 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:2]) text] dimensions:CGSizeMake(273, 55) hAlignment:UITextAlignmentLeft vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+    CCLabelTTF* label1 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:1]) text] dimensions:CGSizeMake(268, 55) hAlignment:UITextAlignmentLeft vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+    CCLabelTTF* label2 = [CCLabelTTF labelWithString:[((ObjectiveItem*)[objectivesAtThisLevel objectAtIndex:2]) text] dimensions:CGSizeMake(268, 55) hAlignment:UITextAlignmentLeft vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
     [mPopup addChild:label0];
     [mPopup addChild:label1];
     [mPopup addChild:label2];

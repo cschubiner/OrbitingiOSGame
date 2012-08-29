@@ -19,20 +19,12 @@
 
 @synthesize window=window_, navController=navController_, director=director_;
 
--(bool)getCameFromUpgrades {
-    return cameFromUpgrades;
+-(bool)getShouldPlayMenuMusic {
+    return shouldPlayMenuMusic;
 }
 
--(void)setCameFromUpgrades:(bool)didComeFromUpgrades {
-    cameFromUpgrades = didComeFromUpgrades;
-}
-
--(bool)getCameFromCredits {
-    return cameFromCredits;
-}
-
--(void)setCameFromCredits:(bool)didComeFromCredits {
-    cameFromCredits = didComeFromCredits;
+-(void)setShouldPlayMenuMusic:(bool)a_shouldPlay {
+    shouldPlayMenuMusic = a_shouldPlay;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -62,8 +54,7 @@
 
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
     
-    cameFromUpgrades = false;
-    cameFromCredits = false;
+    shouldPlayMenuMusic = true;
     
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

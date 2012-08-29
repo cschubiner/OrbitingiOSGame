@@ -21,8 +21,7 @@
     bool wasJustBackgrounded;
     int galaxyCounter;
     
-    bool cameFromUpgrades;
-    bool cameFromCredits;
+    bool shouldPlayMenuMusic;
 }
 
 @property (nonatomic, retain) UIWindow *window;
@@ -39,11 +38,8 @@
 -(int)getGalaxyCounter;
 -(void)setGalaxyCounter:(int)count;
 
--(bool)getCameFromUpgrades;
--(void)setCameFromUpgrades:(bool)didComeFromUpgrades;
-
--(bool)getCameFromCredits;
--(void)setCameFromCredits:(bool)didComeFromCredits;
+-(bool)getShouldPlayMenuMusic;
+-(void)setShouldPlayMenuMusic:(bool)a_shouldPlay;
 
 
 @end

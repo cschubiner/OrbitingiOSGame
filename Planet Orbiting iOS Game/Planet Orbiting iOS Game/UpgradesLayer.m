@@ -483,7 +483,7 @@
     
     [[UpgradeManager sharedInstance] setUpgradeIndex:pushedItem.number purchased:true equipped:true];
     
-    [self completeObjectiveFromGroupNumber:0 itemNumber:1];
+    [self completeObjectiveFromGroupNumber:3 itemNumber:1];
     
     [DataStorage storeData];
     [self refreshUpgradeCells];

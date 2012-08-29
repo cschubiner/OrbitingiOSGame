@@ -54,17 +54,25 @@ const float effectsVolumeMainMenu = 1;
 
 //- (CCLayer*)createCellWithTitle:(NSString*)title spriteName:(NSString*)spriteName readableCost:(NSString*)readableCost {
 
-- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
         swipeBeginPoint = location;
         
+        
         if (swipeBeginPoint.x >= 359 && swipeBeginPoint.x <= 440 && swipeBeginPoint.y >= 214 && swipeBeginPoint.y <= 287) {
             [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
             [missionPopup removeFromParentAndCleanup:true];
             [self enableButtons];
+            return;
         }
+        
+        if (swipeBeginPoint.y >= 40 && objectivesButton.isEnabled) {
+            [self startGame:self];
+        }
+        
+        
     }
 }
 
@@ -105,6 +113,16 @@ const float effectsVolumeMainMenu = 1;
         [self toggleMute];
         
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"purchase.wav"];
+        
+        CCLabelTTF* beginLabel = [CCLabelTTF labelWithString:@"TAP ANYWHERE TO BEGIN!" fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
+        [self addChild: beginLabel];
+        [beginLabel setPosition:ccp(240, 60)];
+        
+        [beginLabel runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
+                                                                 [CCFadeTo actionWithDuration:.45 opacity:255],
+                                                                 [CCDelayTime actionWithDuration:.3],
+                                                                 [CCFadeTo actionWithDuration:.3 opacity:0],
+                                                                 nil]]];
         
         
         NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
@@ -196,23 +214,21 @@ const float effectsVolumeMainMenu = 1;
         [proScoreLabel setString:[NSString stringWithFormat:@"%.0f",[self getProValue]]];
         [funScoreLabel setString:[NSString stringWithFormat:@"%.0f",[self getFunValue]]];
         
-        if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getCameFromUpgrades])
-            [layer setPosition:ccp(-480*2, -320)];
-        else
-            [layer setPosition:ccp(-480, -320)];
+        [layer setPosition:ccp(-480, -320)];
         [self addChild:layer];
         
-        if (!([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getCameFromUpgrades] || [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getCameFromCredits]))
+        
+        if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getShouldPlayMenuMusic])
             [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic_new.mp3" loop:YES];
         
-        [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setCameFromUpgrades:false];
-        [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setCameFromCredits:false];
 	}
 	return self;
 }
 
 // this is called (magically?) by cocosbuilder when the start button is pressed
 - (void)startGame:(id)sender {
+    [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setShouldPlayMenuMusic:true];
+    
     [[PlayerStats sharedInstance] addPlay];
     CCLOG(@"number of plays ever: %i", [[PlayerStats sharedInstance] getPlays]);
     [((AppDelegate*)[[UIApplication sharedApplication]delegate])setChosenLevelNumber:0];
