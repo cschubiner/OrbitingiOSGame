@@ -33,6 +33,7 @@ const float effectsVolumeMainMenu = 1;
     BOOL muted;
     CGPoint swipeBeginPoint;
     CGPoint swipeEndPoint;
+    CCLabelTTF* beginLabel;
     
     CCLayer* missionPopup;
     
@@ -42,6 +43,7 @@ const float effectsVolumeMainMenu = 1;
     CGPoint difVector;
     CCSprite* dark;
     bool isDoingEndAnimation;
+    bool startAnimation;
 }
 
 // returns a singleton scene
@@ -75,7 +77,7 @@ const float effectsVolumeMainMenu = 1;
             return;
         }
         
-        if (swipeBeginPoint.y >= 40 && objectivesButton.isEnabled) {
+        if (swipeBeginPoint.y >= 40 && objectivesButton.isEnabled && beginLabel.visible) {
             [self tappedToStart];
         }
         
@@ -120,16 +122,13 @@ const float effectsVolumeMainMenu = 1;
         
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"purchase.wav"];
         
-        CCLabelTTF* beginLabel = [CCLabelTTF labelWithString:@"TAP ANYWHERE TO BEGIN!" fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
+        beginLabel = [CCLabelTTF labelWithString:@"TAP ANYWHERE TO BEGIN!" fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
         [self addChild: beginLabel];
         [beginLabel setZOrder:INT_MAX-1];
         [beginLabel setPosition:ccp(240, 60)];
+        [beginLabel setVisible:false];
         
-        [beginLabel runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
-                                                                 [CCFadeTo actionWithDuration:.45 opacity:255],
-                                                                 [CCDelayTime actionWithDuration:.3],
-                                                                 [CCFadeTo actionWithDuration:.3 opacity:0],
-                                                                 nil]]];
+        
                 
         [proScoreLabel setString:[NSString stringWithFormat:@"%.0f",[self getProValue]]];
         [funScoreLabel setString:[NSString stringWithFormat:@"%.0f",[self getFunValue]]];
@@ -141,9 +140,9 @@ const float effectsVolumeMainMenu = 1;
         if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getShouldPlayMenuMusic])
             [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic_new.mp3" loop:YES];
         
-        position = ccp(200, 485);
+        position = ccp(-200, 485);
         [playerAndParticleNode setPosition:position];
-        isDoingEndAnimation = false;
+        isDoingEndAnimation = true;
         
         
         dark = [CCSprite spriteWithFile:@"black.png"];
@@ -152,6 +151,21 @@ const float effectsVolumeMainMenu = 1;
         [dark setZOrder:INT_MAX];
         dark.opacity = 0;
         
+        startAnimation = false;
+        [playerAndParticleNode runAction:[CCSequence actions:
+                                          [CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:2 position:ccp(200, 480)]],
+                                          [CCCallBlock actionWithBlock:(^{
+            position = ccp(200, 480);
+            startAnimation = true;
+            [beginLabel setVisible:true];
+            [beginLabel setOpacity:0];
+            [beginLabel runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
+                                                                     [CCFadeTo actionWithDuration:.45 opacity:255],
+                                                                     [CCDelayTime actionWithDuration:.3],
+                                                                     [CCFadeTo actionWithDuration:.3 opacity:0],
+                                                                     nil]]];
+        })],
+                                          nil]];
         
         [self schedule:@selector(Update:) interval:0];
         
@@ -195,7 +209,8 @@ const float effectsVolumeMainMenu = 1;
     
     velocity = ccpAdd(velocity, ccpMult(acceleration, 60*dt));
     position = ccpAdd(position, velocity);
-    playerAndParticleNode.position = position;
+    if (startAnimation)
+        playerAndParticleNode.position = position;
 }
 
 // this is called (magically?) by cocosbuilder when the start button is pressed
