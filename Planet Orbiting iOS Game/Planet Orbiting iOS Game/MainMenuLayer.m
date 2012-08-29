@@ -140,7 +140,7 @@ const float effectsVolumeMainMenu = 1;
         if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getShouldPlayMenuMusic])
             [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic_new.mp3" loop:YES];
         
-        position = ccp(-200, 485);
+        position = ccp(-230, 485);
         [playerAndParticleNode setPosition:position];
         isDoingEndAnimation = true;
         
@@ -153,7 +153,7 @@ const float effectsVolumeMainMenu = 1;
         
         startAnimation = false;
         [playerAndParticleNode runAction:[CCSequence actions:
-                                          [CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:2 position:ccp(200, 480)]],
+                                          [CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:1.5 position:ccp(200, 480)]],
                                           [CCCallBlock actionWithBlock:(^{
             position = ccp(200, 480);
             startAnimation = true;
@@ -167,6 +167,9 @@ const float effectsVolumeMainMenu = 1;
         })],
                                           nil]];
         
+        [topBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:1.5 position:ccp(0, 0)]]];
+        [bottomBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:1.5 position:ccp(0, 320)]]];
+        
         [self schedule:@selector(Update:) interval:0];
         
 	}
@@ -175,6 +178,17 @@ const float effectsVolumeMainMenu = 1;
 
 - (void) tappedToStart {
     isDoingEndAnimation = true;
+    
+    [topBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:1.5 position:ccp(0, 100)]]];
+    [bottomBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:1.5 position:ccp(0, 270)]]];
+    [beginLabel runAction:[CCSequence actions:
+                           [CCFadeTo actionWithDuration:.3 opacity:0],
+                           [CCCallBlock actionWithBlock:(^{
+        
+        [beginLabel setOpacity:0];
+        [beginLabel setVisible:false];
+    })],
+                           nil]];
     
     [dark runAction:[CCSequence actions:
                      [CCDelayTime actionWithDuration:.5],
@@ -185,6 +199,8 @@ const float effectsVolumeMainMenu = 1;
     })],
                      
                      nil]];
+    
+    
     
     
     [playerAndParticleNode runAction:[CCEaseSineInOut actionWithAction: [CCScaleTo actionWithDuration:3 scale:playerAndParticleNode.scale*.2]]];

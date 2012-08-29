@@ -49,6 +49,8 @@
     CCMenuItemImage * soundButton;
     
     CCNode* playerAndParticleNode;
+    CCNode* bottomBarNode;
+    CCNode* topBarNode;
 }
 
 + (CCScene *)scene;
