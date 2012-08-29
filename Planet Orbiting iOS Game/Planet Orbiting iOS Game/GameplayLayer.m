@@ -1179,9 +1179,9 @@ typedef struct {
                     player.acceleration = ccpMult(ccpNormalize(player.acceleration), initialAccelMag);
             }
             
-           // if (ccpLength(ccpSub(player.sprite.position, targetPlanet.sprite.position)) <= targetPlanet.orbitRadius) {
-            //    orbitState = 0;
-          // }
+            if (ccpLength(ccpSub(player.sprite.position, targetPlanet.sprite.position)) <= targetPlanet.orbitRadius) {
+                orbitState = 0;
+           }
         }
         
         if (!(player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart))
@@ -1375,13 +1375,13 @@ typedef struct {
             if ([[currentGalaxy.spriteSheet children]containsObject:object.sprite])
                 [currentGalaxy.spriteSheet removeChild:object.sprite cleanup:YES];
             
-            if (lastPlanetVisited.whichGalaxyThisObjectBelongsTo != targetPlanet.whichGalaxyThisObjectBelongsTo) {
-            [object.sprite stopAllActions];
+         //   if (lastPlanetVisited.whichGalaxyThisObjectBelongsTo != targetPlanet.whichGalaxyThisObjectBelongsTo) {
+          //  [object.sprite stopAllActions];
             [object.sprite removeAllChildrenWithCleanup:YES];
             [object.sprite removeFromParentAndCleanup:YES];
             [object removeAllChildrenWithCleanup:YES];
             [object removeFromParentAndCleanup:YES];
-            }
+         //   }
             
             if (shouldRemove) {
                 [array removeObject:object];
@@ -1435,23 +1435,9 @@ typedef struct {
             
             if (percentofthewaytonext>.85&&justDisplayedGalaxyLabel==false&&(int)galaxyLabel.opacity<=0)
             {
-                if (currentGalaxy.number>0) {
+                if ([[cameraLayer children]containsObject:currentGalaxy.spriteSheet]==false) {
                     Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
                    
-                            for (CCSprite * sprite in lastGalaxy.spriteSheet.children) {
-                                [sprite removeAllChildrenWithCleanup:YES];
-                                [sprite removeFromParentAndCleanup:YES];
-                            }
-                            //for (CCSprite * sprite in spriteSheet.children) {
-                            //    [sprite removeAllChildrenWithCleanup:YES];
-                            //     [sprite removeFromParentAndCleanup:YES];
-                            //   }
-                            //  [spriteSheet removeAllChildrenWithCleanup:YES];
-                            // [spriteSheet removeFromParentAndCleanup:YES];
-                            [lastGalaxy.spriteSheet removeAllChildrenWithCleanup:YES];
-                            [lastGalaxy.spriteSheet removeFromParentAndCleanup:YES];
-                            //[[CCSpriteFrameCache sharedSpriteFrameCache] removeUnusedSpriteFrames];
-                            //[[CCTextureCache sharedTextureCache] removeUnusedTextures];
                     
                     if ([[cameraLayer children]containsObject:lastGalaxy.spriteSheet]) {
                         [cameraLayer removeChild:lastGalaxy.spriteSheet cleanup:YES];
@@ -1504,15 +1490,22 @@ typedef struct {
         [self DisposeAllContentsOfArray:zones shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:asteroids shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:coins shouldRemoveFromArray:true];
-        [self DisposeAllContentsOfArray:powerups shouldRemoveFromArray:YES];
+       // [self DisposeAllContentsOfArray:powerups shouldRemoveFromArray:YES];
       
         [self RenumberCamObjectArray:planets];
         [self RenumberCamObjectArray:zones];
         [self RenumberCamObjectArray:asteroids];
-        [self RenumberCamObjectArray:powerups];
+      //  [self RenumberCamObjectArray:powerups];
         [self RenumberCamObjectArray:coins];
         
         //NSLog(@"galaxy6");
+        if (currentGalaxy.number>0) {
+            Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
+            [lastGalaxy.spriteSheet removeAllChildrenWithCleanup:YES];
+            [lastGalaxy.spriteSheet removeFromParentAndCleanup:YES];
+            [[CCTextureCache sharedTextureCache] removeUnusedTextures];
+        }
+        
         makingSegmentNumber--;
         if ([self CreateSegment]==false) {
             justDisplayedGalaxyLabel = false;
@@ -1549,32 +1542,31 @@ typedef struct {
             break;
         if (zone.number<=lastPlanetVisited.number+1&& ccpDistance([[player sprite]position], [[zone sprite]position])<[zone radius]*zoneCollisionFactor)
         {
-            Zone * nextZone = [zones objectAtIndex:zone.number+1];
+            player.isInZone = true;
+        /*    Zone * nextZone = [zones objectAtIndex:zone.number+1];
             if (orbitState == 0 && nextZone.hasPlayerHitThisZone && zone.hasPlayerHitThisZone)
-                nextZone.hasPlayerHitThisZone = false;
+                nextZone.hasPlayerHitThisZone = false;*/
             
             if (!zone.hasPlayerHitThisZone)
             {
-                zone.hasPlayerHitThisZone = true;
-                player.isInZone = true;
-
-                if (i >0)
+                if (i>0)
                    if ([[zones objectAtIndex:i - 1]hasPlayerHitThisZone]) {
                     lastPlanetVisited = [planets objectAtIndex:zone.number];
-                    targetPlanet = lastPlanetVisited;
                     updatesSinceLastPlanet = 0;
                 }
                 
                // CCLOG(@"lastplanet: %d targetplanet = %d lastplanethitzone: %d nextplanethitzone: %d",lastPlanetVisited.number,targetPlanet.number,(int)zone.hasPlayerHitThisZone,(int)((Zone*)[zones objectAtIndex:zone.number+1]).hasPlayerHitThisZone);
              
-                orbitState = 0;
-                
-                if (zone.number==0||((Planet*)[planets objectAtIndex:zone.number-1]).whichSegmentThisObjectIsOriginallyFrom!=lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom) {
+                if (i==0||((Planet*)[planets objectAtIndex:zone.number-1]).whichSegmentThisObjectIsOriginallyFrom!=lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom) {
                     NSLog(@"Entering galaxy %d segment %d (1-based index)",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1);
                     flurrySegmentsVisitedSinceGalaxyJump++;
                 }
                 
+
+                
                 [zone.sprite setColor:ccc3(140, 140, 140)];
+                zone.hasPlayerHitThisZone = true;
+
                                 zonesReached++;
                 planetsHitSinceNewGalaxy++;
                 score+=currentPtoPscore;
@@ -1948,11 +1940,10 @@ typedef struct {
 
 -(void)scheduleUpdates {
     //NSLog(@"start4");
-[self schedule:@selector(UpdateScore) interval:1.0/30.0f];
-    [self schedule:@selector(UpdateParticles:) interval:1.0/30.0f];
-    [self schedule:@selector(UpdateBackgroundStars:) interval:1.0/30.0f];
-    [self schedule:@selector(UpdateLight:) interval:1.0/30.0f];
-    [self schedule:@selector(UpdatePlanets) interval:1.0/30.0f];
+    [self schedule:@selector(UpdateScore) interval:1.0/25.0f];
+    [self schedule:@selector(UpdateParticles:) interval:1.0/50.0f];
+    [self schedule:@selector(UpdateBackgroundStars:) interval:1.0/24.0f];
+    [self schedule:@selector(UpdateLight:) interval:1.0/10.0f];
 //    [self UpdateScore];
     //NSLog(@"start6");
   //  [self UpdateParticles:dt];
@@ -2047,10 +2038,10 @@ typedef struct {
         
         [self UpdateGalaxies:dt];
         //NSLog(@"start2");
-        //if (player.alive) {
-          //  [self UpdatePlanets];
+        if (player.alive) {
+            [self UpdatePlanets];
             //NSLog(@"start1");
-        //}
+        }
         [self UpdateCoins];
         //NSLog(@"start3");
         [self UpdatePlayer: dt];
