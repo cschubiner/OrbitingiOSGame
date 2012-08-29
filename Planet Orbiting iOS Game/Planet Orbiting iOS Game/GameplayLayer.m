@@ -1973,8 +1973,6 @@ typedef struct {
 
 - (void) CheckMissions {
     
-    NSLog(@"died: %i", numTimesDied);
-    
     if (numCoinsDisplayed >= 10)
         [self completeObjectiveFromGroupNumber:0 itemNumber:0];
     

@@ -86,18 +86,16 @@ const float effectsVolumeMainMenu = 1;
 -(void)enableButtons {
     [highScoreButton setIsEnabled:true];
     [objectivesButton setIsEnabled:true];
-    [playButton setIsEnabled:true];
+    [creditsButton setIsEnabled:true];
     [upgradesButton setIsEnabled:true];
-    [tutorialButton setIsEnabled:true];
     [soundButton setIsEnabled:true];
 }
 
 -(void)disableButtons {
     [highScoreButton setIsEnabled:false];
     [objectivesButton setIsEnabled:false];
-    [playButton setIsEnabled:false];
+    [creditsButton setIsEnabled:false];
     [upgradesButton setIsEnabled:false];
-    [tutorialButton setIsEnabled:false];
     [soundButton setIsEnabled:false];
 }
 
@@ -105,6 +103,7 @@ const float effectsVolumeMainMenu = 1;
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     [Flurry logEvent:@"Pressed objective button"];
     missionPopup = [[ObjectiveManager sharedInstance] createMissionPopupWithX:true withDark:true];
+    [missionPopup setZOrder:INT_MAX];
     [self addChild:missionPopup];
     [self disableButtons];
 }
@@ -124,7 +123,7 @@ const float effectsVolumeMainMenu = 1;
         CCLabelTTF* beginLabel = [CCLabelTTF labelWithString:@"TAP ANYWHERE TO BEGIN!" fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
         [self addChild: beginLabel];
         [beginLabel setZOrder:INT_MAX-1];
-        [beginLabel setPosition:ccp(200, 60)];
+        [beginLabel setPosition:ccp(240, 60)];
         
         [beginLabel runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
                                                                  [CCFadeTo actionWithDuration:.45 opacity:255],
@@ -174,7 +173,7 @@ const float effectsVolumeMainMenu = 1;
                      nil]];
     
     
-    [playerAndParticleNode runAction:[CCEaseSineInOut actionWithAction: [CCScaleTo actionWithDuration:4 scale:playerAndParticleNode.scale*.1]]];
+    [playerAndParticleNode runAction:[CCEaseSineInOut actionWithAction: [CCScaleTo actionWithDuration:3 scale:playerAndParticleNode.scale*.2]]];
     
     acceleration = ccp(.1, acceleration.y);
 }

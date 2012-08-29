@@ -862,7 +862,7 @@
 									<key>lockedScaleRatio</key>
 									<true/>
 									<key>memberVarAssignmentName</key>
-									<string>highScoreButton</string>
+									<string>creditsButton</string>
 									<key>memberVarAssignmentType</key>
 									<integer>2</integer>
 									<key>position</key>

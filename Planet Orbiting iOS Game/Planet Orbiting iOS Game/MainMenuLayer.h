@@ -44,9 +44,8 @@
     CCLayer *tutorialLayer;
     CCMenuItemImage * highScoreButton;
     CCMenuItemImage * objectivesButton;
-    CCMenuItemImage * playButton;
+    CCMenuItemImage * creditsButton;
     CCMenuItemImage * upgradesButton;
-    CCMenuItemImage * tutorialButton;
     CCMenuItemImage * soundButton;
     
     CCNode* playerAndParticleNode;
