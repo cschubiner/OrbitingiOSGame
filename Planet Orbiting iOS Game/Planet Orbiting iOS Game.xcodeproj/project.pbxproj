@@ -229,6 +229,7 @@
 		0CBF200C15E1C68B00E05CDB /* batteryglow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CBF200A15E1C68B00E05CDB /* batteryglow.png */; };
 		0CD3054615CFC479007EA286 /* playerSpawnedParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CD3054515CFC479007EA286 /* playerSpawnedParticle.plist */; };
 		0CFB823915AE733800EADAF3 /* SWOOSH.WAV in Resources */ = {isa = PBXBuildFile; fileRef = 0CFB823815AE733800EADAF3 /* SWOOSH.WAV */; };
+		C424BE4C15F006D600F6E5BA /* feverModeInitialExplosion.plist in Resources */ = {isa = PBXBuildFile; fileRef = C424BE4B15F006D600F6E5BA /* feverModeInitialExplosion.plist */; };
 		C43AEFFB15D42676001FF7D9 /* galaxy0-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AEFE315D42676001FF7D9 /* galaxy0-hd.plist */; };
 		C43AEFFC15D42676001FF7D9 /* galaxy0-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = C43AEFE415D42676001FF7D9 /* galaxy0-hd.pvr.ccz */; };
 		C43AEFFD15D42676001FF7D9 /* galaxy0.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43AEFE515D42676001FF7D9 /* galaxy0.plist */; };
@@ -780,6 +781,7 @@
 		0CBF200A15E1C68B00E05CDB /* batteryglow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batteryglow.png; sourceTree = "<group>"; };
 		0CD3054515CFC479007EA286 /* playerSpawnedParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = playerSpawnedParticle.plist; sourceTree = "<group>"; };
 		0CFB823815AE733800EADAF3 /* SWOOSH.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SWOOSH.WAV; sourceTree = "<group>"; };
+		C424BE4B15F006D600F6E5BA /* feverModeInitialExplosion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = feverModeInitialExplosion.plist; sourceTree = "<group>"; };
 		C4286D4215C3747F00773FA3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		C4286D4415C3748300773FA3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		C43AEFE315D42676001FF7D9 /* galaxy0-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "galaxy0-hd.plist"; sourceTree = "<group>"; };
@@ -2120,6 +2122,7 @@
 		C4E994B715A435EA00C7009D /* Particles */ = {
 			isa = PBXGroup;
 			children = (
+				C424BE4B15F006D600F6E5BA /* feverModeInitialExplosion.plist */,
 				FA20FD4915EDE76E008F2F17 /* powerupGottenExplosionTexture-hd.png */,
 				FA20FD4A15EDE76E008F2F17 /* powerupGottenExplosionTexture.plist */,
 				FA20FD4B15EDE76E008F2F17 /* powerupGottenExplosionTexture.png */,
@@ -2771,6 +2774,7 @@
 				FADEAE6B15EF44A20085FB5D /* playermagnet-hd.png in Resources */,
 				FADEAE6C15EF44A20085FB5D /* playermagnet.png in Resources */,
 				0C2C49B415EF666F005B1214 /* iRate.bundle in Resources */,
+				C424BE4C15F006D600F6E5BA /* feverModeInitialExplosion.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

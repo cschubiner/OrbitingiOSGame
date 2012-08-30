@@ -54,7 +54,7 @@
 
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
     
-    [[iRate sharedInstance]setDebug:YES];
+    //[[iRate sharedInstance]setDebug:YES];
     [[iRate sharedInstance]setAppStoreGenreID:iRateAppStoreGameGenreID];
     [[iRate sharedInstance]setMessage:[NSString stringWithFormat:@"If you enjoy playing %@, would you mind taking a moment to rate it? 5 Star ratings help us provide free updates. It'll only take a minute! :)",[[iRate sharedInstance]applicationName]]];
     [[iRate sharedInstance]setCancelButtonLabel:@"No Thanks"];

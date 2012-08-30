@@ -451,8 +451,14 @@ typedef struct {
     powerupParticle = [CCParticleSystemQuad particleWithFile:@"powerupGottenExplosionTexture.plist"];
     [powerupParticle stopSystem];
     [cameraLayer addChild:powerupParticle];
-    [powerupParticle setZOrder:INT_MAX];
+    [powerupParticle setZOrder:30];
     [powerupParticle setScale:1.2];
+    
+    feverModeInitialExplosionParticle = [CCParticleSystemQuad particleWithFile:@"feverModeInitialExplosion.plist"];
+    [feverModeInitialExplosionParticle stopSystem];
+    [feverModeInitialExplosionParticle setPositionType:kCCPositionTypeRelative];
+    [cameraLayer addChild:feverModeInitialExplosionParticle z:28];
+    [feverModeInitialExplosionParticle setScale:1];
     
     starStashParticle = [CCParticleSystemQuad particleWithFile:@"starStashParticle.plist"];
     [starStashParticle stopSystem];
@@ -1194,11 +1200,7 @@ typedef struct {
                     
                     timeInOrbit = 0;
                     
-                    if (feverModePlanetHitsInARow >= minPlanetsInARowForFeverMode)
-                        [feverLabel setString:[NSString stringWithFormat:@"%d Combo!", feverModePlanetHitsInARow]];
-                    else
-                        [feverLabel setString:[NSString stringWithFormat:@""]];
-                    
+
                     
                     if (player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart) {
                         CGPoint targetPoint1 = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius*.7), targetPlanet.sprite.position);
@@ -1278,6 +1280,7 @@ typedef struct {
 }
 
 - (void)endFeverMode {
+    [thrustParticle setEmissionRate:20];
     feverModePlanetHitsInARow = 0;
     [feverLabel setString:[NSString stringWithFormat:@""]];
 }
@@ -1613,6 +1616,16 @@ typedef struct {
     }
 }
 
+- (void)UpdateFeverMode {
+    [thrustParticle setEmissionRate:400];
+    [feverLabel setString:[NSString stringWithFormat:@"%d Combo!", feverModePlanetHitsInARow]];
+    if (feverModePlanetHitsInARow == minPlanetsInARowForFeverMode) {
+        [feverModeInitialExplosionParticle resetSystem];
+        [feverModeInitialExplosionParticle setPosition:player.sprite.position];
+        [feverModeInitialExplosionParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
+    }
+}
+
 - (void)UpdatePlanets {
     // Zone-to-Player collision detection follows-------------
     player.isInZone = false;
@@ -1651,7 +1664,10 @@ typedef struct {
                 
                 [zone.sprite setColor:ccc3(140, 140, 140)];
                 zone.hasPlayerHitThisZone = true;
-
+                
+                if (feverModePlanetHitsInARow >= minPlanetsInARowForFeverMode) {
+                    [self UpdateFeverMode];
+                }
                                 zonesReached++;
                 planetsHitSinceNewGalaxy++;
                 score+=currentPtoPscore;
@@ -1705,11 +1721,6 @@ typedef struct {
     
     [thrustParticle setPosition:player.sprite.position];
     [thrustParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
-    if (feverModePlanetHitsInARow >= minPlanetsInARowForFeverMode)
-        [thrustParticle setEmissionRate:400];
-    else
-        [thrustParticle setEmissionRate:20];
-    
     
     // [thrustParticle setEmissionRate:ccpLengthSQ(player.velocity)*ccpLength(player.velocity)/2.2f];
     float speedPercent = (timeDilationCoefficient-[[UpgradeValues sharedInstance] absoluteMinTimeDilation])/(absoluteMaxTimeDilation-[[UpgradeValues sharedInstance] absoluteMinTimeDilation]);
