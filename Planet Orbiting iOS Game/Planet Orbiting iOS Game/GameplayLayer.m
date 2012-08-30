@@ -133,10 +133,12 @@ typedef struct {
     [powerups addObject:powerup];
     
     [spriteSheet addChild:powerup.sprite];
-    [spriteSheet addChild:powerup.glowSprite];
+    [cameraLayer addChild:powerup.glowSprite];
+    powerup.glowSprite.scale = playerSizeScale;
+    [powerup.glowSprite setZOrder:5];
     
     //NSLog(@"galaxy114powerup");
-    [spriteSheet reorderChild:powerup.glowSprite z:2.5];
+    //[spriteSheet reorderChild:powerup.glowSprite z:2.5];
     
     //NSLog(@"ended powerup");
     
@@ -477,7 +479,6 @@ typedef struct {
     powerupLabel.position = ccp(-[powerupLabel boundingBox].size.width/2, 160);
     [hudLayer addChild: powerupLabel];
     
-    [self playSound:@"kick_shock.mp3" shouldLoop:YES pitch:1];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"bomb.wav"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.WAV"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"buttonpress.mp3"];
@@ -505,14 +506,23 @@ typedef struct {
     }
     
     player = [[Player alloc]init];
-    player.sprite = [CCSprite spriteWithSpriteFrameName:@"playercute.png"];
+    //player.sprite = [CCSprite spriteWithSpriteFrameName:@"playercute.png"];
+    
+    if ([[UpgradeValues sharedInstance] hasGreenShip]) {
+        player.sprite = [CCSprite spriteWithFile:@"playercamo.png"];
+    } else {
+        player.sprite = [CCSprite spriteWithFile:@"playermenu.png"];
+    }
+    player.sprite.scale = playerSizeScale;
+    [player.sprite setZOrder:4];
+    
     player.alive=true;
-    [player.sprite setScale:playerSizeScale];
+    //[player.sprite setScale:playerSizeScale];
     player.segmentNumber = -10;
     player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(defaultDirectionPlanetSegmentsGoIn)), -3200*100));
     // player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
     if ([[UpgradeValues sharedInstance] hasGreenShip]) {
-        player.sprite.color = ccGREEN;
+        //player.sprite.color = ccGREEN;
     } else if ([[UpgradeValues sharedInstance] hasBlueShip]) {
         player.sprite.color = ccBLUE;
     } else if ([[UpgradeValues sharedInstance] hasGoldShip]) {
@@ -1002,8 +1012,8 @@ typedef struct {
                     if (player.currentPowerup != nil) {
                         [player.currentPowerup.glowSprite setVisible:false];
                     }
-                    paused = true;
-                    isDisplayingPowerupAnimation = true;
+                    //paused = true;
+                    //isDisplayingPowerupAnimation = true;
                     powerupPos = 0;
                     powerupVel = 0;
                     player.currentPowerup = powerup;
@@ -1023,13 +1033,13 @@ typedef struct {
     if (player.currentPowerup != nil) {
         
         int updatesLeft = player.currentPowerup.duration - powerupCounter;
-        float blinkAfterThisManyUpdates = updatesLeft*.12;
+        float blinkAfterThisManyUpdates = updatesLeft*.06;
         
         if (player.currentPowerup.glowSprite.visible) {
             updatesWithoutBlinking++;
         }
         
-        if (updatesWithoutBlinking >= blinkAfterThisManyUpdates && updatesLeft <= 300) {
+        if (updatesWithoutBlinking >= blinkAfterThisManyUpdates && updatesLeft <= 90) {
             updatesWithoutBlinking = 0;
             [player.currentPowerup.glowSprite setVisible:false];
             
@@ -1038,7 +1048,7 @@ typedef struct {
             updatesWithBlinking++;
         }
         
-        if (updatesWithBlinking >= clampf(8*updatesLeft/100, 3, 99999999)) {
+        if (updatesWithBlinking >= clampf(4*updatesLeft/100, 3, 99999999)) {
             updatesWithBlinking = 0;
             [player.currentPowerup.glowSprite setVisible:true];
         }
@@ -1057,6 +1067,8 @@ typedef struct {
         
         if (planet.number == lastPlanetVisited.number) {
             if (isOnFirstRun) {
+                
+                [self playSound:@"kick_shock.mp3" shouldLoop:YES pitch:1];
                 initialVel = ccp(0, sqrtf(planet.orbitRadius*gravity));
                 isOnFirstRun = false;
                 player.velocity = initialVel;
@@ -1286,21 +1298,30 @@ typedef struct {
     CGPoint curPlanetPos = lastPlanetVisited.sprite.position;
     CGPoint nextPlanetPos = [[[planets objectAtIndex:(lastPlanetVisited.number+1)] sprite] position];
     CGPoint pToGoTo = ccpAdd(curPlanetPos, ccpMult(ccpNormalize(ccpSub(nextPlanetPos, curPlanetPos)), -lastPlanetVisited.orbitRadius));
-    id moveAction = [CCMoveTo actionWithDuration:.2 position:pToGoTo];
-    id blink = [CCBlink actionWithDuration:delayTimeAfterPlayerExplodes-.2 blinks:(delayTimeAfterPlayerExplodes-.2)*respawnBlinkFrequency];
-    id movingSpawnActions = [CCSpawn actions:moveAction, [CCRotateTo actionWithDuration:.2 angle:player.rotationAtLastThrust], nil];
-    player.moveAction = [CCSequence actions:[CCHide action],movingSpawnActions,blink, [CCShow action], nil];
     
-    [player.sprite runAction:player.moveAction];
-    [thrustParticle stopSystem];
-    streak.visible = false;
-    player.alive = false;
     
     CGPoint vel = ccpSub(pToGoTo, curPlanetPos);
     if (wasGoingClockwise)
         vel = CGPointApplyAffineTransform(vel, CGAffineTransformMakeRotation(-M_PI/2));
     else
         vel = CGPointApplyAffineTransform(vel, CGAffineTransformMakeRotation(M_PI/2));
+    player.sprite.visible = false;
+    if (player.currentPowerup)
+        player.currentPowerup.glowSprite.visible = false;
+    
+    id moveAction = [CCMoveTo actionWithDuration:.2 position:pToGoTo];
+    id blink = [CCBlink actionWithDuration:delayTimeAfterPlayerExplodes-.2 blinks:(delayTimeAfterPlayerExplodes-.2)*respawnBlinkFrequency];
+    id movingSpawnActions = [CCSpawn actions:moveAction, /*[CCRotateTo actionWithDuration:.2 angle:ccpToAngle(vel)],*/ nil];
+    player.moveAction = [CCSequence actions:[CCHide action],movingSpawnActions,blink, [CCShow action], nil];
+    
+    //if (player.currentPowerup)
+    //    [player.currentPowerup.glowSprite runAction:[CCRotateTo actionWithDuration:.2 angle:ccpToAngle(vel)]];
+    
+    [player.sprite runAction:player.moveAction];
+    [thrustParticle stopSystem];
+    streak.visible = false;
+    player.alive = false;
+    
     
     
     player.velocity = ccpMult(ccpNormalize(vel), 9);//ccp(0, .05);
@@ -1362,6 +1383,8 @@ typedef struct {
         else if (targetRotation-player.sprite.rotation<=-180)
             player.sprite.rotation-=360;
         player.sprite.rotation = targetRotation;
+        if (player.currentPowerup)
+            player.currentPowerup.glowSprite.rotation = player.sprite.rotation;
         //end spaceship rotating code --------------------
     }
     else if (player.moveAction.isDone){
@@ -1402,7 +1425,7 @@ typedef struct {
     [cameraLayer addChild:thrustParticle z:2];
     [cameraLayer addChild:thrustBurstParticle z:2];
     [cameraLayer addChild:streak z:1];
-    [spriteSheet addChild:player.sprite z:3];
+    [cameraLayer addChild:player.sprite z:3];
 }
 
 - (CGPoint)GetPositionForJumpingPlayerToPlanet:(int)planetIndex {
@@ -1997,6 +2020,13 @@ typedef struct {
     }
 }
 
+-(void)unscheduleUpdates {
+    [self unschedule:@selector(UpdateScore) ];
+    [self unschedule:@selector(UpdateParticles:)];
+    [self unschedule:@selector(UpdateBackgroundStars:) ];
+    [self unschedule:@selector(UpdateLight:)];
+}
+
 -(void)scheduleUpdates {
     //NSLog(@"start4");
     [self schedule:@selector(UpdateScore) interval:1.0/25.0f];
@@ -2364,6 +2394,7 @@ float lerpf(float a, float b, float t) {
     if (paused) {
         //[Kamcord pause];
         
+        [self unscheduleUpdates];
         
         
         pauseLayer = [self createPauseLayer];//(CCLayer*)[CCBReader nodeGraphFromFile:@"PauseMenuLayer.ccb" owner:self];
@@ -2374,6 +2405,7 @@ float lerpf(float a, float b, float t) {
         [self addChild:pauseLayer];
     } else {
         //[Kamcord resume];
+        [self scheduleUpdates];
         [self removeChildByTag:pauseLayerTag cleanup:NO];
     }
 }

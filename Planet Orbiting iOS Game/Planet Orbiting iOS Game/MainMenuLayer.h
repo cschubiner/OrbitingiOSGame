@@ -51,6 +51,8 @@
     CCNode* playerAndParticleNode;
     CCNode* bottomBarNode;
     CCNode* topBarNode;
+    
+    CCSprite* playerSprite;
 }
 
 + (CCScene *)scene;

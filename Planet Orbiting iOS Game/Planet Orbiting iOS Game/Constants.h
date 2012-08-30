@@ -40,7 +40,7 @@ const float segmentRotationVariation = 20;//30;
 
 //how quickly the player's spaceship rotates when the direction of his velocity changes
 const float playerRotationSpeed = .39f;
-const float playerSizeScale = 1.2;
+const float playerSizeScale = .25;
 
 const float anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees = 55;
 const float anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees = -35;
@@ -79,7 +79,7 @@ const float respawnOrbitRadius = .88;
 const float asteroidSizeScale = .36*.64f;
 
 //radius percentage at which you will collide with a asteroid
-const float asteroidRadiusCollisionZone = .9;
+const float asteroidRadiusCollisionZone = 1;
 
 const float powerupRadiusCollisionZone = 1.2;
 const float powerupScaleSize = 1;

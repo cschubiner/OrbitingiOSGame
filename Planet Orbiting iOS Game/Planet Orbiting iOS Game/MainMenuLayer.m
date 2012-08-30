@@ -19,6 +19,9 @@
 #import "HighScoresLayer.h"
 #import "StoreLayer.h"
 #import "MissionsCompleteLayer.h"
+#import "UpgradeValues.h"
+#import "UpgradeManager.h"
+#import "UpgradeItem.h"
 
 #define tutorialLayerTag    1001
 #define levelLayerTag       1002
@@ -110,6 +113,10 @@ const float effectsVolumeMainMenu = 1;
     [self disableButtons];
 }
 
+- (void) initUpgradeStuff {
+    
+}
+
 // on "init" you need to initialize your instance
 - (id)init {
 	if (self = [super init]) {
@@ -128,8 +135,41 @@ const float effectsVolumeMainMenu = 1;
         [beginLabel setPosition:ccp(240, 60)];
         [beginLabel setVisible:false];
         
+
         
-                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        [[UpgradeValues sharedInstance] setHasGreenShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:17] equipped]];
+        
+        
+        CCSprite* newSprite;
+        if ([[UpgradeValues sharedInstance] hasGreenShip])
+            newSprite = [CCSprite spriteWithFile:@"playercamo.png"];
+        else
+            newSprite = [CCSprite spriteWithFile:@"playermenu.png"];
+        
+        
+        [playerAndParticleNode addChild:newSprite];
+        newSprite.position = ccp(52.5, 0);
+        newSprite.scale = .736;
+        
+        
+        
+        
+        
+        
+        
+        
+        
         [proScoreLabel setString:[NSString stringWithFormat:@"%.0f",[self getProValue]]];
         [funScoreLabel setString:[NSString stringWithFormat:@"%.0f",[self getFunValue]]];
         
@@ -142,7 +182,7 @@ const float effectsVolumeMainMenu = 1;
         
         position = ccp(-230, 485);
         [playerAndParticleNode setPosition:position];
-        isDoingEndAnimation = true;
+        isDoingEndAnimation = false;
         
         
         dark = [CCSprite spriteWithFile:@"black.png"];
@@ -151,12 +191,15 @@ const float effectsVolumeMainMenu = 1;
         [dark setZOrder:INT_MAX];
         dark.opacity = 0;
         
+        float startAnimationTime = 1.8;
+        
         startAnimation = false;
         [self disableButtons];
         [playerAndParticleNode runAction:[CCSequence actions:
-                                          [CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:1.5 position:ccp(200, 480)]],
+                                          [CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(200, 480)]],
                                           [CCCallBlock actionWithBlock:(^{
             position = ccp(200, 480);
+            velocity = CGPointZero;
             startAnimation = true;
             [self enableButtons];
             [beginLabel setVisible:true];
@@ -169,8 +212,8 @@ const float effectsVolumeMainMenu = 1;
         })],
                                           nil]];
         
-        [topBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:1.5 position:ccp(0, 0)]]];
-        [bottomBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:1.5 position:ccp(0, 320)]]];
+        [topBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(0, 0)]]];
+        [bottomBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(0, 320)]]];
         
         [self schedule:@selector(Update:) interval:0];
         
@@ -204,8 +247,6 @@ const float effectsVolumeMainMenu = 1;
                      nil]];
     
     
-    
-    
     [playerAndParticleNode runAction:[CCEaseSineInOut actionWithAction: [CCScaleTo actionWithDuration:3 scale:playerAndParticleNode.scale*.2]]];
     
     acceleration = ccp(.12, acceleration.y);
@@ -214,22 +255,25 @@ const float effectsVolumeMainMenu = 1;
 - (void) Update:(ccTime)dt {
     difVector = ccpSub(ccp(200, 480), position);
     float multer = .0022;
-    float var = .021;
-    float xVarMult = .6;
+    float variance = .021;
+    float xVarMult = .4;
+    
     
     float xAccel = acceleration.x;
     
     if (!isDoingEndAnimation)
-        xAccel = [self randomValueBetween:ccpMult(difVector, multer).x-var*xVarMult andValue:ccpMult(difVector, multer).x+var*xVarMult];
-    float yAccel = [self randomValueBetween:ccpMult(difVector, multer).y-var andValue:ccpMult(difVector, multer).y+var];
+        xAccel = [self randomValueBetween:ccpMult(difVector, multer).x-variance*xVarMult andValue:ccpMult(difVector, multer).x+variance*xVarMult];
+    float yAccel = [self randomValueBetween:ccpMult(difVector, multer).y-variance andValue:ccpMult(difVector, multer).y+variance];
     
-        acceleration = ccp(xAccel, yAccel);
+    acceleration = ccp(xAccel, yAccel);
     
     
     velocity = ccpAdd(velocity, ccpMult(acceleration, 60*dt));
     position = ccpAdd(position, velocity);
     if (startAnimation)
         playerAndParticleNode.position = position;
+    
+    
 }
 
 // this is called (magically?) by cocosbuilder when the start button is pressed
