@@ -1124,8 +1124,7 @@ typedef struct {
                     timeInOrbit += dt;
                     
                     if (timeInOrbit > maxTimeInOrbitThatCountsAsGoodSwipe) {
-                        feverModePlanetHitsInARow = 0;
-                        [feverLabel setString:[NSString stringWithFormat:@""]];
+                        [self endFeverMode];
                     }
                     
                     CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
@@ -1191,7 +1190,7 @@ typedef struct {
                     if (timeInOrbit <= maxTimeInOrbitThatCountsAsGoodSwipe)
                         feverModePlanetHitsInARow++;
                     else
-                        feverModePlanetHitsInARow = 0;
+                        [self endFeverMode];
                     
                     timeInOrbit = 0;
                     
@@ -1278,11 +1277,16 @@ typedef struct {
             [self RespawnPlayerAtPlanetIndex:lastPlanetVisited.number asteroidHit:Nil];
 }
 
+- (void)endFeverMode {
+    feverModePlanetHitsInARow = 0;
+    [feverLabel setString:[NSString stringWithFormat:@""]];
+}
+
 // FIX you don't really need planetIndex passed in because it's just going to spawn at the position of the last thrust point anyway
 - (void)RespawnPlayerAtPlanetIndex:(int)planetIndex asteroidHit:(Asteroid*)asteroidHit {
     numTimesDied++;
-    feverModePlanetHitsInARow = 0;
-    [feverLabel setString:[NSString stringWithFormat:@""]];
+    
+    [self endFeverMode];
     
     timeDilationCoefficient *= factorToScaleTimeDilationByOnDeath;
     numZonesHitInARow = 0;
@@ -1682,6 +1686,7 @@ typedef struct {
 /* Your score goes up as you move along the vector between the current and next planet. Your score will also never go down, as the user doesn't like to see his score go down.*/
 - (void)UpdateScore {
     tempScore = ccpDistance(CGPointZero, player.sprite.position)-160;
+    tempScore *= [[ObjectiveManager sharedInstance]getscoreMultFromCurrentGroupNumber];
     if (tempScore > score)
         score = tempScore;
     [scoreLabel setString:[NSString stringWithFormat:@"%d",score]];
@@ -1835,6 +1840,8 @@ typedef struct {
     //NSString *scoreText = [NSString stringWithFormat:@"Score: %d",finalScore];
     pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:ccbFile owner:self];
     
+    if (finalScore > 40000)
+        [[iRate sharedInstance] logEvent:YES];
     //finalScore = 69669;
     //numCoinsDisplayed = 69;
     
@@ -2109,10 +2116,7 @@ typedef struct {
     
     if (currentGalaxy.number == 3)
         [self completeObjectiveFromGroupNumber:4 itemNumber:2];
-    
-    
-    
-    
+        
     if (currentGalaxy.number == 2 && asteroidsCrashedInto == 0)
         [self completeObjectiveFromGroupNumber:5 itemNumber:0];
     

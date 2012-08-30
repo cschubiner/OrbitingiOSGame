@@ -52,6 +52,9 @@
         
         missionCompletionScreen = [[CCLayer alloc] init];
         
+        if ([[ObjectiveManager sharedInstance] currentObjectiveGroupNumber]>=1)
+            for (int i = 0 ; i < 3; i++)
+        [[iRate sharedInstance] logEvent:YES];
         
         //CCSprite* dark = [CCSprite spriteWithFile:@"black.png"];
         //[missionCompletionScreen addChild:dark];

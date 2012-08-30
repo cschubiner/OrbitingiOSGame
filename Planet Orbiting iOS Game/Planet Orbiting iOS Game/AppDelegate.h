@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
+#import "iRate.h"
 
-@interface AppDelegate : NSObject <UIApplicationDelegate, CCDirectorDelegate>
+@interface AppDelegate : NSObject <UIApplicationDelegate, CCDirectorDelegate,iRateDelegate>
 {
 	UIWindow *window_;
 	UINavigationController *navController_;

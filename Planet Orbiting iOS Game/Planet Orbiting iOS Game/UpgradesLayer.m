@@ -468,6 +468,9 @@
 
 - (void) pressedPurchaseButton {
     
+    for (int i = 0 ; i < 5; i++)
+    [[iRate sharedInstance] logEvent:YES];
+    
     [self playSound:@"purchase.wav" shouldLoop:false pitch:1];
     
     int curBalance = [[UserWallet sharedInstance] getBalance];

@@ -54,6 +54,13 @@
 
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
     
+    [[iRate sharedInstance]setDebug:YES];
+    [[iRate sharedInstance]setAppStoreGenreID:iRateAppStoreGameGenreID];
+    [[iRate sharedInstance]setMessage:[NSString stringWithFormat:@"If you enjoy playing %@, would you mind taking a moment to rate it? 5 Star ratings help us provide free updates. It'll only take a minute! :)",[[iRate sharedInstance]applicationName]]];
+    [[iRate sharedInstance]setCancelButtonLabel:@"No Thanks"];
+    
+    NSLog(@"iRate: Number of events: %d Number of uses: %d",[[iRate sharedInstance]eventCount],[[iRate sharedInstance]usesCount]);
+    
     shouldPlayMenuMusic = true;
     
 	// Create the main window
@@ -154,6 +161,7 @@ void SignalHandler(int sig) {
 -(UIViewController*)getViewController{
     return navController_;
 }
+
 
 
 -(int)getGalaxyCounter {
@@ -261,6 +269,26 @@ void SignalHandler(int sig) {
 -(void) applicationSignificantTimeChange:(UIApplication *)application
 {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
+}
+
++ (void)initialize
+{
+    //configure iRate
+    [iRate sharedInstance].daysUntilPrompt = 0;
+    [iRate sharedInstance].usesUntilPrompt = 10;
+    [iRate sharedInstance].eventsUntilPrompt = 17;
+}
+
+-(void)iRateUserDidAttemptToRateApp {
+    [Flurry logEvent:@"iRate user did attempt to rate app" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays", nil]];
+}
+
+-(void)iRateUserDidDeclineToRateApp {
+    [Flurry logEvent:@"iRate user did decline to rate app" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays", nil]];
+}
+
+-(void)iRateUserDidRequestReminderToRateApp {
+    [Flurry logEvent:@"iRate user did request reminder to rate app" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays", nil]];
 }
 
 @end
