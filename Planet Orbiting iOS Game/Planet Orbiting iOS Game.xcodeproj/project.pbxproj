@@ -144,6 +144,8 @@
 		0C28EEF315DBA80500B440DD /* galaxy6.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEEB15DBA80500B440DD /* galaxy6.pvr.ccz */; };
 		0C2AB0B515BE8E43008822F1 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */; };
 		0C2AB0BB15BE8E54008822F1 /* UserWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2AB0B915BE8E54008822F1 /* UserWallet.m */; };
+		0C2C49B415EF666F005B1214 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C2C49B115EF666F005B1214 /* iRate.bundle */; };
+		0C2C49B515EF666F005B1214 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C49B315EF666F005B1214 /* iRate.m */; };
 		0C2DEF02159C20BE0018F0FA /* Zone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2DEF01159C20BE0018F0FA /* Zone.m */; };
 		0C2E4D1315C4F70B00AB28FC /* pauseButton7-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2E4D0F15C4F70B00AB28FC /* pauseButton7-hd.png */; };
 		0C2E4D1415C4F70B00AB28FC /* pauseButton7.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2E4D1015C4F70B00AB28FC /* pauseButton7.png */; };
@@ -678,6 +680,9 @@
 		0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
 		0C2AB0B815BE8E54008822F1 /* UserWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserWallet.h; sourceTree = "<group>"; };
 		0C2AB0B915BE8E54008822F1 /* UserWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserWallet.m; sourceTree = "<group>"; };
+		0C2C49B115EF666F005B1214 /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
+		0C2C49B215EF666F005B1214 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
+		0C2C49B315EF666F005B1214 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
 		0C2DEF00159C20BE0018F0FA /* Zone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Zone.h; sourceTree = "<group>"; };
 		0C2DEF01159C20BE0018F0FA /* Zone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Zone.m; sourceTree = "<group>"; };
 		0C2E4D0F15C4F70B00AB28FC /* pauseButton7-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pauseButton7-hd.png"; sourceTree = "<group>"; };
@@ -1458,6 +1463,16 @@
 			name = Sound;
 			sourceTree = "<group>";
 		};
+		0C2C49B715EF6675005B1214 /* iRate */ = {
+			isa = PBXGroup;
+			children = (
+				0C2C49B115EF666F005B1214 /* iRate.bundle */,
+				0C2C49B215EF666F005B1214 /* iRate.h */,
+				0C2C49B315EF666F005B1214 /* iRate.m */,
+			);
+			name = iRate;
+			sourceTree = "<group>";
+		};
 		0C3F53D115BD3397009A5915 /* Flurry */ = {
 			isa = PBXGroup;
 			children = (
@@ -1605,6 +1620,7 @@
 				FA20FD4115ECB9A4008F2F17 /* MissionsCompleteLayer.m */,
 				01FE9B3A15BFC2C9007512ED /* PlayerStats.h */,
 				01FE9B3B15BFC2C9007512ED /* PlayerStats.m */,
+				0C2C49B715EF6675005B1214 /* iRate */,
 				C445304D15A68888004F8F48 /* CocosBuilder  */,
 				C43F5E7115C70356003BDF73 /* Achievements and Online Highscores */,
 				012ED2ED15BB87C1008FDFBD /* Commerce */,
@@ -2754,6 +2770,7 @@
 				FADEAE6A15EF44A20085FB5D /* playerheadstart.png in Resources */,
 				FADEAE6B15EF44A20085FB5D /* playermagnet-hd.png in Resources */,
 				FADEAE6C15EF44A20085FB5D /* playermagnet.png in Resources */,
+				0C2C49B415EF666F005B1214 /* iRate.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2899,6 +2916,7 @@
 				FA00EC5015EA235100C745BC /* HighScoresLayer.m in Sources */,
 				FA5492E415EC24E100285707 /* StoreLayer.m in Sources */,
 				FA20FD4215ECB9A4008F2F17 /* MissionsCompleteLayer.m in Sources */,
+				0C2C49B515EF666F005B1214 /* iRate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
