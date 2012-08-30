@@ -1485,6 +1485,8 @@
 		0C487AFC159471E800674AB9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FAA406B015DE008500E47C19 /* Toast.h */,
+				FAA406B115DE008500E47C19 /* Toast.m */,
 				0C60EC5815CB8C42005FE434 /* Galaxy.h */,
 				0C60EC5915CB8C42005FE434 /* Galaxy.m */,
 				01FE9B3215BFAE6F007512ED /* DataStorage.h */,
@@ -1595,8 +1597,6 @@
 				0C487AFD159471FF00674AB9 /* Basic Stuff - Ignore */,
 				0C487AFC159471E800674AB9 /* Classes */,
 				0C65972315D666D900C42296 /* LevelsFromLevelCreator */,
-				FAA406B015DE008500E47C19 /* Toast.h */,
-				FAA406B115DE008500E47C19 /* Toast.m */,
 				0C7AA7541594693D000B58F2 /* AppDelegate.h */,
 				0C7AA7551594693D000B58F2 /* AppDelegate.m */,
 				C49E914A159A48D700BC424D /* Constants.h */,
