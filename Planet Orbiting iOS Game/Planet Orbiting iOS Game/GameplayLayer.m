@@ -1314,8 +1314,10 @@ typedef struct {
     id movingSpawnActions = [CCSpawn actions:moveAction, /*[CCRotateTo actionWithDuration:.2 angle:ccpToAngle(vel)],*/ nil];
     player.moveAction = [CCSequence actions:[CCHide action],movingSpawnActions,blink, [CCShow action], nil];
     
+    
+    
     //if (player.currentPowerup)
-    //    [player.currentPowerup.glowSprite runAction:[CCRotateTo actionWithDuration:.2 angle:ccpToAngle(vel)]];
+    //    [player.currentPowerup runAction:[CCSequence actions:[CCHide action],movingSpawnActions,blink, [CCShow action], nil]];
     
     [player.sprite runAction:player.moveAction];
     [thrustParticle stopSystem];
