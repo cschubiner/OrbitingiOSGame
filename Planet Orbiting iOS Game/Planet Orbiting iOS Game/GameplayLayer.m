@@ -2134,7 +2134,7 @@ typedef struct {
 
 - (void) CheckEndGameMissions {
     
-    if (score >= 12000 && score <= 13000)
+    if (score >= 14000 && score <= 16000)
         [self completeObjectiveFromGroupNumber:2 itemNumber:2];
     
     
