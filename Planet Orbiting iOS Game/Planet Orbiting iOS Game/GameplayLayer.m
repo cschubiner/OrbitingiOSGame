@@ -637,7 +637,6 @@ typedef struct {
     swipeVector = ccp(0, -1);
     gravIncreaser = 1;
     updatesSinceLastPlanet = 0;
-    asteroidSlower = 1;
     powerupCounter = 0;
     updatesWithoutBlinking = 0;
     updatesWithBlinking = 999;
@@ -826,7 +825,7 @@ typedef struct {
         else if (player.currentPowerup.type == kautopilot)
             player.velocity = ccpMult(player.velocity, 1.1);
         
-        player.sprite.position = ccpAdd(ccpMult(player.velocity, 60*dt*timeDilationCoefficient*asteroidSlower), player.sprite.position);
+        player.sprite.position = ccpAdd(ccpMult(player.velocity, 60*dt*timeDilationCoefficient), player.sprite.position);
         [streak setPosition:player.sprite.position];
     }
     
@@ -863,13 +862,13 @@ typedef struct {
         percentofthewaytonext *=.4f;
     CGPoint focusPointTwo = ccpAdd(ccpMult(ccpSub(planet2.sprite.position, planet1.sprite.position), percentofthewaytonext) ,planet1.sprite.position);
     
-    // if (planet2.whichGalaxyThisObjectBelongsTo != lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
-    //      focusPointTwo = nextPlanet.sprite.position;
     float extraScaleFactor = 0;
     if (planet2.whichGalaxyThisObjectBelongsTo != lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
+        extraScaleFactor = 8;
+    if (planet1.whichGalaxyThisObjectBelongsTo != lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
         extraScaleFactor = 16;
-    
-    
+
+        
     CGPoint focusPosition = ccpMult(ccpAdd(ccpMult(focusPointOne,extraScaleFactor+ cameraScaleFocusedOnFocusPosOne), focusPointTwo), 1.0f/(extraScaleFactor+ cameraScaleFocusedOnFocusPosOne+1.0f));
     cameraDistToUse= lerpf(cameraDistToUse,ccpDistance(focusPointOne, focusPointTwo),cameraZoomSpeed);
     
@@ -1026,14 +1025,6 @@ typedef struct {
                 }
             }
         }
-    
-    /*if (!(player.currentPowerup.type == kasteroidImmunity)) {
-     if (isHittingAsteroid)
-     asteroidSlower -= .1;
-     else
-     asteroidSlower += .01;
-     asteroidSlower = clampf(asteroidSlower, .13, 1);
-     }*/
     
     if (!(player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart))
         for (Powerup* powerup in powerups) {
@@ -1275,7 +1266,7 @@ typedef struct {
                 float scaler = multiplyGravityThisManyTimesOnPerfectSwipe - swipeAccuracy * multiplyGravityThisManyTimesOnPerfectSwipe / 180;
                 scaler = clampf(scaler, 0, 99999999);
                 
-                player.acceleration = ccpMult(accelToAdd, [[UpgradeValues sharedInstance] absoluteMinTimeDilation]*1.11*gravIncreaser*freeGravityStrength*scaler*asteroidSlower*60*dt);
+                player.acceleration = ccpMult(accelToAdd, [[UpgradeValues sharedInstance] absoluteMinTimeDilation]*1.11*gravIncreaser*freeGravityStrength*scaler*60*dt);
                 if (player.currentPowerup.type == kheadStart)
                     player.acceleration = ccpMult(player.acceleration, 9);
                 else if (player.currentPowerup.type == kautopilot)

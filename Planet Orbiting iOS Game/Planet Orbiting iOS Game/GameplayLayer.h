@@ -47,7 +47,6 @@
     float timeSinceCometLeftScreen;
     bool planetJustExploded;
     bool playerIsTouchingScreen;
-    float asteroidSlower;
     float updatesWithoutBlinking;
     float updatesWithBlinking;
     CCAction* galaxyLabelAction;

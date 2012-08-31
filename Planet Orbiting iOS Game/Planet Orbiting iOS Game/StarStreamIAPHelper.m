@@ -26,7 +26,7 @@ static InAppRageIAPHelper * _sharedHelper;
     
     NSSet *productIdentifiers = [NSSet setWithObjects:
         @"1000000stars",
-//        @"com.raywenderlich.inapprage.itunesconnectrage",
+        //        @"com.raywenderlich.inapprage.itunesconnectrage",
         nil];
     
     if ((self = [super initWithProductIdentifiers:productIdentifiers])) {                
