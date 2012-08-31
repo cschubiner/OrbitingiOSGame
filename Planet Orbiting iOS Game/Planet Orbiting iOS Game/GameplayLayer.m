@@ -1681,7 +1681,6 @@ typedef struct {
     
     
     
-    
     timeDilationUponFeverEnter = timeDilationCoefficient;
     if (player.currentPowerup.type != kheadStart) {
         timeDilationCoefficient *= timeDilationFeverModeMultiplier;
