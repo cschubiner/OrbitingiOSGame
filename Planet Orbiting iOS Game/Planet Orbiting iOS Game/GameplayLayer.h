@@ -127,7 +127,7 @@
     CCParticleSystemQuad * feverModeLabelParticle;
     CGPoint cometVelocity;
     float lastTakeoffAngleToNextPlanet;
-    
+    CCAction * cameraFollowAction;
     float timeSinceGotLastCoin;
     float lastCoinPitch;
     ALuint lastCoinSoundID;
