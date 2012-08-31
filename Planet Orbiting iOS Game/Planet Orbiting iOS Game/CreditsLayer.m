@@ -59,6 +59,42 @@
 	return scene;
 }
 
++(CCSprite*)labelWithString:(NSString *)string fontName:(NSString *)fontName fontSize:(CGFloat)fontSize color:(ccColor3B)color strokeSize:(CGFloat)strokeSize stokeColor:(ccColor3B)strokeColor {
+    
+	CCLabelTTF *label = [CCLabelTTF labelWithString:string fontName:fontName fontSize:fontSize];
+    
+	CCRenderTexture* rt = [CCRenderTexture renderTextureWithWidth:label.texture.contentSize.width + strokeSize*2  height:label.texture.contentSize.height+strokeSize*2];
+    
+	[label setFlipY:YES];
+	[label setColor:strokeColor];
+	ccBlendFunc originalBlendFunc = [label blendFunc];
+	[label setBlendFunc:(ccBlendFunc) { GL_SRC_ALPHA, GL_ONE }];
+    
+	CGPoint bottomLeft = ccp(label.texture.contentSize.width * label.anchorPoint.x + strokeSize, label.texture.contentSize.height * label.anchorPoint.y + strokeSize);
+	CGPoint position = ccpSub([label position], ccp(-label.contentSize.width / 2.0f, -label.contentSize.height / 2.0f));
+    
+	[rt begin];
+    
+	for (int i=0; i<360; i++) // you should optimize that for your needs
+	{
+		[label setPosition:ccp(bottomLeft.x + sin(CC_DEGREES_TO_RADIANS(i))*strokeSize, bottomLeft.y + cos(CC_DEGREES_TO_RADIANS(i))*strokeSize)];
+		[label visit];
+	}
+    
+	[label setPosition:bottomLeft];
+	[label setBlendFunc:originalBlendFunc];
+	[label setColor:color];
+	[label visit];
+    
+	[rt end];
+    
+	[rt setPosition:position];
+    
+	return [CCSprite spriteWithTexture:rt.sprite.texture];
+    
+}
+
+
 /* On "init," initialize the instance */
 - (id)init {
 	// always call "super" init.
@@ -77,8 +113,14 @@
         stringToUse = @"CREDITS";
         
         CCLabelTTF* pauseText = [CCLabelTTF labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:31];
-        [self addChild:pauseText];
+        //[self addChild:pauseText];
         pauseText.position = ccp(240, 299);
+        
+        
+        CCSprite* topSpriteLabel = [self.class labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:30 color:ccWHITE strokeSize:1.1 stokeColor: ccBLACK];
+        [self addChild:topSpriteLabel];
+        topSpriteLabel.position = ccp(240, 299);
+        
         
         CCSprite* botBar = [CCSprite spriteWithFile:@"upgradeFooter.png"];
         [self addChild:botBar];

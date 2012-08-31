@@ -466,8 +466,7 @@ typedef struct {
     [feverModeLabelParticle stopSystem];
     [feverModeLabelParticle setPositionType:kCCPositionTypeRelative];
     [hudLayer addChild:feverModeLabelParticle z:28];
-    [feverModeLabelParticle setScale:.9];
-    [feverModeLabelParticle setAngle:-45];
+    [feverModeLabelParticle setScale:.5];
     
     
     starStashParticle = [CCParticleSystemQuad particleWithFile:@"starStashParticle.plist"];
@@ -903,8 +902,8 @@ typedef struct {
     [self scaleLayer:cameraLayer scaleToZoomTo:lerpf([cameraLayer scale], scale, cameraZoomSpeed) scaleCenter:cameraLastFocusPosition];
     [cameraLayer runAction: [CCFollow actionWithTarget:cameraFocusNode]];
     
-    cameraLastFocusPosition = ccpLerp(cameraLastFocusPosition, player.sprite.position, cameraMovementSpeed);
-    [self scaleLayer:cameraLayer scaleToZoomTo:lerpf([cameraLayer scale], .5, cameraZoomSpeed) scaleCenter:cameraLastFocusPosition];
+    //cameraLastFocusPosition = ccpLerp(cameraLastFocusPosition, player.sprite.position, cameraMovementSpeed);
+    //[self scaleLayer:cameraLayer scaleToZoomTo:lerpf([cameraLayer scale], .5, cameraZoomSpeed) scaleCenter:cameraLastFocusPosition];
     //[cameraLayer runAction: cameraFollowAction];
     //cameraLayer.scale = 1;
     //cameraLayer.position = ccp(-player.sprite.position.x + 240, -player.sprite.position.y + 160);
@@ -1324,7 +1323,7 @@ typedef struct {
         [feverLabel runAction:[CCSequence actions:
                                [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.1 scale:1.2]],
                                [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.2 scale:.6]],
-                               [CCFadeTo actionWithDuration:2 opacity:0],
+                               [CCFadeTo actionWithDuration:1.5 opacity:0],
                                [CCCallBlock actionWithBlock:(^{
             [feverLabel setString:[NSString stringWithFormat:@""]];
             [feverLabel setOpacity:255];
@@ -2373,11 +2372,12 @@ typedef struct {
         [self UpdateFeverMode];
     }
     
-    if (isInFeverMode) {
-        [thrustBurstParticle setPosition:player.sprite.position];
-        [thrustBurstParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
-        [thrustBurstParticle resetSystem];
-    }
+    if (false)
+        if (isInFeverMode) {
+            [thrustBurstParticle setPosition:player.sprite.position];
+            [thrustBurstParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
+            [thrustBurstParticle resetSystem];
+        }
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
