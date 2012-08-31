@@ -172,6 +172,10 @@
 		0C65971E15D6351F00C42296 /* OneByOne-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C65971D15D6351F00C42296 /* OneByOne-hd.png */; };
 		0C65972415D666D900C42296 /* LevelsFromLevelCreator in Resources */ = {isa = PBXBuildFile; fileRef = 0C65972315D666D900C42296 /* LevelsFromLevelCreator */; };
 		0C68283215BF0CCA00BF09C0 /* playerExplosionParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */; };
+		0C695E3815F08FF20092DD51 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C695E3715F08FF20092DD51 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0C695E3B15F08FFE0092DD51 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C695E3A15F08FFD0092DD51 /* IAPHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0C695E3D15F095FF0092DD51 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C695E3C15F095FF0092DD51 /* StoreKit.framework */; };
+		0C695E4015F098A80092DD51 /* StarStreamIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C695E3F15F098A80092DD51 /* StarStreamIAPHelper.m */; };
 		0C6CC93E15E49B58008CC4DF /* backgroundStars-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C6CC93A15E49B58008CC4DF /* backgroundStars-hd.plist */; };
 		0C6CC93F15E49B58008CC4DF /* backgroundStars-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C6CC93B15E49B58008CC4DF /* backgroundStars-hd.pvr.ccz */; };
 		0C6CC94015E49B58008CC4DF /* backgroundStars.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C6CC93C15E49B58008CC4DF /* backgroundStars.plist */; };
@@ -720,11 +724,18 @@
 		0C65971D15D6351F00C42296 /* OneByOne-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OneByOne-hd.png"; sourceTree = "<group>"; };
 		0C65972315D666D900C42296 /* LevelsFromLevelCreator */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LevelsFromLevelCreator; sourceTree = "<group>"; };
 		0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = playerExplosionParticle.plist; sourceTree = "<group>"; };
+		0C695E3615F08FF20092DD51 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		0C695E3715F08FF20092DD51 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		0C695E3915F08FFD0092DD51 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		0C695E3A15F08FFD0092DD51 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		0C695E3C15F095FF0092DD51 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		0C695E3E15F098A80092DD51 /* StarStreamIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarStreamIAPHelper.h; sourceTree = "<group>"; };
+		0C695E3F15F098A80092DD51 /* StarStreamIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarStreamIAPHelper.m; sourceTree = "<group>"; };
 		0C6CC93A15E49B58008CC4DF /* backgroundStars-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "backgroundStars-hd.plist"; sourceTree = "<group>"; };
 		0C6CC93B15E49B58008CC4DF /* backgroundStars-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "backgroundStars-hd.pvr.ccz"; sourceTree = "<group>"; };
 		0C6CC93C15E49B58008CC4DF /* backgroundStars.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = backgroundStars.plist; sourceTree = "<group>"; };
 		0C6CC93D15E49B58008CC4DF /* backgroundStars.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = backgroundStars.pvr.ccz; sourceTree = "<group>"; };
-		0C7AA5EE15946939000B58F2 /* Star Dash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Star Dash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C7AA5EE15946939000B58F2 /* Star Stream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Star Stream.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C7AA5F215946939000B58F2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0C7AA5F415946939000B58F2 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		0C7AA5F615946939000B58F2 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -1244,6 +1255,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C695E3D15F095FF0092DD51 /* StoreKit.framework in Frameworks */,
 				0C62B1B815C8DDE800318B66 /* Security.framework in Frameworks */,
 				0C62B1B615C8DD9300318B66 /* libz.dylib in Frameworks */,
 				0C62B1B415C8DA7E00318B66 /* Twitter.framework in Frameworks */,
@@ -1554,6 +1566,7 @@
 		0C7AA5E315946938000B58F2 = {
 			isa = PBXGroup;
 			children = (
+				0C695E3C15F095FF0092DD51 /* StoreKit.framework */,
 				0C7AA60215946939000B58F2 /* Planet Orbiting iOS Game */,
 				C45A45A815D9E1C300E343A3 /* Cocos2D 2.0 */,
 				0C7AA5F115946939000B58F2 /* Frameworks */,
@@ -1564,7 +1577,7 @@
 		0C7AA5EF15946939000B58F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0C7AA5EE15946939000B58F2 /* Star Dash.app */,
+				0C7AA5EE15946939000B58F2 /* Star Stream.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1626,6 +1639,12 @@
 				FA20FD4115ECB9A4008F2F17 /* MissionsCompleteLayer.m */,
 				01FE9B3A15BFC2C9007512ED /* PlayerStats.h */,
 				01FE9B3B15BFC2C9007512ED /* PlayerStats.m */,
+				0C695E3E15F098A80092DD51 /* StarStreamIAPHelper.h */,
+				0C695E3F15F098A80092DD51 /* StarStreamIAPHelper.m */,
+				0C695E3915F08FFD0092DD51 /* IAPHelper.h */,
+				0C695E3A15F08FFD0092DD51 /* IAPHelper.m */,
+				0C695E3615F08FF20092DD51 /* Reachability.h */,
+				0C695E3715F08FF20092DD51 /* Reachability.m */,
 				0C2C49B715EF6675005B1214 /* iRate */,
 				C445304D15A68888004F8F48 /* CocosBuilder  */,
 				C43F5E7115C70356003BDF73 /* Achievements and Online Highscores */,
@@ -2382,7 +2401,7 @@
 			);
 			name = "Planet Orbiting iOS Game";
 			productName = "Planet Orbiting iOS Game";
-			productReference = 0C7AA5EE15946939000B58F2 /* Star Dash.app */;
+			productReference = 0C7AA5EE15946939000B58F2 /* Star Stream.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2929,6 +2948,9 @@
 				FA5492E415EC24E100285707 /* StoreLayer.m in Sources */,
 				FA20FD4215ECB9A4008F2F17 /* MissionsCompleteLayer.m in Sources */,
 				0C2C49B515EF666F005B1214 /* iRate.m in Sources */,
+				0C695E3815F08FF20092DD51 /* Reachability.m in Sources */,
+				0C695E3B15F08FFE0092DD51 /* IAPHelper.m in Sources */,
+				0C695E4015F098A80092DD51 /* StarStreamIAPHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2950,7 +2972,7 @@
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2961,12 +2983,15 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
+				GCC_UNROLL_LOOPS = YES;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				LLVM_LTO = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 			};
@@ -2991,7 +3016,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_FAST_MATH = YES;
+				GCC_FAST_MATH = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Planet Orbiting iOS Game/Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
@@ -3015,7 +3040,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "Star Dash";
+				PRODUCT_NAME = "Star Stream";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3041,7 +3066,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				GCC_FAST_MATH = YES;
+				GCC_DYNAMIC_NO_PIC = YES;
+				GCC_FAST_MATH = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Planet Orbiting iOS Game/Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
@@ -3057,6 +3083,7 @@
 					"\"$(SRCROOT)/Planet Orbiting iOS Game/FlurryAnalytics\"",
 					"\"$(SRCROOT)/Planet Orbiting iOS Game/Flurry\"",
 				);
+				LLVM_LTO = YES;
 				"OTHER_CFLAGS[arch=armv6]" = (
 					"-DNS_BLOCK_ASSERTIONS=1",
 					"-mno-thumb",
@@ -3068,10 +3095,10 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "Star Dash";
+				PRODUCT_NAME = "Star Stream";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				STRIP_INSTALLED_PRODUCT = NO;
+				STRIP_INSTALLED_PRODUCT = YES;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
