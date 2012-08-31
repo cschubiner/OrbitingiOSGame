@@ -124,6 +124,7 @@
     CCParticleSystemQuad * cometParticle;
     CCParticleSystemQuad * playerExplosionParticle;
     CCParticleSystemQuad * feverModeInitialExplosionParticle;
+    CCParticleSystemQuad * feverModeLabelParticle;
     CGPoint cometVelocity;
     float lastTakeoffAngleToNextPlanet;
     

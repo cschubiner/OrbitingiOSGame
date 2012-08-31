@@ -512,6 +512,8 @@
 		FAB3892215E2132D002CBC09 /* missioncomplete.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB3892015E2132D002CBC09 /* missioncomplete.png */; };
 		FABB361D15CF1E10004F5396 /* upgradecoin.png in Resources */ = {isa = PBXBuildFile; fileRef = FABB361C15CF1E10004F5396 /* upgradecoin.png */; };
 		FAC7E08915E5FC3900465756 /* UpgradesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC7E08815E5FC3900465756 /* UpgradesLayer.m */; };
+		FAC8A15D15F04C0E00F7B6B2 /* endFeverMode.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FAC8A15B15F04C0E00F7B6B2 /* endFeverMode.mp3 */; };
+		FAC8A15E15F04C0E00F7B6B2 /* startFeverMode.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FAC8A15C15F04C0E00F7B6B2 /* startFeverMode.mp3 */; };
 		FACE0CED15CB963B0055B5DF /* Powerup.m in Sources */ = {isa = PBXBuildFile; fileRef = FACE0CEC15CB963B0055B5DF /* Powerup.m */; };
 		FACF04B415E7729400A65E8B /* banner-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FACF04B215E7729400A65E8B /* banner-hd.png */; };
 		FACF04B515E7729400A65E8B /* banner.png in Resources */ = {isa = PBXBuildFile; fileRef = FACF04B315E7729400A65E8B /* banner.png */; };
@@ -1212,6 +1214,8 @@
 		FABB361C15CF1E10004F5396 /* upgradecoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgradecoin.png; sourceTree = "<group>"; };
 		FAC7E08715E5FC3900465756 /* UpgradesLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradesLayer.h; sourceTree = "<group>"; };
 		FAC7E08815E5FC3900465756 /* UpgradesLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradesLayer.m; sourceTree = "<group>"; };
+		FAC8A15B15F04C0E00F7B6B2 /* endFeverMode.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = endFeverMode.mp3; sourceTree = "<group>"; };
+		FAC8A15C15F04C0E00F7B6B2 /* startFeverMode.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = startFeverMode.mp3; sourceTree = "<group>"; };
 		FACE0CEB15CB963B0055B5DF /* Powerup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Powerup.h; sourceTree = "<group>"; };
 		FACE0CEC15CB963B0055B5DF /* Powerup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Powerup.m; sourceTree = "<group>"; };
 		FACF04B215E7729400A65E8B /* banner-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner-hd.png"; sourceTree = "<group>"; };
@@ -1699,6 +1703,8 @@
 		0CFB823A15AE733B00EADAF3 /* Effects */ = {
 			isa = PBXGroup;
 			children = (
+				FAC8A15B15F04C0E00F7B6B2 /* endFeverMode.mp3 */,
+				FAC8A15C15F04C0E00F7B6B2 /* startFeverMode.mp3 */,
 				FA5492D815EB74EE00285707 /* popupSwoosh.mp3 */,
 				FA00EC5915EA3AD300C745BC /* click.mp3 */,
 				FA00EC3715E8C6CE00C745BC /* doorClose1.mp3 */,
@@ -2775,6 +2781,8 @@
 				FADEAE6C15EF44A20085FB5D /* playermagnet.png in Resources */,
 				0C2C49B415EF666F005B1214 /* iRate.bundle in Resources */,
 				C424BE4C15F006D600F6E5BA /* feverModeInitialExplosion.plist in Resources */,
+				FAC8A15D15F04C0E00F7B6B2 /* endFeverMode.mp3 in Resources */,
+				FAC8A15E15F04C0E00F7B6B2 /* startFeverMode.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -46,6 +46,7 @@ const int maxNameLength = 8;
     BOOL scoreAlreadySaved;
     bool wasGoingClockwise;
     
+    bool isInFeverMode;
     int feverModePlanetHitsInARow;
     float timeInOrbit;
     CCLabelTTF* feverLabel;
@@ -460,6 +461,14 @@ typedef struct {
     [cameraLayer addChild:feverModeInitialExplosionParticle z:28];
     [feverModeInitialExplosionParticle setScale:1];
     
+    feverModeLabelParticle = [CCParticleSystemQuad particleWithFile:@"feverModeInitialExplosion.plist"];
+    [feverModeLabelParticle stopSystem];
+    [feverModeLabelParticle setPositionType:kCCPositionTypeRelative];
+    [hudLayer addChild:feverModeLabelParticle z:28];
+    [feverModeLabelParticle setScale:.9];
+    [feverModeLabelParticle setAngle:-45];
+    
+    
     starStashParticle = [CCParticleSystemQuad particleWithFile:@"starStashParticle.plist"];
     [starStashParticle stopSystem];
     
@@ -635,6 +644,7 @@ typedef struct {
     feverLabel = [CCLabelTTF labelWithString:@" " fontName:@"HelveticaNeue-CondensedBold" fontSize:30];
     [feverLabel setPosition:ccp(240, feverLabel.boundingBox.size.height*.6)];
     [hudLayer addChild:feverLabel];
+    isInFeverMode = false;
     
     asteroidsCrashedInto = 0;
     asteroidsDestroyedWithArmor = 0;
@@ -1280,9 +1290,17 @@ typedef struct {
 }
 
 - (void)endFeverMode {
-    [thrustParticle setEmissionRate:20];
-    feverModePlanetHitsInARow = 0;
-    [feverLabel setString:[NSString stringWithFormat:@""]];
+    if (isInFeverMode) {
+        isInFeverMode = false;
+        
+        timeDilationCoefficient /= timeDilationFeverModeMultiplier;
+        timeDilationCoefficient = clampf(timeDilationCoefficient, [[UpgradeValues sharedInstance] absoluteMinTimeDilation], absoluteMaxTimeDilation);
+        
+        [self playSound:@"endFeverMode.mp3" shouldLoop:false pitch:1];
+        [thrustParticle setEmissionRate:20];
+        feverModePlanetHitsInARow = 0;
+        [feverLabel setString:[NSString stringWithFormat:@""]];
+    }
 }
 
 // FIX you don't really need planetIndex passed in because it's just going to spawn at the position of the last thrust point anyway
@@ -1617,12 +1635,30 @@ typedef struct {
 }
 
 - (void)UpdateFeverMode {
+    isInFeverMode = true;
     [thrustParticle setEmissionRate:400];
     [feverLabel setString:[NSString stringWithFormat:@"%d Combo!", feverModePlanetHitsInARow]];
+    
+    [feverLabel runAction:[CCSequence actions:
+                                                             [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.1 scale:1.2]],
+                                                             [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.2 scale:1]],
+                                                             nil]
+                           ];
+    
+    
+    
+    
+    timeDilationCoefficient *= timeDilationFeverModeMultiplier;
+    timeDilationCoefficient = clampf(timeDilationCoefficient, [[UpgradeValues sharedInstance] absoluteMinTimeDilation], absoluteMaxTimeDilation);
+    
     if (feverModePlanetHitsInARow == minPlanetsInARowForFeverMode) {
+        [self playSound:@"startFeverMode.mp3" shouldLoop:false pitch:1];
         [feverModeInitialExplosionParticle resetSystem];
         [feverModeInitialExplosionParticle setPosition:player.sprite.position];
         [feverModeInitialExplosionParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
+    } else {
+        [feverModeLabelParticle resetSystem];
+        [feverModeLabelParticle setPosition:feverLabel.position];
     }
 }
 
