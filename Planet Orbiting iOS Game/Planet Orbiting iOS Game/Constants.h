@@ -156,4 +156,4 @@ const float coinAnimationDelay = .02;
 
 const int minPlanetsInARowForFeverMode = 5;
 
-const float maxTimeInOrbitThatCountsAsGoodSwipe = .6;
+const float maxTimeInOrbitThatCountsAsGoodSwipe = .7;

@@ -1293,8 +1293,11 @@ typedef struct {
     if (isInFeverMode) {
         isInFeverMode = false;
         
-        timeDilationCoefficient /= timeDilationFeverModeMultiplier;
-        timeDilationCoefficient = clampf(timeDilationCoefficient, [[UpgradeValues sharedInstance] absoluteMinTimeDilation], absoluteMaxTimeDilation);
+        
+        if (player.currentPowerup.type != kheadStart) {
+            timeDilationCoefficient /= timeDilationFeverModeMultiplier;
+            timeDilationCoefficient = clampf(timeDilationCoefficient, [[UpgradeValues sharedInstance] absoluteMinTimeDilation], absoluteMaxTimeDilation);
+        }
         
         [self playSound:@"endFeverMode.mp3" shouldLoop:false pitch:1];
         [thrustParticle setEmissionRate:20];
@@ -1648,8 +1651,10 @@ typedef struct {
     
     
     
-    timeDilationCoefficient *= timeDilationFeverModeMultiplier;
-    timeDilationCoefficient = clampf(timeDilationCoefficient, [[UpgradeValues sharedInstance] absoluteMinTimeDilation], absoluteMaxTimeDilation);
+    if (player.currentPowerup.type != kheadStart) {
+        timeDilationCoefficient *= timeDilationFeverModeMultiplier;
+        timeDilationCoefficient = clampf(timeDilationCoefficient, [[UpgradeValues sharedInstance] absoluteMinTimeDilation], absoluteMaxTimeDilation);
+    }
     
     if (feverModePlanetHitsInARow == minPlanetsInARowForFeverMode) {
         [self playSound:@"startFeverMode.mp3" shouldLoop:false pitch:1];
