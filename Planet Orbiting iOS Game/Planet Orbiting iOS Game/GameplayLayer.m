@@ -1331,11 +1331,12 @@ typedef struct {
         
         
         [feverLabel runAction:[CCSequence actions:
-                               //[CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.1 scale:1.2]],
-                               [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.2 scale:.5]],
-                               [CCDelayTime actionWithDuration:2],
+                               [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.1 scale:1.2]],
+                               [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.2 scale:.6]],
+                               [CCFadeTo actionWithDuration:2 opacity:0],
                                [CCCallBlock actionWithBlock:(^{
             [feverLabel setString:[NSString stringWithFormat:@""]];
+            [feverLabel setOpacity:255];
         })],
                                
                                nil]
