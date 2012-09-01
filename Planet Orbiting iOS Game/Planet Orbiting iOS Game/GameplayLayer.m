@@ -824,6 +824,9 @@ typedef struct {
         else if (player.currentPowerup.type == kautopilot)
             player.velocity = ccpMult(player.velocity, 1.1);
         
+        NSLog(@"mag: %f", ccpLength(ccpMult(player.velocity, 60*dt*timeDilationCoefficient)));
+        NSLog(@"coeff: %f", timeDilationCoefficient);
+        
         player.sprite.position = ccpAdd(ccpMult(player.velocity, 60*dt*timeDilationCoefficient), player.sprite.position);
         [streak setPosition:player.sprite.position];
     }
@@ -1312,8 +1315,7 @@ typedef struct {
         
         
         if (player.currentPowerup.type != kheadStart) {
-            timeDilationCoefficient = timeDilationUponFeverEnter;
-            timeDilationCoefficient = clampf(timeDilationCoefficient, [[UpgradeValues sharedInstance] absoluteMinTimeDilation], absoluteMaxTimeDilation);
+            timeDilationCoefficient = clampf(timeDilationUponFeverEnter, [[UpgradeValues sharedInstance] absoluteMinTimeDilation], absoluteMaxTimeDilation);
         }
         
         [self playSound:@"endFeverMode.mp3" shouldLoop:false pitch:1];
