@@ -277,7 +277,7 @@
     [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.5 starReward:1700
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Reach the fifth galaxy" isCompleted:[[bools objectAtIndex:0] boolValue]]
                                                           item1:[[ObjectiveItem alloc] initWithText:@"Collect 300 stars in one game" isCompleted:[[bools objectAtIndex:1] boolValue]]
-                                                          item2:[[ObjectiveItem alloc] initWithText:@"Pick up an autopilot powerup" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
+                                                          item2:[[ObjectiveItem alloc] initWithText:@"Pick up an autopilot powerup (also available in the shop)" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     bools = [boolGroupsToUse objectAtIndex:10];
     [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.55 starReward:1900

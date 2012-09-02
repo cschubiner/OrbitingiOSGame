@@ -124,6 +124,7 @@
         starSprite0.position = ccpAdd(footer.position, ccp(footer.boundingBox.size.width/2 + 12, 2));
         
         
+        
         [missionCompletionScreen addChild:mPopup];
         mPopup.position = ccp(-480, -19);
         
