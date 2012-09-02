@@ -55,6 +55,7 @@
     float powerupVel;
     int numCoinsDisplayed;
     
+    NSMutableArray* predPoints;
     
     CCLabelBMFont * zeroCoinsLabel;
     float powerupCounter;

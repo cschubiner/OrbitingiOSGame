@@ -353,7 +353,7 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] equipped]];
     
-    [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.9 + .05*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] equipped]];
+    [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.85 + .08*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] equipped]];
     
     [[UpgradeValues sharedInstance] setHasDoubleCoins:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped]];
     
@@ -1267,7 +1267,7 @@ typedef struct {
                 float scaler = multiplyGravityThisManyTimesOnPerfectSwipe - swipeAccuracy * multiplyGravityThisManyTimesOnPerfectSwipe / 180;
                 scaler = clampf(scaler, 0, 99999999);
                 
-                player.acceleration = ccpMult(accelToAdd, [[UpgradeValues sharedInstance] absoluteMinTimeDilation]*1.11*gravIncreaser*freeGravityStrength*scaler*60*dt);
+                player.acceleration = ccpMult(accelToAdd, [[UpgradeValues sharedInstance] absoluteMinTimeDilation]*1.11*timeDilationCoefficient*gravIncreaser*freeGravityStrength*scaler*60*dt);
                 if (player.currentPowerup.type == kheadStart)
                     player.acceleration = ccpMult(player.acceleration, 9);
                 else if (player.currentPowerup.type == kautopilot)
@@ -1275,8 +1275,8 @@ typedef struct {
                 
                 if (initialAccelMag == 0)
                     initialAccelMag = ccpLength(player.acceleration);
-                else
-                    player.acceleration = ccpMult(ccpNormalize(player.acceleration), initialAccelMag);
+                
+                player.acceleration = ccpMult(ccpNormalize(player.acceleration), initialAccelMag);
             }
             
             if (ccpLength(ccpSub(player.sprite.position, targetPlanet.sprite.position)) <= targetPlanet.orbitRadius) {
@@ -2475,6 +2475,34 @@ typedef struct {
             [thrustBurstParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
             [thrustBurstParticle resetSystem];
         }
+    
+    
+    CGPoint fromPos = player.sprite.position;
+    CGPoint toPos = targetPlanet.sprite.position;
+    
+    CGPoint dir = ccpNormalize(ccpSub(toPos, fromPos));
+    
+    predPoints = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < 5; i++) {
+        
+        CCSprite* p1 = [CCSprite spriteWithFile:@"point.png"];
+        p1.position = fromPos;
+        p1.rotation = CC_RADIANS_TO_DEGREES(ccpToAngle(dir) + M_PI_2);
+        
+        
+        p1.position = ccpAdd(p1.position, ccpMult(dir, i*1.5*p1.width));
+        [predPoints addObject:p1];
+    }
+    
+    
+    CCLayer* predPointLayer = [[CCLayer alloc] init];
+    for (CCSprite* s in predPoints)
+        [predPointLayer addChild:s];
+    //[cameraLayer addChild:predPointLayer];
+    
+    
+    
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
