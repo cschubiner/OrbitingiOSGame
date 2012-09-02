@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 #import "iRate.h"
+#import "Flurry/Flurry.h"
 
 @interface AppDelegate : NSObject <UIApplicationDelegate, CCDirectorDelegate,iRateDelegate>
 {

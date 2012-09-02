@@ -10,7 +10,6 @@
 #import "cocos2d.h"
 #import "CCBReader.h"
 #import "TestFlight.h"
-#import "Flurry.h"
 #import "AppDelegate.h"
 #import "ObjectiveManager.h"
 #import "UpgradesLayer.h"

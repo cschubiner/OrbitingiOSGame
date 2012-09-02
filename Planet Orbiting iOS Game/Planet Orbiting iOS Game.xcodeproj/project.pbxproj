@@ -3029,7 +3029,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Planet Orbiting iOS Game\"",
-					"\"$(SRCROOT)/Planet Orbiting iOS Game/FlurryAnalytics\"",
 					"\"$(SRCROOT)/Planet Orbiting iOS Game/Flurry\"",
 				);
 				"OTHER_CFLAGS[arch=armv6]" = "-mno-thumb";
@@ -3080,7 +3079,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Planet Orbiting iOS Game\"",
-					"\"$(SRCROOT)/Planet Orbiting iOS Game/FlurryAnalytics\"",
 					"\"$(SRCROOT)/Planet Orbiting iOS Game/Flurry\"",
 				);
 				LLVM_LTO = YES;

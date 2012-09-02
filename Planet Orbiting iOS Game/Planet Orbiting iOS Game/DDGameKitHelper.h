@@ -6,7 +6,6 @@
 
 #import <GameKit/GameKit.h>
 #import "AppDelegate.h"
-#import "Flurry/Flurry.h"
 
 @protocol DDGameKitHelperProtocol
 -(bool) compare:(int64_t)score1 to:(int64_t)score2;

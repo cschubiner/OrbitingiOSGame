@@ -13,7 +13,6 @@
 #import "SimpleAudioEngine.h"
 #import "MainMenuLayer.h"
 #import "CCBReader.h"
-#import "Flurry.h"
 #import "UserWallet.h"
 #import "PowerupManager.h"
 #import "LevelObjectReturner.h"

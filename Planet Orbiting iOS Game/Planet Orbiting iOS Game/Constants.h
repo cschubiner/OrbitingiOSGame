@@ -20,7 +20,7 @@ const float cameraZoomSpeed = .025;
 //changes how quickly the camera changes position
 const float cameraMovementSpeed = .06;
 //how much more times the camera focuses on the first focus node compared to the second focus node
-const float cameraScaleFocusedOnFocusPosOne = 1.4f;
+const float cameraScaleFocusedOnFocusPosOne = 1.25f;
 
 const float streakWidthOnRetinaDisplay = 31;
 const float streakWidthWITHOUTRetinaDisplay = streakWidthOnRetinaDisplay/2;
