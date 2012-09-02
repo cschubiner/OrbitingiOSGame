@@ -512,6 +512,8 @@
 		FA7E640C15D271DE0090C913 /* upgradesHeader-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7E640B15D271DE0090C913 /* upgradesHeader-hd.png */; };
 		FA8242DE15F36C8C009725BD /* justthetip.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8242DD15F36C8C009725BD /* justthetip.png */; };
 		FA8242E015F36C96009725BD /* point.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8242DF15F36C96009725BD /* point.png */; };
+		FA8242E715F38A34009725BD /* justthetip-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8242E515F38A34009725BD /* justthetip-hd.png */; };
+		FA8242E815F38A34009725BD /* point-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8242E615F38A34009725BD /* point-hd.png */; };
 		FA895CDB15C525B400FA4EC3 /* Light.m in Sources */ = {isa = PBXBuildFile; fileRef = FA895CDA15C525B400FA4EC3 /* Light.m */; };
 		FAA406B215DE008500E47C19 /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA406B115DE008500E47C19 /* Toast.m */; };
 		FAB3892115E2132D002CBC09 /* missioncomplete-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB3891F15E2132D002CBC09 /* missioncomplete-hd.png */; };
@@ -1220,6 +1222,8 @@
 		FA7E640B15D271DE0090C913 /* upgradesHeader-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upgradesHeader-hd.png"; sourceTree = "<group>"; };
 		FA8242DD15F36C8C009725BD /* justthetip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = justthetip.png; sourceTree = "<group>"; };
 		FA8242DF15F36C96009725BD /* point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point.png; sourceTree = "<group>"; };
+		FA8242E515F38A34009725BD /* justthetip-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "justthetip-hd.png"; sourceTree = "<group>"; };
+		FA8242E615F38A34009725BD /* point-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point-hd.png"; sourceTree = "<group>"; };
 		FA895CD915C525B400FA4EC3 /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Light.h; sourceTree = "<group>"; };
 		FA895CDA15C525B400FA4EC3 /* Light.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Light.m; sourceTree = "<group>"; };
 		FAA406B015DE008500E47C19 /* Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Toast.h; path = ../Toast.h; sourceTree = "<group>"; };
@@ -2334,8 +2338,10 @@
 		FA8242DB15F36C78009725BD /* PredPoint Sorta */ = {
 			isa = PBXGroup;
 			children = (
-				FA8242DF15F36C96009725BD /* point.png */,
+				FA8242E515F38A34009725BD /* justthetip-hd.png */,
 				FA8242DD15F36C8C009725BD /* justthetip.png */,
+				FA8242E615F38A34009725BD /* point-hd.png */,
+				FA8242DF15F36C96009725BD /* point.png */,
 			);
 			name = "PredPoint Sorta";
 			sourceTree = "<group>";
@@ -2818,6 +2824,8 @@
 				FAC8A15E15F04C0E00F7B6B2 /* startFeverMode.mp3 in Resources */,
 				FA8242DE15F36C8C009725BD /* justthetip.png in Resources */,
 				FA8242E015F36C96009725BD /* point.png in Resources */,
+				FA8242E715F38A34009725BD /* justthetip-hd.png in Resources */,
+				FA8242E815F38A34009725BD /* point-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

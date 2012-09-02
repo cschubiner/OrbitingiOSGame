@@ -1001,7 +1001,7 @@ typedef struct {
         if (coin.isAlive)
             coin.sprite.position = ccpAdd(coin.sprite.position, coin.velocity);
         
-        if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/1.5 && coin.isAlive) {
+        if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/1.9 && coin.isAlive) {
             [self UserTouchedCoin:coin dt:dt];
         }
     }
@@ -1195,6 +1195,8 @@ typedef struct {
                     float howMuchOfSwipeVectorToUse = .35;
                     CGPoint vectorToCheck = ccpAdd(ccpMult(ccpNormalize(swipeVector), howMuchOfSwipeVectorToUse), ccpMult(ccpNormalize(player.velocity), 1-howMuchOfSwipeVectorToUse));
                     
+                    CGPoint targetForPred;
+                    
                     float newAng = 0;
                     //CGPoint vel = CGPointZero;
                     if (ccpLength(ccpSub(ccpAdd(player.sprite.position, vectorToCheck), left)) <= ccpLength(ccpSub(ccpAdd(player.sprite.position, vectorToCheck), right))) { //closer to the left
@@ -1202,6 +1204,7 @@ typedef struct {
                         if (ccpLength(ccpSub(player.sprite.position, spot1)) < ccpLength(ccpSub(player.sprite.position, spot2)))
                             distToUse2 = factorToPlaceGravFieldWhenStayingOutside; //staying outside
                         spotGoingTo = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius*distToUse2), targetPlanet.sprite.position);
+                        targetForPred = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius), targetPlanet.sprite.position);
                         newAng = ccpToAngle(ccpSub(left, player.sprite.position));
                         //vel = ccpSub(left, player.sprite.position);
                     }
@@ -1210,9 +1213,17 @@ typedef struct {
                         if (ccpLength(ccpSub(player.sprite.position, spot1)) > ccpLength(ccpSub(player.sprite.position, spot2)))
                             distToUse2 = factorToPlaceGravFieldWhenStayingOutside; //staying outside
                         spotGoingTo = ccpAdd(ccpMult(dir3, targetPlanet.orbitRadius*distToUse2), targetPlanet.sprite.position);
+                        targetForPred = ccpAdd(ccpMult(dir3, targetPlanet.orbitRadius), targetPlanet.sprite.position);
                         newAng = ccpToAngle(ccpSub(right, player.sprite.position));
                         //vel = ccpSub(right, player.sprite.position);
                     }
+                    
+                    //if (isLeavingLastPlanetInGalaxy)
+                        [self removeOldPredLine];
+                    //else
+                        [self createPredPointsFrom:player.sprite.position to:targetForPred withColor:ccBLUE andRemoveOldLine:true];
+                    
+                    
                     
                     float curAng = ccpToAngle(player.velocity);
                     swipeAccuracy = fabsf(CC_RADIANS_TO_DEGREES(curAng) - CC_RADIANS_TO_DEGREES(newAng));;
@@ -2475,33 +2486,64 @@ typedef struct {
             [thrustBurstParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
             [thrustBurstParticle resetSystem];
         }
-    
-    
-    CGPoint fromPos = player.sprite.position;
-    CGPoint toPos = targetPlanet.sprite.position;
-    
-    CGPoint dir = ccpNormalize(ccpSub(toPos, fromPos));
+
+}
+
+-(void)removeOldPredLine {
+    if (predPointLayer)
+        [predPointLayer removeAllChildrenWithCleanup:true];
+}
+
+- (void)createPredPointsFrom:(CGPoint)fromPos to:(CGPoint)toPos withColor:(ccColor3B)col andRemoveOldLine:(bool)shouldRemove {
+    if (!predPointLayer)
+        predPointLayer = [[CCLayer alloc] init];
+    else if (shouldRemove)
+        [self removeOldPredLine];
+    if (!predPointLayer.parent)
+        [cameraLayer addChild:predPointLayer];
     
     predPoints = [[NSMutableArray alloc] init];
+    float currentDist = INT_MAX;
     
-    for (int i = 0; i < 5; i++) {
-        
+    CCSprite* point = [CCSprite spriteWithFile:@"point.png"];
+    CGPoint dir = ccpNormalize(ccpSub(toPos, fromPos));
+    
+    int i = 0;
+    while (currentDist > point.width*3)
+    {
         CCSprite* p1 = [CCSprite spriteWithFile:@"point.png"];
-        p1.position = fromPos;
-        p1.rotation = CC_RADIANS_TO_DEGREES(ccpToAngle(dir) + M_PI_2);
+        p1.color = col;
         
+        p1.position = ccpAdd(fromPos, ccpMult(dir, i*1.5*p1.width + p1.width/2));
+        p1.rotation = -1*CC_RADIANS_TO_DEGREES(ccpToAngle(dir));
         
-        p1.position = ccpAdd(p1.position, ccpMult(dir, i*1.5*p1.width));
+        currentDist = ccpDistance(toPos, p1.position);
+        
         [predPoints addObject:p1];
+        
+        i++;
     }
     
+    CCSprite* tip = [CCSprite spriteWithFile:@"justthetip.png"];
+    tip.scale = .5;
+    tip.color = col;
     
-    CCLayer* predPointLayer = [[CCLayer alloc] init];
+    tip.position = ccpAdd(fromPos, ccpMult(dir, i*1.5*point.width + point.width/2));
+    tip.rotation = -1*CC_RADIANS_TO_DEGREES(ccpToAngle(dir));
+
+    [predPoints addObject:tip];
+    
     for (CCSprite* s in predPoints)
         [predPointLayer addChild:s];
-    //[cameraLayer addChild:predPointLayer];
+    point = nil;
     
-    
+    for (CCSprite* s in predPoints)
+        [s runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
+                                                        [CCScaleTo actionWithDuration:.05 scale:s.scale*1.3],
+                                                        [CCScaleTo actionWithDuration:.1 scale:s.scale],
+                                                        [CCFadeOut actionWithDuration:1.5],
+                                                        [CCCallBlock actionWithBlock:(^{ [s removeFromParentAndCleanup:true]; })],
+                                                        nil]]];
     
 }
 
