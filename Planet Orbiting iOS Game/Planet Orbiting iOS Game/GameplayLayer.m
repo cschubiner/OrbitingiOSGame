@@ -598,7 +598,7 @@ typedef struct {
      // ccc4(0,255,0,255) // green
      target:player.sprite];*/
     
-    streak = [CCMotionStreak streakWithFade:2 minSeg:3 width:streakWidth color:ccc3(255, 255, 255/*255, 153*/) textureFilename:@"streak2.png"];
+    streak = [CCMotionStreak streakWithFade:2 minSeg:3 width:streakWidth color:ccWHITE textureFilename:@"streak2.png"];
     
     
     if ([[UpgradeValues sharedInstance] hasGreenTrail]) {
@@ -2176,6 +2176,69 @@ typedef struct {
         [self completeObjectiveFromGroupNumber:5 itemNumber:1];
     
     
+    
+    if ([[UpgradeValues sharedInstance] hasGreenTrail] ||
+        [[UpgradeValues sharedInstance] hasBlueTrail] ||
+        [[UpgradeValues sharedInstance] hasGoldTrail] ||
+        [[UpgradeValues sharedInstance] hasOrangeTrail] ||
+        [[UpgradeValues sharedInstance] hasRedTrail] ||
+        [[UpgradeValues sharedInstance] hasPurpleTrail] ||
+        [[UpgradeValues sharedInstance] hasPinkTrail] ||
+        [[UpgradeValues sharedInstance] hasBlackTrail] ||
+        [[UpgradeValues sharedInstance] hasBrownTrail]) {
+        [self completeObjectiveFromGroupNumber:6 itemNumber:0];
+    }
+    
+    if (score >= 40000)
+        [self completeObjectiveFromGroupNumber:6 itemNumber:1];
+    
+    if (numTimesSwiped >= 50)
+        [self completeObjectiveFromGroupNumber:6 itemNumber:2];
+    
+    
+    
+    if (numCoinsDisplayed >= 200)
+        [self completeObjectiveFromGroupNumber:7 itemNumber:0];
+    
+    if (asteroidsDestroyedWithArmor >= 15)
+        [self completeObjectiveFromGroupNumber:7 itemNumber:2];
+    
+    
+    
+    if ([[UpgradeValues sharedInstance] hasGreenShip] ||
+        [[UpgradeValues sharedInstance] hasBlueShip] ||
+        [[UpgradeValues sharedInstance] hasGoldShip] ||
+        [[UpgradeValues sharedInstance] hasOrangeShip] ||
+        [[UpgradeValues sharedInstance] hasRedShip] ||
+        [[UpgradeValues sharedInstance] hasPurpleShip] ||
+        [[UpgradeValues sharedInstance] hasPinkShip]) {
+        [self completeObjectiveFromGroupNumber:8 itemNumber:0];
+    }
+    
+    if (score >= 55000)
+        [self completeObjectiveFromGroupNumber:8 itemNumber:1];
+    
+    
+    
+    if (numCoinsDisplayed >= 300)
+        [self completeObjectiveFromGroupNumber:9 itemNumber:1];
+    
+    if (player.currentPowerup.type == kautopilot)
+        [self completeObjectiveFromGroupNumber:9 itemNumber:2];
+    
+    
+    
+    if (asteroidsCrashedInto >= 15)
+        [self completeObjectiveFromGroupNumber:10 itemNumber:1];
+    
+    if (score >= 70000)
+        [self completeObjectiveFromGroupNumber:10 itemNumber:2];
+    
+    
+    
+    if (numCoinsDisplayed >= 400)
+        [self completeObjectiveFromGroupNumber:11 itemNumber:1];
+    
 }
 
 - (void) CheckMissionsGalaxyChange {
@@ -2191,7 +2254,6 @@ typedef struct {
     
     
     
-    
     if (currentGalaxy.number == 2 & numTimesDied == 0)
         [self completeObjectiveFromGroupNumber:4 itemNumber:0];
     
@@ -2200,6 +2262,21 @@ typedef struct {
     
     if (currentGalaxy.number == 2 && asteroidsCrashedInto == 0)
         [self completeObjectiveFromGroupNumber:5 itemNumber:0];
+    
+    
+    
+    if (currentGalaxy.number == 4)
+        [self completeObjectiveFromGroupNumber:9 itemNumber:0];
+    
+    
+    
+    if (currentGalaxy.number == 3 & numTimesDied == 0)
+        [self completeObjectiveFromGroupNumber:10 itemNumber:0];
+    
+    
+    
+    if (currentGalaxy.number == 5)
+        [self completeObjectiveFromGroupNumber:11 itemNumber:0];
     
 }
 
@@ -2212,6 +2289,21 @@ typedef struct {
     
     if (numCoinsDisplayed >= 150 && numCoinsDisplayed <= 160)
         [self completeObjectiveFromGroupNumber:5 itemNumber:2];
+    
+    
+    
+    if (score >= 41000 && score <= 43000)
+        [self completeObjectiveFromGroupNumber:7 itemNumber:1];
+    
+    
+    
+    if (numCoinsDisplayed >= 220 && numCoinsDisplayed <= 230)
+        [self completeObjectiveFromGroupNumber:8 itemNumber:2];
+    
+    
+    
+    if (numCoinsDisplayed >= 300 && numCoinsDisplayed <= 310)
+        [self completeObjectiveFromGroupNumber:11 itemNumber:2];
     
 }
 

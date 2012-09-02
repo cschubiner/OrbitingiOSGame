@@ -161,13 +161,13 @@
         [starSprite setPosition:ccp(480 - 22, 301)];
         
         totalStars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
-        //[self addChild: totalStars];
+        [self addChild: totalStars];
         [totalStars setAnchorPoint:ccp(1, .5)];
         [totalStars setPosition:ccp(480 - 40, 299)];
         
         
         CCSprite* totalStarsSprite = [self.class labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"HelveticaNeue-CondensedBold" fontSize:22 color:ccWHITE strokeSize:1.1 stokeColor: ccBLACK];
-        [self addChild:totalStarsSprite];
+        //[self addChild:totalStarsSprite];
         [totalStarsSprite setAnchorPoint:ccp(1, .5)];
         [totalStarsSprite setPosition:ccp(480 - 40, 299)];
         
