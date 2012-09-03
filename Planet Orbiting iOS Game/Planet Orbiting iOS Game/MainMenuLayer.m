@@ -197,11 +197,30 @@ const float effectsVolumeMainMenu = 1;
         float startAnimationTime = 1.8;
         missionPopupIsUp = false;
         
-        startAnimation = false;
-        [self disableButtons];
-        [playerAndParticleNode runAction:[CCSequence actions:
-                                          [CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(200, 480)]],
-                                          [CCCallBlock actionWithBlock:(^{
+        
+        if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getShouldPlayMenuMusic]) {
+            startAnimation = false;
+            [self disableButtons];
+            [playerAndParticleNode runAction:[CCSequence actions:
+                                              [CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(200, 480)]],
+                                              [CCCallBlock actionWithBlock:(^{
+                position = ccp(200, 480);
+                velocity = CGPointZero;
+                startAnimation = true;
+                [self enableButtons];
+                [beginLabel setVisible:true];
+                [beginLabel setOpacity:0];
+                [beginLabel runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
+                                                                         [CCFadeTo actionWithDuration:.45 opacity:255],
+                                                                         [CCDelayTime actionWithDuration:.3],
+                                                                         [CCFadeTo actionWithDuration:.3 opacity:0],
+                                                                         nil]]];
+            })],
+                                              nil]];
+            
+            [topBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(0, 0)]]];
+            [bottomBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(0, 320)]]];
+        } else {
             position = ccp(200, 480);
             velocity = CGPointZero;
             startAnimation = true;
@@ -213,11 +232,10 @@ const float effectsVolumeMainMenu = 1;
                                                                      [CCDelayTime actionWithDuration:.3],
                                                                      [CCFadeTo actionWithDuration:.3 opacity:0],
                                                                      nil]]];
-        })],
-                                          nil]];
-        
-        [topBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(0, 0)]]];
-        [bottomBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(0, 320)]]];
+            
+            [topBarNode setPosition:ccp(0, 0)];
+            [bottomBarNode setPosition:ccp(0, 320)];
+        }
         
         [self schedule:@selector(Update:) interval:0];
         
