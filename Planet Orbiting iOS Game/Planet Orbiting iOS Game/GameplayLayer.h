@@ -32,6 +32,8 @@
     CCAnimation * coinAnimation;
     CCLabelBMFont *scoreLabel;
     CCLabelBMFont *coinsLabel;
+    
+    bool allowVideoToConvert;
     CGSize size;
     CCLayer *hudLayer;
     CCLayer* layerHudSlider;

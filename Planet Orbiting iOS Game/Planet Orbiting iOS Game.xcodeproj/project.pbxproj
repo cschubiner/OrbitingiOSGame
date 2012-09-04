@@ -1525,6 +1525,20 @@
 			path = KCVideoTracker.momd;
 			sourceTree = "<group>";
 		};
+		0C3E902B15F599E0007205B1 /* Kamcord */ = {
+			isa = PBXGroup;
+			children = (
+				0C3E8FE615F5836E007205B1 /* FBDialog.bundle */,
+				0C3E8FE715F5836E007205B1 /* GTMOAuth2ViewTouch.nib */,
+				0C3E8FE815F5836E007205B1 /* Kamcord.bundle */,
+				0C3E8FE915F5836E007205B1 /* KCVideoTracker.momd */,
+				0C3E8FED15F5836E007205B1 /* ShareKit.bundle */,
+				0C3E8FE415F58349007205B1 /* AWSiOSSDK.framework */,
+				0C3E8FE115F58329007205B1 /* Kamcord.framework */,
+			);
+			name = Kamcord;
+			sourceTree = "<group>";
+		};
 		0C3F53D115BD3397009A5915 /* Flurry */ = {
 			isa = PBXGroup;
 			children = (
@@ -1600,13 +1614,7 @@
 		0C7AA5E315946938000B58F2 = {
 			isa = PBXGroup;
 			children = (
-				0C3E8FE615F5836E007205B1 /* FBDialog.bundle */,
-				0C3E8FE715F5836E007205B1 /* GTMOAuth2ViewTouch.nib */,
-				0C3E8FE815F5836E007205B1 /* Kamcord.bundle */,
-				0C3E8FE915F5836E007205B1 /* KCVideoTracker.momd */,
-				0C3E8FED15F5836E007205B1 /* ShareKit.bundle */,
-				0C3E8FE415F58349007205B1 /* AWSiOSSDK.framework */,
-				0C3E8FE115F58329007205B1 /* Kamcord.framework */,
+				0C3E902B15F599E0007205B1 /* Kamcord */,
 				0C695E3C15F095FF0092DD51 /* StoreKit.framework */,
 				0C7AA60215946939000B58F2 /* Planet Orbiting iOS Game */,
 				C45A45A815D9E1C300E343A3 /* Cocos2D 2.0 */,

@@ -357,7 +357,7 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setHasDoubleCoins:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped]];
     
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:6 + 5*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:63 + 5*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
     
     [[UpgradeValues sharedInstance] setHasStarMagnet:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped]];
     
@@ -1223,7 +1223,7 @@ typedef struct {
                     //if (isLeavingLastPlanetInGalaxy)
                         [self removeOldPredLine];
                     //else
-                        [self createPredPointsFrom:player.sprite.position to:targetForPred withColor:ccBLUE andRemoveOldLine:true];
+                        [self createPredPointsFrom:player.sprite.position to:targetForPred withColor:ccWHITE andRemoveOldLine:true];
                     
                     
                     
@@ -1890,7 +1890,10 @@ typedef struct {
         isGameOver = true;
         if ([[self children]containsObject:layerHudSlider])
             [self removeChild:layerHudSlider cleanup:YES];
-        //[Kamcord stopRecording];
+
+        /*      [Kamcord stopRecording];
+        if (allowVideoToConvert==false)
+            [Kamcord cancelConversionForLatestVideo];*/
         
         CCSprite* dark = [CCSprite spriteWithFile:@"OneByOne.png"];
         [self addChild:dark];
@@ -2492,8 +2495,10 @@ typedef struct {
 }
 
 -(void)removeOldPredLine {
-    if (predPointLayer)
+    if (predPointLayer) {
         [predPointLayer removeAllChildrenWithCleanup:true];
+        [predPointLayer removeFromParentAndCleanup:YES];
+    }
 }
 
 - (void)createPredPointsFrom:(CGPoint)fromPos to:(CGPoint)toPos withColor:(ccColor3B)col andRemoveOldLine:(bool)shouldRemove {
@@ -2599,6 +2604,7 @@ float lerpf(float a, float b, float t) {
 }
 
 -(void)showRecordingButton {
+    allowVideoToConvert = true;
     muted = false;
     [self toggleMute];
     //[Kamcord stopRecording];
