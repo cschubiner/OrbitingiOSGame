@@ -539,9 +539,10 @@ typedef struct {
     player.alive=true;
     //[player.sprite setScale:playerSizeScale];
     player.segmentNumber = -10;
-    player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(defaultDirectionPlanetSegmentsGoIn)), -3200*100));
-    player.velocity = ccpForAngle(defaultDirectionPlanetSegmentsGoIn);
-    //player.sprite.position = CGPointZero;
+    orbitState = 1;
+    player.sprite.position = ccp(-750, -500);
+    swipeVector = ccp(0, 1);
+    targetPlanet = [planets objectAtIndex:0];
     // player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
     if ([[UpgradeValues sharedInstance] hasGreenShip]) {
         //player.sprite.color = ccGREEN;
@@ -632,7 +633,7 @@ typedef struct {
     //cameraFollowAction =  [CCFollow actionWithTarget:cameraFocusNode];
     
     killer = 0;
-    orbitState = 0; // 0 = orbiting, 1 = just left orbit and deciding things for state 3; 3 = flying to next planet
+    //orbitState = 0; // 0 = orbiting, 1 = just left orbit and deciding things for state 3; 3 = flying to next planet
     velSoftener = 1;
     initialAccelMag = 0;
     isOnFirstRun = true;
@@ -1178,7 +1179,8 @@ typedef struct {
                 if (orbitState == 1) {
                     velSoftener = 0;
                     gravIncreaser = 1;
-                    [self playSound:@"SWOOSH.WAV" shouldLoop:false pitch:1];
+                    if (loading_playerHasReachedFirstPlanet)
+                        [self playSound:@"SWOOSH.WAV" shouldLoop:false pitch:1];
                     player.acceleration = CGPointZero;
                     
                     CGPoint d = ccpSub(targetPlanet.sprite.position, player.sprite.position);
@@ -1221,10 +1223,14 @@ typedef struct {
                         //vel = ccpSub(right, player.sprite.position);
                     }
                     
-                    if (isLeavingLastPlanetInGalaxy)
-                        [self removeOldPredLine];
-                    else
-                        [self createPredPointsFrom:player.sprite.position to:targetForPred withColor:ccWHITE andRemoveOldLine:true];
+                    if (loading_playerHasReachedFirstPlanet) {
+                        if (!(player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart)) {
+                            if (isLeavingLastPlanetInGalaxy)
+                                [self removeOldPredLine];
+                            else
+                                [self createPredPointsFrom:player.sprite.position to:targetForPred withColor:ccWHITE andRemoveOldLine:true];
+                        }
+                    }
                     
                     
                     
