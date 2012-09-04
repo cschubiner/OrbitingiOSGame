@@ -540,6 +540,7 @@ typedef struct {
     //[player.sprite setScale:playerSizeScale];
     player.segmentNumber = -10;
     player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(defaultDirectionPlanetSegmentsGoIn)), -3200*100));
+    player.velocity = ccpForAngle(defaultDirectionPlanetSegmentsGoIn);
     //player.sprite.position = CGPointZero;
     // player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
     if ([[UpgradeValues sharedInstance] hasGreenShip]) {

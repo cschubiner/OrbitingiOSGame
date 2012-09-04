@@ -163,8 +163,6 @@ void SignalHandler(int sig) {
     return navController_;
 }
 
-
-
 -(int)getGalaxyCounter {
     return galaxyCounter;
 }
