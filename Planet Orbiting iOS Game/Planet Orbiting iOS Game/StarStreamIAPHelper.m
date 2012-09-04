@@ -8,16 +8,16 @@
 
 #import "StarStreamIAPHelper.h"
 
-@implementation InAppRageIAPHelper
+@implementation StarStreamIAPHelper
 
-static InAppRageIAPHelper * _sharedHelper;
+static StarStreamIAPHelper * _sharedHelper;
 
-+ (InAppRageIAPHelper *) sharedHelper {
++ (StarStreamIAPHelper *) sharedHelper {
     
     if (_sharedHelper != nil) {
         return _sharedHelper;
     }
-    _sharedHelper = [[InAppRageIAPHelper alloc] init];
+    _sharedHelper = [[StarStreamIAPHelper alloc] init];
     return _sharedHelper;
     
 }

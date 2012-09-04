@@ -525,8 +525,8 @@
         pushedItem.number == 15 ||
         pushedItem.number == 16) {
         
-        for (int i = 0 ; i < 8; i++)
-            [[iRate sharedInstance] logEvent:YES];
+     //   for (int i = 0 ; i < 8; i++)
+       //     [[iRate sharedInstance] logEvent:YES];
         
         if (pushedItem.number == 3) { //Double Stars - 1.99
             
@@ -579,6 +579,9 @@
             int newBalance = curBalance + 1000000;
             [[UserWallet sharedInstance] setBalance:newBalance];
             //}
+            
+            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"1000000stars"];
+            
             
         }
         

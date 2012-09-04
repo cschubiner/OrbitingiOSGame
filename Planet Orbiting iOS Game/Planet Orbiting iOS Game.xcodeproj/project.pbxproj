@@ -158,6 +158,7 @@
 		0C3E8FF415F5836E007205B1 /* ShareKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FED15F5836E007205B1 /* ShareKit.bundle */; };
 		0C3E8FF515F583AD007205B1 /* Kamcord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E8FE115F58329007205B1 /* Kamcord.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0C3E8FF615F583C6007205B1 /* AWSiOSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E8FE415F58349007205B1 /* AWSiOSSDK.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0C3E902E15F5EB6C007205B1 /* HelveticaNeue-CondensedBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E902D15F5EB6C007205B1 /* HelveticaNeue-CondensedBold.ttf */; };
 		0C3F53D415BD3397009A5915 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3F53D315BD3397009A5915 /* libFlurry.a */; };
 		0C3F53D615BD3533009A5915 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3F53D515BD3533009A5915 /* SystemConfiguration.framework */; };
 		0C48319115BFEB4E00311FB1 /* LevelObjectReturner.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C48319015BFEB4E00311FB1 /* LevelObjectReturner.m */; };
@@ -576,8 +577,6 @@
 		01825CAC15DA2F840010473B /* soundpressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soundpressed.png; sourceTree = "<group>"; };
 		0193DDF115D672D000350035 /* GameOverLayerHighScore.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GameOverLayerHighScore.ccb; sourceTree = "<group>"; };
 		019A361315C539BF00572B68 /* GameOverLayer.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GameOverLayer.ccb; sourceTree = "<group>"; };
-		019A362115C5B62B00572B68 /* soundButtonGame-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "soundButtonGame-hd.png"; sourceTree = "<group>"; };
-		019A362315C5B63B00572B68 /* soundButtonGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soundButtonGame.png; sourceTree = "<group>"; };
 		01A2E27515EA2B41006D0CB6 /* goldBorder-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "goldBorder-hd.png"; sourceTree = "<group>"; };
 		01A2E27615EA2B41006D0CB6 /* goldBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldBorder.png; sourceTree = "<group>"; };
 		01A2E28A15EB48AB006D0CB6 /* polaroid-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "polaroid-hd.png"; sourceTree = "<group>"; };
@@ -715,6 +714,7 @@
 		0C3E8FEB15F5836E007205B1 /* KCVideoTracker.omo */ = {isa = PBXFileReference; lastKnownFileType = file; path = KCVideoTracker.omo; sourceTree = "<group>"; };
 		0C3E8FEC15F5836E007205B1 /* VersionInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VersionInfo.plist; sourceTree = "<group>"; };
 		0C3E8FED15F5836E007205B1 /* ShareKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareKit.bundle; sourceTree = "<group>"; };
+		0C3E902D15F5EB6C007205B1 /* HelveticaNeue-CondensedBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HelveticaNeue-CondensedBold.ttf"; sourceTree = "<group>"; };
 		0C3F53D215BD3397009A5915 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		0C3F53D315BD3397009A5915 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		0C3F53D515BD3533009A5915 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -1928,8 +1928,6 @@
 				0CA9650A15C66249002FB2E8 /* selector.png */,
 				0CA9650B15C66249002FB2E8 /* slider-hd.png */,
 				0CA9650C15C66249002FB2E8 /* slider.png */,
-				019A362115C5B62B00572B68 /* soundButtonGame-hd.png */,
-				019A362315C5B63B00572B68 /* soundButtonGame.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -2180,6 +2178,7 @@
 				C4C9161215D309C5008105A6 /* coin_label_font-hd.png */,
 				C4C9161315D309C5008105A6 /* coin_label_font.fnt */,
 				C4C9161415D309C5008105A6 /* coin_label_font.png */,
+				0C3E902D15F5EB6C007205B1 /* HelveticaNeue-CondensedBold.ttf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -2864,6 +2863,7 @@
 				0C3E8FF215F5836E007205B1 /* KCVideoTracker.omo in Resources */,
 				0C3E8FF315F5836E007205B1 /* VersionInfo.plist in Resources */,
 				0C3E8FF415F5836E007205B1 /* ShareKit.bundle in Resources */,
+				0C3E902E15F5EB6C007205B1 /* HelveticaNeue-CondensedBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3034,7 +3034,8 @@
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2.5;
+				LLVM_LTO = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3046,14 +3047,15 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
 				GCC_UNROLL_LOOPS = YES;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				LLVM_LTO = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2.5;
+				LLVM_LTO = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 			};
@@ -3066,8 +3068,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_POSTPROCESSING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3083,13 +3085,15 @@
 				"GCC_THUMB_SUPPORT[arch=armv7]" = YES;
 				GCC_UNROLL_LOOPS = NO;
 				GCC_VERSION = "";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "Planet Orbiting iOS Game/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2.5;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Planet Orbiting iOS Game\"",
 					"\"$(SRCROOT)/Planet Orbiting iOS Game/Flurry\"",
 				);
+				LLVM_LTO = NO;
 				"OTHER_CFLAGS[arch=armv6]" = "-mno-thumb";
 				"OTHER_CFLAGS[arch=armv7]" = "";
 				OTHER_LDFLAGS = (
@@ -3102,6 +3106,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3113,31 +3118,32 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEPLOYMENT_POSTPROCESSING = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				GCC_DYNAMIC_NO_PIC = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_FAST_MATH = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Planet Orbiting iOS Game/Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
-				"GCC_THUMB_SUPPORT[arch=armv6]" = YES;
-				"GCC_THUMB_SUPPORT[arch=armv7]" = NO;
+				"GCC_THUMB_SUPPORT[arch=armv6]" = NO;
+				"GCC_THUMB_SUPPORT[arch=armv7]" = YES;
 				GCC_UNROLL_LOOPS = YES;
 				GCC_VERSION = "";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "Planet Orbiting iOS Game/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2.5;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Planet Orbiting iOS Game\"",
 					"\"$(SRCROOT)/Planet Orbiting iOS Game/Flurry\"",
 				);
-				LLVM_LTO = YES;
+				LLVM_LTO = NO;
 				"OTHER_CFLAGS[arch=armv6]" = (
 					"-DNS_BLOCK_ASSERTIONS=1",
 					"-mno-thumb",
@@ -3155,6 +3161,7 @@
 				STRIP_INSTALLED_PRODUCT = YES;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

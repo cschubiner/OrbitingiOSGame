@@ -429,7 +429,7 @@ typedef struct {
     
     [self scheduleUpdates];
     [self schedule:@selector(Update:) interval:0];// this makes the update loop loop!!!!
-//    [Kamcord startRecording];
+    [Kamcord startRecording];
 }
 
 - (void)loadEverything {
@@ -1898,9 +1898,9 @@ typedef struct {
         if ([[self children]containsObject:layerHudSlider])
             [self removeChild:layerHudSlider cleanup:YES];
 
-        /*      [Kamcord stopRecording];
+        [Kamcord stopRecording];
         if (allowVideoToConvert==false)
-            [Kamcord cancelConversionForLatestVideo];*/
+            [Kamcord cancelConversionForLatestVideo];
         
         CCSprite* dark = [CCSprite spriteWithFile:@"OneByOne.png"];
         [self addChild:dark];

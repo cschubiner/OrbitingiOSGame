@@ -69,11 +69,6 @@
 								   multiSampling:NO
 								 numberOfSamples:0];
     
-    [Kamcord setDeveloperKey:@"d05f73399ff3c1755bd97ec94cb5fdda"
-             developerSecret:@"prcU7MltdajQ1YVTSeFDtPtywe2zABOmzzpSB5pGP79"
-                     appName:@"Star Stream"];
-
-    
 	director_ = (CCDirectorIOS*) [CCDirector sharedDirector];
     
 	director_.wantsFullScreenLayout = YES;
@@ -125,10 +120,16 @@
 	// Create a Navigation Controller with the Director
 	navController_ = [[UINavigationController alloc] initWithRootViewController:director_];
 	navController_.navigationBarHidden = YES;
+    
 	
 	// set the Navigation Controller as the root view controller
     //	[window_ addSubview:navController_.view];	// Generates flicker.
 	[window_ setRootViewController:navController_];
+    
+    [Kamcord setDeveloperKey:@"d05f73399ff3c1755bd97ec94cb5fdda"
+             developerSecret:@"prcU7MltdajQ1YVTSeFDtPtywe2zABOmzzpSB5pGP79"
+                     appName:@"Star Stream"];
+
 	
 	// make main window visible
 	[window_ makeKeyAndVisible];

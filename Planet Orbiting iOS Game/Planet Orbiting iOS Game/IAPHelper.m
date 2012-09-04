@@ -17,6 +17,7 @@
 - (id)initWithProductIdentifiers:(NSSet *)productIdentifiers {
     if ((self = [super init])) {
         
+        [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
         // Store product identifiers
         _productIdentifiers = [productIdentifiers retain];
         
@@ -92,7 +93,7 @@
     
     if (transaction.error.code != SKErrorPaymentCancelled)
     {
-        NSLog(@"Transaction error: %@", transaction.error.localizedDescription);
+        NSLog(@"Transaction code: %d message: %@", transaction.error.code, transaction.error.localizedDescription);
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kProductPurchaseFailedNotification object:transaction];
@@ -120,6 +121,8 @@
         }
     }
 }
+
+
 
 - (void)buyProductIdentifier:(NSString *)productIdentifier {
     

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "StarStreamIAPHelper.h"
+#import "IAPHelper.h"
 
 @interface UpgradesLayer : CCLayer
 
