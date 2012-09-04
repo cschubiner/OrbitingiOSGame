@@ -1220,9 +1220,9 @@ typedef struct {
                         //vel = ccpSub(right, player.sprite.position);
                     }
                     
-                    //if (isLeavingLastPlanetInGalaxy)
+                    if (isLeavingLastPlanetInGalaxy)
                         [self removeOldPredLine];
-                    //else
+                    else
                         [self createPredPointsFrom:player.sprite.position to:targetForPred withColor:ccWHITE andRemoveOldLine:true];
                     
                     
@@ -1555,9 +1555,8 @@ typedef struct {
         else nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
         //NSLog(@"galaxy11");
         
-        if (
-            //nextPlanet.whichGalaxyThisObjectBelongsTo > lastPlanetVisited.whichGalaxyThisObjectBelongsTo||
-            targetPlanet.whichGalaxyThisObjectBelongsTo>lastPlanetVisited.whichGalaxyThisObjectBelongsTo || loading_playerHasReachedFirstPlanet==false) {
+        if (targetPlanet.whichGalaxyThisObjectBelongsTo>lastPlanetVisited.whichGalaxyThisObjectBelongsTo || loading_playerHasReachedFirstPlanet==false) {
+            isLeavingLastPlanetInGalaxy = true;
             cameraShouldFocusOnPlayer=true;
             //NSLog(@"galaxy112");
             
@@ -1633,6 +1632,7 @@ typedef struct {
             }
         }
         else {
+            isLeavingLastPlanetInGalaxy = false;
             cameraShouldFocusOnPlayer=false;
             //[background setOpacity:255];
         }

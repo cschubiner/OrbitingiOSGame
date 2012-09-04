@@ -33,6 +33,7 @@
     CCLabelBMFont *scoreLabel;
     CCLabelBMFont *coinsLabel;
     
+    bool isLeavingLastPlanetInGalaxy;
     bool allowVideoToConvert;
     CGSize size;
     CCLayer *hudLayer;
