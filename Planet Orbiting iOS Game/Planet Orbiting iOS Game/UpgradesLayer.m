@@ -105,8 +105,6 @@
         self.isTouchEnabled= TRUE;
         indexPushed = [[UpgradeManager sharedInstance] buttonPushed];
         
-        [[UserWallet sharedInstance] setBalance:1000000];
-        
         scrollView = [[CCLayer alloc] init];
         [self addChild:scrollView];
         
@@ -519,25 +517,96 @@
 
 - (void) pressedPurchaseButton {
     
-    for (int i = 0 ; i < 5; i++)
-    [[iRate sharedInstance] logEvent:YES];
-    
-    [self playSound:@"purchase.wav" shouldLoop:false pitch:1];
-    
-    int curBalance = [[UserWallet sharedInstance] getBalance];
-    int newBalance = curBalance - pushedItem.price;
-    [[UserWallet sharedInstance] setBalance:newBalance];
-    
-    int pushed = [[UpgradeManager sharedInstance] buttonPushed];
-    if (pushed == 0 || pushed == 1 || pushed == 5) {
-        for (int i = 0; i < [upgradeIndecesHere count]; i++) {
-            [[UpgradeManager sharedInstance] setUpgradeIndex:[[upgradeIndecesHere objectAtIndex:i] intValue] equipped:false];
+    if (pushedItem.number == 3 ||
+        pushedItem.number == 11 ||
+        pushedItem.number == 12 ||
+        pushedItem.number == 13 ||
+        pushedItem.number == 14 ||
+        pushedItem.number == 15 ||
+        pushedItem.number == 16) {
+        
+        for (int i = 0 ; i < 8; i++)
+            [[iRate sharedInstance] logEvent:YES];
+        
+        if (pushedItem.number == 3) { //Double Stars - 1.99
+            
+            //if ([InAppPurchase purchaseAndReturnBoolForIfSuccessfulOrNot]) {
+            [[UpgradeManager sharedInstance] setUpgradeIndex:3 purchased:true equipped:true];
+            //}
+            
+        } else if (pushedItem.number == 11) { //Pink Stars - 5.99
+            
+            //if ([InAppPurchase purchaseAndReturnBoolForIfSuccessfulOrNot]) {
+            [[UpgradeManager sharedInstance] setUpgradeIndex:11 purchased:true equipped:true];
+            //}
+            
+        } else if (pushedItem.number == 12) { //30,000 Stars - .99
+            
+            //if ([InAppPurchase purchaseAndReturnBoolForIfSuccessfulOrNot]) {
+            int curBalance = [[UserWallet sharedInstance] getBalance];
+            int newBalance = curBalance + 30000;
+            [[UserWallet sharedInstance] setBalance:newBalance];
+            //}
+            
+        } else if (pushedItem.number == 13) { //70,000 Stars - 1.99
+            
+            //if ([InAppPurchase purchaseAndReturnBoolForIfSuccessfulOrNot]) {
+            int curBalance = [[UserWallet sharedInstance] getBalance];
+            int newBalance = curBalance + 70000;
+            [[UserWallet sharedInstance] setBalance:newBalance];
+            //}
+            
+        } else if (pushedItem.number == 14) { //120,000 Stars - 2.99
+            
+            //if ([InAppPurchase purchaseAndReturnBoolForIfSuccessfulOrNot]) {
+            int curBalance = [[UserWallet sharedInstance] getBalance];
+            int newBalance = curBalance + 120000;
+            [[UserWallet sharedInstance] setBalance:newBalance];
+            //}
+            
+        } else if (pushedItem.number == 15) { //300,000 Stars - 4.99
+            
+            //if ([InAppPurchase purchaseAndReturnBoolForIfSuccessfulOrNot]) {
+            int curBalance = [[UserWallet sharedInstance] getBalance];
+            int newBalance = curBalance + 300000;
+            [[UserWallet sharedInstance] setBalance:newBalance];
+            //}
+            
+        } else if (pushedItem.number == 16) { //1,000,000 Stars - 9.99
+            
+            //if ([InAppPurchase purchaseAndReturnBoolForIfSuccessfulOrNot]) {
+            int curBalance = [[UserWallet sharedInstance] getBalance];
+            int newBalance = curBalance + 1000000;
+            [[UserWallet sharedInstance] setBalance:newBalance];
+            //}
+            
         }
+        
+    } else {
+        
+        for (int i = 0 ; i < 5; i++)
+            [[iRate sharedInstance] logEvent:YES];
+        
+        
+        [self playSound:@"purchase.wav" shouldLoop:false pitch:1];
+        
+        int curBalance = [[UserWallet sharedInstance] getBalance];
+        int newBalance = curBalance - pushedItem.price;
+        [[UserWallet sharedInstance] setBalance:newBalance];
+        
+        int pushed = [[UpgradeManager sharedInstance] buttonPushed];
+        if (pushed == 0 || pushed == 1 || pushed == 5) {
+            for (int i = 0; i < [upgradeIndecesHere count]; i++) {
+                [[UpgradeManager sharedInstance] setUpgradeIndex:[[upgradeIndecesHere objectAtIndex:i] intValue] equipped:false];
+            }
+        }
+        
+        [[UpgradeManager sharedInstance] setUpgradeIndex:pushedItem.number purchased:true equipped:true];
+        
+        [self completeObjectiveFromGroupNumber:3 itemNumber:1];
     }
     
-    [[UpgradeManager sharedInstance] setUpgradeIndex:pushedItem.number purchased:true equipped:true];
     
-    [self completeObjectiveFromGroupNumber:3 itemNumber:1];
     
     [DataStorage storeData];
     [self refreshUpgradeCells];
