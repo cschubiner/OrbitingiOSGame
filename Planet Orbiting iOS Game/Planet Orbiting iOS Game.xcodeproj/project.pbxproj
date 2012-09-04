@@ -149,6 +149,15 @@
 		0C2DEF02159C20BE0018F0FA /* Zone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2DEF01159C20BE0018F0FA /* Zone.m */; };
 		0C2E4D1315C4F70B00AB28FC /* pauseButton7-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2E4D0F15C4F70B00AB28FC /* pauseButton7-hd.png */; };
 		0C2E4D1415C4F70B00AB28FC /* pauseButton7.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2E4D1015C4F70B00AB28FC /* pauseButton7.png */; };
+		0C3E8FEE15F5836E007205B1 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FE615F5836E007205B1 /* FBDialog.bundle */; };
+		0C3E8FEF15F5836E007205B1 /* GTMOAuth2ViewTouch.nib in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FE715F5836E007205B1 /* GTMOAuth2ViewTouch.nib */; };
+		0C3E8FF015F5836E007205B1 /* Kamcord.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FE815F5836E007205B1 /* Kamcord.bundle */; };
+		0C3E8FF115F5836E007205B1 /* KCVideoTracker.mom in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FEA15F5836E007205B1 /* KCVideoTracker.mom */; };
+		0C3E8FF215F5836E007205B1 /* KCVideoTracker.omo in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FEB15F5836E007205B1 /* KCVideoTracker.omo */; };
+		0C3E8FF315F5836E007205B1 /* VersionInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FEC15F5836E007205B1 /* VersionInfo.plist */; };
+		0C3E8FF415F5836E007205B1 /* ShareKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FED15F5836E007205B1 /* ShareKit.bundle */; };
+		0C3E8FF515F583AD007205B1 /* Kamcord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E8FE115F58329007205B1 /* Kamcord.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0C3E8FF615F583C6007205B1 /* AWSiOSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E8FE415F58349007205B1 /* AWSiOSSDK.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0C3F53D415BD3397009A5915 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3F53D315BD3397009A5915 /* libFlurry.a */; };
 		0C3F53D615BD3533009A5915 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3F53D515BD3533009A5915 /* SystemConfiguration.framework */; };
 		0C48319115BFEB4E00311FB1 /* LevelObjectReturner.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C48319015BFEB4E00311FB1 /* LevelObjectReturner.m */; };
@@ -390,7 +399,6 @@
 		C47774FE15A75CE2005D0AEB /* btn-test-2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C47774F415A75CE2005D0AEB /* btn-test-2-hd.png */; };
 		C47774FF15A75CE2005D0AEB /* jungle-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C47774F515A75CE2005D0AEB /* jungle-hd.png */; };
 		C477750215A75D2D005D0AEB /* burst-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C477750115A75D2C005D0AEB /* burst-hd.png */; };
-		C4B06C5715B9161D003C0183 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B06C5515B9161D003C0183 /* libTestFlight.a */; };
 		C4B8D7BA15DDA7F2002D50C6 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C4B8D7B815DDA7F2002D50C6 /* fps_images-hd.png */; };
 		C4B8D7BB15DDA7F2002D50C6 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = C4B8D7B915DDA7F2002D50C6 /* fps_images.png */; };
 		C4C9161515D309C5008105A6 /* coin_label_font-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = C4C9161115D309C5008105A6 /* coin_label_font-hd.fnt */; };
@@ -698,6 +706,15 @@
 		0C2DEF01159C20BE0018F0FA /* Zone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Zone.m; sourceTree = "<group>"; };
 		0C2E4D0F15C4F70B00AB28FC /* pauseButton7-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pauseButton7-hd.png"; sourceTree = "<group>"; };
 		0C2E4D1015C4F70B00AB28FC /* pauseButton7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pauseButton7.png; sourceTree = "<group>"; };
+		0C3E8FE115F58329007205B1 /* Kamcord.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kamcord.framework; sourceTree = "<group>"; };
+		0C3E8FE415F58349007205B1 /* AWSiOSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSiOSSDK.framework; sourceTree = "<group>"; };
+		0C3E8FE615F5836E007205B1 /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
+		0C3E8FE715F5836E007205B1 /* GTMOAuth2ViewTouch.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = GTMOAuth2ViewTouch.nib; sourceTree = "<group>"; };
+		0C3E8FE815F5836E007205B1 /* Kamcord.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Kamcord.bundle; sourceTree = "<group>"; };
+		0C3E8FEA15F5836E007205B1 /* KCVideoTracker.mom */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = KCVideoTracker.mom; sourceTree = "<group>"; };
+		0C3E8FEB15F5836E007205B1 /* KCVideoTracker.omo */ = {isa = PBXFileReference; lastKnownFileType = file; path = KCVideoTracker.omo; sourceTree = "<group>"; };
+		0C3E8FEC15F5836E007205B1 /* VersionInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VersionInfo.plist; sourceTree = "<group>"; };
+		0C3E8FED15F5836E007205B1 /* ShareKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareKit.bundle; sourceTree = "<group>"; };
 		0C3F53D215BD3397009A5915 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		0C3F53D315BD3397009A5915 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		0C3F53D515BD3533009A5915 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -1085,8 +1102,6 @@
 		C47774F515A75CE2005D0AEB /* jungle-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jungle-hd.png"; sourceTree = "<group>"; };
 		C477750115A75D2C005D0AEB /* burst-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "burst-hd.png"; sourceTree = "<group>"; };
 		C49E914A159A48D700BC424D /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Constants.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		C4B06C5515B9161D003C0183 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		C4B06C5615B9161D003C0183 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		C4B8D7B815DDA7F2002D50C6 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
 		C4B8D7B915DDA7F2002D50C6 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
 		C4C9161115D309C5008105A6 /* coin_label_font-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "coin_label_font-hd.fnt"; sourceTree = "<group>"; };
@@ -1263,6 +1278,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C3E8FF615F583C6007205B1 /* AWSiOSSDK.framework in Frameworks */,
+				0C3E8FF515F583AD007205B1 /* Kamcord.framework in Frameworks */,
 				0C695E3D15F095FF0092DD51 /* StoreKit.framework in Frameworks */,
 				0C62B1B815C8DDE800318B66 /* Security.framework in Frameworks */,
 				0C62B1B615C8DD9300318B66 /* libz.dylib in Frameworks */,
@@ -1283,7 +1300,6 @@
 				0C7AA5F915946939000B58F2 /* AudioToolbox.framework in Frameworks */,
 				0C7AA5FB15946939000B58F2 /* AVFoundation.framework in Frameworks */,
 				0C7AA5FF15946939000B58F2 /* Foundation.framework in Frameworks */,
-				C4B06C5715B9161D003C0183 /* libTestFlight.a in Frameworks */,
 				0C3F53D415BD3397009A5915 /* libFlurry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1499,6 +1515,16 @@
 			name = iRate;
 			sourceTree = "<group>";
 		};
+		0C3E8FE915F5836E007205B1 /* KCVideoTracker.momd */ = {
+			isa = PBXGroup;
+			children = (
+				0C3E8FEA15F5836E007205B1 /* KCVideoTracker.mom */,
+				0C3E8FEB15F5836E007205B1 /* KCVideoTracker.omo */,
+				0C3E8FEC15F5836E007205B1 /* VersionInfo.plist */,
+			);
+			path = KCVideoTracker.momd;
+			sourceTree = "<group>";
+		};
 		0C3F53D115BD3397009A5915 /* Flurry */ = {
 			isa = PBXGroup;
 			children = (
@@ -1574,6 +1600,13 @@
 		0C7AA5E315946938000B58F2 = {
 			isa = PBXGroup;
 			children = (
+				0C3E8FE615F5836E007205B1 /* FBDialog.bundle */,
+				0C3E8FE715F5836E007205B1 /* GTMOAuth2ViewTouch.nib */,
+				0C3E8FE815F5836E007205B1 /* Kamcord.bundle */,
+				0C3E8FE915F5836E007205B1 /* KCVideoTracker.momd */,
+				0C3E8FED15F5836E007205B1 /* ShareKit.bundle */,
+				0C3E8FE415F58349007205B1 /* AWSiOSSDK.framework */,
+				0C3E8FE115F58329007205B1 /* Kamcord.framework */,
 				0C695E3C15F095FF0092DD51 /* StoreKit.framework */,
 				0C7AA60215946939000B58F2 /* Planet Orbiting iOS Game */,
 				C45A45A815D9E1C300E343A3 /* Cocos2D 2.0 */,
@@ -1660,7 +1693,6 @@
 				0C3F53D115BD3397009A5915 /* Flurry */,
 				0C7AA60315946939000B58F2 /* Resources */,
 				0C7AA7501594693C000B58F2 /* Supporting Files */,
-				C4B06C5915B9161F003C0183 /* TestFlight */,
 				FACE0CE415CB93B70055B5DF /* Powerups */,
 			);
 			path = "Planet Orbiting iOS Game";
@@ -2127,15 +2159,6 @@
 			);
 			name = "Cocos2D 2.0";
 			path = "Planet Orbiting iOS Game";
-			sourceTree = "<group>";
-		};
-		C4B06C5915B9161F003C0183 /* TestFlight */ = {
-			isa = PBXGroup;
-			children = (
-				C4B06C5515B9161D003C0183 /* libTestFlight.a */,
-				C4B06C5615B9161D003C0183 /* TestFlight.h */,
-			);
-			name = TestFlight;
 			sourceTree = "<group>";
 		};
 		C4C9161A15D309C9008105A6 /* Fonts */ = {
@@ -2826,6 +2849,13 @@
 				FA8242E015F36C96009725BD /* point.png in Resources */,
 				FA8242E715F38A34009725BD /* justthetip-hd.png in Resources */,
 				FA8242E815F38A34009725BD /* point-hd.png in Resources */,
+				0C3E8FEE15F5836E007205B1 /* FBDialog.bundle in Resources */,
+				0C3E8FEF15F5836E007205B1 /* GTMOAuth2ViewTouch.nib in Resources */,
+				0C3E8FF015F5836E007205B1 /* Kamcord.bundle in Resources */,
+				0C3E8FF115F5836E007205B1 /* KCVideoTracker.mom in Resources */,
+				0C3E8FF215F5836E007205B1 /* KCVideoTracker.omo in Resources */,
+				0C3E8FF315F5836E007205B1 /* VersionInfo.plist in Resources */,
+				0C3E8FF415F5836E007205B1 /* ShareKit.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3026,10 +3056,7 @@
 			buildSettings = {
 				ALTERNATE_GROUP = "$(INSTALL_GROUP)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -3076,10 +3103,7 @@
 			buildSettings = {
 				ALTERNATE_GROUP = "$(INSTALL_GROUP)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

@@ -42,23 +42,17 @@
     sigaction(SIGILL, &newSignalAction, NULL);
     sigaction(SIGBUS, &newSignalAction, NULL);
     // Call takeOff after install your own unhandled exception and signal handlers
-    [TestFlight takeOff:@"d617a481887a5d2cf7db0f22b735c89f_MTExODYwMjAxMi0wNy0xOCAxOToxNToyNC43NzQ3NjA"];
+    //[TestFlight takeOff:@"d617a481887a5d2cf7db0f22b735c89f_MTExODYwMjAxMi0wNy0xOCAxOToxNToyNC43NzQ3NjA"];
     
     [Flurry startSession:@"96GKYS7HQZHNKZJJN2CZ"];
     [Flurry setUserID:[[UIDevice currentDevice] uniqueIdentifier]];
-    
-//    [Kamcord setDeveloperKey:@"d05f73399ff3c1755bd97ec94cb5fdda"
-  //           developerSecret:@"prcU7MltdajQ1YVTSeFDtPtywe2zABOmzzpSB5pGP79"
-    //                 appName:@"Star Dash"];
-    
 
-    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+    //[TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
     
     //[[iRate sharedInstance]setDebug:YES];
     [[iRate sharedInstance]setAppStoreGenreID:iRateAppStoreGameGenreID];
     [[iRate sharedInstance]setMessage:[NSString stringWithFormat:@"If you enjoy playing %@, would you mind taking a moment to rate it? 5 Star ratings help us provide free updates. It'll only take a minute! :)",[[iRate sharedInstance]applicationName]]];
     [[iRate sharedInstance]setCancelButtonLabel:@"No Thanks"];
-    
     NSLog(@"iRate: Number of events: %d Number of uses: %d",[[iRate sharedInstance]eventCount],[[iRate sharedInstance]usesCount]);
     
     shouldPlayMenuMusic = true;
@@ -67,13 +61,18 @@
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
 	// Create an CCGLView with a RGB565 color buffer, and a depth buffer of 0-bits
-	CCGLView *glView = [CCGLView viewWithFrame:[window_ bounds]
-								   pixelFormat:kEAGLColorFormatRGB565	//kEAGLColorFormatRGBA8
-								   depthFormat:0	//GL_DEPTH_COMPONENT24_OES
-							preserveBackbuffer:NO
-									sharegroup:nil
-								 multiSampling:NO
-							   numberOfSamples:0];
+	KCGLView *glView = [KCGLView viewWithFrame:[window_ bounds]
+									 pixelFormat:kEAGLColorFormatRGB565
+									 depthFormat:0 /* GL_DEPTH_COMPONENT24_OES */
+							  preserveBackbuffer:NO
+									  sharegroup:nil
+								   multiSampling:NO
+								 numberOfSamples:0];
+    
+    [Kamcord setDeveloperKey:@"d05f73399ff3c1755bd97ec94cb5fdda"
+             developerSecret:@"prcU7MltdajQ1YVTSeFDtPtywe2zABOmzzpSB5pGP79"
+                     appName:@"Star Stream"];
+
     
 	director_ = (CCDirectorIOS*) [CCDirector sharedDirector];
     
@@ -142,8 +141,10 @@
  **/
 void HandleExceptions(NSException *exception) {
     NSLog(@"This is where we save the application data during a exception");
+    [Flurry logError:@"Game crashed" message:@"game crashed" exception:exception];
     // Save application data on crash
 }
+
 /*
  My Apps Custom signal catcher, we do special stuff here, and TestFlight takes care of the rest
  **/

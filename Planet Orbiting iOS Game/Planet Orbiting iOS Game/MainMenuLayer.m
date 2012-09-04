@@ -397,7 +397,7 @@ const float effectsVolumeMainMenu = 1;
 }
 
 - (void)pressedSendFeedback: (id) sender {
-    [TestFlight passCheckpoint:@"pressed survey button on main menu"];
+    //[TestFlight passCheckpoint:@"pressed survey button on main menu"];
     [Flurry logEvent:@"Pressed Survey Button on main menu"];
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle: @"Entering survey"

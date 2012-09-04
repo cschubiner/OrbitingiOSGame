@@ -357,7 +357,7 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setHasDoubleCoins:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped]];
     
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:60 + 5*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:6 + 5*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
     
     [[UpgradeValues sharedInstance] setHasStarMagnet:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped]];
     
@@ -429,7 +429,7 @@ typedef struct {
     
     [self scheduleUpdates];
     [self schedule:@selector(Update:) interval:0];// this makes the update loop loop!!!!
-    //[Kamcord startRecording];
+//    [Kamcord startRecording];
 }
 
 - (void)loadEverything {
@@ -439,6 +439,8 @@ typedef struct {
     loadedPauseLayer = [self createPauseLayer];
     
     directionPlanetSegmentsGoIn = [self randomValueBetween:defaultDirectionPlanetSegmentsGoIn-directionPlanetSegmentsGoInVariance andValue:defaultDirectionPlanetSegmentsGoIn+directionPlanetSegmentsGoInVariance];
+    
+    [Kamcord prepareNextVideo];
     
     planetCounter = 0;
     planets = [[NSMutableArray alloc] init];
@@ -982,7 +984,7 @@ typedef struct {
 }
 
 - (ALuint)playSound:(NSString*)soundFile shouldLoop:(bool)shouldLoop pitch:(float)pitch{
-    //[Kamcord playSound:soundFile loop:shouldLoop];
+    [Kamcord playSound:soundFile loop:shouldLoop];
     if (shouldLoop)
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:soundFile loop:YES];
     else
@@ -1888,7 +1890,7 @@ typedef struct {
         isGameOver = true;
         if ([[self children]containsObject:layerHudSlider])
             [self removeChild:layerHudSlider cleanup:YES];
-        // [Kamcord stopRecording];
+        //[Kamcord stopRecording];
         
         CCSprite* dark = [CCSprite spriteWithFile:@"OneByOne.png"];
         [self addChild:dark];
@@ -1941,6 +1943,8 @@ typedef struct {
     //numCoinsDisplayed = 69;
     
     int rateOfScoreIncrease = finalScore / 640;
+    if (rateOfScoreIncrease == 0 )
+        rateOfScoreIncrease = 1;
     
     NSDictionary *dictForFlurry = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:finalScore],@"Highscore Value", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned",[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSString stringWithFormat:@"%d galaxies and %d segments",currentGalaxy.number+1,flurrySegmentsVisitedSinceGalaxyJump],@"How far player went",[NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays",[[PlayerStats sharedInstance] recentName],@"Player Name",nil];
     
@@ -1970,7 +1974,6 @@ typedef struct {
     id setNumber = [CCCallBlock actionWithBlock:(^{
         [gameOverScoreLabel setString:[NSString stringWithFormat:@"%d",finalScore]];
     })];
-    
     
     id displayParticles = [CCCallBlock actionWithBlock:(^{
         [self addChild:starStashParticle];
@@ -2002,7 +2005,6 @@ typedef struct {
 }
 
 - (void)pressedStoreButton {
-    
     
     [Flurry logEvent:@"Opened Store" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance" ,nil]];
     
@@ -2596,11 +2598,11 @@ float lerpf(float a, float b, float t) {
     [self togglePause];
 }
 
--(void)showRecording {
+-(void)showRecordingButton {
     muted = false;
     [self toggleMute];
     //[Kamcord stopRecording];
-    //[Kamcord showView];
+    [Kamcord showView];
 }
 
 -(CCLayer*)createPauseLayer {
@@ -2653,7 +2655,7 @@ float lerpf(float a, float b, float t) {
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     paused = !paused;
     if (paused) {
-        //[Kamcord pause];
+        [Kamcord pause];
         
         [self unscheduleUpdates];
         
@@ -2665,7 +2667,7 @@ float lerpf(float a, float b, float t) {
         [self toggleMute];
         [self addChild:pauseLayer];
     } else {
-        //[Kamcord resume];
+        [Kamcord resume];
         [self scheduleUpdates];
         [self removeChildByTag:pauseLayerTag cleanup:NO];
     }

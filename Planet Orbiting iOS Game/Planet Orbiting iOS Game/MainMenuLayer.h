@@ -9,7 +9,6 @@
 #import <GameKit/GameKit.h>
 #import "cocos2d.h"
 #import "CCBReader.h"
-#import "TestFlight.h"
 #import "AppDelegate.h"
 #import "ObjectiveManager.h"
 #import "UpgradesLayer.h"
