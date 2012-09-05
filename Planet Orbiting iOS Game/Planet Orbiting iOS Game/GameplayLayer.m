@@ -2671,7 +2671,7 @@ float lerpf(float a, float b, float t) {
         [Kamcord pause];
         
         [self unscheduleUpdates];
-        
+        [[CCDirector sharedDirector]pause];
         
         pauseLayer = [self createPauseLayer];//(CCLayer*)[CCBReader nodeGraphFromFile:@"PauseMenuLayer.ccb" owner:self];
         [gameOverScoreLabel setString:[NSString stringWithFormat:@"Score: %d",score+prevCurrentPtoPScore]];
@@ -2682,6 +2682,7 @@ float lerpf(float a, float b, float t) {
     } else {
         [Kamcord resume];
         [self scheduleUpdates];
+        [[CCDirector sharedDirector]resume];
         [self removeChildByTag:pauseLayerTag cleanup:NO];
     }
 }
