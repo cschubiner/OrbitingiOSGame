@@ -41,6 +41,41 @@
 	return scene;
 }
 
++(CCSprite*)labelWithString:(NSString *)string fontName:(NSString *)fontName fontSize:(CGFloat)fontSize color:(ccColor3B)color strokeSize:(CGFloat)strokeSize stokeColor:(ccColor3B)strokeColor {
+    
+	CCLabelTTF *label = [CCLabelTTF labelWithString:string fontName:fontName fontSize:fontSize];
+    
+	CCRenderTexture* rt = [CCRenderTexture renderTextureWithWidth:label.texture.contentSize.width + strokeSize*2  height:label.texture.contentSize.height+strokeSize*2];
+    
+	[label setFlipY:YES];
+	[label setColor:strokeColor];
+	ccBlendFunc originalBlendFunc = [label blendFunc];
+	[label setBlendFunc:(ccBlendFunc) { GL_SRC_ALPHA, GL_ONE }];
+    
+	CGPoint bottomLeft = ccp(label.texture.contentSize.width * label.anchorPoint.x + strokeSize, label.texture.contentSize.height * label.anchorPoint.y + strokeSize);
+	CGPoint position = ccpSub([label position], ccp(-label.contentSize.width / 2.0f, -label.contentSize.height / 2.0f));
+    
+	[rt begin];
+    
+	for (int i=0; i<360; i++) // you should optimize that for your needs
+	{
+		[label setPosition:ccp(bottomLeft.x + sin(CC_DEGREES_TO_RADIANS(i))*strokeSize, bottomLeft.y + cos(CC_DEGREES_TO_RADIANS(i))*strokeSize)];
+		[label visit];
+	}
+    
+	[label setPosition:bottomLeft];
+	[label setBlendFunc:originalBlendFunc];
+	[label setColor:color];
+	[label visit];
+    
+	[rt end];
+    
+	[rt setPosition:position];
+    
+	return [CCSprite spriteWithTexture:rt.sprite.texture];
+    
+}
+
 /* On "init," initialize the instance */
 - (id)init {
 	// always call "super" init.
@@ -79,8 +114,12 @@
         bg.position = ccp(240, 160);
         
         CCLabelTTF* missionLabel = [CCLabelTTF labelWithString:@"CURRENT MISSIONS" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
-        [mPopup addChild:missionLabel];
+        //[mPopup addChild:missionLabel];
         missionLabel.position = ccp(240, 246);
+        
+        CCSprite* missionLabelSprite = [self.class labelWithString:@"CURRENT MISSIONS" fontName:@"HelveticaNeue-CondensedBold" fontSize:24 color:ccWHITE strokeSize:1.1 stokeColor:ccBLACK];
+        [mPopup addChild:missionLabelSprite];
+        missionLabelSprite.position = ccp(240, 246);
         
         NSMutableArray* objectivesAtThisLevel = [[ObjectiveManager sharedInstance] getObjectivesFromGroupNumber:[[ObjectiveManager sharedInstance] currentObjectiveGroupNumber]];
         
@@ -122,6 +161,7 @@
         [mPopup addChild:starSprite0];
         starSprite0.scale = .42;
         starSprite0.position = ccpAdd(footer.position, ccp(footer.boundingBox.size.width/2 + 12, 2));
+        
         
         
         [missionCompletionScreen addChild:mPopup];

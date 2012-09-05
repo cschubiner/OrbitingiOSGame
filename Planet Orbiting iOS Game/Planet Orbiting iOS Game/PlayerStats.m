@@ -67,7 +67,6 @@ static PlayerStats *sharedInstance = nil;
     //NSLog(@"a3a");
     [rawNames addObject:name];
     //NSLog(@"a3b");
-    //[[DDGameKitHelper sharedGameKitHelper] submitScore:score category:@"Star_Dash_Leaderboard"];
     //NSLog(@"a4");
     NSSortDescriptor *highestToLowest = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:NO];
     [highScores sortUsingDescriptors:[NSArray arrayWithObject:highestToLowest]];

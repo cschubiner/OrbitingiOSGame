@@ -187,7 +187,7 @@
 							<key>scaleY</key>
 							<real>0.80000001192092896</real>
 							<key>selector</key>
-							<string>endGame</string>
+							<string>showRecordingButton</string>
 							<key>spriteFileDisabled</key>
 							<string>polaroid2.png</string>
 							<key>spriteFileNormal</key>

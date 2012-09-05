@@ -20,7 +20,7 @@ const float cameraZoomSpeed = .025;
 //changes how quickly the camera changes position
 const float cameraMovementSpeed = .06;
 //how much more times the camera focuses on the first focus node compared to the second focus node
-const float cameraScaleFocusedOnFocusPosOne = 1.4f;
+const float cameraScaleFocusedOnFocusPosOne = 1.25f;
 
 const float streakWidthOnRetinaDisplay = 31;
 const float streakWidthWITHOUTRetinaDisplay = streakWidthOnRetinaDisplay/2;
@@ -40,7 +40,7 @@ const float segmentRotationVariation = 20;//30;
 
 //how quickly the player's spaceship rotates when the direction of his velocity changes
 const float playerRotationSpeed = .39f;
-const float playerSizeScale = .25;
+const float playerSizeScale = .19;
 
 const float anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees = 55;
 const float anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees = -35;
@@ -70,7 +70,7 @@ const float zoneScaleRelativeToPlanet = 1.7;
 const float gravity = .45;
 
 //radius percentage at which you will collide with a planet
-const float planetRadiusCollisionZone = .85;
+const float planetRadiusCollisionZone = .8;
 
 //percent of the planet orbiting radius that you will respawn at
 const float respawnOrbitRadius = .88;
@@ -95,7 +95,7 @@ const float minAstVel = 0;
 const float maxAstVel = .4;
 
 //gravity strength when in orbit state 3
-const float freeGravityStrength = .7;
+const float freeGravityStrength = .6;
 const float multiplyGravityThisManyTimesOnPerfectSwipe = 2;
 const float increaseGravStrengthByThisMuchEveryUpdate = .02;
 
@@ -124,13 +124,13 @@ const float factorToScaleTimeDilationByOnDeath = .9;
 //increase to increase timeDilationFactor by a larger amount everytime you get to a new zone
 const float timeDilationIncreaseRate = .07;
 
-const float timeDilationFeverModeMultiplier = 1.4;
+const float timeDilationFeverModeMultiplier = 1.15;
 
 //the smallest the time dilation factor can go
 //THIS IS NOW IN UPGRADE VALUES const float absoluteMinTimeDilation = .85;
 
 //the highest the time dilation factor can go. this should probZ just be infinity. bitches will has c slow down if they're going too fast
-const float absoluteMaxTimeDilation = 1.4;
+const float absoluteMaxTimeDilation = 1.6;
 
 //after this many updates, your velocity will go from what it was when you entered to perfect tangential orbital velocity
 const float updatesToMakeOrbitVelocityPerfect = 60;

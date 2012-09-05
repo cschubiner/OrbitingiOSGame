@@ -149,6 +149,16 @@
 		0C2DEF02159C20BE0018F0FA /* Zone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2DEF01159C20BE0018F0FA /* Zone.m */; };
 		0C2E4D1315C4F70B00AB28FC /* pauseButton7-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2E4D0F15C4F70B00AB28FC /* pauseButton7-hd.png */; };
 		0C2E4D1415C4F70B00AB28FC /* pauseButton7.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2E4D1015C4F70B00AB28FC /* pauseButton7.png */; };
+		0C3E8FEE15F5836E007205B1 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FE615F5836E007205B1 /* FBDialog.bundle */; };
+		0C3E8FEF15F5836E007205B1 /* GTMOAuth2ViewTouch.nib in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FE715F5836E007205B1 /* GTMOAuth2ViewTouch.nib */; };
+		0C3E8FF015F5836E007205B1 /* Kamcord.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FE815F5836E007205B1 /* Kamcord.bundle */; };
+		0C3E8FF115F5836E007205B1 /* KCVideoTracker.mom in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FEA15F5836E007205B1 /* KCVideoTracker.mom */; };
+		0C3E8FF215F5836E007205B1 /* KCVideoTracker.omo in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FEB15F5836E007205B1 /* KCVideoTracker.omo */; };
+		0C3E8FF315F5836E007205B1 /* VersionInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FEC15F5836E007205B1 /* VersionInfo.plist */; };
+		0C3E8FF415F5836E007205B1 /* ShareKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FED15F5836E007205B1 /* ShareKit.bundle */; };
+		0C3E8FF515F583AD007205B1 /* Kamcord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E8FE115F58329007205B1 /* Kamcord.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0C3E8FF615F583C6007205B1 /* AWSiOSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3E8FE415F58349007205B1 /* AWSiOSSDK.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0C3E902E15F5EB6C007205B1 /* HelveticaNeue-CondensedBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E902D15F5EB6C007205B1 /* HelveticaNeue-CondensedBold.ttf */; };
 		0C3F53D415BD3397009A5915 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3F53D315BD3397009A5915 /* libFlurry.a */; };
 		0C3F53D615BD3533009A5915 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3F53D515BD3533009A5915 /* SystemConfiguration.framework */; };
 		0C48319115BFEB4E00311FB1 /* LevelObjectReturner.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C48319015BFEB4E00311FB1 /* LevelObjectReturner.m */; };
@@ -172,6 +182,10 @@
 		0C65971E15D6351F00C42296 /* OneByOne-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C65971D15D6351F00C42296 /* OneByOne-hd.png */; };
 		0C65972415D666D900C42296 /* LevelsFromLevelCreator in Resources */ = {isa = PBXBuildFile; fileRef = 0C65972315D666D900C42296 /* LevelsFromLevelCreator */; };
 		0C68283215BF0CCA00BF09C0 /* playerExplosionParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */; };
+		0C695E3815F08FF20092DD51 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C695E3715F08FF20092DD51 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0C695E3B15F08FFE0092DD51 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C695E3A15F08FFD0092DD51 /* IAPHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0C695E3D15F095FF0092DD51 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C695E3C15F095FF0092DD51 /* StoreKit.framework */; };
+		0C695E4015F098A80092DD51 /* StarStreamIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C695E3F15F098A80092DD51 /* StarStreamIAPHelper.m */; };
 		0C6CC93E15E49B58008CC4DF /* backgroundStars-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C6CC93A15E49B58008CC4DF /* backgroundStars-hd.plist */; };
 		0C6CC93F15E49B58008CC4DF /* backgroundStars-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C6CC93B15E49B58008CC4DF /* backgroundStars-hd.pvr.ccz */; };
 		0C6CC94015E49B58008CC4DF /* backgroundStars.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C6CC93C15E49B58008CC4DF /* backgroundStars.plist */; };
@@ -386,7 +400,6 @@
 		C47774FE15A75CE2005D0AEB /* btn-test-2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C47774F415A75CE2005D0AEB /* btn-test-2-hd.png */; };
 		C47774FF15A75CE2005D0AEB /* jungle-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C47774F515A75CE2005D0AEB /* jungle-hd.png */; };
 		C477750215A75D2D005D0AEB /* burst-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C477750115A75D2C005D0AEB /* burst-hd.png */; };
-		C4B06C5715B9161D003C0183 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B06C5515B9161D003C0183 /* libTestFlight.a */; };
 		C4B8D7BA15DDA7F2002D50C6 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C4B8D7B815DDA7F2002D50C6 /* fps_images-hd.png */; };
 		C4B8D7BB15DDA7F2002D50C6 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = C4B8D7B915DDA7F2002D50C6 /* fps_images.png */; };
 		C4C9161515D309C5008105A6 /* coin_label_font-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = C4C9161115D309C5008105A6 /* coin_label_font-hd.fnt */; };
@@ -506,6 +519,10 @@
 		FA7E63BC15D0F26E0090C913 /* UpgradeValues.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E63BB15D0F26E0090C913 /* UpgradeValues.m */; };
 		FA7E63F015D251610090C913 /* cellBackground-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7E63EF15D251610090C913 /* cellBackground-hd.png */; };
 		FA7E640C15D271DE0090C913 /* upgradesHeader-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7E640B15D271DE0090C913 /* upgradesHeader-hd.png */; };
+		FA8242DE15F36C8C009725BD /* justthetip.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8242DD15F36C8C009725BD /* justthetip.png */; };
+		FA8242E015F36C96009725BD /* point.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8242DF15F36C96009725BD /* point.png */; };
+		FA8242E715F38A34009725BD /* justthetip-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8242E515F38A34009725BD /* justthetip-hd.png */; };
+		FA8242E815F38A34009725BD /* point-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8242E615F38A34009725BD /* point-hd.png */; };
 		FA895CDB15C525B400FA4EC3 /* Light.m in Sources */ = {isa = PBXBuildFile; fileRef = FA895CDA15C525B400FA4EC3 /* Light.m */; };
 		FAA406B215DE008500E47C19 /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA406B115DE008500E47C19 /* Toast.m */; };
 		FAB3892115E2132D002CBC09 /* missioncomplete-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB3891F15E2132D002CBC09 /* missioncomplete-hd.png */; };
@@ -560,8 +577,6 @@
 		01825CAC15DA2F840010473B /* soundpressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soundpressed.png; sourceTree = "<group>"; };
 		0193DDF115D672D000350035 /* GameOverLayerHighScore.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GameOverLayerHighScore.ccb; sourceTree = "<group>"; };
 		019A361315C539BF00572B68 /* GameOverLayer.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GameOverLayer.ccb; sourceTree = "<group>"; };
-		019A362115C5B62B00572B68 /* soundButtonGame-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "soundButtonGame-hd.png"; sourceTree = "<group>"; };
-		019A362315C5B63B00572B68 /* soundButtonGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soundButtonGame.png; sourceTree = "<group>"; };
 		01A2E27515EA2B41006D0CB6 /* goldBorder-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "goldBorder-hd.png"; sourceTree = "<group>"; };
 		01A2E27615EA2B41006D0CB6 /* goldBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldBorder.png; sourceTree = "<group>"; };
 		01A2E28A15EB48AB006D0CB6 /* polaroid-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "polaroid-hd.png"; sourceTree = "<group>"; };
@@ -690,6 +705,16 @@
 		0C2DEF01159C20BE0018F0FA /* Zone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Zone.m; sourceTree = "<group>"; };
 		0C2E4D0F15C4F70B00AB28FC /* pauseButton7-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pauseButton7-hd.png"; sourceTree = "<group>"; };
 		0C2E4D1015C4F70B00AB28FC /* pauseButton7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pauseButton7.png; sourceTree = "<group>"; };
+		0C3E8FE115F58329007205B1 /* Kamcord.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kamcord.framework; sourceTree = "<group>"; };
+		0C3E8FE415F58349007205B1 /* AWSiOSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSiOSSDK.framework; sourceTree = "<group>"; };
+		0C3E8FE615F5836E007205B1 /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
+		0C3E8FE715F5836E007205B1 /* GTMOAuth2ViewTouch.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = GTMOAuth2ViewTouch.nib; sourceTree = "<group>"; };
+		0C3E8FE815F5836E007205B1 /* Kamcord.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Kamcord.bundle; sourceTree = "<group>"; };
+		0C3E8FEA15F5836E007205B1 /* KCVideoTracker.mom */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = KCVideoTracker.mom; sourceTree = "<group>"; };
+		0C3E8FEB15F5836E007205B1 /* KCVideoTracker.omo */ = {isa = PBXFileReference; lastKnownFileType = file; path = KCVideoTracker.omo; sourceTree = "<group>"; };
+		0C3E8FEC15F5836E007205B1 /* VersionInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VersionInfo.plist; sourceTree = "<group>"; };
+		0C3E8FED15F5836E007205B1 /* ShareKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareKit.bundle; sourceTree = "<group>"; };
+		0C3E902D15F5EB6C007205B1 /* HelveticaNeue-CondensedBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HelveticaNeue-CondensedBold.ttf"; sourceTree = "<group>"; };
 		0C3F53D215BD3397009A5915 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		0C3F53D315BD3397009A5915 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		0C3F53D515BD3533009A5915 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -720,11 +745,18 @@
 		0C65971D15D6351F00C42296 /* OneByOne-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OneByOne-hd.png"; sourceTree = "<group>"; };
 		0C65972315D666D900C42296 /* LevelsFromLevelCreator */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LevelsFromLevelCreator; sourceTree = "<group>"; };
 		0C68283115BF0CCA00BF09C0 /* playerExplosionParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = playerExplosionParticle.plist; sourceTree = "<group>"; };
+		0C695E3615F08FF20092DD51 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		0C695E3715F08FF20092DD51 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		0C695E3915F08FFD0092DD51 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		0C695E3A15F08FFD0092DD51 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		0C695E3C15F095FF0092DD51 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		0C695E3E15F098A80092DD51 /* StarStreamIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarStreamIAPHelper.h; sourceTree = "<group>"; };
+		0C695E3F15F098A80092DD51 /* StarStreamIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarStreamIAPHelper.m; sourceTree = "<group>"; };
 		0C6CC93A15E49B58008CC4DF /* backgroundStars-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "backgroundStars-hd.plist"; sourceTree = "<group>"; };
 		0C6CC93B15E49B58008CC4DF /* backgroundStars-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "backgroundStars-hd.pvr.ccz"; sourceTree = "<group>"; };
 		0C6CC93C15E49B58008CC4DF /* backgroundStars.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = backgroundStars.plist; sourceTree = "<group>"; };
 		0C6CC93D15E49B58008CC4DF /* backgroundStars.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = backgroundStars.pvr.ccz; sourceTree = "<group>"; };
-		0C7AA5EE15946939000B58F2 /* Star Dash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Star Dash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C7AA5EE15946939000B58F2 /* Star Stream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Star Stream.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C7AA5F215946939000B58F2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0C7AA5F415946939000B58F2 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		0C7AA5F615946939000B58F2 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -1070,8 +1102,6 @@
 		C47774F515A75CE2005D0AEB /* jungle-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jungle-hd.png"; sourceTree = "<group>"; };
 		C477750115A75D2C005D0AEB /* burst-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "burst-hd.png"; sourceTree = "<group>"; };
 		C49E914A159A48D700BC424D /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Constants.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		C4B06C5515B9161D003C0183 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		C4B06C5615B9161D003C0183 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		C4B8D7B815DDA7F2002D50C6 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
 		C4B8D7B915DDA7F2002D50C6 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
 		C4C9161115D309C5008105A6 /* coin_label_font-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "coin_label_font-hd.fnt"; sourceTree = "<group>"; };
@@ -1205,6 +1235,10 @@
 		FA7E63BB15D0F26E0090C913 /* UpgradeValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeValues.m; sourceTree = "<group>"; };
 		FA7E63EF15D251610090C913 /* cellBackground-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cellBackground-hd.png"; sourceTree = "<group>"; };
 		FA7E640B15D271DE0090C913 /* upgradesHeader-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upgradesHeader-hd.png"; sourceTree = "<group>"; };
+		FA8242DD15F36C8C009725BD /* justthetip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = justthetip.png; sourceTree = "<group>"; };
+		FA8242DF15F36C96009725BD /* point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point.png; sourceTree = "<group>"; };
+		FA8242E515F38A34009725BD /* justthetip-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "justthetip-hd.png"; sourceTree = "<group>"; };
+		FA8242E615F38A34009725BD /* point-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point-hd.png"; sourceTree = "<group>"; };
 		FA895CD915C525B400FA4EC3 /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Light.h; sourceTree = "<group>"; };
 		FA895CDA15C525B400FA4EC3 /* Light.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Light.m; sourceTree = "<group>"; };
 		FAA406B015DE008500E47C19 /* Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Toast.h; path = ../Toast.h; sourceTree = "<group>"; };
@@ -1244,6 +1278,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C3E8FF615F583C6007205B1 /* AWSiOSSDK.framework in Frameworks */,
+				0C3E8FF515F583AD007205B1 /* Kamcord.framework in Frameworks */,
+				0C695E3D15F095FF0092DD51 /* StoreKit.framework in Frameworks */,
 				0C62B1B815C8DDE800318B66 /* Security.framework in Frameworks */,
 				0C62B1B615C8DD9300318B66 /* libz.dylib in Frameworks */,
 				0C62B1B415C8DA7E00318B66 /* Twitter.framework in Frameworks */,
@@ -1263,7 +1300,6 @@
 				0C7AA5F915946939000B58F2 /* AudioToolbox.framework in Frameworks */,
 				0C7AA5FB15946939000B58F2 /* AVFoundation.framework in Frameworks */,
 				0C7AA5FF15946939000B58F2 /* Foundation.framework in Frameworks */,
-				C4B06C5715B9161D003C0183 /* libTestFlight.a in Frameworks */,
 				0C3F53D415BD3397009A5915 /* libFlurry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1479,6 +1515,30 @@
 			name = iRate;
 			sourceTree = "<group>";
 		};
+		0C3E8FE915F5836E007205B1 /* KCVideoTracker.momd */ = {
+			isa = PBXGroup;
+			children = (
+				0C3E8FEA15F5836E007205B1 /* KCVideoTracker.mom */,
+				0C3E8FEB15F5836E007205B1 /* KCVideoTracker.omo */,
+				0C3E8FEC15F5836E007205B1 /* VersionInfo.plist */,
+			);
+			path = KCVideoTracker.momd;
+			sourceTree = "<group>";
+		};
+		0C3E902B15F599E0007205B1 /* Kamcord */ = {
+			isa = PBXGroup;
+			children = (
+				0C3E8FE615F5836E007205B1 /* FBDialog.bundle */,
+				0C3E8FE715F5836E007205B1 /* GTMOAuth2ViewTouch.nib */,
+				0C3E8FE815F5836E007205B1 /* Kamcord.bundle */,
+				0C3E8FE915F5836E007205B1 /* KCVideoTracker.momd */,
+				0C3E8FED15F5836E007205B1 /* ShareKit.bundle */,
+				0C3E8FE415F58349007205B1 /* AWSiOSSDK.framework */,
+				0C3E8FE115F58329007205B1 /* Kamcord.framework */,
+			);
+			name = Kamcord;
+			sourceTree = "<group>";
+		};
 		0C3F53D115BD3397009A5915 /* Flurry */ = {
 			isa = PBXGroup;
 			children = (
@@ -1554,6 +1614,8 @@
 		0C7AA5E315946938000B58F2 = {
 			isa = PBXGroup;
 			children = (
+				0C3E902B15F599E0007205B1 /* Kamcord */,
+				0C695E3C15F095FF0092DD51 /* StoreKit.framework */,
 				0C7AA60215946939000B58F2 /* Planet Orbiting iOS Game */,
 				C45A45A815D9E1C300E343A3 /* Cocos2D 2.0 */,
 				0C7AA5F115946939000B58F2 /* Frameworks */,
@@ -1564,7 +1626,7 @@
 		0C7AA5EF15946939000B58F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0C7AA5EE15946939000B58F2 /* Star Dash.app */,
+				0C7AA5EE15946939000B58F2 /* Star Stream.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1626,6 +1688,12 @@
 				FA20FD4115ECB9A4008F2F17 /* MissionsCompleteLayer.m */,
 				01FE9B3A15BFC2C9007512ED /* PlayerStats.h */,
 				01FE9B3B15BFC2C9007512ED /* PlayerStats.m */,
+				0C695E3E15F098A80092DD51 /* StarStreamIAPHelper.h */,
+				0C695E3F15F098A80092DD51 /* StarStreamIAPHelper.m */,
+				0C695E3915F08FFD0092DD51 /* IAPHelper.h */,
+				0C695E3A15F08FFD0092DD51 /* IAPHelper.m */,
+				0C695E3615F08FF20092DD51 /* Reachability.h */,
+				0C695E3715F08FF20092DD51 /* Reachability.m */,
 				0C2C49B715EF6675005B1214 /* iRate */,
 				C445304D15A68888004F8F48 /* CocosBuilder  */,
 				C43F5E7115C70356003BDF73 /* Achievements and Online Highscores */,
@@ -1633,7 +1701,6 @@
 				0C3F53D115BD3397009A5915 /* Flurry */,
 				0C7AA60315946939000B58F2 /* Resources */,
 				0C7AA7501594693C000B58F2 /* Supporting Files */,
-				C4B06C5915B9161F003C0183 /* TestFlight */,
 				FACE0CE415CB93B70055B5DF /* Powerups */,
 			);
 			path = "Planet Orbiting iOS Game";
@@ -1642,6 +1709,7 @@
 		0C7AA60315946939000B58F2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FA8242DB15F36C78009725BD /* PredPoint Sorta */,
 				FADEAE6015EF448F0085FB5D /* Powerups */,
 				FA20FD5515EE02B3008F2F17 /* Title */,
 				FA20FD5015EDEC08008F2F17 /* Player */,
@@ -1860,8 +1928,6 @@
 				0CA9650A15C66249002FB2E8 /* selector.png */,
 				0CA9650B15C66249002FB2E8 /* slider-hd.png */,
 				0CA9650C15C66249002FB2E8 /* slider.png */,
-				019A362115C5B62B00572B68 /* soundButtonGame-hd.png */,
-				019A362315C5B63B00572B68 /* soundButtonGame.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -2101,15 +2167,6 @@
 			path = "Planet Orbiting iOS Game";
 			sourceTree = "<group>";
 		};
-		C4B06C5915B9161F003C0183 /* TestFlight */ = {
-			isa = PBXGroup;
-			children = (
-				C4B06C5515B9161D003C0183 /* libTestFlight.a */,
-				C4B06C5615B9161D003C0183 /* TestFlight.h */,
-			);
-			name = TestFlight;
-			sourceTree = "<group>";
-		};
 		C4C9161A15D309C9008105A6 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -2121,6 +2178,7 @@
 				C4C9161215D309C5008105A6 /* coin_label_font-hd.png */,
 				C4C9161315D309C5008105A6 /* coin_label_font.fnt */,
 				C4C9161415D309C5008105A6 /* coin_label_font.png */,
+				0C3E902D15F5EB6C007205B1 /* HelveticaNeue-CondensedBold.ttf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -2307,6 +2365,17 @@
 			name = Store;
 			sourceTree = "<group>";
 		};
+		FA8242DB15F36C78009725BD /* PredPoint Sorta */ = {
+			isa = PBXGroup;
+			children = (
+				FA8242E515F38A34009725BD /* justthetip-hd.png */,
+				FA8242DD15F36C8C009725BD /* justthetip.png */,
+				FA8242E615F38A34009725BD /* point-hd.png */,
+				FA8242DF15F36C96009725BD /* point.png */,
+			);
+			name = "PredPoint Sorta";
+			sourceTree = "<group>";
+		};
 		FABB360215CE44D4004F5396 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
@@ -2382,7 +2451,7 @@
 			);
 			name = "Planet Orbiting iOS Game";
 			productName = "Planet Orbiting iOS Game";
-			productReference = 0C7AA5EE15946939000B58F2 /* Star Dash.app */;
+			productReference = 0C7AA5EE15946939000B58F2 /* Star Stream.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2783,6 +2852,18 @@
 				C424BE4C15F006D600F6E5BA /* feverModeInitialExplosion.plist in Resources */,
 				FAC8A15D15F04C0E00F7B6B2 /* endFeverMode.mp3 in Resources */,
 				FAC8A15E15F04C0E00F7B6B2 /* startFeverMode.mp3 in Resources */,
+				FA8242DE15F36C8C009725BD /* justthetip.png in Resources */,
+				FA8242E015F36C96009725BD /* point.png in Resources */,
+				FA8242E715F38A34009725BD /* justthetip-hd.png in Resources */,
+				FA8242E815F38A34009725BD /* point-hd.png in Resources */,
+				0C3E8FEE15F5836E007205B1 /* FBDialog.bundle in Resources */,
+				0C3E8FEF15F5836E007205B1 /* GTMOAuth2ViewTouch.nib in Resources */,
+				0C3E8FF015F5836E007205B1 /* Kamcord.bundle in Resources */,
+				0C3E8FF115F5836E007205B1 /* KCVideoTracker.mom in Resources */,
+				0C3E8FF215F5836E007205B1 /* KCVideoTracker.omo in Resources */,
+				0C3E8FF315F5836E007205B1 /* VersionInfo.plist in Resources */,
+				0C3E8FF415F5836E007205B1 /* ShareKit.bundle in Resources */,
+				0C3E902E15F5EB6C007205B1 /* HelveticaNeue-CondensedBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2929,6 +3010,9 @@
 				FA5492E415EC24E100285707 /* StoreLayer.m in Sources */,
 				FA20FD4215ECB9A4008F2F17 /* MissionsCompleteLayer.m in Sources */,
 				0C2C49B515EF666F005B1214 /* iRate.m in Sources */,
+				0C695E3815F08FF20092DD51 /* Reachability.m in Sources */,
+				0C695E3B15F08FFE0092DD51 /* IAPHelper.m in Sources */,
+				0C695E4015F098A80092DD51 /* StarStreamIAPHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2950,7 +3034,8 @@
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2.5;
+				LLVM_LTO = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2961,12 +3046,16 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
+				GCC_UNROLL_LOOPS = YES;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2.5;
+				LLVM_LTO = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 			};
@@ -2977,10 +3066,7 @@
 			buildSettings = {
 				ALTERNATE_GROUP = "$(INSTALL_GROUP)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2991,7 +3077,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_FAST_MATH = YES;
+				GCC_FAST_MATH = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Planet Orbiting iOS Game/Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
@@ -2999,14 +3085,15 @@
 				"GCC_THUMB_SUPPORT[arch=armv7]" = YES;
 				GCC_UNROLL_LOOPS = NO;
 				GCC_VERSION = "";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "Planet Orbiting iOS Game/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2.5;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Planet Orbiting iOS Game\"",
-					"\"$(SRCROOT)/Planet Orbiting iOS Game/FlurryAnalytics\"",
 					"\"$(SRCROOT)/Planet Orbiting iOS Game/Flurry\"",
 				);
+				LLVM_LTO = NO;
 				"OTHER_CFLAGS[arch=armv6]" = "-mno-thumb";
 				"OTHER_CFLAGS[arch=armv7]" = "";
 				OTHER_LDFLAGS = (
@@ -3015,10 +3102,11 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "Star Dash";
+				PRODUCT_NAME = "Star Stream";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3028,35 +3116,34 @@
 			buildSettings = {
 				ALTERNATE_GROUP = "$(INSTALL_GROUP)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEPLOYMENT_POSTPROCESSING = NO;
+				COPY_PHASE_STRIP = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				GCC_FAST_MATH = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_FAST_MATH = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Planet Orbiting iOS Game/Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
-				"GCC_THUMB_SUPPORT[arch=armv6]" = YES;
-				"GCC_THUMB_SUPPORT[arch=armv7]" = NO;
+				"GCC_THUMB_SUPPORT[arch=armv6]" = NO;
+				"GCC_THUMB_SUPPORT[arch=armv7]" = YES;
 				GCC_UNROLL_LOOPS = YES;
 				GCC_VERSION = "";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "Planet Orbiting iOS Game/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2.5;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Planet Orbiting iOS Game\"",
-					"\"$(SRCROOT)/Planet Orbiting iOS Game/FlurryAnalytics\"",
 					"\"$(SRCROOT)/Planet Orbiting iOS Game/Flurry\"",
 				);
+				LLVM_LTO = NO;
 				"OTHER_CFLAGS[arch=armv6]" = (
 					"-DNS_BLOCK_ASSERTIONS=1",
 					"-mno-thumb",
@@ -3068,12 +3155,13 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "Star Dash";
+				PRODUCT_NAME = "Star Stream";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				STRIP_INSTALLED_PRODUCT = NO;
+				STRIP_INSTALLED_PRODUCT = YES;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

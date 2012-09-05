@@ -56,7 +56,7 @@
      //   }
         
         //if (shouldBeRand)
-        //    coinSprite = [CCSprite spriteWithFile:@"upgradecoin.png"];
+        //    self.sprite = [CCSprite spriteWithFile:@"upgradecoin.png"];
         
     }
 	return self;

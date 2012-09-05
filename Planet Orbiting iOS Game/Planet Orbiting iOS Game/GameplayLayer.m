@@ -49,6 +49,7 @@ const int maxNameLength = 8;
     bool isInFeverMode;
     int feverModePlanetHitsInARow;
     float timeInOrbit;
+    float timeDilationUponFeverEnter;
     CCLabelTTF* feverLabel;
     CCLayer* loadedPauseLayer;
     NSString *blankAvoiderName;
@@ -238,8 +239,8 @@ typedef struct {
 {
     float rotationOfSegment = CC_DEGREES_TO_RADIANS([self RandomBetween:-segmentRotationVariation+directionPlanetSegmentsGoIn maxvalue:segmentRotationVariation+directionPlanetSegmentsGoIn]);
     Galaxy *galaxy = currentGalaxy;
-    originalSegmentNumber = [self RandomBetween:0 maxvalue:[[galaxy segments ]count]-1];
-    NSArray *chosenSegment = [[galaxy segments] objectAtIndex:originalSegmentNumber];
+    int segNumber = [self RandomBetween:0 maxvalue:[[galaxy segments ]count]-1];
+    NSArray *chosenSegment = [[galaxy segments] objectAtIndex:segNumber];
     
     int planetsInSegment = 0;
     for (int i = 0 ; i < [chosenSegment count]; i++) {
@@ -251,6 +252,8 @@ typedef struct {
     int futurePlanetCount = planetsHitSinceNewGalaxy + planetsInSegment;
     if (abs(currentGalaxy.optimalPlanetsInThisGalaxy-planetsHitSinceNewGalaxy)<abs(currentGalaxy.optimalPlanetsInThisGalaxy-futurePlanetCount))
         return false;
+    
+    originalSegmentNumber = segNumber;
     
     segmentsSpawnedFlurry++;
     
@@ -352,11 +355,11 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] equipped]];
     
-    [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.9 + .037*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] equipped]];
+    [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.85 + .08*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] equipped]];
     
     [[UpgradeValues sharedInstance] setHasDoubleCoins:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped]];
     
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:60 + 5*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:63 + 5*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
     
     [[UpgradeValues sharedInstance] setHasStarMagnet:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped]];
     
@@ -426,9 +429,12 @@ typedef struct {
     [loadingLayerBackground runAction:[CCSequence actions:
                                        [CCFadeOut actionWithDuration:fadeOutDuration],removeLoadingLayer, nil]];
     
+    
+    [self schedule:@selector(UpdateTut:) interval:0];
+    
     [self scheduleUpdates];
     [self schedule:@selector(Update:) interval:0];// this makes the update loop loop!!!!
-    //[Kamcord startRecording];
+    [Kamcord startRecording];
 }
 
 - (void)loadEverything {
@@ -438,6 +444,8 @@ typedef struct {
     loadedPauseLayer = [self createPauseLayer];
     
     directionPlanetSegmentsGoIn = [self randomValueBetween:defaultDirectionPlanetSegmentsGoIn-directionPlanetSegmentsGoInVariance andValue:defaultDirectionPlanetSegmentsGoIn+directionPlanetSegmentsGoInVariance];
+    
+    [Kamcord prepareNextVideo];
     
     planetCounter = 0;
     planets = [[NSMutableArray alloc] init];
@@ -463,12 +471,11 @@ typedef struct {
     [cameraLayer addChild:feverModeInitialExplosionParticle z:28];
     [feverModeInitialExplosionParticle setScale:1];
     
-    feverModeLabelParticle = [CCParticleSystemQuad particleWithFile:@"feverModeInitialExplosion.plist"];
+    feverModeLabelParticle = [CCParticleSystemQuad particleWithFile:@"powerupGottenExplosionTexture.plist"];
     [feverModeLabelParticle stopSystem];
     [feverModeLabelParticle setPositionType:kCCPositionTypeRelative];
     [hudLayer addChild:feverModeLabelParticle z:28];
-    [feverModeLabelParticle setScale:.9];
-    [feverModeLabelParticle setAngle:-45];
+    [feverModeLabelParticle setScale:.5];
     
     
     starStashParticle = [CCParticleSystemQuad particleWithFile:@"starStashParticle.plist"];
@@ -499,6 +506,7 @@ typedef struct {
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"bomb.wav"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.WAV"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"buttonpress.mp3"];
+    
     
     
     backgroundSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"backgroundStars.pvr.ccz"];
@@ -536,7 +544,10 @@ typedef struct {
     player.alive=true;
     //[player.sprite setScale:playerSizeScale];
     player.segmentNumber = -10;
-    player.sprite.position = ccpAdd([self GetPositionForJumpingPlayerToPlanet:0],ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(defaultDirectionPlanetSegmentsGoIn)), -3200*100));
+    orbitState = 1;
+    player.sprite.position = ccp(-750, -500);
+    swipeVector = ccp(0, 1);
+    targetPlanet = [planets objectAtIndex:0];
     // player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
     if ([[UpgradeValues sharedInstance] hasGreenShip]) {
         //player.sprite.color = ccGREEN;
@@ -598,7 +609,7 @@ typedef struct {
      // ccc4(0,255,0,255) // green
      target:player.sprite];*/
     
-    streak = [CCMotionStreak streakWithFade:2 minSeg:3 width:streakWidth color:ccc3(255, 255, 255/*255, 153*/) textureFilename:@"streak2.png"];
+    streak = [CCMotionStreak streakWithFade:2 minSeg:3 width:streakWidth color:ccWHITE textureFilename:@"streak2.png"];
     
     
     if ([[UpgradeValues sharedInstance] hasGreenTrail]) {
@@ -623,9 +634,11 @@ typedef struct {
     
     
     
-    cameraFocusNode = [[CCSprite alloc]init];
+    cameraFocusNode = [[CCNode alloc]init];
+    //cameraFollowAction =  [CCFollow actionWithTarget:cameraFocusNode];
+    
     killer = 0;
-    orbitState = 0; // 0 = orbiting, 1 = just left orbit and deciding things for state 3; 3 = flying to next planet
+    //orbitState = 0; // 0 = orbiting, 1 = just left orbit and deciding things for state 3; 3 = flying to next planet
     velSoftener = 1;
     initialAccelMag = 0;
     isOnFirstRun = true;
@@ -634,7 +647,6 @@ typedef struct {
     swipeVector = ccp(0, -1);
     gravIncreaser = 1;
     updatesSinceLastPlanet = 0;
-    asteroidSlower = 1;
     powerupCounter = 0;
     updatesWithoutBlinking = 0;
     updatesWithBlinking = 999;
@@ -647,6 +659,9 @@ typedef struct {
     [feverLabel setPosition:ccp(240, feverLabel.boundingBox.size.height*.6)];
     [hudLayer addChild:feverLabel];
     isInFeverMode = false;
+    timeDilationUponFeverEnter = 1;
+    hasOpenedTut = false;
+    isDoingTutStuff = false;
     
     asteroidsCrashedInto = 0;
     asteroidsDestroyedWithArmor = 0;
@@ -822,7 +837,11 @@ typedef struct {
         else if (player.currentPowerup.type == kautopilot)
             player.velocity = ccpMult(player.velocity, 1.1);
         
-        player.sprite.position = ccpAdd(ccpMult(player.velocity, 60*dt*timeDilationCoefficient*asteroidSlower), player.sprite.position);
+        //NSLog(@"mag: %f", ccpLength(ccpMult(player.velocity, 60*dt*timeDilationCoefficient)));
+        //NSLog(@"coeff: %f", timeDilationCoefficient);
+        
+        player.sprite.position = ccpAdd(ccpMult(player.velocity, 60*dt*timeDilationCoefficient), player.sprite.position);
+        [streak setPosition:player.sprite.position];
     }
     
     if (isnan(player.sprite.position.x)) {
@@ -835,16 +854,15 @@ typedef struct {
     Planet * nextPlanet;
     if (lastPlanetVisited.number +1 < [planets count])
         nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
-    else     nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
     
-    float firsttoplayer = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, player.sprite.position));
-    float planetAngle = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, nextPlanet.sprite.position));
-    float firstToPlayerAngle = firsttoplayer-planetAngle;
-    float firstToPlayerDistance = ccpDistance(lastPlanetVisited.sprite.position, player.sprite.position)*cosf(firstToPlayerAngle);
-    float firsttonextDistance = ccpDistance(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
-    float percentofthewaytonext = firstToPlayerDistance/firsttonextDistance;
-    if (orbitState == 0 || nextPlanet.number + 1 >= [planets count])
-        percentofthewaytonext*=.4f;
+    double firsttoplayer = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, player.sprite.position));
+    double planetAngle = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, nextPlanet.sprite.position));
+    double firstToPlayerAngle = firsttoplayer-planetAngle;
+    double firstToPlayerDistance = ccpDistance(lastPlanetVisited.sprite.position, player.sprite.position)*cos(firstToPlayerAngle);
+    double firsttonextDistance = ccpDistance(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
+    double percentofthewaytonext = firstToPlayerDistance/firsttonextDistance;
+  //  if (orbitState == 0 || nextPlanet.number + 1 >= [planets count])
+ //       percentofthewaytonext*=.4f;
     
     Planet * planet1 = lastPlanetVisited;
     Planet * planet2 = nextPlanet;
@@ -852,23 +870,24 @@ typedef struct {
     CGPoint sub = ccpSub(planet2.sprite.position, planet1.sprite.position);
     CGPoint mult = ccpMult(sub, percentofthewaytonext);
     CGPoint focusPointOne = ccpAdd(mult ,planet1.sprite.position);
-    planet1 = [planets objectAtIndex:MIN([planets count]-1, lastPlanetVisited.number+2)];
-    planet2 = [planets objectAtIndex:MIN([planets count]-1, lastPlanetVisited.number+3)];
-    if (planet2.whichGalaxyThisObjectBelongsTo != lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
-        percentofthewaytonext *=.4f;
+    planet1 = [planets objectAtIndex:lastPlanetVisited.number+2];
+    planet2 = [planets objectAtIndex:lastPlanetVisited.number+3];
+  //  if (planet2.whichGalaxyThisObjectBelongsTo != lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
+    //    percentofthewaytonext *=.4f;
     CGPoint focusPointTwo = ccpAdd(ccpMult(ccpSub(planet2.sprite.position, planet1.sprite.position), percentofthewaytonext) ,planet1.sprite.position);
     
-    // if (planet2.whichGalaxyThisObjectBelongsTo != lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
-    //      focusPointTwo = nextPlanet.sprite.position;
     float extraScaleFactor = 0;
     if (planet2.whichGalaxyThisObjectBelongsTo != lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
+        extraScaleFactor = 8;
+    if (planet1.whichGalaxyThisObjectBelongsTo != lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
         extraScaleFactor = 16;
     
-    
     CGPoint focusPosition = ccpMult(ccpAdd(ccpMult(focusPointOne,extraScaleFactor+ cameraScaleFocusedOnFocusPosOne), focusPointTwo), 1.0f/(extraScaleFactor+ cameraScaleFocusedOnFocusPosOne+1.0f));
-    cameraDistToUse= lerpf(cameraDistToUse,ccpDistance(focusPointOne, focusPointTwo),cameraZoomSpeed);
+   
     
-    float horizontalScale = 294.388933833*pow(cameraDistToUse,-.94226344467);
+    cameraDistToUse= lerpf(cameraDistToUse,ccpDistance(focusPointOne, focusPointTwo),1);
+    
+    float horizontalScale = 294.388933833*pow(cameraDistToUse,-1);
     float newAng = CC_RADIANS_TO_DEGREES(fabs(ccpToAngle(ccpSub(focusPointTwo, focusPointOne))));
     if (newAng > 270)
         newAng = 360 - newAng;
@@ -882,10 +901,10 @@ typedef struct {
     else numerator = 499-8.1*newAng + (4.9/100)*powf(newAng, 2);
     float scalerToUse = numerator/240; //CCLOG(@"num: %f, newAng: %f", numerator, newAng);
     
-    if ([cameraLayer scale]<.3) {
+    //if ([cameraLayer scale]<.3) {
         // NSLog(@"\n\n\nALERT: cameraLayer scale should be bigger this this, we prob has an error");
-        [cameraLayer setScale:.3];
-    }
+      //  [cameraLayer setScale:.3];
+   // }
     
     float scale = zoomMultiplier*horizontalScale*scalerToUse;
     if (cameraShouldFocusOnPlayer&&false) {
@@ -901,11 +920,11 @@ typedef struct {
 
 - (void) scaleLayer:(CCLayer*)layerToScale scaleToZoomTo:(CGFloat) newScale scaleCenter:(CGPoint) scaleCenter {
     // Get the original center point.
-    CGPoint oldCenterPoint = ccp(scaleCenter.x * layerToScale.scale, scaleCenter.y * layerToScale.scale);
+    CGPoint oldCenterPoint = ccp(scaleCenter.x * layerToScale.scaleX, scaleCenter.y * layerToScale.scaleY);
     // Set the scale.
     layerToScale.scale = newScale;
     // Get the new center point.
-    CGPoint newCenterPoint = ccp(scaleCenter.x * layerToScale.scale, scaleCenter.y * layerToScale.scale);
+    CGPoint newCenterPoint = ccp(scaleCenter.x * layerToScale.scaleX, scaleCenter.y * layerToScale.scaleY);
     cameraFocusNode.position = newCenterPoint;
     // Then calculate the delta.
     CGPoint centerPointDelta  = ccpSub(oldCenterPoint, newCenterPoint);
@@ -970,7 +989,7 @@ typedef struct {
 }
 
 - (ALuint)playSound:(NSString*)soundFile shouldLoop:(bool)shouldLoop pitch:(float)pitch{
-    //[Kamcord playSound:soundFile loop:shouldLoop];
+    [Kamcord playSound:soundFile loop:shouldLoop];
     if (shouldLoop)
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:soundFile loop:YES];
     else
@@ -980,6 +999,8 @@ typedef struct {
 
 - (void)ApplyGravity:(float)dt {
     
+    //NSLog(@"how many %d", feverModePlanetHitsInARow);
+    
     for (Coin* coin in coins) {
         
         CGPoint p = coin.sprite.position;
@@ -987,7 +1008,7 @@ typedef struct {
         if (coin.isAlive)
             coin.sprite.position = ccpAdd(coin.sprite.position, coin.velocity);
         
-        if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/1.5 && coin.isAlive) {
+        if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/1.9 && coin.isAlive) {
             [self UserTouchedCoin:coin dt:dt];
         }
     }
@@ -1013,14 +1034,6 @@ typedef struct {
             }
         }
     
-    /*if (!(player.currentPowerup.type == kasteroidImmunity)) {
-     if (isHittingAsteroid)
-     asteroidSlower -= .1;
-     else
-     asteroidSlower += .01;
-     asteroidSlower = clampf(asteroidSlower, .13, 1);
-     }*/
-    
     if (!(player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart))
         for (Powerup* powerup in powerups) {
             CGPoint p = powerup.sprite.position;
@@ -1030,8 +1043,8 @@ typedef struct {
                     if (player.currentPowerup != nil) {
                         [player.currentPowerup.glowSprite setVisible:false];
                     }
-                    //paused = true;
-                    //isDisplayingPowerupAnimation = true;
+                    paused = true;
+                    isDisplayingPowerupAnimation = true;
                     powerupPos = 0;
                     powerupVel = 0;
                     player.currentPowerup = powerup;
@@ -1100,6 +1113,13 @@ typedef struct {
                     CGPoint a = ccpSub(player.sprite.position, planet.sprite.position);
                     
                     player.sprite.position = ccpAdd(player.sprite.position, ccpMult(ccpNormalize(a), (planet.orbitRadius*.0 - ccpLength(a))*howFastOrbitPositionGetsFixed*timeDilationCoefficient*60*dt/[[UpgradeValues sharedInstance] absoluteMinTimeDilation]));
+                    [streak setPosition:player.sprite.position];
+                    
+                    //CGPoint hi = ccpAdd(player.sprite.position,ccpMult(ccpNormalize(a), (planet.orbitRadius*.0 - ccpLength(a))*howFastOrbitPositionGetsFixed*timeDilationCoefficient*60*dt/[[UpgradeValues sharedInstance] absoluteMinTimeDilation]));
+                    
+                    //hi = ccpMult(a, -1*.1);
+                    
+                    //player.velocity = ccpAdd(player.velocity, hi);
                     
                     velSoftener += 1/updatesToMakeOrbitVelocityPerfect*60*dt;
                     velSoftener = clampf(velSoftener, 0, 1);
@@ -1120,6 +1140,11 @@ typedef struct {
                     if (ccpLength(a) != planet.orbitRadius) {
                         player.sprite.position = ccpAdd(player.sprite.position, ccpMult(ccpNormalize(a), (planet.orbitRadius - ccpLength(a))*howFastOrbitPositionGetsFixed*timeDilationCoefficient*60*dt/[[UpgradeValues sharedInstance] absoluteMinTimeDilation]));
                     }
+                    [streak setPosition:player.sprite.position];
+                    
+                    //CGPoint hi = ccpMult(a, -1*.002);
+                    
+                    //player.velocity = ccpAdd(player.velocity, hi);
                     
                     velSoftener += 1/updatesToMakeOrbitVelocityPerfect*60*dt;
                     velSoftener = clampf(velSoftener, 0, 1);
@@ -1157,7 +1182,8 @@ typedef struct {
                 if (orbitState == 1) {
                     velSoftener = 0;
                     gravIncreaser = 1;
-                    [self playSound:@"SWOOSH.WAV" shouldLoop:false pitch:1];
+                    if (loading_playerHasReachedFirstPlanet)
+                        [self playSound:@"SWOOSH.WAV" shouldLoop:false pitch:1];
                     player.acceleration = CGPointZero;
                     
                     CGPoint d = ccpSub(targetPlanet.sprite.position, player.sprite.position);
@@ -1177,6 +1203,8 @@ typedef struct {
                     float howMuchOfSwipeVectorToUse = .35;
                     CGPoint vectorToCheck = ccpAdd(ccpMult(ccpNormalize(swipeVector), howMuchOfSwipeVectorToUse), ccpMult(ccpNormalize(player.velocity), 1-howMuchOfSwipeVectorToUse));
                     
+                    CGPoint targetForPred;
+                    
                     float newAng = 0;
                     //CGPoint vel = CGPointZero;
                     if (ccpLength(ccpSub(ccpAdd(player.sprite.position, vectorToCheck), left)) <= ccpLength(ccpSub(ccpAdd(player.sprite.position, vectorToCheck), right))) { //closer to the left
@@ -1184,6 +1212,7 @@ typedef struct {
                         if (ccpLength(ccpSub(player.sprite.position, spot1)) < ccpLength(ccpSub(player.sprite.position, spot2)))
                             distToUse2 = factorToPlaceGravFieldWhenStayingOutside; //staying outside
                         spotGoingTo = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius*distToUse2), targetPlanet.sprite.position);
+                        targetForPred = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius), targetPlanet.sprite.position);
                         newAng = ccpToAngle(ccpSub(left, player.sprite.position));
                         //vel = ccpSub(left, player.sprite.position);
                     }
@@ -1192,9 +1221,26 @@ typedef struct {
                         if (ccpLength(ccpSub(player.sprite.position, spot1)) > ccpLength(ccpSub(player.sprite.position, spot2)))
                             distToUse2 = factorToPlaceGravFieldWhenStayingOutside; //staying outside
                         spotGoingTo = ccpAdd(ccpMult(dir3, targetPlanet.orbitRadius*distToUse2), targetPlanet.sprite.position);
+                        targetForPred = ccpAdd(ccpMult(dir3, targetPlanet.orbitRadius), targetPlanet.sprite.position);
                         newAng = ccpToAngle(ccpSub(right, player.sprite.position));
                         //vel = ccpSub(right, player.sprite.position);
                     }
+                    
+                    if (loading_playerHasReachedFirstPlanet) {
+                        if (!(player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart)) {
+                            if (isLeavingLastPlanetInGalaxy)
+                                [self removeOldPredLine];
+                            else {
+                                [self createPredPointsFrom:player.sprite.position to:targetForPred withColor:ccWHITE andRemoveOldLine:true];
+                                int numTimesPlayed = [[PlayerStats sharedInstance] getPlays];
+                                if (numTimesPlayed <= 99999) {
+                                    //[self pauseWithDuration:100 message:@"test text"];
+                                }
+                            }
+                        }
+                    }
+                    
+                    
                     
                     float curAng = ccpToAngle(player.velocity);
                     swipeAccuracy = fabsf(CC_RADIANS_TO_DEGREES(curAng) - CC_RADIANS_TO_DEGREES(newAng));;
@@ -1249,7 +1295,7 @@ typedef struct {
                 float scaler = multiplyGravityThisManyTimesOnPerfectSwipe - swipeAccuracy * multiplyGravityThisManyTimesOnPerfectSwipe / 180;
                 scaler = clampf(scaler, 0, 99999999);
                 
-                player.acceleration = ccpMult(accelToAdd, [[UpgradeValues sharedInstance] absoluteMinTimeDilation]*1.11*gravIncreaser*freeGravityStrength*scaler*asteroidSlower*60*dt);
+                player.acceleration = ccpMult(accelToAdd, [[UpgradeValues sharedInstance] absoluteMinTimeDilation]*1.11*timeDilationCoefficient*gravIncreaser*freeGravityStrength*scaler*60*dt);
                 if (player.currentPowerup.type == kheadStart)
                     player.acceleration = ccpMult(player.acceleration, 9);
                 else if (player.currentPowerup.type == kautopilot)
@@ -1257,8 +1303,8 @@ typedef struct {
                 
                 if (initialAccelMag == 0)
                     initialAccelMag = ccpLength(player.acceleration);
-                else
-                    player.acceleration = ccpMult(ccpNormalize(player.acceleration), initialAccelMag);
+                
+                player.acceleration = ccpMult(ccpNormalize(player.acceleration), initialAccelMag);
             }
             
             if (ccpLength(ccpSub(player.sprite.position, targetPlanet.sprite.position)) <= targetPlanet.orbitRadius) {
@@ -1293,19 +1339,31 @@ typedef struct {
 
 - (void)endFeverMode {
     if (isInFeverMode) {
-        isInFeverMode = false;
         
         
         if (player.currentPowerup.type != kheadStart) {
-            timeDilationCoefficient /= timeDilationFeverModeMultiplier;
-            timeDilationCoefficient = clampf(timeDilationCoefficient, [[UpgradeValues sharedInstance] absoluteMinTimeDilation], absoluteMaxTimeDilation);
+            timeDilationCoefficient = clampf(timeDilationUponFeverEnter, [[UpgradeValues sharedInstance] absoluteMinTimeDilation], absoluteMaxTimeDilation);
         }
         
         [self playSound:@"endFeverMode.mp3" shouldLoop:false pitch:1];
         [thrustParticle setEmissionRate:20];
-        feverModePlanetHitsInARow = 0;
-        [feverLabel setString:[NSString stringWithFormat:@""]];
+        
+        
+        [feverLabel runAction:[CCSequence actions:
+                               [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.1 scale:1.2]],
+                               [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.2 scale:.6]],
+                               [CCFadeTo actionWithDuration:1.5 opacity:0],
+                               [CCCallBlock actionWithBlock:(^{
+            [feverLabel setString:[NSString stringWithFormat:@""]];
+            [feverLabel setOpacity:255];
+        })],
+                               
+                               nil]
+         ];
+        
     }
+    isInFeverMode = false;
+    feverModePlanetHitsInARow = 0;
 }
 
 // FIX you don't really need planetIndex passed in because it's just going to spawn at the position of the last thrust point anyway
@@ -1453,7 +1511,7 @@ typedef struct {
     justReachedNewPlanet = true;
     
     [thrustParticle setPositionType:kCCPositionTypeRelative];
-    [cameraLayer addChild:thrustParticle z:2];
+    //[cameraLayer addChild:thrustParticle z:2];
     [cameraLayer addChild:thrustBurstParticle z:2];
     [cameraLayer addChild:streak z:1];
     [cameraLayer addChild:player.sprite z:3];
@@ -1512,9 +1570,8 @@ typedef struct {
         else nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number-1)];
         //NSLog(@"galaxy11");
         
-        if (
-            //nextPlanet.whichGalaxyThisObjectBelongsTo > lastPlanetVisited.whichGalaxyThisObjectBelongsTo||
-            targetPlanet.whichGalaxyThisObjectBelongsTo>lastPlanetVisited.whichGalaxyThisObjectBelongsTo || loading_playerHasReachedFirstPlanet==false) {
+        if (targetPlanet.whichGalaxyThisObjectBelongsTo>lastPlanetVisited.whichGalaxyThisObjectBelongsTo || loading_playerHasReachedFirstPlanet==false) {
+            isLeavingLastPlanetInGalaxy = true;
             cameraShouldFocusOnPlayer=true;
             //NSLog(@"galaxy112");
             
@@ -1540,10 +1597,13 @@ typedef struct {
             ccColor3B lastColor = thisGalaxy.galaxyColor;
             ccColor3B nextColor = nextGalaxy2.galaxyColor;
             
-            [backgroundClouds setColor:ccc3(lerpf(lastColor.r, nextColor.r, percentofthewaytonext),
-                                            lerpf(lastColor.g, nextColor.g, percentofthewaytonext),
-                                            lerpf(lastColor.b, nextColor.b, percentofthewaytonext))];
+            if (percentofthewaytonext>.35) {
+                float colorPercent = (percentofthewaytonext-.3)/.7;
+            [backgroundClouds setColor:ccc3(lerpf(lastColor.r, nextColor.r, colorPercent),
+                                            lerpf(lastColor.g, nextColor.g, colorPercent),
+                                            lerpf(lastColor.b, nextColor.b, colorPercent))];
             
+            }
             if (percentofthewaytonext>.85&&justDisplayedGalaxyLabel==false&&(int)galaxyLabel.opacity<=0)
             {
                 if ([[cameraLayer children]containsObject:currentGalaxy.spriteSheet]==false) {
@@ -1587,6 +1647,7 @@ typedef struct {
             }
         }
         else {
+            isLeavingLastPlanetInGalaxy = false;
             cameraShouldFocusOnPlayer=false;
             //[background setOpacity:255];
         }
@@ -1596,7 +1657,7 @@ typedef struct {
         [hudLayer removeChild:galaxyLabel cleanup:NO];
     
     if (lastPlanetVisited.segmentNumber == numberOfSegmentsAtATime-1) {
-        //CCLOG(@"Planet Count: %d",[planets count]);
+        CCLOG(@"Planet Count: %d",[planets count]);
         [self DisposeAllContentsOfArray:planets shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:zones shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:asteroids shouldRemoveFromArray:true];
@@ -1609,7 +1670,7 @@ typedef struct {
         //  [self RenumberCamObjectArray:powerups];
         [self RenumberCamObjectArray:coins];
         
-        //NSLog(@"galaxy6");
+        NSLog(@"galaxy6");
         if (currentGalaxy.number>0) {
             Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
             [lastGalaxy.spriteSheet removeAllChildrenWithCleanup:YES];
@@ -1621,8 +1682,10 @@ typedef struct {
         if ([self CreateSegment]==false) {
             justDisplayedGalaxyLabel = false;
             
+            makingSegmentNumber--;
             [self CreatePlanetAndZone:indicatorPos.x yPos:indicatorPos.y scale:1];
-            
+            makingSegmentNumber++;
+
             planetsHitSinceNewGalaxy=0;
             if (currentGalaxy.number+1<[galaxies count]) {
                 currentGalaxy = nextGalaxy;
@@ -1635,7 +1698,7 @@ typedef struct {
             }
             [self CreateSegment];
         }
-        //CCLOG(@"Planet Count: %d",[planets count]);
+        CCLOG(@"Planet Count: %d",[planets count]);
     }
 }
 
@@ -1653,6 +1716,7 @@ typedef struct {
     
     
     
+    timeDilationUponFeverEnter = timeDilationCoefficient;
     if (player.currentPowerup.type != kheadStart) {
         timeDilationCoefficient *= timeDilationFeverModeMultiplier;
         timeDilationCoefficient = clampf(timeDilationCoefficient, [[UpgradeValues sharedInstance] absoluteMinTimeDilation], absoluteMaxTimeDilation);
@@ -1674,13 +1738,9 @@ typedef struct {
     player.isInZone = false;
     
     int zoneCount = zones.count;
-    for (int i = MAX(lastPlanetVisited.number-1,0); i < zoneCount;i++)
+    for (int i = MAX(lastPlanetVisited.number-1,0); i < MIN(zoneCount,lastPlanetVisited.number+3);i++)
     {
         Zone * zone = [zones objectAtIndex:i];
-        if (zone.number<lastPlanetVisited.number-2)
-            continue;
-        if (zone.number>lastPlanetVisited.number+1)
-            break;
         if (zone.number<=lastPlanetVisited.number+1&& ccpDistance([[player sprite]position], [[zone sprite]position])<[zone radius]*zoneCollisionFactor)
         {
             player.isInZone = true;
@@ -1760,7 +1820,6 @@ typedef struct {
 
 - (void)UpdateParticles:(ccTime)dt {
     //[streak runAction:[CCFollow actionWithTarget:player.sprite]];
-    [streak setPosition:player.sprite.position];
     
     [thrustParticle setPosition:player.sprite.position];
     [thrustParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
@@ -1846,7 +1905,10 @@ typedef struct {
         isGameOver = true;
         if ([[self children]containsObject:layerHudSlider])
             [self removeChild:layerHudSlider cleanup:YES];
-        // [Kamcord stopRecording];
+
+        [Kamcord stopRecording];
+        if (allowVideoToConvert==false)
+            [Kamcord cancelConversionForLatestVideo];
         
         CCSprite* dark = [CCSprite spriteWithFile:@"OneByOne.png"];
         [self addChild:dark];
@@ -1899,6 +1961,8 @@ typedef struct {
     //numCoinsDisplayed = 69;
     
     int rateOfScoreIncrease = finalScore / 640;
+    if (rateOfScoreIncrease == 0 )
+        rateOfScoreIncrease = 1;
     
     NSDictionary *dictForFlurry = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:finalScore],@"Highscore Value", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned",[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSString stringWithFormat:@"%d galaxies and %d segments",currentGalaxy.number+1,flurrySegmentsVisitedSinceGalaxyJump],@"How far player went",[NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays",[[PlayerStats sharedInstance] recentName],@"Player Name",nil];
     
@@ -1928,7 +1992,6 @@ typedef struct {
     id setNumber = [CCCallBlock actionWithBlock:(^{
         [gameOverScoreLabel setString:[NSString stringWithFormat:@"%d",finalScore]];
     })];
-    
     
     id displayParticles = [CCCallBlock actionWithBlock:(^{
         [self addChild:starStashParticle];
@@ -2055,7 +2118,7 @@ typedef struct {
     else
         powerupVel = 18*1.5;
     
-    powerupPos = 999;
+    //powerupPos = 999;
     if (powerupPos > 480 + [powerupLabel boundingBox].size.width) {
         paused = false;
         isDisplayingPowerupAnimation = false;
@@ -2063,8 +2126,9 @@ typedef struct {
     
     powerupPos += powerupVel*60*dt;
     [powerupLabel setString:player.currentPowerup.title];
+    
     powerupLabel.position = ccp(-[powerupLabel boundingBox].size.width/2 + powerupPos, 160);
-    powerupLabel.position = ccp(- 500, 500);
+    //powerupLabel.position = ccp(- 500, 500);
     
 }
 
@@ -2092,7 +2156,7 @@ typedef struct {
 -(void)scheduleUpdates {
     //NSLog(@"start4");
     [self schedule:@selector(UpdateScore) interval:1.0/25.0f];
-    [self schedule:@selector(UpdateParticles:) interval:1.0/50.0f];
+    [self schedule:@selector(UpdateParticles:) interval:1.0/60.0f];
     [self schedule:@selector(UpdateBackgroundStars:) interval:1.0/24.0f];
     [self schedule:@selector(UpdateLight:) interval:1.0/10.0f];
     //    [self UpdateScore];
@@ -2148,6 +2212,69 @@ typedef struct {
         [self completeObjectiveFromGroupNumber:5 itemNumber:1];
     
     
+    
+    if ([[UpgradeValues sharedInstance] hasGreenTrail] ||
+        [[UpgradeValues sharedInstance] hasBlueTrail] ||
+        [[UpgradeValues sharedInstance] hasGoldTrail] ||
+        [[UpgradeValues sharedInstance] hasOrangeTrail] ||
+        [[UpgradeValues sharedInstance] hasRedTrail] ||
+        [[UpgradeValues sharedInstance] hasPurpleTrail] ||
+        [[UpgradeValues sharedInstance] hasPinkTrail] ||
+        [[UpgradeValues sharedInstance] hasBlackTrail] ||
+        [[UpgradeValues sharedInstance] hasBrownTrail]) {
+        [self completeObjectiveFromGroupNumber:6 itemNumber:0];
+    }
+    
+    if (score >= 40000)
+        [self completeObjectiveFromGroupNumber:6 itemNumber:1];
+    
+    if (numTimesSwiped >= 50)
+        [self completeObjectiveFromGroupNumber:6 itemNumber:2];
+    
+    
+    
+    if (numCoinsDisplayed >= 200)
+        [self completeObjectiveFromGroupNumber:7 itemNumber:0];
+    
+    if (asteroidsDestroyedWithArmor >= 15)
+        [self completeObjectiveFromGroupNumber:7 itemNumber:2];
+    
+    
+    
+    if ([[UpgradeValues sharedInstance] hasGreenShip] ||
+        [[UpgradeValues sharedInstance] hasBlueShip] ||
+        [[UpgradeValues sharedInstance] hasGoldShip] ||
+        [[UpgradeValues sharedInstance] hasOrangeShip] ||
+        [[UpgradeValues sharedInstance] hasRedShip] ||
+        [[UpgradeValues sharedInstance] hasPurpleShip] ||
+        [[UpgradeValues sharedInstance] hasPinkShip]) {
+        [self completeObjectiveFromGroupNumber:8 itemNumber:0];
+    }
+    
+    if (score >= 55000)
+        [self completeObjectiveFromGroupNumber:8 itemNumber:1];
+    
+    
+    
+    if (numCoinsDisplayed >= 300)
+        [self completeObjectiveFromGroupNumber:9 itemNumber:1];
+    
+    if (player.currentPowerup.type == kautopilot)
+        [self completeObjectiveFromGroupNumber:9 itemNumber:2];
+    
+    
+    
+    if (asteroidsCrashedInto >= 15)
+        [self completeObjectiveFromGroupNumber:10 itemNumber:1];
+    
+    if (score >= 70000)
+        [self completeObjectiveFromGroupNumber:10 itemNumber:2];
+    
+    
+    
+    if (numCoinsDisplayed >= 400)
+        [self completeObjectiveFromGroupNumber:11 itemNumber:1];
+    
 }
 
 - (void) CheckMissionsGalaxyChange {
@@ -2163,7 +2290,6 @@ typedef struct {
     
     
     
-    
     if (currentGalaxy.number == 2 & numTimesDied == 0)
         [self completeObjectiveFromGroupNumber:4 itemNumber:0];
     
@@ -2172,6 +2298,21 @@ typedef struct {
     
     if (currentGalaxy.number == 2 && asteroidsCrashedInto == 0)
         [self completeObjectiveFromGroupNumber:5 itemNumber:0];
+    
+    
+    
+    if (currentGalaxy.number == 4)
+        [self completeObjectiveFromGroupNumber:9 itemNumber:0];
+    
+    
+    
+    if (currentGalaxy.number == 3 & numTimesDied == 0)
+        [self completeObjectiveFromGroupNumber:10 itemNumber:0];
+    
+    
+    
+    if (currentGalaxy.number == 5)
+        [self completeObjectiveFromGroupNumber:11 itemNumber:0];
     
 }
 
@@ -2184,6 +2325,21 @@ typedef struct {
     
     if (numCoinsDisplayed >= 150 && numCoinsDisplayed <= 160)
         [self completeObjectiveFromGroupNumber:5 itemNumber:2];
+    
+    
+    
+    if (score >= 41000 && score <= 43000)
+        [self completeObjectiveFromGroupNumber:7 itemNumber:1];
+    
+    
+    
+    if (numCoinsDisplayed >= 220 && numCoinsDisplayed <= 230)
+        [self completeObjectiveFromGroupNumber:8 itemNumber:2];
+    
+    
+    
+    if (numCoinsDisplayed >= 300 && numCoinsDisplayed <= 310)
+        [self completeObjectiveFromGroupNumber:11 itemNumber:2];
     
 }
 
@@ -2222,13 +2378,12 @@ typedef struct {
     //    //NSLog(@"both backgrounds are on the screen! this should only happen when transitioning between galaxies.");
     //NSLog(@"startx");
     
-    if (!paused&&[((AppDelegate*)[[UIApplication sharedApplication]delegate])getWasJustBackgrounded] && ![[self children] containsObject:layerToAdd])
+    if (!paused&&[((AppDelegate*)[[UIApplication sharedApplication]delegate])getWasJustBackgrounded])
     {
         //NSLog(@"startx2");
         [((AppDelegate*)[[UIApplication sharedApplication]delegate])setWasJustBackgrounded:false];
         //NSLog(@"startx3");
-        //[self togglePause];
-        [self pauseGame];
+        [self togglePause];
         //NSLog(@"startx4");
     }
     
@@ -2359,9 +2514,78 @@ typedef struct {
 - (void)JustSwiped {
     orbitState = 1;
     targetPlanet = [planets objectAtIndex: (lastPlanetVisited.number + 1)];
-    [thrustBurstParticle setPosition:player.sprite.position];
-    [thrustBurstParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
-    [thrustBurstParticle resetSystem];
+    
+    if (feverModePlanetHitsInARow >= minPlanetsInARowForFeverMode) {
+        [self UpdateFeverMode];
+    }
+    
+    if (false)
+        if (isInFeverMode) {
+            [thrustBurstParticle setPosition:player.sprite.position];
+            [thrustBurstParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
+            [thrustBurstParticle resetSystem];
+        }
+
+}
+
+-(void)removeOldPredLine {
+    if (predPointLayer) {
+        [predPointLayer removeAllChildrenWithCleanup:true];
+        [predPointLayer removeFromParentAndCleanup:YES];
+    }
+}
+
+- (void)createPredPointsFrom:(CGPoint)fromPos to:(CGPoint)toPos withColor:(ccColor3B)col andRemoveOldLine:(bool)shouldRemove {
+    if (!predPointLayer)
+        predPointLayer = [[CCLayer alloc] init];
+    else if (shouldRemove)
+        [self removeOldPredLine];
+    if (!predPointLayer.parent)
+        [cameraLayer addChild:predPointLayer];
+    
+    predPoints = [[NSMutableArray alloc] init];
+    float currentDist = INT_MAX;
+    
+    CCSprite* point = [CCSprite spriteWithFile:@"point.png"];
+    CGPoint dir = ccpNormalize(ccpSub(toPos, fromPos));
+    
+    int i = 0;
+    while (currentDist > point.width*3)
+    {
+        CCSprite* p1 = [CCSprite spriteWithFile:@"point.png"];
+        p1.color = col;
+        
+        p1.position = ccpAdd(fromPos, ccpMult(dir, i*1.5*p1.width + p1.width/2));
+        p1.rotation = -1*CC_RADIANS_TO_DEGREES(ccpToAngle(dir));
+        
+        currentDist = ccpDistance(toPos, p1.position);
+        
+        [predPoints addObject:p1];
+        
+        i++;
+    }
+    
+    CCSprite* tip = [CCSprite spriteWithFile:@"justthetip.png"];
+    tip.scale = .5;
+    tip.color = col;
+    
+    tip.position = ccpAdd(fromPos, ccpMult(dir, i*1.5*point.width + point.width/2));
+    tip.rotation = -1*CC_RADIANS_TO_DEGREES(ccpToAngle(dir));
+
+    [predPoints addObject:tip];
+    
+    for (CCSprite* s in predPoints)
+        [predPointLayer addChild:s];
+    point = nil;
+    
+    for (CCSprite* s in predPoints)
+        [s runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
+                                                        [CCScaleTo actionWithDuration:.05 scale:s.scale*1.3],
+                                                        [CCScaleTo actionWithDuration:.1 scale:s.scale],
+                                                        [CCFadeOut actionWithDuration:1.5],
+                                                        [CCCallBlock actionWithBlock:(^{ [s removeFromParentAndCleanup:true]; })],
+                                                        nil]]];
+    
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -2423,7 +2647,7 @@ float lerpf(float a, float b, float t) {
     muted = false;
     [self toggleMute];
     //[Kamcord stopRecording];
-    //[Kamcord showView];
+    [Kamcord showView];
 }
 
 -(CCLayer*)createPauseLayer {
@@ -2467,14 +2691,18 @@ float lerpf(float a, float b, float t) {
     return layerToAdd;
 }
 
-- (void)togglePause {
+-(void)pauseWithDuration:(float)a_duration message:(NSString*)a_message {
+    bool isOnRegularPause = (a_duration == 0 && a_message == @"");
+    
+    
     if (!pauseEnabled) {
         return;
     }
-    [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
+    if (isOnRegularPause)
+        [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     paused = !paused;
     if (paused) {
-        //[Kamcord pause];
+        [Kamcord pause];
         
         [self unscheduleUpdates];
         
@@ -2483,13 +2711,48 @@ float lerpf(float a, float b, float t) {
         [pauseLayer setTag:pauseLayerTag];
         muted = ![[PlayerStats sharedInstance] isMuted];
         [self toggleMute];
-        [self addChild:pauseLayer];
+        if (isOnRegularPause)
+            [self addChild:pauseLayer];
     } else {
-        //[Kamcord resume];
+        [Kamcord resume];
         [self scheduleUpdates];
         [self removeChildByTag:pauseLayerTag cleanup:NO];
-
     }
+    
+}
+
+- (void) UpdateTut:(ccTime)dt {
+    if (isDoingTutStuff)
+        tutCounter += dt;
+    
+    if (tutCounter >= 1)
+        if (!hasOpenedTut) {
+            hasOpenedTut = true;
+            soundButton = [CCMenuItemImage
+                           itemWithNormalImage:@"resume.png" selectedImage:@"resumepressed.png"
+                           target:self selector:@selector(continueTut)];
+            CCMenuItem *sound = soundButton;
+            sound.position = ccp(240, 160);
+            
+            CCMenu* menu = [CCMenu menuWithItems:sound, nil];
+            menu.position = ccp(0, 0);
+            
+            tutLayer = [[CCLayer alloc] init];
+            [tutLayer addChild:menu];
+            [hudLayer addChild:tutLayer];
+        }
+    
+    
+}
+
+-(void) continueTut {
+    isDoingTutStuff = false;
+    [tutLayer removeFromParentAndCleanup:true];
+    [self togglePause];
+}
+
+- (void)togglePause {
+    [self pauseWithDuration:0 message:@""];
 }
 
 - (void)toggleMute {

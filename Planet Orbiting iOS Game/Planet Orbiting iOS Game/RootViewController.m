@@ -67,12 +67,12 @@
 	//
 	// Sample: Autorotate only in landscape mode
 	//
-	if( interfaceOrientation == UIInterfaceOrientationLandscapeLeft ) {
-        //[Kamcord setDeviceOrientation:CCDeviceOrientationLandscapeLeft];
+/*	if( interfaceOrientation == UIInterfaceOrientationLandscapeLeft ) {
+        [Kamcord setDeviceOrientation:CCDeviceOrientationLandscapeLeft];
 	} else if( interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
-        //[Kamcord setDeviceOrientation:CCDeviceOrientationLandscapeRight];
+        [Kamcord setDeviceOrientation:CCDeviceOrientationLandscapeRight];
 
-	}
+	}*/
 	
 	// Since this method should return YES in at least 1 orientation,
 	// we return YES only in the Portrait orientation

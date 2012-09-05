@@ -13,7 +13,6 @@
 #import "SimpleAudioEngine.h"
 #import "MainMenuLayer.h"
 #import "CCBReader.h"
-#import "Flurry.h"
 #import "UserWallet.h"
 #import "PowerupManager.h"
 #import "LevelObjectReturner.h"
@@ -33,6 +32,9 @@
     CCAnimation * coinAnimation;
     CCLabelBMFont *scoreLabel;
     CCLabelBMFont *coinsLabel;
+    
+    bool isLeavingLastPlanetInGalaxy;
+    bool allowVideoToConvert;
     CGSize size;
     CCLayer *hudLayer;
     CCLayer* layerHudSlider;
@@ -47,7 +49,6 @@
     float timeSinceCometLeftScreen;
     bool planetJustExploded;
     bool playerIsTouchingScreen;
-    float asteroidSlower;
     float updatesWithoutBlinking;
     float updatesWithBlinking;
     CCAction* galaxyLabelAction;
@@ -57,6 +58,13 @@
     float powerupVel;
     int numCoinsDisplayed;
     
+    NSMutableArray* predPoints;
+    CCLayer* predPointLayer;
+    
+    CCLayer* tutLayer;
+    float tutCounter;
+    bool hasOpenedTut;
+    bool isDoingTutStuff;
     
     CCLabelBMFont * zeroCoinsLabel;
     float powerupCounter;
@@ -127,7 +135,7 @@
     CCParticleSystemQuad * feverModeLabelParticle;
     CGPoint cometVelocity;
     float lastTakeoffAngleToNextPlanet;
-    
+    CCAction * cameraFollowAction;
     float timeSinceGotLastCoin;
     float lastCoinPitch;
     ALuint lastCoinSoundID;

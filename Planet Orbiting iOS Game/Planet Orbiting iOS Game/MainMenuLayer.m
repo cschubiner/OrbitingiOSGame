@@ -37,6 +37,7 @@ const float effectsVolumeMainMenu = 1;
     CGPoint swipeBeginPoint;
     CGPoint swipeEndPoint;
     CCLabelTTF* beginLabel;
+    bool missionPopupIsUp;
     
     CCLayer* missionPopup;
     
@@ -73,7 +74,8 @@ const float effectsVolumeMainMenu = 1;
         swipeBeginPoint = location;
         
         
-        if (swipeBeginPoint.x >= 359 && swipeBeginPoint.x <= 440 && swipeBeginPoint.y >= 214 && swipeBeginPoint.y <= 287) {
+        if (swipeBeginPoint.x >= 359 && swipeBeginPoint.x <= 440 && swipeBeginPoint.y >= 214 && swipeBeginPoint.y <= 287 && missionPopupIsUp) {
+            missionPopupIsUp = false;
             [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
             [missionPopup removeFromParentAndCleanup:true];
             [self enableButtons];
@@ -105,6 +107,7 @@ const float effectsVolumeMainMenu = 1;
 }
 
 -(void)pressedObjectiveButton:(id)sender {
+    missionPopupIsUp = true;
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     [Flurry logEvent:@"Pressed objective button"];
     missionPopup = [[ObjectiveManager sharedInstance] createMissionPopupWithX:true withDark:true];
@@ -192,12 +195,32 @@ const float effectsVolumeMainMenu = 1;
         dark.opacity = 0;
         
         float startAnimationTime = 1.8;
+        missionPopupIsUp = false;
         
-        startAnimation = false;
-        [self disableButtons];
-        [playerAndParticleNode runAction:[CCSequence actions:
-                                          [CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(200, 480)]],
-                                          [CCCallBlock actionWithBlock:(^{
+        
+        if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getShouldPlayMenuMusic]) {
+            startAnimation = false;
+            [self disableButtons];
+            [playerAndParticleNode runAction:[CCSequence actions:
+                                              [CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(200, 480)]],
+                                              [CCCallBlock actionWithBlock:(^{
+                position = ccp(200, 480);
+                velocity = CGPointZero;
+                startAnimation = true;
+                [self enableButtons];
+                [beginLabel setVisible:true];
+                [beginLabel setOpacity:0];
+                [beginLabel runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
+                                                                         [CCFadeTo actionWithDuration:.45 opacity:255],
+                                                                         [CCDelayTime actionWithDuration:.3],
+                                                                         [CCFadeTo actionWithDuration:.3 opacity:0],
+                                                                         nil]]];
+            })],
+                                              nil]];
+            
+            [topBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(0, 0)]]];
+            [bottomBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(0, 320)]]];
+        } else {
             position = ccp(200, 480);
             velocity = CGPointZero;
             startAnimation = true;
@@ -209,11 +232,10 @@ const float effectsVolumeMainMenu = 1;
                                                                      [CCDelayTime actionWithDuration:.3],
                                                                      [CCFadeTo actionWithDuration:.3 opacity:0],
                                                                      nil]]];
-        })],
-                                          nil]];
-        
-        [topBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(0, 0)]]];
-        [bottomBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(0, 320)]]];
+            
+            [topBarNode setPosition:ccp(0, 0)];
+            [bottomBarNode setPosition:ccp(0, 320)];
+        }
         
         [self schedule:@selector(Update:) interval:0];
         
@@ -307,20 +329,6 @@ const float effectsVolumeMainMenu = 1;
     //[layer runAction: ease];
 }
 
-- (void)pressedLeaderboardsButton:(id)sender {
-    [Flurry logEvent:@"Opened gamecenter leaderboards"];
-    /*  GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
-     leaderboardViewController.leaderboardDelegate = self;
-     
-     AppDelegate *app = (AppDelegate*) [[UIApplication sharedApplication] delegate];
-     
-     [[app navController] presentModalViewController:leaderboardViewController animated:YES];
-     */
-    // [[DDGameKitHelper sharedGameKitHelper]showLeaderboardwithCategory:@"highscore_leaderboard" timeScope:GKLeaderboardTimeScopeAllTime];
-    [[DDGameKitHelper sharedGameKitHelper]showLeaderboard];
-    
-}
-
 - (int)getHighestScore {
     NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
     int highestScore = 0;
@@ -388,34 +396,8 @@ const float effectsVolumeMainMenu = 1;
     
 }
 
--(void)moveLevelsLayerRight {
-    id action = [CCMoveTo actionWithDuration:.8f position:ccp(layer.position.x-480,0)];
-    id ease = [CCEaseSineInOut actionWithAction:action];
-    [layer runAction: ease];
-}
-
--(void)moveLevelsLayerLeft {
-    id action = [CCMoveTo actionWithDuration:.8f position:ccp(layer.position.x+480,0)];
-    id ease = [CCEaseSineInOut actionWithAction:action];
-    [layer runAction: ease];
-}
-
-- (void)startLevelNumber:(int)levelNum {
-    [((AppDelegate*)[[UIApplication sharedApplication]delegate])setChosenLevelNumber:levelNum];
-    NSLog(@"started level %d",levelNum);
-    [Flurry logEvent:[NSString stringWithFormat:@"Started Level %d",levelNum]];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
-}
-
--(void)startLevel1{
-    [self startLevelNumber:1];
-}
--(void)startLevel2{
-    [self startLevelNumber:2];
-}
-
 - (void)pressedSendFeedback: (id) sender {
-    [TestFlight passCheckpoint:@"pressed survey button on main menu"];
+    //[TestFlight passCheckpoint:@"pressed survey button on main menu"];
     [Flurry logEvent:@"Pressed Survey Button on main menu"];
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle: @"Entering survey"
@@ -427,80 +409,10 @@ const float effectsVolumeMainMenu = 1;
     
 }
 
-- (void)pressedTutorialButton: (id) sender {
-    [TestFlight passCheckpoint:@"Opened tutorial"];
-    [Flurry logEvent:@"Pressed Tutorial Button"];
-    [((AppDelegate*)[[UIApplication sharedApplication]delegate])setIsInTutorialMode:TRUE];
-    CCLOG(@"tutorial scene launched, game starting");
-    
-    [[PlayerStats sharedInstance] addPlay];
-    
-    
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[Tutorial scene]]];
-    
-    //tutorialLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"TutorialLayer.ccb" owner:self];
-    //[tutorialLayer setTag:tutorialLayerTag];
-    //[self addChild:tutorialLayer];
-    
-    // [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
-}
-
-- (void)pressedRocketTrailsButton: (id) sender {
-    [Flurry logEvent:@"Pressed Rocket Trails Button"];
-    [[UpgradeManager sharedInstance] setButtonPushed:0];
-    [self pressedAnUpgradeButton];
-}
-
-//- (void)pressedRocketShipsButton: (id) sender {
-//    [Flurry logEvent:@"Pressed Rocketships Button"];
-//    [[UpgradeManager sharedInstance] setButtonPushed:1];
-//    [self pressedAnUpgradeButton];
-//}
-
 - (void)pressedCreditsButton {
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     [[CCDirector sharedDirector] replaceScene:[CreditsLayer scene]];
     //[[CCDirector sharedDirector] pushScene:[MissionsCompleteLayer scene]];
-}
-
-- (void)pressedRocketShipsButton: (id) sender {
-    [Flurry logEvent:@"Pressed Rocketships Button"];
-    [[UpgradeManager sharedInstance] setButtonPushed:1];
-    [self pressedAnUpgradeButton];
-}
-
-- (void)pressedUpgradesButton: (id) sender {
-    [Flurry logEvent:@"Pressed Upgrades Button"];
-    [[UpgradeManager sharedInstance] setButtonPushed:2];
-    [self pressedAnUpgradeButton];
-}
-
-- (void)pressedPowerupsButton: (id) sender {
-    [Flurry logEvent:@"Pressed Powerups Button"];
-    [[UpgradeManager sharedInstance] setButtonPushed:3];
-    [self pressedAnUpgradeButton];
-}
-
-- (void)pressedStarsButton: (id) sender {
-    [Flurry logEvent:@"Pressed Stars Button"];
-    [[UpgradeManager sharedInstance] setButtonPushed:4];
-    [self pressedAnUpgradeButton];
-}
-
-- (void)pressedPerksButton: (id) sender {
-    [Flurry logEvent:@"Pressed Perks Button"];
-    [[UpgradeManager sharedInstance] setButtonPushed:5];
-    [self pressedAnUpgradeButton];
-}
-
-- (void)pressedAnUpgradeButton {
-    
-    [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
-    [[CCDirector sharedDirector] replaceScene:[UpgradesLayer scene]];//[CCTransitionCrossFade transitionWithDuration:0.5 scene:[UpgradesLayer scene]]];
-}
-
-- (void)removeTutorialLayer {
-    [self removeChildByTag:tutorialLayerTag cleanup:NO];
 }
 
 - (void)toggleMute {
