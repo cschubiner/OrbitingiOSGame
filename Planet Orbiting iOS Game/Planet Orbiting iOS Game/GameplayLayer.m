@@ -901,6 +901,8 @@ typedef struct {
     
     float scale = horizontalScale*scalerToUse*zoomMultiplier;
     scale = clampf(scale, .4, 1.4);
+    if (fabsf(scale-cameraLayer.scale)<.07)
+        scale = cameraLayer.scale;
     
    // focusPosition = ccp((lastPlanetVisited.sprite.position.x+nextPlanet.sprite.position.x)/2, (lastPlanetVisited.sprite.position.y+nextPlanet.sprite.position.y)/2);
     cameraLastFocusPosition = ccpLerp(cameraLastFocusPosition, focusPosition, cameraMovementSpeed);
@@ -1729,13 +1731,9 @@ typedef struct {
     player.isInZone = false;
     
     int zoneCount = zones.count;
-    for (int i = MAX(lastPlanetVisited.number-1,0); i < zoneCount;i++)
+    for (int i = MAX(lastPlanetVisited.number-1,0); i < MIN(zoneCount,lastPlanetVisited.number+3);i++)
     {
         Zone * zone = [zones objectAtIndex:i];
-        if (zone.number<lastPlanetVisited.number-2)
-            continue;
-        if (zone.number>lastPlanetVisited.number+1)
-            break;
         if (zone.number<=lastPlanetVisited.number+1&& ccpDistance([[player sprite]position], [[zone sprite]position])<[zone radius]*zoneCollisionFactor)
         {
             player.isInZone = true;
