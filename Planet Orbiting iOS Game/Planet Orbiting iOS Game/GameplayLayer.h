@@ -61,6 +61,11 @@
     NSMutableArray* predPoints;
     CCLayer* predPointLayer;
     
+    CCLayer* tutLayer;
+    float tutCounter;
+    bool hasOpenedTut;
+    bool isDoingTutStuff;
+    
     CCLabelBMFont * zeroCoinsLabel;
     float powerupCounter;
         

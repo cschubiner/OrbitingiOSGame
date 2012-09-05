@@ -427,6 +427,9 @@ typedef struct {
     [loadingLayerBackground runAction:[CCSequence actions:
                                        [CCFadeOut actionWithDuration:fadeOutDuration],removeLoadingLayer, nil]];
     
+    
+    [self schedule:@selector(UpdateTut:) interval:0];
+    
     [self scheduleUpdates];
     [self schedule:@selector(Update:) interval:0];// this makes the update loop loop!!!!
     [Kamcord startRecording];
@@ -655,6 +658,8 @@ typedef struct {
     [hudLayer addChild:feverLabel];
     isInFeverMode = false;
     timeDilationUponFeverEnter = 1;
+    hasOpenedTut = false;
+    isDoingTutStuff = false;
     
     asteroidsCrashedInto = 0;
     asteroidsDestroyedWithArmor = 0;
@@ -1229,8 +1234,13 @@ typedef struct {
                         if (!(player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart)) {
                             if (isLeavingLastPlanetInGalaxy)
                                 [self removeOldPredLine];
-                            else
+                            else {
                                 [self createPredPointsFrom:player.sprite.position to:targetForPred withColor:ccWHITE andRemoveOldLine:true];
+                                int numTimesPlayed = [[PlayerStats sharedInstance] getPlays];
+                                if (numTimesPlayed <= 99999) {
+                                    //[self pauseWithDuration:100 message:@"test text"];
+                                }
+                            }
                         }
                     }
                     
@@ -2148,6 +2158,7 @@ typedef struct {
     [self schedule:@selector(UpdateParticles:) interval:1.0/60.0f];
     [self schedule:@selector(UpdateBackgroundStars:) interval:1.0/24.0f];
     [self schedule:@selector(UpdateLight:) interval:1.0/10.0f];
+    
     //    [self UpdateScore];
     //NSLog(@"start6");
     //  [self UpdateParticles:dt];
@@ -2659,11 +2670,15 @@ float lerpf(float a, float b, float t) {
     return layerToAdd;
 }
 
-- (void)togglePause {
+-(void)pauseWithDuration:(float)a_duration message:(NSString*)a_message {
+    bool isOnRegularPause = (a_duration == 0 && a_message == @"");
+    
+    
     if (!pauseEnabled) {
         return;
     }
-    [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
+    if (isOnRegularPause)
+        [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     paused = !paused;
     if (paused) {
         [Kamcord pause];
@@ -2676,13 +2691,57 @@ float lerpf(float a, float b, float t) {
         [pauseLayer setTag:pauseLayerTag];
         muted = ![[PlayerStats sharedInstance] isMuted];
         [self toggleMute];
-        [self addChild:pauseLayer];
+        if (isOnRegularPause)
+            [self addChild:pauseLayer];
     } else {
         [Kamcord resume];
         [self scheduleUpdates];
         [[CCDirector sharedDirector]resume];
-        [self removeChildByTag:pauseLayerTag cleanup:NO];
+        if (isOnRegularPause)
+            [self removeChildByTag:pauseLayerTag cleanup:NO];
     }
+    
+    
+    if (!isOnRegularPause) {
+        isDoingTutStuff = true;
+        hasOpenedTut = false;
+        tutCounter = 0;
+    }
+    
+}
+
+- (void) UpdateTut:(ccTime)dt {
+    if (isDoingTutStuff)
+        tutCounter += dt;
+    
+    if (tutCounter >= 1)
+        if (!hasOpenedTut) {
+            hasOpenedTut = true;
+            soundButton = [CCMenuItemImage
+                           itemWithNormalImage:@"resume.png" selectedImage:@"resumepressed.png"
+                           target:self selector:@selector(continueTut)];
+            CCMenuItem *sound = soundButton;
+            sound.position = ccp(240, 160);
+            
+            CCMenu* menu = [CCMenu menuWithItems:sound, nil];
+            menu.position = ccp(0, 0);
+            
+            tutLayer = [[CCLayer alloc] init];
+            [tutLayer addChild:menu];
+            [hudLayer addChild:tutLayer];
+        }
+    
+    
+}
+
+-(void) continueTut {
+    isDoingTutStuff = false;
+    [tutLayer removeFromParentAndCleanup:true];
+    [self togglePause];
+}
+
+- (void)togglePause {
+    [self pauseWithDuration:0 message:@""];
 }
 
 - (void)toggleMute {
