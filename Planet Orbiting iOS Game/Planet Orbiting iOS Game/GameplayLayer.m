@@ -425,7 +425,7 @@ typedef struct {
                                        [CCFadeOut actionWithDuration:fadeOutDuration],removeLoadingLayer, nil]];
     
     
-  
+    
     
     [self scheduleUpdates];
     [Kamcord startRecording];
@@ -855,8 +855,8 @@ typedef struct {
     double firstToPlayerDistance = ccpDistance(lastPlanetVisited.sprite.position, player.sprite.position)*cos(firstToPlayerAngle);
     double firsttonextDistance = ccpDistance(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
     double percentofthewaytonext = firstToPlayerDistance/firsttonextDistance;
-  //  if (orbitState == 0 || nextPlanet.number + 1 >= [planets count])
- //       percentofthewaytonext*=.4f;
+    //  if (orbitState == 0 || nextPlanet.number + 1 >= [planets count])
+    //       percentofthewaytonext*=.4f;
     
     Planet * planet1 = lastPlanetVisited;
     Planet * planet2 = nextPlanet;
@@ -866,7 +866,7 @@ typedef struct {
     CGPoint focusPointOne = ccpAdd(mult ,planet1.sprite.position);
     planet1 = [planets objectAtIndex:lastPlanetVisited.number+2];
     planet2 = [planets objectAtIndex:lastPlanetVisited.number+3];
-  //  if (planet2.whichGalaxyThisObjectBelongsTo != lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
+    //  if (planet2.whichGalaxyThisObjectBelongsTo != lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
     //    percentofthewaytonext *=.4f;
     CGPoint focusPointTwo = ccpAdd(ccpMult(ccpSub(planet2.sprite.position, planet1.sprite.position), percentofthewaytonext) ,planet1.sprite.position);
     
@@ -877,7 +877,7 @@ typedef struct {
         extraScaleFactor = 16;
     
     CGPoint focusPosition = ccpMult(ccpAdd(ccpMult(focusPointOne,extraScaleFactor+ cameraScaleFocusedOnFocusPosOne), focusPointTwo), 1.0f/(extraScaleFactor+ cameraScaleFocusedOnFocusPosOne+1.0f));
-   
+    
     
     cameraDistToUse= lerpf(cameraDistToUse,ccpDistance(focusPointOne, focusPointTwo),1);
     
@@ -896,9 +896,9 @@ typedef struct {
     float scalerToUse = numerator/240; //CCLOG(@"num: %f, newAng: %f", numerator, newAng);
     
     //if ([cameraLayer scale]<.3) {
-        // NSLog(@"\n\n\nALERT: cameraLayer scale should be bigger this this, we prob has an error");
-      //  [cameraLayer setScale:.3];
-   // }
+    // NSLog(@"\n\n\nALERT: cameraLayer scale should be bigger this this, we prob has an error");
+    //  [cameraLayer setScale:.3];
+    // }
     
     float scale = zoomMultiplier*horizontalScale*scalerToUse;
     if (cameraShouldFocusOnPlayer&&false) {
@@ -1229,6 +1229,18 @@ typedef struct {
                                 int numTimesPlayed = [[PlayerStats sharedInstance] getPlays];
                                 if (numTimesPlayed <= 99999) {
                                     isDoingTutStuff = true;
+                                    soundButton = [CCMenuItemImage
+                                                   itemWithNormalImage:@"resume.png" selectedImage:@"resumepressed.png"
+                                                   target:self selector:@selector(continueTut)];
+                                    CCMenuItem *sound = soundButton;
+                                    sound.position = ccp(240, 160);
+                                    
+                                    CCMenu* menu = [CCMenu menuWithItems:sound, nil];
+                                    menu.position = ccp(0, 0);
+                                    
+                                    tutLayer = [[CCLayer alloc] init];
+                                    [tutLayer addChild:menu];
+                                    [hudLayer addChild:tutLayer];
                                     [self pauseWithDuration:100 message:@"test text"];
                                 }
                             }
@@ -1594,10 +1606,10 @@ typedef struct {
             
             if (percentofthewaytonext>.35) {
                 float colorPercent = (percentofthewaytonext-.3)/.7;
-            [backgroundClouds setColor:ccc3(lerpf(lastColor.r, nextColor.r, colorPercent),
-                                            lerpf(lastColor.g, nextColor.g, colorPercent),
-                                            lerpf(lastColor.b, nextColor.b, colorPercent))];
-            
+                [backgroundClouds setColor:ccc3(lerpf(lastColor.r, nextColor.r, colorPercent),
+                                                lerpf(lastColor.g, nextColor.g, colorPercent),
+                                                lerpf(lastColor.b, nextColor.b, colorPercent))];
+                
             }
             if (percentofthewaytonext>.85&&justDisplayedGalaxyLabel==false&&(int)galaxyLabel.opacity<=0)
             {
@@ -1680,7 +1692,7 @@ typedef struct {
             makingSegmentNumber--;
             [self CreatePlanetAndZone:indicatorPos.x yPos:indicatorPos.y scale:1];
             makingSegmentNumber++;
-
+            
             planetsHitSinceNewGalaxy=0;
             if (currentGalaxy.number+1<[galaxies count]) {
                 currentGalaxy = nextGalaxy;
@@ -1844,7 +1856,7 @@ typedef struct {
     [cometParticle setPosition:ccpAdd(cometParticle.position, cometVelocity)];
 }
 
-- (void)nameDidChange {
+-(void)nameDidChange {
     NSString *newName = [playerNameLabel.text uppercaseString];
     if (newName.length <= maxNameLength) {
         [displayName setString:[newName stringByReplacingOccurrencesOfString:@"\n" withString:@""]];
@@ -1900,7 +1912,7 @@ typedef struct {
         isGameOver = true;
         if ([[self children]containsObject:layerHudSlider])
             [self removeChild:layerHudSlider cleanup:YES];
-
+        
         [Kamcord stopRecording];
         if (allowVideoToConvert==false)
             [Kamcord cancelConversionForLatestVideo];
@@ -2142,10 +2154,10 @@ typedef struct {
 }
 
 -(void)unscheduleUpdates {
-/*    [self unschedule:@selector(UpdateScore) ];
-    [self unschedule:@selector(UpdateParticles:)];
-    [self unschedule:@selector(UpdateBackgroundStars:) ];
-    [self unschedule:@selector(UpdateLight:)];*/
+    /*    [self unschedule:@selector(UpdateScore) ];
+     [self unschedule:@selector(UpdateParticles:)];
+     [self unschedule:@selector(UpdateBackgroundStars:) ];
+     [self unschedule:@selector(UpdateLight:)];*/
     [self unscheduleAllSelectors];
 }
 
@@ -2522,7 +2534,7 @@ typedef struct {
             [thrustBurstParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
             [thrustBurstParticle resetSystem];
         }
-
+    
 }
 
 -(void)removeOldPredLine {
@@ -2568,7 +2580,7 @@ typedef struct {
     
     tip.position = ccpAdd(fromPos, ccpMult(dir, i*1.5*point.width + point.width/2));
     tip.rotation = -1*CC_RADIANS_TO_DEGREES(ccpToAngle(dir));
-
+    
     [predPoints addObject:tip];
     
     for (CCSprite* s in predPoints)
@@ -2698,8 +2710,8 @@ float lerpf(float a, float b, float t) {
     paused = !paused;
     if (paused) {
         [Kamcord pause];
-        
         [self unscheduleUpdates];
+        [[CCDirector sharedDirector]pause];
         
         if (isOnRegularPause) {
             [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
@@ -2711,11 +2723,12 @@ float lerpf(float a, float b, float t) {
             [self addChild:pauseLayer];
         }
         else {
-            [self schedule:@selector(UpdateTut:) interval:0];
+            [self schedule:@selector(UpdateTutorial:) interval:0];
         }
     }
     else {
-        [self unschedule:@selector(UpdateTut:)];
+        [self unschedule:@selector(UpdateTutorial:)];
+        [[CCDirector sharedDirector]resume];
         [Kamcord resume];
         [self scheduleUpdates];
         [self removeChildByTag:pauseLayerTag cleanup:NO];
@@ -2723,31 +2736,21 @@ float lerpf(float a, float b, float t) {
     
 }
 
-- (void) UpdateTut:(ccTime)dt {
+- (void) UpdateTutorial:(ccTime)dt {
     if (isDoingTutStuff)
         tutCounter += dt;
     
     if (tutCounter >= 1)
         if (!hasOpenedTut) {
             hasOpenedTut = true;
-            soundButton = [CCMenuItemImage
-                           itemWithNormalImage:@"resume.png" selectedImage:@"resumepressed.png"
-                           target:self selector:@selector(continueTut)];
-            CCMenuItem *sound = soundButton;
-            sound.position = ccp(240, 160);
             
-            CCMenu* menu = [CCMenu menuWithItems:sound, nil];
-            menu.position = ccp(0, 0);
-            
-            tutLayer = [[CCLayer alloc] init];
-            [tutLayer addChild:menu];
-            [hudLayer addChild:tutLayer];
         }
     
     
 }
 
 -(void) continueTut {
+    
     hasOpenedTut = false;
     isDoingTutStuff = false;
     [tutLayer removeFromParentAndCleanup:true];
