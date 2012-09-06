@@ -1614,8 +1614,6 @@
 		0C7AA5E315946938000B58F2 = {
 			isa = PBXGroup;
 			children = (
-				0C3E902B15F599E0007205B1 /* Kamcord */,
-				0C695E3C15F095FF0092DD51 /* StoreKit.framework */,
 				0C7AA60215946939000B58F2 /* Planet Orbiting iOS Game */,
 				C45A45A815D9E1C300E343A3 /* Cocos2D 2.0 */,
 				0C7AA5F115946939000B58F2 /* Frameworks */,
@@ -1634,6 +1632,8 @@
 		0C7AA5F115946939000B58F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C3E902B15F599E0007205B1 /* Kamcord */,
+				0C695E3C15F095FF0092DD51 /* StoreKit.framework */,
 				0C62B1B715C8DDE800318B66 /* Security.framework */,
 				0C62B1B515C8DD9300318B66 /* libz.dylib */,
 				0C62B1B315C8DA7E00318B66 /* Twitter.framework */,
