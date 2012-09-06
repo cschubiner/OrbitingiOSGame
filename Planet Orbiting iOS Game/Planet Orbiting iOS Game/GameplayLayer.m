@@ -2653,17 +2653,23 @@ float lerpf(float a, float b, float t) {
     [Kamcord showView];
 }
 
++(CCSprite*)labelWithString:(NSString *)string fontName:(NSString *)fontName fontSize:(CGFloat)fontSize color:(ccColor3B)color strokeSize:(CGFloat)strokeSize stokeColor:(ccColor3B)strokeColor{CCLabelTTF *label = [CCLabelTTF labelWithString:string fontName:fontName fontSize:fontSize];CCRenderTexture* rt = [CCRenderTexture renderTextureWithWidth:label.texture.contentSize.width + strokeSize*2  height:label.texture.contentSize.height+strokeSize*2];[label setFlipY:YES];[label setColor:strokeColor];ccBlendFunc originalBlendFunc = [label blendFunc];[label setBlendFunc:(ccBlendFunc) { GL_SRC_ALPHA, GL_ONE }];CGPoint bottomLeft = ccp(label.texture.contentSize.width * label.anchorPoint.x + strokeSize, label.texture.contentSize.height * label.anchorPoint.y + strokeSize);CGPoint position = ccpSub([label position], ccp(-label.contentSize.width / 2.0f, -label.contentSize.height / 2.0f));[rt begin];for (int i=0; i<360; i++)/*you should optimize that for your needs*/{[label setPosition:ccp(bottomLeft.x + sin(CC_DEGREES_TO_RADIANS(i))*strokeSize, bottomLeft.y + cos(CC_DEGREES_TO_RADIANS(i))*strokeSize)];[label visit];}[label setPosition:bottomLeft];[label setBlendFunc:originalBlendFunc];[label setColor:color];[label visit];[rt end];[rt setPosition:position];return [CCSprite spriteWithTexture:rt.sprite.texture];}
+
 -(CCLayer*)createPauseLayer {
     layerToAdd = [[CCLayer alloc] init];
     [layerToAdd addChild:[[ObjectiveManager sharedInstance] createMissionPopupWithX:false withDark:true]];
     
-    CCSprite* banner = [CCSprite spriteWithFile:@"banner.png"];
-    banner.position = ccp(240, 298);
-    [layerToAdd addChild:banner];
     
-    CCLabelTTF* pauseText = [CCLabelTTF labelWithString:@"GAME PAUSED" fontName:@"HelveticaNeue-CondensedBold" fontSize:38];
-    [layerToAdd addChild:pauseText];
-    pauseText.position = ccp(240, 301);
+    CCSprite* topBar = [CCSprite spriteWithFile:@"banner.png"];
+    [layerToAdd addChild:topBar];
+    [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2 + 3)];
+    
+    NSString* stringToUse;
+    stringToUse = @"GAME PAUSED";
+    
+    CCSprite* topSpriteLabel = [self.class labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:31 color:ccWHITE strokeSize:1.1 stokeColor: ccBLACK];
+    [layerToAdd addChild:topSpriteLabel];
+    topSpriteLabel.position = ccp(240, 300.5);
     
     CCMenuItem *replay = [CCMenuItemImage
                           itemWithNormalImage:@"retry.png" selectedImage:@"retrypressed.png"
@@ -2684,7 +2690,7 @@ float lerpf(float a, float b, float t) {
                    itemWithNormalImage:@"sound.png" selectedImage:@"soundpressed.png"
                    target:self selector:@selector(toggleMute)];
     CCMenuItem *sound = soundButton;
-    sound.position = ccp(449, 301);
+    sound.position = ccp(449, 300.5);
     
     CCMenu* menu = [CCMenu menuWithItems:replay, resume, quit, sound, nil];
     menu.position = ccp(0, 0);

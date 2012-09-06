@@ -110,7 +110,7 @@
         
         CCSprite* topBar = [CCSprite spriteWithFile:@"banner.png"];
         [self addChild:topBar];
-        [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2 + 1)];
+        [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2 + 3)];
         
         NSString* stringToUse;
         
@@ -129,12 +129,12 @@
         
         CCLabelTTF* pauseText = [CCLabelTTF labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:30];
         //[self addChild:pauseText];
-        pauseText.position = ccp(240-10, 299);
+        pauseText.position = ccp(240-10, 300.5);
         
         
         CCSprite* topSpriteLabel = [self.class labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:30 color:ccWHITE strokeSize:1.1 stokeColor: ccBLACK];
         [self addChild:topSpriteLabel];
-        topSpriteLabel.position = ccp(240-10, 299);
+        topSpriteLabel.position = ccp(240-10, 300.5);
         
         
         CCSprite* botBar = [CCSprite spriteWithFile:@"upgradeFooter.png"];
@@ -145,7 +145,7 @@
         CCMenuItem *quit = [CCMenuItemImage
                             itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
                             target:self selector:@selector(backButtonPressed)];
-        quit.position = ccp(41, 299);
+        quit.position = ccp(41, 300.5);
         //quit.scale = 1.7;
         
         CCMenu* menu = [CCMenu menuWithItems:quit, nil];
@@ -156,18 +156,18 @@
         CCSprite* starSprite = [CCSprite spriteWithFile:@"staricon.png"];
         [starSprite setScale:.6];
         [self addChild:starSprite];
-        [starSprite setPosition:ccp(480 - 22, 301)];
+        [starSprite setPosition:ccp(480 - 22, 302.5)];
         
         totalStars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
         [self addChild: totalStars];
         [totalStars setAnchorPoint:ccp(1, .5)];
-        [totalStars setPosition:ccp(480 - 40, 299)];
+        [totalStars setPosition:ccp(480 - 40, 300.5)];
         
         
         CCSprite* totalStarsSprite = [self.class labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"HelveticaNeue-CondensedBold" fontSize:22 color:ccWHITE strokeSize:1.1 stokeColor: ccBLACK];
         //[self addChild:totalStarsSprite];
         [totalStarsSprite setAnchorPoint:ccp(1, .5)];
-        [totalStarsSprite setPosition:ccp(480 - 40, 299)];
+        [totalStarsSprite setPosition:ccp(480 - 40, 300.5)];
         
         
         
@@ -449,7 +449,7 @@
         } else {
             
             resume = [CCMenuItemImage
-                      itemWithNormalImage:@"purchase.png" selectedImage:@"purchasepressed.png"
+                      itemWithNormalImage:@"buy.png" selectedImage:@"buypressed.png"
                       target:self selector:@selector(pressedPurchaseButton)];
         }
     }

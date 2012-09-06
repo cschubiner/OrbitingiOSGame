@@ -219,7 +219,7 @@ const float effectsVolumeMainMenu = 1;
                                               nil]];
             
             [topBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(0, 0)]]];
-            [bottomBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(0, 320)]]];
+            [bottomBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(0, 321)]]];
         } else {
             position = ccp(200, 480);
             velocity = CGPointZero;
@@ -234,7 +234,7 @@ const float effectsVolumeMainMenu = 1;
                                                                      nil]]];
             
             [topBarNode setPosition:ccp(0, 0)];
-            [bottomBarNode setPosition:ccp(0, 320)];
+            [bottomBarNode setPosition:ccp(0, 321)];
         }
         
         [self schedule:@selector(Update:) interval:0];
