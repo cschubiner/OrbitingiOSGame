@@ -28,11 +28,6 @@
 #define LOADING_LAYER_TAG   212
 #define LABEL_0_TAG 1219
 
-
-const float musicVolumeGameplay = 1;
-const float effectsVolumeGameplay = 1;
-const int maxNameLength = 8;
-
 @implementation GameplayLayer {
     int planetCounter;
     int score;
@@ -430,10 +425,9 @@ typedef struct {
                                        [CCFadeOut actionWithDuration:fadeOutDuration],removeLoadingLayer, nil]];
     
     
-    [self schedule:@selector(UpdateTut:) interval:0];
+  
     
     [self scheduleUpdates];
-    [self schedule:@selector(Update:) interval:0];// this makes the update loop loop!!!!
     [Kamcord startRecording];
 }
 
@@ -1234,7 +1228,8 @@ typedef struct {
                                 [self createPredPointsFrom:player.sprite.position to:targetForPred withColor:ccWHITE andRemoveOldLine:true];
                                 int numTimesPlayed = [[PlayerStats sharedInstance] getPlays];
                                 if (numTimesPlayed <= 99999) {
-                                    //[self pauseWithDuration:100 message:@"test text"];
+                                    isDoingTutStuff = true;
+                                    [self pauseWithDuration:100 message:@"test text"];
                                 }
                             }
                         }
@@ -2147,10 +2142,11 @@ typedef struct {
 }
 
 -(void)unscheduleUpdates {
-    [self unschedule:@selector(UpdateScore) ];
+/*    [self unschedule:@selector(UpdateScore) ];
     [self unschedule:@selector(UpdateParticles:)];
     [self unschedule:@selector(UpdateBackgroundStars:) ];
-    [self unschedule:@selector(UpdateLight:)];
+    [self unschedule:@selector(UpdateLight:)];*/
+    [self unscheduleAllSelectors];
 }
 
 -(void)scheduleUpdates {
@@ -2159,6 +2155,7 @@ typedef struct {
     [self schedule:@selector(UpdateParticles:) interval:1.0/60.0f];
     [self schedule:@selector(UpdateBackgroundStars:) interval:1.0/24.0f];
     [self schedule:@selector(UpdateLight:) interval:1.0/10.0f];
+    [self schedule:@selector(Update:) interval:0];// this makes the update loop loop!!!!
     //    [self UpdateScore];
     //NSLog(@"start6");
     //  [self UpdateParticles:dt];
@@ -2698,22 +2695,27 @@ float lerpf(float a, float b, float t) {
     if (!pauseEnabled) {
         return;
     }
-    if (isOnRegularPause)
-        [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     paused = !paused;
     if (paused) {
         [Kamcord pause];
         
         [self unscheduleUpdates];
         
-        pauseLayer = [self createPauseLayer];//(CCLayer*)[CCBReader nodeGraphFromFile:@"PauseMenuLayer.ccb" owner:self];
-        [gameOverScoreLabel setString:[NSString stringWithFormat:@"Score: %d",score+prevCurrentPtoPScore]];
-        [pauseLayer setTag:pauseLayerTag];
-        muted = ![[PlayerStats sharedInstance] isMuted];
-        [self toggleMute];
-        if (isOnRegularPause)
+        if (isOnRegularPause) {
+            [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
+            pauseLayer = [self createPauseLayer];//(CCLayer*)[CCBReader nodeGraphFromFile:@"PauseMenuLayer.ccb" owner:self];
+            [gameOverScoreLabel setString:[NSString stringWithFormat:@"Score: %d",score+prevCurrentPtoPScore]];
+            [pauseLayer setTag:pauseLayerTag];
+            muted = ![[PlayerStats sharedInstance] isMuted];
+            [self toggleMute];
             [self addChild:pauseLayer];
-    } else {
+        }
+        else {
+            [self schedule:@selector(UpdateTut:) interval:0];
+        }
+    }
+    else {
+        [self unschedule:@selector(UpdateTut:)];
         [Kamcord resume];
         [self scheduleUpdates];
         [self removeChildByTag:pauseLayerTag cleanup:NO];
@@ -2746,6 +2748,7 @@ float lerpf(float a, float b, float t) {
 }
 
 -(void) continueTut {
+    hasOpenedTut = false;
     isDoingTutStuff = false;
     [tutLayer removeFromParentAndCleanup:true];
     [self togglePause];

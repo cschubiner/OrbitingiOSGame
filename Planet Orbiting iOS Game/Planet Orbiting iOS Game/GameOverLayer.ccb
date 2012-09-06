@@ -487,8 +487,8 @@ video for 100 stars!</string>
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>102.25390625</real>
-						<real>256.23828125</real>
+						<real>101.20703125</real>
+						<real>260.1953125</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
@@ -526,7 +526,7 @@ video for 100 stars!</string>
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>128</real>
+						<real>160</real>
 						<real>39</real>
 					</array>
 					<key>customClass</key>
@@ -547,8 +547,8 @@ video for 100 stars!</string>
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>102.875</real>
-						<real>285.4453125</real>
+						<real>101.046875</real>
+						<real>286.8359375</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
@@ -557,7 +557,7 @@ video for 100 stars!</string>
 					<key>scaleY</key>
 					<real>1.2574607133865356</real>
 					<key>string</key>
-					<string>DDDDDDDD</string>
+					<string>DDDDDDDDDD</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>

@@ -13,6 +13,11 @@ const float cometRespawnTimer = 1;
 const float cometMinYSpeed = 2;
 const float cometMaxYSpeed = 5;
 
+const float musicVolumeGameplay = 1;
+const float effectsVolumeGameplay = 1;
+//max length of player name
+const int maxNameLength = 10;
+
 //changes how zoomed in the camera in. higher numbers mean more zoom (everything looks bigger)
 const float zoomMultiplier = .85*.95f*1.06f;
 //changes how quickly the camera zooms in and out
