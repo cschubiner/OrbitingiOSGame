@@ -129,7 +129,7 @@ const float factorToScaleTimeDilationByOnDeath = .9;
 //increase to increase timeDilationFactor by a larger amount everytime you get to a new zone
 const float timeDilationIncreaseRate = .07;
 
-const float timeDilationFeverModeMultiplier = 1.15;
+const float timeDilationFeverModeMultiplier = 1.05;
 
 //the smallest the time dilation factor can go
 //THIS IS NOW IN UPGRADE VALUES const float absoluteMinTimeDilation = .85;

@@ -1194,7 +1194,7 @@ typedef struct {
                     CGPoint spot1 = ccpAdd(dir4, planet.sprite.position);
                     CGPoint spot2 = ccpAdd(dir5, planet.sprite.position);
                     
-                    float howMuchOfSwipeVectorToUse = .35;
+                    float howMuchOfSwipeVectorToUse = .45;
                     CGPoint vectorToCheck = ccpAdd(ccpMult(ccpNormalize(swipeVector), howMuchOfSwipeVectorToUse), ccpMult(ccpNormalize(player.velocity), 1-howMuchOfSwipeVectorToUse));
                     
                     CGPoint targetForPred;
