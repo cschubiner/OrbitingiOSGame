@@ -2772,12 +2772,11 @@ float lerpf(float a, float b, float t) {
             [tutLayer addChild:menu];
             [hudLayer addChild:tutLayer];
         }
-    
-    
 }
 
 -(void) continueTut {
     
+    tutCounter = 0;
     hasOpenedTut = false;
     isDoingTutStuff = false;
     [tutLayer removeFromParentAndCleanup:true];
