@@ -10,8 +10,8 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>iconv2.png</string>
-		<string>iconv2@2x.png</string>
+		<string>starstreamiconv1.png</string>
+		<string>starstreamiconv1@2x.png</string>
 		<string>Icon-72.png</string>
 		<string>Icon-Small-50.png</string>
 		<string>Icon-Small.png</string>
@@ -29,8 +29,8 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>iconv2.png</string>
-				<string>iconv2@2x.png</string>
+				<string>starstreamiconv1.png</string>
+				<string>starstreamiconv1@2x.png</string>
 				<string>Icon-72.png</string>
 				<string>Icon-Small-50.png</string>
 				<string>Icon-Small.png</string>
@@ -60,6 +60,10 @@
 	<string>2.6.2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>HelveticaNeue-CondensedBold.ttf</string>
+	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -74,10 +78,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>HelveticaNeue-CondensedBold.ttf</string>
 	</array>
 </dict>
 </plist>
