@@ -900,16 +900,22 @@ typedef struct {
     //  [cameraLayer setScale:.3];
     // }
     
-    float scale = zoomMultiplier*horizontalScale*scalerToUse;
-    if (cameraShouldFocusOnPlayer&&false) {
-        focusPosition = player.sprite.position;
-        scale = cameraScaleWhenTransitioningBetweenGalaxies;
-    }
-    if (planet2.whichGalaxyThisObjectBelongsTo != lastPlanetVisited.whichGalaxyThisObjectBelongsTo&&scale<.3)
-        scale=.3;
+    float scale = horizontalScale*scalerToUse*zoomMultiplier;
+    scale = clampf(scale, .3, 1.4);
+    if (fabsf(scale-cameraLayer.scale)<.07)
+        scale = cameraLayer.scale;
+    
+    // focusPosition = ccp((lastPlanetVisited.sprite.position.x+nextPlanet.sprite.position.x)/2, (lastPlanetVisited.sprite.position.y+nextPlanet.sprite.position.y)/2);
     cameraLastFocusPosition = ccpLerp(cameraLastFocusPosition, focusPosition, cameraMovementSpeed);
-    [self scaleLayer:cameraLayer scaleToZoomTo:lerpf([cameraLayer scale], scale, cameraZoomSpeed) scaleCenter:cameraLastFocusPosition];
+    [self scaleLayer:cameraLayer scaleToZoomTo:scale scaleCenter:cameraLastFocusPosition];
+    //cameraLayer.position = ccpAdd(cameraFocusNode.position,ccp(-cameraLayer.scaleX/2,-cameraLayer.scaleY/2));
     [cameraLayer runAction: [CCFollow actionWithTarget:cameraFocusNode]];
+    
+    //cameraLastFocusPosition = ccpLerp(cameraLastFocusPosition, player.sprite.position, cameraMovementSpeed);
+    //[self scaleLayer:cameraLayer scaleToZoomTo:lerpf([cameraLayer scale], .5, cameraZoomSpeed) scaleCenter:cameraLastFocusPosition];
+    //[cameraLayer runAction: cameraFollowAction];
+    //cameraLayer.scale = 1;
+    //cameraLayer.position = ccp(-player.sprite.position.x + 240, -player.sprite.position.y + 160);
 }
 
 - (void) scaleLayer:(CCLayer*)layerToScale scaleToZoomTo:(CGFloat) newScale scaleCenter:(CGPoint) scaleCenter {
@@ -1229,18 +1235,6 @@ typedef struct {
                                 int numTimesPlayed = [[PlayerStats sharedInstance] getPlays];
                                 if (numTimesPlayed <= 99999) {
                                     isDoingTutStuff = true;
-                                    soundButton = [CCMenuItemImage
-                                                   itemWithNormalImage:@"resume.png" selectedImage:@"resumepressed.png"
-                                                   target:self selector:@selector(continueTut)];
-                                    CCMenuItem *sound = soundButton;
-                                    sound.position = ccp(240, 160);
-                                    
-                                    CCMenu* menu = [CCMenu menuWithItems:sound, nil];
-                                    menu.position = ccp(0, 0);
-                                    
-                                    tutLayer = [[CCLayer alloc] init];
-                                    [tutLayer addChild:menu];
-                                    [hudLayer addChild:tutLayer];
                                     [self pauseWithDuration:100 message:@"test text"];
                                 }
                             }
@@ -2700,9 +2694,34 @@ float lerpf(float a, float b, float t) {
     return layerToAdd;
 }
 
+- (void)unscheduleEverythingButTutorialStuff {
+    [self unscheduleUpdates];
+    [streak unscheduleUpdate];
+    [cometParticle unscheduleUpdate];
+    [thrustParticle unscheduleUpdate];
+    [feverModeInitialExplosionParticle unscheduleUpdate];
+    [feverModeLabelParticle unscheduleUpdate];
+    for (Coin* coin in coins)
+        [coin.sprite pauseSchedulerAndActions];
+    for (CCNode* node in predPointLayer.children)
+        [node pauseSchedulerAndActions];
+}
+
+- (void)rescheduleEverythingButTutorialStuff {
+    [self scheduleUpdates];
+    [streak scheduleUpdate];
+    [cometParticle scheduleUpdate];
+    [thrustParticle scheduleUpdate];
+    [feverModeInitialExplosionParticle scheduleUpdate];
+    [feverModeLabelParticle scheduleUpdate];
+    for (Coin* coin in coins)
+        [coin.sprite resumeSchedulerAndActions];
+    for (CCNode* node in predPointLayer.children)
+        [node resumeSchedulerAndActions];
+}
+
 -(void)pauseWithDuration:(float)a_duration message:(NSString*)a_message {
     bool isOnRegularPause = (a_duration == 0 && a_message == @"");
-    
     
     if (!pauseEnabled) {
         return;
@@ -2710,8 +2729,7 @@ float lerpf(float a, float b, float t) {
     paused = !paused;
     if (paused) {
         [Kamcord pause];
-        [self unscheduleUpdates];
-        [[CCDirector sharedDirector]pause];
+        [self unscheduleEverythingButTutorialStuff];
         
         if (isOnRegularPause) {
             [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
@@ -2728,12 +2746,10 @@ float lerpf(float a, float b, float t) {
     }
     else {
         [self unschedule:@selector(UpdateTutorial:)];
-        [[CCDirector sharedDirector]resume];
         [Kamcord resume];
-        [self scheduleUpdates];
+        [self rescheduleEverythingButTutorialStuff];
         [self removeChildByTag:pauseLayerTag cleanup:NO];
     }
-    
 }
 
 - (void) UpdateTutorial:(ccTime)dt {
@@ -2743,7 +2759,18 @@ float lerpf(float a, float b, float t) {
     if (tutCounter >= 1)
         if (!hasOpenedTut) {
             hasOpenedTut = true;
+            soundButton = [CCMenuItemImage
+                           itemWithNormalImage:@"resume.png" selectedImage:@"resumepressed.png"
+                           target:self selector:@selector(continueTut)];
+            CCMenuItem *sound = soundButton;
+            sound.position = ccp(240, 160);
             
+            CCMenu* menu = [CCMenu menuWithItems:sound, nil];
+            menu.position = ccp(0, 0);
+            
+            tutLayer = [[CCLayer alloc] init];
+            [tutLayer addChild:menu];
+            [hudLayer addChild:tutLayer];
         }
     
     
