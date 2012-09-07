@@ -1234,8 +1234,7 @@ typedef struct {
                                 [self createPredPointsFrom:player.sprite.position to:targetForPred withColor:ccWHITE andRemoveOldLine:true];
                                 int numTimesPlayed = [[PlayerStats sharedInstance] getPlays];
                                 if (numTimesPlayed <= 99999) {
-                                    isDoingTutStuff = true;
-                                    [self pauseWithDuration:100 message:@"test text"];
+                                    //[self pauseWithDuration:100 message:@"test text"];
                                 }
                             }
                         }
@@ -2728,6 +2727,8 @@ float lerpf(float a, float b, float t) {
 
 -(void)pauseWithDuration:(float)a_duration message:(NSString*)a_message {
     bool isOnRegularPause = (a_duration == 0 && a_message == @"");
+    if (!isOnRegularPause)
+        isDoingTutStuff = true;
     
     if (!pauseEnabled) {
         return;
