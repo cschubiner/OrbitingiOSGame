@@ -183,6 +183,9 @@
     CCLabelBMFont *underscore;
     NSString *recentName;
     
+    float lastPercentOfTheWayToNext;
+    bool percentToNextHasAlreadyBeenBelowZeroForThisPlanet;
+    
     CCMenuItemImage *soundButton;
     
     CCMotionStreak *streak;

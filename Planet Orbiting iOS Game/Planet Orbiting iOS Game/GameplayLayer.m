@@ -847,9 +847,7 @@ typedef struct {
     }
     
     //camera code follows -----------------------------
-    Planet * nextPlanet;
-    if (lastPlanetVisited.number +1 < [planets count])
-        nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
+    Planet * nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
     
     double firsttoplayer = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, player.sprite.position));
     double planetAngle = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, nextPlanet.sprite.position));
@@ -860,12 +858,18 @@ typedef struct {
     //  if (orbitState == 0 || nextPlanet.number + 1 >= [planets count])
     //       percentofthewaytonext*=.4f;
     
+    if (percentofthewaytonext<lastPercentOfTheWayToNext)
+    {
+        if (percentToNextHasAlreadyBeenBelowZeroForThisPlanet)
+            percentofthewaytonext = lastPercentOfTheWayToNext;
+    }
+    else percentToNextHasAlreadyBeenBelowZeroForThisPlanet = true;
+    lastPercentOfTheWayToNext = percentofthewaytonext;
+    
     Planet * planet1 = lastPlanetVisited;
     Planet * planet2 = nextPlanet;
-    
-    CGPoint sub = ccpSub(planet2.sprite.position, planet1.sprite.position);
-    CGPoint mult = ccpMult(sub, percentofthewaytonext);
-    CGPoint focusPointOne = ccpAdd(mult ,planet1.sprite.position);
+
+    CGPoint focusPointOne = ccpAdd(ccpMult(ccpSub(planet2.sprite.position, planet1.sprite.position), percentofthewaytonext) ,planet1.sprite.position);
     planet1 = [planets objectAtIndex:lastPlanetVisited.number+2];
     planet2 = [planets objectAtIndex:lastPlanetVisited.number+3];
     //  if (planet2.whichGalaxyThisObjectBelongsTo != lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
@@ -880,8 +884,7 @@ typedef struct {
     
     CGPoint focusPosition = ccpMult(ccpAdd(ccpMult(focusPointOne,extraScaleFactor+ cameraScaleFocusedOnFocusPosOne), focusPointTwo), 1.0f/(extraScaleFactor+ cameraScaleFocusedOnFocusPosOne+1.0f));
     
-    
-    cameraDistToUse= lerpf(cameraDistToUse,ccpDistance(focusPointOne, focusPointTwo),1);
+    cameraDistToUse= ccpDistance(focusPointOne, focusPointTwo) + lastPlanetVisited.radius;
     
     float horizontalScale = 294.388933833*pow(cameraDistToUse,-1);
     float newAng = CC_RADIANS_TO_DEGREES(fabs(ccpToAngle(ccpSub(focusPointTwo, focusPointOne))));
@@ -1792,6 +1795,8 @@ typedef struct {
                 if (feverModePlanetHitsInARow >= minPlanetsInARowForFeverMode) {
                     [self UpdateFeverMode];
                 }
+                
+                percentToNextHasAlreadyBeenBelowZeroForThisPlanet = false;
                 zonesReached++;
                 planetsHitSinceNewGalaxy++;
                 score+=currentPtoPscore;
@@ -2730,6 +2735,7 @@ float lerpf(float a, float b, float t) {
 - (void)unscheduleEverythingButTutorialStuff {
     [self unscheduleUpdates];
     [streak unscheduleUpdate];
+    [galaxyLabel pauseSchedulerAndActions];
     [cometParticle unscheduleUpdate];
     [thrustParticle unscheduleUpdate];
     [feverModeInitialExplosionParticle unscheduleUpdate];
@@ -2744,6 +2750,7 @@ float lerpf(float a, float b, float t) {
     [self scheduleUpdates];
     [streak scheduleUpdate];
     [cometParticle scheduleUpdate];
+    [galaxyLabel resumeSchedulerAndActions];
     [thrustParticle scheduleUpdate];
     [feverModeInitialExplosionParticle scheduleUpdate];
     [feverModeLabelParticle scheduleUpdate];
