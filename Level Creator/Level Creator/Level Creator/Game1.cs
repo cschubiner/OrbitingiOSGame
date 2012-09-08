@@ -515,7 +515,21 @@ namespace Level_Creator
             return (posArray[posArray.Count - 2].pos - posArray[posArray.Count - 1].pos).Length();
         }
 
-       
+
+        public float UnsignedAngleBetweenTwoV3(Vector3 v1, Vector3 v2)
+        {
+            v1.Normalize();
+            v2.Normalize();
+            double Angle = (float)Math.Acos(Vector3.Dot(v1, v2));
+            return (float)(180*Angle/Math.PI);
+        }
+
+        public bool angleBetweenThreePointsIsTooBig(Vector2 v1, Vector2 v2, Vector2 v3)
+        {
+            Vector3 v31 = new Vector3(v2 - v1, 0);
+            Vector3 v32 = new Vector3(v3 - v2, 0);
+            return UnsignedAngleBetweenTwoV3(v31, v32) > 55;
+        }
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -546,6 +560,20 @@ namespace Level_Creator
 
             try
             {
+                int index1 = 0;
+                foreach (posScaleStruct pstruct in posArray)
+                {
+                    Vector2 pos = pstruct.pos;
+                    if (angleBetweenThreePointsIsTooBig(pos, posArray[index1 + 1].pos, posArray[index1 + 2].pos))
+                        displayMessage(false, "The angle between some of the planets is probably too big.");
+                    index1++;
+                }
+            }
+            catch { }
+
+
+            try
+            {
             bool stuffLeftOfFirstPlanet = false;
             bool stuffRightOfLastPlanet = false;
             bool coinNotScaleOne = false;
@@ -554,7 +582,7 @@ namespace Level_Creator
             if (posArrayPowerups.Count > 2)
                 displayMessage(false, "There are more than two powerups placed");
             if (posArrayForFrame.Count < 1)
-                displayMessage(false, "There are no frames placed. Use frames (the 'f' key) to align flight paths.");
+                displayMessage(false, "There are no frames placed. Use frames (the 'f' key) to align flight paths and hold 'r' simultaneously and scroll to rotate.");
             if (getDistanceBetweenLastPlanets() < 352.0f)
                 displayMessage(false, "The distance between the last two placed planets is probably too small.");
             if (getDistanceBetweenLastPlanets() > 935.0f)
@@ -562,9 +590,9 @@ namespace Level_Creator
             
             foreach (posScaleStruct pstruct in posArrayCoin)
             {
-                if (pstruct.pos.X < posArray[0].pos.X)
+                if (pstruct.pos.X < posArray[0].pos.X - zoneTexture.Width / 2 * defaultZoneScaleRelativeToPlanet)
                     stuffLeftOfFirstPlanet = true;
-                if (pstruct.pos.X > posArray[posArray.Count - 1].pos.X)
+                if (pstruct.pos.X > posArray[posArray.Count - 1].pos.X+zoneTexture.Width/2*defaultZoneScaleRelativeToPlanet)
                     stuffRightOfLastPlanet = true;
 
                 if (coinNotScaleOne == false)
@@ -581,9 +609,9 @@ namespace Level_Creator
 
             foreach (posScaleStruct pstruct in posArrayAsteroid)
             {
-                if (pstruct.pos.X < posArray[0].pos.X)
+                if (pstruct.pos.X+asteroidTexture.Width/2*pstruct.scale < posArray[0].pos.X)
                     stuffLeftOfFirstPlanet = true;
-                if (pstruct.pos.X > posArray[posArray.Count-1].pos.X)
+                if (pstruct.pos.X - asteroidTexture.Width / 2 * pstruct.scale > posArray[posArray.Count - 1].pos.X)
                     stuffRightOfLastPlanet = true;
             }
             if (stuffLeftOfFirstPlanet == false || stuffRightOfLastPlanet ==false)
@@ -620,8 +648,8 @@ namespace Level_Creator
             }
             catch { }
 
-            if (posArray.Count < 4)
-                displayMessage(true, "There are less than 4 planets placed.");
+            if (posArray.Count < 5)
+                displayMessage(true, "There are less than 5 planets placed.");
 
             int index = 0;
             foreach (posScaleStruct pstruct in posArray)
