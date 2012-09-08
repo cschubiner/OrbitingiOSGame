@@ -80,7 +80,7 @@
         
         CCSprite* topBar = [CCSprite spriteWithFile:@"banner.png"];
         [self addChild:topBar];
-        [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2 + 3)];
+        [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2 + 2)];
         
         NSString* stringToUse;
         stringToUse = @"STAR STORE";
@@ -122,34 +122,34 @@
         
         
         CCMenuItem *perks = [CCMenuItemImage
-                             itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
+                             itemWithNormalImage:@"storeperks.png" selectedImage:@"storeperkspressed.png"
                              target:self selector:@selector(pressedPerksButton)];
-        perks.position = ccp(120, 200);
+        perks.position = ccp(80, 195);
         
         CCMenuItem *upgrades = [CCMenuItemImage
-                             itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
+                             itemWithNormalImage:@"storeupgrades.png" selectedImage:@"storeupgradespressed.png"
                              target:self selector:@selector(pressedUpgradesButton)];
-        upgrades.position = ccp(240, 200);
+        upgrades.position = ccp(240, 195);
         
         CCMenuItem *rocketships = [CCMenuItemImage
-                             itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
+                             itemWithNormalImage:@"storespaceships.png" selectedImage:@"storespaceshipspressed.png"
                              target:self selector:@selector(pressedRocketShipsButton)];
-        rocketships.position = ccp(360, 200);
+        rocketships.position = ccp(400, 195);
         
         CCMenuItem *rockettrails = [CCMenuItemImage
-                             itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
+                             itemWithNormalImage:@"storespaceshiptrails.png" selectedImage:@"storespaceshiptrailspressed.png"
                              target:self selector:@selector(pressedRocketTrailsButton)];
-        rockettrails.position = ccp(120, 100);
+        rockettrails.position = ccp(80, 65);
         
         CCMenuItem *powerups = [CCMenuItemImage
-                             itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
+                             itemWithNormalImage:@"storepowerups.png" selectedImage:@"storepowerupspressed.png"
                              target:self selector:@selector(pressedPowerupsButton)];
-        powerups.position = ccp(240, 100);
+        powerups.position = ccp(240, 65);
         
         CCMenuItem *stars = [CCMenuItemImage
-                             itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
+                             itemWithNormalImage:@"storestars.png" selectedImage:@"storestarspressed.png"
                              target:self selector:@selector(pressedStarsButton)];
-        stars.position = ccp(360, 100);
+        stars.position = ccp(400, 65);
         
         
         CCMenu* menu = [CCMenu menuWithItems:quit, perks, upgrades, rocketships, rockettrails, powerups, stars, nil];

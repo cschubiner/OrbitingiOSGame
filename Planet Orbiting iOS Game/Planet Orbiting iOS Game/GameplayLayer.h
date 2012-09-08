@@ -65,6 +65,14 @@
     float tutCounter;
     bool hasOpenedTut;
     bool isDoingTutStuff;
+    float pauseDuration;
+    NSString* pauseText;
+    CCLabelTTF* pauseLabel;
+    CCLabelTTF* continueLabel;
+    
+    bool hasDiplayedArrowText;
+    bool hasDiplayedCoinText;
+    bool hasDiplayedBatteryText;
     
     CCLabelBMFont * zeroCoinsLabel;
     float powerupCounter;

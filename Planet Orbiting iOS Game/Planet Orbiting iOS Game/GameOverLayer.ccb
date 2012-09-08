@@ -98,8 +98,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>286</real>
-								<real>93</real>
+								<real>280</real>
+								<real>80</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -117,23 +117,23 @@
 							<integer>1</integer>
 							<key>position</key>
 							<array>
-								<real>42.4453125</real>
-								<real>-43.61328125</real>
+								<real>43.078125</real>
+								<real>-30.30078125</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>0.80000001192092896</real>
+							<real>1</real>
 							<key>scaleY</key>
-							<real>0.80000001192092896</real>
+							<real>1</real>
 							<key>selector</key>
 							<string>pressedStoreButton</string>
 							<key>spriteFileDisabled</key>
-							<string>storelarge.png</string>
+							<string>mainmenubig.png</string>
 							<key>spriteFileNormal</key>
-							<string>storelarge.png</string>
+							<string>mainmenubig.png</string>
 							<key>spriteFileSelected</key>
-							<string>storelargepressed.png</string>
+							<string>mainmenubigpressed.png</string>
 							<key>tag</key>
 							<integer>1</integer>
 							<key>target</key>
@@ -218,8 +218,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>286</real>
-								<real>93</real>
+								<real>250</real>
+								<real>80</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -237,15 +237,15 @@
 							<integer>1</integer>
 							<key>position</key>
 							<array>
-								<real>42.71484375</real>
-								<real>-104.50390625</real>
+								<real>30.8046875</real>
+								<real>-100.76171875</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>0.80000001192092896</real>
+							<real>1</real>
 							<key>scaleY</key>
-							<real>0.80000001192092896</real>
+							<real>1</real>
 							<key>selector</key>
 							<string>restartGame</string>
 							<key>spriteFileDisabled</key>
