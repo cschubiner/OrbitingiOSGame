@@ -107,7 +107,7 @@
         
         CCSprite* topBar = [CCSprite spriteWithFile:@"banner.png"];
         [self addChild:topBar];
-        [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2 + 3)];
+        [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2 + 2)];
         
         NSString* stringToUse;
         stringToUse = @"CREDITS";

@@ -110,18 +110,18 @@
         
         CCSprite* topBar = [CCSprite spriteWithFile:@"banner.png"];
         [self addChild:topBar];
-        [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2 + 1)];
+        [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2 + 2)];
         
         NSString* stringToUse;
         stringToUse = @"HIGH SCORES";
         
         CCLabelTTF* pauseText = [CCLabelTTF labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:31];
         //[self addChild:pauseText];
-        pauseText.position = ccp(240, 299);
+        pauseText.position = ccp(240, 300.5);
         
         CCSprite* topSpriteLabel = [self.class labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:30 color:ccWHITE strokeSize:1.1 stokeColor: ccBLACK];
         [self addChild:topSpriteLabel];
-        topSpriteLabel.position = ccp(240, 299);
+        topSpriteLabel.position = ccp(240, 300.5);
         
         CCSprite* botBar = [CCSprite spriteWithFile:@"upgradeFooter.png"];
         [self addChild:botBar];
@@ -131,12 +131,12 @@
         CCMenuItem *quit = [CCMenuItemImage
                             itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
                             target:self selector:@selector(backButtonPressed)];
-        quit.position = ccp(60, 299);
+        quit.position = ccp(41, 300.5);
         
         CCMenuItem *gameCenter = [CCMenuItemImage
                                   itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
                                   target:self selector:@selector(gameCenterButtonPressed)];
-        gameCenter.position = ccp(480-60, 299);
+        gameCenter.position = ccp(480-60, 300.5);
         //quit.scale = 1.7;
         
         CCMenu* menu = [CCMenu menuWithItems:quit, gameCenter, nil];

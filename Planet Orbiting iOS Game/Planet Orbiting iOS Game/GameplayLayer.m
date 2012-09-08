@@ -657,6 +657,9 @@ typedef struct {
     hasOpenedTut = false;
     isDoingTutStuff = false;
     
+    hasDiplayedArrowText = false;
+    hasDiplayedCoinText = false;
+    
     asteroidsCrashedInto = 0;
     asteroidsDestroyedWithArmor = 0;
     numTimesSwiped = 0;
@@ -752,16 +755,12 @@ typedef struct {
         
         NSArray * helperTextArray = [NSArray arrayWithObjects:
                                      @"Stars increase your score and let you buy upgrades in the store!",
-                                     @"Asteroids kill you; be sure to avoid them!",
-                                     @"Swipe in the direction you want to move!",
-                                     @"Complete missions to increase your score multiplier and earn more stars.",
-                                     @"Purchase upgrades by tapping \"Upgrades\" on the main menu.",
-                                     @"Have suggestions? Submit feedback by tapping \"Survey\" on the main menu.",
-                                     @"Star Dash generates levels randomly to give you a unique experience every time you play!",
-                                     @"Orbit planets as few times as possible to get the highest possible score.",
-                                     @"Your time is limited; keep on eye on the battery in the lower-left corner of the screen.",
-                                     @"Your battery recharges as you move between galaxies",
-                                     @"Each galaxy brings new challenges for you to conquer!",
+                                     @"Aim your swipes - they determine the direction you'll move in.",
+                                     @"Complete missions to earn more stars!",
+                                     @"Orbit planets as briefly as you can to move as fast as possible.",
+                                     @"Your time is limited; watch the battery in the lower-left corner of the screen.",
+                                     @"Your battery recharges as you move between galaxies.",
+                                     @"Try not orbiting planets at all - you'll start moving super quickly!",
                                      nil];
         
         [loadingHelperTextLabel setString:[helperTextArray objectAtIndex:[self RandomBetween:0 maxvalue:helperTextArray.count-1]]];
@@ -797,11 +796,14 @@ typedef struct {
                                            repeatScrollingLeftAction,
                                            nil]];
         
-        id loadingLabelSetOneZero = [CCCallBlock actionWithBlock:(^{
-            [loadingLabel setString:@"loading."];
+        
+        [loadingLabel setString:@"loading..."];
+        
+        /*id loadingLabelSetOneZero = [CCCallBlock actionWithBlock:(^{
+            [loadingLabel setString:@"loading..."];
         })];
         id loadingLabelSetTwoZeroes = [CCCallBlock actionWithBlock:(^{
-            [loadingLabel setString:@"loading.."];
+            [loadingLabel setString:@"loading..."];
         })];
         id loadingLabelSetThreeZeros = [CCCallBlock actionWithBlock:(^{
             [loadingLabel setString:@"loading..."];
@@ -814,7 +816,7 @@ typedef struct {
                                   loadingLabelSetTwoZeroes,
                                   delayBetweenLoadingLabelsAction,
                                   loadingLabelSetThreeZeros,
-                                  delayBetweenLoadingLabelsAction, nil]]];
+                                  delayBetweenLoadingLabelsAction, nil]]];*/
         
         
         [self scheduleOnce:@selector(loadEverything) delay:1.2];
@@ -932,7 +934,23 @@ typedef struct {
     layerToScale.position = ccpAdd(layerToScale.position, centerPointDelta);
 }
 
+-(bool)checkShouldDisplayTextForVar:(bool)varToCheck {
+    int numTimesPlayed = [[PlayerStats sharedInstance] getPlays];
+    if (numTimesPlayed <= 99999) {
+        if (!varToCheck) {
+            return true;
+        }
+    }
+    return false;
+}
+
 - (void)UserTouchedCoin: (Coin*)coin dt:(float)dt{
+    
+    if ([self checkShouldDisplayTextForVar:hasDiplayedCoinText]) {
+        [self pauseWithDuration:5.5 message:@"You just picked up a star! Stars increase your score and you can use them in the shop to buy awesome new spaceships, upgrades, perks, and more!"];
+        hasDiplayedCoinText = true;
+    }
+
     
     [[UserWallet sharedInstance] addCoins: ([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1) ];
     score += howMuchCoinsAddToScore*([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1);
@@ -1232,10 +1250,13 @@ typedef struct {
                                 [self removeOldPredLine];
                             else {
                                 [self createPredPointsFrom:player.sprite.position to:targetForPred withColor:ccWHITE andRemoveOldLine:true];
-                                int numTimesPlayed = [[PlayerStats sharedInstance] getPlays];
-                                if (numTimesPlayed <= 99999) {
-                                    //[self pauseWithDuration:100 message:@"test text"];
+                                
+                                if ([self checkShouldDisplayTextForVar:hasDiplayedArrowText]) {
+                                    [self pauseWithDuration:6 message:@"See that arrow that just popped up? It's telling you which side of the planet you swiped towards. You'll fly towards whichever side it points to."];
+                                    hasDiplayedArrowText = true;
                                 }
+                                
+                                
                             }
                         }
                     }
@@ -2025,10 +2046,10 @@ typedef struct {
 - (void)pressedStoreButton {
     [self tryHighScore];
     
-    [Flurry logEvent:@"Opened Store" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance" ,nil]];
+    //[Flurry logEvent:@"Opened Store" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance" ,nil]];
     
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
-    [[CCDirector sharedDirector] replaceScene:[StoreLayer scene]];
+    [[CCDirector sharedDirector] replaceScene:[MainMenuLayer scene]];//[StoreLayer scene]];
     
     
     //id action = [CCMoveTo actionWithDuration:.8f position:ccp(-960,-320)];
@@ -2368,6 +2389,13 @@ typedef struct {
         
         [self CheckMissions];
         
+        if (targetPlanet.number >= 6) {
+            if ([self checkShouldDisplayTextForVar:hasDiplayedBatteryText]) {
+                [self pauseWithDuration:5 message:@"Notice the battery on the lower-left corner of the screen? It recharges as you move between galaxies, but you need to travel as far as you can before it runs out!"];
+                hasDiplayedBatteryText = true;
+            }
+        }
+        
         //NSLog(@"start5");
         [self UpdateCamera:dt];
         
@@ -2661,7 +2689,7 @@ float lerpf(float a, float b, float t) {
     
     CCSprite* topBar = [CCSprite spriteWithFile:@"banner.png"];
     [layerToAdd addChild:topBar];
-    [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2 + 3)];
+    [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2 + 2)];
     
     NSString* stringToUse;
     stringToUse = @"GAME PAUSED";
@@ -2729,6 +2757,8 @@ float lerpf(float a, float b, float t) {
     bool isOnRegularPause = (a_duration == 0 && a_message == @"");
     if (!isOnRegularPause)
         isDoingTutStuff = true;
+    pauseDuration = a_duration;
+    pauseText = a_message;
     
     if (!pauseEnabled) {
         return;
@@ -2760,17 +2790,41 @@ float lerpf(float a, float b, float t) {
 }
 
 - (void) UpdateTutorial:(ccTime)dt {
+    if (!isDoingTutStuff)
+        return;
+    
+    if (tutCounter == 0) {
+        pauseLabel = [CCLabelTTF labelWithString:pauseText dimensions:CGSizeMake(390, 320) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentTop lineBreakMode:kCCLineBreakModeWordWrap fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+        pauseLabel.anchorPoint = ccp(.5, 1);
+        pauseLabel.position = ccp(240, 320);
+        pauseLabel.opacity = 0;
+        [self addChild: pauseLabel];
+        
+        [pauseLabel runAction:[CCFadeIn actionWithDuration:.4]];
+    }
+    
     if (isDoingTutStuff)
         tutCounter += dt;
     
-    if (tutCounter >= 1)
+    if (tutCounter >= pauseDuration)
         if (!hasOpenedTut) {
             hasOpenedTut = true;
+            
+            continueLabel = [CCLabelTTF labelWithString:@"Tap to continue..." fontName:@"HelveticaNeue-CondensedBold" fontSize:20];
+            continueLabel.anchorPoint = ccp(.5, 0);
+            continueLabel.position = ccp(240, 0);
+            continueLabel.opacity = 0;
+            [self addChild: continueLabel];
+            [continueLabel runAction:[CCFadeIn actionWithDuration:.7]];
+            
+            
             soundButton = [CCMenuItemImage
-                           itemWithNormalImage:@"resume.png" selectedImage:@"resumepressed.png"
+                           itemWithNormalImage:@"blank.png" selectedImage:@"blank.png"
                            target:self selector:@selector(continueTut)];
             CCMenuItem *sound = soundButton;
             sound.position = ccp(240, 160);
+            sound.scaleX = 480;
+            sound.scaleY = 320;
             
             CCMenu* menu = [CCMenu menuWithItems:sound, nil];
             menu.position = ccp(0, 0);
@@ -2786,6 +2840,8 @@ float lerpf(float a, float b, float t) {
     tutCounter = 0;
     hasOpenedTut = false;
     isDoingTutStuff = false;
+    [pauseLabel removeFromParentAndCleanup:true];
+    [continueLabel removeFromParentAndCleanup:true];
     [tutLayer removeFromParentAndCleanup:true];
     [self togglePause];
 }
