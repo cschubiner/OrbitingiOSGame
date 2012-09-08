@@ -358,7 +358,7 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setHasDoubleCoins:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped]];
     
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:63 + 5*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:70 + 5*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
     
     [[UpgradeValues sharedInstance] setHasStarMagnet:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped]];
     
@@ -2695,6 +2695,7 @@ float lerpf(float a, float b, float t) {
     [self togglePause];
 }
 
+/*
 -(void)facebookShareStartedWithSuccess:(BOOL)success error:(KCShareStatus)error {
     [[UserWallet sharedInstance] addCoins: 100];
 }
@@ -2706,7 +2707,7 @@ float lerpf(float a, float b, float t) {
 }
 -(void)emailSentWithSuccess:(BOOL)success error:(KCShareStatus)error{
     [[UserWallet sharedInstance] addCoins: 100];
-}
+}*/
 
 -(void)showRecording {
     muted = false;

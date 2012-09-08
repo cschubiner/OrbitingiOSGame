@@ -21,7 +21,7 @@
 #import "UpgradeValues.h"
 #import "ObjectiveManager.h"
 
-@interface GameplayLayer : CCLayer <UITextViewDelegate,KCShareDelegate> {
+@interface GameplayLayer : CCLayer <UITextViewDelegate> {
     Player *player;
     NSMutableArray *planets;
     NSMutableArray *zones;
