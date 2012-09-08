@@ -4,6 +4,45 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>asteroid1-2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{298,470},{124,94}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{124,94}}</string>
+                <key>sourceSize</key>
+                <string>{124,94}</string>
+            </dict>
+            <key>asteroid2-2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{394,470},{114,91}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{114,91}}</string>
+                <key>sourceSize</key>
+                <string>{114,91}</string>
+            </dict>
+            <key>asteroid3-2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{298,340},{128,96}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{128,96}}</string>
+                <key>sourceSize</key>
+                <string>{128,96}</string>
+            </dict>
             <key>planet1-2.png</key>
             <dict>
                 <key>frame</key>
@@ -62,13 +101,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>galaxy2-hd.pvr.ccz</string>
+            <string>galaxy2-hd.pvr.gz</string>
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:2a127f870c49e71eb6a2e60271f007c4$</string>
+            <string>$TexturePacker:SmartUpdate:bc9cbc31aef1d6f88b192be2f832c709$</string>
             <key>textureFileName</key>
-            <string>galaxy2-hd.pvr.ccz</string>
+            <string>galaxy2-hd.pvr.gz</string>
         </dict>
     </dict>
 </plist>

@@ -4,96 +4,96 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>asteroid1-6.png</key>
+            <key>asteroid1-9.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{152,243},{66,50}}</string>
+                <string>{{398,908},{131,100}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{131,100}}</string>
+                <key>sourceSize</key>
+                <string>{131,100}</string>
+            </dict>
+            <key>asteroid2-9.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{307,340},{115,96}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{66,50}}</string>
+                <string>{{0,0},{115,96}}</string>
                 <key>sourceSize</key>
-                <string>{66,50}</string>
+                <string>{115,96}</string>
             </dict>
-            <key>asteroid2-6.png</key>
+            <key>asteroid3-9.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{204,243},{58,48}}</string>
+                <string>{{258,908},{138,108}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{138,108}}</string>
+                <key>sourceSize</key>
+                <string>{138,108}</string>
+            </dict>
+            <key>planet1-9.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{258,647},{259,259}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{259,259}}</string>
+                <key>sourceSize</key>
+                <string>{259,259}</string>
+            </dict>
+            <key>planet2-9.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,340},{305,303}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{58,48}}</string>
+                <string>{{0,0},{305,303}}</string>
                 <key>sourceSize</key>
-                <string>{58,48}</string>
+                <string>{305,303}</string>
             </dict>
-            <key>asteroid3-6.png</key>
+            <key>planet3-9.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{152,172},{69,54}}</string>
+                <string>{{2,647},{298,254}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{69,54}}</string>
+                <string>{{13,9},{298,254}}</string>
                 <key>sourceSize</key>
-                <string>{69,54}</string>
+                <string>{324,272}</string>
             </dict>
-            <key>planet1-6.png</key>
+            <key>zone9.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,172},{148,151}}</string>
+                <string>{{2,2},{336,336}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{148,151}}</string>
+                <string>{{0,0},{336,336}}</string>
                 <key>sourceSize</key>
-                <string>{148,151}</string>
-            </dict>
-            <key>planet2-6.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,325},{143,148}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{143,148}}</string>
-                <key>sourceSize</key>
-                <string>{143,148}</string>
-            </dict>
-            <key>planet3-6.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{147,325},{139,139}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{10,10},{139,139}}</string>
-                <key>sourceSize</key>
-                <string>{159,159}</string>
-            </dict>
-            <key>zone6.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,2},{168,168}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{168,168}}</string>
-                <key>sourceSize</key>
-                <string>{168,168}</string>
+                <string>{336,336}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -101,13 +101,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>galaxy6.pvr.gz</string>
+            <string>galaxy9-hd.pvr.gz</string>
             <key>size</key>
-            <string>{512,512}</string>
+            <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:913afe256671eab86e7db57e3f719c55$</string>
+            <string>$TexturePacker:SmartUpdate:e1d10d102978b80fca776bd997fa34cf$</string>
             <key>textureFileName</key>
-            <string>galaxy6.pvr.gz</string>
+            <string>galaxy9-hd.pvr.gz</string>
         </dict>
     </dict>
 </plist>

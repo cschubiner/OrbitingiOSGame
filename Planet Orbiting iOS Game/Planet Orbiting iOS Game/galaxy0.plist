@@ -4,6 +4,45 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>asteroid1-0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{116,449},{62,47}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{62,47}}</string>
+                <key>sourceSize</key>
+                <string>{62,47}</string>
+            </dict>
+            <key>asteroid2-0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,449},{57,46}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{57,46}}</string>
+                <key>sourceSize</key>
+                <string>{57,46}</string>
+            </dict>
+            <key>asteroid3-0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{50,449},{64,48}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{64,48}}</string>
+                <key>sourceSize</key>
+                <string>{64,48}</string>
+            </dict>
             <key>planet1-0.png</key>
             <dict>
                 <key>frame</key>
@@ -72,7 +111,7 @@
             <key>planet6-0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{155,328},{145,150}}</string>
+                <string>{{180,328},{145,150}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -114,13 +153,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>galaxy0.pvr.ccz</string>
+            <string>galaxy0.pvr.gz</string>
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:6e9505e4d98277231d850f2e8fdfc110$</string>
+            <string>$TexturePacker:SmartUpdate:d91f1eb895a40cff394524048d4ea97d$</string>
             <key>textureFileName</key>
-            <string>galaxy0.pvr.ccz</string>
+            <string>galaxy0.pvr.gz</string>
         </dict>
     </dict>
 </plist>

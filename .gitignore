@@ -48,3 +48,5 @@ Planet Orbiting iOS Game/Planet Orbiting iOS Game.xcodeproj/project.pbxproj.REMO
 Planet Orbiting iOS Game/Planet Orbiting iOS Game.xcodeproj/project.pbxproj.orig
 
 Level Creator/Level Creator/Level Creator/bin/x86/Debug/input.txt
+Planet Orbiting iOS Game/removeUnused.sh
+Planet Orbiting iOS Game/xcode-usages

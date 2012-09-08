@@ -4,23 +4,49 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>planet1-6.png</key>
+            <key>asteroid1-6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,663},{316,281}}</string>
+                <string>{{299,480},{131,100}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{316,281}}</string>
+                <string>{{0,0},{131,100}}</string>
                 <key>sourceSize</key>
-                <string>{316,281}</string>
+                <string>{131,100}</string>
             </dict>
-            <key>planet2-6.png</key>
+            <key>asteroid2-6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{285,663},{295,302}}</string>
+                <string>{{289,925},{115,96}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{115,96}}</string>
+                <key>sourceSize</key>
+                <string>{115,96}</string>
+            </dict>
+            <key>asteroid3-6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{299,340},{138,108}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{138,108}}</string>
+                <key>sourceSize</key>
+                <string>{138,108}</string>
+            </dict>
+            <key>planet1-6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,340},{295,302}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -30,18 +56,31 @@
                 <key>sourceSize</key>
                 <string>{295,302}</string>
             </dict>
-            <key>planet3-6.png</key>
+            <key>planet2-6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,340},{294,321}}</string>
+                <string>{{2,644},{285,295}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{294,321}}</string>
+                <string>{{0,0},{285,295}}</string>
                 <key>sourceSize</key>
-                <string>{294,321}</string>
+                <string>{285,295}</string>
+            </dict>
+            <key>planet3-6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{289,644},{279,278}}</string>
+                <key>offset</key>
+                <string>{-1,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{18,20},{279,278}}</string>
+                <key>sourceSize</key>
+                <string>{317,318}</string>
             </dict>
             <key>zone6.png</key>
             <dict>
@@ -62,13 +101,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>galaxy6-hd.pvr.ccz</string>
+            <string>galaxy6-hd.pvr.gz</string>
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:1a07f8e8d538e4a692a929c44f0c20c5$</string>
+            <string>$TexturePacker:SmartUpdate:d59a7ad1cef07fee14add55d51897dda$</string>
             <key>textureFileName</key>
-            <string>galaxy6-hd.pvr.ccz</string>
+            <string>galaxy6-hd.pvr.gz</string>
         </dict>
     </dict>
 </plist>

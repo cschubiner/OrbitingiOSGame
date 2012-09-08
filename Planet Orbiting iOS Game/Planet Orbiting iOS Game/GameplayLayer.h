@@ -21,7 +21,7 @@
 #import "UpgradeValues.h"
 #import "ObjectiveManager.h"
 
-@interface GameplayLayer : CCLayer <UITextViewDelegate> {
+@interface GameplayLayer : CCLayer <UITextViewDelegate,KCShareDelegate> {
     Player *player;
     NSMutableArray *planets;
     NSMutableArray *zones;
@@ -58,8 +58,9 @@
     float powerupVel;
     int numCoinsDisplayed;
     
+    int lastOrbitState ;
+    
     NSMutableArray* predPoints;
-    CCLayer* predPointLayer;
     
     CCLayer* tutLayer;
     float tutCounter;

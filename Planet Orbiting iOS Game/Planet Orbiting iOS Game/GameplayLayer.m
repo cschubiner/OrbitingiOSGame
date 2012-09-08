@@ -91,7 +91,7 @@ typedef struct {
     if ([[UpgradeValues sharedInstance] hasPinkStars])
         coin.sprite.color = ccc3(255, 20, 147);
     coin.sprite.position = ccp(xPos, yPos);
-    [coin.sprite setScale:scale*.8];
+    [coin.sprite setScale:scale];
     coin.whichSegmentThisObjectIsOriginallyFrom = originalSegmentNumber;
     coin.segmentNumber = makingSegmentNumber;
     coin.number = coins.count;
@@ -106,10 +106,10 @@ typedef struct {
     coin.movingSprite.position = ccp(-20, -20);
     
     [coins addObject:coin];
+        //NSLog(@"adding coin");
     [spriteSheet addChild:coin.sprite];
-    //[spriteSheet addChild:coin.sprite];
     //[spriteSheet reorderChild:coin.sprite z:5];
-    //NSLog(@"ended coin");
+    ////NSLog(@"ended coin");
     
 }
 
@@ -131,15 +131,17 @@ typedef struct {
     
     [powerups addObject:powerup];
     
+        //NSLog(@"adding powerup");
     [spriteSheet addChild:powerup.sprite];
-    [cameraLayer addChild:powerup.glowSprite];
+        //NSLog(@"adding powerup2");
+    [spriteSheet addChild:powerup.glowSprite];
     powerup.glowSprite.scale = playerSizeScale;
     [powerup.glowSprite setZOrder:5];
     
     //NSLog(@"galaxy114powerup");
     //[spriteSheet reorderChild:powerup.glowSprite z:2.5];
     
-    //NSLog(@"ended powerup");
+    ////NSLog(@"ended powerup");
     
 }
 
@@ -158,7 +160,7 @@ typedef struct {
     
     //  [self setGlow];
     Asteroid *asteroid = [[Asteroid alloc]init];
-    asteroid.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"asteroid%d.png",[self RandomBetween:1 maxvalue:3]]];
+    asteroid.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"asteroid%d-%d.png",[self RandomBetween:1 maxvalue:3],currentGalaxy.number]];
     asteroid.sprite.position = ccp(xPos, yPos);
     [asteroid.sprite setScale:scale];
     asteroid.whichSegmentThisObjectIsOriginallyFrom = originalSegmentNumber;
@@ -166,7 +168,8 @@ typedef struct {
     asteroid.number = asteroids.count;
     asteroid.whichGalaxyThisObjectBelongsTo = currentGalaxy.number;
     [asteroids addObject:asteroid];
-    [spriteSheet addChild:asteroid.sprite];
+        //NSLog(@"adding asteroid");
+    [currentGalaxy.spriteSheet addChild:asteroid.sprite];
     //NSLog(@"ended asteroid");
 }
 
@@ -195,10 +198,11 @@ typedef struct {
     [planets addObject:planet];
     [zones addObject:zone];
     
+        //NSLog(@"adding planet/zone");
     [currentGalaxy.spriteSheet addChild:planet.sprite];
     [currentGalaxy.spriteSheet addChild:zone.sprite];
     planetCounter++;
-    //NSLog(@"ended planet and zone");
+    ////NSLog(@"ended planet and zone");
 }
 
 -(CGPoint)getPositionBasedOnOrigin:(CGPoint)origin offset:(CGPoint)offset andAngle:(float)angle {
@@ -528,15 +532,14 @@ typedef struct {
     //player.sprite = [CCSprite spriteWithSpriteFrameName:@"playercute.png"];
     
     if ([[UpgradeValues sharedInstance] hasGreenShip]) {
-        player.sprite = [CCSprite spriteWithFile:@"playercamo.png"];
+        player.sprite = [CCSprite spriteWithSpriteFrameName:@"playercamo.png"];
     } else {
-        player.sprite = [CCSprite spriteWithFile:@"playermenu.png"];
+        player.sprite = [CCSprite spriteWithSpriteFrameName:@"player.png"];
     }
     player.sprite.scale = playerSizeScale;
     [player.sprite setZOrder:4];
     
     player.alive=true;
-    //[player.sprite setScale:playerSizeScale];
     player.segmentNumber = -10;
     orbitState = 1;
     player.sprite.position = ccp(-750, -500);
@@ -689,6 +692,7 @@ typedef struct {
             }
             if (collidesWithOtherStar ==false) {
                 //NSLog(@"star pos: %f,%f between %d and %d",star.position.x,star.position.y,(480*(sector))/numSectors,(480*(sector+1))/numSectors);
+                    //NSLog(@"adding backroudnstars");
                 [backgroundSpriteSheet addChild:star];
                 [backgroundStars addObject:star];
             }
@@ -858,13 +862,21 @@ typedef struct {
     //  if (orbitState == 0 || nextPlanet.number + 1 >= [planets count])
     //       percentofthewaytonext*=.4f;
     
+    if (orbitState == 0) {
     if (percentofthewaytonext<lastPercentOfTheWayToNext)
     {
         if (percentToNextHasAlreadyBeenBelowZeroForThisPlanet)
             percentofthewaytonext = lastPercentOfTheWayToNext;
     }
-    else percentToNextHasAlreadyBeenBelowZeroForThisPlanet = true;
+    else
+        percentToNextHasAlreadyBeenBelowZeroForThisPlanet = true;
     lastPercentOfTheWayToNext = percentofthewaytonext;
+    }
+    if (lastOrbitState != orbitState && orbitState == 0) {
+        lastPercentOfTheWayToNext= .8;
+        percentToNextHasAlreadyBeenBelowZeroForThisPlanet = false;
+    }
+    lastOrbitState = orbitState; 
     
     Planet * planet1 = lastPlanetVisited;
     Planet * planet2 = nextPlanet;
@@ -972,7 +984,7 @@ typedef struct {
     //id scaleAction = [CCScaleTo actionWithDuration:.1 scale:.2*coin.sprite.scale];
     // [coin.sprite runAction:[CCSequence actions:[CCSpawn actions:scaleAction,[CCRotateBy actionWithDuration:.1 angle:360], nil],[CCHide action], nil]];
     [coin.sprite setVisible:false];
-    [cameraLayer removeChild:coin.sprite cleanup:YES];
+    [spriteSheet removeChild:coin.sprite cleanup:YES];
     coin.isAlive = false;
     if (timeSinceGotLastCoin<.4){
         lastCoinPitch +=.1;
@@ -1393,7 +1405,8 @@ typedef struct {
 // FIX you don't really need planetIndex passed in because it's just going to spawn at the position of the last thrust point anyway
 - (void)RespawnPlayerAtPlanetIndex:(int)planetIndex asteroidHit:(Asteroid*)asteroidHit {
     numTimesDied++;
-    
+    lastPercentOfTheWayToNext= -.3;
+    percentToNextHasAlreadyBeenBelowZeroForThisPlanet = false;
     [self endFeverMode];
     
     timeDilationCoefficient *= factorToScaleTimeDilationByOnDeath;
@@ -1538,7 +1551,8 @@ typedef struct {
     //[cameraLayer addChild:thrustParticle z:2];
     [cameraLayer addChild:thrustBurstParticle z:2];
     [cameraLayer addChild:streak z:1];
-    [cameraLayer addChild:player.sprite z:3];
+    //NSLog(@"adding player.sprite");
+    [spriteSheet addChild:player.sprite z:3];
 }
 
 - (CGPoint)GetPositionForJumpingPlayerToPlanet:(int)planetIndex {
@@ -1650,6 +1664,11 @@ typedef struct {
                 
                 [self CheckMissionsGalaxyChange];
                 
+                for (int i = 0 ; i <= 9 ; i++) {
+                    [[CCSpriteFrameCache sharedSpriteFrameCache]removeSpriteFrameByName:[NSString stringWithFormat:@"planet%d-%d.png",i,currentGalaxy.number-1]];
+                    [[CCSpriteFrameCache sharedSpriteFrameCache]removeSpriteFrameByName:[NSString stringWithFormat:@"asteroid%d-%d.png",i,currentGalaxy.number-1]];
+                }
+                [[CCSpriteFrameCache sharedSpriteFrameCache]removeSpriteFrameByName:[NSString stringWithFormat:@"zone%d.png",currentGalaxy.number-1]];
                 
                 flurrySegmentsVisitedSinceGalaxyJump = 0;
                 Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
@@ -1686,15 +1705,15 @@ typedef struct {
         [self DisposeAllContentsOfArray:zones shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:asteroids shouldRemoveFromArray:true];
         [self DisposeAllContentsOfArray:coins shouldRemoveFromArray:true];
-        // [self DisposeAllContentsOfArray:powerups shouldRemoveFromArray:YES];
+        [self DisposeAllContentsOfArray:powerups shouldRemoveFromArray:YES];
         
         [self RenumberCamObjectArray:planets];
         [self RenumberCamObjectArray:zones];
         [self RenumberCamObjectArray:asteroids];
-        //  [self RenumberCamObjectArray:powerups];
+        [self RenumberCamObjectArray:powerups];
         [self RenumberCamObjectArray:coins];
         
-        NSLog(@"galaxy6");
+        //NSLog(@"galaxy6");
         if (currentGalaxy.number>0) {
             Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
             [lastGalaxy.spriteSheet removeAllChildrenWithCleanup:YES];
@@ -2564,30 +2583,27 @@ typedef struct {
 }
 
 -(void)removeOldPredLine {
-    if (predPointLayer) {
-        [predPointLayer removeAllChildrenWithCleanup:true];
-        [predPointLayer removeFromParentAndCleanup:YES];
+    for (CCSprite * sprite in predPoints) {
+        [sprite removeAllChildrenWithCleanup:YES];
+        [sprite removeFromParentAndCleanup:YES];
     }
+//    [predPoints removeAllObjects];
 }
 
 - (void)createPredPointsFrom:(CGPoint)fromPos to:(CGPoint)toPos withColor:(ccColor3B)col andRemoveOldLine:(bool)shouldRemove {
-    if (!predPointLayer)
-        predPointLayer = [[CCLayer alloc] init];
-    else if (shouldRemove)
+    if (shouldRemove)
         [self removeOldPredLine];
-    if (!predPointLayer.parent)
-        [cameraLayer addChild:predPointLayer];
     
     predPoints = [[NSMutableArray alloc] init];
     float currentDist = INT_MAX;
     
-    CCSprite* point = [CCSprite spriteWithFile:@"point.png"];
+    CCSprite* point = [CCSprite spriteWithSpriteFrameName:@"point.png"];
     CGPoint dir = ccpNormalize(ccpSub(toPos, fromPos));
     
     int i = 0;
     while (currentDist > point.width*3)
     {
-        CCSprite* p1 = [CCSprite spriteWithFile:@"point.png"];
+        CCSprite* p1 = [CCSprite spriteWithSpriteFrameName:@"point.png"];
         p1.color = col;
         
         p1.position = ccpAdd(fromPos, ccpMult(dir, i*1.5*p1.width + p1.width/2));
@@ -2600,7 +2616,7 @@ typedef struct {
         i++;
     }
     
-    CCSprite* tip = [CCSprite spriteWithFile:@"justthetip.png"];
+    CCSprite* tip = [CCSprite spriteWithSpriteFrameName:@"justthetip.png"];
     tip.scale = .5;
     tip.color = col;
     
@@ -2609,8 +2625,9 @@ typedef struct {
     
     [predPoints addObject:tip];
     
+        //NSLog(@"adding pred");
     for (CCSprite* s in predPoints)
-        [predPointLayer addChild:s];
+        [spriteSheet addChild:s];
     point = nil;
     
     for (CCSprite* s in predPoints)
@@ -2678,6 +2695,19 @@ float lerpf(float a, float b, float t) {
     [self togglePause];
 }
 
+-(void)facebookShareStartedWithSuccess:(BOOL)success error:(KCShareStatus)error {
+    [[UserWallet sharedInstance] addCoins: 100];
+}
+-(void)youTubeUploadStartedWithSuccess:(BOOL)success error:(KCShareStatus)error {
+    [[UserWallet sharedInstance] addCoins: 100];
+}
+-(void)twitterShareStartedWithSuccess:(BOOL)success error:(KCShareStatus)error {
+    [[UserWallet sharedInstance] addCoins: 100];
+}
+-(void)emailSentWithSuccess:(BOOL)success error:(KCShareStatus)error{
+    [[UserWallet sharedInstance] addCoins: 100];
+}
+
 -(void)showRecording {
     muted = false;
     [self toggleMute];
@@ -2742,7 +2772,7 @@ float lerpf(float a, float b, float t) {
     [feverModeLabelParticle unscheduleUpdate];
     for (Coin* coin in coins)
         [coin.sprite pauseSchedulerAndActions];
-    for (CCNode* node in predPointLayer.children)
+    for (CCNode* node in predPoints)
         [node pauseSchedulerAndActions];
 }
 
@@ -2756,7 +2786,7 @@ float lerpf(float a, float b, float t) {
     [feverModeLabelParticle scheduleUpdate];
     for (Coin* coin in coins)
         [coin.sprite resumeSchedulerAndActions];
-    for (CCNode* node in predPointLayer.children)
+    for (CCNode* node in predPoints)
         [node resumeSchedulerAndActions];
 }
 
@@ -2764,7 +2794,7 @@ float lerpf(float a, float b, float t) {
     bool isOnRegularPause = (a_duration == 0 && a_message == @"");
     if (!isOnRegularPause)
         isDoingTutStuff = true;
-    pauseDuration = a_duration;
+    pauseDuration = .3;//a_duration; //LOL of got frustrated
     pauseText = a_message;
     
     if (!pauseEnabled) {

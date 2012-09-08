@@ -28,29 +28,29 @@
             
             duration = [[UpgradeValues sharedInstance] asteroidImmunityDuration];
             title = @"Asteroid Armor";
-            self.sprite = [CCSprite spriteWithSpriteFrameName:@"asteroidbreakercoin.png"];
-            glowSprite = [CCSprite spriteWithFile:@"playerarmor.png"];
+            self.sprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];//@"asteroidbreakericon.png"]; //never used?
+            glowSprite = [CCSprite spriteWithSpriteFrameName:@"playerarmor.png"];
             
         } else if (type == kcoinMagnet) { //coinMagnet
             
             duration = [[UpgradeValues sharedInstance] coinMagnetDuration];
             title = @"Star Magnet";
             self.sprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
-            glowSprite = [CCSprite spriteWithFile:@"playermagnet.png"];
+            glowSprite = [CCSprite spriteWithSpriteFrameName:@"playermagnet.png"];
             
         } else if (type == kautopilot) { //autopilot powerup
             
             duration = [[UpgradeValues sharedInstance] autopilotDuration]; //JJ's headstart lasts 5 seconds
             title = @"Autopilot";
             self.sprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
-            glowSprite = [CCSprite spriteWithFile:@"playerheadstart.png"];
+            glowSprite = [CCSprite spriteWithSpriteFrameName:@"playerheadstart.png"];
             
         } else if (type == kheadStart) { //wrapage powerup
             
             duration = 350; //JJ's headstart lasts 5 seconds
             title = @"Head Start";
             self.sprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];
-            glowSprite = [CCSprite spriteWithFile:@"playerheadstart.png"];
+            glowSprite = [CCSprite spriteWithSpriteFrameName:@"playerheadstart.png"];
             
         } //else { //type needs to be a valid int from the list above
      //   }

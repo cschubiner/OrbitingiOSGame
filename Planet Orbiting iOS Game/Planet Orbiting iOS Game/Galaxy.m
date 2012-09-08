@@ -17,7 +17,7 @@
         segments = levelsegments;
         self.number = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getGalaxyCounter];
         [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setGalaxyCounter:self.number+1];
-        spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"galaxy%d.pvr.ccz",self.number]];
+        spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"galaxy%d.pvr.gz",self.number]];
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[NSString stringWithFormat:@"galaxy%d.plist",self.number]];
         optimalPlanetsInThisGalaxy = 23;
         percentTimeToAddUponGalaxyCompletion = .35;
