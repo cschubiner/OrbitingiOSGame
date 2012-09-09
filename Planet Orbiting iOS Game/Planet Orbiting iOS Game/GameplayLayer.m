@@ -662,6 +662,7 @@ typedef struct {
     
     hasDiplayedArrowText = false;
     hasDiplayedCoinText = false;
+    hasDiplayedBatteryText = false;
     
     asteroidsCrashedInto = 0;
     asteroidsDestroyedWithArmor = 0;
@@ -951,12 +952,10 @@ typedef struct {
 
 -(bool)checkShouldDisplayTextForVar:(bool)varToCheck {
     int numTimesPlayed = [[PlayerStats sharedInstance] getPlays];
-    if (numTimesPlayed <= 99999) {
-        if (!varToCheck) {
-            return true;
-        }
-    }
-    return false;
+    if (numTimesPlayed <= 99999 && !varToCheck)
+        return true;
+    else
+        return false;
 }
 
 - (void)UserTouchedCoin: (Coin*)coin dt:(float)dt{
