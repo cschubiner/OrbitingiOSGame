@@ -1309,7 +1309,7 @@ typedef struct {
                 {
                     if (ccpToAngle(player.velocity) > (anglePlayToTarg + (80 * M_PI/180)) || ccpToAngle(player.velocity) < (anglePlayToTarg - (80 * M_PI/180)))
                     {
-                        dangerLevel += .02;
+                        dangerLevel += .015;
                     }
                 }
                 
