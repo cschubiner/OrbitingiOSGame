@@ -106,7 +106,7 @@ typedef struct {
     coin.movingSprite.position = ccp(-20, -20);
     
     [coins addObject:coin];
-        //NSLog(@"adding coin");
+    //NSLog(@"adding coin");
     [spriteSheet addChild:coin.sprite];
     //[spriteSheet reorderChild:coin.sprite z:5];
     ////NSLog(@"ended coin");
@@ -131,9 +131,9 @@ typedef struct {
     
     [powerups addObject:powerup];
     
-        //NSLog(@"adding powerup");
+    //NSLog(@"adding powerup");
     [spriteSheet addChild:powerup.sprite];
-        //NSLog(@"adding powerup2");
+    //NSLog(@"adding powerup2");
     [spriteSheet addChild:powerup.glowSprite];
     powerup.glowSprite.scale = playerSizeScale;
     [powerup.glowSprite setZOrder:5];
@@ -168,7 +168,7 @@ typedef struct {
     asteroid.number = asteroids.count;
     asteroid.whichGalaxyThisObjectBelongsTo = currentGalaxy.number;
     [asteroids addObject:asteroid];
-        //NSLog(@"adding asteroid");
+    //NSLog(@"adding asteroid");
     [currentGalaxy.spriteSheet addChild:asteroid.sprite];
     //NSLog(@"ended asteroid");
 }
@@ -198,7 +198,7 @@ typedef struct {
     [planets addObject:planet];
     [zones addObject:zone];
     
-        //NSLog(@"adding planet/zone");
+    //NSLog(@"adding planet/zone");
     [currentGalaxy.spriteSheet addChild:planet.sprite];
     [currentGalaxy.spriteSheet addChild:zone.sprite];
     planetCounter++;
@@ -685,7 +685,7 @@ typedef struct {
             }
             if (collidesWithOtherStar ==false) {
                 //NSLog(@"star pos: %f,%f between %d and %d",star.position.x,star.position.y,(480*(sector))/numSectors,(480*(sector+1))/numSectors);
-                    //NSLog(@"adding backroudnstars");
+                //NSLog(@"adding backroudnstars");
                 [backgroundSpriteSheet addChild:star];
                 [backgroundStars addObject:star];
             }
@@ -797,23 +797,23 @@ typedef struct {
         [loadingLabel setString:@"loading..."];
         
         /*id loadingLabelSetOneZero = [CCCallBlock actionWithBlock:(^{
-            [loadingLabel setString:@"loading..."];
-        })];
-        id loadingLabelSetTwoZeroes = [CCCallBlock actionWithBlock:(^{
-            [loadingLabel setString:@"loading..."];
-        })];
-        id loadingLabelSetThreeZeros = [CCCallBlock actionWithBlock:(^{
-            [loadingLabel setString:@"loading..."];
-        })];
-        
-        id delayBetweenLoadingLabelsAction = [CCDelayTime actionWithDuration:1.2];
-        [loadingLabel runAction:[CCRepeatForever actionWithAction:
-                                 [CCSequence actions:loadingLabelSetOneZero,
-                                  delayBetweenLoadingLabelsAction,
-                                  loadingLabelSetTwoZeroes,
-                                  delayBetweenLoadingLabelsAction,
-                                  loadingLabelSetThreeZeros,
-                                  delayBetweenLoadingLabelsAction, nil]]];*/
+         [loadingLabel setString:@"loading..."];
+         })];
+         id loadingLabelSetTwoZeroes = [CCCallBlock actionWithBlock:(^{
+         [loadingLabel setString:@"loading..."];
+         })];
+         id loadingLabelSetThreeZeros = [CCCallBlock actionWithBlock:(^{
+         [loadingLabel setString:@"loading..."];
+         })];
+         
+         id delayBetweenLoadingLabelsAction = [CCDelayTime actionWithDuration:1.2];
+         [loadingLabel runAction:[CCRepeatForever actionWithAction:
+         [CCSequence actions:loadingLabelSetOneZero,
+         delayBetweenLoadingLabelsAction,
+         loadingLabelSetTwoZeroes,
+         delayBetweenLoadingLabelsAction,
+         loadingLabelSetThreeZeros,
+         delayBetweenLoadingLabelsAction, nil]]];*/
         
         
         [self scheduleOnce:@selector(loadEverything) delay:1.2];
@@ -856,24 +856,24 @@ typedef struct {
     //       percentofthewaytonext*=.4f;
     
     if (orbitState == 0) {
-    if (percentofthewaytonext<lastPercentOfTheWayToNext)
-    {
-        if (percentToNextHasAlreadyBeenBelowZeroForThisPlanet)
-            percentofthewaytonext = lastPercentOfTheWayToNext;
-    }
-    else
-        percentToNextHasAlreadyBeenBelowZeroForThisPlanet = true;
-    lastPercentOfTheWayToNext = percentofthewaytonext;
+        if (percentofthewaytonext<lastPercentOfTheWayToNext)
+        {
+            if (percentToNextHasAlreadyBeenBelowZeroForThisPlanet)
+                percentofthewaytonext = lastPercentOfTheWayToNext;
+        }
+        else
+            percentToNextHasAlreadyBeenBelowZeroForThisPlanet = true;
+        lastPercentOfTheWayToNext = percentofthewaytonext;
     }
     if (lastOrbitState != orbitState && orbitState == 0) {
         lastPercentOfTheWayToNext= .8;
         percentToNextHasAlreadyBeenBelowZeroForThisPlanet = false;
     }
-    lastOrbitState = orbitState; 
+    lastOrbitState = orbitState;
     
     Planet * planet1 = lastPlanetVisited;
     Planet * planet2 = nextPlanet;
-
+    
     CGPoint focusPointOne = ccpAdd(ccpMult(ccpSub(planet2.sprite.position, planet1.sprite.position), percentofthewaytonext) ,planet1.sprite.position);
     planet1 = [planets objectAtIndex:lastPlanetVisited.number+2];
     planet2 = [planets objectAtIndex:lastPlanetVisited.number+3];
@@ -956,7 +956,7 @@ typedef struct {
         [self pauseWithDuration:5.5 message:@"You just picked up a star! Stars increase your score and you can use them in the shop to buy awesome new spaceships, upgrades, perks, and more!"];
         hasDiplayedCoinText = true;
     }
-
+    
     
     [[UserWallet sharedInstance] addCoins: ([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1) ];
     score += howMuchCoinsAddToScore*([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1);
@@ -2578,7 +2578,7 @@ typedef struct {
         [sprite removeAllChildrenWithCleanup:YES];
         [sprite removeFromParentAndCleanup:YES];
     }
-//    [predPoints removeAllObjects];
+    //    [predPoints removeAllObjects];
 }
 
 - (void)createPredPointsFrom:(CGPoint)fromPos to:(CGPoint)toPos withColor:(ccColor3B)col andRemoveOldLine:(bool)shouldRemove {
@@ -2616,7 +2616,7 @@ typedef struct {
     
     [predPoints addObject:tip];
     
-        //NSLog(@"adding pred");
+    //NSLog(@"adding pred");
     for (CCSprite* s in predPoints)
         [spriteSheet addChild:s];
     point = nil;
@@ -2687,18 +2687,18 @@ float lerpf(float a, float b, float t) {
 }
 
 /*
--(void)facebookShareStartedWithSuccess:(BOOL)success error:(KCShareStatus)error {
-    [[UserWallet sharedInstance] addCoins: 100];
-}
--(void)youTubeUploadStartedWithSuccess:(BOOL)success error:(KCShareStatus)error {
-    [[UserWallet sharedInstance] addCoins: 100];
-}
--(void)twitterShareStartedWithSuccess:(BOOL)success error:(KCShareStatus)error {
-    [[UserWallet sharedInstance] addCoins: 100];
-}
--(void)emailSentWithSuccess:(BOOL)success error:(KCShareStatus)error{
-    [[UserWallet sharedInstance] addCoins: 100];
-}*/
+ -(void)facebookShareStartedWithSuccess:(BOOL)success error:(KCShareStatus)error {
+ [[UserWallet sharedInstance] addCoins: 100];
+ }
+ -(void)youTubeUploadStartedWithSuccess:(BOOL)success error:(KCShareStatus)error {
+ [[UserWallet sharedInstance] addCoins: 100];
+ }
+ -(void)twitterShareStartedWithSuccess:(BOOL)success error:(KCShareStatus)error {
+ [[UserWallet sharedInstance] addCoins: 100];
+ }
+ -(void)emailSentWithSuccess:(BOOL)success error:(KCShareStatus)error{
+ [[UserWallet sharedInstance] addCoins: 100];
+ }*/
 
 -(void)showRecording {
     muted = false;

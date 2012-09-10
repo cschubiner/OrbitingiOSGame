@@ -97,6 +97,7 @@
 }
 
 
+
 /* On "init," initialize the instance */
 - (id)init {
 	// always call "super" init.
@@ -104,7 +105,7 @@
 	if ((self = [super init])) {
         self.isTouchEnabled= TRUE;
         indexPushed = [[UpgradeManager sharedInstance] buttonPushed];
-        
+                
         scrollView = [[CCLayer alloc] init];
         [self addChild:scrollView];
         
@@ -169,16 +170,8 @@
         [totalStarsSprite setAnchorPoint:ccp(1, .5)];
         [totalStarsSprite setPosition:ccp(480 - 40, 300.5)];
         
-        
-        
         [self initUpgradeLayer];
-        
-        
-        
         [self initScrollStuff];
-        
-        
-        
         [self schedule:@selector(Update:) interval:0];
 	}
 	return self;
@@ -230,7 +223,6 @@
         }
     }
     
-    
     for (int i = 0; i < [cells count]; i++) {
         CCLayer* cell = (CCLayer*)[cells objectAtIndex:i];
         [scrollView addChild:cell];
@@ -243,7 +235,7 @@
 
 
 - (void)refreshUpgradeCells {
-
+    
     [scrollView removeFromParentAndCleanup:true];
     scrollView = [[CCLayer alloc] init];
     [self addChild:scrollView];
@@ -302,9 +294,6 @@
     [scrollView setPosition:CGPointMake(scrollView.position.x, position)];
     //NSLog(@"velocity: %f, position: %f", velocity, position);
     //NSLog(@"cur center: %f, height: %f, startingCenter: %f, endingCenter: %f", currentCenter, scrollViewHeight, startingCenter, endingCenter);
-    
-    
-    
     
     if (isTouchingScreen && wasTouchingScreen) {
         velocity = 0;
@@ -431,11 +420,11 @@
             
             //int pushed = [[UpgradeManager sharedInstance] buttonPushed];
             //if (pushed == 0 || pushed == 1 || pushed == 5) {
-                resume = [CCMenuItemImage
-                          itemWithNormalImage:@"equip.png" selectedImage:@"equippressed.png"
-                          target:self selector:@selector(pressedEquipButton)];
+            resume = [CCMenuItemImage
+                      itemWithNormalImage:@"equip.png" selectedImage:@"equippressed.png"
+                      target:self selector:@selector(pressedEquipButton)];
             //} else {
-                
+            
             //    resume = [CCMenuItemImage
             //              itemWithNormalImage:@"purchasedisabled.png" selectedImage:@"purchasedisabled.png"
             //              target:self selector:@selector(pressedDisabledButton)];
@@ -525,64 +514,34 @@
         pushedItem.number == 15 ||
         pushedItem.number == 16) {
         
-     //   for (int i = 0 ; i < 8; i++)
-       //     [[iRate sharedInstance] logEvent:YES];
+        //   for (int i = 0 ; i < 8; i++)
+        //     [[iRate sharedInstance] logEvent:YES];
         
         if (pushedItem.number == 3) { //Double Stars - 1.99
-            
-            //if ([InAppPurchase purchaseAndReturnBoolForIfSuccessfulOrNot]) {
-            [[UpgradeManager sharedInstance] setUpgradeIndex:3 purchased:true equipped:true];
-            //}
+            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"doublestars"];
+
             
         } else if (pushedItem.number == 11) { //Pink Stars - 5.99
-            
-            //if ([InAppPurchase purchaseAndReturnBoolForIfSuccessfulOrNot]) {
-            [[UpgradeManager sharedInstance] setUpgradeIndex:11 purchased:true equipped:true];
-            //}
+            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"pinkstars"];
+
             
         } else if (pushedItem.number == 12) { //30,000 Stars - .99
-            
-            //if ([InAppPurchase purchaseAndReturnBoolForIfSuccessfulOrNot]) {
-            int curBalance = [[UserWallet sharedInstance] getBalance];
-            int newBalance = curBalance + 30000;
-            [[UserWallet sharedInstance] setBalance:newBalance];
-            //}
+            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"30000stars"];
+
             
         } else if (pushedItem.number == 13) { //70,000 Stars - 1.99
-            
-            //if ([InAppPurchase purchaseAndReturnBoolForIfSuccessfulOrNot]) {
-            int curBalance = [[UserWallet sharedInstance] getBalance];
-            int newBalance = curBalance + 70000;
-            [[UserWallet sharedInstance] setBalance:newBalance];
-            //}
+            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"70000stars"];
+
             
         } else if (pushedItem.number == 14) { //120,000 Stars - 2.99
-            
-            //if ([InAppPurchase purchaseAndReturnBoolForIfSuccessfulOrNot]) {
-            int curBalance = [[UserWallet sharedInstance] getBalance];
-            int newBalance = curBalance + 120000;
-            [[UserWallet sharedInstance] setBalance:newBalance];
-            //}
+            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"120000stars"];
+
             
         } else if (pushedItem.number == 15) { //300,000 Stars - 4.99
-            
-            //if ([InAppPurchase purchaseAndReturnBoolForIfSuccessfulOrNot]) {
-            int curBalance = [[UserWallet sharedInstance] getBalance];
-            int newBalance = curBalance + 300000;
-            [[UserWallet sharedInstance] setBalance:newBalance];
-            //}
+            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"300000stars"];
             
         } else if (pushedItem.number == 16) { //1,000,000 Stars - 9.99
-            
-            //if ([InAppPurchase purchaseAndReturnBoolForIfSuccessfulOrNot]) {
-            int curBalance = [[UserWallet sharedInstance] getBalance];
-            int newBalance = curBalance + 1000000;
-            [[UserWallet sharedInstance] setBalance:newBalance];
-            //}
-            
             [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"1000000stars"];
-            
-            
         }
         
     } else {
@@ -617,7 +576,7 @@
     
     
     [self removePurchasePopup];
-
+    
 }
 
 /*

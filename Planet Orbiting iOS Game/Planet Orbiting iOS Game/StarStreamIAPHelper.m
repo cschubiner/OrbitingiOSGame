@@ -26,6 +26,12 @@ static StarStreamIAPHelper * _sharedHelper;
     
     NSSet *productIdentifiers = [NSSet setWithObjects:
         @"1000000stars",
+                                 @"120000stars",
+                                 @"300000stars",
+                                 @"30000stars",
+                                 @"70000stars",
+                                 @"doublestars",
+                                 @"pinkstars",
         //        @"com.raywenderlich.inapprage.itunesconnectrage",
         nil];
     

@@ -124,7 +124,7 @@
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Autopilot" description:@"Increase the duration of the Autopilot powerup." price:4000 type:3 purchased:NO equipped:NO number:10]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Pink Stars" description:@"Turn all stars pink. Are they worth more? No. Are they more fun? No. Are they super homo? Absolutely." price:599 type:4 purchased:NO equipped:NO number:11]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Pink Stars" description:@"Turn all stars pink. Are they worth more? No. Are they more fun? No. Are they super awesome? Absolutely." price:599 type:4 purchased:NO equipped:NO number:11]];
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"30,000 Stars" description:@"Get 30,000 stars." price:99 type:4 purchased:NO equipped:NO number:12]];
     

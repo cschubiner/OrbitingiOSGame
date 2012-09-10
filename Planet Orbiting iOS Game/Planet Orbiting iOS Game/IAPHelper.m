@@ -7,6 +7,9 @@
 //
 
 #import "IAPHelper.h"
+#import "iRate.h"
+#import "UserWallet.h"
+#import "UpgradeManager.h"
 
 @implementation IAPHelper
 @synthesize productIdentifiers = _productIdentifiers;
@@ -65,9 +68,83 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     [_purchasedProducts addObject:productIdentifier];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kProductPurchasedNotification object:productIdentifier];
+    [self productPurchased:productIdentifier];
     
 }
+
+- (void)productPurchased:(NSString*)productIdentifier{
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    
+    NSLog(@"Purchased: %@", productIdentifier);
+    
+    NSString * purchaseTitle = @"upgrade";
+    
+    for (int i = 0 ; i < 8; i++)
+        [[iRate sharedInstance] logEvent:YES];
+    
+    if ([productIdentifier isEqualToString:@"1000000stars"]) {
+        int curBalance = [[UserWallet sharedInstance] getBalance];
+        int newBalance = curBalance + 1000000;
+        [[UserWallet sharedInstance] setBalance:newBalance];
+        purchaseTitle = @"One Million Star Pack";
+    }
+    else if ([productIdentifier isEqualToString:@"300000stars"]) {
+        int curBalance = [[UserWallet sharedInstance] getBalance];
+        int newBalance = curBalance + 300000;
+        [[UserWallet sharedInstance] setBalance:newBalance];
+        purchaseTitle = @"300,000 Star Pack";
+        
+    }
+    else if ([productIdentifier isEqualToString:@"120000stars"]) {
+        int curBalance = [[UserWallet sharedInstance] getBalance];
+        int newBalance = curBalance + 120000;
+        [[UserWallet sharedInstance] setBalance:newBalance];
+        purchaseTitle = @"120,000 Star Pack";
+    }
+    else if ([productIdentifier isEqualToString:@"70000stars"]) {
+        int curBalance = [[UserWallet sharedInstance] getBalance];
+        int newBalance = curBalance + 70000;
+        [[UserWallet sharedInstance] setBalance:newBalance];
+        purchaseTitle = @"70,000 Star Pack";
+    }
+    else if ([productIdentifier isEqualToString:@"30000stars"]) {
+        int curBalance = [[UserWallet sharedInstance] getBalance];
+        int newBalance = curBalance + 30000;
+        [[UserWallet sharedInstance] setBalance:newBalance];
+        purchaseTitle = @"30,000 Star Pack";
+    }
+    else if ([productIdentifier isEqualToString:@"pinkstars"]) {
+        [[UpgradeManager sharedInstance] setUpgradeIndex:11 purchased:true equipped:true];
+        purchaseTitle = @"Pink Star Upgrade";
+        
+    }
+    else if ([productIdentifier isEqualToString:@"doublestars"]) {
+        [[UpgradeManager sharedInstance] setUpgradeIndex:3 purchased:true equipped:true];
+        purchaseTitle = @"Double Star Multiplier";
+        
+    }
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congratulations!" message:[NSString stringWithFormat:@"Thank you for purchasing the %@!",purchaseTitle] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil, nil];
+    [alert show];
+}
+
+- (void)productPurchaseFailed:(SKPaymentTransaction *)transaction {
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    
+    if (transaction.error.code != SKErrorPaymentCancelled) {
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error!"
+                                                         message:transaction.error.localizedDescription
+                                                        delegate:nil
+                                               cancelButtonTitle:nil
+                                               otherButtonTitles:@"OK", nil] autorelease];
+        
+        [alert show];
+    }
+    
+}
+
 
 - (void)completeTransaction:(SKPaymentTransaction *)transaction {
     
@@ -96,8 +173,7 @@
         NSLog(@"Transaction code: %d message: %@", transaction.error.code, transaction.error.localizedDescription);
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kProductPurchaseFailedNotification object:transaction];
-    
+    [self productPurchaseFailed:transaction];
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
     
 }
