@@ -704,7 +704,6 @@ typedef struct {
     [light.sprite setPosition:CGPointZero];
     [light.sprite setColor:ccc3(0, 0, 0)]; //this makes the light black!
     
-    light.scoreVelocity = initialLightScoreVelocity;
     light.hasPutOnLight = false;
     
     [cameraLayer addChild:currentGalaxy.spriteSheet];
@@ -2084,25 +2083,25 @@ typedef struct {
         [batteryGlowSprite setColor:ccc3(0, 255,202)];
         [batteryGlowSprite stopAllActions];
     }
-    light.scoreVelocity += amountToIncreaseLightScoreVelocityEachUpdate*60*dt;
     
     float percentDead = 1-light.timeLeft/[[UpgradeValues sharedInstance] maxBatteryTime];
-    [batteryDecreaserSprite setScaleX:lerpf(0, 66, percentDead)];
+
+    // y = -(x-1)^2+1
+    float percentDeadToDisplay = -powf(percentDead-1,2)+1.00001;
+    [batteryDecreaserSprite setScaleX:lerpf(0, 66, percentDeadToDisplay)];
     
-    if (percentDead<.5)
-        [batteryInnerSprite setColor:ccc3(lerpf(0, 255, percentDead*2), 255, 0)];
-    else [batteryInnerSprite setColor:ccc3(255, lerpf(255, 0, percentDead    *2-1), 0)];
+    if (percentDeadToDisplay<.5)
+        [batteryInnerSprite setColor:ccc3(lerpf(0, 255, percentDeadToDisplay*2), 255, 0)];
+    else [batteryInnerSprite setColor:ccc3(255, lerpf(255, 0, percentDeadToDisplay    *2-1), 0)];
     
-    [batteryGlowScaleAction setSpeed:lerpf(1, 3.6, percentDead)];
+    [batteryGlowScaleAction setSpeed:lerpf(1, 3.6, percentDeadToDisplay)];
     
-    //    CCLOG(@"DIST: %f, VEL: %f, LIGHSCORE: %f", light.distanceFromPlayer, light.scoreVelocity, light.score);
     if (light.timeLeft <= 0) {
         if (!light.hasPutOnLight) {
             light.hasPutOnLight = true;
             [light.sprite setOpacity:0];
             light.sprite.position = ccp(-240, 160);
             [light.sprite setTextureRect:CGRectMake(0, 0, 480, 320)];
-            //NSLog(@"galaxy114light");
             if (light.sprite)
                 [hudLayer reorderChild:light.sprite z:-1];
             [light.sprite setOpacity:0];
@@ -2114,16 +2113,12 @@ typedef struct {
         [light.sprite setOpacity:clampf((light.sprite.position.x+240)*255/480, 0, 255)];
     }
     
-    //NSLog(@"galaxy114lightXX");
     if (light.sprite)
-        //    if ([[hudLayer children]containsObject:light.sprite])
         if (light.sprite.position.x >= 240
             ||batteryDecreaserSprite.scaleX>67)//failsafe -- this condition should never have to trigger game over. fix this alex b!!
         {
-            //[light.sprite setTextureRect:CGRectMake(0, 0, 0, 0)];
             [self GameOver];
         }
-    //NSLog(@"galaxy114lightXX11");
     
     
 }

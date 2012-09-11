@@ -134,7 +134,7 @@
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     
     if (transaction.error.code != SKErrorPaymentCancelled) {
-        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error!"
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Transaction Error"
                                                          message:transaction.error.localizedDescription
                                                         delegate:nil
                                                cancelButtonTitle:nil

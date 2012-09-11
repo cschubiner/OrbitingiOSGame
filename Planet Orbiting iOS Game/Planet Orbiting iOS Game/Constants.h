@@ -151,10 +151,6 @@ const float zoneCollisionFactor = 1.01;
 
 //THIS IS NOW IN UPGRADE VALUES const float negativeLightStartingScore = 9000;
 
-const float initialLightScoreVelocity = 4;
-
-const float amountToIncreaseLightScoreVelocityEachUpdate = .00065;
-
 const int howMuchCoinsAddToScore = 10;
 
 const float coinAnimationDelay = .02;

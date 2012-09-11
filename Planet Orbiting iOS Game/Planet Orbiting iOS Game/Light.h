@@ -16,7 +16,5 @@
 @property (nonatomic) int stage; //0=far away, 1=close, 2=wrapping
 @property (nonatomic) bool hasPutOnLight;
 @property (nonatomic) float timeLeft;
-@property (nonatomic) float scoreVelocity;
-@property (nonatomic) float distanceFromPlayer;
 
 @end
