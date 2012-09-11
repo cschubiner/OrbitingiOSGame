@@ -825,7 +825,7 @@ typedef struct {
     if (player.alive) {
         player.velocity = ccpAdd(player.velocity, player.acceleration);
         if (player.currentPowerup.type == kheadStart)
-            player.velocity = ccpMult(player.velocity, 1.4);
+            player.velocity = ccpMult(player.velocity, 1.234);
         else if (player.currentPowerup.type == kautopilot)
             player.velocity = ccpMult(player.velocity, 1.1);
         
@@ -837,6 +837,7 @@ typedef struct {
     }
     
     if (isnan(player.sprite.position.x)) {
+        player.alive = true;
         player.velocity = CGPointZero;
         player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:lastPlanetVisited.number];
         player.acceleration = CGPointZero;
@@ -845,16 +846,17 @@ typedef struct {
     //camera code follows -----------------------------
     Planet * nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
     
-    double firsttoplayer = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, player.sprite.position));
-    double planetAngle = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, nextPlanet.sprite.position));
+    double firsttoplayer = ccpAngleSigned(lastPlanetVisited.sprite.position, player.sprite.position);
+    double planetAngle = ccpAngleSigned(lastPlanetVisited.sprite.position,nextPlanet.sprite.position);
+    firsttoplayer = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, player.sprite.position));
+    planetAngle = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, nextPlanet.sprite.position));
+
     double firstToPlayerAngle = firsttoplayer-planetAngle;
     double firstToPlayerDistance = ccpDistance(lastPlanetVisited.sprite.position, player.sprite.position)*cos(firstToPlayerAngle);
     double firsttonextDistance = ccpDistance(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
     double percentofthewaytonext = firstToPlayerDistance/firsttonextDistance;
-    //  if (orbitState == 0 || nextPlanet.number + 1 >= [planets count])
-    //       percentofthewaytonext*=.4f;
-    
-    if (orbitState == 0) {
+
+    /*if (orbitState == 0) {
         if (percentofthewaytonext<lastPercentOfTheWayToNext)
         {
             if (percentToNextHasAlreadyBeenBelowZeroForThisPlanet)
@@ -868,7 +870,7 @@ typedef struct {
         lastPercentOfTheWayToNext= .8;
         percentToNextHasAlreadyBeenBelowZeroForThisPlanet = false;
     }
-    lastOrbitState = orbitState;
+    lastOrbitState = orbitState;*/
     
     Planet * planet1 = lastPlanetVisited;
     Planet * planet2 = nextPlanet;
@@ -886,7 +888,20 @@ typedef struct {
     if (planet1.whichGalaxyThisObjectBelongsTo != lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
         extraScaleFactor = 16;
     
+    Planet * planet01 = lastPlanetVisited;
+    Planet * planet02 = nextPlanet;
+    Planet * planet03 = [planets objectAtIndex:lastPlanetVisited.number+2];
+    Planet * planet04 = [planets objectAtIndex:lastPlanetVisited.number+3];
+    
+    CGPoint focusPoint = ccpMult(planet01.sprite.position,1-percentofthewaytonext);
+    focusPoint = ccpAdd(focusPoint, planet02.sprite.position);
+    focusPoint = ccpAdd(focusPoint, planet03.sprite.position);
+    focusPoint = ccpAdd(focusPoint, ccpMult(planet04.sprite.position, percentofthewaytonext));
+    focusPoint = ccpMult(focusPoint, .33333333f);
+    
     CGPoint focusPosition = ccpMult(ccpAdd(ccpMult(focusPointOne,extraScaleFactor+ cameraScaleFocusedOnFocusPosOne), focusPointTwo), 1.0f/(extraScaleFactor+ cameraScaleFocusedOnFocusPosOne+1.0f));
+    
+    //focusPosition = ccpMidpoint(lastPlanetVisited.sprite.position,nextPlanet.sprite.position);
     
     cameraDistToUse= ccpDistance(focusPointOne, focusPointTwo) + lastPlanetVisited.radius;
     
@@ -915,7 +930,7 @@ typedef struct {
         scale = cameraLayer.scale;
     
     // focusPosition = ccp((lastPlanetVisited.sprite.position.x+nextPlanet.sprite.position.x)/2, (lastPlanetVisited.sprite.position.y+nextPlanet.sprite.position.y)/2);
-    cameraLastFocusPosition = ccpLerp(cameraLastFocusPosition, focusPosition, cameraMovementSpeed);
+    cameraLastFocusPosition = ccpLerp(cameraLastFocusPosition, focusPoint, cameraMovementSpeed);
     [self scaleLayer:cameraLayer scaleToZoomTo:scale scaleCenter:cameraLastFocusPosition];
     //cameraLayer.position = ccpAdd(cameraFocusNode.position,ccp(-cameraLayer.scaleX/2,-cameraLayer.scaleY/2));
     [cameraLayer runAction: [CCFollow actionWithTarget:cameraFocusNode]];
