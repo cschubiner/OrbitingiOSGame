@@ -75,6 +75,11 @@
     bool hasDiplayedCoinText;
     bool hasDiplayedBatteryText;
     
+    CCSprite* tutHand;
+    CCLabelTTF* tutLabel;
+    
+    CGPoint cameraLayerLastPosition;
+    
     CCLabelBMFont * zeroCoinsLabel;
     float powerupCounter;
         

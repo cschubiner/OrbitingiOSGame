@@ -416,7 +416,14 @@
         
     } else {
         
-        if (item.purchased) {
+        if (item.number == 12 || item.number == 13 || item.number == 14 || item.number == 15 || item.number == 16) { //30,000 Stars - .99
+            
+            
+            resume = [CCMenuItemImage
+                      itemWithNormalImage:@"buy.png" selectedImage:@"buypressed.png"
+                      target:self selector:@selector(pressedPurchaseButton)];
+            
+        } else if (item.purchased) {
             
             //int pushed = [[UpgradeManager sharedInstance] buttonPushed];
             //if (pushed == 0 || pushed == 1 || pushed == 5) {
@@ -430,10 +437,10 @@
             //              target:self selector:@selector(pressedDisabledButton)];
             //}
             
-        } else if ([[UserWallet sharedInstance] getBalance] < pushedItem.price) {
+        } else if ([[UserWallet sharedInstance] getBalance] < pushedItem.price && item.number != 3 && item.number != 11) {
             
             resume = [CCMenuItemImage
-                      itemWithNormalImage:@"purchasedisabled.png" selectedImage:@"purchasedisabled.png"
+                      itemWithNormalImage:@"buydisabled.png" selectedImage:@"buydisabled.png"
                       target:self selector:@selector(pressedDisabledButton)];
         } else {
             

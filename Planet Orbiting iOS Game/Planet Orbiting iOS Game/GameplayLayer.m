@@ -964,6 +964,7 @@ typedef struct {
     
     // focusPosition = ccp((lastPlanetVisited.sprite.position.x+nextPlanet.sprite.position.x)/2, (lastPlanetVisited.sprite.position.y+nextPlanet.sprite.position.y)/2);
     cameraLastFocusPosition = ccpLerp(cameraLastFocusPosition, focusPoint, cameraMovementSpeed);
+    cameraLayerLastPosition = cameraLastFocusPosition;
     [self scaleLayer:cameraLayer scaleToZoomTo:scale scaleCenter:cameraLastFocusPosition];
     //cameraLayer.position = ccpAdd(cameraFocusNode.position,ccp(-cameraLayer.scaleX/2,-cameraLayer.scaleY/2));
     [cameraLayer runAction: [CCFollow actionWithTarget:cameraFocusNode]];
@@ -991,7 +992,7 @@ typedef struct {
 
 -(bool)checkShouldDisplayTextForVar:(bool)varToCheck {
     int numTimesPlayed = [[PlayerStats sharedInstance] getPlays];
-    if (numTimesPlayed <= 99999 && !varToCheck)
+    if (numTimesPlayed <= 99999 && !varToCheck) //change 999 to 1
         return true;
     else
         return false;
@@ -999,9 +1000,11 @@ typedef struct {
 
 - (void)UserTouchedCoin: (Coin*)coin dt:(float)dt{
     
-    if ([self checkShouldDisplayTextForVar:hasDiplayedCoinText]) {
-        [self pauseWithDuration:5.5 message:@"You just picked up a star! Stars increase your score and you can use them in the shop to buy awesome new spaceships, upgrades, perks, and more!"];
-        hasDiplayedCoinText = true;
+    if (numTimesSwiped != 0) {
+        if ([self checkShouldDisplayTextForVar:hasDiplayedCoinText]) {
+            [self pauseWithDuration:5.5 message:@"You just picked up a star! Stars increase your score and you can use them in the shop to buy awesome new spaceships, upgrades, perks, and more!"];
+            hasDiplayedCoinText = true;
+        }
     }
     
     
@@ -1356,7 +1359,7 @@ typedef struct {
                 {
                     if (ccpToAngle(player.velocity) > (anglePlayToTarg + (80 * M_PI/180)) || ccpToAngle(player.velocity) < (anglePlayToTarg - (80 * M_PI/180)))
                     {
-                        dangerLevel += .02;
+                        dangerLevel += .015;
                     }
                 }
                 
@@ -1849,9 +1852,9 @@ typedef struct {
                 [zone.sprite setColor:ccc3(140, 140, 140)];
                 zone.hasPlayerHitThisZone = true;
                 
-                if (feverModePlanetHitsInARow >= minPlanetsInARowForFeverMode) {
-                    [self UpdateFeverMode];
-                }
+                //if (feverModePlanetHitsInARow >= minPlanetsInARowForFeverMode) {
+                //    [self UpdateFeverMode];
+                //}
                 
                 percentToNextHasAlreadyBeenBelowZeroForThisPlanet = false;
                 zonesReached++;
@@ -2213,10 +2216,14 @@ typedef struct {
 
 - (void)UpdateBackgroundStars:(float)dt{
     for (CCSprite * star in backgroundStars) {
-        //  CGPoint camLayerVelocity = ccpSub(cameraFocusNode.position, cameraLayerLastPosition);
-        float angle = ccpToAngle(player.velocity);
-        if (angle>=0 && angle <=90)
-            star.position = ccpAdd(star.position,  ccpMult(player.velocity, -1*cameraLayer.scale*.1*60*dt));
+          CGPoint camLayerVelocity = ccpSub(cameraLastFocusPosition, cameraLayerLastPosition);
+        //float angle = ccpToAngle(player.velocity);
+        //if (angle>=0 && angle <=90)
+        
+        if (paused)
+            camLayerVelocity = CGPointZero;
+        
+        star.position = ccpAdd(star.position,  ccpMult(camLayerVelocity, -1*cameraLayer.scale*.3*60*dt));
         
         
         if (star.position.x<0-star.width/2 || star.position.y <0-star.height/2) { //if star is off-screen
@@ -2452,6 +2459,40 @@ typedef struct {
                 [self pauseWithDuration:5 message:@"Notice the battery on the lower-left corner of the screen? It recharges as you move between galaxies, but you need to travel as far as you can before it runs out!"];
                 hasDiplayedBatteryText = true;
             }
+        }
+        
+        if (numTimesSwiped == 0) {
+            if (loading_playerHasReachedFirstPlanet) {
+                if (!tutHand) {
+                    tutHand = [CCSprite spriteWithFile:@"hand.png"];
+                    tutHand.scale = .5;
+                    
+                    [hudLayer addChild:tutHand];
+                    CGPoint startPos = ccp(250, 50);
+                    tutHand.position = startPos;
+                    tutHand.opacity = 0;
+                    
+                    
+                    [tutHand runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
+                                                                          [CCFadeTo actionWithDuration:.5 opacity:255],
+                                                                          [CCMoveTo actionWithDuration:.5 position:ccp(400, 150)],
+                                                                          [CCFadeTo actionWithDuration:.5 opacity:0],
+                                                                          [CCMoveTo actionWithDuration:.2 position:startPos],
+                                                                          nil]]];
+                    
+                    
+                    tutLabel = [CCLabelTTF labelWithString:@"Swipe to fly towards the next planet!" fontName:@"HelveticaNeue-CondensedBold" fontSize:20];
+                    tutLabel.opacity = 0;
+                    [tutLabel runAction:[CCFadeIn actionWithDuration:.5]];
+                    [hudLayer addChild:tutLabel];
+                    tutLabel.position = ccp(240, 280);
+                }
+            }
+        } else if (tutHand) {
+            [tutHand removeFromParentAndCleanup:true];
+            tutHand = Nil;
+            [tutLabel removeFromParentAndCleanup:true];
+            tutLabel = Nil;
         }
         
         //NSLog(@"start5");
@@ -2829,7 +2870,7 @@ float lerpf(float a, float b, float t) {
     bool isOnRegularPause = (a_duration == 0 && a_message == @"");
     if (!isOnRegularPause)
         isDoingTutStuff = true;
-    pauseDuration = .3;//a_duration; //LOL of got frustrated
+    pauseDuration = .1; //a_duration; //LOL of got frustrated
     pauseText = a_message;
     
     if (!pauseEnabled) {
@@ -2884,7 +2925,7 @@ float lerpf(float a, float b, float t) {
             
             continueLabel = [CCLabelTTF labelWithString:@"Tap to continue..." fontName:@"HelveticaNeue-CondensedBold" fontSize:20];
             continueLabel.anchorPoint = ccp(.5, 0);
-            continueLabel.position = ccp(240, 0);
+            continueLabel.position = ccp(240, 60);
             continueLabel.opacity = 0;
             [self addChild: continueLabel];
             [continueLabel runAction:[CCFadeIn actionWithDuration:.7]];

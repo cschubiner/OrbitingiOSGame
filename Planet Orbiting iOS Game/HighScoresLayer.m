@@ -136,7 +136,7 @@
         CCMenuItem *gameCenter = [CCMenuItemImage
                                   itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
                                   target:self selector:@selector(gameCenterButtonPressed)];
-        gameCenter.position = ccp(480-60, 300.5);
+        gameCenter.position = ccp(480-41, 300.5);
         //quit.scale = 1.7;
         
         CCMenu* menu = [CCMenu menuWithItems:quit, gameCenter, nil];
