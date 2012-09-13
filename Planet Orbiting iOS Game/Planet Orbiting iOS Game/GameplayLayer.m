@@ -345,8 +345,29 @@ typedef struct {
     [galaxy setPercentTimeToAddUponGalaxyCompletion:.3];
     [galaxy setGalaxyColor: ccc3(161*darkScaler, 163*darkScaler, 42*darkScaler)];
     
-    // for (Galaxy* galaxy in galaxies)
-    // [galaxy setOptimalPlanetsInThisGalaxy:11];
+    galaxy = [galaxies objectAtIndex:7];
+    [galaxy setName:@"Galaxy 8"];
+    [galaxy setNumberOfDifferentPlanetsDrawn:3];
+    [galaxy setOptimalPlanetsInThisGalaxy:43];
+    [galaxy setPercentTimeToAddUponGalaxyCompletion:.3];
+    [galaxy setGalaxyColor: ccc3(161*darkScaler, 163*darkScaler, 42*darkScaler)];
+    
+    galaxy = [galaxies objectAtIndex:8];
+    [galaxy setName:@"Galaxy 9"];
+    [galaxy setNumberOfDifferentPlanetsDrawn:3];
+    [galaxy setOptimalPlanetsInThisGalaxy:43];
+    [galaxy setPercentTimeToAddUponGalaxyCompletion:.3];
+    [galaxy setGalaxyColor: ccc3(161*darkScaler, 163*darkScaler, 42*darkScaler)];
+    
+    galaxy = [galaxies objectAtIndex:9];
+    [galaxy setName:@"Galaxy 10"];
+    [galaxy setNumberOfDifferentPlanetsDrawn:3];
+    [galaxy setOptimalPlanetsInThisGalaxy:43];
+    [galaxy setPercentTimeToAddUponGalaxyCompletion:.3];
+    [galaxy setGalaxyColor: ccc3(161*darkScaler, 163*darkScaler, 42*darkScaler)];
+    
+     for (Galaxy* galaxy in galaxies)
+     [galaxy setOptimalPlanetsInThisGalaxy:11];
 }
 
 - (void)initUpgradedVariables {
@@ -846,15 +867,15 @@ typedef struct {
     //camera code follows -----------------------------
     Planet * nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
     
-    double firsttoplayer = ccpAngleSigned(lastPlanetVisited.sprite.position, player.sprite.position);
-    double planetAngle = ccpAngleSigned(lastPlanetVisited.sprite.position,nextPlanet.sprite.position);
+    float firsttoplayer = ccpAngleSigned(lastPlanetVisited.sprite.position, player.sprite.position);
+    float planetAngle = ccpAngleSigned(lastPlanetVisited.sprite.position,nextPlanet.sprite.position);
     firsttoplayer = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, player.sprite.position));
     planetAngle = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, nextPlanet.sprite.position));
 
-    double firstToPlayerAngle = firsttoplayer-planetAngle;
-    double firstToPlayerDistance = ccpDistance(lastPlanetVisited.sprite.position, player.sprite.position)*cos(firstToPlayerAngle);
-    double firsttonextDistance = ccpDistance(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
-    double percentofthewaytonext = firstToPlayerDistance/firsttonextDistance;
+    float firstToPlayerAngle = firsttoplayer-planetAngle;
+    float firstToPlayerDistance = ccpDistance(lastPlanetVisited.sprite.position, player.sprite.position)*cos(firstToPlayerAngle);
+    float firsttonextDistance = ccpDistance(lastPlanetVisited.sprite.position, nextPlanet.sprite.position);
+    float percentofthewaytonext = firstToPlayerDistance/firsttonextDistance;
 
     /*if (orbitState == 0) {
         if (percentofthewaytonext<lastPercentOfTheWayToNext)
@@ -888,15 +909,32 @@ typedef struct {
     if (planet1.whichGalaxyThisObjectBelongsTo != lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
         extraScaleFactor = 16;
     
-    Planet * planet01 = lastPlanetVisited;
-    Planet * planet02 = nextPlanet;
-    Planet * planet03 = [planets objectAtIndex:lastPlanetVisited.number+2];
-    Planet * planet04 = [planets objectAtIndex:lastPlanetVisited.number+3];
+    CGPoint planet01;
+    CGPoint planet02;
+    if (lastPlanetVisited.whichGalaxyThisObjectBelongsTo == nextPlanet.whichGalaxyThisObjectBelongsTo) {
+        planet01 = lastPlanetVisited.sprite.position;
+        planet02 = nextPlanet.sprite.position;
+    }
+    else {
+        planet01 = player.sprite.position;
+        planet02 = planet01;
+    }
+    CGPoint planet03;
+    if (planet1.whichGalaxyThisObjectBelongsTo == lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
+        planet03= ((Planet*)[planets objectAtIndex:lastPlanetVisited.number+2]).sprite.position;
+    else
+        planet03 = ccpAdd(planet02, ccpMult(ccpNormalize(ccpForAngle(defaultDirectionPlanetSegmentsGoIn)), 400));
+
+    CGPoint planet04;
+    if (planet2.whichGalaxyThisObjectBelongsTo == lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
+        planet04 = ((Planet*)[planets objectAtIndex:lastPlanetVisited.number+3]).sprite.position;
+    else
+        planet04 = ccpAdd(planet03, ccpMult(ccpNormalize(ccpForAngle(defaultDirectionPlanetSegmentsGoIn)), 400));
     
-    CGPoint focusPoint = ccpMult(planet01.sprite.position,1-percentofthewaytonext);
-    focusPoint = ccpAdd(focusPoint, planet02.sprite.position);
-    focusPoint = ccpAdd(focusPoint, planet03.sprite.position);
-    focusPoint = ccpAdd(focusPoint, ccpMult(planet04.sprite.position, percentofthewaytonext));
+    CGPoint focusPoint = ccpMult(planet01,1-percentofthewaytonext);
+    focusPoint = ccpAdd(focusPoint, planet02);
+    focusPoint = ccpAdd(focusPoint, planet03);
+    focusPoint = ccpAdd(focusPoint, ccpMult(planet04, percentofthewaytonext));
     focusPoint = ccpMult(focusPoint, .33333333f);
     
     CGPoint focusPosition = ccpMult(ccpAdd(ccpMult(focusPointOne,extraScaleFactor+ cameraScaleFocusedOnFocusPosOne), focusPointTwo), 1.0f/(extraScaleFactor+ cameraScaleFocusedOnFocusPosOne+1.0f));
@@ -918,11 +956,6 @@ typedef struct {
         numerator = 240-(3.1/10)*newAng+(4.6/100)*powf(newAng, 2);
     else numerator = 499-8.1*newAng + (4.9/100)*powf(newAng, 2);
     float scalerToUse = numerator/240; //CCLOG(@"num: %f, newAng: %f", numerator, newAng);
-    
-    //if ([cameraLayer scale]<.3) {
-    // NSLog(@"\n\n\nALERT: cameraLayer scale should be bigger this this, we prob has an error");
-    //  [cameraLayer setScale:.3];
-    // }
     
     float scale = horizontalScale*scalerToUse*zoomMultiplier;
     scale = clampf(scale, .3, 1.4);
