@@ -242,11 +242,15 @@ typedef struct {
     NSArray *chosenSegment = [[galaxy segments] objectAtIndex:segNumber];
     
     int planetsInSegment = 0;
+    bool canBeFlipped = true;
     for (int i = 0 ; i < [chosenSegment count]; i++) {
         LevelObjectReturner * returner = [chosenSegment objectAtIndex:i];
+        if (returner.canBeFlipped==false)
+            canBeFlipped = false;
         if (returner.type == kplanet)
             planetsInSegment++;
     }
+
     
     int futurePlanetCount = planetsHitSinceNewGalaxy + planetsInSegment;
     if (abs(currentGalaxy.optimalPlanetsInThisGalaxy-planetsHitSinceNewGalaxy)<abs(currentGalaxy.optimalPlanetsInThisGalaxy-futurePlanetCount))
@@ -257,7 +261,7 @@ typedef struct {
     segmentsSpawnedFlurry++;
     
     int levelFlipper;
-    if ([self RandomBetween:0 maxvalue:100]>50) {
+    if ([self RandomBetween:0 maxvalue:100]>50 && canBeFlipped) {
         levelFlipper = -1; //flip segment
     }
     else levelFlipper = 1; //don't flip segment
@@ -286,7 +290,7 @@ typedef struct {
 
 - (void)CreateGalaxies // paste level creation code here
 {
-    galaxies = [[NSArray alloc]initWithObjects:
+    galaxies = [[NSMutableArray alloc]initWithObjects:
 #include "LevelsFromLevelCreator"
                 nil];
 }
@@ -300,74 +304,74 @@ typedef struct {
     [galaxy setName:@"Galaxy 1"];
     [galaxy setNumberOfDifferentPlanetsDrawn:7];
     [galaxy setOptimalPlanetsInThisGalaxy:17];
-    [galaxy setPercentTimeToAddUponGalaxyCompletion:.56];
     [galaxy setGalaxyColor: ccc3(45*darkScaler, 53*darkScaler, 147*darkScaler)]; //a dark blue
     
     galaxy = [galaxies objectAtIndex:1];
     [galaxy setName:@"Galaxy 2"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:21];
-    [galaxy setPercentTimeToAddUponGalaxyCompletion:.408888];
     [galaxy setGalaxyColor: ccc3(0, 103*darkScaler, 3*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:2];
     [galaxy setName:@"Galaxy 3"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:26];
-    [galaxy setPercentTimeToAddUponGalaxyCompletion:.375];
     [galaxy setGalaxyColor: ccc3(114*darkScaler, 0, 115*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:3];
     [galaxy setName:@"Galaxy 4"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
     [galaxy setOptimalPlanetsInThisGalaxy:33];
-    [galaxy setPercentTimeToAddUponGalaxyCompletion:.321];
     [galaxy setGalaxyColor: ccc3(0, 130*darkScaler, 115*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:4];
     [galaxy setName:@"Galaxy 5"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
     [galaxy setOptimalPlanetsInThisGalaxy:36];
-    [galaxy setPercentTimeToAddUponGalaxyCompletion:.31];
     [galaxy setGalaxyColor: ccc3(154*darkScaler, 86*darkScaler, 0)];
     
     galaxy = [galaxies objectAtIndex:5];
     [galaxy setName:@"Galaxy 6"];
     [galaxy setNumberOfDifferentPlanetsDrawn:2];
     [galaxy setOptimalPlanetsInThisGalaxy:40];
-    [galaxy setPercentTimeToAddUponGalaxyCompletion:.28];
     [galaxy setGalaxyColor: ccc3(42*darkScaler, 112*darkScaler, 199*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:6];
     [galaxy setName:@"Galaxy 7"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:43];
-    [galaxy setPercentTimeToAddUponGalaxyCompletion:.3];
     [galaxy setGalaxyColor: ccc3(161*darkScaler, 163*darkScaler, 42*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:7];
     [galaxy setName:@"Galaxy 8"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:43];
-    [galaxy setPercentTimeToAddUponGalaxyCompletion:.3];
-    [galaxy setGalaxyColor: ccc3(161*darkScaler, 163*darkScaler, 42*darkScaler)];
+    [galaxy setGalaxyColor: ccc3(148*darkScaler, 74*darkScaler, 0*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:8];
     [galaxy setName:@"Galaxy 9"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:43];
-    [galaxy setPercentTimeToAddUponGalaxyCompletion:.3];
-    [galaxy setGalaxyColor: ccc3(161*darkScaler, 163*darkScaler, 42*darkScaler)];
+    [galaxy setGalaxyColor: ccc3(64, 104, 149)];
     
     galaxy = [galaxies objectAtIndex:9];
     [galaxy setName:@"Galaxy 10"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:43];
-    [galaxy setPercentTimeToAddUponGalaxyCompletion:.3];
-    [galaxy setGalaxyColor: ccc3(161*darkScaler, 163*darkScaler, 42*darkScaler)];
+    [galaxy setGalaxyColor: ccc3(95*darkScaler, 95*darkScaler, 95*darkScaler)];
     
-     for (Galaxy* galaxy in galaxies)
-     [galaxy setOptimalPlanetsInThisGalaxy:11];
+    float maxPercentTimeToAdd = .56;
+    float minPercentTimeToAdd = .2434;
+    int maxOptimalPlanets = 37;
+    int minOptimalPlanets = 25;
+    for (Galaxy* galaxy in galaxies) {
+     //[galaxy setOptimalPlanetsInThisGalaxy:11];
+        
+        float galaxyPercent = ((float)galaxy.number)/((float)galaxies.count-1);
+        [galaxy setOptimalPlanetsInThisGalaxy:lerpf(minOptimalPlanets, maxOptimalPlanets,galaxyPercent)];
+    [galaxy setPercentTimeToAddUponGalaxyCompletion:lerpf(maxPercentTimeToAdd, minPercentTimeToAdd, galaxyPercent)];
+   
+    }
 }
 
 - (void)initUpgradedVariables {
@@ -958,9 +962,11 @@ typedef struct {
     float scalerToUse = numerator/240; //CCLOG(@"num: %f, newAng: %f", numerator, newAng);
     
     float scale = horizontalScale*scalerToUse*zoomMultiplier;
-    scale = clampf(scale, .3, 1.4);
-    if (fabsf(scale-cameraLayer.scale)<.07)
+    scale = clampf(scale, .2, 1.0);
+    
+    if (fabsf(scale-cameraLayer.scale)<.06) //jerky camera scaling
         scale = cameraLayer.scale;
+    else scale = lerpf(cameraLayer.scale, scale, .1);
     
     // focusPosition = ccp((lastPlanetVisited.sprite.position.x+nextPlanet.sprite.position.x)/2, (lastPlanetVisited.sprite.position.y+nextPlanet.sprite.position.y)/2);
 
@@ -1007,7 +1013,6 @@ typedef struct {
             hasDiplayedCoinText = true;
         }
     }
-    
     
     [[UserWallet sharedInstance] addCoins: ([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1) ];
     score += howMuchCoinsAddToScore*([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1);
@@ -1609,20 +1614,15 @@ typedef struct {
 }
 
 - (void)DisposeAllContentsOfArray:(NSMutableArray*)array shouldRemoveFromArray:(bool)shouldRemove{
-    Galaxy * lastGalaxy = nil;
-    if (currentGalaxy.number>0)
-        lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
     for (int i = 0 ; i < [array count]; i++) {
         CameraObject * object = [array objectAtIndex:i];
         object.segmentNumber--;
         if (object.segmentNumber == -1 ) {
             if ([[spriteSheet children]containsObject:object.sprite])
                 [spriteSheet removeChild:object.sprite cleanup:YES];
-            if (lastGalaxy)
-                if ([[lastGalaxy.spriteSheet children]containsObject:object.sprite])
-                    [lastGalaxy.spriteSheet removeChild:object.sprite cleanup:YES];
-            if ([[currentGalaxy.spriteSheet children]containsObject:object.sprite])
-                [currentGalaxy.spriteSheet removeChild:object.sprite cleanup:YES];
+            if ([[currentGalaxy.spriteSheet children]containsObject:object.sprite]) {
+                   [currentGalaxy.spriteSheet removeChild:object.sprite cleanup:YES];
+            }
             
             //   if (lastPlanetVisited.whichGalaxyThisObjectBelongsTo != targetPlanet.whichGalaxyThisObjectBelongsTo) {
             //  [object.sprite stopAllActions];
@@ -1674,7 +1674,10 @@ typedef struct {
             Galaxy * thisGalaxy = [galaxies objectAtIndex:lastPlanetVisited.whichGalaxyThisObjectBelongsTo];
             Galaxy * nextGalaxy2 = [galaxies objectAtIndex:targetPlanet.whichGalaxyThisObjectBelongsTo];
             
-            ccColor3B lastColor = thisGalaxy.galaxyColor;
+            ccColor3B lastColor;
+            if (thisGalaxy != [NSNull null])
+                lastColor= thisGalaxy.galaxyColor;
+            else lastColor = lastGalaxyColor;
             ccColor3B nextColor = nextGalaxy2.galaxyColor;
             
             if (percentofthewaytonext>.35) {
@@ -1686,13 +1689,34 @@ typedef struct {
             }
             if (percentofthewaytonext>.85&&justDisplayedGalaxyLabel==false&&(int)galaxyLabel.opacity<=0)
             {
+                Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
+                lastGalaxyColor = lastGalaxy.galaxyColor;
+                
+                timeToAddToTimer = lastGalaxy.percentTimeToAddUponGalaxyCompletion*[[UpgradeValues sharedInstance] maxBatteryTime];
+                if (timeToAddToTimer+light.timeLeft > [[UpgradeValues sharedInstance] maxBatteryTime])
+                    timeToAddToTimer = [[UpgradeValues sharedInstance] maxBatteryTime] - light.timeLeft;
+
+                for (CCSprite* sprite in lastGalaxy.spriteSheet.children)
+                    [[CCSpriteFrameCache sharedSpriteFrameCache]removeSpriteFramesFromTexture:sprite.texture];
+
+                if ([[cameraLayer children]containsObject:lastGalaxy.spriteSheet]) {
+                    [cameraLayer removeChild:lastGalaxy.spriteSheet cleanup:YES];
+                }
+
                 if ([[cameraLayer children]containsObject:currentGalaxy.spriteSheet]==false) {
-                    Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
+                    [lastGalaxy.spriteSheet removeAllChildrenWithCleanup:YES];
+                    [lastGalaxy.spriteSheet removeFromParentAndCleanup:YES];
+                    [lastGalaxy.spriteSheet.children removeAllObjects];
+                    lastGalaxy.spriteSheet = NULL;
+                    //[[CCTextureCache sharedTextureCache] removeUnusedTextures];
+                    lastGalaxy.segments = NULL;
+                    [lastGalaxy removeAllChildrenWithCleanup:YES];
+
+                    [galaxies replaceObjectAtIndex:lastGalaxy.number withObject:[NSNull null]];
+
+                   // [lastGalaxy cleanup];
+
                     
-                    
-                    if ([[cameraLayer children]containsObject:lastGalaxy.spriteSheet]) {
-                        [cameraLayer removeChild:lastGalaxy.spriteSheet cleanup:YES];
-                    }
                     
                     [cameraLayer addChild:currentGalaxy.spriteSheet z:3];
                     //NSLog(@"galaxy1155");
@@ -1713,10 +1737,6 @@ typedef struct {
                 [[CCSpriteFrameCache sharedSpriteFrameCache]removeSpriteFrameByName:[NSString stringWithFormat:@"zone%d.png",currentGalaxy.number-1]];
                 
                 flurrySegmentsVisitedSinceGalaxyJump = 0;
-                Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
-                timeToAddToTimer = lastGalaxy.percentTimeToAddUponGalaxyCompletion*[[UpgradeValues sharedInstance] maxBatteryTime];
-                if (timeToAddToTimer+light.timeLeft > [[UpgradeValues sharedInstance] maxBatteryTime])
-                    timeToAddToTimer = [[UpgradeValues sharedInstance] maxBatteryTime] - light.timeLeft;
                 
                 [batteryGlowSprite setColor:ccc3(0, 255, 0)];
                 [batteryGlowSprite stopAllActions];
@@ -1755,13 +1775,6 @@ typedef struct {
         [self RenumberCamObjectArray:powerups];
         [self RenumberCamObjectArray:coins];
         
-        //NSLog(@"galaxy6");
-        if (currentGalaxy.number>0) {
-            Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
-            [lastGalaxy.spriteSheet removeAllChildrenWithCleanup:YES];
-            [lastGalaxy.spriteSheet removeFromParentAndCleanup:YES];
-            [[CCTextureCache sharedTextureCache] removeUnusedTextures];
-        }
         
         makingSegmentNumber--;
         if ([self CreateSegment]==false) {
@@ -2227,7 +2240,7 @@ typedef struct {
         
         //NSLog([NSString stringWithFormat:@"x: %f, y: %f", camLayerVelocity.x, camLayerVelocity.y]);
         
-        star.position = ccpAdd(star.position,  ccpMult(camLayerVelocity, -1*cameraLayer.scale*.083*60*dt));
+        star.position = ccpLerp(star.position,ccpAdd(star.position,  ccpMult(camLayerVelocity, -1*cameraLayer.scale*.3*60*dt)), .10);
         
         if (star.position.x<0-star.width/2 || star.position.y <0-star.height/2) { //if star is off-screen
             star.position = ccp([self RandomBetween:star.width/2 maxvalue:480*1.8],[self RandomBetween:320+star.height/2 maxvalue:320+5*star.height/2]);

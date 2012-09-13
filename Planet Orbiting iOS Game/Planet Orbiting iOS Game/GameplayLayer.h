@@ -82,8 +82,8 @@
     
     CCLabelBMFont * zeroCoinsLabel;
     float powerupCounter;
-        
-    NSArray * galaxies;
+    ccColor3B lastGalaxyColor;
+    NSMutableArray * galaxies;
     Galaxy* currentGalaxy;
     Galaxy* nextGalaxy;
     int planetsHitSinceNewGalaxy;

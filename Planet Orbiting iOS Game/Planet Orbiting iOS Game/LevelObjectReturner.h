@@ -21,7 +21,9 @@ enum LevelObjectTypes {
 @property (nonatomic) CGPoint pos;
 @property (nonatomic) float scale;
 @property (nonatomic) enum LevelObjectTypes type;
+@property (nonatomic) bool canBeFlipped;
 
 -(id) initWithType:(enum LevelObjectTypes) typeInputted position:(CGPoint)posI scale:(float)scaleI;
+-(id) initWithType:(enum LevelObjectTypes) typeInputted position:(CGPoint)posI scale:(float)scaleI canBeFlipped:(bool)shouldFlip;
 
 @end
