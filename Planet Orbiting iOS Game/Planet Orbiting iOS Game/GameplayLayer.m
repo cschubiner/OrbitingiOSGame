@@ -964,7 +964,7 @@ typedef struct {
     
     // focusPosition = ccp((lastPlanetVisited.sprite.position.x+nextPlanet.sprite.position.x)/2, (lastPlanetVisited.sprite.position.y+nextPlanet.sprite.position.y)/2);
     cameraLastFocusPosition = ccpLerp(cameraLastFocusPosition, focusPoint, cameraMovementSpeed);
-    cameraLayerLastPosition = cameraLastFocusPosition;
+    cameraLayerLastPosition = focusPoint;
     [self scaleLayer:cameraLayer scaleToZoomTo:scale scaleCenter:cameraLastFocusPosition];
     //cameraLayer.position = ccpAdd(cameraFocusNode.position,ccp(-cameraLayer.scaleX/2,-cameraLayer.scaleY/2));
     [cameraLayer runAction: [CCFollow actionWithTarget:cameraFocusNode]];
@@ -2223,8 +2223,10 @@ typedef struct {
         if (paused)
             camLayerVelocity = CGPointZero;
         
-        star.position = ccpAdd(star.position,  ccpMult(camLayerVelocity, -1*cameraLayer.scale*.3*60*dt));
         
+        //NSLog([NSString stringWithFormat:@"x: %f, y: %f", camLayerVelocity.x, camLayerVelocity.y]);
+        
+        star.position = ccpAdd(star.position,  ccpMult(camLayerVelocity, 1*cameraLayer.scale*.02*60*dt));
         
         if (star.position.x<0-star.width/2 || star.position.y <0-star.height/2) { //if star is off-screen
             star.position = ccp([self RandomBetween:star.width/2 maxvalue:480*1.8],[self RandomBetween:320+star.height/2 maxvalue:320+5*star.height/2]);
