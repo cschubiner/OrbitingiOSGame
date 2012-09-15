@@ -108,6 +108,9 @@
         scrollView = [[CCLayer alloc] init];
         [self addChild:scrollView];
         
+        CCParticleSystemQuad * starParticle = [CCParticleSystemQuad particleWithFile:@"starParticleMenu.plist"];
+        [self addChild:starParticle];
+        
         CCSprite* topBar = [CCSprite spriteWithFile:@"banner.png"];
         [self addChild:topBar];
         [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2 + 2)];
@@ -160,26 +163,26 @@
 - (void)initHighScore {
     NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
     
-    int highScore0Int;
-    int highScore1Int;
-    int highScore2Int;
-    int highScore3Int;
-    int highScore4Int;
-    int highScore5Int;
-    int highScore6Int;
-    int highScore7Int;
-    int highScore8Int;
-    int highScore9Int;
-    int highScore10Int;
-    int highScore11Int;
-    int highScore12Int;
-    int highScore13Int;
-    int highScore14Int;
-    int highScore15Int;
-    int highScore16Int;
-    int highScore17Int;
-    int highScore18Int;
-    int highScore19Int;
+    int highScore0Int = 0;
+    int highScore1Int = 0;
+    int highScore2Int = 0;
+    int highScore3Int = 0;
+    int highScore4Int = 0;
+    int highScore5Int = 0;
+    int highScore6Int = 0;
+    int highScore7Int = 0;
+    int highScore8Int = 0;
+    int highScore9Int = 0;
+    int highScore10Int = 0;
+    int highScore11Int = 0;
+    int highScore12Int = 0;
+    int highScore13Int = 0;
+    int highScore14Int = 0;
+    int highScore15Int = 0;
+    int highScore16Int = 0;
+    int highScore17Int = 0;
+    int highScore18Int = 0;
+    int highScore19Int = 0;
     
     if (highScores && [highScores count] > 0) {
         highScore0Int = [[highScores objectAtIndex:0] intValue];

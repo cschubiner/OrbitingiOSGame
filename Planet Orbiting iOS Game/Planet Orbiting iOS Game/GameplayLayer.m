@@ -853,10 +853,7 @@ typedef struct {
             player.velocity = ccpMult(player.velocity, 1.234);
         else if (player.currentPowerup.type == kautopilot)
             player.velocity = ccpMult(player.velocity, 1.1);
-        
-        //NSLog(@"mag: %f", ccpLength(ccpMult(player.velocity, 60*dt*timeDilationCoefficient)));
-        //NSLog(@"coeff: %f", timeDilationCoefficient);
-        
+            
         player.sprite.position = ccpAdd(ccpMult(player.velocity, 60*dt*timeDilationCoefficient), player.sprite.position);
         [streak setPosition:player.sprite.position];
     }
@@ -871,10 +868,8 @@ typedef struct {
     //camera code follows -----------------------------
     Planet * nextPlanet = [planets objectAtIndex:(lastPlanetVisited.number+1)];
     
-    float firsttoplayer = ccpAngleSigned(lastPlanetVisited.sprite.position, player.sprite.position);
-    float planetAngle = ccpAngleSigned(lastPlanetVisited.sprite.position,nextPlanet.sprite.position);
-    firsttoplayer = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, player.sprite.position));
-    planetAngle = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, nextPlanet.sprite.position));
+    float firsttoplayer = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, player.sprite.position));
+    float planetAngle = ccpToAngle(ccpSub(lastPlanetVisited.sprite.position, nextPlanet.sprite.position));
 
     float firstToPlayerAngle = firsttoplayer-planetAngle;
     float firstToPlayerDistance = ccpDistance(lastPlanetVisited.sprite.position, player.sprite.position)*cos(firstToPlayerAngle);
@@ -903,16 +898,11 @@ typedef struct {
     CGPoint focusPointOne = ccpAdd(ccpMult(ccpSub(planet2.sprite.position, planet1.sprite.position), percentofthewaytonext) ,planet1.sprite.position);
     planet1 = [planets objectAtIndex:lastPlanetVisited.number+2];
     planet2 = [planets objectAtIndex:lastPlanetVisited.number+3];
-    //  if (planet2.whichGalaxyThisObjectBelongsTo != lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
-    //    percentofthewaytonext *=.4f;
     CGPoint focusPointTwo = ccpAdd(ccpMult(ccpSub(planet2.sprite.position, planet1.sprite.position), percentofthewaytonext) ,planet1.sprite.position);
     
-    float extraScaleFactor = 0;
-    if (planet2.whichGalaxyThisObjectBelongsTo != lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
-        extraScaleFactor = 8;
-    if (planet1.whichGalaxyThisObjectBelongsTo != lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
-        extraScaleFactor = 16;
-    
+    if (orbitState == 0 )
+        percentofthewaytonext *=.5;
+        
     CGPoint planet01;
     CGPoint planet02;
     if (lastPlanetVisited.whichGalaxyThisObjectBelongsTo == nextPlanet.whichGalaxyThisObjectBelongsTo) {
@@ -921,7 +911,7 @@ typedef struct {
     }
     else {
         planet01 = player.sprite.position;
-        planet02 = planet01;
+        planet02 = ccpAdd(planet01,ccp(-100,-100));
     }
     CGPoint planet03;
     if (planet1.whichGalaxyThisObjectBelongsTo == lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
@@ -935,17 +925,15 @@ typedef struct {
     else
         planet04 = ccpAdd(planet03, ccpMult(ccpNormalize(ccpForAngle(defaultDirectionPlanetSegmentsGoIn)), 400));
     
-    CGPoint focusPoint = ccpMult(planet01,1-percentofthewaytonext);
+    CGPoint focusPoint = ccpMult(planet01,2-percentofthewaytonext);
     focusPoint = ccpAdd(focusPoint, planet02);
     focusPoint = ccpAdd(focusPoint, planet03);
     focusPoint = ccpAdd(focusPoint, ccpMult(planet04, percentofthewaytonext));
-    focusPoint = ccpMult(focusPoint, .33333333f);
+    focusPoint = ccpMult(focusPoint, .25f);
     
-    CGPoint focusPosition = ccpMult(ccpAdd(ccpMult(focusPointOne,extraScaleFactor+ cameraScaleFocusedOnFocusPosOne), focusPointTwo), 1.0f/(extraScaleFactor+ cameraScaleFocusedOnFocusPosOne+1.0f));
-    
-    //focusPosition = ccpMidpoint(lastPlanetVisited.sprite.position,nextPlanet.sprite.position);
-    
-    cameraDistToUse= ccpDistance(focusPointOne, focusPointTwo) + lastPlanetVisited.radius;
+    float centerToPlanet1 = ccpDistance(planet01, focusPoint)+lastPlanetVisited.orbitRadius*2.25;
+    float centerToPlanet3 = ccpDistance(focusPoint, planet03)-lastPlanetVisited.orbitRadius*.33;
+    cameraDistToUse = lerpf(cameraDistToUse, MAX(centerToPlanet1,centerToPlanet3),cameraZoomSpeed);
     
     float horizontalScale = 294.388933833*pow(cameraDistToUse,-1);
     float newAng = CC_RADIANS_TO_DEGREES(fabs(ccpToAngle(ccpSub(focusPointTwo, focusPointOne))));
@@ -961,26 +949,18 @@ typedef struct {
     else numerator = 499-8.1*newAng + (4.9/100)*powf(newAng, 2);
     float scalerToUse = numerator/240; //CCLOG(@"num: %f, newAng: %f", numerator, newAng);
     
-    float scale = horizontalScale*scalerToUse*zoomMultiplier;
-    scale = clampf(scale, .2, 1.0);
+    float scale = horizontalScale*scalerToUse;//*zoomMultiplier;
+    scale = clampf(scale, .15, 1.4);
     
-    if (fabsf(scale-cameraLayer.scale)<.06) //jerky camera scaling
-        scale = cameraLayer.scale;
-    else scale = lerpf(cameraLayer.scale, scale, .1);
+  //  if (fabsf(scale-cameraLayer.scale)<.06) //jerky camera scaling
+    //    scale = cameraLayer.scale;
+    //else scale = lerpf(cameraLayer.scale, scale, .1);
     
-    // focusPosition = ccp((lastPlanetVisited.sprite.position.x+nextPlanet.sprite.position.x)/2, (lastPlanetVisited.sprite.position.y+nextPlanet.sprite.position.y)/2);
 
     cameraLayerLastPosition = cameraLastFocusPosition;
     cameraLastFocusPosition = ccpLerp(cameraLastFocusPosition, focusPoint, cameraMovementSpeed);
-    [self scaleLayer:cameraLayer scaleToZoomTo:scale scaleCenter:cameraLastFocusPosition];
-    //cameraLayer.position = ccpAdd(cameraFocusNode.position,ccp(-cameraLayer.scaleX/2,-cameraLayer.scaleY/2));
+    [self scaleLayer:cameraLayer scaleToZoomTo:lerpf(cameraLayer.scale, scale, cameraZoomSpeed*.3) scaleCenter:cameraLastFocusPosition];
     [cameraLayer runAction: [CCFollow actionWithTarget:cameraFocusNode]];
-    
-    //cameraLastFocusPosition = ccpLerp(cameraLastFocusPosition, player.sprite.position, cameraMovementSpeed);
-    //[self scaleLayer:cameraLayer scaleToZoomTo:lerpf([cameraLayer scale], .5, cameraZoomSpeed) scaleCenter:cameraLastFocusPosition];
-    //[cameraLayer runAction: cameraFollowAction];
-    //cameraLayer.scale = 1;
-    //cameraLayer.position = ccp(-player.sprite.position.x + 240, -player.sprite.position.y + 160);
 }
 
 - (void) scaleLayer:(CCLayer*)layerToScale scaleToZoomTo:(CGFloat) newScale scaleCenter:(CGPoint) scaleCenter {
@@ -1500,8 +1480,12 @@ typedef struct {
     
     player.velocity = ccpMult(ccpNormalize(vel), 9);//ccp(0, .05);
     player.acceleration=CGPointZero;
-    
-    [Flurry logEvent:@"Player Died" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSNumber numberWithInt:currentGalaxy.number],@"Galaxy",[NSNumber numberWithInt:numZonesHitInARow],@"Pre-death combo", nil]];
+
+    @try {
+          [Flurry logEvent:@"Player Died" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSNumber numberWithInt:currentGalaxy.number],@"Galaxy",[NSNumber numberWithInt:numZonesHitInARow],@"Pre-death combo", nil]];
+    }
+    @catch (NSException *exception) {}
+  
     totalSecondsAlive = 0;
 }
 
@@ -2061,13 +2045,15 @@ typedef struct {
     int rateOfScoreIncrease = finalScore / 640;
     if (rateOfScoreIncrease == 0 )
         rateOfScoreIncrease = 1;
-    
+    @try {
     NSDictionary *dictForFlurry = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:finalScore],@"Highscore Value", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned",[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSString stringWithFormat:@"%d galaxies and %d segments",currentGalaxy.number+1,flurrySegmentsVisitedSinceGalaxyJump],@"How far player went",[NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays",[[PlayerStats sharedInstance] recentName],@"Player Name",nil];
-    
+       
     if (isHighScore) {
         [Flurry logEvent:@"Got a top 10 highscore" withParameters:dictForFlurry];
     }
-    
+    }
+    @catch (NSException *exception) {}
+
     [[DDGameKitHelper sharedGameKitHelper] submitScore:finalScore category:@"highscore_leaderboard"];
     
     [[[[CCDirector sharedDirector]view]window]addSubview:playerNameLabel];

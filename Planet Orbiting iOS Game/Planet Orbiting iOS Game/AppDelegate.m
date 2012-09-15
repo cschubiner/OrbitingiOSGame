@@ -235,21 +235,29 @@ void SignalHandler(int sig) {
 
 - (NSMutableDictionary *)getDictionaryOfFlurryParameters
 {
-    NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
+    
     NSMutableDictionary *parameterDict = [[NSMutableDictionary alloc]init];
-    NSMutableDictionary * keyValuePairs = [[PlayerStats sharedInstance] getKeyValuePairs];
-    for (int i = 0 ; i < highScores.count ; i++) {
-        NSNumber * highscoreObject = [highScores objectAtIndex:i];
-        NSString *scoreInt = [NSString stringWithFormat:@"%d", [highscoreObject intValue]];
-        NSString *scoreName = [keyValuePairs valueForKey:scoreInt ];
-        if (!scoreName)
-        [parameterDict addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:highscoreObject,scoreName, nil]];
+    @try {
+        NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
+        NSMutableDictionary * keyValuePairs = [[PlayerStats sharedInstance] getKeyValuePairs];
+        for (int i = 0 ; i < highScores.count ; i++) {
+            NSNumber * highscoreObject = [highScores objectAtIndex:i];
+            NSString *scoreInt = [NSString stringWithFormat:@"%d", [highscoreObject intValue]];
+            NSString *scoreName = [keyValuePairs valueForKey:scoreInt ];
+            if (!scoreName)
+                [parameterDict addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:highscoreObject,scoreName, nil]];
+        }
+        [parameterDict addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                 [NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance",
+                                                 [NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays",
+                                                 //[[PlayerStats sharedInstance] recentName],@"Player Name",
+                                                 nil]];
+
     }
-    [parameterDict addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:
-                                             [NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance",
-                                             [NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays",
-                                             //[[PlayerStats sharedInstance] recentName],@"Player Name",
-                                             nil]];
+    @catch (NSException *exception) {
+        
+    }
+   
     return parameterDict;
 }
 

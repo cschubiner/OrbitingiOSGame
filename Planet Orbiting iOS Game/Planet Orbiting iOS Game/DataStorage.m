@@ -217,7 +217,7 @@
     }
     
     NSMutableArray* groups = [[NSMutableArray alloc] init];
-    NSMutableArray* bools = [[NSMutableArray alloc] init];
+    NSMutableArray* bools;// = [[NSMutableArray alloc] init];
     
     bools = [boolGroupsToUse objectAtIndex:0];
     [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.05 starReward:200

@@ -17,10 +17,10 @@
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
         type = t;
-        bool shouldBeRand = false;
+       // bool shouldBeRand = false;
         
         if (type == krandomPowerup) {
-            shouldBeRand = true;
+          //  shouldBeRand = true;
             type = [self RandomBetween:1 maxvalue:3];
         }
         

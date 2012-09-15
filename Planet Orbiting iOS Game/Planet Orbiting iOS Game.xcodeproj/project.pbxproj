@@ -89,6 +89,9 @@
 		01FE9B2215BE94E9007512ED /* PowerupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B2115BE94E9007512ED /* PowerupManager.m */; };
 		01FE9B3415BFAE70007512ED /* DataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B3315BFAE6F007512ED /* DataStorage.m */; };
 		01FE9B3C15BFC2C9007512ED /* PlayerStats.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B3B15BFC2C9007512ED /* PlayerStats.m */; };
+		0C0E87B91604050F00779D6F /* starParticleMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87B61604050F00779D6F /* starParticleMenu.plist */; };
+		0C0E87BA1604050F00779D6F /* starParticleTexture-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87B71604050F00779D6F /* starParticleTexture-hd.png */; };
+		0C0E87BB1604050F00779D6F /* starParticleTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87B81604050F00779D6F /* starParticleTexture.png */; };
 		0C1662C915CEA56B00C0D0B9 /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1662C815CEA56B00C0D0B9 /* Tutorial.m */; };
 		0C28EEC615DBA3E600B440DD /* asteroidbreakericon-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEB815DBA3E600B440DD /* asteroidbreakericon-hd.png */; };
 		0C28EEC715DBA3E600B440DD /* asteroidbreakericon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEB915DBA3E600B440DD /* asteroidbreakericon.png */; };
@@ -647,6 +650,9 @@
 		01FE9B3315BFAE6F007512ED /* DataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataStorage.m; sourceTree = "<group>"; };
 		01FE9B3A15BFC2C9007512ED /* PlayerStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerStats.h; sourceTree = "<group>"; };
 		01FE9B3B15BFC2C9007512ED /* PlayerStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerStats.m; sourceTree = "<group>"; };
+		0C0E87B61604050F00779D6F /* starParticleMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = starParticleMenu.plist; sourceTree = "<group>"; };
+		0C0E87B71604050F00779D6F /* starParticleTexture-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "starParticleTexture-hd.png"; sourceTree = "<group>"; };
+		0C0E87B81604050F00779D6F /* starParticleTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starParticleTexture.png; sourceTree = "<group>"; };
 		0C1662C715CEA56B00C0D0B9 /* Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutorial.h; sourceTree = "<group>"; };
 		0C1662C815CEA56B00C0D0B9 /* Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial.m; sourceTree = "<group>"; };
 		0C28EEB815DBA3E600B440DD /* asteroidbreakericon-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "asteroidbreakericon-hd.png"; sourceTree = "<group>"; };
@@ -2215,6 +2221,9 @@
 				0CA44A8515E2068B00CA6F8E /* thrustBurstParticle.plist */,
 				0CBF1FF715E1AAA000E05CDB /* thrustParticleTexture-hd.png */,
 				0CBF1FF815E1AAA000E05CDB /* thrustParticleTexture.png */,
+				0C0E87B61604050F00779D6F /* starParticleMenu.plist */,
+				0C0E87B71604050F00779D6F /* starParticleTexture-hd.png */,
+				0C0E87B81604050F00779D6F /* starParticleTexture.png */,
 				C4E994AE15A435E600C7009D /* cometParticle.plist */,
 				0CD3054515CFC479007EA286 /* playerSpawnedParticle.plist */,
 				0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */,
@@ -2908,6 +2917,9 @@
 				FA87CE2316014A9D008BEDDC /* hand.png in Resources */,
 				0C5A805816018561005E2807 /* iconv4@2x.png in Resources */,
 				0C5A805A1601856A005E2807 /* iconv4.png in Resources */,
+				0C0E87B91604050F00779D6F /* starParticleMenu.plist in Resources */,
+				0C0E87BA1604050F00779D6F /* starParticleTexture-hd.png in Resources */,
+				0C0E87BB1604050F00779D6F /* starParticleTexture.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
