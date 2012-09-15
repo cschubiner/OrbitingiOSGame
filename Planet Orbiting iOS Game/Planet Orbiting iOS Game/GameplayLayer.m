@@ -229,7 +229,7 @@ typedef struct {
     coinPosArray[13]= CGPointZero;
     
     for (int i = 0 ; i < numCoins; i++) {
-        CGPoint positionForCoin = [self getPositionBasedOnOrigin:position offset:coinPosArray[i] andAngle:angle];
+        CGPoint positionForCoin = [self getPositionBasedOnOrigin:position offset:ccpMult(coinPosArray[i],generalScale) andAngle:angle];
         [self CreateCoin:positionForCoin.x yPos:positionForCoin.y scale:1];
     }
 }
@@ -268,7 +268,7 @@ typedef struct {
     
     for (int i = 0 ; i < [chosenSegment count]; i++) {
         LevelObjectReturner * returner = [chosenSegment objectAtIndex:i];
-        CGPoint newPos = ccpRotateByAngle(ccp(returner.pos.x+(indicatorPos).x,levelFlipper*returner.pos.y+(indicatorPos).y), indicatorPos, rotationOfSegment);
+        CGPoint newPos = ccpRotateByAngle(ccp(returner.pos.x*generalScale+(indicatorPos).x,levelFlipper*returner.pos.y*generalScale+(indicatorPos).y), indicatorPos, rotationOfSegment);
         if (i == [chosenSegment count]-1) {
             indicatorPos = newPos;
             break;
@@ -379,7 +379,7 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] equipped]];
     
-    [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:.85 + .08*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] equipped]];
+    [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:initialTimeDilation + .08*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] equipped]];
     
     [[UpgradeValues sharedInstance] setHasDoubleCoins:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped]];
     
@@ -1000,7 +1000,7 @@ typedef struct {
     CGPoint coinPosOnHud = [cameraLayer convertToWorldSpace:coin.sprite.position];
     coin.movingSprite.position = ccp(coinPosOnHud.x+4, coinPosOnHud.y-4);
     
-    
+    coin.movingSprite.scale *= 1.0f/generalScale;
     [coin.movingSprite runAction:[CCSequence actions:
                                   [CCSpawn actions:[CCAnimate actionWithAnimation:coinAnimation],
                                    [CCSequence actions:[CCMoveTo actionWithDuration:.28 position:coinsLabel.position],[CCHide action],nil], nil],

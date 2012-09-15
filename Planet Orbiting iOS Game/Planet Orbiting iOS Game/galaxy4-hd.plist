@@ -7,93 +7,93 @@
             <key>asteroid1-4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{822,254},{131,100}}</string>
+                <string>{{73,171},{66,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{131,100}}</string>
+                <string>{{0,0},{66,50}}</string>
                 <key>sourceSize</key>
-                <string>{131,100}</string>
+                <string>{66,50}</string>
             </dict>
             <key>asteroid2-4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{822,356},{115,96}}</string>
+                <string>{{141,172},{58,48}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{115,96}}</string>
+                <string>{{0,0},{58,48}}</string>
                 <key>sourceSize</key>
-                <string>{115,96}</string>
+                <string>{58,48}</string>
             </dict>
             <key>asteroid3-4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{682,254},{138,108}}</string>
+                <string>{{2,171},{69,54}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{138,108}}</string>
+                <string>{{0,0},{69,54}}</string>
                 <key>sourceSize</key>
-                <string>{138,108}</string>
+                <string>{69,54}</string>
             </dict>
             <key>planet1-4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,337},{323,315}}</string>
+                <string>{{345,2},{162,158}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{323,315}}</string>
+                <string>{{0,0},{162,158}}</string>
                 <key>sourceSize</key>
-                <string>{323,315}</string>
+                <string>{162,158}</string>
             </dict>
             <key>planet2-4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{682,2},{250,256}}</string>
+                <string>{{345,162},{125,128}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{250,256}}</string>
+                <string>{{0,0},{125,128}}</string>
                 <key>sourceSize</key>
-                <string>{250,256}</string>
+                <string>{125,128}</string>
             </dict>
             <key>planet3-4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{340,333}}</string>
+                <string>{{2,2},{171,167}}</string>
                 <key>offset</key>
-                <string>{4,2}</string>
+                <string>{2,1}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{13,2},{340,333}}</string>
+                <string>{{6,1},{171,167}}</string>
                 <key>sourceSize</key>
-                <string>{358,341}</string>
+                <string>{179,171}</string>
             </dict>
             <key>zone4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{344,2},{336,336}}</string>
+                <string>{{175,2},{168,168}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{336,336}}</string>
+                <string>{{0,0},{168,168}}</string>
                 <key>sourceSize</key>
-                <string>{336,336}</string>
+                <string>{168,168}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -103,9 +103,9 @@
             <key>realTextureFileName</key>
             <string>galaxy4-hd.pvr.gz</string>
             <key>size</key>
-            <string>{1024,1024}</string>
+            <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:1444483fd2179cea11302d9f311cb32c$</string>
+            <string>$TexturePacker:SmartUpdate:df8b4820c279f2fc8864ac15e84a7607$</string>
             <key>textureFileName</key>
             <string>galaxy4-hd.pvr.gz</string>
         </dict>

@@ -8,6 +8,9 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+
+const float generalScale = .498;
+
 //how long the comet takes to respawn after it dies in seconds
 const float cometRespawnTimer = 1;
 const float cometMinYSpeed = 2;
@@ -120,14 +123,19 @@ const float deathAfterThisLong = 55*1.35f*1.1f*1.5f*1*2*.9*2*2;
 const float blackHoleCollisionRadiusFactor = .2f;
 const float blackHoleSpeedFactor = 1.85*.6f*.6f;
 
+//SPEED!!!!-------------------------------------------------------------------------------------------------
+
+
+const float initialTimeDilation = .8;
+
 //increase to make timeDilationFactor decrease more rapidly
 const float timeDilationReduceRate = .0011;
 
 //1 means you lose no speed when you die, 0 means you lose it all
-const float factorToScaleTimeDilationByOnDeath = .9;
+const float factorToScaleTimeDilationByOnDeath = .84;
 
 //increase to increase timeDilationFactor by a larger amount everytime you get to a new zone
-const float timeDilationIncreaseRate = .07;
+const float timeDilationIncreaseRate = .047;
 
 const float timeDilationFeverModeMultiplier = 1.05;
 
@@ -135,7 +143,9 @@ const float timeDilationFeverModeMultiplier = 1.05;
 //THIS IS NOW IN UPGRADE VALUES const float absoluteMinTimeDilation = .85;
 
 //the highest the time dilation factor can go. this should probZ just be infinity. bitches will has c slow down if they're going too fast
-const float absoluteMaxTimeDilation = 1.6;
+const float absoluteMaxTimeDilation = 1.4;
+
+//----------------------------------------------------------------------------------------------------------
 
 //after this many updates, your velocity will go from what it was when you entered to perfect tangential orbital velocity
 const float updatesToMakeOrbitVelocityPerfect = 60;
