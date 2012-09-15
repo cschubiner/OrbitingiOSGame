@@ -2007,9 +2007,7 @@ typedef struct {
             [self removeChild:layerHudSlider cleanup:YES];
         
         [Kamcord stopRecording];
-        if (allowVideoToConvert==false)
-            [Kamcord cancelConversionForLatestVideo];
-        
+          
         CCSprite* dark = [CCSprite spriteWithFile:@"OneByOne.png"];
         [self addChild:dark];
         //[dark setZOrder:112];
@@ -2128,6 +2126,10 @@ typedef struct {
     //[Flurry logEvent:@"Opened Store" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance" ,nil]];
     
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
+    
+    if (allowVideoToConvert==false)
+        [Kamcord cancelConversionForLatestVideo];
+
     [[CCDirector sharedDirector] replaceScene:[MainMenuLayer scene]];//[StoreLayer scene]];
     
     
@@ -2536,6 +2538,7 @@ typedef struct {
     //NSLog(@"startx5");
 }
 
+
 - (void)endGame {
     int finalScore = score + prevCurrentPtoPScore;
     //NSLog(@"1");
@@ -2555,13 +2558,11 @@ typedef struct {
     if (!didEndGameAlready) {
         didEndGameAlready = true;
         
-        /*  if (!isInTutorialMode && !scoreAlreadySaved) {
-         if ([[PlayerStats sharedInstance] isHighScore:finalScore]) {
-         [[PlayerStats sharedInstance] addScore:finalScore withName:@"fix fix fix"];
-         }
-         }*/
-        //NSLog(@"6");
         [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
+        
+        if (allowVideoToConvert==false)
+            [Kamcord cancelConversionForLatestVideo];
+
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
         //        [[CCDirector sharedDirector] pushScene:[MainMenuLayer scene]];
         
@@ -2607,6 +2608,9 @@ typedef struct {
     [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
     
     //CCLOG(@"GameplayLayerScene launched, game starting");
+    if (allowVideoToConvert==false)
+        [Kamcord cancelConversionForLatestVideo];
+
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
 }
 
@@ -2804,6 +2808,7 @@ float lerpf(float a, float b, float t) {
     muted = false;
     [self toggleMute];
     //[Kamcord stopRecording];
+    allowVideoToConvert = true;
     [Kamcord showView];
 }
 
