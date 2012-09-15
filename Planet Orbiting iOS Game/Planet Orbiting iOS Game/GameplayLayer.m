@@ -957,7 +957,7 @@ typedef struct {
     //else scale = lerpf(cameraLayer.scale, scale, .1);
     
 
-    cameraLayerLastPosition = cameraLastFocusPosition;
+    cameraLayerLastPosition = cameraLayer.position;
     cameraLastFocusPosition = ccpLerp(cameraLastFocusPosition, focusPoint, cameraMovementSpeed);
     [self scaleLayer:cameraLayer scaleToZoomTo:lerpf(cameraLayer.scale, scale, cameraZoomSpeed*.3) scaleCenter:cameraLastFocusPosition];
     [cameraLayer runAction: [CCFollow actionWithTarget:cameraFocusNode]];
@@ -2285,7 +2285,7 @@ typedef struct {
 
 - (void)UpdateBackgroundStars:(float)dt{
     for (CCSprite * star in backgroundStars) {
-          CGPoint camLayerVelocity = ccpSub(cameraLastFocusPosition, cameraLayerLastPosition);
+        CGPoint camLayerVelocity = ccpSub(cameraLayer.position, cameraLayerLastPosition);
         //float angle = ccpToAngle(player.velocity);
         //if (angle>=0 && angle <=90)
         
@@ -2295,7 +2295,7 @@ typedef struct {
         
         //NSLog([NSString stringWithFormat:@"x: %f, y: %f", camLayerVelocity.x, camLayerVelocity.y]);
         
-        star.position = ccpLerp(star.position,ccpAdd(star.position,  ccpMult(camLayerVelocity, -1*cameraLayer.scale*.3*60*dt)), .10);
+        star.position = ccpAdd(star.position,  ccpMult(camLayerVelocity, 1*cameraLayer.scale*.3*60*dt));
         
         if (star.position.x<0-star.width/2 || star.position.y <0-star.height/2) { //if star is off-screen
             star.position = ccp([self RandomBetween:star.width/2 maxvalue:480*1.8],[self RandomBetween:320+star.height/2 maxvalue:320+5*star.height/2]);
