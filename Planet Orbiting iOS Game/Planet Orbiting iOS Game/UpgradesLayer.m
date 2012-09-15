@@ -105,6 +105,13 @@
 	if ((self = [super init])) {
         self.isTouchEnabled= TRUE;
         indexPushed = [[UpgradeManager sharedInstance] buttonPushed];
+        
+        
+        [[UserWallet sharedInstance] setBalance:100000];
+        
+        CCParticleSystemQuad * starParticle = [CCParticleSystemQuad particleWithFile:@"starParticleMenu.plist"];
+        [self addChild:starParticle];
+        
                 
         scrollView = [[CCLayer alloc] init];
         [self addChild:scrollView];

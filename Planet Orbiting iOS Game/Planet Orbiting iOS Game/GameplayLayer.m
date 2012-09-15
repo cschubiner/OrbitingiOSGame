@@ -1057,6 +1057,62 @@ typedef struct {
     return 0;
 }
 
+-(void) startCoinPowerupAnimation {
+    if (!coinPowerupLayer) {
+        coinPowerupLayer = [[CCLayer alloc] init];
+        [cameraLayer addChild:coinPowerupLayer];
+    }
+    CCSprite* coinPowerupImage2 = [CCSprite spriteWithFile:@"coinMagnetRing.png"];
+    [coinPowerupLayer addChild:coinPowerupImage2];
+    
+    
+    
+    float scaleToUse = 4;
+    float durationToUse = 1.1;
+    
+    coinPowerupImage2.scale = scaleToUse;
+    coinPowerupImage2.opacity = 0;
+    
+    [coinPowerupImage2 runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
+                                                                    [CCSpawn actions:
+                                                                     [CCSequence actions:
+                                                                      [CCFadeTo actionWithDuration:durationToUse*.4 opacity:255],
+                                                                      [CCFadeTo actionWithDuration:durationToUse*.6 opacity:0],
+                                                                      nil],
+                                                                     [CCScaleTo actionWithDuration:durationToUse scale:coinPowerupImage2.scale*.05],
+                                                                     nil],
+                                                                    
+                                                                    [CCSpawn actions:
+                                                                     [CCScaleTo actionWithDuration:0 scale:coinPowerupImage2.scale],
+                                                                     nil],
+                                                                    nil]]];
+    
+    CCSprite* coinPowerupImage = [CCSprite spriteWithFile:@"coinMagnetRing.png"];
+    [coinPowerupLayer addChild:coinPowerupImage];
+    coinPowerupImage.scale = scaleToUse;
+    coinPowerupImage.opacity = 0;
+    
+    [coinPowerupImage runAction:[CCSequence actions:
+                                 [CCDelayTime actionWithDuration:durationToUse*.5],
+                                 [CCCallBlock actionWithBlock:(^{
+        [coinPowerupImage runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
+                                                                       [CCSpawn actions:
+                                                                        [CCSequence actions:
+                                                                         [CCFadeTo actionWithDuration:durationToUse*.4 opacity:255],
+                                                                         [CCFadeTo actionWithDuration:durationToUse*.6 opacity:0],
+                                                                         nil],
+                                                                        [CCScaleTo actionWithDuration:durationToUse scale:coinPowerupImage.scale*.05],
+                                                                        nil],
+                                                                       
+                                                                       [CCSpawn actions:
+                                                                        [CCScaleTo actionWithDuration:0 scale:coinPowerupImage.scale],
+                                                                        nil],
+                                                                       nil]]];
+    })],
+                                 nil]];
+    
+}
+
 - (void)ApplyGravity:(float)dt {
     
     //NSLog(@"how many %d", feverModePlanetHitsInARow);
@@ -1109,6 +1165,8 @@ typedef struct {
                     powerupVel = 0;
                     player.currentPowerup = powerup;
                     [player.currentPowerup.glowSprite setVisible:true];
+                    if (player.currentPowerup.type = kcoinMagnet)
+                        [self startCoinPowerupAnimation];
                     powerupCounter = 0;
                     updatesWithBlinking = 0;
                     updatesWithoutBlinking = 99999;
@@ -1147,6 +1205,10 @@ typedef struct {
         if (powerupCounter >= player.currentPowerup.duration) {
             [player.currentPowerup.glowSprite setVisible:false];
             player.currentPowerup = nil;
+        }
+        
+        if (player.currentPowerup.type == kcoinMagnet) {
+            [coinPowerupLayer setVisible:player.currentPowerup.glowSprite.visible];
         }
     }
     powerupCounter++;
@@ -2521,6 +2583,7 @@ typedef struct {
     }
     
     player.currentPowerup.glowSprite.position = player.sprite.position;
+    coinPowerupLayer.position = player.sprite.position;
     //NSLog(@"startx5");
 }
 
