@@ -2890,6 +2890,8 @@
 				0C0E87CC16041FEE00779D6F /* generalSpritesheet-hd.pvr.ccz in Resources */,
 				0C0E87CD16041FEE00779D6F /* generalSpritesheet.plist in Resources */,
 				0C0E87CE16041FEE00779D6F /* generalSpritesheet.pvr.ccz in Resources */,
+				FA85324D160425ED001B6268 /* coinMagnetRing-hd.png in Resources */,
+				FA85324E160425ED001B6268 /* coinMagnetRing.png in Resources */,
 				0C0E87F3160423AF00779D6F /* galaxy1-hd.plist in Resources */,
 				0C0E87F4160423AF00779D6F /* galaxy1-hd.pvr.gz in Resources */,
 				0C0E87F5160423AF00779D6F /* galaxy1.plist in Resources */,
@@ -2926,8 +2928,6 @@
 				0C0E8814160423AF00779D6F /* galaxy9-hd.pvr.gz in Resources */,
 				0C0E8815160423AF00779D6F /* galaxy9.plist in Resources */,
 				0C0E8816160423AF00779D6F /* galaxy9.pvr.gz in Resources */,
-				FA85324D160425ED001B6268 /* coinMagnetRing-hd.png in Resources */,
-				FA85324E160425ED001B6268 /* coinMagnetRing.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

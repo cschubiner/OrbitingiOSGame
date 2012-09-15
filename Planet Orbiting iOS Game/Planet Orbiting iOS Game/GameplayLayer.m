@@ -1061,13 +1061,16 @@ typedef struct {
     if (!coinPowerupLayer) {
         coinPowerupLayer = [[CCLayer alloc] init];
         [cameraLayer addChild:coinPowerupLayer];
+    } else {
+        return;
     }
+    
     CCSprite* coinPowerupImage2 = [CCSprite spriteWithFile:@"coinMagnetRing.png"];
     [coinPowerupLayer addChild:coinPowerupImage2];
     
     
     
-    float scaleToUse = 4;
+    float scaleToUse = 2;
     float durationToUse = 1.1;
     
     coinPowerupImage2.scale = scaleToUse;
@@ -1167,6 +1170,8 @@ typedef struct {
                     [player.currentPowerup.glowSprite setVisible:true];
                     if (player.currentPowerup.type = kcoinMagnet)
                         [self startCoinPowerupAnimation];
+                    else if (coinPowerupLayer)
+                        [coinPowerupLayer setVisible:false];
                     powerupCounter = 0;
                     updatesWithBlinking = 0;
                     updatesWithoutBlinking = 99999;
@@ -2245,7 +2250,7 @@ typedef struct {
             CGPoint p = coin.sprite.position;
             
             if (player.currentPowerup.type == kcoinMagnet) {
-                if (ccpLength(ccpSub(player.sprite.position, p)) <= 4*(coin.radius + player.sprite.height/1.3) && coin.isAlive && coin.speed < .1) {
+                if (ccpLength(ccpSub(player.sprite.position, p)) <= 3*(coin.radius + player.sprite.height/1.3) && coin.isAlive && coin.speed < .1) {
                     coin.speed = .5;
                 }
                 
