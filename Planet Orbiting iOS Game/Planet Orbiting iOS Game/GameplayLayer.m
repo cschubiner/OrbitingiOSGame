@@ -2261,7 +2261,6 @@ typedef struct {
 }
 
 - (void) updatePowerupAnimation:(float)dt {
-    
     if (powerupPos <= 250)
         powerupVel = 15*1.5;
     else if (powerupPos <= 430)
