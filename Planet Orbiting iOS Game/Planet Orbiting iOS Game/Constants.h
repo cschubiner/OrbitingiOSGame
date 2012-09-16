@@ -21,6 +21,9 @@ const float effectsVolumeGameplay = 1;
 //max length of player name
 const int maxNameLength = 10;
 
+//multiply all scores by this number to make users feel better!
+const float generalScoreMultiplier = .543210;
+
 //changes how zoomed in the camera in. higher numbers mean more zoom (everything looks bigger)
 const float zoomMultiplier = .85*.95f*1.06f;
 //changes how quickly the camera zooms in and out
@@ -30,8 +33,8 @@ const float cameraMovementSpeed = .06;
 //how much more times the camera focuses on the first focus node compared to the second focus node
 const float cameraScaleFocusedOnFocusPosOne = 1.25f;
 
-const float streakWidthOnRetinaDisplay = 31;
-const float streakWidthWITHOUTRetinaDisplay = streakWidthOnRetinaDisplay/2;
+const float streakWidthOnRetinaDisplay = 20;
+const float streakWidthWITHOUTRetinaDisplay = streakWidthOnRetinaDisplay/2.0;
 
 //how quickly the loading label that provides helper text moves along the screen. higher numbers make it move slower.
 const float loadingHelperLabelMoveTime = 9.1;

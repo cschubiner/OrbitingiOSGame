@@ -72,6 +72,8 @@
     NSString* pauseText;
     CCLabelTTF* pauseLabel;
     CCLabelTTF* continueLabel;
+    ccColor3B streakOldColor;
+    float comboMultiplier;
     
     bool hasDiplayedArrowText;
     bool hasDiplayedCoinText;
@@ -92,7 +94,7 @@
     int segmentsSpawnedFlurry;
     int planetsHitFlurry;
     bool cameraShouldFocusOnPlayer;
-    CCLabelTTF * galaxyLabel;
+    CCLabelBMFont * galaxyLabel;
     bool justDisplayedGalaxyLabel;
     
     bool isOnFirstRun;
@@ -148,7 +150,6 @@
     CCParticleSystemQuad * cometParticle;
     CCParticleSystemQuad * playerExplosionParticle;
     CCParticleSystemQuad * feverModeInitialExplosionParticle;
-    CCParticleSystemQuad * feverModeLabelParticle;
     CGPoint cometVelocity;
     float lastTakeoffAngleToNextPlanet;
     CCAction * cameraFollowAction;

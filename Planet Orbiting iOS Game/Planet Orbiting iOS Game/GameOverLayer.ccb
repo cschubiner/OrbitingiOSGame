@@ -98,8 +98,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>280</real>
-								<real>80</real>
+								<real>140</real>
+								<real>40</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -117,15 +117,15 @@
 							<integer>1</integer>
 							<key>position</key>
 							<array>
-								<real>43.078125</real>
-								<real>-30.30078125</real>
+								<real>25.585563659667969</real>
+								<real>-112.5</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>1</real>
+							<real>1.7772655487060547</real>
 							<key>scaleY</key>
-							<real>1</real>
+							<real>1.7772655487060547</real>
 							<key>selector</key>
 							<string>pressedStoreButton</string>
 							<key>spriteFileDisabled</key>
@@ -170,7 +170,7 @@
 							<key>isRelativeAnchorPoint</key>
 							<true/>
 							<key>lockedScaleRatio</key>
-							<true/>
+							<false/>
 							<key>memberVarAssignmentName</key>
 							<string></string>
 							<key>memberVarAssignmentType</key>
@@ -237,15 +237,15 @@
 							<integer>1</integer>
 							<key>position</key>
 							<array>
-								<real>30.8046875</real>
-								<real>-100.76171875</real>
+								<real>14.234375</real>
+								<real>-41.8671875</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>1</real>
+							<real>0.86867189407348633</real>
 							<key>scaleY</key>
-							<real>1</real>
+							<real>0.86867189407348633</real>
 							<key>selector</key>
 							<string>restartGame</string>
 							<key>spriteFileDisabled</key>
@@ -399,19 +399,19 @@
 					</array>
 					<key>color</key>
 					<array>
-						<integer>249</integer>
+						<integer>245</integer>
 						<integer>255</integer>
-						<integer>229</integer>
+						<integer>0</integer>
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>230</real>
-						<real>78</real>
+						<real>489</real>
+						<real>128</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
 					<key>fontFile</key>
-					<string>score_label_font.fnt</string>
+					<string>powerupText.fnt</string>
 					<key>isExpanded</key>
 					<true/>
 					<key>isRelativeAnchorPoint</key>
@@ -426,18 +426,18 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>154.5859375</real>
-						<real>32.8203125</real>
+						<real>155.1953125</real>
+						<real>38.34375</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>0.68800771236419678</real>
+					<real>0.34871092438697815</real>
 					<key>scaleY</key>
-					<real>0.68800771236419678</real>
+					<real>0.34871092438697815</real>
 					<key>string</key>
 					<string>Share your gameplay
-video for 100 stars!</string>
+  video for 100 stars!</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
@@ -460,13 +460,13 @@ video for 100 stars!</string>
 					</array>
 					<key>color</key>
 					<array>
-						<integer>140</integer>
-						<integer>236</integer>
+						<integer>11</integer>
 						<integer>255</integer>
+						<integer>83</integer>
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>149</real>
+						<real>153</real>
 						<real>39</real>
 					</array>
 					<key>customClass</key>
@@ -497,7 +497,7 @@ video for 100 stars!</string>
 					<key>scaleY</key>
 					<real>0.53324204683303833</real>
 					<key>string</key>
-					<string>tap to change</string>
+					<string>Tap to change</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
@@ -520,19 +520,19 @@ video for 100 stars!</string>
 					</array>
 					<key>color</key>
 					<array>
-						<integer>249</integer>
+						<integer>84</integer>
+						<integer>192</integer>
 						<integer>255</integer>
-						<integer>229</integer>
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>160</real>
-						<real>39</real>
+						<real>197</real>
+						<real>64</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
 					<key>fontFile</key>
-					<string>score_label_font.fnt</string>
+					<string>powerupText.fnt</string>
 					<key>isExpanded</key>
 					<true/>
 					<key>isRelativeAnchorPoint</key>
@@ -548,16 +548,16 @@ video for 100 stars!</string>
 					<key>position</key>
 					<array>
 						<real>101.046875</real>
-						<real>286.8359375</real>
+						<real>288.53125</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>1.2574607133865356</real>
+					<real>0.69164037704467773</real>
 					<key>scaleY</key>
-					<real>1.2574607133865356</real>
+					<real>0.69164037704467773</real>
 					<key>string</key>
-					<string>DDDDDDDDDD</string>
+					<string>PLAYER</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
@@ -580,25 +580,25 @@ video for 100 stars!</string>
 					</array>
 					<key>color</key>
 					<array>
-						<integer>249</integer>
+						<integer>252</integer>
+						<integer>248</integer>
 						<integer>255</integer>
-						<integer>229</integer>
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>75</real>
-						<real>39</real>
+						<real>162</real>
+						<real>64</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
 					<key>fontFile</key>
-					<string>score_label_font.fnt</string>
+					<string>powerupText.fnt</string>
 					<key>isExpanded</key>
 					<true/>
 					<key>isRelativeAnchorPoint</key>
 					<true/>
 					<key>lockedScaleRatio</key>
-					<true/>
+					<false/>
 					<key>memberVarAssignmentName</key>
 					<string>gameOverScoreLabel</string>
 					<key>memberVarAssignmentType</key>
@@ -613,11 +613,11 @@ video for 100 stars!</string>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>2.5240621566772461</real>
+					<real>1.5119136571884155</real>
 					<key>scaleY</key>
-					<real>2.5240621566772461</real>
+					<real>1.5119136571884155</real>
 					<key>string</key>
-					<string>44405</string>
+					<string>444051</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
@@ -675,7 +675,7 @@ video for 100 stars!</string>
 					<key>position</key>
 					<array>
 						<real>64.44140625</real>
-						<real>77.4375</real>
+						<real>79.1328125</real>
 					</array>
 					<key>rotation</key>
 					<real>2.0576171875</real>
@@ -683,6 +683,140 @@ video for 100 stars!</string>
 					<real>1.043515682220459</real>
 					<key>scaleY</key>
 					<real>1.043515682220459</real>
+					<key>spriteFile</key>
+					<string>arrow.png</string>
+					<key>tag</key>
+					<integer>-1</integer>
+					<key>visible</key>
+					<true/>
+					<key>zOrder</key>
+					<integer>0</integer>
+				</dict>
+			</dict>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>class</key>
+				<string>CCSprite</string>
+				<key>properties</key>
+				<dict>
+					<key>anchorPoint</key>
+					<array>
+						<real>0.5</real>
+						<real>0.5</real>
+					</array>
+					<key>blendFunc</key>
+					<array>
+						<integer>1</integer>
+						<integer>771</integer>
+					</array>
+					<key>color</key>
+					<array>
+						<integer>0</integer>
+						<integer>255</integer>
+						<integer>173</integer>
+					</array>
+					<key>contentSize</key>
+					<array>
+						<real>24</real>
+						<real>75</real>
+					</array>
+					<key>customClass</key>
+					<string></string>
+					<key>flipX</key>
+					<false/>
+					<key>flipY</key>
+					<false/>
+					<key>isExpanded</key>
+					<true/>
+					<key>isRelativeAnchorPoint</key>
+					<true/>
+					<key>lockedScaleRatio</key>
+					<false/>
+					<key>memberVarAssignmentName</key>
+					<string></string>
+					<key>memberVarAssignmentType</key>
+					<integer>0</integer>
+					<key>opacity</key>
+					<integer>255</integer>
+					<key>position</key>
+					<array>
+						<real>55.490234375</real>
+						<real>267.6083984375</real>
+					</array>
+					<key>rotation</key>
+					<real>-31.0205078125</real>
+					<key>scaleX</key>
+					<real>0.50923442840576172</real>
+					<key>scaleY</key>
+					<real>0.20923438668251038</real>
+					<key>spriteFile</key>
+					<string>arrow.png</string>
+					<key>tag</key>
+					<integer>-1</integer>
+					<key>visible</key>
+					<true/>
+					<key>zOrder</key>
+					<integer>0</integer>
+				</dict>
+			</dict>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>class</key>
+				<string>CCSprite</string>
+				<key>properties</key>
+				<dict>
+					<key>anchorPoint</key>
+					<array>
+						<real>0.5</real>
+						<real>0.5</real>
+					</array>
+					<key>blendFunc</key>
+					<array>
+						<integer>1</integer>
+						<integer>771</integer>
+					</array>
+					<key>color</key>
+					<array>
+						<integer>0</integer>
+						<integer>255</integer>
+						<integer>173</integer>
+					</array>
+					<key>contentSize</key>
+					<array>
+						<real>24</real>
+						<real>75</real>
+					</array>
+					<key>customClass</key>
+					<string></string>
+					<key>flipX</key>
+					<false/>
+					<key>flipY</key>
+					<false/>
+					<key>isExpanded</key>
+					<true/>
+					<key>isRelativeAnchorPoint</key>
+					<true/>
+					<key>lockedScaleRatio</key>
+					<false/>
+					<key>memberVarAssignmentName</key>
+					<string></string>
+					<key>memberVarAssignmentType</key>
+					<integer>0</integer>
+					<key>opacity</key>
+					<integer>255</integer>
+					<key>position</key>
+					<array>
+						<real>153.123046875</real>
+						<real>266.1181640625</real>
+					</array>
+					<key>rotation</key>
+					<real>-129.5888671875</real>
+					<key>scaleX</key>
+					<real>0.50900000333786011</real>
+					<key>scaleY</key>
+					<real>-0.20900000631809235</real>
 					<key>spriteFile</key>
 					<string>arrow.png</string>
 					<key>tag</key>
@@ -707,19 +841,19 @@ video for 100 stars!</string>
 					</array>
 					<key>color</key>
 					<array>
+						<integer>249</integer>
 						<integer>255</integer>
-						<integer>252</integer>
-						<integer>248</integer>
+						<integer>66</integer>
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>36</real>
-						<real>25</real>
+						<real>81</real>
+						<real>64</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
 					<key>fontFile</key>
-					<string>star_label_font.fnt</string>
+					<string>powerupText.fnt</string>
 					<key>isExpanded</key>
 					<true/>
 					<key>isRelativeAnchorPoint</key>
@@ -735,14 +869,14 @@ video for 100 stars!</string>
 					<key>position</key>
 					<array>
 						<real>381.7265625</real>
-						<real>201.71875</real>
+						<real>197.62890625</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>2.1275782585144043</real>
+					<real>0.85929697751998901</real>
 					<key>scaleY</key>
-					<real>2.1275782585144043</real>
+					<real>0.85929697751998901</real>
 					<key>string</key>
 					<string>845</string>
 					<key>tag</key>
