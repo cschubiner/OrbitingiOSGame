@@ -957,7 +957,7 @@ typedef struct {
     //else scale = lerpf(cameraLayer.scale, scale, .1);
     
 
-    cameraLayerLastPosition = cameraLastFocusPosition;
+    cameraLayerLastPosition = cameraLayer.position;
     cameraLastFocusPosition = ccpLerp(cameraLastFocusPosition, focusPoint, cameraMovementSpeed);
     [self scaleLayer:cameraLayer scaleToZoomTo:lerpf(cameraLayer.scale, scale, cameraZoomSpeed*.3) scaleCenter:cameraLastFocusPosition];
     [cameraLayer runAction: [CCFollow actionWithTarget:cameraFocusNode]];
@@ -1057,6 +1057,65 @@ typedef struct {
     return 0;
 }
 
+-(void) startCoinPowerupAnimation {
+    if (!coinPowerupLayer) {
+        coinPowerupLayer = [[CCLayer alloc] init];
+        [cameraLayer addChild:coinPowerupLayer];
+    } else {
+        return;
+    }
+    
+    CCSprite* coinPowerupImage2 = [CCSprite spriteWithFile:@"coinMagnetRing.png"];
+    [coinPowerupLayer addChild:coinPowerupImage2];
+    
+    
+    
+    float scaleToUse = 2;
+    float durationToUse = 1.1;
+    
+    coinPowerupImage2.scale = scaleToUse;
+    coinPowerupImage2.opacity = 0;
+    
+    [coinPowerupImage2 runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
+                                                                    [CCSpawn actions:
+                                                                     [CCSequence actions:
+                                                                      [CCFadeTo actionWithDuration:durationToUse*.4 opacity:255],
+                                                                      [CCFadeTo actionWithDuration:durationToUse*.6 opacity:0],
+                                                                      nil],
+                                                                     [CCScaleTo actionWithDuration:durationToUse scale:coinPowerupImage2.scale*.05],
+                                                                     nil],
+                                                                    
+                                                                    [CCSpawn actions:
+                                                                     [CCScaleTo actionWithDuration:0 scale:coinPowerupImage2.scale],
+                                                                     nil],
+                                                                    nil]]];
+    
+    CCSprite* coinPowerupImage = [CCSprite spriteWithFile:@"coinMagnetRing.png"];
+    [coinPowerupLayer addChild:coinPowerupImage];
+    coinPowerupImage.scale = scaleToUse;
+    coinPowerupImage.opacity = 0;
+    
+    [coinPowerupImage runAction:[CCSequence actions:
+                                 [CCDelayTime actionWithDuration:durationToUse*.5],
+                                 [CCCallBlock actionWithBlock:(^{
+        [coinPowerupImage runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
+                                                                       [CCSpawn actions:
+                                                                        [CCSequence actions:
+                                                                         [CCFadeTo actionWithDuration:durationToUse*.4 opacity:255],
+                                                                         [CCFadeTo actionWithDuration:durationToUse*.6 opacity:0],
+                                                                         nil],
+                                                                        [CCScaleTo actionWithDuration:durationToUse scale:coinPowerupImage.scale*.05],
+                                                                        nil],
+                                                                       
+                                                                       [CCSpawn actions:
+                                                                        [CCScaleTo actionWithDuration:0 scale:coinPowerupImage.scale],
+                                                                        nil],
+                                                                       nil]]];
+    })],
+                                 nil]];
+    
+}
+
 - (void)ApplyGravity:(float)dt {
     
     //NSLog(@"how many %d", feverModePlanetHitsInARow);
@@ -1109,6 +1168,10 @@ typedef struct {
                     powerupVel = 0;
                     player.currentPowerup = powerup;
                     [player.currentPowerup.glowSprite setVisible:true];
+                    if (player.currentPowerup.type = kcoinMagnet)
+                        [self startCoinPowerupAnimation];
+                    else if (coinPowerupLayer)
+                        [coinPowerupLayer setVisible:false];
                     powerupCounter = 0;
                     updatesWithBlinking = 0;
                     updatesWithoutBlinking = 99999;
@@ -1147,6 +1210,10 @@ typedef struct {
         if (powerupCounter >= player.currentPowerup.duration) {
             [player.currentPowerup.glowSprite setVisible:false];
             player.currentPowerup = nil;
+        }
+        
+        if (player.currentPowerup.type == kcoinMagnet) {
+            [coinPowerupLayer setVisible:player.currentPowerup.glowSprite.visible];
         }
     }
     powerupCounter++;
@@ -2183,7 +2250,7 @@ typedef struct {
             CGPoint p = coin.sprite.position;
             
             if (player.currentPowerup.type == kcoinMagnet) {
-                if (ccpLength(ccpSub(player.sprite.position, p)) <= 4*(coin.radius + player.sprite.height/1.3) && coin.isAlive && coin.speed < .1) {
+                if (ccpLength(ccpSub(player.sprite.position, p)) <= 3*(coin.radius + player.sprite.height/1.3) && coin.isAlive && coin.speed < .1) {
                     coin.speed = .5;
                 }
                 
@@ -2194,7 +2261,6 @@ typedef struct {
 }
 
 - (void) updatePowerupAnimation:(float)dt {
-    
     if (powerupPos <= 250)
         powerupVel = 15*1.5;
     else if (powerupPos <= 430)
@@ -2218,7 +2284,7 @@ typedef struct {
 
 - (void)UpdateBackgroundStars:(float)dt{
     for (CCSprite * star in backgroundStars) {
-          CGPoint camLayerVelocity = ccpSub(cameraLastFocusPosition, cameraLayerLastPosition);
+        CGPoint camLayerVelocity = ccpSub(cameraLayer.position, cameraLayerLastPosition);
         //float angle = ccpToAngle(player.velocity);
         //if (angle>=0 && angle <=90)
         
@@ -2228,7 +2294,7 @@ typedef struct {
         
         //NSLog([NSString stringWithFormat:@"x: %f, y: %f", camLayerVelocity.x, camLayerVelocity.y]);
         
-        star.position = ccpLerp(star.position,ccpAdd(star.position,  ccpMult(camLayerVelocity, -1*cameraLayer.scale*.3*60*dt)), .10);
+        star.position = ccpAdd(star.position,  ccpMult(camLayerVelocity, 1*cameraLayer.scale*.3*60*dt));
         
         if (star.position.x<0-star.width/2 || star.position.y <0-star.height/2) { //if star is off-screen
             star.position = ccp([self RandomBetween:star.width/2 maxvalue:480*1.8],[self RandomBetween:320+star.height/2 maxvalue:320+5*star.height/2]);
@@ -2521,6 +2587,7 @@ typedef struct {
     }
     
     player.currentPowerup.glowSprite.position = player.sprite.position;
+    coinPowerupLayer.position = player.sprite.position;
     //NSLog(@"startx5");
 }
 

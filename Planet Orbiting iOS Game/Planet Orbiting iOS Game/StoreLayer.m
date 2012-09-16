@@ -78,6 +78,11 @@
         self.isTouchEnabled= TRUE;
         
         
+        
+        CCParticleSystemQuad * starParticle = [CCParticleSystemQuad particleWithFile:@"starParticleMenu.plist"];
+        [self addChild:starParticle];
+        
+        
         CCSprite* topBar = [CCSprite spriteWithFile:@"banner.png"];
         [self addChild:topBar];
         [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2 + 2)];

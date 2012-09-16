@@ -543,6 +543,8 @@
 		FA8242E015F36C96009725BD /* point.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8242DF15F36C96009725BD /* point.png */; };
 		FA8242E715F38A34009725BD /* justthetip-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8242E515F38A34009725BD /* justthetip-hd.png */; };
 		FA8242E815F38A34009725BD /* point-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8242E615F38A34009725BD /* point-hd.png */; };
+		FA85324D160425ED001B6268 /* coinMagnetRing-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA85324B160425ED001B6268 /* coinMagnetRing-hd.png */; };
+		FA85324E160425ED001B6268 /* coinMagnetRing.png in Resources */ = {isa = PBXBuildFile; fileRef = FA85324C160425ED001B6268 /* coinMagnetRing.png */; };
 		FA87CE2216014A9D008BEDDC /* hand-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87CE2016014A9D008BEDDC /* hand-hd.png */; };
 		FA87CE2316014A9D008BEDDC /* hand.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87CE2116014A9D008BEDDC /* hand.png */; };
 		FA895CDB15C525B400FA4EC3 /* Light.m in Sources */ = {isa = PBXBuildFile; fileRef = FA895CDA15C525B400FA4EC3 /* Light.m */; };
@@ -1269,6 +1271,8 @@
 		FA8242DF15F36C96009725BD /* point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point.png; sourceTree = "<group>"; };
 		FA8242E515F38A34009725BD /* justthetip-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "justthetip-hd.png"; sourceTree = "<group>"; };
 		FA8242E615F38A34009725BD /* point-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point-hd.png"; sourceTree = "<group>"; };
+		FA85324B160425ED001B6268 /* coinMagnetRing-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coinMagnetRing-hd.png"; sourceTree = "<group>"; };
+		FA85324C160425ED001B6268 /* coinMagnetRing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coinMagnetRing.png; sourceTree = "<group>"; };
 		FA87CE2016014A9D008BEDDC /* hand-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hand-hd.png"; sourceTree = "<group>"; };
 		FA87CE2116014A9D008BEDDC /* hand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hand.png; sourceTree = "<group>"; };
 		FA895CD915C525B400FA4EC3 /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Light.h; sourceTree = "<group>"; };
@@ -2472,6 +2476,8 @@
 		FADEAE6015EF448F0085FB5D /* Powerups */ = {
 			isa = PBXGroup;
 			children = (
+				FA85324B160425ED001B6268 /* coinMagnetRing-hd.png */,
+				FA85324C160425ED001B6268 /* coinMagnetRing.png */,
 			);
 			name = Powerups;
 			sourceTree = "<group>";
@@ -2884,6 +2890,8 @@
 				0C0E87CC16041FEE00779D6F /* generalSpritesheet-hd.pvr.ccz in Resources */,
 				0C0E87CD16041FEE00779D6F /* generalSpritesheet.plist in Resources */,
 				0C0E87CE16041FEE00779D6F /* generalSpritesheet.pvr.ccz in Resources */,
+				FA85324D160425ED001B6268 /* coinMagnetRing-hd.png in Resources */,
+				FA85324E160425ED001B6268 /* coinMagnetRing.png in Resources */,
 				0C0E87F3160423AF00779D6F /* galaxy1-hd.plist in Resources */,
 				0C0E87F4160423AF00779D6F /* galaxy1-hd.pvr.gz in Resources */,
 				0C0E87F5160423AF00779D6F /* galaxy1.plist in Resources */,
