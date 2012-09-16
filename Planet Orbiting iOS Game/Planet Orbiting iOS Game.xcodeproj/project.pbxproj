@@ -96,10 +96,6 @@
 		0C0E87C216041F1600779D6F /* galaxy0-hd.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87BE16041F1600779D6F /* galaxy0-hd.pvr.gz */; };
 		0C0E87C416041F1600779D6F /* galaxy0.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87C016041F1600779D6F /* galaxy0.plist */; };
 		0C0E87C616041F2B00779D6F /* galaxy0.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87C516041F2B00779D6F /* galaxy0.pvr.gz */; };
-		0C0E87CB16041FEE00779D6F /* generalSpritesheet-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87C716041FEE00779D6F /* generalSpritesheet-hd.plist */; };
-		0C0E87CC16041FEE00779D6F /* generalSpritesheet-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87C816041FEE00779D6F /* generalSpritesheet-hd.pvr.ccz */; };
-		0C0E87CD16041FEE00779D6F /* generalSpritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87C916041FEE00779D6F /* generalSpritesheet.plist */; };
-		0C0E87CE16041FEE00779D6F /* generalSpritesheet.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87CA16041FEE00779D6F /* generalSpritesheet.pvr.ccz */; };
 		0C0E87F3160423AF00779D6F /* galaxy1-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87CF160423AD00779D6F /* galaxy1-hd.plist */; };
 		0C0E87F4160423AF00779D6F /* galaxy1-hd.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87D0160423AD00779D6F /* galaxy1-hd.pvr.gz */; };
 		0C0E87F5160423AF00779D6F /* galaxy1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87D1160423AD00779D6F /* galaxy1.plist */; };
@@ -184,6 +180,10 @@
 		0C487B051594739600674AB9 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B041594739600674AB9 /* Player.m */; };
 		0C487B0E1594792C00674AB9 /* Planet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B0D1594792C00674AB9 /* Planet.m */; };
 		0C49E19015C0FE44007957E9 /* thrustParticle3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */; };
+		0C4F32B8160597DD0077EA66 /* generalSpritesheet-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F32B4160597DD0077EA66 /* generalSpritesheet-hd.plist */; };
+		0C4F32B9160597DD0077EA66 /* generalSpritesheet-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F32B5160597DD0077EA66 /* generalSpritesheet-hd.pvr.ccz */; };
+		0C4F32BA160597DD0077EA66 /* generalSpritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F32B6160597DD0077EA66 /* generalSpritesheet.plist */; };
+		0C4F32BB160597DD0077EA66 /* generalSpritesheet.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F32B7160597DD0077EA66 /* generalSpritesheet.pvr.ccz */; };
 		0C5A805816018561005E2807 /* iconv4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5A805716018561005E2807 /* iconv4@2x.png */; };
 		0C5A805A1601856A005E2807 /* iconv4.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5A80591601856A005E2807 /* iconv4.png */; };
 		0C5F4EE515E6006E00075F36 /* LoadingLayerCCB.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F4EE415E6006E00075F36 /* LoadingLayerCCB.ccb */; };
@@ -539,12 +539,8 @@
 		FA7E63BC15D0F26E0090C913 /* UpgradeValues.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E63BB15D0F26E0090C913 /* UpgradeValues.m */; };
 		FA7E63F015D251610090C913 /* cellBackground-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7E63EF15D251610090C913 /* cellBackground-hd.png */; };
 		FA7E640C15D271DE0090C913 /* upgradesHeader-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7E640B15D271DE0090C913 /* upgradesHeader-hd.png */; };
-		FA8242DE15F36C8C009725BD /* justthetip.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8242DD15F36C8C009725BD /* justthetip.png */; };
 		FA8242E015F36C96009725BD /* point.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8242DF15F36C96009725BD /* point.png */; };
-		FA8242E715F38A34009725BD /* justthetip-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8242E515F38A34009725BD /* justthetip-hd.png */; };
 		FA8242E815F38A34009725BD /* point-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8242E615F38A34009725BD /* point-hd.png */; };
-		FA85324D160425ED001B6268 /* coinMagnetRing-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA85324B160425ED001B6268 /* coinMagnetRing-hd.png */; };
-		FA85324E160425ED001B6268 /* coinMagnetRing.png in Resources */ = {isa = PBXBuildFile; fileRef = FA85324C160425ED001B6268 /* coinMagnetRing.png */; };
 		FA87CE2216014A9D008BEDDC /* hand-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87CE2016014A9D008BEDDC /* hand-hd.png */; };
 		FA87CE2316014A9D008BEDDC /* hand.png in Resources */ = {isa = PBXBuildFile; fileRef = FA87CE2116014A9D008BEDDC /* hand.png */; };
 		FA895CDB15C525B400FA4EC3 /* Light.m in Sources */ = {isa = PBXBuildFile; fileRef = FA895CDA15C525B400FA4EC3 /* Light.m */; };
@@ -659,10 +655,6 @@
 		0C0E87BE16041F1600779D6F /* galaxy0-hd.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "galaxy0-hd.pvr.gz"; sourceTree = "<group>"; };
 		0C0E87C016041F1600779D6F /* galaxy0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = galaxy0.plist; sourceTree = "<group>"; };
 		0C0E87C516041F2B00779D6F /* galaxy0.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = galaxy0.pvr.gz; sourceTree = "<group>"; };
-		0C0E87C716041FEE00779D6F /* generalSpritesheet-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "generalSpritesheet-hd.plist"; sourceTree = "<group>"; };
-		0C0E87C816041FEE00779D6F /* generalSpritesheet-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "generalSpritesheet-hd.pvr.ccz"; sourceTree = "<group>"; };
-		0C0E87C916041FEE00779D6F /* generalSpritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = generalSpritesheet.plist; sourceTree = "<group>"; };
-		0C0E87CA16041FEE00779D6F /* generalSpritesheet.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = generalSpritesheet.pvr.ccz; sourceTree = "<group>"; };
 		0C0E87CF160423AD00779D6F /* galaxy1-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "galaxy1-hd.plist"; sourceTree = "<group>"; };
 		0C0E87D0160423AD00779D6F /* galaxy1-hd.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "galaxy1-hd.pvr.gz"; sourceTree = "<group>"; };
 		0C0E87D1160423AD00779D6F /* galaxy1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = galaxy1.plist; sourceTree = "<group>"; };
@@ -758,6 +750,10 @@
 		0C487B0C1594792C00674AB9 /* Planet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Planet.h; sourceTree = "<group>"; };
 		0C487B0D1594792C00674AB9 /* Planet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Planet.m; sourceTree = "<group>"; };
 		0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = thrustParticle3.plist; sourceTree = "<group>"; };
+		0C4F32B4160597DD0077EA66 /* generalSpritesheet-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "generalSpritesheet-hd.plist"; sourceTree = "<group>"; };
+		0C4F32B5160597DD0077EA66 /* generalSpritesheet-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "generalSpritesheet-hd.pvr.ccz"; sourceTree = "<group>"; };
+		0C4F32B6160597DD0077EA66 /* generalSpritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = generalSpritesheet.plist; sourceTree = "<group>"; };
+		0C4F32B7160597DD0077EA66 /* generalSpritesheet.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = generalSpritesheet.pvr.ccz; sourceTree = "<group>"; };
 		0C5A805716018561005E2807 /* iconv4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iconv4@2x.png"; path = "../iconv4@2x.png"; sourceTree = "<group>"; };
 		0C5A80591601856A005E2807 /* iconv4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconv4.png; path = ../iconv4.png; sourceTree = "<group>"; };
 		0C5F4EE415E6006E00075F36 /* LoadingLayerCCB.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LoadingLayerCCB.ccb; sourceTree = "<group>"; };
@@ -1267,12 +1263,8 @@
 		FA7E63BB15D0F26E0090C913 /* UpgradeValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeValues.m; sourceTree = "<group>"; };
 		FA7E63EF15D251610090C913 /* cellBackground-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cellBackground-hd.png"; sourceTree = "<group>"; };
 		FA7E640B15D271DE0090C913 /* upgradesHeader-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upgradesHeader-hd.png"; sourceTree = "<group>"; };
-		FA8242DD15F36C8C009725BD /* justthetip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = justthetip.png; sourceTree = "<group>"; };
 		FA8242DF15F36C96009725BD /* point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point.png; sourceTree = "<group>"; };
-		FA8242E515F38A34009725BD /* justthetip-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "justthetip-hd.png"; sourceTree = "<group>"; };
 		FA8242E615F38A34009725BD /* point-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point-hd.png"; sourceTree = "<group>"; };
-		FA85324B160425ED001B6268 /* coinMagnetRing-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coinMagnetRing-hd.png"; sourceTree = "<group>"; };
-		FA85324C160425ED001B6268 /* coinMagnetRing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coinMagnetRing.png; sourceTree = "<group>"; };
 		FA87CE2016014A9D008BEDDC /* hand-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hand-hd.png"; sourceTree = "<group>"; };
 		FA87CE2116014A9D008BEDDC /* hand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hand.png; sourceTree = "<group>"; };
 		FA895CD915C525B400FA4EC3 /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Light.h; sourceTree = "<group>"; };
@@ -1808,10 +1800,10 @@
 		C43AF01315D4267D001FF7D9 /* Spritesheets */ = {
 			isa = PBXGroup;
 			children = (
-				0C0E87C716041FEE00779D6F /* generalSpritesheet-hd.plist */,
-				0C0E87C816041FEE00779D6F /* generalSpritesheet-hd.pvr.ccz */,
-				0C0E87C916041FEE00779D6F /* generalSpritesheet.plist */,
-				0C0E87CA16041FEE00779D6F /* generalSpritesheet.pvr.ccz */,
+				0C4F32B4160597DD0077EA66 /* generalSpritesheet-hd.plist */,
+				0C4F32B5160597DD0077EA66 /* generalSpritesheet-hd.pvr.ccz */,
+				0C4F32B6160597DD0077EA66 /* generalSpritesheet.plist */,
+				0C4F32B7160597DD0077EA66 /* generalSpritesheet.pvr.ccz */,
 				0C0E87CF160423AD00779D6F /* galaxy1-hd.plist */,
 				0C0E87D0160423AD00779D6F /* galaxy1-hd.pvr.gz */,
 				0C0E87D1160423AD00779D6F /* galaxy1.plist */,
@@ -2436,8 +2428,6 @@
 		FA8242DB15F36C78009725BD /* PredPoint Sorta */ = {
 			isa = PBXGroup;
 			children = (
-				FA8242E515F38A34009725BD /* justthetip-hd.png */,
-				FA8242DD15F36C8C009725BD /* justthetip.png */,
 				FA8242E615F38A34009725BD /* point-hd.png */,
 				FA8242DF15F36C96009725BD /* point.png */,
 			);
@@ -2476,8 +2466,6 @@
 		FADEAE6015EF448F0085FB5D /* Powerups */ = {
 			isa = PBXGroup;
 			children = (
-				FA85324B160425ED001B6268 /* coinMagnetRing-hd.png */,
-				FA85324C160425ED001B6268 /* coinMagnetRing.png */,
 			);
 			name = Powerups;
 			sourceTree = "<group>";
@@ -2827,9 +2815,7 @@
 				C424BE4C15F006D600F6E5BA /* feverModeInitialExplosion.plist in Resources */,
 				FAC8A15D15F04C0E00F7B6B2 /* endFeverMode.mp3 in Resources */,
 				FAC8A15E15F04C0E00F7B6B2 /* startFeverMode.mp3 in Resources */,
-				FA8242DE15F36C8C009725BD /* justthetip.png in Resources */,
 				FA8242E015F36C96009725BD /* point.png in Resources */,
-				FA8242E715F38A34009725BD /* justthetip-hd.png in Resources */,
 				FA8242E815F38A34009725BD /* point-hd.png in Resources */,
 				0C3E8FEE15F5836E007205B1 /* FBDialog.bundle in Resources */,
 				0C3E8FEF15F5836E007205B1 /* GTMOAuth2ViewTouch.nib in Resources */,
@@ -2886,12 +2872,6 @@
 				0C0E87C216041F1600779D6F /* galaxy0-hd.pvr.gz in Resources */,
 				0C0E87C416041F1600779D6F /* galaxy0.plist in Resources */,
 				0C0E87C616041F2B00779D6F /* galaxy0.pvr.gz in Resources */,
-				0C0E87CB16041FEE00779D6F /* generalSpritesheet-hd.plist in Resources */,
-				0C0E87CC16041FEE00779D6F /* generalSpritesheet-hd.pvr.ccz in Resources */,
-				0C0E87CD16041FEE00779D6F /* generalSpritesheet.plist in Resources */,
-				0C0E87CE16041FEE00779D6F /* generalSpritesheet.pvr.ccz in Resources */,
-				FA85324D160425ED001B6268 /* coinMagnetRing-hd.png in Resources */,
-				FA85324E160425ED001B6268 /* coinMagnetRing.png in Resources */,
 				0C0E87F3160423AF00779D6F /* galaxy1-hd.plist in Resources */,
 				0C0E87F4160423AF00779D6F /* galaxy1-hd.pvr.gz in Resources */,
 				0C0E87F5160423AF00779D6F /* galaxy1.plist in Resources */,
@@ -2928,6 +2908,10 @@
 				0C0E8814160423AF00779D6F /* galaxy9-hd.pvr.gz in Resources */,
 				0C0E8815160423AF00779D6F /* galaxy9.plist in Resources */,
 				0C0E8816160423AF00779D6F /* galaxy9.pvr.gz in Resources */,
+				0C4F32B8160597DD0077EA66 /* generalSpritesheet-hd.plist in Resources */,
+				0C4F32B9160597DD0077EA66 /* generalSpritesheet-hd.pvr.ccz in Resources */,
+				0C4F32BA160597DD0077EA66 /* generalSpritesheet.plist in Resources */,
+				0C4F32BB160597DD0077EA66 /* generalSpritesheet.pvr.ccz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

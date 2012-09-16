@@ -28,7 +28,7 @@
             
             duration = [[UpgradeValues sharedInstance] asteroidImmunityDuration];
             title = @"Asteroid Armor";
-            self.sprite = [CCSprite spriteWithSpriteFrameName:@"magnetcoin.png"];//@"asteroidbreakericon.png"]; //never used?
+            self.sprite = [CCSprite spriteWithSpriteFrameName:@"asteroidarmor.png"];//@"asteroidbreakericon.png"]; //never used?
             glowSprite = [CCSprite spriteWithSpriteFrameName:@"playerarmor.png"];
             
         } else if (type == kcoinMagnet) { //coinMagnet

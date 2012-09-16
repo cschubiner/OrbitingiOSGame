@@ -119,7 +119,7 @@ typedef struct {
     Powerup *powerup = [[Powerup alloc]initWithType:type];
     
     powerup.sprite.position = ccp(xPos, yPos);
-    powerup.sprite.scale = scale;
+    powerup.sprite.scale = 2.3;
     
     [powerup.glowSprite setVisible:false];
     powerup.glowSprite.scale = 1;
@@ -136,7 +136,7 @@ typedef struct {
     //NSLog(@"adding powerup2");
     [spriteSheet addChild:powerup.glowSprite];
     powerup.glowSprite.scale = playerSizeScale;
-    [powerup.glowSprite setZOrder:5];
+    [powerup.glowSprite setZOrder:9];
     
     //NSLog(@"galaxy114powerup");
     //[spriteSheet reorderChild:powerup.glowSprite z:2.5];
@@ -530,9 +530,7 @@ typedef struct {
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.WAV"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"buttonpress.mp3"];
     
-    
-    
-    backgroundSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"backgroundStars.pvr.ccz"];
+        backgroundSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"backgroundStars.pvr.ccz"];
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"backgroundStars.plist"];
     
     spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"generalSpritesheet.pvr.ccz"];
@@ -570,7 +568,6 @@ typedef struct {
     player.sprite.position = ccp(-750, -500);
     swipeVector = ccp(0, 1);
     targetPlanet = [planets objectAtIndex:0];
-    // player.sprite.position = [self GetPositionForJumpingPlayerToPlanet:0];
     if ([[UpgradeValues sharedInstance] hasGreenShip]) {
         //player.sprite.color = ccGREEN;
     } else if ([[UpgradeValues sharedInstance] hasBlueShip]) {
@@ -1066,6 +1063,7 @@ typedef struct {
     }
     
     CCSprite* coinPowerupImage2 = [CCSprite spriteWithFile:@"coinMagnetRing.png"];
+    [coinPowerupImage2 setColor:ccYELLOW];
     [coinPowerupLayer addChild:coinPowerupImage2];
     
     
@@ -1091,6 +1089,7 @@ typedef struct {
                                                                     nil]]];
     
     CCSprite* coinPowerupImage = [CCSprite spriteWithFile:@"coinMagnetRing.png"];
+    [coinPowerupImage setColor:ccYELLOW];
     [coinPowerupLayer addChild:coinPowerupImage];
     coinPowerupImage.scale = scaleToUse;
     coinPowerupImage.opacity = 0;
@@ -1843,7 +1842,7 @@ typedef struct {
                 
                 Planet*lastPlanetOfThisGalaxy = [planets objectAtIndex:planets.count-1];
                 [self CreateCoinArrowAtPosition:ccpAdd(lastPlanetOfThisGalaxy.sprite.position, ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn)), lastPlanetOfThisGalaxy.orbitRadius*2.1)) withAngle:directionPlanetSegmentsGoIn];
-                indicatorPos = ccpAdd(indicatorPos, ccpMult(ccpNormalize(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn))), distanceBetweenGalaxies));
+                indicatorPos = ccpAdd(indicatorPos, ccpMult(ccpNormalize(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn))), distanceBetweenGalaxies*generalScale));
             }
             [self CreateSegment];
         }
@@ -2294,7 +2293,7 @@ typedef struct {
         
         //NSLog([NSString stringWithFormat:@"x: %f, y: %f", camLayerVelocity.x, camLayerVelocity.y]);
         
-        star.position = ccpAdd(star.position,  ccpMult(camLayerVelocity, 1*cameraLayer.scale*.3*60*dt));
+        star.position = ccpAdd(star.position,  ccpMult(camLayerVelocity, 1*cameraLayer.scale*.0882*60*dt));
         
         if (star.position.x<0-star.width/2 || star.position.y <0-star.height/2) { //if star is off-screen
             star.position = ccp([self RandomBetween:star.width/2 maxvalue:480*1.8],[self RandomBetween:320+star.height/2 maxvalue:320+5*star.height/2]);
@@ -2765,7 +2764,7 @@ typedef struct {
     }
     
     CCSprite* tip = [CCSprite spriteWithSpriteFrameName:@"justthetip.png"];
-    tip.scale = .5;
+    tip.scale = 1;
     tip.color = col;
     
     tip.position = ccpAdd(fromPos, ccpMult(dir, i*1.5*point.width + point.width/2));
