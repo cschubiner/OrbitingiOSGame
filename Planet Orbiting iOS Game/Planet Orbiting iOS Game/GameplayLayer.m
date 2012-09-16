@@ -2246,7 +2246,7 @@ typedef struct {
 
 -(void)scheduleUpdates {
     //NSLog(@"start4");
-    [self schedule:@selector(UpdateScore) interval:1.0/25.0f];
+    [self schedule:@selector(UpdateScore) interval:1.0/40.0f];
     [self schedule:@selector(UpdateParticles:) interval:1.0/60.0f];
     [self schedule:@selector(UpdateBackgroundStars:) interval:1.0/24.0f];
     [self schedule:@selector(UpdateLight:) interval:1.0/10.0f];
