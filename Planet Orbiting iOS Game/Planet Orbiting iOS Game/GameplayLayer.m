@@ -1053,16 +1053,15 @@ typedef struct {
 }
 
 -(void) startCoinPowerupAnimation {
-    if (!coinPowerupLayer) {
-        coinPowerupLayer = [[CCLayer alloc] init];
-        [cameraLayer addChild:coinPowerupLayer];
+    if (!doesHasCoinPowerup) {
+        doesHasCoinPowerup = true;
     } else {
         return;
     }
     
-    CCSprite* coinPowerupImage2 = [CCSprite spriteWithFile:@"coinMagnetRing.png"];
+    CCSprite* coinPowerupImage2 = [CCSprite spriteWithSpriteFrameName:@"coinMagnetRing.png"];
     [coinPowerupImage2 setColor:ccYELLOW];
-    [coinPowerupLayer addChild:coinPowerupImage2];
+    [spriteSheet addChild:coinPowerupImage2 z:15 tag:coinImageTag2];
     
     
     
@@ -1086,9 +1085,9 @@ typedef struct {
                                                                      nil],
                                                                     nil]]];
     
-    CCSprite* coinPowerupImage = [CCSprite spriteWithFile:@"coinMagnetRing.png"];
+    CCSprite* coinPowerupImage = [CCSprite spriteWithSpriteFrameName:@"coinMagnetRing.png"];
     [coinPowerupImage setColor:ccYELLOW];
-    [coinPowerupLayer addChild:coinPowerupImage];
+    [spriteSheet addChild:coinPowerupImage z:15 tag:coinImageTag1];
     coinPowerupImage.scale = scaleToUse;
     coinPowerupImage.opacity = 0;
     
@@ -1167,8 +1166,11 @@ typedef struct {
                     [player.currentPowerup.glowSprite setVisible:true];
                     if (player.currentPowerup.type == kcoinMagnet)
                         [self startCoinPowerupAnimation];
-                    else if (coinPowerupLayer)
-                        [coinPowerupLayer setVisible:false];
+                    else if (doesHasCoinPowerup)
+                    {
+                        [[spriteSheet getChildByTag:coinImageTag1]setVisible:false];
+                        [[spriteSheet getChildByTag:coinImageTag2]setVisible:false];
+                    }
                     powerupCounter = 0;
                     updatesWithBlinking = 0;
                     updatesWithoutBlinking = 99999;
@@ -1210,7 +1212,9 @@ typedef struct {
         }
         
         if (player.currentPowerup.type == kcoinMagnet) {
-            [coinPowerupLayer setVisible:player.currentPowerup.glowSprite.visible];
+            [[spriteSheet getChildByTag:coinImageTag1]setVisible:player.currentPowerup.glowSprite.visible];
+            [[spriteSheet getChildByTag:coinImageTag2]setVisible:player.currentPowerup.glowSprite.visible];
+
         }
     }
     powerupCounter++;
@@ -2293,6 +2297,7 @@ typedef struct {
 }
 
 - (void) updatePowerupAnimation:(float)dt {
+    NSLog(@"dub");
     if (powerupPos <= 250)
         powerupVel = 15*1.5;
     else if (powerupPos <= 430)
@@ -2305,13 +2310,19 @@ typedef struct {
         paused = false;
         isDisplayingPowerupAnimation = false;
     }
-    
+        NSLog(@"dub2");
     powerupPos += powerupVel*60*dt;
-    [powerupLabel setString:player.currentPowerup.title];
+    @try {
+        [powerupLabel setString:player.currentPowerup.title];
+
+    }
+    @catch (NSException *exception) {
+        [powerupLabel setString:[player.currentPowerup.title stringByReplacingOccurrencesOfString:@" " withString:@""]];
+    }
     
     powerupLabel.position = ccp(-[powerupLabel boundingBox].size.width/2 + powerupPos, 160);
     //powerupLabel.position = ccp(- 500, 500);
-    
+        NSLog(@"dubtif");
 }
 
 - (void)UpdateBackgroundStars:(float)dt{
@@ -2619,7 +2630,8 @@ typedef struct {
     }
     
     player.currentPowerup.glowSprite.position = player.sprite.position;
-    coinPowerupLayer.position = player.sprite.position;
+    [[spriteSheet getChildByTag:coinImageTag1] setPosition: player.sprite.position];
+    [[spriteSheet getChildByTag:coinImageTag2] setPosition: player.sprite.position];
     //NSLog(@"startx5");
 }
 

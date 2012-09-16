@@ -21,6 +21,9 @@
 #import "UpgradeValues.h"
 #import "ObjectiveManager.h"
 
+#define coinImageTag1 2919
+#define coinImageTag2 2920
+
 @interface GameplayLayer : CCLayer <UITextViewDelegate> {
     Player *player;
     NSMutableArray *planets;
@@ -31,9 +34,11 @@
     NSMutableArray * coinAnimationFrames;
     CCAnimation * coinAnimation;
     CCLabelBMFont *scoreLabel;
+
     CCLabelBMFont *coinsLabel;
+    bool doesHasCoinPowerup;
     
-    CCLayer* coinPowerupLayer;
+    
     
     bool isLeavingLastPlanetInGalaxy;
     bool allowVideoToConvert;
