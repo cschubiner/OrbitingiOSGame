@@ -120,7 +120,7 @@
         
         CCLabelTTF* pauseText = [CCLabelTTF labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:31];
         //[self addChild:pauseText];
-        pauseText.position = ccp(240, 300.5);
+        pauseText.position = ccp(220, 300.5);
         
         CCSprite* topSpriteLabel = [self.class labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:30 color:ccWHITE strokeSize:1.1 stokeColor: ccBLACK];
         [self addChild:topSpriteLabel];
@@ -137,9 +137,9 @@
         quit.position = ccp(41, 300.5);
         
         CCMenuItem *gameCenter = [CCMenuItemImage
-                                  itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
+                                  itemWithNormalImage:@"gamecenter.png" selectedImage:@"gamecenterpressed.png"
                                   target:self selector:@selector(gameCenterButtonPressed)];
-        gameCenter.position = ccp(480-41, 300.5);
+        gameCenter.position = ccp(480-67, 300.5);
         //quit.scale = 1.7;
         
         CCMenu* menu = [CCMenu menuWithItems:quit, gameCenter, nil];

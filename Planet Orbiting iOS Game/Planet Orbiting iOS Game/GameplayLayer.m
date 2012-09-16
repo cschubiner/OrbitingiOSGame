@@ -1138,7 +1138,7 @@ typedef struct {
             if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= asteroid.radius * asteroidRadiusCollisionZone && asteroid.sprite.visible) {
                 if (orbitState == 3 || player.currentPowerup.type == kasteroidImmunity) {
                     for (Asteroid* a in asteroids) {
-                        if (ccpDistance(p, a.sprite.position) <= 100) {
+                        if (ccpDistance(p, a.sprite.position) <= 50) {
                             [a.sprite setVisible:false];
                             if (player.currentPowerup.type == kasteroidImmunity)
                                 asteroidsDestroyedWithArmor++;
@@ -1167,7 +1167,7 @@ typedef struct {
                     powerupVel = 0;
                     player.currentPowerup = powerup;
                     [player.currentPowerup.glowSprite setVisible:true];
-                    if (player.currentPowerup.type = kcoinMagnet)
+                    if (player.currentPowerup.type == kcoinMagnet)
                         [self startCoinPowerupAnimation];
                     else if (coinPowerupLayer)
                         [coinPowerupLayer setVisible:false];
