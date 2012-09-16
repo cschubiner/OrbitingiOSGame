@@ -55,7 +55,7 @@
     float updatesWithBlinking;
     CCAction* galaxyLabelAction;
     bool isDisplayingPowerupAnimation;
-    CCLabelTTF *powerupLabel;
+    CCLabelBMFont *powerupLabel;
     float powerupPos;
     float powerupVel;
     int numCoinsDisplayed;

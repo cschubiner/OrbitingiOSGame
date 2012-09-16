@@ -521,8 +521,10 @@ typedef struct {
     CCSprite *pauseButton =  [CCSprite spriteWithFile:@"pauseButton7.png"];
     pauseButton.position = ccp(457, 298);
     [hudLayer addChild:pauseButton];
-    
-    powerupLabel = [CCLabelTTF labelWithString:@" " fontName:@"HelveticaNeue-CondensedBold" fontSize:44];
+
+  //  powerupLabel = [[CCLabelBMFont alloc] initWithString:@"Star Magnet" fntFile:@"powerupText.fnt"];//[CCLabelTTF labelWithString:@" " fontName:@"HelveticaNeue-CondensedBold" fontSize:44];
+    powerupLabel = [[CCLabelBMFont alloc] initWithString:@"asdf" fntFile:@"powerupText.fnt"];
+
     powerupLabel.position = ccp(-[powerupLabel boundingBox].size.width/2, 160);
     [hudLayer addChild: powerupLabel];
     
@@ -1386,8 +1388,6 @@ typedef struct {
                         [self endFeverMode];
                     
                     timeInOrbit = 0;
-                    
-                    
                     
                     if (player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart) {
                         CGPoint targetPoint1 = ccpAdd(ccpMult(dir2, targetPlanet.orbitRadius*.7), targetPlanet.sprite.position);
@@ -2274,7 +2274,8 @@ typedef struct {
     }
     
     powerupPos += powerupVel*60*dt;
-    [powerupLabel setString:player.currentPowerup.title];
+  //  [powerupLabel setString:@"StarMagnet"];
+    [powerupLabel setString:[player.currentPowerup.title stringByReplacingOccurrencesOfString:@" " withString:@""]];
     
     powerupLabel.position = ccp(-[powerupLabel boundingBox].size.width/2 + powerupPos, 160);
     //powerupLabel.position = ccp(- 500, 500);

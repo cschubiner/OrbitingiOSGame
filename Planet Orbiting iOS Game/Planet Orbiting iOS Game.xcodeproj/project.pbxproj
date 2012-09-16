@@ -184,6 +184,10 @@
 		0C4F32B9160597DD0077EA66 /* generalSpritesheet-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F32B5160597DD0077EA66 /* generalSpritesheet-hd.pvr.ccz */; };
 		0C4F32BA160597DD0077EA66 /* generalSpritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F32B6160597DD0077EA66 /* generalSpritesheet.plist */; };
 		0C4F32BB160597DD0077EA66 /* generalSpritesheet.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F32B7160597DD0077EA66 /* generalSpritesheet.pvr.ccz */; };
+		0C4F32D51605A50B0077EA66 /* powerupText-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F32D11605A50B0077EA66 /* powerupText-hd.fnt */; };
+		0C4F32D61605A50B0077EA66 /* powerupText-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F32D21605A50B0077EA66 /* powerupText-hd.png */; };
+		0C4F32D71605A50B0077EA66 /* powerupText.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F32D31605A50B0077EA66 /* powerupText.fnt */; };
+		0C4F32D81605A50B0077EA66 /* powerupText.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F32D41605A50B0077EA66 /* powerupText.png */; };
 		0C5A805816018561005E2807 /* iconv4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5A805716018561005E2807 /* iconv4@2x.png */; };
 		0C5A805A1601856A005E2807 /* iconv4.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5A80591601856A005E2807 /* iconv4.png */; };
 		0C5F4EE515E6006E00075F36 /* LoadingLayerCCB.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F4EE415E6006E00075F36 /* LoadingLayerCCB.ccb */; };
@@ -758,6 +762,10 @@
 		0C4F32B5160597DD0077EA66 /* generalSpritesheet-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "generalSpritesheet-hd.pvr.ccz"; sourceTree = "<group>"; };
 		0C4F32B6160597DD0077EA66 /* generalSpritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = generalSpritesheet.plist; sourceTree = "<group>"; };
 		0C4F32B7160597DD0077EA66 /* generalSpritesheet.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = generalSpritesheet.pvr.ccz; sourceTree = "<group>"; };
+		0C4F32D11605A50B0077EA66 /* powerupText-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "powerupText-hd.fnt"; sourceTree = "<group>"; };
+		0C4F32D21605A50B0077EA66 /* powerupText-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "powerupText-hd.png"; sourceTree = "<group>"; };
+		0C4F32D31605A50B0077EA66 /* powerupText.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = powerupText.fnt; sourceTree = "<group>"; };
+		0C4F32D41605A50B0077EA66 /* powerupText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = powerupText.png; sourceTree = "<group>"; };
 		0C5A805716018561005E2807 /* iconv4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iconv4@2x.png"; path = "../iconv4@2x.png"; sourceTree = "<group>"; };
 		0C5A80591601856A005E2807 /* iconv4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconv4.png; path = ../iconv4.png; sourceTree = "<group>"; };
 		0C5F4EE415E6006E00075F36 /* LoadingLayerCCB.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LoadingLayerCCB.ccb; sourceTree = "<group>"; };
@@ -2205,6 +2213,10 @@
 		C4C9161A15D309C9008105A6 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				0C4F32D11605A50B0077EA66 /* powerupText-hd.fnt */,
+				0C4F32D21605A50B0077EA66 /* powerupText-hd.png */,
+				0C4F32D31605A50B0077EA66 /* powerupText.fnt */,
+				0C4F32D41605A50B0077EA66 /* powerupText.png */,
 				C4C9162B15D315F4008105A6 /* star_label_font-hd.fnt */,
 				C4C9162C15D315F4008105A6 /* star_label_font-hd.png */,
 				C4C9162D15D315F4008105A6 /* star_label_font.fnt */,
@@ -2928,6 +2940,10 @@
 				FA8BAEE71605978100B10BF6 /* gamecenter.png in Resources */,
 				FA8BAEE81605978100B10BF6 /* gamecenterpressed-hd.png in Resources */,
 				FA8BAEE91605978100B10BF6 /* gamecenterpressed.png in Resources */,
+				0C4F32D51605A50B0077EA66 /* powerupText-hd.fnt in Resources */,
+				0C4F32D61605A50B0077EA66 /* powerupText-hd.png in Resources */,
+				0C4F32D71605A50B0077EA66 /* powerupText.fnt in Resources */,
+				0C4F32D81605A50B0077EA66 /* powerupText.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
