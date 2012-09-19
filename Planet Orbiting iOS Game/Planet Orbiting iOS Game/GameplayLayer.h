@@ -35,10 +35,16 @@
     CCAnimation * coinAnimation;
     CCLabelBMFont *scoreLabel;
 
+    float scoreAddedByCombo;
+    
     CCLabelBMFont *coinsLabel;
     bool doesHasCoinPowerup;
     
+    bool isInTutorialMode;
     
+    bool shouldDisplayPredPoints;
+    
+    float timeSpentInPlanetOne;
     
     bool isLeavingLastPlanetInGalaxy;
     bool allowVideoToConvert;
@@ -88,6 +94,9 @@
     CCLabelTTF* tutLabel;
     
     CGPoint cameraLayerLastPosition;
+    CGPoint cameraLayerFocusPoint;
+    
+    float backgroundStarsMovementSpeed;
     
     CCLabelBMFont * zeroCoinsLabel;
     float powerupCounter;
@@ -191,6 +200,7 @@
     CCLabelBMFont * gameOverScoreLabel;
     
     CCTexture2D * coinTexture;
+    
     
     UITextView *playerNameLabel;
     CCLabelBMFont *displayName;

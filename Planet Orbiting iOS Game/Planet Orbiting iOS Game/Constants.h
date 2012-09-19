@@ -27,18 +27,16 @@ const float generalScoreMultiplier = .543210;
 //changes how zoomed in the camera in. higher numbers mean more zoom (everything looks bigger)
 const float zoomMultiplier = .85*.95f*1.06f;
 //changes how quickly the camera zooms in and out
-const float cameraZoomSpeed = .025;
+const float cameraZoomSpeed = .025*.3*1.6;
 //changes how quickly the camera changes position
 const float cameraMovementSpeed = .06;
-//how much more times the camera focuses on the first focus node compared to the second focus node
-const float cameraScaleFocusedOnFocusPosOne = 1.25f;
 
 const float streakWidthOnRetinaDisplay = 20;
 const float streakWidthWITHOUTRetinaDisplay = streakWidthOnRetinaDisplay/2.0;
 
 //how quickly the loading label that provides helper text moves along the screen. higher numbers make it move slower.
 const float loadingHelperLabelMoveTime = 9.1;
-const float loadingTimeDilationAsPlayerIsGoingToFirstPlanet = .68;
+const float loadingTimeDilationAsPlayerIsGoingToFirstPlanet = .68*1.1;
 
 //For optimization, whenever more segments than this are present, the oldest one will be deleted
 const int numberOfSegmentsAtATime = 3;
@@ -49,12 +47,10 @@ const float directionPlanetSegmentsGoInVariance = 20;
 //The maximum number of degrees that the segment of planets can be rotated from the direction (directionPlanetSegmentsGoIn)
 const float segmentRotationVariation = 20;//30;
 
-//how quickly the player's spaceship rotates when the direction of his velocity changes
-const float playerRotationSpeed = .39f;
 const float playerSizeScale = 1;
 
 const float anglesBeforeTheQuarterSphereToTurnLineGreenInDegrees = 55;
-const float anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees = -35;
+const float anglesAFTERTheQuarterSphereToTurnLineBlueInDegrees = -45;
 
 const float durationOfPostExplosionScreenShake = .40f;
 const float postExplosionShakeXMagnitude = 4;
@@ -122,14 +118,10 @@ const float minSwipeStrength = 30;
 //how many updates pass while the player isn't in a zone until tie go will did
 const float deathAfterThisLong = 55*1.35f*1.1f*1.5f*1*2*.9*2*2;
 
-//the percent of the black hole's radius that triggers a collision
-const float blackHoleCollisionRadiusFactor = .2f;
-const float blackHoleSpeedFactor = 1.85*.6f*.6f;
-
 //SPEED!!!!-------------------------------------------------------------------------------------------------
 
 
-const float initialTimeDilation = .8;
+const float initialTimeDilation = .8*.86;
 
 //increase to make timeDilationFactor decrease more rapidly
 const float timeDilationReduceRate = .0011;
@@ -138,7 +130,7 @@ const float timeDilationReduceRate = .0011;
 const float factorToScaleTimeDilationByOnDeath = .84;
 
 //increase to increase timeDilationFactor by a larger amount everytime you get to a new zone
-const float timeDilationIncreaseRate = .047;
+const float timeDilationIncreaseRate = .047*.8*.8;
 
 const float timeDilationFeverModeMultiplier = 1.05;
 
@@ -146,7 +138,7 @@ const float timeDilationFeverModeMultiplier = 1.05;
 //THIS IS NOW IN UPGRADE VALUES const float absoluteMinTimeDilation = .85;
 
 //the highest the time dilation factor can go. this should probZ just be infinity. bitches will has c slow down if they're going too fast
-const float absoluteMaxTimeDilation = 1.4;
+const float absoluteMaxTimeDilation = initialTimeDilation*1.3;
 
 //----------------------------------------------------------------------------------------------------------
 
@@ -170,4 +162,4 @@ const float coinAnimationDelay = .02;
 
 const int minPlanetsInARowForFeverMode = 5;
 
-const float maxTimeInOrbitThatCountsAsGoodSwipe = .7;
+const float maxTimeInOrbitThatCountsAsGoodSwipe = .85;

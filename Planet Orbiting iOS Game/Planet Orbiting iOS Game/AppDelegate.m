@@ -74,7 +74,7 @@
 	director_.wantsFullScreenLayout = YES;
     
 	// Display FSP and SPF
-	[director_ setDisplayStats:YES];
+	[director_ setDisplayStats:NO];
     
 	// set FPS at 60
 	[director_ setAnimationInterval:1.0/60.0f];
@@ -173,12 +173,18 @@ void SignalHandler(int sig) {
 }
 
 -(bool)getIsInTutorialMode{
-    return isInTutorialMode;
+    @try {
+        int numPlays = [[PlayerStats sharedInstance] getPlays];
+        return !(([self getHighestScore]>9000 && numPlays > 1) || (numPlays>5));
+    }
+    @catch (NSException *exception) { }
+    
+    return false;
 }
 
 
 -(void)setIsInTutorialMode:(bool)mode {
-    isInTutorialMode=mode;
+   // isInTutorialMode=mode;
 }
 
 
@@ -231,6 +237,28 @@ void SignalHandler(int sig) {
     [Flurry logEvent:@"Application entered foreground"];
 	if( [navController_ visibleViewController] == director_ )
 		[director_ startAnimation];
+}
+
+-(bool)getShouldDisplayPredPoints {
+    @try {
+        int numPlays = [[PlayerStats sharedInstance] getPlays];
+        return !(([self getHighestScore]>40000 && numPlays > 3) || (numPlays>10));
+    }
+    @catch (NSException *exception) { }
+    
+    return false;
+}
+
+- (int)getHighestScore {
+    NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
+    int highestScore = 0;
+    for (int i = 0 ; i < highScores.count ; i++) {
+        NSNumber * highscoreObject = [highScores objectAtIndex:i];
+        int score = [highscoreObject intValue];
+        if (score>highestScore)
+            highestScore=score;
+    }
+    return highestScore;
 }
 
 - (NSMutableDictionary *)getDictionaryOfFlurryParameters

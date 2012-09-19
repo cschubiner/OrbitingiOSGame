@@ -18,11 +18,12 @@
 	UINavigationController *navController_;
     
 	CCDirectorIOS	*director_;							// weak ref
-    bool isInTutorialMode;
     int chosenLevelNumber;
     bool isRetinaDisplay;
     bool wasJustBackgrounded;
     int galaxyCounter;
+    
+    bool shouldDisplayPredPoints;
     
     bool shouldPlayMenuMusic;
 }
@@ -41,6 +42,7 @@
 -(int)getGalaxyCounter;
 -(void)setGalaxyCounter:(int)count;
 
+-(bool)getShouldDisplayPredPoints;
 -(bool)getShouldPlayMenuMusic;
 -(void)setShouldPlayMenuMusic:(bool)a_shouldPlay;
 

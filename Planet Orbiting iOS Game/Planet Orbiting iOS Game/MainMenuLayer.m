@@ -141,16 +141,6 @@ const float effectsVolumeMainMenu = 1;
 
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         [[UpgradeValues sharedInstance] setHasGreenShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:17] equipped]];
         
         
@@ -275,6 +265,8 @@ const float effectsVolumeMainMenu = 1;
 }
 
 - (void) Update:(ccTime)dt {
+    if (dt > .2)
+		dt = 1.0 / 60.0f;
     difVector = ccpSub(ccp(200, 480), position);
     float multer = .0022;
     float variance = .021;
