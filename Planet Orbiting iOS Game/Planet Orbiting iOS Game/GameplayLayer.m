@@ -365,8 +365,6 @@ typedef struct {
     int maxOptimalPlanets = 37;
     int minOptimalPlanets = 25;
     for (Galaxy* galaxy in galaxies) {
-        //[galaxy setOptimalPlanetsInThisGalaxy:11];
-        
         float galaxyPercent = ((float)galaxy.number)/((float)galaxies.count-1);
         [galaxy setOptimalPlanetsInThisGalaxy:lerpf(minOptimalPlanets, maxOptimalPlanets,galaxyPercent)];
         [galaxy setPercentTimeToAddUponGalaxyCompletion:lerpf(maxPercentTimeToAdd, minPercentTimeToAdd, galaxyPercent)];
@@ -374,6 +372,10 @@ typedef struct {
     
     galaxy = [galaxies objectAtIndex:0];
     [galaxy setOptimalPlanetsInThisGalaxy:18];
+    
+    for (Galaxy* galaxy in galaxies)
+        [galaxy setOptimalPlanetsInThisGalaxy:11];
+        
 }
 
 - (void)initUpgradedVariables {
@@ -912,19 +914,22 @@ typedef struct {
     if (planet1.whichGalaxyThisObjectBelongsTo == lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
         planet03= ((Planet*)[planets objectAtIndex:lastPlanetVisited.number+2]).sprite.position;
     else
-        planet03 = ccpAdd(planet02, ccpMult(ccpNormalize(ccpForAngle(defaultDirectionPlanetSegmentsGoIn)), 400));
+        planet03 = ccpAdd(planet02, ccpMult(ccpNormalize(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn))), 400));
     
     CGPoint planet04;
     if (planet2.whichGalaxyThisObjectBelongsTo == lastPlanetVisited.whichGalaxyThisObjectBelongsTo)
         planet04 = ((Planet*)[planets objectAtIndex:lastPlanetVisited.number+3]).sprite.position;
     else
-        planet04 = ccpAdd(planet03, ccpMult(ccpNormalize(ccpForAngle(defaultDirectionPlanetSegmentsGoIn)), 400));
+        planet04 = ccpAdd(planet03, ccpMult(ccpNormalize(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn))), 400));
     
     CGPoint focusPoint = ccpMult(planet01,2-percentofthewaytonext);
     focusPoint = ccpAdd(focusPoint, planet02);
     focusPoint = ccpAdd(focusPoint, planet03);
     focusPoint = ccpAdd(focusPoint, ccpMult(planet04, percentofthewaytonext));
     focusPoint = ccpMult(focusPoint, .25f);
+
+    if (cameraShouldFocusOnPlayer)
+        focusPoint = ccpAdd(player.sprite.position,ccpMult(ccpNormalize(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn))), 250)) ;
     
     float centerToPlanet1 = ccpDistance(planet01, focusPoint)+lastPlanetVisited.orbitRadius*2.25;
     float centerToPlanet3 = ccpDistance(focusPoint, planet03)-lastPlanetVisited.orbitRadius*.33;
