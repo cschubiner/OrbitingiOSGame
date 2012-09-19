@@ -1070,7 +1070,7 @@ typedef struct {
     
     
     
-    float scaleToUse = 2;
+    float scaleToUse = 4;
     float durationToUse = 1.1;
     
     coinPowerupImage2.scale = scaleToUse;
