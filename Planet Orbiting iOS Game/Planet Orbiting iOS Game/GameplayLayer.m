@@ -507,6 +507,7 @@ typedef struct {
     [cameraLayer addChild:playerExplosionParticle];
     [playerExplosionParticle setVisible:false];
     [playerExplosionParticle stopSystem];
+    [playerExplosionParticle setScale:.7];
     
     playerSpawnedParticle = [CCParticleSystemQuad particleWithFile:@"playerSpawnedParticle.plist"];
     [hudLayer addChild:playerSpawnedParticle];
@@ -1150,6 +1151,10 @@ typedef struct {
             CGPoint p = asteroid.sprite.position;
             if (player.alive && ccpLength(ccpSub(player.sprite.position, p)) <= asteroid.radius * asteroidRadiusCollisionZone && asteroid.sprite.visible) {
                 if (orbitState == 3 || player.currentPowerup.type == kasteroidImmunity) {
+                    [playerExplosionParticle resetSystem];
+                    [playerExplosionParticle setPosition:p];
+                    [playerExplosionParticle setPositionType:kCCPositionTypeGrouped];
+                    [playerExplosionParticle setVisible:true];
                     for (Asteroid* a in asteroids) {
                         if (ccpDistance(p, a.sprite.position) <= 50) {
                             [a.sprite setVisible:false];
@@ -1452,9 +1457,13 @@ typedef struct {
                 player.acceleration = ccpMult(ccpNormalize(player.acceleration), initialAccelMag);
             }
             
-            if (ccpLength(ccpSub(player.sprite.position, targetPlanet.sprite.position)) <= targetPlanet.orbitRadius) {
+            if (ccpLength(ccpSub(player.sprite.position, targetPlanet.sprite.position)) <= targetPlanet.orbitRadius * 1.1) {
                 orbitState = 0;
             }
+            
+            /*if (ccpLength(ccpSub(player.sprite.position, ((Planet*)[planets objectAtIndex:targetPlanet.number + 1]).sprite.position)) <= targetPlanet.orbitRadius * 1.1) {
+                orbitState = 0;
+            }*/
         }
         
         if (!(player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart))
@@ -1941,7 +1950,7 @@ typedef struct {
     for (int i = MAX(lastPlanetVisited.number-1,0); i < MIN(zoneCount,lastPlanetVisited.number+3);i++)
     {
         Zone * zone = [zones objectAtIndex:i];
-        if (zone.number<=lastPlanetVisited.number+1&& ccpDistance([[player sprite]position], [[zone sprite]position])<[zone radius]*zoneCollisionFactor)
+        if (zone.number<=lastPlanetVisited.number+1&& ccpDistance([[player sprite]position], [[zone sprite]position])<[zone radius]*zoneCollisionFactor*1.1)
         {
             player.isInZone = true;
             /*    Zone * nextZone = [zones objectAtIndex:zone.number+1];
@@ -1952,7 +1961,10 @@ typedef struct {
             {
                 if (i>0)
                     if ([[zones objectAtIndex:i - 1]hasPlayerHitThisZone]) {
-                        lastPlanetVisited = [planets objectAtIndex:zone.number];
+                        //if (zone.number!=lastPlanetVisited.number+1)
+                        //    lastPlanetVisited = [planets objectAtIndex:zone.number + 1];
+                        //else
+                            lastPlanetVisited = [planets objectAtIndex:zone.number];
                         updatesSinceLastPlanet = 0;
                     }
                 
