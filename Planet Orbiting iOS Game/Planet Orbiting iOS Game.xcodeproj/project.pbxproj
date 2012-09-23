@@ -158,6 +158,8 @@
 		0C2DEF02159C20BE0018F0FA /* Zone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2DEF01159C20BE0018F0FA /* Zone.m */; };
 		0C2E4D1315C4F70B00AB28FC /* pauseButton7-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2E4D0F15C4F70B00AB28FC /* pauseButton7-hd.png */; };
 		0C2E4D1415C4F70B00AB28FC /* pauseButton7.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2E4D1015C4F70B00AB28FC /* pauseButton7.png */; };
+		0C30961C160F984C001C2EA8 /* playercamo-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C30961A160F984C001C2EA8 /* playercamo-hd.png */; };
+		0C30961D160F984C001C2EA8 /* playercamo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C30961B160F984C001C2EA8 /* playercamo.png */; };
 		0C3E8FEE15F5836E007205B1 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FE615F5836E007205B1 /* FBDialog.bundle */; };
 		0C3E8FEF15F5836E007205B1 /* GTMOAuth2ViewTouch.nib in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FE715F5836E007205B1 /* GTMOAuth2ViewTouch.nib */; };
 		0C3E8FF015F5836E007205B1 /* Kamcord.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FE815F5836E007205B1 /* Kamcord.bundle */; };
@@ -708,6 +710,8 @@
 		0C2DEF01159C20BE0018F0FA /* Zone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Zone.m; sourceTree = "<group>"; };
 		0C2E4D0F15C4F70B00AB28FC /* pauseButton7-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pauseButton7-hd.png"; sourceTree = "<group>"; };
 		0C2E4D1015C4F70B00AB28FC /* pauseButton7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pauseButton7.png; sourceTree = "<group>"; };
+		0C30961A160F984C001C2EA8 /* playercamo-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playercamo-hd.png"; sourceTree = "<group>"; };
+		0C30961B160F984C001C2EA8 /* playercamo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playercamo.png; sourceTree = "<group>"; };
 		0C3E8FE115F58329007205B1 /* Kamcord.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kamcord.framework; sourceTree = "<group>"; };
 		0C3E8FE415F58349007205B1 /* AWSiOSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSiOSSDK.framework; sourceTree = "<group>"; };
 		0C3E8FE615F5836E007205B1 /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
@@ -2295,6 +2299,8 @@
 			children = (
 				FA20FD5115EDEC14008F2F17 /* playermenu-hd.png */,
 				FA20FD5215EDEC14008F2F17 /* playermenu.png */,
+				0C30961A160F984C001C2EA8 /* playercamo-hd.png */,
+				0C30961B160F984C001C2EA8 /* playercamo.png */,
 			);
 			name = Player;
 			sourceTree = "<group>";
@@ -2856,6 +2862,8 @@
 				0C888F7016061ADA0019C66D /* powerupText-hd.png in Resources */,
 				0C888F7116061ADA0019C66D /* powerupText.fnt in Resources */,
 				0C888F7216061ADA0019C66D /* powerupText.png in Resources */,
+				0C30961C160F984C001C2EA8 /* playercamo-hd.png in Resources */,
+				0C30961D160F984C001C2EA8 /* playercamo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
