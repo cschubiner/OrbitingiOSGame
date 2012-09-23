@@ -270,7 +270,7 @@
     
     if (highScore0Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore0Int];
-        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", [self commaInt:highScore0Int], [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore0 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore0];
         [highScore0 setAnchorPoint:ccp(.5, 1)];
@@ -279,7 +279,7 @@
     }
     if (highScore1Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore1Int];
-        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", [self commaInt:highScore1Int], [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore1 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore1];
         [highScore1 setAnchorPoint:ccp(.5, 1)];
@@ -288,7 +288,7 @@
     }
     if (highScore2Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore2Int];
-        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", [self commaInt:highScore2Int], [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore2 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore2];
         [highScore2 setAnchorPoint:ccp(.5, 1)];
@@ -297,7 +297,7 @@
     }
     if (highScore3Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore3Int];
-        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", [self commaInt:highScore3Int], [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore3 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore3];
         [highScore3 setAnchorPoint:ccp(.5, 1)];
@@ -306,7 +306,7 @@
     }
     if (highScore4Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore4Int];
-        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", [self commaInt:highScore4Int], [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore4 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore4];
         [highScore4 setAnchorPoint:ccp(.5, 1)];
@@ -315,7 +315,7 @@
     }
     if (highScore5Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore5Int];
-        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", [self commaInt:highScore5Int], [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore5 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore5];
         [highScore5 setAnchorPoint:ccp(.5, 1)];
@@ -324,7 +324,7 @@
     }
     if (highScore6Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore6Int];
-        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", [self commaInt:highScore6Int], [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore6 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore6];
         [highScore6 setAnchorPoint:ccp(.5, 1)];
@@ -333,7 +333,7 @@
     }
     if (highScore7Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore7Int];
-        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", [self commaInt:highScore7Int], [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore7 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore7];
         [highScore7 setAnchorPoint:ccp(.5, 1)];
@@ -342,7 +342,7 @@
     }
     if (highScore8Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore8Int];
-        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", [self commaInt:highScore8Int], [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore8 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore8];
         [highScore8 setAnchorPoint:ccp(.5, 1)];
@@ -351,7 +351,7 @@
     }
     if (highScore9Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore9Int];
-        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", [self commaInt:highScore9Int], [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore9 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore9];
         [highScore9 setAnchorPoint:ccp(.5, 1)];
@@ -360,7 +360,7 @@
     }
     if (highScore10Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore10Int];
-        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", [self commaInt:highScore10Int], [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore10 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore10];
         [highScore10 setAnchorPoint:ccp(.5, 1)];
@@ -369,7 +369,7 @@
     }
     if (highScore11Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore11Int];
-        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", [self commaInt:highScore11Int], [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore11 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore11];
         [highScore11 setAnchorPoint:ccp(.5, 1)];
@@ -378,7 +378,7 @@
     }
     if (highScore12Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore12Int];
-        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", [self commaInt:highScore12Int], [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore12 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore12];
         [highScore12 setAnchorPoint:ccp(.5, 1)];
@@ -387,7 +387,7 @@
     }
     if (highScore13Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore13Int];
-        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", [self commaInt:highScore13Int], [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore13 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore13];
         [highScore13 setAnchorPoint:ccp(.5, 1)];
@@ -396,7 +396,7 @@
     }
     if (highScore14Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore14Int];
-        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", [self commaInt:highScore14Int], [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore14 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore14];
         [highScore14 setAnchorPoint:ccp(.5, 1)];
@@ -405,7 +405,7 @@
     }
     if (highScore15Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore15Int];
-        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", [self commaInt:highScore15Int], [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore15 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore15];
         [highScore15 setAnchorPoint:ccp(.5, 1)];
@@ -414,7 +414,7 @@
     }
     if (highScore16Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore16Int];
-        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", [self commaInt:highScore16Int], [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore16 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore16];
         [highScore16 setAnchorPoint:ccp(.5, 1)];
@@ -423,7 +423,7 @@
     }
     if (highScore17Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore17Int];
-        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", [self commaInt:highScore17Int], [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore17 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore17];
         [highScore17 setAnchorPoint:ccp(.5, 1)];
@@ -432,7 +432,7 @@
     }
     if (highScore18Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore18Int];
-        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", [self commaInt:highScore18Int], [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore18 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore18];
         [highScore18 setAnchorPoint:ccp(.5, 1)];
@@ -441,7 +441,7 @@
     }
     if (highScore19Int != 0) {
         NSString *scoreInt = [NSString stringWithFormat:@"%d", highScore19Int];
-        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", scoreInt, [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
+        NSString *displayLine = [NSString stringWithFormat:@"%@  %@", [self commaInt:highScore19Int], [[[PlayerStats sharedInstance] getKeyValuePairs] valueForKey:scoreInt]];
         highScore19 = [CCLabelTTF labelWithString:displayLine fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
         [scrollView addChild:highScore19];
         [highScore19 setAnchorPoint:ccp(.5, 1)];
