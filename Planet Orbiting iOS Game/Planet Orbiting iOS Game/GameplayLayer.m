@@ -1921,6 +1921,22 @@ typedef struct {
         [feverLabel runAction:[CCSequence actions:[CCSpawn actions:[CCFadeIn actionWithDuration:.4],[CCScaleTo actionWithDuration:.5 scale:1.0], nil],[CCScaleTo actionWithDuration:.4 scale:.7], nil]];
         
         
+        
+        timeDilationUponFeverEnter = timeDilationCoefficient;
+        if (player.currentPowerup.type != kheadStart) {
+            timeDilationCoefficient *= timeDilationFeverModeMultiplier;
+            timeDilationCoefficient = clampf(timeDilationCoefficient, [[UpgradeValues sharedInstance] absoluteMinTimeDilation], absoluteMaxTimeDilation);
+        }
+        
+        //if (feverModePlanetHitsInARow == minPlanetsInARowForFeverMode) {
+            [self playSound:@"startFeverMode.mp3" shouldLoop:false pitch:1];
+            [feverModeInitialExplosionParticle resetSystem];
+            [feverModeInitialExplosionParticle setPosition:player.sprite.position];
+            [feverModeInitialExplosionParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
+        //}
+        
+        
+        
         isInFeverMode = true;
         return;
     }
@@ -1939,18 +1955,7 @@ typedef struct {
     
     
     
-    timeDilationUponFeverEnter = timeDilationCoefficient;
-    if (player.currentPowerup.type != kheadStart) {
-        timeDilationCoefficient *= timeDilationFeverModeMultiplier;
-        timeDilationCoefficient = clampf(timeDilationCoefficient, [[UpgradeValues sharedInstance] absoluteMinTimeDilation], absoluteMaxTimeDilation);
-    }
-    
-    if (feverModePlanetHitsInARow == minPlanetsInARowForFeverMode) {
-        [self playSound:@"startFeverMode.mp3" shouldLoop:false pitch:1];
-        [feverModeInitialExplosionParticle resetSystem];
-        [feverModeInitialExplosionParticle setPosition:player.sprite.position];
-        [feverModeInitialExplosionParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(player.velocity))];
-    }
+
 }
 
 - (void)UpdatePlanets {
