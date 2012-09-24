@@ -43,7 +43,7 @@
 #import "Support/OpenGL_Internal.h"
 
 // external
-#import "kazmath/GL/matrix.h"
+#import "matrix.h"
 
 #pragma mark -
 #pragma mark CCSprite
@@ -72,6 +72,13 @@
 @synthesize textureAtlas = textureAtlas_;
 @synthesize offsetPosition = offsetPosition_;
 
+
+-(CGFloat)width{
+    return self.contentSize.width * self.scaleX;
+}
+-(CGFloat)height{
+    return self.contentSize.height * self.scaleY;
+}
 
 +(id)spriteWithTexture:(CCTexture2D*)texture
 {

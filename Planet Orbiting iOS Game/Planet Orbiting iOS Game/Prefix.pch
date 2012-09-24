@@ -12,4 +12,6 @@
 //#import "TestFlight.h"
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#define HALF_IPHONE_5_ADDITIONAL_WIDTH 44
+#define IS_IPHONE_5 (size.width == 568)
 #endif

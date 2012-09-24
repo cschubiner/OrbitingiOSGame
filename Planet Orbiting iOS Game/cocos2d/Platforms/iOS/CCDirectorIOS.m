@@ -49,8 +49,8 @@
 #import "../../Support/CGPointExtension.h"
 #import "../../Support/TransformUtils.h"
 
-#import "kazmath/kazmath.h"
-#import "kazmath/GL/matrix.h"
+#import "kazmath.h"
+#import "matrix.h"
 
 #if CC_ENABLE_PROFILERS
 #import "../../Support/CCProfiling.h"

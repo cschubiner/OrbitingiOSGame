@@ -14,6 +14,7 @@
 #import "DataStorage.h"
 #import "IntroLayer.h"
 #import "PlayerStats.h"
+#import "DeviceDetection.h"
 
 @implementation AppDelegate
 
@@ -74,7 +75,7 @@
 	director_.wantsFullScreenLayout = YES;
     
 	// Display FSP and SPF
-	[director_ setDisplayStats:NO];
+	[director_ setDisplayStats:YES];
     
 	// set FPS at 60
 	[director_ setAnimationInterval:1.0/60.0f];
@@ -90,12 +91,14 @@
     //	[director setProjection:kCCDirectorProjection3D];
     
 	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
+    //if ([DeviceDetection detectDevice]!=MODEL_IPHONE_4) //uncomment this line to disable retina on iphone 4
 	if( ! [director_ enableRetinaDisplay:YES] )
 		CCLOG(@"Retina Display Not supported");
     
 	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images
 	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
 	// You can change anytime.
+    
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
     
 	// If the 1st suffix is not found and if fallback is enabled then fallback suffixes are going to searched. If none is found, it will try with the name without suffix.

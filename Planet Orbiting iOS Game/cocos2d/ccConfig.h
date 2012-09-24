@@ -69,7 +69,7 @@
  @since v2.0.0
  */
 #ifndef CC_ENABLE_GL_STATE_CACHE
-#define CC_ENABLE_GL_STATE_CACHE 0
+#define CC_ENABLE_GL_STATE_CACHE 1
 #endif
 
 /** @def CC_ENABLE_DEPRECATED
@@ -117,7 +117,7 @@
  Default value: 0.1f
  */
 #ifndef CC_DIRECTOR_STATS_INTERVAL
-#define CC_DIRECTOR_STATS_INTERVAL (0.1f)
+#define CC_DIRECTOR_STATS_INTERVAL (0.2f)
 #endif
 
 /** @def CC_DIRECTOR_STATS_POSITION
@@ -126,7 +126,7 @@
  Default: 0,0 (bottom-left corner)
  */
 #ifndef CC_DIRECTOR_STATS_POSITION
-#define CC_DIRECTOR_STATS_POSITION ccp(0,0)
+#define CC_DIRECTOR_STATS_POSITION ccp(82,273)
 #endif
 
 /** @def CC_DIRECTOR_IOS_USE_BACKGROUND_THREAD
@@ -205,7 +205,7 @@
  
  */
 #ifndef CC_TEXTURE_ATLAS_USE_VAO
-#define CC_TEXTURE_ATLAS_USE_VAO 1
+#define CC_TEXTURE_ATLAS_USE_VAO 0
 #endif
 
 
@@ -219,7 +219,7 @@
  @since v0.99.5
  */
 #ifndef CC_USE_LA88_LABELS
-#define CC_USE_LA88_LABELS 1
+#define CC_USE_LA88_LABELS 0
 #endif
 
 /** @def CC_SPRITE_DEBUG_DRAW
@@ -248,7 +248,7 @@
 #endif
 
 /** @def CC_LABELATLAS_DEBUG_DRAW
- If enabled, all subclasses of CCLabeltAtlas will draw a bounding box
+ If enabled, all subclasses of CCLabelAtlas will draw a bounding box
  Useful for debugging purposes only. It is recommended to leave it disabled.
 
  To enable set it to a value different than 0. Disabled by default.

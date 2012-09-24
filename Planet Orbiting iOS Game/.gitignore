@@ -1,0 +1,52 @@
+# Xcode
+build/*
+.DS_Store
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+*.xcworkspace
+!default.xcworkspace
+xcuserdata
+profile
+*.moved-aside
+*pbjproj
+*/bin/x86/*
+*\bin\x86\*
+Planet Orbiting iOS Game/.DS_Store
+*/*/.DS_Store
+.DS_Store
+Level Creator/Level Creator/Level Creator/bin/x86/Debug/*
+
+Planet Orbiting iOS Game/Planet Orbiting iOS Game/.DS_Store
+
+Level Creator/Level Creator/Level Creator/bin/x86/Debug/Level Creator.application
+
+Level Creator/Level Creator/Level Creator/bin/x86/Debug/Level Creator.exe
+
+Level Creator/Level Creator/Level Creator/bin/x86/Debug/Level Creator.exe.manifest
+
+Level Creator/Level Creator/Level Creator/bin/x86/Debug/Level Creator.pdb
+
+Level Creator/Level Creator/Level Creator/bin/x86/Debug/app.publish/Level Creator.application
+
+Level Creator/Level Creator/Level Creator/obj/x86/Debug/Level Creator.application
+
+Level Creator/Level Creator/Level Creator/obj/x86/Debug/Level Creator.exe
+
+Level Creator/Level Creator/Level Creator/obj/x86/Debug/Level Creator.exe.manifest
+
+Level Creator/Level Creator/Level Creator/obj/x86/Debug/Level Creator.pdb
+Planet Orbiting iOS Game/Planet Orbiting iOS Game.xcodeproj/project.pbxproj.BACKUP.41537.pbxproj
+Planet Orbiting iOS Game/Planet Orbiting iOS Game.xcodeproj/project.pbxproj.BASE.41537.pbxproj
+Planet Orbiting iOS Game/Planet Orbiting iOS Game.xcodeproj/project.pbxproj.LOCAL.41537.pbxproj
+Planet Orbiting iOS Game/Planet Orbiting iOS Game.xcodeproj/project.pbxproj.REMOTE.41537.pbxproj
+Planet Orbiting iOS Game/Planet Orbiting iOS Game.xcodeproj/project.pbxproj.orig
+
+Level Creator/Level Creator/Level Creator/bin/x86/Debug/input.txt
+Planet Orbiting iOS Game/removeUnused.sh
+Planet Orbiting iOS Game/xcode-usages

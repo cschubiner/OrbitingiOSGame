@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Stanford University. All rights reserved.
 //
 
-#import "CCNode.h"
 #import "cocos2d.h"
+#import "CCNode.h"
 #import "UpgradeValues.h"
 
 @interface Light : CCNode

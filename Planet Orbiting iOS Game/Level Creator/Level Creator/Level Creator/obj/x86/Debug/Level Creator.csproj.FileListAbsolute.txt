@@ -1,0 +1,53 @@
+C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Level Creator.exe
+C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Level Creator.pdb
+C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\Level Creator.exe
+C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\Level Creator.pdb
+C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\font.xnb
+C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\iphone box.xnb
+C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Level Creator.exe.manifest
+C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Level Creator.application
+C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\Level Creator.exe.manifest
+C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\Level Creator.application
+C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\biggerFont.xnb
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\iphone box.xnb
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\font.xnb
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\biggerFont.xnb
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Level Creator.exe.manifest
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Level Creator.application
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Level Creator.exe
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Level Creator.pdb
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\ResolveAssemblyReference.cache
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\Level Creator.exe.manifest
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\Level Creator.application
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\Level Creator.exe
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\Level Creator.pdb
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\coin.xnb
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\planet2small.xnb
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\asteroidsmall.xnb
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\zonesmall.xnb
+C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\font.xnb
+C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\biggerFont.xnb
+C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\iphone box.xnb
+C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\planet2small.xnb
+C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\coin.xnb
+C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\asteroidsmall.xnb
+C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\zonesmall.xnb
+C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Level Creator.exe.manifest
+C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Level Creator.application
+C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Level Creator.exe
+C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Level Creator.pdb
+C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\Level Creator.exe.manifest
+C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\Level Creator.application
+C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\Level Creator.exe
+C:\Users\Alex\Desktop\levelmakar\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\obj\x86\Debug\Level Creator.pdb
+Z:\clayschubiner On My Mac\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\asteroidbreakercoinsmall.xnb
+C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\planet2small.xnb
+C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\coin.xnb
+C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\asteroidsmall.xnb
+C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\zonesmall.xnb
+C:\Users\Clay\Documents\GitHub\OrbitingiOSGame\Level Creator\Level Creator\Level Creator\bin\x86\Debug\Content\asteroidbreakercoinsmall.xnb

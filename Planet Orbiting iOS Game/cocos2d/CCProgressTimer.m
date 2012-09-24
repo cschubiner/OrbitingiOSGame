@@ -36,7 +36,7 @@
 #import "CCDrawingPrimitives.h"
 
 // extern
-#import "kazmath/GL/matrix.h"
+#import "matrix.h"
 
 #define kProgressTextureCoordsCount 4
 //  kProgressTextureCoords holds points {0,1} {0,0} {1,0} {1,1} we can represent it as bits

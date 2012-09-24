@@ -30,13 +30,11 @@
 const float musicVolumeMainMenu = 1;
 const float effectsVolumeMainMenu = 1;
 
-// HelloWorldLayer implementation
 @implementation MainMenuLayer {
-    
     BOOL muted;
     CGPoint swipeBeginPoint;
     CGPoint swipeEndPoint;
-    CCLabelTTF* beginLabel;
+    CCLabelBMFont* beginLabel;
     bool missionPopupIsUp;
     
     CCLayer* missionPopup;
@@ -123,18 +121,26 @@ const float effectsVolumeMainMenu = 1;
 // on "init" you need to initialize your instance
 - (id)init {
 	if (self = [super init]) {
+        size = [[CCDirector sharedDirector] winSize];
         self.isTouchEnabled = true;
         
         layer = (CCLayer*)[CCBReader nodeGraphFromFile:@"MainMenuCCBFile.ccb" owner:self];
-        
+        if (IS_IPHONE_5)
+        layer.position = ccpAdd(layer.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
         muted = ![[PlayerStats sharedInstance] isMuted];
         [self toggleMute];
         
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"purchase.wav"];
         
-        beginLabel = [CCLabelTTF labelWithString:@"TAP ANYWHERE TO BEGIN!" fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
+//        beginLabel = [CCLabelTTF labelWithString:@"TAP ANYWHERE TO BEGIN!" fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
+        beginLabel = [CCLabelBMFont labelWithString:@"TAP ANYWHERE TO BEGIN!" fntFile:@"score_label_font.fnt"];
+        [beginLabel setScale:.6];
         [self addChild: beginLabel];
         [beginLabel setZOrder:INT_MAX-1];
+        
+        if (IS_IPHONE_5)
+        [beginLabel setPosition:ccp(240+HALF_IPHONE_5_ADDITIONAL_WIDTH, 60)];
+        else
         [beginLabel setPosition:ccp(240, 60)];
         [beginLabel setVisible:false];
         

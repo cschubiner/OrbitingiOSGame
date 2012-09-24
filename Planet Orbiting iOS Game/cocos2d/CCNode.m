@@ -40,7 +40,7 @@
 #import "CCGLProgram.h"
 
 // externals
-#import "kazmath/GL/matrix.h"
+#import "matrix.h"
 
 #ifdef __CC_PLATFORM_IOS
 #import "Platforms/iOS/CCDirectorIOS.h"

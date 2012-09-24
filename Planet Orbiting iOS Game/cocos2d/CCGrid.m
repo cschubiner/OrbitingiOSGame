@@ -39,8 +39,8 @@
 #import "Support/TransformUtils.h"
 #import "Support/OpenGL_Internal.h"
 
-#import "kazmath/kazmath.h"
-#import "kazmath/GL/matrix.h"
+#import "kazmath.h"
+#import "matrix.h"
 
 #ifdef __CC_PLATFORM_IOS
 #import "Platforms/iOS/CCDirectorIOS.h"

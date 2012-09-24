@@ -51,7 +51,7 @@
 #import "Support/NSThread+performBlock.h"
 
 // extern
-#import "kazmath/GL/matrix.h"
+#import "matrix.h"
 
 @interface CCParticleSystemQuad ()
 -(void) initVAO;

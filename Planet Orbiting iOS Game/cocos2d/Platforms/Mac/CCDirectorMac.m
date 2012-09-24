@@ -42,8 +42,8 @@
 #import "../../ccGLStateCache.h"
 
 // external
-#import "kazmath/kazmath.h"
-#import "kazmath/GL/matrix.h"
+#import "kazmath.h"
+#import "matrix.h"
 
 #pragma mark -
 #pragma mark Director Mac extensions

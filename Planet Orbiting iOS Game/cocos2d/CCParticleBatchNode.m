@@ -45,7 +45,7 @@
 #import "Support/ZipUtils.h"
 #import "Support/CCFileUtils.h"
 
-#import "kazmath/GL/matrix.h"
+#import "matrix.h"
 
 #define kCCParticleDefaultCapacity 500
 

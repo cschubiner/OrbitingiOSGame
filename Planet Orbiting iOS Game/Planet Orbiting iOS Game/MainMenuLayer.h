@@ -45,6 +45,7 @@
     CCMenuItemImage * creditsButton;
     CCMenuItemImage * upgradesButton;
     CCMenuItemImage * soundButton;
+    CGSize size ;
     
     CCNode* playerAndParticleNode;
     CCNode* bottomBarNode;

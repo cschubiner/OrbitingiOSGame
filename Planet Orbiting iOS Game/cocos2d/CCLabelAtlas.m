@@ -38,7 +38,7 @@
 #import "Support/CCFileUtils.h"
 
 // external
-#import "kazmath/GL/matrix.h"
+#import "matrix.h"
 
 @implementation CCLabelAtlas
 

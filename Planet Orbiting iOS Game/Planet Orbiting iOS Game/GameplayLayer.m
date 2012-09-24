@@ -22,11 +22,12 @@
 #import "GKAchievementHandler.h"
 #import "StoreLayer.h"
 #import "MissionsCompleteLayer.h"
+#import "DeviceDetection.h"
 
 #define pauseLayerTag       100
 #define gameOverLayerTag    200
 #define LOADING_LAYER_TAG   212
-#define LABEL_0_TAG 1219
+#define LABEL_0_TAG         1219
 
 @implementation GameplayLayer {
     int planetCounter;
@@ -465,6 +466,9 @@ typedef struct {
 }
 
 - (void)loadEverything {
+    if ([DeviceDetection detectDevice]==MODEL_IPHONE_4)
+        [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
+
     [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setGalaxyCounter:0];
     isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsInTutorialMode];
     shouldDisplayPredPoints = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getShouldDisplayPredPoints];
@@ -608,6 +612,9 @@ typedef struct {
     galaxyLabel = [[CCLabelBMFont alloc]initWithString:currentGalaxy.name fntFile:@"score_label_font.fnt"];
     [galaxyLabel setAnchorPoint:ccp(.5f,.5f)];
     [galaxyLabel setPosition:ccp(240,45)];
+    if (IS_IPHONE_5)
+        galaxyLabel.position = ccpAdd(galaxyLabel.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
+
     
     id fadeAction = [CCFadeIn actionWithDuration:.8];
     id action2 = [CCSequence actions:[CCSpawn actions:fadeAction,[CCScaleTo actionWithDuration:.3 scale:1], nil], nil] ;
@@ -669,6 +676,8 @@ typedef struct {
     timeInOrbit = 0;
     feverLabel = [[CCLabelBMFont alloc]initWithString:@"" fntFile:@"score_label_font.fnt"];
     [feverLabel setPosition:ccp(240, feverLabel.boundingBox.size.height*.6+30)];
+    if (IS_IPHONE_5)
+        feverLabel.position = ccpAdd(feverLabel.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
     [feverLabel setColor:ccRED];
     [hudLayer addChild:feverLabel];
     isInFeverMode = false;
@@ -2172,7 +2181,8 @@ typedef struct {
     NSString *ccbFile = @"GameOverLayer.ccb";
     //NSString *scoreText = [NSString stringWithFormat:@"Score: %d",finalScore];
     pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:ccbFile owner:self];
-    
+    if (IS_IPHONE_5)
+        pauseLayer.position = ccpAdd(pauseLayer.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
     if (finalScore > 40000)
         [[iRate sharedInstance] logEvent:YES];
     //finalScore = 69669;
@@ -2338,7 +2348,10 @@ typedef struct {
         powerupVel = 18*1.5;
     
     //powerupPos = 999;
-    if (powerupPos > 480 + [powerupLabel boundingBox].size.width) {
+    float additionalWidth = 0;
+    if (IS_IPHONE_5)
+        additionalWidth = HALF_IPHONE_5_ADDITIONAL_WIDTH;
+    if (powerupPos > 480 + [powerupLabel boundingBox].size.width+additionalWidth) {
         paused = false;
         isDisplayingPowerupAnimation = false;
     }
@@ -2975,9 +2988,10 @@ float lerpf(float a, float b, float t) {
     
     CCMenu* menu = [CCMenu menuWithItems:replay, resume, quit, sound, nil];
     menu.position = ccp(0, 0);
-    
+
     [layerToAdd addChild:menu];
-    
+    if (IS_IPHONE_5)
+        layerToAdd.position = ccpAdd(layerToAdd.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
     return layerToAdd;
 }
 
@@ -3067,6 +3081,9 @@ float lerpf(float a, float b, float t) {
             continueLabel = [CCLabelTTF labelWithString:@"Tap to continue..." fontName:@"HelveticaNeue-CondensedBold" fontSize:20];
             continueLabel.anchorPoint = ccp(.5, 0);
             continueLabel.position = ccp(240, 60);
+            if (IS_IPHONE_5)
+                continueLabel.position = ccpAdd(continueLabel.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
+
             continueLabel.opacity = 0;
             [self addChild: continueLabel];
             [continueLabel runAction:[CCFadeIn actionWithDuration:.7]];

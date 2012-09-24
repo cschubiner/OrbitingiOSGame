@@ -1,0 +1,11 @@
+version 0.2 -
+- [FIX] config file: only include cocos2d ios on iOS and cocos2d osx on OS X
+
+version 0.1 - 21-Ago-2012 
+ - [NEW] Initial public release
+ - [NEW] bindings: 
+ 	- Added bindings for cocos2d-iphone v2.1
+ 	- Added bindings for Chipmunk v6.1.1
+ 	- Added bindings for CocosBuilder Reader
+ 	- Added bindings for CocosDenshion
+
