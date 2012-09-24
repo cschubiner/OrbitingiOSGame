@@ -134,7 +134,7 @@ const float effectsVolumeMainMenu = 1;
         
 //        beginLabel = [CCLabelTTF labelWithString:@"TAP ANYWHERE TO BEGIN!" fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
         beginLabel = [CCLabelBMFont labelWithString:@"TAP ANYWHERE TO BEGIN!" fntFile:@"score_label_font.fnt"];
-        [beginLabel setScale:.6];
+        [beginLabel setScale:.68];
         [self addChild: beginLabel];
         [beginLabel setZOrder:INT_MAX-1];
         

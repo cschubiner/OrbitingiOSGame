@@ -695,6 +695,8 @@ typedef struct {
     numTimesDied = 0;
     
     backgroundClouds = [CCSprite spriteWithSpriteFrameName:@"backgroundClouds.png"];
+    if (IS_IPHONE_5)
+    [backgroundClouds setScaleX:IPHONE_5_RATIO];
     [backgroundClouds setPosition:ccp(size.width/2,size.height/2)];
     [backgroundClouds setColor:currentGalaxy.galaxyColor];
     [backgroundSpriteSheet addChild:backgroundClouds];
@@ -781,7 +783,7 @@ typedef struct {
         self.isTouchEnabled= TRUE;
         
         loadingLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"LoadingLayerCCB.ccb" owner:self];
-        
+
         NSArray * helperTextArray = [NSArray arrayWithObjects:
                                      @"Stars increase your score and let you buy upgrades in the store!",
                                      @"Aim your swipes - they determine the direction you'll move in.",
@@ -2624,7 +2626,6 @@ typedef struct {
                     tutHand.position = startPos;
                     tutHand.opacity = 0;
                     
-                    
                     [tutHand runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
                                                                           [CCFadeTo actionWithDuration:.5 opacity:255],
                                                                           [CCMoveTo actionWithDuration:.5 position:ccp(400, 150)],
@@ -2638,6 +2639,8 @@ typedef struct {
                     [tutLabel runAction:[CCFadeIn actionWithDuration:.5]];
                     [hudLayer addChild:tutLabel];
                     tutLabel.position = ccp(240, 280);
+                    if (IS_IPHONE_5)
+                        tutLabel.position = ccpAdd(tutLabel.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
                 }
             }
         } else if (tutHand) {

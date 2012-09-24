@@ -102,8 +102,11 @@ static ObjectiveManager *sharedInstance = nil;
 }
 
 -(CCLayer*)createMissionPopupWithX:(bool)withX withDark:(bool)a_hasDark {
+    size = [[CCDirector sharedDirector] winSize];
+
     CCLayer* mPopup = [[CCLayer alloc] init];
-    
+    if (IS_IPHONE_5)
+        mPopup.position = ccpAdd(mPopup.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
     if (a_hasDark) {
         CCSprite* dark = [CCSprite spriteWithFile:@"black.png"];
         [mPopup addChild:dark];
