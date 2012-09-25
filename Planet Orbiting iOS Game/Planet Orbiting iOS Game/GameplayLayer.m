@@ -1806,12 +1806,10 @@ typedef struct {
                     //[[CCTextureCache sharedTextureCache] removeUnusedTextures];
                     lastGalaxy.segments = NULL;
                     [lastGalaxy removeAllChildrenWithCleanup:YES];
-                    
+                    lastGalaxy = NULL;
                     [galaxies replaceObjectAtIndex:lastGalaxy.number withObject:[NSNull null]];
                     
                     // [lastGalaxy cleanup];
-                    
-                    
                     
                     [cameraLayer addChild:currentGalaxy.spriteSheet z:3];
                     //CCLOG(@"galaxy1155");
