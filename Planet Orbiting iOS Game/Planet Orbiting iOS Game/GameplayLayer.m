@@ -1919,7 +1919,6 @@ typedef struct {
         [feverLabel runAction:[CCSequence actions:[CCSpawn actions:[CCFadeIn actionWithDuration:.4],[CCScaleTo actionWithDuration:.5 scale:1.0], nil],[CCScaleTo actionWithDuration:.4 scale:.7], nil]];
         
         
-        
         timeDilationUponFeverEnter = timeDilationCoefficient;
         if (player.currentPowerup.type != kheadStart) {
             timeDilationCoefficient *= timeDilationFeverModeMultiplier;
