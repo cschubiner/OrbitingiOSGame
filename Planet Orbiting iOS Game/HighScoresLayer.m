@@ -44,6 +44,8 @@
     NSMutableArray* upgradeIndecesHere;
     NSMutableArray* cells;
     CCLabelTTF* totalStars;
+    
+    CCParticleSystemQuad * starParticle;
 }
 
 // returns a singleton scene
@@ -97,6 +99,9 @@
     
 }
 
+- (void) timerHit {
+    [starParticle setEmissionRate:starParticle.emissionRate/20.0f];
+}
 
 /* On "init," initialize the instance */
 - (id)init {
@@ -108,8 +113,16 @@
         scrollView = [[CCLayer alloc] init];
         [self addChild:scrollView];
         
-        CCParticleSystemQuad * starParticle = [CCParticleSystemQuad particleWithFile:@"starParticleMenu.plist"];
+        starParticle = [CCParticleSystemQuad particleWithFile:@"starParticleMenu.plist"];
         [self addChild:starParticle];
+        [starParticle setEmissionRate:starParticle.emissionRate*20];
+        //[starParticle setLife:starParticle.life/20.0f];
+        
+        [NSTimer scheduledTimerWithTimeInterval:1
+                                         target:self
+                                       selector:@selector(timerHit)
+                                       userInfo:nil
+                                        repeats:NO];
         
         CCSprite* topBar = [CCSprite spriteWithFile:@"banner.png"];
         [self addChild:topBar];
