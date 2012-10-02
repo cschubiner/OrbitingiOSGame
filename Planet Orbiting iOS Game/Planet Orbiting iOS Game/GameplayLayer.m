@@ -3030,7 +3030,7 @@ float lerpf(float a, float b, float t) {
     bool isOnRegularPause = (a_duration == 0 && a_message == @"");
     if (!isOnRegularPause)
         isDoingTutStuff = true;
-    pauseDuration = .1; //a_duration; //LOL of got frustrated
+    pauseDuration = .2; //a_duration; //LOL of got frustrated
     pauseText = a_message;
     
     if (!pauseEnabled) {
