@@ -271,8 +271,8 @@ const float effectsVolumeMainMenu = 1;
 }
 
 - (void) Update:(ccTime)dt {
-    if (dt > .2)
-		dt = 1.0 / 60.0f;
+    if (dt > .1)
+		dt = .1;
     difVector = ccpSub(ccp(200, 480), position);
     float multer = .0022;
     float variance = .021;
