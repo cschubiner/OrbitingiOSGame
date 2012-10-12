@@ -17,6 +17,7 @@
 #import "SimpleAudioEngine.h"
 #import "DataStorage.h"
 #import "PlayerStats.h"
+#import "MissionsCompleteLayer.h"
 
 @implementation HighScoresLayer {
     CCLayer* scrollView;
@@ -103,6 +104,15 @@
     [starParticle setEmissionRate:starParticle.emissionRate/20.0f];
 }
 
+
+-(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber {
+    bool didComplete = [[ObjectiveManager sharedInstance] completeObjectiveFromGroupNumber:a_groupNumber itemNumber:a_itemNumber view:self];
+    if ([[ObjectiveManager sharedInstance] shouldDisplayLevelUpAnimation] && didComplete) {
+        [[CCDirector sharedDirector] pushScene:[MissionsCompleteLayer scene]];
+    }
+    
+}
+
 /* On "init," initialize the instance */
 - (id)init {
 	// always call "super" init.
@@ -127,6 +137,8 @@
         CCSprite* topBar = [CCSprite spriteWithFile:@"banner.png"];
         [self addChild:topBar];
         [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2 + 2)];
+        
+        [self completeObjectiveFromGroupNumber:2 itemNumber:2];
         
         NSString* stringToUse;
         stringToUse = @"HIGH SCORES";
@@ -631,13 +643,6 @@
         return [[SimpleAudioEngine sharedEngine]playEffect:soundFile pitch:pitch pan:0 gain:1];
     return 0;
 }
-
-
-
--(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber {
-    [[ObjectiveManager sharedInstance] completeObjectiveFromGroupNumber:a_groupNumber itemNumber:a_itemNumber view:self];
-}
-
 
 
 

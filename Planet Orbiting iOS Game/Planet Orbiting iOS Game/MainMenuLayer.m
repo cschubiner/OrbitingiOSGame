@@ -162,13 +162,6 @@ const float effectsVolumeMainMenu = 1;
         newSprite.scale = .736;
         
         
-        
-        
-        
-        
-        
-        
-        
         [proScoreLabel setString:[NSString stringWithFormat:@"%.0f",[self getProValue]]];
         [funScoreLabel setString:[NSString stringWithFormat:@"%.0f",[self getFunValue]]];
         
