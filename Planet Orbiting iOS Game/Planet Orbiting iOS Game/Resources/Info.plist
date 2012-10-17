@@ -10,8 +10,8 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>iconv4.png</string>
-		<string>iconv4@2x.png</string>
+		<string>icon3v3.png</string>
+		<string>icon3v3@2x.png</string>
 		<string>Icon-72.png</string>
 		<string>Icon-Small-50.png</string>
 		<string>Icon-Small.png</string>
@@ -31,8 +31,8 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>iconv4.png</string>
-				<string>iconv4@2x.png</string>
+				<string>icon3v3.png</string>
+				<string>icon3v3@2x.png</string>
 				<string>Icon-72.png</string>
 				<string>Icon-Small-50.png</string>
 				<string>Icon-Small.png</string>
@@ -61,7 +61,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2.6.3</string>
+	<string>2.6.4</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIAppFonts</key>

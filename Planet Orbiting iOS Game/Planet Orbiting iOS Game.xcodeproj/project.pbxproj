@@ -291,8 +291,6 @@
 		0C4F32B9160597DD0077EA66 /* generalSpritesheet-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F32B5160597DD0077EA66 /* generalSpritesheet-hd.pvr.ccz */; };
 		0C4F32BA160597DD0077EA66 /* generalSpritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F32B6160597DD0077EA66 /* generalSpritesheet.plist */; };
 		0C4F32BB160597DD0077EA66 /* generalSpritesheet.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F32B7160597DD0077EA66 /* generalSpritesheet.pvr.ccz */; };
-		0C5A805816018561005E2807 /* iconv4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5A805716018561005E2807 /* iconv4@2x.png */; };
-		0C5A805A1601856A005E2807 /* iconv4.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5A80591601856A005E2807 /* iconv4.png */; };
 		0C5F4EE515E6006E00075F36 /* LoadingLayerCCB.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F4EE415E6006E00075F36 /* LoadingLayerCCB.ccb */; };
 		0C60EC5A15CB8C42005FE434 /* Galaxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C60EC5915CB8C42005FE434 /* Galaxy.m */; };
 		0C62B1A815C8DA2700318B66 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1A715C8DA2700318B66 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -338,6 +336,8 @@
 		0C888F7116061ADA0019C66D /* powerupText.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0C888F6D16061ADA0019C66D /* powerupText.fnt */; };
 		0C888F7216061ADA0019C66D /* powerupText.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C888F6E16061ADA0019C66D /* powerupText.png */; };
 		0C8A1E5915DB650F00600B36 /* MainMenuCCBFile.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 0C8A1E5815DB650F00600B36 /* MainMenuCCBFile.ccb */; };
+		0C8BF9DF162CBDEC00A4127D /* icon3v3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8BF9DE162CBDEC00A4127D /* icon3v3@2x.png */; };
+		0C8BF9E1162CBDF100A4127D /* icon3v3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8BF9E0162CBDF000A4127D /* icon3v3.png */; };
 		0C9D124115C2513900C3495A /* streak2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C9D123F15C2513900C3495A /* streak2.png */; };
 		0CA3AF3D15E89E9000064D38 /* play_button-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA3AF3B15E89E9000064D38 /* play_button-hd.png */; };
 		0CA3AF3E15E89E9000064D38 /* play_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA3AF3C15E89E9000064D38 /* play_button.png */; };
@@ -962,7 +962,7 @@
 		0C309D0E160FB79E001C2EA8 /* SimpleAudioEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleAudioEngine.h; sourceTree = "<group>"; };
 		0C309D0F160FB79E001C2EA8 /* SimpleAudioEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleAudioEngine.m; sourceTree = "<group>"; };
 		0C309D14160FC67B001C2EA8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		0C309D18160FC86E001C2EA8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		0C309D18160FC86E001C2EA8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		0C309D1A160FD21D001C2EA8 /* DeviceDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceDetection.h; sourceTree = "<group>"; };
 		0C309D1B160FD21D001C2EA8 /* DeviceDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceDetection.m; sourceTree = "<group>"; };
 		0C3E8FE115F58329007205B1 /* Kamcord.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kamcord.framework; sourceTree = "<group>"; };
@@ -993,8 +993,6 @@
 		0C4F32B5160597DD0077EA66 /* generalSpritesheet-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "generalSpritesheet-hd.pvr.ccz"; sourceTree = "<group>"; };
 		0C4F32B6160597DD0077EA66 /* generalSpritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = generalSpritesheet.plist; sourceTree = "<group>"; };
 		0C4F32B7160597DD0077EA66 /* generalSpritesheet.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = generalSpritesheet.pvr.ccz; sourceTree = "<group>"; };
-		0C5A805716018561005E2807 /* iconv4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iconv4@2x.png"; path = "../iconv4@2x.png"; sourceTree = "<group>"; };
-		0C5A80591601856A005E2807 /* iconv4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconv4.png; path = ../iconv4.png; sourceTree = "<group>"; };
 		0C5F4EE415E6006E00075F36 /* LoadingLayerCCB.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LoadingLayerCCB.ccb; sourceTree = "<group>"; };
 		0C60EC5815CB8C42005FE434 /* Galaxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Galaxy.h; sourceTree = "<group>"; };
 		0C60EC5915CB8C42005FE434 /* Galaxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Galaxy.m; sourceTree = "<group>"; };
@@ -1050,6 +1048,8 @@
 		0C888F6D16061ADA0019C66D /* powerupText.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = powerupText.fnt; sourceTree = "<group>"; };
 		0C888F6E16061ADA0019C66D /* powerupText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = powerupText.png; sourceTree = "<group>"; };
 		0C8A1E5815DB650F00600B36 /* MainMenuCCBFile.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MainMenuCCBFile.ccb; sourceTree = "<group>"; };
+		0C8BF9DE162CBDEC00A4127D /* icon3v3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon3v3@2x.png"; path = "../icon3v3@2x.png"; sourceTree = "<group>"; };
+		0C8BF9E0162CBDF000A4127D /* icon3v3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon3v3.png; path = ../icon3v3.png; sourceTree = "<group>"; };
 		0C9D123F15C2513900C3495A /* streak2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = streak2.png; sourceTree = "<group>"; };
 		0CA3AF3B15E89E9000064D38 /* play_button-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play_button-hd.png"; sourceTree = "<group>"; };
 		0CA3AF3C15E89E9000064D38 /* play_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_button.png; sourceTree = "<group>"; };
@@ -1975,8 +1975,9 @@
 		0C487B0F159481C500674AB9 /* Icons and Launch Images */ = {
 			isa = PBXGroup;
 			children = (
-				0C5A80591601856A005E2807 /* iconv4.png */,
-				0C5A805716018561005E2807 /* iconv4@2x.png */,
+				0C8BF9E0162CBDF000A4127D /* icon3v3.png */,
+				0C8BF9DE162CBDEC00A4127D /* icon3v3@2x.png */,
+				0C309D18160FC86E001C2EA8 /* Default-568h@2x.png */,
 				C4B8D7B815DDA7F2002D50C6 /* fps_images-hd.png */,
 				C4B8D7B915DDA7F2002D50C6 /* fps_images.png */,
 				C4286D4415C3748300773FA3 /* Default.png */,
@@ -1990,7 +1991,6 @@
 		0C7AA5E315946938000B58F2 = {
 			isa = PBXGroup;
 			children = (
-				0C309D18160FC86E001C2EA8 /* Default-568h@2x.png */,
 				0C7AA60215946939000B58F2 /* Planet Orbiting iOS Game */,
 				0C7AA5F115946939000B58F2 /* Frameworks */,
 				0C309D17160FC845001C2EA8 /* Cocos2D 2.1 Beta 2 */,
@@ -2962,8 +2962,6 @@
 				FA4089A915FE579F006891FA /* buypressed.png in Resources */,
 				FA87CE2216014A9D008BEDDC /* hand-hd.png in Resources */,
 				FA87CE2316014A9D008BEDDC /* hand.png in Resources */,
-				0C5A805816018561005E2807 /* iconv4@2x.png in Resources */,
-				0C5A805A1601856A005E2807 /* iconv4.png in Resources */,
 				0C0E87B91604050F00779D6F /* starParticleMenu.plist in Resources */,
 				0C0E87BA1604050F00779D6F /* starParticleTexture-hd.png in Resources */,
 				0C0E87BB1604050F00779D6F /* starParticleTexture.png in Resources */,
@@ -3028,6 +3026,8 @@
 				0C309CBC160FAE6F001C2EA8 /* CMakeLists.txt in Resources */,
 				0C309CC9160FAE6F001C2EA8 /* kazmath_neon.patch in Resources */,
 				0C309D19160FC86E001C2EA8 /* Default-568h@2x.png in Resources */,
+				0C8BF9DF162CBDEC00A4127D /* icon3v3@2x.png in Resources */,
+				0C8BF9E1162CBDF100A4127D /* icon3v3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3246,8 +3246,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_POSTPROCESSING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3298,8 +3298,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
