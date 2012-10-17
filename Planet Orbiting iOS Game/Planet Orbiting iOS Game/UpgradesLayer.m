@@ -179,6 +179,7 @@
         
         [self initUpgradeLayer];
         [self initScrollStuff];
+        [self refreshUpgradeCells];
         [self schedule:@selector(Update:) interval:0];
 	}
 	return self;
