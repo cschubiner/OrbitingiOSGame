@@ -45,6 +45,8 @@
     BOOL scoreAlreadySaved;
     bool wasGoingClockwise;
     
+    bool hasShared;
+    
     bool isInFeverMode;
     int feverModePlanetHitsInARow;
     float timeInOrbit;
@@ -655,7 +657,6 @@ typedef struct {
     }
     
     
-    
     cameraFocusNode = [[CCNode alloc]init];
     //cameraFollowAction =  [CCFollow actionWithTarget:cameraFocusNode];
     
@@ -663,6 +664,7 @@ typedef struct {
     //orbitState = 0; // 0 = orbiting, 1 = just left orbit and deciding things for state 3; 3 = flying to next planet
     velSoftener = 1;
     initialAccelMag = 0;
+    hasShared = false;
     isOnFirstRun = true;
     timeDilationCoefficient = [[UpgradeValues sharedInstance] absoluteMinTimeDilation];
     dangerLevel = 0;
@@ -777,7 +779,12 @@ typedef struct {
 }
 
 -(void) creditUserVirtualCurrencyForVideoShare {
-    [[UserWallet sharedInstance] addCoins: 666];
+    if (!hasShared)
+    {
+        NSLog(@"dsjkfhdskjfhjsdklfhjlskfhsdljkfjkldshfjlkdshjklfshjlkfhd");
+        [[UserWallet sharedInstance] addCoins: 666];
+        hasShared = true;
+    }
 }
 
 /* On "init," initialize the instance */
