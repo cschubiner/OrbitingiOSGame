@@ -32,6 +32,9 @@
 @implementation GameplayLayer {
     int planetCounter;
     int score;
+    float currentDistance;
+    float previousDistance;
+    float farthestPosSoFar;
     int zonesReached;
     int prevCurrentPtoPScore;
     int initialScoreConstant;
@@ -811,7 +814,9 @@ typedef struct {
                                                                                   nil]]];
         })];
         
-        
+        currentDistance = 0;
+        previousDistance = 0;
+        farthestPosSoFar = 0;
         loadingLabelHelperText2 = [CCLabelTTF labelWithString:[helperTextArray objectAtIndex:[self RandomBetween:0 maxvalue:helperTextArray.count-1]] dimensions:CGSizeMake(size.width*.499999999999999999999999, 90) hAlignment:UITextAlignmentCenter vAlignment:UITextAlignmentCenter lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
         
         loadingLabelHelperText2.position = ccp(size.width/2,size.height/2);
@@ -2031,15 +2036,33 @@ typedef struct {
 /* Your score goes up as you move along the vector between the current and next planet. Your score will also never go down, as the user doesn't like to see his score go down.*/
 - (void)UpdateScore:(float)dt {
     tempScore = ccpDistance(CGPointZero, player.sprite.position)-160;
-    tempScore *= [[ObjectiveManager sharedInstance]getscoreMultFromCurrentGroupNumber];
-    tempScore *= generalScoreMultiplier;
-    tempScore += scoreAddedByCombo;
+    currentDistance = ccpDistance(CGPointZero, player.sprite.position)-160;
+    float distanceDif = currentDistance - previousDistance;
+    if (distanceDif < 0)
+        distanceDif = 0;
     
+    if (currentDistance > farthestPosSoFar && !loading_playerHasReachedFirstPlanet)
+        farthestPosSoFar = currentDistance;
+    
+    if (currentDistance < farthestPosSoFar && !loading_playerHasReachedFirstPlanet)
+        distanceDif = 0;
+    //if (isInFeverMode)
+    //    scoreAddedByCombo += dt*80 * comboMultiplier;
+    /*
+    float lolHi = 1;
     if (isInFeverMode)
-        scoreAddedByCombo += dt*80 * comboMultiplier;
+        lolHi = 2;
+    */
+    if (!isInFeverMode)
+        comboMultiplier = 1;
     
-    if (tempScore > score)
-        score = tempScore;
+    //NSLog(@"LOLDSKFLDSFJLSDJKFLJDS: %f", comboMultiplier);
+    distanceDif *= ([[ObjectiveManager sharedInstance]getscoreMultFromCurrentGroupNumber] + comboMultiplier);
+    distanceDif *= generalScoreMultiplier;
+    //distanceDif += scoreAddedByCombo;
+    
+    //if (tempScore > score)
+    score += distanceDif;
     [scoreLabel setString:[NSString stringWithFormat:@"%d",score]];
     
     if (!loading_playerHasReachedFirstPlanet)
@@ -2048,6 +2071,7 @@ typedef struct {
     //int numCoins = [[UserWallet sharedInstance] getBalance];
     //int coinsDiff = numCoins - startingCoins;
     //[coinsLabel setString:[NSString stringWithFormat:@"%i",coinsDiff]];
+    previousDistance = currentDistance;
     
 }
 
