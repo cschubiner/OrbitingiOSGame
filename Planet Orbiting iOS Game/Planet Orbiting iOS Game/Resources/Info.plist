@@ -81,7 +81,6 @@
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 		<string>UIInterfaceOrientationMaskLandscape</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 	</array>
