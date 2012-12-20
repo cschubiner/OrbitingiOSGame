@@ -783,7 +783,7 @@ typedef struct {
     if (!hasShared)
     {
         NSLog(@"dsjkfhdskjfhjsdklfhjlskfhsdljkfjkldshfjlkdshjklfshjlkfhd");
-        [[UserWallet sharedInstance] addCoins: 666];
+        [[UserWallet sharedInstance] addCoins: 200];
         hasShared = true;
     }
 }

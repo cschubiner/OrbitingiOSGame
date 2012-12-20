@@ -179,6 +179,7 @@ const float effectsVolumeMainMenu = 1;
         
         dark = [CCSprite spriteWithFile:@"black.png"];
         [dark setAnchorPoint:ccp(0, 0)];
+        dark.scale = 1.5f;
         [self addChild:dark];
         [dark setZOrder:INT_MAX];
         dark.opacity = 0;

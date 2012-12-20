@@ -120,8 +120,15 @@
 	if ((self = [super init])) {
         self.isTouchEnabled= TRUE;
         
+        
+        CCLayer* mainLayer = [[CCLayer alloc] init];
+        [self addChild:mainLayer];
+        if (IS_IPHONE_5)
+            mainLayer.position = ccp(mainLayer.position.x + 44, mainLayer.position.y);
+        
+        
         scrollView = [[CCLayer alloc] init];
-        [self addChild:scrollView];
+        [mainLayer addChild:scrollView];
         
         starParticle = [CCParticleSystemQuad particleWithFile:@"starParticleMenu.plist"];
         [self addChild:starParticle];
@@ -135,7 +142,7 @@
                                         repeats:NO];
         
         CCSprite* topBar = [CCSprite spriteWithFile:@"banner.png"];
-        [self addChild:topBar];
+        [mainLayer addChild:topBar];
         [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2 + 2)];
         
         [self completeObjectiveFromGroupNumber:2 itemNumber:2];
@@ -148,11 +155,11 @@
         pauseText.position = ccp(220, 300.5);
         
         CCSprite* topSpriteLabel = [self.class labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:30 color:ccWHITE strokeSize:1.1 stokeColor: ccBLACK];
-        [self addChild:topSpriteLabel];
+        [mainLayer addChild:topSpriteLabel];
         topSpriteLabel.position = ccp(240, 300.5);
         
         CCSprite* botBar = [CCSprite spriteWithFile:@"upgradeFooter.png"];
-        [self addChild:botBar];
+        [mainLayer addChild:botBar];
         botBar.scaleY = .5;
         [botBar setPosition: ccp(240, botBar.boundingBox.size.height/2)];
         
@@ -170,7 +177,7 @@
         CCMenu* menu = [CCMenu menuWithItems:quit, gameCenter, nil];
         menu.position = ccp(0, 0);
         
-        [self addChild:menu];
+        [mainLayer addChild:menu];
         [self initHighScore];
         [self initScrollStuff];
         
