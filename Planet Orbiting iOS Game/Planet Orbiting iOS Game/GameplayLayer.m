@@ -568,7 +568,7 @@ typedef struct {
         player.sprite = [CCSprite spriteWithSpriteFrameName:@"player.png"];
     }
     player.sprite.scale = playerSizeScale;
-    [player.sprite setZOrder:4];
+    [player.sprite setZOrder:9999];
     
     player.alive=true;
     player.segmentNumber = -10;

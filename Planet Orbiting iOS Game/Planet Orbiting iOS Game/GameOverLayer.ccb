@@ -405,8 +405,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>489</real>
-						<real>128</real>
+						<real>368</real>
+						<real>124</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -437,7 +437,7 @@
 					<real>0.34871092438697815</real>
 					<key>string</key>
 					<string>Share your gameplay
-  video for 100 stars!</string>
+  video for 666 stars!</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
@@ -526,8 +526,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>197</real>
-						<real>64</real>
+						<real>130</real>
+						<real>62</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -586,8 +586,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>162</real>
-						<real>64</real>
+						<real>144</real>
+						<real>62</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -847,8 +847,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>81</real>
-						<real>64</real>
+						<real>72</real>
+						<real>62</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
