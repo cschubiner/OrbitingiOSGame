@@ -19,6 +19,7 @@
 
 @implementation UpgradesLayer {
     CCLayer* scrollView;
+    CCLayer* mainLayer;
     
     float screenHeight;
     float scrollViewHeight;
@@ -107,6 +108,11 @@
         indexPushed = [[UpgradeManager sharedInstance] buttonPushed];
         
         
+        mainLayer = [[CCLayer alloc] init];
+        [self addChild:mainLayer];
+        if (IS_IPHONE_5)
+            mainLayer.position = ccp(mainLayer.position.x + 44, mainLayer.position.y);
+        
         [[UserWallet sharedInstance] setBalance:100000];
         
         CCParticleSystemQuad * starParticle = [CCParticleSystemQuad particleWithFile:@"starParticleMenu.plist"];
@@ -114,10 +120,10 @@
         
                 
         scrollView = [[CCLayer alloc] init];
-        [self addChild:scrollView];
+        [mainLayer addChild:scrollView];
         
         CCSprite* topBar = [CCSprite spriteWithFile:@"banner.png"];
-        [self addChild:topBar];
+        [mainLayer addChild:topBar];
         [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2 + 2)];
         
         NSString* stringToUse;
@@ -141,12 +147,12 @@
         
         
         CCSprite* topSpriteLabel = [self.class labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:30 color:ccWHITE strokeSize:1.1 stokeColor: ccBLACK];
-        [self addChild:topSpriteLabel];
+        [mainLayer addChild:topSpriteLabel];
         topSpriteLabel.position = ccp(240-10, 300.5);
         
         
         CCSprite* botBar = [CCSprite spriteWithFile:@"upgradeFooter.png"];
-        [self addChild:botBar];
+        [mainLayer addChild:botBar];
         botBar.scaleY = .5;
         [botBar setPosition: ccp(240, botBar.boundingBox.size.height/2)];
         
@@ -159,15 +165,15 @@
         CCMenu* menu = [CCMenu menuWithItems:quit, nil];
         menu.position = ccp(0, 0);
         
-        [self addChild:menu];
+        [mainLayer addChild:menu];
         
         CCSprite* starSprite = [CCSprite spriteWithFile:@"staricon.png"];
         [starSprite setScale:.6];
-        [self addChild:starSprite];
+        [mainLayer addChild:starSprite];
         [starSprite setPosition:ccp(480 - 22, 302.5)];
         
         totalStars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
-        [self addChild: totalStars];
+        [mainLayer addChild: totalStars];
         [totalStars setAnchorPoint:ccp(1, .5)];
         [totalStars setPosition:ccp(480 - 40, 300.5)];
         
@@ -246,7 +252,7 @@
     
     [scrollView removeFromParentAndCleanup:true];
     scrollView = [[CCLayer alloc] init];
-    [self addChild:scrollView];
+    [mainLayer addChild:scrollView];
     [scrollView setZOrder:-1];
     
     [self initUpgradeLayer];
