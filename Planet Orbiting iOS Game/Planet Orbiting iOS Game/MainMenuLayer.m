@@ -176,10 +176,10 @@ const float effectsVolumeMainMenu = 1;
         [playerAndParticleNode setPosition:position];
         isDoingEndAnimation = false;
         
-        
         dark = [CCSprite spriteWithFile:@"black.png"];
         [dark setAnchorPoint:ccp(0, 0)];
-        dark.scale = 1.5f;
+        dark.position = ccp(-200, 0);
+        dark.scale = 2;
         [self addChild:dark];
         [dark setZOrder:INT_MAX];
         dark.opacity = 0;

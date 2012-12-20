@@ -243,15 +243,15 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>-183.28125</real>
-						<real>-83.84375</real>
+						<real>0.0</real>
+						<real>0.0</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>2</real>
+					<real>1</real>
 					<key>scaleY</key>
-					<real>2</real>
+					<real>1</real>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>touchEnabled</key>

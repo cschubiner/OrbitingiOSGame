@@ -803,6 +803,8 @@ typedef struct {
                                                    object:nil];
         
         loadingLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"LoadingLayerCCB.ccb" owner:self];
+        if (IS_IPHONE_5)
+            loadingLayer.scaleX = IPHONE_5_RATIO;
 
         NSArray * helperTextArray = [NSArray arrayWithObjects:
                                      @"Stars increase your score and let you buy upgrades in the store!",
@@ -3035,7 +3037,7 @@ float lerpf(float a, float b, float t) {
 
     [layerToAdd addChild:menu];
     if (IS_IPHONE_5)
-        layerToAdd.position = ccpAdd(layerToAdd.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
+        layerToAdd.scaleX = IPHONE_5_RATIO;
     return layerToAdd;
 }
 
