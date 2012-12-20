@@ -53,8 +53,10 @@
 	//    - A bit slower, but the UiKit objects are placed in the right place
 	//
 	
+    
 #if GAME_AUTOROTATION==kGameAutorotationNone
-	//
+	
+    //
 	// EAGLView won't be autorotated.
 	// Since this method should return YES in at least 1 orientation, 
 	// we return YES only in the Portrait orientation

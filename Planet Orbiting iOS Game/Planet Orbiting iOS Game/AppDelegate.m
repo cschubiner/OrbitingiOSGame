@@ -70,6 +70,8 @@
 								   multiSampling:NO
 								 numberOfSamples:0];
     
+
+    
 	director_ = (CCDirectorIOS*) [CCDirector sharedDirector];
     
 	director_.wantsFullScreenLayout = YES;
@@ -91,7 +93,7 @@
     //	[director setProjection:kCCDirectorProjection3D];
     
 	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
-    //if ([DeviceDetection detectDevice]!=MODEL_IPHONE_4) //uncomment this line to disable retina on iphone 4
+    if ([DeviceDetection detectDevice]!=MODEL_IPHONE_4) //uncomment this line to disable retina on iphone 4
 	if( ! [director_ enableRetinaDisplay:YES] )
 		CCLOG(@"Retina Display Not supported");
     
@@ -127,11 +129,20 @@
 	
 	// set the Navigation Controller as the root view controller
     //	[window_ addSubview:navController_.view];	// Generates flicker.
-	[window_ setRootViewController:navController_];
+//	[window_ setRootViewController:navController_];
+    
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0){
+        [window_ setRootViewController:navController_];
+    }
+    else{
+        [window_ addSubview:navController_.view];
+    }
     
     [Kamcord setDeveloperKey:@"d05f73399ff3c1755bd97ec94cb5fdda"
              developerSecret:@"prcU7MltdajQ1YVTSeFDtPtywe2zABOmzzpSB5pGP79"
                      appName:@"Star Stream"];
+
 
 	
 	// make main window visible
