@@ -391,7 +391,7 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setHasDoubleCoins:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped]];
     
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:80 + 5*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:20 + 5*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
     
     [[UpgradeValues sharedInstance] setHasStarMagnet:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped]];
     
@@ -776,6 +776,10 @@ typedef struct {
     [self scheduleOnce:@selector(startGame) delay:2.5];
 }
 
+-(void) creditUserVirtualCurrencyForVideoShare {
+    [[UserWallet sharedInstance] addCoins: 666];
+}
+
 /* On "init," initialize the instance */
 - (id)init {
 	// always call "super" init.
@@ -784,6 +788,11 @@ typedef struct {
         size = [[CCDirector sharedDirector] winSize];
         startingCoins = [[UserWallet sharedInstance] getBalance];
         self.isTouchEnabled= TRUE;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(creditUserVirtualCurrencyForVideoShare)
+                                                     name:@"KCUserBeganVideoShare"
+                                                   object:nil];
         
         loadingLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"LoadingLayerCCB.ccb" owner:self];
 
@@ -1009,6 +1018,8 @@ typedef struct {
     else
         return false;
 }
+
+
 
 - (void)UserTouchedCoin: (Coin*)coin dt:(float)dt{
     
@@ -2314,7 +2325,7 @@ typedef struct {
     float percentDead = 1-light.timeLeft/[[UpgradeValues sharedInstance] maxBatteryTime];
     
     // y = -(x-1)^2+1
-    float percentDeadToDisplay = -powf(percentDead-1,2)+1.00001;
+    float percentDeadToDisplay = log10f(percentDead+1)/.3; //-powf(percentDead-1,2)+1.00001;
     [batteryDecreaserSprite setScaleX:lerpf(0, 66, percentDeadToDisplay)];
     
     if (percentDeadToDisplay<.5)
