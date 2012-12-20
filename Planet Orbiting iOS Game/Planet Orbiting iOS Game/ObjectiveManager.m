@@ -106,12 +106,17 @@ static ObjectiveManager *sharedInstance = nil;
 
     CCLayer* mPopup = [[CCLayer alloc] init];
     if (IS_IPHONE_5)
+    {
         mPopup.position = ccpAdd(mPopup.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
+    }
     if (a_hasDark) {
         CCSprite* dark = [CCSprite spriteWithFile:@"black.png"];
         [mPopup addChild:dark];
         dark.position = ccp(240, 160);
         dark.opacity = 200;
+        
+        if (IS_IPHONE_5)
+            dark.scaleX = IPHONE_5_RATIO;
     }
     
     CCSprite* bg = [CCSprite spriteWithFile:(withX) ? @"popup2.png" : @"popup.png"];

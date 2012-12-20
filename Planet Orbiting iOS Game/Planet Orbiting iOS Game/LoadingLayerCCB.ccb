@@ -84,66 +84,6 @@
 						<dict>
 							<key>anchorPoint</key>
 							<array>
-								<real>0.0</real>
-								<real>0.5</real>
-							</array>
-							<key>color</key>
-							<array>
-								<integer>255</integer>
-								<integer>255</integer>
-								<integer>255</integer>
-							</array>
-							<key>contentSize</key>
-							<array>
-								<real>778</real>
-								<real>39</real>
-							</array>
-							<key>customClass</key>
-							<string></string>
-							<key>fontFile</key>
-							<string>score_label_font.fnt</string>
-							<key>isExpanded</key>
-							<true/>
-							<key>isRelativeAnchorPoint</key>
-							<true/>
-							<key>lockedScaleRatio</key>
-							<true/>
-							<key>memberVarAssignmentName</key>
-							<string>loadingHelperTextLabel</string>
-							<key>memberVarAssignmentType</key>
-							<integer>2</integer>
-							<key>opacity</key>
-							<integer>255</integer>
-							<key>position</key>
-							<array>
-								<real>79.703125</real>
-								<real>99.55859375</real>
-							</array>
-							<key>rotation</key>
-							<real>0.0</real>
-							<key>scaleX</key>
-							<real>0.68035155534744263</real>
-							<key>scaleY</key>
-							<real>0.68035155534744263</real>
-							<key>string</key>
-							<string>Stars you pick up increase your score and let you buy items in the store!</string>
-							<key>tag</key>
-							<integer>-1</integer>
-							<key>visible</key>
-							<false/>
-							<key>zOrder</key>
-							<integer>0</integer>
-						</dict>
-					</dict>
-					<dict>
-						<key>children</key>
-						<array/>
-						<key>class</key>
-						<string>CCLabelBMFont</string>
-						<key>properties</key>
-						<dict>
-							<key>anchorPoint</key>
-							<array>
 								<real>0.5</real>
 								<real>0.5</real>
 							</array>
@@ -195,6 +135,66 @@
 							<integer>0</integer>
 						</dict>
 					</dict>
+					<dict>
+						<key>children</key>
+						<array/>
+						<key>class</key>
+						<string>CCLabelBMFont</string>
+						<key>properties</key>
+						<dict>
+							<key>anchorPoint</key>
+							<array>
+								<real>0.0</real>
+								<real>0.5</real>
+							</array>
+							<key>color</key>
+							<array>
+								<integer>255</integer>
+								<integer>255</integer>
+								<integer>255</integer>
+							</array>
+							<key>contentSize</key>
+							<array>
+								<real>778</real>
+								<real>39</real>
+							</array>
+							<key>customClass</key>
+							<string></string>
+							<key>fontFile</key>
+							<string>score_label_font.fnt</string>
+							<key>isExpanded</key>
+							<true/>
+							<key>isRelativeAnchorPoint</key>
+							<true/>
+							<key>lockedScaleRatio</key>
+							<true/>
+							<key>memberVarAssignmentName</key>
+							<string>loadingHelperTextLabel</string>
+							<key>memberVarAssignmentType</key>
+							<integer>2</integer>
+							<key>opacity</key>
+							<integer>255</integer>
+							<key>position</key>
+							<array>
+								<real>79.703125</real>
+								<real>99.55859375</real>
+							</array>
+							<key>rotation</key>
+							<real>0.0</real>
+							<key>scaleX</key>
+							<real>0.68035155534744263</real>
+							<key>scaleY</key>
+							<real>0.68035155534744263</real>
+							<key>string</key>
+							<string>Stars you pick up increase your score and let you buy items in the store!</string>
+							<key>tag</key>
+							<integer>-1</integer>
+							<key>visible</key>
+							<false/>
+							<key>zOrder</key>
+							<integer>5</integer>
+						</dict>
+					</dict>
 				</array>
 				<key>class</key>
 				<string>CCLayerColor</string>
@@ -220,7 +220,7 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>480</real>
+						<real>600</real>
 						<real>320</real>
 					</array>
 					<key>customClass</key>
@@ -292,7 +292,7 @@
 			<key>memberVarAssignmentName</key>
 			<string></string>
 			<key>memberVarAssignmentType</key>
-			<integer>0</integer>
+			<integer>2</integer>
 			<key>mouseEnabled</key>
 			<integer>1</integer>
 			<key>position</key>

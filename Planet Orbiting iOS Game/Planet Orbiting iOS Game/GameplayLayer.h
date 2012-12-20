@@ -34,6 +34,7 @@
     NSMutableArray * coinAnimationFrames;
     CCAnimation * coinAnimation;
     CCLabelBMFont *scoreLabel;
+    
 
     float scoreAddedByCombo;
     
@@ -181,6 +182,7 @@
     CCSprite * coinsLabelStarSprite;
     
     CCLayerColor * loadingLayerBackground;
+    CCLayerColor * loadingLayerBackground2;
     CCLayer * loadingLayer;
     CCLabelBMFont * loadingHelperTextLabel;
     CCLabelBMFont * loadingLabel;
