@@ -71,8 +71,8 @@ const float effectsVolumeMainMenu = 1;
         location = [[CCDirector sharedDirector] convertToGL:location];
         swipeBeginPoint = location;
         
-        
-        if (swipeBeginPoint.x >= 359 && swipeBeginPoint.x <= 440 && swipeBeginPoint.y >= 214 && swipeBeginPoint.y <= 287 && missionPopupIsUp) {
+        float numToAdd = (IS_IPHONE_5 ? 44 : 0);
+        if (swipeBeginPoint.x >= 359 + numToAdd && swipeBeginPoint.x <= 440 + numToAdd && swipeBeginPoint.y >= 214 && swipeBeginPoint.y <= 287 && missionPopupIsUp) {
             missionPopupIsUp = false;
             [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
             [missionPopup removeFromParentAndCleanup:true];

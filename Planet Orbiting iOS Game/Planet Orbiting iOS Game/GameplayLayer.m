@@ -462,6 +462,8 @@ typedef struct {
     [loadingDidYouKnowLabel runAction:[CCFadeOut actionWithDuration:fadeOutDuration*.5]];
     [loadingLayerBackground runAction:[CCSequence actions:
                                        [CCFadeOut actionWithDuration:fadeOutDuration],removeLoadingLayer, nil]];
+    //[loadingLayerBackground2 runAction:[CCSequence actions:
+    //                                   [CCFadeOut actionWithDuration:fadeOutDuration],removeLoadingLayer, nil]];
     
     
     
@@ -527,7 +529,7 @@ typedef struct {
     [thrustBurstParticle stopSystem];
     
     CCSprite *pauseButton =  [CCSprite spriteWithFile:@"pauseButton7.png"];
-    pauseButton.position = ccp(457, 298);
+    pauseButton.position = ccp(size.width - 23, 298);
     [hudLayer addChild:pauseButton];
     
     //  powerupLabel = [[CCLabelBMFont alloc] initWithString:@"Star Magnet" fntFile:@"powerupText.fnt"];//[CCLabelTTF labelWithString:@" " fontName:@"HelveticaNeue-CondensedBold" fontSize:44];
@@ -803,8 +805,8 @@ typedef struct {
                                                    object:nil];
         
         loadingLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"LoadingLayerCCB.ccb" owner:self];
-        if (IS_IPHONE_5)
-            loadingLayer.scaleX = IPHONE_5_RATIO;
+        //if (IS_IPHONE_5)
+        //    loadingLayer.scaleX = IPHONE_5_RATIO;
 
         NSArray * helperTextArray = [NSArray arrayWithObjects:
                                      @"Stars increase your score and let you buy upgrades in the store!",
@@ -813,6 +815,7 @@ typedef struct {
                                      @"Orbit planets as briefly as you can to move as fast as possible.",
                                      @"Your time is limited; watch the battery in the lower-left corner of the screen.",
                                      @"Your battery recharges as you move between galaxies.",
+                                     //@"",
                                      @"Try not orbiting planets at all - you'll start moving super quickly!",
                                      nil];
         
@@ -2186,13 +2189,15 @@ typedef struct {
         
         [Kamcord stopRecording];
         
+        
+        
         CCSprite* dark = [CCSprite spriteWithFile:@"OneByOne.png"];
         [self addChild:dark];
         //[dark setZOrder:112];
         dark.position = ccp(240, 160);
         dark.color = ccBLACK;
         dark.opacity = 0;
-        dark.scaleX = 480;
+        dark.scaleX = 480*(IS_IPHONE_5 ? IPHONE_5_RATIO*2 : 1);
         dark.scaleY = 320;
         //dark.visible = false;
         
@@ -2999,16 +3004,18 @@ float lerpf(float a, float b, float t) {
     layerToAdd = [[CCLayer alloc] init];
     [layerToAdd addChild:[[ObjectiveManager sharedInstance] createMissionPopupWithX:false withDark:true]];
     
+    CCLayer* mainLayerToAdd = [[CCLayer alloc] init];
+    [layerToAdd addChild:mainLayerToAdd];
     
     CCSprite* topBar = [CCSprite spriteWithFile:@"banner.png"];
-    [layerToAdd addChild:topBar];
+    [mainLayerToAdd addChild:topBar];
     [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2 + 2)];
     
     NSString* stringToUse;
     stringToUse = @"GAME PAUSED";
     
     CCSprite* topSpriteLabel = [self.class labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:31 color:ccWHITE strokeSize:1.1 stokeColor: ccBLACK];
-    [layerToAdd addChild:topSpriteLabel];
+    [mainLayerToAdd addChild:topSpriteLabel];
     topSpriteLabel.position = ccp(240, 300.5);
     
     CCMenuItem *replay = [CCMenuItemImage
@@ -3037,7 +3044,11 @@ float lerpf(float a, float b, float t) {
 
     [layerToAdd addChild:menu];
     if (IS_IPHONE_5)
-        layerToAdd.scaleX = IPHONE_5_RATIO;
+    {
+        //layerToAdd.scaleX = IPHONE_5_RATIO;
+        mainLayerToAdd.position = ccp(layerToAdd.position.x + 44, layerToAdd.position.y);
+        menu.position = ccp(layerToAdd.position.x + 44, layerToAdd.position.y);
+    }
     return layerToAdd;
 }
 
