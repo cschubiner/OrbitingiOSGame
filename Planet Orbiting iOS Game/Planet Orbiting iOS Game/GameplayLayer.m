@@ -657,6 +657,7 @@ typedef struct {
     }
     
     
+    
     cameraFocusNode = [[CCNode alloc]init];
     //cameraFollowAction =  [CCFollow actionWithTarget:cameraFocusNode];
     

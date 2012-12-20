@@ -13,7 +13,7 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #define HALF_IPHONE_5_ADDITIONAL_WIDTH 44
-#define IS_IPHONE_5 (size.width == 568)
+#define IS_IPHONE_5 ([[CCDirector sharedDirector] winSize].width == 568)
 #define IPHONE_5_RATIO 1.1833333333333333333333333333333
 #define IS_IPHONE_4 ([DeviceDetection detectDevice]!=MODEL_IPHONE_4)
 #endif

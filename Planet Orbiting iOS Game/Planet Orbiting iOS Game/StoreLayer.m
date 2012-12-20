@@ -77,6 +77,10 @@
 	if ((self = [super init])) {
         self.isTouchEnabled= TRUE;
         
+        CCLayer* mainLayer = [[CCLayer alloc] init];
+        [self addChild:mainLayer];
+        if (IS_IPHONE_5)
+            mainLayer.position = ccp(mainLayer.position.x + 44, mainLayer.position.y);
         
         
         CCParticleSystemQuad * starParticle = [CCParticleSystemQuad particleWithFile:@"starParticleMenu.plist"];
@@ -84,7 +88,7 @@
         
         
         CCSprite* topBar = [CCSprite spriteWithFile:@"banner.png"];
-        [self addChild:topBar];
+        [mainLayer addChild:topBar];
         [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2 + 2)];
         
         NSString* stringToUse;
@@ -95,14 +99,14 @@
         pauseText.position = ccp(240, 300.5);
         
         CCSprite* topSpriteLabel = [self.class labelWithString:stringToUse fontName:@"HelveticaNeue-CondensedBold" fontSize:31 color:ccWHITE strokeSize:1.1 stokeColor: ccBLACK];
-        [self addChild:topSpriteLabel];
+        [mainLayer addChild:topSpriteLabel];
         topSpriteLabel.position = ccp(240, 300.5);
         
         
         
         CCSprite* starSprite = [CCSprite spriteWithFile:@"staricon.png"];
         [starSprite setScale:.6];
-        [self addChild:starSprite];
+        [mainLayer addChild:starSprite];
         [starSprite setPosition:ccp(480 - 22, 302.5)];
         
         CCLabelTTF* totalStars = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"HelveticaNeue-CondensedBold" fontSize:22];
@@ -113,7 +117,7 @@
         
         
         CCSprite* totalStarsSprite = [self.class labelWithString:[NSString stringWithFormat:@"%@",[self commaInt:[[UserWallet sharedInstance]getBalance]]] fontName:@"HelveticaNeue-CondensedBold" fontSize:22 color:ccWHITE strokeSize:1.1 stokeColor: ccBLACK];
-        [self addChild:totalStarsSprite];
+        [mainLayer addChild:totalStarsSprite];
         [totalStarsSprite setAnchorPoint:ccp(1, .5)];
         [totalStarsSprite setPosition:ccp(480 - 40, 300.5)];
         
@@ -160,7 +164,7 @@
         CCMenu* menu = [CCMenu menuWithItems:quit, perks, upgrades, rocketships, rockettrails, powerups, stars, nil];
         menu.position = ccp(0, 0);
         
-        [self addChild:menu];
+        [mainLayer addChild:menu];
         
         
         
