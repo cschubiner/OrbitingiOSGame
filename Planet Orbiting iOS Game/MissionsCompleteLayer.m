@@ -408,7 +408,7 @@
          })];
          */
         
-        CGSize size = [[CCDirector sharedDirector] winSize];
+      //  CGSize size = [[CCDirector sharedDirector] winSize];
         
         if (IS_IPHONE_5)
             missionCompletionScreen.position = ccpAdd(missionCompletionScreen.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));

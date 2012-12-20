@@ -228,7 +228,7 @@ void SignalHandler(int sig) {
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
-        //[Flurry logEvent:@"Application Backgrounded" withParameters:[self getDictionaryOfFlurryParameters]];
+        //[Flurry logEvent:@"Application Backgrounded" withParameters:[self getDictionaryOfFlurryParameters]];09
 	if( [navController_ visibleViewController] == director_ )
 		[director_ stopAnimation];
     
