@@ -148,13 +148,35 @@ const float effectsVolumeMainMenu = 1;
         
         
         [[UpgradeValues sharedInstance] setHasGreenShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:17] equipped]];
+        [[UpgradeValues sharedInstance] setHasBlueShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:18] equipped]];
+        [[UpgradeValues sharedInstance] setHasGoldShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:19] equipped]];
+        [[UpgradeValues sharedInstance] setHasOrangeShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:20] equipped]];
+        [[UpgradeValues sharedInstance] setHasRedShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:21] equipped]];
+        [[UpgradeValues sharedInstance] setHasPurpleShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:22] equipped]];
+        [[UpgradeValues sharedInstance] setHasPinkShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:23] equipped]];
         
         
         CCSprite* newSprite;
-        if ([[UpgradeValues sharedInstance] hasGreenShip])
+        if ([[UpgradeValues sharedInstance] hasGreenShip]) {
             newSprite = [CCSprite spriteWithFile:@"playercamo.png"];
-        else
+        } else if ([[UpgradeValues sharedInstance] hasBlueShip]) {
+            newSprite = [CCSprite spriteWithFile:@"playeramerica.png"];
+        } else if ([[UpgradeValues sharedInstance] hasGoldShip]) {
+            newSprite = [CCSprite spriteWithFile:@"playerbacon.png"];
+        } else if ([[UpgradeValues sharedInstance] hasOrangeShip]) {
+            newSprite = [CCSprite spriteWithFile:@"playerhappy.png"];
+        } else if ([[UpgradeValues sharedInstance] hasRedShip]) {
+            newSprite = [CCSprite spriteWithFile:@"playertrippy.png"];
+        } else if ([[UpgradeValues sharedInstance] hasPurpleShip]) {
+            newSprite = [CCSprite spriteWithFile:@"playershark.png"];
+        } else if ([[UpgradeValues sharedInstance] hasPinkShip]) {
             newSprite = [CCSprite spriteWithFile:@"playermenu.png"];
+            newSprite.color = ccYELLOW;
+        } else {
+            newSprite = [CCSprite spriteWithFile:@"playermenu.png"];
+        }
+        
+        
         
         
         [playerAndParticleNode addChild:newSprite];

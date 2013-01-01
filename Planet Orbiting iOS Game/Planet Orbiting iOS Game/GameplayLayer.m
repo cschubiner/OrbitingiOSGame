@@ -564,7 +564,7 @@ typedef struct {
     //player.sprite = [CCSprite spriteWithSpriteFrameName:@"playercute.png"];
     
     if ([[UpgradeValues sharedInstance] hasGreenShip]) {
-        player.sprite = [CCSprite spriteWithSpriteFrameName:@"playercamo.png"];
+        player.sprite = [CCSprite spriteWithSpriteFrameName:@"playertrippy.png"];
     } else {
         player.sprite = [CCSprite spriteWithSpriteFrameName:@"player.png"];
     }
