@@ -537,6 +537,19 @@
                 <key>sourceSize</key>
                 <string>{19,25}</string>
             </dict>
+            <key>playermagnet.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{24,111},{0,0}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{0,0}}</string>
+                <key>sourceSize</key>
+                <string>{0,0}</string>
+            </dict>
             <key>playershark.png</key>
             <dict>
                 <key>frame</key>
@@ -586,7 +599,7 @@
             <key>size</key>
             <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:8ae55d31392215de570ca650e832067d$</string>
+            <string>$TexturePacker:SmartUpdate:b505a5f2af6dd6f8188411c451e1edf5$</string>
             <key>textureFileName</key>
             <string>generalSpritesheet.pvr.ccz</string>
         </dict>

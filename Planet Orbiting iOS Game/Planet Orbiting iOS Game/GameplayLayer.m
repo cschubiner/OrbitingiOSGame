@@ -913,7 +913,7 @@ typedef struct {
 }
 
 - (void)UpdateCamera:(float)dt {
-    NSLog(@"LDOSFKLDSOFKSDOKJFDS: %f", timeDilationCoefficient);
+    //NSLog(@"LDOSFKLDSOFKSDOKJFDS: %f", timeDilationCoefficient);
     if (player.alive) {
         player.velocity = ccpAdd(player.velocity, player.acceleration);
         if (player.currentPowerup.type == kheadStart)
