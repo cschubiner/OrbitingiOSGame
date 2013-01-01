@@ -393,7 +393,7 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setHasDoubleCoins:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped]];
     
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:20 + 5*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:60 + 5*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
     
     [[UpgradeValues sharedInstance] setHasStarMagnet:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped]];
     
@@ -465,9 +465,6 @@ typedef struct {
     //[loadingLayerBackground2 runAction:[CCSequence actions:
     //                                   [CCFadeOut actionWithDuration:fadeOutDuration],removeLoadingLayer, nil]];
     
-    
-    
-    
     [self scheduleUpdates];
     [Kamcord startRecording];
 }
@@ -535,7 +532,7 @@ typedef struct {
     //  powerupLabel = [[CCLabelBMFont alloc] initWithString:@"Star Magnet" fntFile:@"powerupText.fnt"];//[CCLabelTTF labelWithString:@" " fontName:@"HelveticaNeue-CondensedBold" fontSize:44];
     powerupLabel = [[CCLabelBMFont alloc] initWithString:@"asdf" fntFile:@"powerupText.fnt"];
     
-    powerupLabel.position = ccp(-[powerupLabel boundingBox].size.width/2, 160);
+    powerupLabel.position = ccp(-[powerupLabel boundingBox].size.width/2-10, 160);
     [hudLayer addChild: powerupLabel];
     
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"bomb.wav"];
@@ -884,6 +881,7 @@ typedef struct {
 }
 
 - (void)UpdateCamera:(float)dt {
+    NSLog(@"LDOSFKLDSOFKSDOKJFDS: %f", timeDilationCoefficient);
     if (player.alive) {
         player.velocity = ccpAdd(player.velocity, player.acceleration);
         if (player.currentPowerup.type == kheadStart)

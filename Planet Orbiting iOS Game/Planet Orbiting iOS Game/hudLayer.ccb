@@ -131,14 +131,14 @@
 							<key>position</key>
 							<array>
 								<real>43.499526977539062</real>
-								<real>94.015998840332031</real>
+								<real>95.015998840332031</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
 							<real>1.1387499570846558</real>
 							<key>scaleY</key>
-							<real>1.1387499570846558</real>
+							<real>1.2000000476837158</real>
 							<key>spriteFile</key>
 							<string>batteryinner.png</string>
 							<key>tag</key>
@@ -205,7 +205,7 @@
 							<key>scaleX</key>
 							<real>0.0</real>
 							<key>scaleY</key>
-							<real>36.141719818115234</real>
+							<real>37</real>
 							<key>spriteFile</key>
 							<string>OneByOne.png</string>
 							<key>tag</key>

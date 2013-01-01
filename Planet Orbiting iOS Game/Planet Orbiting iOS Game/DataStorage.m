@@ -136,9 +136,9 @@
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"1,000,000 Stars" description:@"Get 1,000,000 stars." price:999 type:4 purchased:NO equipped:NO number:16]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Green Spaceship" description:@"Turn your spaceship green." price:5000 type:1 purchased:NO equipped:NO number:17]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Camo Spaceship" description:@"Stay hidden from your enemies in the camo spaceship!" price:10000 type:1 purchased:NO equipped:NO number:17]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Blue Spaceship" description:@"Turn your spaceship blue" price:5000 type:1 purchased:NO equipped:NO number:18]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"American Spaceship" description:@"Represent America " price:5000 type:1 purchased:NO equipped:NO number:18]];
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Golden Spaceship" description:@"Turn your spaceship gold." price:10000 type:1 purchased:NO equipped:NO number:19]];
     
