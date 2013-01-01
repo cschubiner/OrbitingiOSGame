@@ -287,10 +287,6 @@
 		0C487B051594739600674AB9 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B041594739600674AB9 /* Player.m */; };
 		0C487B0E1594792C00674AB9 /* Planet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B0D1594792C00674AB9 /* Planet.m */; };
 		0C49E19015C0FE44007957E9 /* thrustParticle3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */; };
-		0C4F32B8160597DD0077EA66 /* generalSpritesheet-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F32B4160597DD0077EA66 /* generalSpritesheet-hd.plist */; };
-		0C4F32B9160597DD0077EA66 /* generalSpritesheet-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F32B5160597DD0077EA66 /* generalSpritesheet-hd.pvr.ccz */; };
-		0C4F32BA160597DD0077EA66 /* generalSpritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F32B6160597DD0077EA66 /* generalSpritesheet.plist */; };
-		0C4F32BB160597DD0077EA66 /* generalSpritesheet.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F32B7160597DD0077EA66 /* generalSpritesheet.pvr.ccz */; };
 		0C5F4EE515E6006E00075F36 /* LoadingLayerCCB.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F4EE415E6006E00075F36 /* LoadingLayerCCB.ccb */; };
 		0C60EC5A15CB8C42005FE434 /* Galaxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C60EC5915CB8C42005FE434 /* Galaxy.m */; };
 		0C62B1A815C8DA2700318B66 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C62B1A715C8DA2700318B66 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -349,6 +345,10 @@
 		0CA9650E15C66249002FB2E8 /* selector.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA9650A15C66249002FB2E8 /* selector.png */; };
 		0CA9650F15C66249002FB2E8 /* slider-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA9650B15C66249002FB2E8 /* slider-hd.png */; };
 		0CA9651015C66249002FB2E8 /* slider.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA9650C15C66249002FB2E8 /* slider.png */; };
+		0CB8317A16926CA10042CA46 /* generalSpritesheet-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CB8317616926CA10042CA46 /* generalSpritesheet-hd.plist */; };
+		0CB8317B16926CA10042CA46 /* generalSpritesheet-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0CB8317716926CA10042CA46 /* generalSpritesheet-hd.pvr.ccz */; };
+		0CB8317C16926CA10042CA46 /* generalSpritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CB8317816926CA10042CA46 /* generalSpritesheet.plist */; };
+		0CB8317D16926CA10042CA46 /* generalSpritesheet.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 0CB8317916926CA10042CA46 /* generalSpritesheet.pvr.ccz */; };
 		0CB8F7AD15E3524E00D9FC51 /* score_label_font-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0CB8F7A915E3524E00D9FC51 /* score_label_font-hd.fnt */; };
 		0CB8F7AE15E3524E00D9FC51 /* score_label_font-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CB8F7AA15E3524E00D9FC51 /* score_label_font-hd.png */; };
 		0CB8F7AF15E3524E00D9FC51 /* score_label_font.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 0CB8F7AB15E3524E00D9FC51 /* score_label_font.fnt */; };
@@ -989,10 +989,6 @@
 		0C487B0C1594792C00674AB9 /* Planet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Planet.h; sourceTree = "<group>"; };
 		0C487B0D1594792C00674AB9 /* Planet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Planet.m; sourceTree = "<group>"; };
 		0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = thrustParticle3.plist; sourceTree = "<group>"; };
-		0C4F32B4160597DD0077EA66 /* generalSpritesheet-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "generalSpritesheet-hd.plist"; sourceTree = "<group>"; };
-		0C4F32B5160597DD0077EA66 /* generalSpritesheet-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "generalSpritesheet-hd.pvr.ccz"; sourceTree = "<group>"; };
-		0C4F32B6160597DD0077EA66 /* generalSpritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = generalSpritesheet.plist; sourceTree = "<group>"; };
-		0C4F32B7160597DD0077EA66 /* generalSpritesheet.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = generalSpritesheet.pvr.ccz; sourceTree = "<group>"; };
 		0C5F4EE415E6006E00075F36 /* LoadingLayerCCB.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LoadingLayerCCB.ccb; sourceTree = "<group>"; };
 		0C60EC5815CB8C42005FE434 /* Galaxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Galaxy.h; sourceTree = "<group>"; };
 		0C60EC5915CB8C42005FE434 /* Galaxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Galaxy.m; sourceTree = "<group>"; };
@@ -1061,6 +1057,10 @@
 		0CA9650A15C66249002FB2E8 /* selector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selector.png; sourceTree = "<group>"; };
 		0CA9650B15C66249002FB2E8 /* slider-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-hd.png"; sourceTree = "<group>"; };
 		0CA9650C15C66249002FB2E8 /* slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider.png; sourceTree = "<group>"; };
+		0CB8317616926CA10042CA46 /* generalSpritesheet-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "generalSpritesheet-hd.plist"; sourceTree = "<group>"; };
+		0CB8317716926CA10042CA46 /* generalSpritesheet-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "generalSpritesheet-hd.pvr.ccz"; sourceTree = "<group>"; };
+		0CB8317816926CA10042CA46 /* generalSpritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = generalSpritesheet.plist; sourceTree = "<group>"; };
+		0CB8317916926CA10042CA46 /* generalSpritesheet.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = generalSpritesheet.pvr.ccz; sourceTree = "<group>"; };
 		0CB8F7A915E3524E00D9FC51 /* score_label_font-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "score_label_font-hd.fnt"; sourceTree = "<group>"; };
 		0CB8F7AA15E3524E00D9FC51 /* score_label_font-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "score_label_font-hd.png"; sourceTree = "<group>"; };
 		0CB8F7AB15E3524E00D9FC51 /* score_label_font.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = score_label_font.fnt; sourceTree = "<group>"; };
@@ -2165,11 +2165,11 @@
 		C43AF01315D4267D001FF7D9 /* Spritesheets */ = {
 			isa = PBXGroup;
 			children = (
-				0C4F32B4160597DD0077EA66 /* generalSpritesheet-hd.plist */,
-				0C4F32B5160597DD0077EA66 /* generalSpritesheet-hd.pvr.ccz */,
-				0C4F32B6160597DD0077EA66 /* generalSpritesheet.plist */,
-				0C4F32B7160597DD0077EA66 /* generalSpritesheet.pvr.ccz */,
 				0C0E87CF160423AD00779D6F /* galaxy1-hd.plist */,
+				0CB8317616926CA10042CA46 /* generalSpritesheet-hd.plist */,
+				0CB8317716926CA10042CA46 /* generalSpritesheet-hd.pvr.ccz */,
+				0CB8317816926CA10042CA46 /* generalSpritesheet.plist */,
+				0CB8317916926CA10042CA46 /* generalSpritesheet.pvr.ccz */,
 				0C0E87D0160423AD00779D6F /* galaxy1-hd.pvr.gz */,
 				0C0E87D1160423AD00779D6F /* galaxy1.plist */,
 				0C0E87D2160423AD00779D6F /* galaxy1.pvr.gz */,
@@ -3005,10 +3005,6 @@
 				0C0E8814160423AF00779D6F /* galaxy9-hd.pvr.gz in Resources */,
 				0C0E8815160423AF00779D6F /* galaxy9.plist in Resources */,
 				0C0E8816160423AF00779D6F /* galaxy9.pvr.gz in Resources */,
-				0C4F32B8160597DD0077EA66 /* generalSpritesheet-hd.plist in Resources */,
-				0C4F32B9160597DD0077EA66 /* generalSpritesheet-hd.pvr.ccz in Resources */,
-				0C4F32BA160597DD0077EA66 /* generalSpritesheet.plist in Resources */,
-				0C4F32BB160597DD0077EA66 /* generalSpritesheet.pvr.ccz in Resources */,
 				FA8BAEF416059DF100B10BF6 /* gamecenter-hd.png in Resources */,
 				FA8BAEF516059DF100B10BF6 /* gamecenter.png in Resources */,
 				FA8BAEF616059DF100B10BF6 /* gamecenterpressed-hd.png in Resources */,
@@ -3028,6 +3024,10 @@
 				0C309D19160FC86E001C2EA8 /* Default-568h@2x.png in Resources */,
 				0C8BF9DF162CBDEC00A4127D /* icon3v3@2x.png in Resources */,
 				0C8BF9E1162CBDF100A4127D /* icon3v3.png in Resources */,
+				0CB8317A16926CA10042CA46 /* generalSpritesheet-hd.plist in Resources */,
+				0CB8317B16926CA10042CA46 /* generalSpritesheet-hd.pvr.ccz in Resources */,
+				0CB8317C16926CA10042CA46 /* generalSpritesheet.plist in Resources */,
+				0CB8317D16926CA10042CA46 /* generalSpritesheet.pvr.ccz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
