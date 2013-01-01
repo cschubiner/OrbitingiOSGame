@@ -94,7 +94,7 @@
 @class KC_SBJsonWriter;
 @compatibility_alias SBJsonWriter KC_SBJsonWriter;
 
-@interface SBJsonWriter : SBJsonBase <KC_SBJsonWriter> {
+@interface KC_SBJsonWriter : SBJsonBase <KC_SBJsonWriter> {
 
 @private
     BOOL sortKeys, humanReadable;

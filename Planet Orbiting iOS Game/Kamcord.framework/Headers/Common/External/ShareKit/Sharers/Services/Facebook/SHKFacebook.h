@@ -40,7 +40,7 @@
 @class KC_SHKFacebook;
 @compatibility_alias SHKFacebook KC_SHKFacebook;
 
-@interface SHKFacebook : SHKSharer <KC_FBSessionDelegate, KC_FBDialogDelegate, KC_FBRequestDelegate, KC_SHKFormControllerLargeTextFieldDelegate>
+@interface KC_SHKFacebook : SHKSharer <KC_FBSessionDelegate, KC_FBDialogDelegate, KC_FBRequestDelegate, KC_SHKFormControllerLargeTextFieldDelegate>
 
 
 + (BOOL)handleOpenURL:(NSURL*)url;

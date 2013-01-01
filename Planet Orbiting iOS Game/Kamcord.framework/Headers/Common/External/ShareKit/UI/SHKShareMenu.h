@@ -33,7 +33,7 @@
 @class KC_SHKShareMenu;
 @compatibility_alias SHKShareMenu KC_SHKShareMenu;
 
-@interface SHKShareMenu : UITableViewController 
+@interface KC_SHKShareMenu : UITableViewController
 {
 	SHKItem *item;
 	NSMutableArray *tableData;

@@ -33,7 +33,7 @@ typedef NSUInteger FBRequestState;
 @class KC_FBRequest;
 @compatibility_alias FBRequest KC_FBRequest;
 
-@interface FBRequest : NSObject {
+@interface KC_FBRequest : NSObject {
   id<KC_FBRequestDelegate> _delegate;
   NSString*             _url;
   NSString*             _httpMethod;

@@ -13,4 +13,6 @@
 @property (nonatomic, retain) NSString *placeholder;
 @property (nonatomic, retain) UIColor *placeholderColor;
 
+- (void)dealloc;
+
 @end

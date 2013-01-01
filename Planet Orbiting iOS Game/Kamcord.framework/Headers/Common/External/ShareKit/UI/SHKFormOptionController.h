@@ -16,7 +16,7 @@
 @class KC_SHKFormOptionController;
 @compatibility_alias SHKFormOptionController KC_SHKFormOptionController;
 
-@interface SHKFormOptionController : UITableViewController {
+@interface KC_SHKFormOptionController : UITableViewController {
 	KC_SHKFormFieldSettings* settings;
 	id<KCSHKFormOptionControllerClient> client;
 	id<KCSHKFormOptionControllerOptionProvider> provider;

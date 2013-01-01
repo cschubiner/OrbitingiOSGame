@@ -33,7 +33,7 @@
 @class KC_SHKFormController;
 @compatibility_alias SHKFormController KC_SHKFormController;
 
-@interface SHKFormController : UITableViewController <UITextFieldDelegate, KCSHKFormOptionControllerClient>
+@interface KC_SHKFormController : UITableViewController <UITextFieldDelegate, KCSHKFormOptionControllerClient>
 {
 	id delegate;
 	SEL validateSelector;

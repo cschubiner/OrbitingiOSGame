@@ -32,7 +32,7 @@
 @class KC_SHKFormFieldCell;
 @compatibility_alias SHKFormFieldCell KC_SHKFormFieldCell;
 
-@interface SHKFormFieldCell : UITableViewCell 
+@interface KC_SHKFormFieldCell : UITableViewCell 
 {
 	SHKFormFieldSettings *settings;
 	

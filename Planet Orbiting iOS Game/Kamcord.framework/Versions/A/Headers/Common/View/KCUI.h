@@ -20,7 +20,9 @@
 @interface KCUI : NSObject <KCSHKSharerDelegate, MFMailComposeViewControllerDelegate, NSURLConnectionDelegate,KCYouTubeUploaderDelegate,KC_FBSessionDelegate, KC_FBDialogDelegate, KCLoginDismissedDelegate>
 
 
+// The share delegate
 @property (assign, nonatomic) id <KCShareDelegate> delegate;
+
 @property (assign, nonatomic) id <KCMoviePlayerDelegate> moviePlayerDelegate;
 @property (retain, nonatomic) KCVideoProcessingAndShareManager * shareManager; 
 @property (assign, nonatomic) KCVideo * latestVideo;
@@ -49,8 +51,11 @@
 - (BOOL)shareVideoOnFacebook:(BOOL)shareFacebook 
                      Twitter:(BOOL)shareTwitter 
                      YouTube:(BOOL)shareYoutube 
-                 withMessage:(NSString *)message;
-- (BOOL)presentComposeEmailViewInViewController:(UIViewController *)parentViewController withBody:(NSString *)bodyText;
+                 withMessage:(NSString *)message
+                    delegate:(id <KCShareDelegate>)delegate;
+
+- (BOOL)presentComposeEmailViewInViewController:(UIViewController *)parentViewController
+                                       withBody:(NSString *)bodyText;
 
 // Used for Case 2 where they just want to upload the video
 - (BOOL)uploadVideoToKamcordAndAlsoYouTubeWithAuth:(GTMOAuth2Authentication *)youTubeAuth

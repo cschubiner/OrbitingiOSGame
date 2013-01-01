@@ -16,31 +16,57 @@
 #import "DataStructures/NSMutableArray+QueueAdditions.h"
 
 @class GTMOAuth2Authentication;
+@class KCVideoSharingTask;
 
 //////////////////////////////////////////////////////
-// Begin KCVideoSharingState
-@interface KCVideoShareInfo : NSObject
+// Begin KCVideoSharingRequest
 
+typedef enum
+{
+    NONE,
+    TRYING_TO_SHARE,
+    EXPORT_CANCELLED,
+    MAKING_PREUPLOAD_HTTP_POST,
+    PREUPLOAD_HTTP_POST_DONE,
+    SEND_SHARE_REQUEST,
+    DONE_PENDING_CONVERSION,
+    DONE,
+    ERROR,
+} KC_SHARE_REQUEST_STATE;
+
+
+@interface KCVideoShareRequest : NSObject
+
+@property (readonly, nonatomic, assign) KCVideo * video;
 @property (readonly, nonatomic, copy)   NSString * message;
-@property (readonly, nonatomic, assign) BOOL shareOnFacebook;
-@property (readonly, nonatomic, assign) BOOL shareOnTwitter;
-@property (readonly, nonatomic, assign) BOOL shareOnYouTube;
-@property (readonly, nonatomic, assign) BOOL alreadySharedWithEmail;
+
+@property (nonatomic, assign) KC_SHARE_REQUEST_STATE shareState;
+@property (nonatomic, assign) BOOL shareOnFacebook;
+@property (nonatomic, assign) BOOL shareOnTwitter;
+@property (nonatomic, assign) BOOL shareOnYouTube;
+@property (nonatomic, assign) BOOL shareWithEmail;
+@property (nonatomic, assign) BOOL alreadySharedWithEmail;
 @property (readonly, nonatomic, assign) BOOL customUIShare;
 
-@property (readonly, nonatomic, assign) NSDictionary * data;
-@property (readonly, nonatomic, assign) GTMOAuth2Authentication * youTubeAuth;
+@property (readonly, nonatomic, retain) NSDictionary * data;
+@property (readonly, nonatomic, retain) GTMOAuth2Authentication * youTubeAuth;
+@property (readonly, nonatomic, retain) id <KCShareDelegate> delegate;
 
-- (id) initWithMessage:(NSString *)message
+- (id)    initForVideo:(KCVideo *)video
+               message:(NSString *)message
        shareOnFacebook:(BOOL)shareOnFacebook
         shareOnTwitter:(BOOL)shareOnTwitter
         shareOnYouTube:(BOOL)shareOnYouTube
+        shareWithEmail:(BOOL)shareWithEmail
 alreadySharedWithEmail:(BOOL)alreadySharedWithEmail
          customUIShare:(BOOL)customUIShare
                   data:(NSDictionary *)data
-           youTubeAuth:(GTMOAuth2Authentication *)auth;
+           youTubeAuth:(GTMOAuth2Authentication *)auth
+              delegate:(id <KCShareDelegate>)delegate;
 
-- (void) dealloc;
+- (void)finished:(KCVideoSharingTask *)task
+           error:(NSError *)error;
+- (void)dealloc;
 
 @end
 // End KCVideoSharingState
@@ -77,6 +103,10 @@ typedef enum
 @property (nonatomic, readonly, assign) BOOL hasEnded;
 @property (nonatomic, readonly, assign) BOOL isMerged;
 @property (nonatomic, readonly, assign) BOOL isConverted;
+
+// The marked times and time ranges (processed)
+@property (nonatomic, readonly, retain) NSMutableArray * markedTimes;
+@property (nonatomic, readonly, retain) NSMutableArray * markedTimeRanges;
 
 // Information about the currently recorded clip
 @property (nonatomic, assign) CFAbsoluteTime startTime;
@@ -157,9 +187,16 @@ managedObjectContext:(NSManagedObjectContext *)managedObjectContext
 // local URL to that file path. Returns YES on success.
 - (BOOL)addNewVideoClip;
 
+// Should be called to mark each individual interesting time
+- (void)markAbsoluteTime:(CFAbsoluteTime)absoluteTime;
+
+// Should be called only once after the video
+// has finished recording.
+- (void)compressMarkedTimes;
+
 - (void)stopAllSounds:(KC_SOUND_TYPE)soundType;
 
-- (void)updateVideoTrackerSharing:(KCVideoShareInfo *)shareInfo;
+- (void)updateVideoTrackerSharing:(KCVideoShareRequest *)shareRequest;
 
 // API to track sharing task status
 - (void)addTask:(KCVideoSharingTask *)shareTask;

@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-#import <AWSiOSSDK/S3/AmazonS3Client.h>
-#import <AWSiOSSDK/SimpleDB/AmazonSimpleDBClient.h>
-#import <AWSiOSSDK/SQS/AmazonSQSClient.h>
-#import <AWSiOSSDK/SNS/AmazonSNSClient.h>
+#import <S3/AmazonS3Client.h>
+#import <SimpleDB/AmazonSimpleDBClient.h>
+#import <SQS/AmazonSQSClient.h>
+#import <SNS/AmazonSNSClient.h>
 #import "Constants.h"
 #import "Response.h"
 

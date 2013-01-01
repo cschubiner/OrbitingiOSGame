@@ -12,6 +12,7 @@
 #import "KCVideoProcessingAndShareManager.h"
 
 @class KCUI;
+@class KCVideoWriter;
 
 @interface KCVideoStateAndViewManager : NSObject<KCVideoProcessDelegate>
 
@@ -26,9 +27,16 @@
 // Should the UI wait for conversion to finish before
 // dismissing the share view?
 @property (assign, nonatomic) BOOL enableSynchronousConversionUI;
+@property (assign, nonatomic) BOOL alwaysShowProgressBar;
 
 // Show video controls when the replay is presented?
 @property (assign, nonatomic) BOOL showVideoControlsOnReplay;
+
+// The location of the Kamcord directory
+@property (nonatomic, retain) NSURL * kamcordDirectory;
+
+// The active video writer
+@property (nonatomic, assign) KCVideoWriter * activeVideoWriter;
 
 
 // Video properties
@@ -52,14 +60,25 @@
 - (BOOL)stopRecording;
 - (BOOL)pause;
 - (BOOL)resume;
+- (BOOL)isRecording;
+
+- (void)markAbsoluteTime:(CFAbsoluteTime)absoluteTime;
 
 // Sound
+- (KCAudio *)playAudioAtURL:(NSURL *)url
+                     volume:(float)volume
+                       loop:(BOOL)loop;
 - (KCAudio *)playAudioWithName:(NSString *)name
                      extension:(NSString *)extension
                         volume:(float)volume
                           loop:(BOOL)loop;
-
 - (void)stopAllSounds:(KC_SOUND_TYPE)soundType;
+
+#if KCUNITY
+- (void)writeAudioData:(float [])data
+                length:(size_t)nsamples
+           numChannels:(int)numChannels;
+#endif
 
 - (void)dealloc;
 

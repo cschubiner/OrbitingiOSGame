@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Kamcord Inc. All rights reserved.
 //
 
-// Tell Kamcord which version we're using
-#define COCOS2D_2_0 1
-
-
-
 #ifndef cocos2d_ios_KamcordMacros_h
 #define cocos2d_ios_KamcordMacros_h
+
+// Tell Kamcord which version we're using
+#define PRE_IOS_6 1         // Comment out as necessary
+#define COCOS2D_2_0 1       // Comment out as necessary
+// #define COCOS2D_2_1 1    // Comment out as necessary
 
 #define CC_DIRECTOR_INIT_KAMCORD()                                                              \
 do	{																							\
