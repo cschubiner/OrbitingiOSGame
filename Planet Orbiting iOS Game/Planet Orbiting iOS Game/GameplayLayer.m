@@ -563,11 +563,42 @@ typedef struct {
     player = [[Player alloc]init];
     //player.sprite = [CCSprite spriteWithSpriteFrameName:@"playercute.png"];
     
+    /*if ([[UpgradeValues sharedInstance] hasGreenShip]) {
+        player.sprite = [CCSprite spriteWithSpriteFrameName:@"playercamo.png"];
+    } else {
+        player.sprite = [CCSprite spriteWithSpriteFrameName:@"player.png"];
+    }*/
+    
+    
+    
+    
+    
     if ([[UpgradeValues sharedInstance] hasGreenShip]) {
+        player.sprite = [CCSprite spriteWithSpriteFrameName:@"playercamo.png"];
+    } else if ([[UpgradeValues sharedInstance] hasBlueShip]) {
+        player.sprite = [CCSprite spriteWithSpriteFrameName:@"playeramerica.png"];
+    } else if ([[UpgradeValues sharedInstance] hasGoldShip]) {
+        player.sprite = [CCSprite spriteWithSpriteFrameName:@"playerbacon.png"];
+    } else if ([[UpgradeValues sharedInstance] hasOrangeShip]) {
+        player.sprite = [CCSprite spriteWithSpriteFrameName:@"playerhappy.png"];
+    } else if ([[UpgradeValues sharedInstance] hasRedShip]) {
         player.sprite = [CCSprite spriteWithSpriteFrameName:@"playertrippy.png"];
+    } else if ([[UpgradeValues sharedInstance] hasPurpleShip]) {
+        player.sprite = [CCSprite spriteWithSpriteFrameName:@"playershark.png"];
+    } else if ([[UpgradeValues sharedInstance] hasPinkShip]) {
+        player.sprite = [CCSprite spriteWithSpriteFrameName:@"player.png"];
+        player.sprite.color = ccYELLOW;
     } else {
         player.sprite = [CCSprite spriteWithSpriteFrameName:@"player.png"];
     }
+    
+    
+    
+    
+    
+    
+    
+    
     player.sprite.scale = playerSizeScale;
     [player.sprite setZOrder:9999];
     
@@ -577,6 +608,7 @@ typedef struct {
     player.sprite.position = ccp(-750, -500);
     swipeVector = ccp(0, 1);
     targetPlanet = [planets objectAtIndex:0];
+    /*
     if ([[UpgradeValues sharedInstance] hasGreenShip]) {
         //player.sprite.color = ccGREEN;
     } else if ([[UpgradeValues sharedInstance] hasBlueShip]) {
@@ -591,7 +623,7 @@ typedef struct {
         player.sprite.color = ccMAGENTA;
     } else if ([[UpgradeValues sharedInstance] hasPinkShip]) {
         player.sprite.color = ccc3(255, 20, 147);
-    }
+    }*/
     
     
     CGPoint planPos = [[planets objectAtIndex:0] sprite].position;
