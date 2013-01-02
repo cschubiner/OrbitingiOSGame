@@ -311,7 +311,6 @@
 		0C7AA60115946939000B58F2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AA60015946939000B58F2 /* CoreGraphics.framework */; };
 		0C7AA61615946939000B58F2 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 0C7AA61515946939000B58F2 /* iTunesArtwork */; };
 		0C7AA7561594693D000B58F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA7551594693D000B58F2 /* AppDelegate.m */; };
-		0C7AA7591594693D000B58F2 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AA7581594693D000B58F2 /* RootViewController.m */; };
 		0C87DA6A15E76CF8009254CE /* starStashParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C87DA6715E76CF8009254CE /* starStashParticle.plist */; };
 		0C87DA6B15E76CF8009254CE /* starStashParticleTexture-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C87DA6815E76CF8009254CE /* starStashParticleTexture-hd.png */; };
 		0C87DA6C15E76CF8009254CE /* starStashParticleTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C87DA6915E76CF8009254CE /* starStashParticleTexture.png */; };
@@ -1030,8 +1029,6 @@
 		0C7AA7511594693C000B58F2 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		0C7AA7541594693D000B58F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		0C7AA7551594693D000B58F2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		0C7AA7571594693D000B58F2 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		0C7AA7581594693D000B58F2 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		0C7AA75D1594693D000B58F2 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GameConfig.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		0C87DA6715E76CF8009254CE /* starStashParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = starStashParticle.plist; sourceTree = "<group>"; };
 		0C87DA6815E76CF8009254CE /* starStashParticleTexture-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "starStashParticleTexture-hd.png"; sourceTree = "<group>"; };
@@ -1951,8 +1948,6 @@
 			children = (
 				0C309D1A160FD21D001C2EA8 /* DeviceDetection.h */,
 				0C309D1B160FD21D001C2EA8 /* DeviceDetection.m */,
-				0C7AA7571594693D000B58F2 /* RootViewController.h */,
-				0C7AA7581594693D000B58F2 /* RootViewController.m */,
 				0C7AA75D1594693D000B58F2 /* GameConfig.h */,
 			);
 			name = "Basic Stuff - Ignore";
@@ -3075,7 +3070,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C7AA7561594693D000B58F2 /* AppDelegate.m in Sources */,
-				0C7AA7591594693D000B58F2 /* RootViewController.m in Sources */,
 				0C487AF815946E2300674AB9 /* GameplayLayer.m in Sources */,
 				0C487AFB159471E000674AB9 /* CameraObject.m in Sources */,
 				0C487B051594739600674AB9 /* Player.m in Sources */,
