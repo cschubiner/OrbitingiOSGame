@@ -813,7 +813,7 @@ typedef struct {
 -(void) creditUserVirtualCurrencyForVideoShare {
     if (!hasShared)
     {
-        NSLog(@"dsjkfhdskjfhjsdklfhjlskfhsdljkfjkldshfjlkdshjklfshjlkfhd");
+        NSLog(@"creditUserVirtualCurrencyForVideoShare method called");
         [[UserWallet sharedInstance] addCoins: 200];
         hasShared = true;
     }
