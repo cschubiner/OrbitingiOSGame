@@ -40,7 +40,7 @@
 	[super onEnter];
 
     [[DDGameKitHelper sharedGameKitHelper] authenticateLocalPlayer];
-
+/*
 	// ask director for the window size
 	CGSize size = [[CCDirector sharedDirector] winSize];
 
@@ -57,14 +57,16 @@
 	background.position = ccp(size.width/2, size.height/2);
 
 	// add the label as a child to this Layer
-	[self addChild: background];
+	//[self addChild: background];
 	
 	// In one second transition to the new scene
-	[self scheduleOnce:@selector(makeTransition:) delay:.1];
+//	[self scheduleOnce:@selector(makeTransition:) delay:.1];*/
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[MainMenuLayer scene] withColor:ccBLACK]];
 }
 
 -(void) makeTransition:(ccTime)dt
 {
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[MainMenuLayer scene] withColor:ccBLACK]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.3 scene:[MainMenuLayer scene] withColor:ccBLACK]];
 }
 @end
