@@ -28,7 +28,7 @@
 @class KC_FBDialog;
 @compatibility_alias FBDialog KC_FBDialog;
 
-@interface KC_FBDialog : UIView <UIWebViewDelegate> {
+@interface FBDialog : UIView <UIWebViewDelegate> {
   id<KC_FBDialogDelegate> _delegate;
   NSMutableDictionary *_params;
   NSString * _serverURL;

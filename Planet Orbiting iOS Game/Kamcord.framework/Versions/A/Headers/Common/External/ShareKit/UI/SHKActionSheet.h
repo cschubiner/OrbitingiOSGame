@@ -33,7 +33,7 @@
 @class KC_SHKActionSheet;
 @compatibility_alias SHKActionSheet KC_SHKActionSheet;
 
-@interface KC_SHKActionSheet : UIActionSheet <UIActionSheetDelegate>
+@interface SHKActionSheet : UIActionSheet <UIActionSheetDelegate>
 {		
 	NSMutableArray *sharers;
 	SHKItem *item;

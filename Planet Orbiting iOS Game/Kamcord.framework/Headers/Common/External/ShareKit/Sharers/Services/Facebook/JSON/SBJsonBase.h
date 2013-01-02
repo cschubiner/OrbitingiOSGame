@@ -55,7 +55,7 @@ enum {
 @class KC_SBJsonBase;
 @compatibility_alias SBJsonBase KC_SBJsonBase;
 
-@interface KC_SBJsonBase : NSObject {
+@interface SBJsonBase : NSObject {
     NSMutableArray *errorTrace;
 
 @protected

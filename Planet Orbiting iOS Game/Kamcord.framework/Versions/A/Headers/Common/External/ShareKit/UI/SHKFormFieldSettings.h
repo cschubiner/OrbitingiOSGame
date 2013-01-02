@@ -42,7 +42,7 @@ typedef enum
 @class KC_SHKFormFieldSettings;
 @compatibility_alias SHKFormFieldSettings KC_SHKFormFieldSettings;
 
-@interface KC_SHKFormFieldSettings : NSObject 
+@interface SHKFormFieldSettings : NSObject 
 {
 	NSString *label;
 	NSString *key;

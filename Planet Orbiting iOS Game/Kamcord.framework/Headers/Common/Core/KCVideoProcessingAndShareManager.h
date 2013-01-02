@@ -64,8 +64,11 @@ typedef enum
 // An object needed to upload and share a video
 @interface KCVideoSharingTask : NSObject
 
-@property (nonatomic, retain) KCVideoShareRequest * shareRequest;
+@property (nonatomic, retain) KCVideo * video;
+@property (nonatomic, retain) KCVideoShareInfo * info;
+@property (nonatomic, retain) id <KCShareDelegate> delegate;
 @property (nonatomic, retain) KCShareHandler * taskHandler;
+
 @property (nonatomic, assign, readonly) BOOL finished;
 
 // Number of times we've tried to process this task
@@ -74,9 +77,11 @@ typedef enum
 // The error object for taskFinished (only valid once finished == YES
 @property (nonatomic, retain) NSError * error;
 
-- (id) initWithVideoShareRequest:(KCVideoShareRequest *)request;
+- (id) initWithVideo:(KCVideo *)video
+                info:(KCVideoShareInfo *)shareInfo
+            delegate:(id <KCShareDelegate>)delegate;
 
-// Tell the task it's started
+// Tell the task when it's started
 - (void)started;
 
 // Call this to tell the task that it's all done.
@@ -112,7 +117,9 @@ typedef enum
           delegate:(id <KCVideoProcessDelegate>)delegate;
 - (void)convertVideo:(KCVideo *)video
             delegate:(id <KCVideoProcessDelegate>)delegate;
-- (void)shareVideoRequest:(KCVideoShareRequest *)request;
+- (void)shareVideo:(KCVideo *)video
+              info:(KCVideoShareInfo *)info
+          delegate:(id <KCShareDelegate>)delegate;
 
 // Try to erase this video
 - (BOOL)safelyPerformTaskAndVideoCleanup:(KCVideo *)video;

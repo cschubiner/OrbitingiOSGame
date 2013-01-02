@@ -26,11 +26,6 @@
                           loop:(BOOL)loop
                       forVideo:(KCVideo *)video;
 
-- (KCAudio *)playAudioAtURL:(NSURL *)url
-                     volume:(float)volume
-                       loop:(BOOL)loop
-                   forVideo:(KCVideo *)video;
-
 // Update the times of the audio objects in the array
 - (void)startAllAndSetVideo:(KCVideo *)video;
 

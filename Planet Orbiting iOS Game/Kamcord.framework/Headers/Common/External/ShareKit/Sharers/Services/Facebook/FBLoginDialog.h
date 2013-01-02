@@ -29,7 +29,7 @@
 @class KC_FBLoginDialog;
 @compatibility_alias FBLoginDialog KC_FBLoginDialog;
 
-@interface KC_FBLoginDialog : FBDialog {
+@interface FBLoginDialog : FBDialog {
   id<KC_FBLoginDialogDelegate> _loginDelegate;
 }
 

@@ -14,7 +14,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <AmazonCredentials.h>
+#import <AWSiOSSDK/AmazonCredentials.h>
 
 
 @interface AmazonKeyChainWrapper:NSObject {

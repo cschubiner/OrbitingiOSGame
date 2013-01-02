@@ -18,7 +18,7 @@
 #import "Common/Core/Audio/KCAudio.h"
 #import "Common/Core/Audio/KCSound.h"
 
-#define KAMCORD_VERSION "0.9.7"
+#define KAMCORD_VERSION "0.9.5"
 
 // --------------------------------------------------------
 // The following enum and protocol are only relevant
@@ -184,7 +184,6 @@ typedef enum
 
 // Convenience wrapper around [[UIApplication sharedApplication] statusBarOrientation]
 + (KCDeviceOrientation) deviceOrientation;
-+ (BOOL)useUIKitAutorotation;
 
 // Social media
 // YouTube
@@ -192,7 +191,7 @@ typedef enum
              description:(NSString *)description 
                 tags:(NSString *)tags;
 + (NSString *) youtubeTitle;
-+ (NSString *) youtubeDescription;// Email
++ (NSString *) youtubeDescription;
 + (NSString *) youtubeTags;
 
 + (void) setDefaultYouTubeMessage:(NSString *)message;
@@ -213,12 +212,6 @@ typedef enum
 + (void)setDefaultTweet:(NSString *)tweet;
 + (NSString *)defaultTweet;
 
-// Email
-+ (void)setDefaultEmailSubject:(NSString *)subject
-                          body:(NSString *)body;
-+ (NSString *)defaultEmailSubject;
-+ (NSString *)defaultEmailBody;
-
 
 + (void) setLevel:(NSString *)level
             score:(NSNumber *)score;
@@ -236,11 +229,10 @@ typedef enum
 // (for example, on startup, or an end of level screen).
 + (BOOL)prepareNextVideo;
 
-+ (BOOL)startRecording;
-+ (BOOL)stopRecording;
-+ (BOOL)stopRecordingAndDiscardVideo;
-+ (BOOL)resume;
-+ (BOOL)pause;
++ (BOOL) startRecording;
++ (BOOL) stopRecording;
++ (BOOL) resume;
++ (BOOL) pause;
 
 // Displays the Kamcord view inside the previously set parentViewController;
 + (void) showView;
@@ -285,20 +277,14 @@ typedef enum
 
 
 // When the user shares a video, should the Kamcord UI wait for
-// the video to finish converting before automatically dismissing
+// the video to finish converting before automatically dismissing 
 // the share screen?
-//
+// 
 // This can be turned on for games that experience a performance
 // hit if the video processing is happening in the background
 // while the user is playing the next round or level.
-//
-// The second argument determines whether or not the video processing
-// progress bar is always visible (set to YES), or only visible
-// when the user presses a button to share (defaults to this setting, which is NO).
-+ (void)setEnableSynchronousConversionUI:(BOOL)on
-                   alwaysShowProgressBar:(BOOL)alwaysShow;
++ (void)setEnableSynchronousConversionUI:(BOOL)on;
 + (BOOL)enableSynchronousConversionUI;
-+ (BOOL)alwaysShowProgressBar;
 
 
 // Show the video player controls when the replay is shown?

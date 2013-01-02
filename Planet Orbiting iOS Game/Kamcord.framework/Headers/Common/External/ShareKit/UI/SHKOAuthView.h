@@ -38,7 +38,7 @@
 
 @end
 
-@interface KC_SHKOAuthView : UIViewController <UIWebViewDelegate>
+@interface SHKOAuthView : UIViewController <UIWebViewDelegate>
 {
 	UIWebView *webView;
 	id delegate;
