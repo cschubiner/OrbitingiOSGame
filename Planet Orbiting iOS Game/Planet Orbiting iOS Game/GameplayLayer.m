@@ -1751,6 +1751,7 @@ typedef struct {
     [cameraLayer addChild:thrustBurstParticle z:2];
     [cameraLayer addChild:streak z:1];
     //CCLOG(@"adding player.sprite");
+    [cameraLayer reorderChild:spriteSheet z:3];
     [spriteSheet addChild:player.sprite z:3];
 }
 
@@ -1872,10 +1873,10 @@ typedef struct {
                     
                     [cameraLayer addChild:currentGalaxy.spriteSheet z:3];
                     //CCLOG(@"galaxy1155");
-                    [cameraLayer reorderChild:spriteSheet z:4];
-                    [cameraLayer reorderChild:streak z:4];
-                    [cameraLayer reorderChild:thrustParticle z:4];
-                    [cameraLayer reorderChild:thrustBurstParticle z:4];
+                    [cameraLayer reorderChild:spriteSheet z:7];
+                    [cameraLayer reorderChild:streak z:6];
+                    [cameraLayer reorderChild:thrustParticle z:5];
+                    [cameraLayer reorderChild:thrustBurstParticle z:5];
                     
                 }
                 //CCLOG(@"galaxy4");
