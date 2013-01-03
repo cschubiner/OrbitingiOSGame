@@ -478,7 +478,8 @@
     CCMenu* menu = [CCMenu menuWithItems:resume, quit, nil];
     menu.position = ccp(0, 0);
     [purchaseLayer addChild:menu];
-    
+    if (IS_IPHONE_5)
+        [purchaseLayer setPosition:ccp(purchaseLayer.position.x+HALF_IPHONE_5_ADDITIONAL_WIDTH,purchaseLayer.position.y)];
     return purchaseLayer;
 }
 

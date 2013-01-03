@@ -124,7 +124,7 @@
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Autopilot" description:@"Increase the duration of the Autopilot powerup." price:6000 type:3 purchased:NO equipped:NO number:10]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Pink Stars" description:@"Turn all stars pink. Are they worth more? No. Are they more fun? No. Are they super awesome? Absolutely." price:599 type:4 purchased:NO equipped:NO number:11]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Pink Stars" description:@"Turn all stars pink. Are they worth more? No. Are they more fun? Meh. Are they super awesome? Absolutely." price:599 type:4 purchased:NO equipped:NO number:11]];
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"30,000 Stars" description:@"Get 30,000 stars." price:99 type:4 purchased:NO equipped:NO number:12]];
     
@@ -138,7 +138,7 @@
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Camo Spaceship" description:@"Stay hidden from your enemies in this camoflauged spaceship!" price:10000 type:1 purchased:NO equipped:NO number:17]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"American Spaceship" description:@"Represent America with this red white and blue spaceship!" price:200000 type:1 purchased:NO equipped:NO number:18]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"American Spaceship" description:@"Represent America with this red, white, and blue spaceship!" price:200000 type:1 purchased:NO equipped:NO number:18]];
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Bacon Spaceship" description:@"Release your inner man with this meaty spaceship." price:500000 type:1 purchased:NO equipped:NO number:19]];
     
@@ -152,7 +152,7 @@
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Green Trail" description:@"Turn your trail green." price:2000 type:0 purchased:NO equipped:NO number:24]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Blue Trail" description:@"Turn your trail blue" price:2000 type:0 purchased:NO equipped:NO number:25]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Blue Trail" description:@"Turn your trail blue." price:2000 type:0 purchased:NO equipped:NO number:25]];
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Golden Trail" description:@"Turn your trail gold." price:1000000 type:0 purchased:NO equipped:NO number:26]];
     
