@@ -272,13 +272,13 @@
                 
                 [ray0 setRotation:.5];
                 [ray0 setZOrder:-1];
-                [ray0 setScale:4];
+                [ray0 setScale:4.5];
                 [ray0 setOpacity:150];
                 [ray0 setVisible:true];
                 [ray0 runAction:[CCRepeatForever actionWithAction:[CCRotateBy actionWithDuration:.01666667 angle:.5]]];
                 
                 [ray1 setZOrder:-1];
-                [ray1 setScale:4];
+                [ray1 setScale:4.5];
                 [ray1 setOpacity:150];
                 [ray1 setVisible:true];
                 [ray1 runAction:[CCRepeatForever actionWithAction:[CCRotateBy actionWithDuration:.01666667 angle:-.5]]];

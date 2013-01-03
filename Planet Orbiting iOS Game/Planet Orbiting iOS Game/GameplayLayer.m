@@ -366,8 +366,8 @@ typedef struct {
     [galaxy setOptimalPlanetsInThisGalaxy:43];
     [galaxy setGalaxyColor: ccc3(95*darkScaler, 95*darkScaler, 95*darkScaler)];
     
-    float maxPercentTimeToAdd = .56;
-    float minPercentTimeToAdd = .3534;
+    float maxPercentTimeToAdd = .4;
+    float minPercentTimeToAdd = .27;
     int maxOptimalPlanets = 31;
     int minOptimalPlanets = 25;
     for (Galaxy* galaxy in galaxies) {
@@ -840,12 +840,16 @@ typedef struct {
         NSArray * helperTextArray = [NSArray arrayWithObjects:
                                      @"Stars increase your score and let you buy upgrades in the store!",
                                      @"Aim your swipes - they determine the direction you'll move in.",
+                                     @"Aim your swipes - they determine the direction you'll move in.",
+                                     @"Aim your swipes - they determine the direction you'll move in.",
                                      @"Complete missions to earn more stars!",
                                      @"Orbit planets as briefly as you can to move as fast as possible.",
                                      @"Your time is limited; watch the battery in the lower-left corner of the screen.",
                                      @"Your battery recharges as you move between galaxies.",
-                                     //@"",
+                                     @"Share a video of your gameplay on the game over screen for a star reward!",
                                      @"Try not orbiting planets at all - you'll start moving super quickly!",
+                                     @"Visit the store to buy awesome upgrades!",
+                                     @"Galaxies increase in difficulty. See how many of them you can make it to!",
                                      nil];
         
         [loadingHelperTextLabel setString:[helperTextArray objectAtIndex:[self RandomBetween:0 maxvalue:helperTextArray.count-1]]];
@@ -1066,7 +1070,7 @@ typedef struct {
 
 - (void)UserTouchedCoin: (Coin*)coin dt:(float)dt{
     
-    if (numTimesSwiped != 0 && isInTutorialMode) {
+    if (numTimesSwiped >= 4 && isInTutorialMode) {
         if ([self checkShouldDisplayTextForVar:hasDiplayedCoinText]) {
             [self pauseWithDuration:5.5 message:@"You just picked up a star! Stars increase your score and you can use them in the shop to buy awesome new spaceships, upgrades, perks, and more!"];
             hasDiplayedCoinText = true;
@@ -2685,9 +2689,9 @@ typedef struct {
         
         [self CheckMissions];
         
-        if (targetPlanet.number >= 12 && isInTutorialMode) {
+        if (targetPlanet.number >= 10 && isInTutorialMode) {
             if ([self checkShouldDisplayTextForVar:hasDiplayedBatteryText]) {
-                [self pauseWithDuration:5 message:@"\n\nLook at the battery in the lower-left of the screen. You die when it runs out! \n\nThe battery recharges when you go to a new galaxy!"];
+                [self pauseWithDuration:5 message:@"\n\nLook at the battery in the lower-left of the screen. You die when it runs out! \nThe battery recharges when you go to a new galaxy!"];
                 hasDiplayedBatteryText = true;
             }
         }
@@ -3113,7 +3117,7 @@ float lerpf(float a, float b, float t) {
     bool isOnRegularPause = (a_duration == 0 && a_message == @"");
     if (!isOnRegularPause)
         isDoingTutStuff = true;
-    pauseDuration = .2; //a_duration; //LOL of got frustrated
+    pauseDuration = .2; //a_duration;
     pauseText = a_message;
     
     if (!pauseEnabled) {
