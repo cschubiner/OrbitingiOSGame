@@ -839,7 +839,7 @@ typedef struct {
 
         NSArray * helperTextArray = [NSArray arrayWithObjects:
                                      @"Stars increase your score and let you buy upgrades in the store!",
-                                     @"Aim your swipes - they determine the direction you'll move in.",
+                                     @"Aim your swipes - they determine the direction in which you'll move.",
                                      @"Aim your swipes - they determine the direction you'll move in.",
                                      @"Aim your swipes - they determine the direction you'll move in.",
                                      @"Complete missions to earn more stars!",

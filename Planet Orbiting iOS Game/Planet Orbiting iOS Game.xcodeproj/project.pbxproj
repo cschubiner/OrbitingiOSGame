@@ -269,6 +269,14 @@
 		0C39999C16992B2E00F92658 /* galaxy7-hd.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = 0C39999816992B2E00F92658 /* galaxy7-hd.pvr.gz */; };
 		0C39999D16992B2E00F92658 /* galaxy7.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C39999916992B2E00F92658 /* galaxy7.plist */; };
 		0C39999E16992B2E00F92658 /* galaxy7.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = 0C39999A16992B2E00F92658 /* galaxy7.pvr.gz */; };
+		0C3999B4169960C900F92658 /* startitle-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C3999B0169960C900F92658 /* startitle-hd.png */; };
+		0C3999B5169960C900F92658 /* startitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C3999B1169960C900F92658 /* startitle.png */; };
+		0C3999B6169960C900F92658 /* streamtitle-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C3999B2169960C900F92658 /* streamtitle-hd.png */; };
+		0C3999B7169960C900F92658 /* streamtitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C3999B3169960C900F92658 /* streamtitle.png */; };
+		0C3999BC1699612600F92658 /* rate-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C3999B81699612600F92658 /* rate-hd.png */; };
+		0C3999BD1699612600F92658 /* rate.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C3999B91699612600F92658 /* rate.png */; };
+		0C3999BE1699612600F92658 /* ratepressed-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C3999BA1699612600F92658 /* ratepressed-hd.png */; };
+		0C3999BF1699612600F92658 /* ratepressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C3999BB1699612600F92658 /* ratepressed.png */; };
 		0C3E8FEE15F5836E007205B1 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FE615F5836E007205B1 /* FBDialog.bundle */; };
 		0C3E8FEF15F5836E007205B1 /* GTMOAuth2ViewTouch.nib in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FE715F5836E007205B1 /* GTMOAuth2ViewTouch.nib */; };
 		0C3E8FF015F5836E007205B1 /* Kamcord.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E8FE815F5836E007205B1 /* Kamcord.bundle */; };
@@ -478,10 +486,6 @@
 		FA20FD4E15EDE76E008F2F17 /* powerupGottenExplosionTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = FA20FD4B15EDE76E008F2F17 /* powerupGottenExplosionTexture.png */; };
 		FA20FD5315EDEC14008F2F17 /* playermenu-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA20FD5115EDEC14008F2F17 /* playermenu-hd.png */; };
 		FA20FD5415EDEC14008F2F17 /* playermenu.png in Resources */ = {isa = PBXBuildFile; fileRef = FA20FD5215EDEC14008F2F17 /* playermenu.png */; };
-		FA20FD5A15EE02C1008F2F17 /* startitle-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA20FD5615EE02C1008F2F17 /* startitle-hd.png */; };
-		FA20FD5B15EE02C1008F2F17 /* startitle.png in Resources */ = {isa = PBXBuildFile; fileRef = FA20FD5715EE02C1008F2F17 /* startitle.png */; };
-		FA20FD5C15EE02C1008F2F17 /* streamtitle-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA20FD5815EE02C1008F2F17 /* streamtitle-hd.png */; };
-		FA20FD5D15EE02C1008F2F17 /* streamtitle.png in Resources */ = {isa = PBXBuildFile; fileRef = FA20FD5915EE02C1008F2F17 /* streamtitle.png */; };
 		FA20FD6315EE058D008F2F17 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C4286D4415C3748300773FA3 /* Default.png */; };
 		FA20FD6415EE0593008F2F17 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C4286D4215C3747F00773FA3 /* Default@2x.png */; };
 		FA40895A15F935EB006891FA /* buy-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FA40895815F935EB006891FA /* buy-hd.png */; };
@@ -974,6 +978,14 @@
 		0C39999816992B2E00F92658 /* galaxy7-hd.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "galaxy7-hd.pvr.gz"; sourceTree = "<group>"; };
 		0C39999916992B2E00F92658 /* galaxy7.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = galaxy7.plist; sourceTree = "<group>"; };
 		0C39999A16992B2E00F92658 /* galaxy7.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = galaxy7.pvr.gz; sourceTree = "<group>"; };
+		0C3999B0169960C900F92658 /* startitle-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startitle-hd.png"; sourceTree = "<group>"; };
+		0C3999B1169960C900F92658 /* startitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startitle.png; sourceTree = "<group>"; };
+		0C3999B2169960C900F92658 /* streamtitle-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "streamtitle-hd.png"; sourceTree = "<group>"; };
+		0C3999B3169960C900F92658 /* streamtitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = streamtitle.png; sourceTree = "<group>"; };
+		0C3999B81699612600F92658 /* rate-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rate-hd.png"; sourceTree = "<group>"; };
+		0C3999B91699612600F92658 /* rate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rate.png; sourceTree = "<group>"; };
+		0C3999BA1699612600F92658 /* ratepressed-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ratepressed-hd.png"; sourceTree = "<group>"; };
+		0C3999BB1699612600F92658 /* ratepressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ratepressed.png; sourceTree = "<group>"; };
 		0C3E8FE115F58329007205B1 /* Kamcord.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kamcord.framework; sourceTree = "<group>"; };
 		0C3E8FE415F58349007205B1 /* AWSiOSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSiOSSDK.framework; sourceTree = "<group>"; };
 		0C3E8FE615F5836E007205B1 /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
@@ -1218,10 +1230,6 @@
 		FA20FD4B15EDE76E008F2F17 /* powerupGottenExplosionTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = powerupGottenExplosionTexture.png; sourceTree = "<group>"; };
 		FA20FD5115EDEC14008F2F17 /* playermenu-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playermenu-hd.png"; sourceTree = "<group>"; };
 		FA20FD5215EDEC14008F2F17 /* playermenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playermenu.png; sourceTree = "<group>"; };
-		FA20FD5615EE02C1008F2F17 /* startitle-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startitle-hd.png"; sourceTree = "<group>"; };
-		FA20FD5715EE02C1008F2F17 /* startitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startitle.png; sourceTree = "<group>"; };
-		FA20FD5815EE02C1008F2F17 /* streamtitle-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "streamtitle-hd.png"; sourceTree = "<group>"; };
-		FA20FD5915EE02C1008F2F17 /* streamtitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = streamtitle.png; sourceTree = "<group>"; };
 		FA40895815F935EB006891FA /* buy-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buy-hd.png"; sourceTree = "<group>"; };
 		FA40895915F935EB006891FA /* buy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buy.png; sourceTree = "<group>"; };
 		FA40895C15FA8E6F006891FA /* blank-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blank-hd.png"; sourceTree = "<group>"; };
@@ -1386,6 +1394,10 @@
 				FA8BAEF116059DF100B10BF6 /* gamecenter.png */,
 				FA8BAEF216059DF100B10BF6 /* gamecenterpressed-hd.png */,
 				FA8BAEF316059DF100B10BF6 /* gamecenterpressed.png */,
+				0C3999B81699612600F92658 /* rate-hd.png */,
+				0C3999B91699612600F92658 /* rate.png */,
+				0C3999BA1699612600F92658 /* ratepressed-hd.png */,
+				0C3999BB1699612600F92658 /* ratepressed.png */,
 				01825CA315DA2F1A0010473B /* Sound */,
 				011FE3FB15DA1304003C7713 /* Game Over */,
 				011FE3FA15DA12FD003C7713 /* Main Menu */,
@@ -2492,10 +2504,10 @@
 		FA20FD5515EE02B3008F2F17 /* Title */ = {
 			isa = PBXGroup;
 			children = (
-				FA20FD5615EE02C1008F2F17 /* startitle-hd.png */,
-				FA20FD5715EE02C1008F2F17 /* startitle.png */,
-				FA20FD5815EE02C1008F2F17 /* streamtitle-hd.png */,
-				FA20FD5915EE02C1008F2F17 /* streamtitle.png */,
+				0C3999B0169960C900F92658 /* startitle-hd.png */,
+				0C3999B1169960C900F92658 /* startitle.png */,
+				0C3999B2169960C900F92658 /* streamtitle-hd.png */,
+				0C3999B3169960C900F92658 /* streamtitle.png */,
 			);
 			name = Title;
 			sourceTree = "<group>";
@@ -2930,10 +2942,6 @@
 				FA20FD4E15EDE76E008F2F17 /* powerupGottenExplosionTexture.png in Resources */,
 				FA20FD5315EDEC14008F2F17 /* playermenu-hd.png in Resources */,
 				FA20FD5415EDEC14008F2F17 /* playermenu.png in Resources */,
-				FA20FD5A15EE02C1008F2F17 /* startitle-hd.png in Resources */,
-				FA20FD5B15EE02C1008F2F17 /* startitle.png in Resources */,
-				FA20FD5C15EE02C1008F2F17 /* streamtitle-hd.png in Resources */,
-				FA20FD5D15EE02C1008F2F17 /* streamtitle.png in Resources */,
 				FA20FD6315EE058D008F2F17 /* Default.png in Resources */,
 				FA20FD6415EE0593008F2F17 /* Default@2x.png in Resources */,
 				0C2C49B415EF666F005B1214 /* iRate.bundle in Resources */,
@@ -3063,6 +3071,14 @@
 				0C39999C16992B2E00F92658 /* galaxy7-hd.pvr.gz in Resources */,
 				0C39999D16992B2E00F92658 /* galaxy7.plist in Resources */,
 				0C39999E16992B2E00F92658 /* galaxy7.pvr.gz in Resources */,
+				0C3999B4169960C900F92658 /* startitle-hd.png in Resources */,
+				0C3999B5169960C900F92658 /* startitle.png in Resources */,
+				0C3999B6169960C900F92658 /* streamtitle-hd.png in Resources */,
+				0C3999B7169960C900F92658 /* streamtitle.png in Resources */,
+				0C3999BC1699612600F92658 /* rate-hd.png in Resources */,
+				0C3999BD1699612600F92658 /* rate.png in Resources */,
+				0C3999BE1699612600F92658 /* ratepressed-hd.png in Resources */,
+				0C3999BF1699612600F92658 /* ratepressed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

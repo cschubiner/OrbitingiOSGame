@@ -141,9 +141,15 @@
                             itemWithNormalImage:@"back.png" selectedImage:@"backpressed.png"
                             target:self selector:@selector(backButtonPressed)];
         quit.position = ccp(41, 300.5);
+        
+        CCMenuItem *rate = [CCMenuItemImage
+                            itemWithNormalImage:@"rate.png" selectedImage:@"ratepressed.png"
+                            target:self selector:@selector(rateButtonPressed)];
+        rate.position = ccp(419, 300.5);
         //quit.scale = 1.7;
         
-        CCMenu* menu = [CCMenu menuWithItems:quit, nil];
+        
+        CCMenu* menu = [CCMenu menuWithItems:quit, rate, nil];
         menu.position = ccp(0, 0);
         
         [mainLayer addChild:menu];
@@ -162,10 +168,15 @@
 }
 
 - (void) initCredits {
+    CCLabelTTF* credits00 = [CCLabelTTF labelWithString:@"Star Stream was created by five college\nkids at Stanford, MIT, and UPenn.\n\nFollow us on Twitter! @StarStreamGame" fontName:@"HelveticaNeue-CondensedBold" fontSize:20];
+    [scrollView addChild:credits00];
+    [credits00 setAnchorPoint:ccp(.5, 1)];
+    credits00.position = ccp(240, -5);
+    
     CCLabelTTF* credits0 = [CCLabelTTF labelWithString:@"- DESIGN & LEAD PROGRAMMING -" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
     [scrollView addChild:credits0];
     [credits0 setAnchorPoint:ccp(.5, 1)];
-    credits0.position = ccp(240, -5);
+    credits0.position = ccp(240, credits00.position.y - credits00.boundingBox.size.height - 22);
     
     CCLabelTTF* credits1 = [CCLabelTTF labelWithString:@"ALEX BLICKENSTAFF\nCLAY SCHUBINER" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
     [scrollView addChild:credits1];
@@ -237,6 +248,13 @@
     
     [[CCDirector sharedDirector] replaceScene:[MainMenuLayer scene]];//[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
 }
+
+
+- (void) rateButtonPressed {
+    [[iRate sharedInstance] promptForRating];
+}
+
+
 
 - (void) Update:(ccTime)dt {
     if (!isTouchingScreen) {

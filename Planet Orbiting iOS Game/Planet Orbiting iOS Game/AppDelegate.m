@@ -49,11 +49,7 @@
     [Flurry setUserID:[[UIDevice currentDevice] uniqueIdentifier]];
 
     //[TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-    
-    //[[iRate sharedInstance]setDebug:YES];
-    [[iRate sharedInstance]setAppStoreGenreID:iRateAppStoreGameGenreID];
-    [[iRate sharedInstance]setMessage:[NSString stringWithFormat:@"If you enjoy playing %@, would you mind taking a moment to rate it? 5 Star ratings help us provide free updates. It'll only take a minute! :)",[[iRate sharedInstance]applicationName]]];
-    [[iRate sharedInstance]setCancelButtonLabel:@"No Thanks"];
+  
     NSLog(@"iRate: Number of events: %d Number of uses: %d",[[iRate sharedInstance]eventCount],[[iRate sharedInstance]usesCount]);
     
     shouldPlayMenuMusic = true;
@@ -97,6 +93,10 @@
 	if( ! [director_ enableRetinaDisplay:YES] )
 		CCLOG(@"Retina Display Not supported");
     
+    
+    if ([DeviceDetection detectDevice]==MODEL_IPHONE_4)
+        [[iRate sharedInstance]setPromptAtLaunch:NO];
+        
 	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images
 	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
 	// You can change anytime.
@@ -336,9 +336,15 @@ void SignalHandler(int sig) {
 + (void)initialize
 {
     //configure iRate
-    [iRate sharedInstance].daysUntilPrompt = 0;
+    [iRate sharedInstance].daysUntilPrompt = .02;
     [iRate sharedInstance].usesUntilPrompt = 10;
     [iRate sharedInstance].eventsUntilPrompt = 17;
+    
+    
+    //[[iRate sharedInstance]setDebug:YES];
+    [[iRate sharedInstance]setAppStoreGenreID:iRateAppStoreGameGenreID];
+    [[iRate sharedInstance]setMessage:[NSString stringWithFormat:@"We're five college kids trying to make a name for ourselves. If you love Star Stream, help us out and rate our game 5 stars! :)"]];
+    [[iRate sharedInstance]setCancelButtonLabel:@"No Thanks"];
 }
 
 -(void)iRateUserDidAttemptToRateApp {

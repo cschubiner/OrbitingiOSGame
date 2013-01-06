@@ -126,15 +126,15 @@
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Pink Stars" description:@"Turn all stars pink. Are they worth more? No. Are they more fun? Meh. Are they super awesome? Absolutely." price:599 type:4 purchased:NO equipped:NO number:11]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"30,000 Stars" description:@"Get 30,000 stars." price:99 type:4 purchased:NO equipped:NO number:12]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Starter Pack (30,000 Stars)" description:@"Get a quick fix of stars to make ends meet. Get that final bit of cash to grab that next sweet upgrade." price:99 type:4 purchased:NO equipped:NO number:12]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"70,000 Stars" description:@"Get 70,000 stars." price:199 type:4 purchased:NO equipped:NO number:13]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Bag O' Stars (70,000 Stars)" description:@"Deck out your ride with some sweet new trails or grab some quick perks for pursuing those high scores!" price:199 type:4 purchased:NO equipped:NO number:13]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"120,000 Stars" description:@"Get 120,000 stars." price:299 type:4 purchased:NO equipped:NO number:14]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Galaxy Pack (120,000 Stars)" description:@"Some pretty serious cash will be at your disposal. Upgrade your ship and purchase that Lithium Ion battery to max out your score!" price:299 type:4 purchased:NO equipped:NO number:14]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"300,000 Stars" description:@"Get 300,000 stars." price:499 type:4 purchased:NO equipped:NO number:15]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Warp-Speed Pack (300,000 Stars)" description:@"Make sure you're covered in flour, 'cause you'll be rolling in dough." price:499 type:4 purchased:NO equipped:NO number:15]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"1,000,000 Stars" description:@"Get 1,000,000 stars." price:999 type:4 purchased:NO equipped:NO number:16]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"StarMaster Pack (1,000,000 Stars)" description:@"You'll have enough cash to pursue your wildest dreams. You are the StarMaster." price:999 type:4 purchased:NO equipped:NO number:16]];
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Camo Spaceship" description:@"Stay hidden from your enemies in this camoflauged spaceship!" price:10000 type:1 purchased:NO equipped:NO number:17]];
     
@@ -142,7 +142,7 @@
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Bacon Spaceship" description:@"Release your inner man with this meaty spaceship." price:500000 type:1 purchased:NO equipped:NO number:19]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Happy Spaceship" description:@"This spaceship is guaranteed to turn that frown upside down!" price:100000 type:1 purchased:NO equipped:NO number:20]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Happy Spaceship" description:@"This spaceship is guaranteed to turn that frown upside-down!" price:100000 type:1 purchased:NO equipped:NO number:20]];
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Trippy Spaceship" description:@"Take a trip in a time machine back to the 70s with this psychedelic spaceship." price:30000 type:1 purchased:NO equipped:NO number:21]];
     
