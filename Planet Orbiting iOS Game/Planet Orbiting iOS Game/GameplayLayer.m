@@ -315,7 +315,7 @@ typedef struct {
     galaxy = [galaxies objectAtIndex:1];
     [galaxy setName:@"Galaxy 2"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:21];
+    [galaxy setOptimalPlanetsInThisGalaxy:33];
     [galaxy setGalaxyColor: ccc3(0, 103*darkScaler, 3*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:2];
@@ -327,37 +327,37 @@ typedef struct {
     galaxy = [galaxies objectAtIndex:3];
     [galaxy setName:@"Galaxy 4"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
-    [galaxy setOptimalPlanetsInThisGalaxy:33];
+    [galaxy setOptimalPlanetsInThisGalaxy:26];
     [galaxy setGalaxyColor: ccc3(0, 130*darkScaler, 115*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:4];
     [galaxy setName:@"Galaxy 5"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
-    [galaxy setOptimalPlanetsInThisGalaxy:36];
+    [galaxy setOptimalPlanetsInThisGalaxy:31];
     [galaxy setGalaxyColor: ccc3(154*darkScaler, 86*darkScaler, 0)];
     
     galaxy = [galaxies objectAtIndex:5];
     [galaxy setName:@"Galaxy 6"];
     [galaxy setNumberOfDifferentPlanetsDrawn:2];
-    [galaxy setOptimalPlanetsInThisGalaxy:40];
+    [galaxy setOptimalPlanetsInThisGalaxy:33];
     [galaxy setGalaxyColor: ccc3(42*darkScaler, 112*darkScaler, 199*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:6];
     [galaxy setName:@"Galaxy 7"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:43];
+    [galaxy setOptimalPlanetsInThisGalaxy:24];
     [galaxy setGalaxyColor: ccc3(161*darkScaler, 163*darkScaler, 42*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:7];
     [galaxy setName:@"Galaxy 8"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:43];
+    [galaxy setOptimalPlanetsInThisGalaxy:37];
     [galaxy setGalaxyColor: ccc3(148*darkScaler, 74*darkScaler, 0*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:8];
     [galaxy setName:@"Galaxy 9"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:43];
+    [galaxy setOptimalPlanetsInThisGalaxy:23];
     [galaxy setGalaxyColor: ccc3(64, 104, 149)];
     
     galaxy = [galaxies objectAtIndex:9];
@@ -803,11 +803,11 @@ typedef struct {
     cameraShouldFocusOnPlayer = true;
     
     for (int i = 0 ; i < 7; i++) {
-        [self UpdateCamera:-1.0/60.0f];
+        [self UpdateCamera:1.0/60.0f];
     }
     
     [Flurry logEvent:@"Played Game"timed:YES];
-    [self scheduleOnce:@selector(startGame) delay:2.5];
+    [self scheduleOnce:@selector(startGame) delay:1.5];
 }
 
 -(void) creditUserVirtualCurrencyForVideoShare {
@@ -834,8 +834,7 @@ typedef struct {
                                                    object:nil];
         
         loadingLayer = (CCLayer*)[CCBReader nodeGraphFromFile:@"LoadingLayerCCB.ccb" owner:self];
-        //if (IS_IPHONE_5)
-        //    loadingLayer.scaleX = IPHONE_5_RATIO;
+      
 
         NSArray * helperTextArray = [NSArray arrayWithObjects:
                                      @"Stars increase your score and let you buy upgrades in the store!",
