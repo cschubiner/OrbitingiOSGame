@@ -93,7 +93,7 @@
     
 	[rt setPosition:position];
     
-	return [CCSprite spriteWithTexture:rt.sprite.texture];
+	return [CCSprite spriteWithTexture:08rt.sprite.texture];
     
 }
 
@@ -113,7 +113,7 @@
         if (IS_IPHONE_5)
             mainLayer.position = ccp(mainLayer.position.x + 44, mainLayer.position.y);
         
-        [[UserWallet sharedInstance] setBalance:100000];
+        [[UserWallet sharedInstance] setBalance:100000000];
         
         CCParticleSystemQuad * starParticle = [CCParticleSystemQuad particleWithFile:@"starParticleMenu.plist"];
         [self addChild:starParticle];
