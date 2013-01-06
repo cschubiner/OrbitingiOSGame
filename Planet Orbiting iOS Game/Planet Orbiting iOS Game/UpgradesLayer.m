@@ -93,7 +93,7 @@
     
 	[rt setPosition:position];
     
-	return [CCSprite spriteWithTexture:08rt.sprite.texture];
+	return [CCSprite spriteWithTexture:rt.sprite.texture];
     
 }
 

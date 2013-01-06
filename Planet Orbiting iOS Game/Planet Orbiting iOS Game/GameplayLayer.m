@@ -2268,7 +2268,6 @@ typedef struct {
     int finalScore = score + prevCurrentPtoPScore;
     BOOL isHighScore = [[PlayerStats sharedInstance] isHighScore:finalScore];
     NSString *ccbFile = @"GameOverLayer.ccb";
-    //NSString *scoreText = [NSString stringWithFormat:@"Score: %d",finalScore];
     pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:ccbFile owner:self];
     if (IS_IPHONE_5)
         pauseLayer.position = ccpAdd(pauseLayer.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
@@ -3131,7 +3130,7 @@ float lerpf(float a, float b, float t) {
         if (isOnRegularPause) {
             [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
             pauseLayer = [self createPauseLayer];//(CCLayer*)[CCBReader nodeGraphFromFile:@"PauseMenuLayer.ccb" owner:self];
-            [gameOverScoreLabel setString:[NSString stringWithFormat:@"Score: %d",score+prevCurrentPtoPScore]];
+            [gameOverScoreLabel setString:[NSString stringWithFormat:@"%d",score+prevCurrentPtoPScore]];
             [pauseLayer setTag:pauseLayerTag];
             muted = ![[PlayerStats sharedInstance] isMuted];
             [self toggleMute];
