@@ -802,9 +802,9 @@ typedef struct {
     
     cameraShouldFocusOnPlayer = true;
     
-    for (int i = 0 ; i < 7; i++) {
+    /*for (int i = 0 ; i < 7; i++) {
         [self UpdateCamera:1.0/60.0f];
-    }
+    }*/
     
     [Flurry logEvent:@"Played Game"timed:YES];
     [self scheduleOnce:@selector(startGame) delay:1.5];
