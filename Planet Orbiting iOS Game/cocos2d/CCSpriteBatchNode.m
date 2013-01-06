@@ -388,9 +388,9 @@ const NSUInteger defaultCapacity = 29;
 	// this is likely computationally expensive
 	NSUInteger quantity = (textureAtlas_.capacity + 1) * 4 / 3;
 
-	CCLOG(@"cocos2d: CCSpriteBatchNode: resizing TextureAtlas capacity from [%lu] to [%lu].",
-		  (long)textureAtlas_.capacity,
-		  (long)quantity);
+//	CCLOG(@"cocos2d: CCSpriteBatchNode: resizing TextureAtlas capacity from [%lu] to [%lu].",
+//		  (long)textureAtlas_.capacity,
+//		  (long)quantity);
 
 
 	if( ! [textureAtlas_ resizeCapacity:quantity] ) {

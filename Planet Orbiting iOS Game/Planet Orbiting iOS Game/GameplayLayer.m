@@ -1846,7 +1846,7 @@ typedef struct {
                                                 lerpf(lastColor.b, nextColor.b, colorPercent))];
                 
             }
-            if (percentofthewaytonext>.85&&justDisplayedGalaxyLabel==false&&(int)galaxyLabel.opacity<=0)
+            if (percentofthewaytonext>.76&&justDisplayedGalaxyLabel==false&&(int)galaxyLabel.opacity<=0)
             {
                 Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
                 lastGalaxyColor = lastGalaxy.galaxyColor;
