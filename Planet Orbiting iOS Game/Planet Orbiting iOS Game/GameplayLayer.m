@@ -303,7 +303,7 @@ typedef struct {
 
 - (void)setGalaxyProperties {
     
-    float darkScaler = .35;
+    const float darkScaler = .35;
     
     Galaxy* galaxy;
     galaxy = [galaxies objectAtIndex:0];
@@ -321,37 +321,37 @@ typedef struct {
     galaxy = [galaxies objectAtIndex:2];
     [galaxy setName:@"Galaxy 3"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:26];
+    [galaxy setOptimalPlanetsInThisGalaxy:21];
     [galaxy setGalaxyColor: ccc3(114*darkScaler, 0, 115*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:3];
     [galaxy setName:@"Galaxy 4"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
-    [galaxy setOptimalPlanetsInThisGalaxy:26];
+    [galaxy setOptimalPlanetsInThisGalaxy:22];
     [galaxy setGalaxyColor: ccc3(0, 130*darkScaler, 115*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:4];
     [galaxy setName:@"Galaxy 5"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
-    [galaxy setOptimalPlanetsInThisGalaxy:31];
+    [galaxy setOptimalPlanetsInThisGalaxy:27];
     [galaxy setGalaxyColor: ccc3(154*darkScaler, 86*darkScaler, 0)];
     
     galaxy = [galaxies objectAtIndex:5];
     [galaxy setName:@"Galaxy 6"];
     [galaxy setNumberOfDifferentPlanetsDrawn:2];
-    [galaxy setOptimalPlanetsInThisGalaxy:33];
+    [galaxy setOptimalPlanetsInThisGalaxy:24];
     [galaxy setGalaxyColor: ccc3(42*darkScaler, 112*darkScaler, 199*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:6];
     [galaxy setName:@"Galaxy 7"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:24];
+    [galaxy setOptimalPlanetsInThisGalaxy:22];
     [galaxy setGalaxyColor: ccc3(161*darkScaler, 163*darkScaler, 42*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:7];
     [galaxy setName:@"Galaxy 8"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:37];
+    [galaxy setOptimalPlanetsInThisGalaxy:26];
     [galaxy setGalaxyColor: ccc3(148*darkScaler, 74*darkScaler, 0*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:8];
@@ -363,7 +363,7 @@ typedef struct {
     galaxy = [galaxies objectAtIndex:9];
     [galaxy setName:@"Galaxy 10"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:43];
+    [galaxy setOptimalPlanetsInThisGalaxy:27];
     [galaxy setGalaxyColor: ccc3(95*darkScaler, 95*darkScaler, 95*darkScaler)];
     
     float maxPercentTimeToAdd = .43;
