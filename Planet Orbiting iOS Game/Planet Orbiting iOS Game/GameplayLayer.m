@@ -366,8 +366,8 @@ typedef struct {
     [galaxy setOptimalPlanetsInThisGalaxy:43];
     [galaxy setGalaxyColor: ccc3(95*darkScaler, 95*darkScaler, 95*darkScaler)];
     
-    float maxPercentTimeToAdd = .4;
-    float minPercentTimeToAdd = .27;
+    float maxPercentTimeToAdd = .43;
+    float minPercentTimeToAdd = .29;
     int maxOptimalPlanets = 31;
     int minOptimalPlanets = 25;
     for (Galaxy* galaxy in galaxies) {

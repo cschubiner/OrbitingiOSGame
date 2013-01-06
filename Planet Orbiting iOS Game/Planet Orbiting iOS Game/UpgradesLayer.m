@@ -113,6 +113,7 @@
         if (IS_IPHONE_5)
             mainLayer.position = ccp(mainLayer.position.x + 44, mainLayer.position.y);
         
+        //DECREASESTARTINGMONEY
         [[UserWallet sharedInstance] setBalance:100000000];
         
         CCParticleSystemQuad * starParticle = [CCParticleSystemQuad particleWithFile:@"starParticleMenu.plist"];
