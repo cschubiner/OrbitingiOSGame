@@ -168,14 +168,24 @@ void SignalHandler(int sig) {
     // Save application data on crash
 }
 
+-(NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+   // return UIInterfaceOrientationMaskAllButUpsideDown;
+    return UIInterfaceOrientationMaskLandscape;
+}
+
 // Supported orientations: Landscape. Customize it for your own needs
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
+    
 	return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
 -(UIViewController*)getViewController{
     return navController_;
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskLandscape;
 }
 
 -(int)getGalaxyCounter {
