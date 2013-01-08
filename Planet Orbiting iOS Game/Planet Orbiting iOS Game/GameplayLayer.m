@@ -31,6 +31,7 @@
 
 @implementation GameplayLayer {
     int planetCounter;
+    int totalPlanetsVisitedForBackgroundStars;
     int score;
     float currentDistance;
     float previousDistance;
@@ -479,10 +480,14 @@ typedef struct {
     [self initUpgradedVariables];
     loadedPauseLayer = [self createPauseLayer];
     
-    directionPlanetSegmentsGoIn = [self randomValueBetween:defaultDirectionPlanetSegmentsGoIn-directionPlanetSegmentsGoInVariance andValue:defaultDirectionPlanetSegmentsGoIn+directionPlanetSegmentsGoInVariance];
+    
+    float defaultDirection = defaultDirectionPlanetSegmentsGoIn;
+    if (IS_IPHONE_5)
+        defaultDirection = 29.396052855;
+    directionPlanetSegmentsGoIn = [self randomValueBetween:defaultDirection-directionPlanetSegmentsGoInVariance andValue:defaultDirection+directionPlanetSegmentsGoInVariance];
     
     [Kamcord prepareNextVideo];
-    
+    totalPlanetsVisitedForBackgroundStars = 0;
     planetCounter = 0;
     planets = [[NSMutableArray alloc] init];
     asteroids = [[NSMutableArray alloc] init];
@@ -2072,6 +2077,7 @@ typedef struct {
                 if (player.currentPowerup.type != kheadStart)
                     timeDilationCoefficient += timeDilationIncreaseRate;
                 planetsHitFlurry++;
+                totalPlanetsVisitedForBackgroundStars++;
                 
                 if (planetsHitFlurry == 1) {
                     [coinsLabelStarSprite setVisible:true];
@@ -2463,6 +2469,7 @@ typedef struct {
         
         //CCLOG([NSString stringWithFormat:@"x: %f, y: %f", camLayerVelocity.x, camLayerVelocity.y]);
         
+        if (totalPlanetsVisitedForBackgroundStars != 1)
         star.position = ccpAdd(star.position,  ccpMult(camLayerVelocity, 1*.0882*60*dt*backgroundStarsMovementSpeed));//*cameraLayer.scale
         
         if (star.position.x<0-star.width/2 || star.position.y <0-star.height/2) { //if star is off-screen

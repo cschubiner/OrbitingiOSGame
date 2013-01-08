@@ -2637,6 +2637,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0C7AA7601594693D000B58F2 /* Build configuration list for PBXNativeTarget "Planet Orbiting iOS Game" */;
 			buildPhases = (
+				0C16BB501699ACB000F20044 /* ShellScript */,
 				0C7AA5EA15946939000B58F2 /* Sources */,
 				0C7AA5EB15946939000B58F2 /* Frameworks */,
 				0C7AA5EC15946939000B58F2 /* Resources */,
@@ -3084,6 +3085,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0C16BB501699ACB000F20044 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "touch Info.plist";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0C7AA5EA15946939000B58F2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -3315,7 +3332,7 @@
 				GCC_VERSION = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "Planet Orbiting iOS Game/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Planet Orbiting iOS Game\"",
@@ -3368,7 +3385,7 @@
 				GCC_VERSION = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "Planet Orbiting iOS Game/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Planet Orbiting iOS Game\"",
