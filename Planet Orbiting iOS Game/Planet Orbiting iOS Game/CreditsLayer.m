@@ -148,7 +148,6 @@
         rate.position = ccp(419, 300.5);
         //quit.scale = 1.7;
         
-        
         CCMenu* menu = [CCMenu menuWithItems:quit, rate, nil];
         menu.position = ccp(0, 0);
         

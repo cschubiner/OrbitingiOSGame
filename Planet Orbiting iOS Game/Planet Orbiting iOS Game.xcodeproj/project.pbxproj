@@ -121,6 +121,10 @@
 		0C0E8815160423AF00779D6F /* galaxy9.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87F1160423AF00779D6F /* galaxy9.plist */; };
 		0C0E8816160423AF00779D6F /* galaxy9.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87F2160423AF00779D6F /* galaxy9.pvr.gz */; };
 		0C1662C915CEA56B00C0D0B9 /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1662C815CEA56B00C0D0B9 /* Tutorial.m */; };
+		0C16BB59169C24FC00F20044 /* share-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C16BB55169C24FC00F20044 /* share-hd.png */; };
+		0C16BB5A169C24FC00F20044 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C16BB56169C24FC00F20044 /* share.png */; };
+		0C16BB5B169C24FC00F20044 /* sharepressed-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C16BB57169C24FC00F20044 /* sharepressed-hd.png */; };
+		0C16BB5C169C24FC00F20044 /* sharepressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C16BB58169C24FC00F20044 /* sharepressed.png */; };
 		0C28EEC615DBA3E600B440DD /* asteroidbreakericon-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEB815DBA3E600B440DD /* asteroidbreakericon-hd.png */; };
 		0C28EEC715DBA3E600B440DD /* asteroidbreakericon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEB915DBA3E600B440DD /* asteroidbreakericon.png */; };
 		0C28EEC815DBA3E600B440DD /* batteryupgradeicon-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEBA15DBA3E600B440DD /* batteryupgradeicon-hd.png */; };
@@ -694,6 +698,10 @@
 		0C0E87F2160423AF00779D6F /* galaxy9.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = galaxy9.pvr.gz; sourceTree = "<group>"; };
 		0C1662C715CEA56B00C0D0B9 /* Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutorial.h; sourceTree = "<group>"; };
 		0C1662C815CEA56B00C0D0B9 /* Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial.m; sourceTree = "<group>"; };
+		0C16BB55169C24FC00F20044 /* share-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share-hd.png"; sourceTree = "<group>"; };
+		0C16BB56169C24FC00F20044 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		0C16BB57169C24FC00F20044 /* sharepressed-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharepressed-hd.png"; sourceTree = "<group>"; };
+		0C16BB58169C24FC00F20044 /* sharepressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sharepressed.png; sourceTree = "<group>"; };
 		0C28EEB815DBA3E600B440DD /* asteroidbreakericon-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "asteroidbreakericon-hd.png"; sourceTree = "<group>"; };
 		0C28EEB915DBA3E600B440DD /* asteroidbreakericon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroidbreakericon.png; sourceTree = "<group>"; };
 		0C28EEBA15DBA3E600B440DD /* batteryupgradeicon-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "batteryupgradeicon-hd.png"; sourceTree = "<group>"; };
@@ -1390,6 +1398,10 @@
 		011FE3F615DA12E8003C7713 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				0C16BB55169C24FC00F20044 /* share-hd.png */,
+				0C16BB56169C24FC00F20044 /* share.png */,
+				0C16BB57169C24FC00F20044 /* sharepressed-hd.png */,
+				0C16BB58169C24FC00F20044 /* sharepressed.png */,
 				FA8BAEF016059DF100B10BF6 /* gamecenter-hd.png */,
 				FA8BAEF116059DF100B10BF6 /* gamecenter.png */,
 				FA8BAEF216059DF100B10BF6 /* gamecenterpressed-hd.png */,
@@ -3080,6 +3092,10 @@
 				0C3999BD1699612600F92658 /* rate.png in Resources */,
 				0C3999BE1699612600F92658 /* ratepressed-hd.png in Resources */,
 				0C3999BF1699612600F92658 /* ratepressed.png in Resources */,
+				0C16BB59169C24FC00F20044 /* share-hd.png in Resources */,
+				0C16BB5A169C24FC00F20044 /* share.png in Resources */,
+				0C16BB5B169C24FC00F20044 /* sharepressed-hd.png in Resources */,
+				0C16BB5C169C24FC00F20044 /* sharepressed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

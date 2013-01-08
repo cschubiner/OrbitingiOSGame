@@ -923,7 +923,7 @@ typedef struct {
 }
 
 - (void)UpdateCamera:(float)dt {
-    NSLog(@"LDOSFKLDSOFKSDOKJFDS: %f", timeDilationCoefficient);
+   // NSLog(@"LDOSFKLDSOFKSDOKJFDS: %f", timeDilationCoefficient);
     if (player.alive) {
         player.velocity = ccpAdd(player.velocity, player.acceleration);
         if (player.currentPowerup.type == kheadStart)
@@ -2858,7 +2858,8 @@ typedef struct {
         //playerIsTouchingScreen=true;
         //}
         
-        if (!isKeyboardShowing && location.x <= size.width/3 && location.y >= 4*size.height/5) {
+        if (!isKeyboardShowing &&
+            location.x >= 10*size.width/18 && location.y >= 3*size.height/7 && location.y <= 6*size.height/7) {
             [self showKeyboard];
         } else
             [self hideKeyboard];
