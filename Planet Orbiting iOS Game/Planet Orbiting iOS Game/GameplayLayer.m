@@ -794,6 +794,8 @@ typedef struct {
     [self UpdateScore:1.0f/40.0f];
     
     recentName = [[PlayerStats sharedInstance] recentName];
+    if (!recentName || [recentName isEqualToString: @" "])
+        recentName = @"PLAYER";
     playerNameLabel = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     [scoreLabel setVisible:false];
     [coinsLabel setVisible:false];
@@ -916,7 +918,7 @@ typedef struct {
 }
 
 - (void)UpdateCamera:(float)dt {
-    //NSLog(@"LDOSFKLDSOFKSDOKJFDS: %f", timeDilationCoefficient);
+    NSLog(@"LDOSFKLDSOFKSDOKJFDS: %f", timeDilationCoefficient);
     if (player.alive) {
         player.velocity = ccpAdd(player.velocity, player.acceleration);
         if (player.currentPowerup.type == kheadStart)

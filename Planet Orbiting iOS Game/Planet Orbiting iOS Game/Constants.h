@@ -120,17 +120,16 @@ const float deathAfterThisLong = 55*1.35f*1.1f*1.5f*1*2*.9*2*2;
 
 //SPEED!!!!-------------------------------------------------------------------------------------------------
 
-
 const float initialTimeDilation = .8*.89;
 
 //increase to make timeDilationFactor decrease more rapidly
-const float timeDilationReduceRate = .0008;
+const float timeDilationReduceRate = .0005;
 
 //1 means you lose no speed when you die, 0 means you lose it all
-const float factorToScaleTimeDilationByOnDeath = .79;
+const float factorToScaleTimeDilationByOnDeath = .87;
 
 //increase to increase timeDilationFactor by a larger amount everytime you get to a new zone
-const float timeDilationIncreaseRate = .047*.8*1.5;
+const float timeDilationIncreaseRate = .047*.8*1.5*1.01;
 
 const float timeDilationFeverModeMultiplier = 1.05;
 
