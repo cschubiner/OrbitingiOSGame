@@ -129,7 +129,7 @@ const float timeDilationReduceRate = .0005;
 const float factorToScaleTimeDilationByOnDeath = .87;
 
 //increase to increase timeDilationFactor by a larger amount everytime you get to a new zone
-const float timeDilationIncreaseRate = .047*.8*1.5*1.01;
+const float timeDilationIncreaseRate = .047*.8*1.5*.98;
 
 const float timeDilationFeverModeMultiplier = 1.05;
 
@@ -137,7 +137,7 @@ const float timeDilationFeverModeMultiplier = 1.05;
 //THIS IS NOW IN UPGRADE VALUES const float absoluteMinTimeDilation = .85;
 
 //the highest the time dilation factor can go. this should probZ just be infinity. bitches will has c slow down if they're going too fast
-const float absoluteMaxTimeDilation = initialTimeDilation*2;
+const float absoluteMaxTimeDilation = initialTimeDilation*1.7;
 
 //----------------------------------------------------------------------------------------------------------
 

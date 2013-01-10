@@ -390,11 +390,11 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] equipped]];
     
-    [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:initialTimeDilation + .08*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] equipped]];
+    [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:initialTimeDilation + .07*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] equipped]];
     
     [[UpgradeValues sharedInstance] setHasDoubleCoins:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped]];
     
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:60 + 5*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:66 + 4*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
     
     [[UpgradeValues sharedInstance] setHasStarMagnet:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped]];
     
@@ -2846,7 +2846,7 @@ typedef struct {
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
-        if (location.x >= 7 * size.width/8 && location.y >= 5*size.height/6) {
+        if (location.x >= size.width - 40 && location.y >= size.height - 40) {
             if (!paused && !isGameOver)
                 [self togglePause];
         }
@@ -3164,7 +3164,10 @@ float lerpf(float a, float b, float t) {
     if (tutCounter == 0) {
         pauseLabel = [CCLabelTTF labelWithString:pauseText dimensions:CGSizeMake(390, 320) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentTop lineBreakMode:kCCLineBreakModeWordWrap fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
         pauseLabel.anchorPoint = ccp(.5, 1);
-        pauseLabel.position = ccp(240, 320);
+        if (IS_IPHONE_5)
+            pauseLabel.position = ccp(240 + HALF_IPHONE_5_ADDITIONAL_WIDTH, 320);
+        else
+            pauseLabel.position = ccp(240, 320);
         pauseLabel.opacity = 0;
         [self addChild: pauseLabel];
         
