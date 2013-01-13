@@ -50,7 +50,7 @@
 
     //[TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
   
-    NSLog(@"iRate: Number of events: %d Number of uses: %d",[[iRate sharedInstance]eventCount],[[iRate sharedInstance]usesCount]);
+    //NSLog(@"iRate: Number of events: %d Number of uses: %d",[[iRate sharedInstance]eventCount],[[iRate sharedInstance]usesCount]);
     
     shouldPlayMenuMusic = true;
     
@@ -155,7 +155,7 @@
  My Apps Custom uncaught exception catcher, we do special stuff here, and TestFlight takes care of the rest
  **/
 void HandleExceptions(NSException *exception) {
-    NSLog(@"This is where we save the application data during a exception");
+    //NSLog(@"This is where we save the application data during a exception");
     [Flurry logError:@"Game crashed" message:@"game crashed" exception:exception];
     // Save application data on crash
 }
@@ -164,7 +164,7 @@ void HandleExceptions(NSException *exception) {
  My Apps Custom signal catcher, we do special stuff here, and TestFlight takes care of the rest
  **/
 void SignalHandler(int sig) {
-    NSLog(@"This is where we save the application data during a signal");
+    //NSLog(@"This is where we save the application data during a signal");
     // Save application data on crash
 }
 
