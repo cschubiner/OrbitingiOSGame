@@ -126,7 +126,7 @@ const float initialTimeDilation = .8*.89;
 const float timeDilationReduceRate = .0005;
 
 //1 means you lose no speed when you die, 0 means you lose it all
-const float factorToScaleTimeDilationByOnDeath = .87;
+const float factorToScaleTimeDilationByOnDeath = .835;
 
 //increase to increase timeDilationFactor by a larger amount everytime you get to a new zone
 const float timeDilationIncreaseRate = .047*.8*1.5*.98;

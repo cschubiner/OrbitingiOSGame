@@ -820,7 +820,7 @@ typedef struct {
 -(void) creditUserVirtualCurrencyForVideoShare {
     if (!hasShared)
     {
-        NSLog(@"creditUserVirtualCurrencyForVideoShare method called");
+        //NSLog(@"creditUserVirtualCurrencyForVideoShare method called");
         [[UserWallet sharedInstance] addCoins: 200];
         hasShared = true;
     }
@@ -2054,7 +2054,7 @@ typedef struct {
                 // CCLOG(@"lastplanet: %d targetplanet = %d lastplanethitzone: %d nextplanethitzone: %d",lastPlanetVisited.number,targetPlanet.number,(int)zone.hasPlayerHitThisZone,(int)((Zone*)[zones objectAtIndex:zone.number+1]).hasPlayerHitThisZone);
                 
                 if (i==0||((Planet*)[planets objectAtIndex:zone.number-1]).whichSegmentThisObjectIsOriginallyFrom!=lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom) {
-                    CCLOG(@"Entering galaxy %d segment %d (1-based index)",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1);
+                    //CCLOG(@"Entering galaxy %d segment %d (1-based index)",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1);
                     flurrySegmentsVisitedSinceGalaxyJump++;
                 }
                 
@@ -3125,7 +3125,7 @@ float lerpf(float a, float b, float t) {
     bool isOnRegularPause = (a_duration == 0 && a_message == @"");
     if (!isOnRegularPause)
         isDoingTutStuff = true;
-    pauseDuration = .2; //a_duration;
+    pauseDuration = a_duration;
     pauseText = a_message;
     
     if (!pauseEnabled) {

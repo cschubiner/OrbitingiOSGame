@@ -107,14 +107,10 @@
         self.isTouchEnabled= TRUE;
         indexPushed = [[UpgradeManager sharedInstance] buttonPushed];
         
-        
         mainLayer = [[CCLayer alloc] init];
         [self addChild:mainLayer];
         if (IS_IPHONE_5)
             mainLayer.position = ccp(mainLayer.position.x + 44, mainLayer.position.y);
-        
-        //DECREASESTARTINGMONEY
-        [[UserWallet sharedInstance] setBalance:100000000];
         
         CCParticleSystemQuad * starParticle = [CCParticleSystemQuad particleWithFile:@"starParticleMenu.plist"];
         [self addChild:starParticle];
@@ -378,7 +374,7 @@
         if (!moved && location.y < 275) {
             NSMutableArray* upgrades = [[UpgradeManager sharedInstance] upgradeItems];
             
-            NSLog(@"scrollviewPos: %f, tap y value: %f", scrollView.position.y, location.y);
+            //NSLog(@"scrollviewPos: %f, tap y value: %f", scrollView.position.y, location.y);
             float dif = scrollView.position.y - location.y;
             
             
@@ -386,7 +382,7 @@
             
             for (int i = 0; i < totalUpgrades; i++) {
                 if (dif > 0 && dif < 55*(i + 1)) {
-                    NSLog(@"dif: %f", dif);
+                    //NSLog(@"dif: %f", dif);
                     [self tappedUpgrade:[upgrades objectAtIndex:[[upgradeIndecesHere objectAtIndex: i] intValue]]];
                     break;
                 }

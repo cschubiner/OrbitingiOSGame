@@ -317,7 +317,7 @@ const float effectsVolumeMainMenu = 1;
     [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setShouldPlayMenuMusic:true];
     
     [[PlayerStats sharedInstance] addPlay];
-    CCLOG(@"number of plays ever: %i", [[PlayerStats sharedInstance] getPlays]);
+    //CCLOG(@"number of plays ever: %i", [[PlayerStats sharedInstance] getPlays]);
     [((AppDelegate*)[[UIApplication sharedApplication]delegate])setChosenLevelNumber:0];
     
     /*if ([[PlayerStats sharedInstance] getPlays] == 1) {
@@ -325,7 +325,7 @@ const float effectsVolumeMainMenu = 1;
      return;
      }*/
     
-    CCLOG(@"GameplayLayerScene launched, game starting");
+    //CCLOG(@"GameplayLayerScene launched, game starting");
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
 }
 
@@ -403,7 +403,7 @@ const float effectsVolumeMainMenu = 1;
 }
 - (void)pressedLevelsButton: (id) sender {
     [Flurry logEvent:@"Pressed Levels Button"];
-    CCLOG(@"levels layer launched");
+    //CCLOG(@"levels layer launched");
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(0,0)];
     id ease = [CCEaseSineInOut actionWithAction:action];
     [layer runAction: ease];
