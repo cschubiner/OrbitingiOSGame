@@ -2295,8 +2295,12 @@ typedef struct {
     pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:ccbFile owner:self];
     if (IS_IPHONE_5)
         pauseLayer.position = ccpAdd(pauseLayer.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
-    if (finalScore > 40000)
+    if (finalScore > 60000)
         [[iRate sharedInstance] logEvent:YES];
+    
+    for (int i = finalScore; i > 80000; i-=10000){
+        [[iRate sharedInstance] logEvent:YES];
+    }
     //finalScore = 69669;
     //numCoinsDisplayed = 69;
     
