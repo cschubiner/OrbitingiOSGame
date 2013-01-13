@@ -167,7 +167,7 @@
 }
 
 - (void) initCredits {
-    CCLabelTTF* credits00 = [CCLabelTTF labelWithString:@"Star Stream was created by five college\nkids at Stanford, MIT, and UPenn.\n\nFollow us on Twitter! @StarStreamGame" fontName:@"HelveticaNeue-CondensedBold" fontSize:20];
+    CCLabelTTF* credits00 = [CCLabelTTF labelWithString:@"Star Stream was created by five college\nkids at Stanford, MIT, and UPenn." fontName:@"HelveticaNeue-CondensedBold" fontSize:20];
     [scrollView addChild:credits00];
     [credits00 setAnchorPoint:ccp(.5, 1)];
     credits00.position = ccp(240, -5);
@@ -175,7 +175,7 @@
     CCLabelTTF* credits0 = [CCLabelTTF labelWithString:@"- DESIGN & LEAD PROGRAMMING -" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
     [scrollView addChild:credits0];
     [credits0 setAnchorPoint:ccp(.5, 1)];
-    credits0.position = ccp(240, credits00.position.y - credits00.boundingBox.size.height - 22);
+    credits0.position = ccp(240, credits00.position.y - credits00.boundingBox.size.height - 30);
     
     CCLabelTTF* credits1 = [CCLabelTTF labelWithString:@"ALEX BLICKENSTAFF\nCLAY SCHUBINER" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
     [scrollView addChild:credits1];
@@ -207,14 +207,22 @@
     CCLabelTTF* credits8 = [CCLabelTTF labelWithString:@"- LEVEL DESIGN -" fontName:@"HelveticaNeue-CondensedBold" fontSize:24];
      [scrollView addChild:credits8];
      [credits8 setAnchorPoint:ccp(.5, 1)];
-     credits8.position = ccp(240, credits7.position.y - credits7.boundingBox.size.height - 35);
-     
-     CCLabelTTF* credits9 = [CCLabelTTF labelWithString:@"CRAIG COLLINS" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
-     [scrollView addChild:credits9];
-     [credits9 setAnchorPoint:ccp(.5, 1)];
-     credits9.position = ccp(240, credits8.position.y - credits8.boundingBox.size.height - 10);
+    credits8.position = ccp(240, credits7.position.y - credits7.boundingBox.size.height - 35);
     
-    scrollViewHeight = -credits9.position.y + credits9.boundingBox.size.height + 20;
+    CCLabelTTF* credits9 = [CCLabelTTF labelWithString:@"CRAIG COLLINS" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+    [scrollView addChild:credits9];
+    [credits9 setAnchorPoint:ccp(.5, 1)];
+    credits9.position = ccp(240, credits8.position.y - credits8.boundingBox.size.height - 10);
+    
+    CCLabelTTF* credits10 = [CCLabelTTF labelWithString:@"Follow us on Twitter! @StarStreamGame\n\nComments? Suggestions? Let us\nknow at contact@starstreamgame.com!" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+    [scrollView addChild:credits10];
+    [credits10 setAnchorPoint:ccp(.5, 1)];
+    credits10.position = ccp(240, credits9.position.y - credits9.boundingBox.size.height - 40);
+    
+    
+    
+    
+    scrollViewHeight = -credits10.position.y + credits10.boundingBox.size.height + 20;
 }
 
 -(void) initScrollStuff {
