@@ -1912,9 +1912,13 @@ typedef struct {
                     [galaxyLabel setString:[currentGalaxy name]];
                     [galaxyLabel stopAllActions];
                     [galaxyLabel runAction:galaxyLabelAction];
-                if ((feverLabel.visible && isInFeverMode)) {
-                     galaxyLabel.position = ccpAdd(galaxyLabel.position, ccp(0,11));
-                     feverLabel.position = ccpAdd(feverLabel.position, ccp(0,-7));
+                if ((feverLabel.visible && isInFeverMode)) {                    
+                    [galaxyLabel setPosition:ccp(240,56)];
+                    [feverLabel setPosition:ccp(240, feverLabel.boundingBox.size.height*.6+30-7)];
+                    if (IS_IPHONE_5) {
+                        feverLabel.position = ccpAdd(feverLabel.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
+                        galaxyLabel.position = ccpAdd(galaxyLabel.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
+                    }
                 }
                 justDisplayedGalaxyLabel= true;
             }
