@@ -368,7 +368,7 @@ typedef struct {
     [galaxy setGalaxyColor: ccc3(95*darkScaler*1.09, 95*darkScaler*1.09, 95*darkScaler*1.09)];
     
     float maxPercentTimeToAdd = .30;
-    float minPercentTimeToAdd = .22594;
+    float minPercentTimeToAdd = .24594;
  //   int maxOptimalPlanets = 31;
  //   int minOptimalPlanets = 25;
     for (Galaxy* galaxy in galaxies) {
@@ -1913,8 +1913,8 @@ typedef struct {
                     [galaxyLabel stopAllActions];
                     [galaxyLabel runAction:galaxyLabelAction];
                 if ((feverLabel.visible && isInFeverMode)) {
-                     galaxyLabel.position = ccpAdd(galaxyLabel.position, ccp(0,8));
-                     feverLabel.position = ccpAdd(feverLabel.position, ccp(0,-5));
+                     galaxyLabel.position = ccpAdd(galaxyLabel.position, ccp(0,11));
+                     feverLabel.position = ccpAdd(feverLabel.position, ccp(0,-7));
                 }
                 justDisplayedGalaxyLabel= true;
             }
@@ -2070,8 +2070,15 @@ typedef struct {
                 //    [self UpdateFeverMode];
                 //}
                 
+                if (galaxyLabel.visible == false) {
                 [galaxyLabel setPosition:ccp(240,45)];
                 [feverLabel setPosition:ccp(240, feverLabel.boundingBox.size.height*.6+30)];
+                if (IS_IPHONE_5) {
+                    feverLabel.position = ccpAdd(feverLabel.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
+                    galaxyLabel.position = ccpAdd(galaxyLabel.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
+                }
+                }
+
 
                 percentToNextHasAlreadyBeenBelowZeroForThisPlanet = false;
                 zonesReached++;
