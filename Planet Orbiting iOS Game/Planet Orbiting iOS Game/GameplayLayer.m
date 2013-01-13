@@ -367,8 +367,8 @@ typedef struct {
     [galaxy setOptimalPlanetsInThisGalaxy:25];
     [galaxy setGalaxyColor: ccc3(95*darkScaler*1.09, 95*darkScaler*1.09, 95*darkScaler*1.09)];
     
-    float maxPercentTimeToAdd = .39;
-    float minPercentTimeToAdd = .3456;
+    float maxPercentTimeToAdd = .30;
+    float minPercentTimeToAdd = .24594;
  //   int maxOptimalPlanets = 31;
  //   int minOptimalPlanets = 25;
     for (Galaxy* galaxy in galaxies) {
@@ -394,7 +394,7 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setHasDoubleCoins:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped]];
     
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:66 + 4*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:75 + 4*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
     
     [[UpgradeValues sharedInstance] setHasStarMagnet:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped]];
     
@@ -1905,13 +1905,16 @@ typedef struct {
                 [batteryGlowSprite stopAllActions];
                 [batteryGlowSprite runAction:batteryGlowScaleAction];
                 
-                if ((feverLabel.visible && isInFeverMode) == false) {
+               
                     if ([[hudLayer children]containsObject:galaxyLabel]==false)
                         [hudLayer addChild:galaxyLabel];
                     [galaxyLabel setOpacity:1];
                     [galaxyLabel setString:[currentGalaxy name]];
                     [galaxyLabel stopAllActions];
                     [galaxyLabel runAction:galaxyLabelAction];
+                if ((feverLabel.visible && isInFeverMode)) {
+                     galaxyLabel.position = ccpAdd(galaxyLabel.position, ccp(0,15));
+                     feverLabel.position = ccpAdd(feverLabel.position, ccp(0,-10));
                 }
                 justDisplayedGalaxyLabel= true;
             }
