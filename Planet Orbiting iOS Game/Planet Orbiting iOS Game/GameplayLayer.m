@@ -368,7 +368,7 @@ typedef struct {
     [galaxy setGalaxyColor: ccc3(95*darkScaler*1.09, 95*darkScaler*1.09, 95*darkScaler*1.09)];
     
     float maxPercentTimeToAdd = .30;
-    float minPercentTimeToAdd = .24594;
+    float minPercentTimeToAdd = .22594;
  //   int maxOptimalPlanets = 31;
  //   int minOptimalPlanets = 25;
     for (Galaxy* galaxy in galaxies) {
@@ -394,7 +394,7 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setHasDoubleCoins:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped]];
     
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:75 + 4*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:70 + 4*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
     
     [[UpgradeValues sharedInstance] setHasStarMagnet:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped]];
     
@@ -1913,8 +1913,8 @@ typedef struct {
                     [galaxyLabel stopAllActions];
                     [galaxyLabel runAction:galaxyLabelAction];
                 if ((feverLabel.visible && isInFeverMode)) {
-                     galaxyLabel.position = ccpAdd(galaxyLabel.position, ccp(0,15));
-                     feverLabel.position = ccpAdd(feverLabel.position, ccp(0,-10));
+                     galaxyLabel.position = ccpAdd(galaxyLabel.position, ccp(0,8));
+                     feverLabel.position = ccpAdd(feverLabel.position, ccp(0,-5));
                 }
                 justDisplayedGalaxyLabel= true;
             }
@@ -2070,6 +2070,9 @@ typedef struct {
                 //    [self UpdateFeverMode];
                 //}
                 
+                [galaxyLabel setPosition:ccp(240,45)];
+                [feverLabel setPosition:ccp(240, feverLabel.boundingBox.size.height*.6+30)];
+
                 percentToNextHasAlreadyBeenBelowZeroForThisPlanet = false;
                 zonesReached++;
                 planetsHitSinceNewGalaxy++;
