@@ -310,70 +310,70 @@ typedef struct {
     galaxy = [galaxies objectAtIndex:0];
     [galaxy setName:@"Galaxy 1"];
     [galaxy setNumberOfDifferentPlanetsDrawn:7];
-    [galaxy setOptimalPlanetsInThisGalaxy:17];
+    [galaxy setOptimalPlanetsInThisGalaxy:28];
     [galaxy setGalaxyColor: ccc3(45*darkScaler, 53*darkScaler, 147*darkScaler)]; //a dark blue
     
     galaxy = [galaxies objectAtIndex:1];
     [galaxy setName:@"Galaxy 2"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:33];
+    [galaxy setOptimalPlanetsInThisGalaxy:25];
     [galaxy setGalaxyColor: ccc3(0, 103*darkScaler, 3*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:2];
     [galaxy setName:@"Galaxy 3"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:21];
+    [galaxy setOptimalPlanetsInThisGalaxy:27];
     [galaxy setGalaxyColor: ccc3(114*darkScaler, 0, 115*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:3];
     [galaxy setName:@"Galaxy 4"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
-    [galaxy setOptimalPlanetsInThisGalaxy:22];
+    [galaxy setOptimalPlanetsInThisGalaxy:28];
     [galaxy setGalaxyColor: ccc3(0, 130*darkScaler, 115*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:4];
     [galaxy setName:@"Galaxy 5"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
-    [galaxy setOptimalPlanetsInThisGalaxy:27];
+    [galaxy setOptimalPlanetsInThisGalaxy:28];
     [galaxy setGalaxyColor: ccc3(154*darkScaler, 86*darkScaler, 0)];
     
     galaxy = [galaxies objectAtIndex:5];
     [galaxy setName:@"Galaxy 6"];
     [galaxy setNumberOfDifferentPlanetsDrawn:2];
-    [galaxy setOptimalPlanetsInThisGalaxy:24];
+    [galaxy setOptimalPlanetsInThisGalaxy:23];
     [galaxy setGalaxyColor: ccc3(42*darkScaler, 112*darkScaler, 199*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:6];
     [galaxy setName:@"Galaxy 7"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:22];
+    [galaxy setOptimalPlanetsInThisGalaxy:21];
     [galaxy setGalaxyColor: ccc3(161*darkScaler, 163*darkScaler, 42*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:7];
     [galaxy setName:@"Galaxy 8"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:26];
+    [galaxy setOptimalPlanetsInThisGalaxy:20];
     [galaxy setGalaxyColor: ccc3(148*darkScaler, 74*darkScaler, 0*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:8];
     [galaxy setName:@"Galaxy 9"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:23];
+    [galaxy setOptimalPlanetsInThisGalaxy:22];
     [galaxy setGalaxyColor: ccc3(64, 104, 149)];
     
     galaxy = [galaxies objectAtIndex:9];
     [galaxy setName:@"Galaxy 10"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:27];
-    [galaxy setGalaxyColor: ccc3(95*darkScaler, 95*darkScaler, 95*darkScaler)];
+    [galaxy setOptimalPlanetsInThisGalaxy:25];
+    [galaxy setGalaxyColor: ccc3(95*darkScaler*1.09, 95*darkScaler*1.09, 95*darkScaler*1.09)];
     
-    float maxPercentTimeToAdd = .43;
-    float minPercentTimeToAdd = .29;
-    int maxOptimalPlanets = 31;
-    int minOptimalPlanets = 25;
+    float maxPercentTimeToAdd = .39;
+    float minPercentTimeToAdd = .3456;
+ //   int maxOptimalPlanets = 31;
+ //   int minOptimalPlanets = 25;
     for (Galaxy* galaxy in galaxies) {
         float galaxyPercent = ((float)galaxy.number)/((float)galaxies.count-1);
-        [galaxy setOptimalPlanetsInThisGalaxy:lerpf(minOptimalPlanets, maxOptimalPlanets,galaxyPercent)];
+      //  [galaxy setOptimalPlanetsInThisGalaxy:lerpf(minOptimalPlanets, maxOptimalPlanets,galaxyPercent)];
         [galaxy setPercentTimeToAddUponGalaxyCompletion:lerpf(maxPercentTimeToAdd, minPercentTimeToAdd, galaxyPercent)];
     }
     
