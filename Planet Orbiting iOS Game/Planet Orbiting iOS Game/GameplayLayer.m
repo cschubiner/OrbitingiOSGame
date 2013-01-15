@@ -48,6 +48,8 @@
     
     bool hasShared;
     
+    bool isIphone4;
+    
     bool isInFeverMode;
     int feverModePlanetHitsInARow;
     float timeInOrbit;
@@ -444,7 +446,8 @@ typedef struct {
 }
 
 - (void)startGame {
-    [self addChild:cometParticle];
+    if (!isIphone4)
+        [self addChild:cometParticle];
     [self addChild:backgroundSpriteSheet];
     [self addChild:cameraLayer];
     [self addChild:hudLayer];
@@ -471,8 +474,11 @@ typedef struct {
 }
 
 - (void)loadEverything {
-    if ([DeviceDetection detectDevice]==MODEL_IPHONE_4)
+    isIphone4 = false;
+    if ([DeviceDetection detectDevice]==MODEL_IPHONE_4) {
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
+        isIphone4 = true;
+    }
 
     [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setGalaxyCounter:0];
     isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsInTutorialMode];
@@ -502,14 +508,16 @@ typedef struct {
     
     powerupParticle = [CCParticleSystemQuad particleWithFile:@"powerupGottenExplosionTexture.plist"];
     [powerupParticle stopSystem];
-    [cameraLayer addChild:powerupParticle];
+    if (!isIphone4)
+        [cameraLayer addChild:powerupParticle];
     [powerupParticle setZOrder:30];
     [powerupParticle setScale:1.2];
     
     feverModeInitialExplosionParticle = [CCParticleSystemQuad particleWithFile:@"feverModeInitialExplosion.plist"];
     [feverModeInitialExplosionParticle stopSystem];
     [feverModeInitialExplosionParticle setPositionType:kCCPositionTypeRelative];
-    [cameraLayer addChild:feverModeInitialExplosionParticle z:28];
+    if (!isIphone4)
+        [cameraLayer addChild:feverModeInitialExplosionParticle z:28];
     [feverModeInitialExplosionParticle setScale:1];
     
     starStashParticle = [CCParticleSystemQuad particleWithFile:@"starStashParticle.plist"];
@@ -2271,7 +2279,7 @@ typedef struct {
         
         
         id gameOverBlock = [CCCallBlock actionWithBlock:(^{
-            [dark setVisible:false];
+            //[dark setVisible:false];
             if ([[ObjectiveManager sharedInstance] shouldDisplayLevelUpAnimation]) {
                 [[CCDirector sharedDirector] pushScene:[MissionsCompleteLayer scene]];
             }
@@ -2281,7 +2289,7 @@ typedef struct {
         [self CheckEndGameMissions];
         
         [dark runAction:[CCSequence actions:
-                         [CCFadeTo actionWithDuration:2 opacity:240],
+                         [CCFadeIn actionWithDuration:2],
                          gameOverBlock,
                          nil]];
         
@@ -2340,7 +2348,8 @@ typedef struct {
     })];
     
     id displayParticles = [CCCallBlock actionWithBlock:(^{
-        [self addChild:starStashParticle];
+        if (!isIphone4)
+            [self addChild:starStashParticle];
         [starStashParticle setScale:2.5];
         [starStashParticle setPosition:gameOverScoreLabel.position];
         [starStashParticle resetSystem];

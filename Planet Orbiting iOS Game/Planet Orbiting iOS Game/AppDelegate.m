@@ -89,9 +89,10 @@
     //	[director setProjection:kCCDirectorProjection3D];
     
 	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
-    if ([DeviceDetection detectDevice]!=MODEL_IPHONE_4) //uncomment this line to disable retina on iphone 4
+    //if ([DeviceDetection detectDevice]!=MODEL_IPHONE_4) //uncomment this line to disable retina on iphone 4
 	if( ! [director_ enableRetinaDisplay:YES] )
 		CCLOG(@"Retina Display Not supported");
+    
     
     
     if ([DeviceDetection detectDevice]==MODEL_IPHONE_4)
