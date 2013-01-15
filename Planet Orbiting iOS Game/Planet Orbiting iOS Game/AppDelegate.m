@@ -170,7 +170,10 @@ void SignalHandler(int sig) {
 }
 
 -(NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
-   // return UIInterfaceOrientationMaskAllButUpsideDown;
+    //return (NSUInteger)[application supportedInterfaceOrientationsForWindow:window] | (1<<UIInterfaceOrientationPortrait);
+    
+    if ([DeviceDetection detectDevice] == MODEL_IPHONE_4)
+        return UIInterfaceOrientationMaskAllButUpsideDown;
     return UIInterfaceOrientationMaskLandscape;
 }
 

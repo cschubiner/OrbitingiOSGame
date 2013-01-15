@@ -126,7 +126,7 @@
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Pink Stars" description:@"Turn all stars pink. Are they worth more? No. Are they more fun? Meh. Are they super awesome? Absolutely." price:599 type:4 purchased:NO equipped:NO number:11]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Starter Pack (30,000 Stars)" description:@"Get a quick fix of stars to make ends meet. Get that final bit of cash to grab that next sweet upgrade." price:99 type:4 purchased:NO equipped:NO number:12]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Starter Pack (30,000 Stars)" description:@"Get a quick fix of stars to make ends meet. Get that final bit of cash to grab your next awesome upgrade!" price:99 type:4 purchased:NO equipped:NO number:12]];
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Bag O' Stars (70,000 Stars)" description:@"Deck out your ride with some sweet new trails or grab some quick perks for pursuing those high scores!" price:199 type:4 purchased:NO equipped:NO number:13]];
     

@@ -678,7 +678,9 @@ typedef struct {
     if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsRetinaDisplay])
         streakWidth = streakWidthOnRetinaDisplay;
     
-    streak = [CCMotionStreak streakWithFade:2 minSeg:3 width:streakWidth color:ccWHITE textureFilename:@"streak2.png"];
+    
+    float strToUse = (isIphone4 ? .8 : 2);
+    streak = [CCMotionStreak streakWithFade:strToUse minSeg:3 width:streakWidth color:ccWHITE textureFilename:@"streak2.png"];
     
     if ([[UpgradeValues sharedInstance] hasGreenTrail]) {
         streak.color = ccGREEN;
@@ -2350,15 +2352,15 @@ typedef struct {
     id displayParticles = [CCCallBlock actionWithBlock:(^{
         if (!isIphone4)
             [self addChild:starStashParticle];
-        [starStashParticle setScale:2.5];
+        [starStashParticle setScale:2.8];
         [starStashParticle setPosition:gameOverScoreLabel.position];
         [starStashParticle resetSystem];
     })];
     
     id pulsate = [CCCallBlock actionWithBlock:(^{
         [gameOverScoreLabel runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
-                                                                         [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.4 scale:1.7]],
-                                                                         [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.4 scale:1.49]],
+                                                                         [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.4 scale:1]],
+                                                                         [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.4 scale:.9]],
                                                                          nil]
                                        ]];
     })];
