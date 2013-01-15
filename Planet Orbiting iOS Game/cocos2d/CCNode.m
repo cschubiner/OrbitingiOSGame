@@ -202,7 +202,7 @@ static NSUInteger globalOrderOfArrival = 1;
 
 -(float) rotation
 {
-	NSAssert( rotationX_ == rotationY_, @"CCNode#rotation. RotationX != RotationY. Don't know which one to return");
+	//NSAssert( rotationX_ == rotationY_, @"CCNode#rotation. RotationX != RotationY. Don't know which one to return");
 	return rotationX_;
 }
 

@@ -9,17 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "Kamcord.h"
 #import "KCViewController.h"
-#import "KC_BaseView.h"
 #import "KC_ShareMessageDelegate.h"
 #import "KCVideoProcessingAndShareManager.h"
 
+@class KCVideo;
 
-@interface MainView : KCViewController <KC_ShareMessageDelegate, KCShareDelegate, KCMoviePlayerDelegate, KCVideoProcessDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>
+@interface MainView : KCViewController <KC_ShareMessageDelegate, KCShareDelegate, KamcordDelegate, KCVideoProcessDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>
 
-@property (assign, nonatomic) KC_BaseView *parent;
-@property (assign, nonatomic) CGRect myFrame;
-
-- (id)initWithParent:(KC_BaseView *)parent frame:(CGRect)frame;
+- (id)initWithVideo:(KCVideo *)video;
 - (void)dealloc;
 
 @end

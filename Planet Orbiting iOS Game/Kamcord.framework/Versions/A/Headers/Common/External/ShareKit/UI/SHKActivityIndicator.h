@@ -31,7 +31,7 @@
 @class KC_SHKActivityIndicator;
 @compatibility_alias SHKActivityIndicator KC_SHKActivityIndicator;
 
-@interface SHKActivityIndicator : UIView
+@interface KC_SHKActivityIndicator : UIView
 {
 	UILabel *centerMessageLabel;
 	UILabel *subMessageLabel;

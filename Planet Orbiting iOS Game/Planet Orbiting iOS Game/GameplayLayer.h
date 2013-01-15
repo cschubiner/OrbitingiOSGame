@@ -24,7 +24,7 @@
 #define coinImageTag1 2919
 #define coinImageTag2 2920
 
-@interface GameplayLayer : CCLayer <UITextViewDelegate> {
+@interface GameplayLayer : CCLayer <UITextViewDelegate,KCShareDelegate> {
     Player *player;
     NSMutableArray *planets;
     NSMutableArray *zones;

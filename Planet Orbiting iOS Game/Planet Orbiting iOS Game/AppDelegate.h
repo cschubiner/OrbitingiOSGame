@@ -26,6 +26,8 @@
     bool shouldDisplayPredPoints;
     
     bool shouldPlayMenuMusic;
+    
+    bool didGetToMainMenu;
 }
 
 @property (nonatomic, retain) UIWindow *window;
@@ -41,6 +43,9 @@
 -(void)setWasJustBackgrounded:(bool)isItBackgrounded;
 -(int)getGalaxyCounter;
 -(void)setGalaxyCounter:(int)count;
+
+-(void)setdidGetToMainMenu:(bool)didGet;
+-(bool)getdidGetToMainMenu;
 
 -(bool)getShouldDisplayPredPoints;
 -(bool)getShouldPlayMenuMusic;

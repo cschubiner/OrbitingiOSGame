@@ -12,7 +12,6 @@
 #import "DataStorage.h"
 #import "GameplayLayer.h"
 #import "DataStorage.h"
-#import "IntroLayer.h"
 #import "PlayerStats.h"
 #import "DeviceDetection.h"
 
@@ -26,6 +25,13 @@
 
 -(void)setShouldPlayMenuMusic:(bool)a_shouldPlay {
     shouldPlayMenuMusic = a_shouldPlay;
+}
+
+-(void)setdidGetToMainMenu:(bool)didGet{
+    didGetToMainMenu = didGet;
+}
+-(bool)getdidGetToMainMenu{
+    return didGetToMainMenu;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -52,19 +58,20 @@
   
     NSLog(@"iRate: Number of events: %d Number of uses: %d",[[iRate sharedInstance]eventCount],[[iRate sharedInstance]usesCount]);
     
+    didGetToMainMenu = false;
     shouldPlayMenuMusic = true;
     
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
 	// Create an CCGLView with a RGB565 color buffer, and a depth buffer of 0-bits
-	KCGLView *glView = [KCGLView viewWithFrame:[window_ bounds]
-									 pixelFormat:kEAGLColorFormatRGB565
-									 depthFormat:0 /* GL_DEPTH_COMPONENT24_OES */
-							  preserveBackbuffer:NO
-									  sharegroup:nil
-								   multiSampling:NO
-								 numberOfSamples:0];
+	KCGLView * glView = [KCGLView viewWithFrame:[window_ bounds]
+                                    pixelFormat:kEAGLColorFormatRGB565
+                                    depthFormat:0 /* GL_DEPTH_COMPONENT24_OES */
+                             preserveBackbuffer:NO
+                                     sharegroup:nil
+                                  multiSampling:NO
+                                numberOfSamples:0];
     
 
     
@@ -102,7 +109,9 @@
 	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
 	// You can change anytime.
     
-	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
+    if ([DeviceDetection detectDevice]!=MODEL_IPHONE_4)
+        [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
+    else [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGB5A1];
     
 	// If the 1st suffix is not found and if fallback is enabled then fallback suffixes are going to searched. If none is found, it will try with the name without suffix.
 	// On iPad HD  : "-ipadhd", "-ipad",  "-hd"
@@ -120,7 +129,7 @@
     [DataStorage fetchData];
     
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-	[director_ pushScene: [IntroLayer scene]];
+	[director_ pushScene: [MainMenuLayer scene]];
     
 	
 	// Create a Navigation Controller with the Director
@@ -144,7 +153,8 @@
              developerSecret:@"prcU7MltdajQ1YVTSeFDtPtywe2zABOmzzpSB5pGP79"
                      appName:@"Star Stream"];
 
-
+  //  [Kamcord setEnableSynchronousConversionUI:YES alwaysShowProgressBar:YES];
+    
 	
 	// make main window visible
 	[window_ makeKeyAndVisible];
@@ -172,7 +182,8 @@ void SignalHandler(int sig) {
 -(NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
     //return (NSUInteger)[application supportedInterfaceOrientationsForWindow:window] | (1<<UIInterfaceOrientationPortrait);
     
-    if ([DeviceDetection detectDevice] == MODEL_IPHONE_4)
+   // if ([DeviceDetection detectDevice] == MODEL_IPHONE_4)
+    if (!didGetToMainMenu)
         return UIInterfaceOrientationMaskAllButUpsideDown;
     return UIInterfaceOrientationMaskLandscape;
 }
@@ -183,13 +194,15 @@ void SignalHandler(int sig) {
 	return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
 -(UIViewController*)getViewController{
     return navController_;
 }
 
--(NSUInteger)supportedInterfaceOrientations{
-    return UIInterfaceOrientationMaskLandscape;
-}
+
 
 -(int)getGalaxyCounter {
     return galaxyCounter;

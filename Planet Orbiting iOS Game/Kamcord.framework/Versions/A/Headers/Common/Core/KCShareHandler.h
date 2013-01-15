@@ -12,10 +12,11 @@
 #import "KCYouTubeUploader.h"
 
 // For uploading to S3
-#import <AWSiOSSDK/S3/AmazonS3Client.h>
+#import "S3/AmazonS3Client.h"
 
 @class KCVideoSharingTask;
 @class KCVideoProcessingAndShareManager;
+
 
 @interface KCShareHandler : NSObject <KCSHKSharerDelegate, AmazonServiceRequestDelegate, NSURLConnectionDelegate, KCYouTubeUploaderDelegate>
 

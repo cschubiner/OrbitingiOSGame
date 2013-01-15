@@ -120,7 +120,7 @@ _EXTERN NSString* const kGDataYouTubeUserFeedIDRecommendations       _INITIALIZE
 //
 // The class of the returned feed or entry is determined by the URL fetched.
 
-+ (NSString *)serviceRootURLString;  
+// + (NSString *)serviceRootURLString;
 
 + (NSString *)serviceUploadRootURLString;
 

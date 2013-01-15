@@ -4,7 +4,7 @@
 @class KC_SHKPrint;
 @compatibility_alias SHKPrint KC_SHKPrint;
 
-@interface SHKPrint : SHKSharer
+@interface KC_SHKPrint : SHKSharer
 
 - (BOOL)print;
 

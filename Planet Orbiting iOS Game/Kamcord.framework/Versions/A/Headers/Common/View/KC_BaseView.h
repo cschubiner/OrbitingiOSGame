@@ -8,17 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "Kamcord.h"
-#import "KCVideo.h"
 #import "KCVideoProcessingAndShareManager.h"
+
+@class KCVideo;
 
 @interface KC_BaseView : UINavigationController <KCVideoProcessDelegate>
 
-- (id)initMainViewWithFrame:(CGRect)frame
-                     isDark:(BOOL)isDark
-                      video:(KCVideo *)video;
-
-@property (nonatomic, readonly) BOOL isDark;
-@property (nonatomic, readonly) CGRect frame;
-
 @property (nonatomic, retain) KCVideo * latestVideo;
+
+- (id)initWithVideo:(KCVideo *)video
+         useOldView:(BOOL)oldView;
+
 @end

@@ -189,7 +189,16 @@
 - (void)gameCenterButtonPressed {
     [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
     [Flurry logEvent:@"Opened gamecenter leaderboards"];
-    [[DDGameKitHelper sharedGameKitHelper]showLeaderboard];
+  
+    //YEAHH TRY AND CATCHHHHH <3
+    @try {
+        [[DDGameKitHelper sharedGameKitHelper]showLeaderboard];
+
+    }
+    @catch (NSException *exception) {
+        
+    }
+   
 }
 
 - (void)initHighScore {

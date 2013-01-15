@@ -36,6 +36,7 @@
 
 - (id)initWithURL:(NSURL *)url
            volume:(float)volume
+             loop:(BOOL)loop
         startTime:(CMTime)start
           endTime:(CMTime)end
          forVideo:(KCVideo *)video;

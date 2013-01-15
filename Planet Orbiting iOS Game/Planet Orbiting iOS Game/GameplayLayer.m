@@ -312,7 +312,7 @@ typedef struct {
     galaxy = [galaxies objectAtIndex:0];
     [galaxy setName:@"Galaxy 1"];
     [galaxy setNumberOfDifferentPlanetsDrawn:7];
-    [galaxy setOptimalPlanetsInThisGalaxy:28];
+    [galaxy setOptimalPlanetsInThisGalaxy:31];
     [galaxy setGalaxyColor: ccc3(45*darkScaler, 53*darkScaler, 147*darkScaler)]; //a dark blue
     
     galaxy = [galaxies objectAtIndex:1];
@@ -336,13 +336,13 @@ typedef struct {
     galaxy = [galaxies objectAtIndex:4];
     [galaxy setName:@"Galaxy 5"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
-    [galaxy setOptimalPlanetsInThisGalaxy:28];
+    [galaxy setOptimalPlanetsInThisGalaxy:23];
     [galaxy setGalaxyColor: ccc3(154*darkScaler, 86*darkScaler, 0)];
     
     galaxy = [galaxies objectAtIndex:5];
     [galaxy setName:@"Galaxy 6"];
     [galaxy setNumberOfDifferentPlanetsDrawn:2];
-    [galaxy setOptimalPlanetsInThisGalaxy:23];
+    [galaxy setOptimalPlanetsInThisGalaxy:22];
     [galaxy setGalaxyColor: ccc3(42*darkScaler, 112*darkScaler, 199*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:6];
@@ -367,10 +367,10 @@ typedef struct {
     [galaxy setName:@"Galaxy 10"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
     [galaxy setOptimalPlanetsInThisGalaxy:25];
-    [galaxy setGalaxyColor: ccc3(95*darkScaler*1.09, 95*darkScaler*1.09, 95*darkScaler*1.09)];
+    [galaxy setGalaxyColor: ccc3(95*darkScaler*1.09*1.1, 95*darkScaler*1.09*1.1, 95*darkScaler*1.09*1.1)];
     
     float maxPercentTimeToAdd = .30;
-    float minPercentTimeToAdd = .24594;
+    float minPercentTimeToAdd = .25594;
  //   int maxOptimalPlanets = 31;
  //   int minOptimalPlanets = 25;
     for (Galaxy* galaxy in galaxies) {
@@ -679,7 +679,7 @@ typedef struct {
         streakWidth = streakWidthOnRetinaDisplay;
     
     
-    float strToUse = (isIphone4 ? .8 : 2);
+    float strToUse = (isIphone4 ? .8 : 1.2);
     streak = [CCMotionStreak streakWithFade:strToUse minSeg:3 width:streakWidth color:ccWHITE textureFilename:@"streak2.png"];
     
     if ([[UpgradeValues sharedInstance] hasGreenTrail]) {
@@ -856,8 +856,18 @@ typedef struct {
         NSArray * helperTextArray = [NSArray arrayWithObjects:
                                      @"Stars increase your score and let you buy upgrades in the store!",
                                      @"Aim your swipes - they determine the direction in which you'll move.",
-                                     @"Aim your swipes - they determine the direction you'll move in.",
-                                     @"Aim your swipes - they determine the direction you'll move in.",
+                                     @"Aim your swipes - they determine the direction in which you'll proceed to the next planet.",
+                                     @"Aim your swipes - they determine your direction of travel.",
+                                     @"Swipe in different directions to avoid asteroids and get coins!",
+                                                                          @"Swipe in different directions to avoid asteroids and get coins!",
+                                                                          @"Swipe in different directions to avoid asteroids and get coins!",
+                                                                          @"Swipe in different directions to avoid asteroids and get coins!",
+                                                                          @"Swipe in different directions to avoid asteroids and get coins!",
+                                                                          @"Swipe in different directions to avoid asteroids and get coins!",
+                                                                          @"Don't always swipe in the same direction!",
+                                                                        @"Don't always swipe in the same direction!",
+                                                                @"Don't always swipe in the same direction!",
+                                                                                @"Don't always swipe in the same direction!",
                                      @"Complete missions to earn more stars!",
                                      @"Orbit planets as briefly as you can to move as fast as possible.",
                                      @"Your time is limited; watch the battery in the lower-left corner of the screen.",
@@ -968,7 +978,7 @@ typedef struct {
         if (percentofthewaytonext<lastPercentOfTheWayToNext)
         {
             if (percentToNextHasAlreadyBeenBelowZeroForThisPlanet)
-                percentofthewaytonext = lastPercentOfTheWayToNext;
+                percentofthewaytonext =max(lastPercentOfTheWayToNext*.65,percentofthewaytonext);
         }
         else
             percentToNextHasAlreadyBeenBelowZeroForThisPlanet = true;
@@ -1924,7 +1934,7 @@ typedef struct {
                     [galaxyLabel runAction:galaxyLabelAction];
                 if ((feverLabel.visible && isInFeverMode)) {                    
                     [galaxyLabel setPosition:ccp(240,56)];
-                    [feverLabel setPosition:ccp(240, feverLabel.boundingBox.size.height*.6+30-7)];
+                    [feverLabel setPosition:ccp(240, feverLabel.boundingBox.size.height*.6+30-19)];
                     if (IS_IPHONE_5) {
                         feverLabel.position = ccpAdd(feverLabel.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
                         galaxyLabel.position = ccpAdd(galaxyLabel.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
@@ -2257,7 +2267,7 @@ typedef struct {
             [self removeChild:layerHudSlider cleanup:YES];
         
         [Kamcord stopRecording];
-        
+     
         
         
         CCSprite* dark = [CCSprite spriteWithFile:@"OneByOne.png"];
@@ -2298,6 +2308,10 @@ typedef struct {
     }
 }
 
+-(void)shareStartedWithSuccess:(BOOL)success error:(KCShareStatus)error{
+    [self creditUserVirtualCurrencyForVideoShare];
+}
+
 -(void) startGameOver {
     int finalScore = score + prevCurrentPtoPScore;
     BOOL isHighScore = [[PlayerStats sharedInstance] isHighScore:finalScore];
@@ -2308,9 +2322,24 @@ typedef struct {
     if (finalScore > 60000)
         [[iRate sharedInstance] logEvent:YES];
     
+    int jawkwkkwCount = 0;
     for (int i = finalScore; i > 80000; i-=10000){
         [[iRate sharedInstance] logEvent:YES];
+        jawkwkkwCount++;
+        if (jawkwkkwCount >= 8)
+            break;
     }
+    
+    [Kamcord setYouTubeVideoCategory:@"Games"];
+    [Kamcord setDefaultEmailSubject:@"Check out my awesome Star Stream Gameplay!"];
+
+    [Kamcord setDefaultMessage:[NSString stringWithFormat:@"Check out my awesome Star Stream gameplay! I scored %d points and reached galaxy %d!",finalScore,currentGalaxy.number+1]];
+    [Kamcord setYouTubeTitle:@"Star Stream Gameplay" description:[NSString stringWithFormat:@"My awesome round of Star Stream. I scored %d points and reached galaxy %d.",finalScore,currentGalaxy.number+1] tags:@"Star Stream, Star, Stream, iPhone, iOS, iPod, gameplay, video, high score, score, highscore"];
+    [Kamcord setLevel:[NSString stringWithFormat:@"Galaxy %d",currentGalaxy.number+1] score:[NSNumber numberWithInt:finalScore]];
+    [Kamcord setFacebookTitle:@"Star Stream Gameplay" caption:[NSString stringWithFormat:@"Score: %d points. Reached galaxy: %d",finalScore,currentGalaxy.number+1] description:[NSString stringWithFormat:@"My awesome round of Star Stream. I scored %d points and reached galaxy %d.",finalScore,currentGalaxy.number+1]];
+    [Kamcord setShareDelegate:self];
+    //[Kamcord setEnableSynchronousConversionUI:YES alwaysShowProgressBar:YES];
+  
     //finalScore = 69669;
     //numCoinsDisplayed = 69;
     
@@ -2365,10 +2394,15 @@ typedef struct {
                                        ]];
     })];
     
-    
+    if (!isIphone4){
     [gameOverScoreLabel runAction:[CCSequence actions:[CCRepeat actionWithAction:[CCSequence actions:increaseNumber,
                                                                                   [CCDelayTime actionWithDuration:.003],
                                                                                   nil] times:finalScore/rateOfScoreIncrease],setNumber,displayParticles, pulsate, nil]];
+    }
+    else{
+        [gameOverScoreLabel runAction:[CCSequence actions: setNumber//, pulsate
+                                       , nil]];
+    }
     
     [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
     

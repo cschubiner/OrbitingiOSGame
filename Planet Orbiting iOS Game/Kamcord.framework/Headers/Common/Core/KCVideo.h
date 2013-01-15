@@ -7,49 +7,105 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 #import <CoreData/CoreData.h>
 #import <CoreGraphics/CoreGraphics.h>
 #import <CoreMedia/CMTime.h>
 
 #import "Kamcord.h"
-#import "KCVideoTracker.h"
 #import "DataStructures/NSMutableArray+QueueAdditions.h"
 
 @class GTMOAuth2Authentication;
+@class KCVideoSharingTask;
 
 //////////////////////////////////////////////////////
-// Begin KCVideoSharingState
-@interface KCVideoShareInfo : NSObject
+// Begin KCVideoUploadStatus
+@interface KCVideoUploadStatus : NSObject
 
+@property (nonatomic, assign) int uploadPartSizeInBytes;
+@property (nonatomic, assign) int lastUploadPartNumber;
+@property (nonatomic, assign) int totalUploadParts;
+@property (nonatomic, retain) NSString * s3VideoId;
+@property (nonatomic, retain) NSString * s3BucketName;
+@property (nonatomic, retain) NSString * s3UploadId;
+@property (nonatomic, retain) NSString * s3Etags;
+@property (nonatomic, assign) short youtubeUploadAttempt;
+@property (nonatomic, assign) short kamcordUploadAttempt;
+@property (nonatomic, assign) short uploadCompleted;
+
+- (id)     initForUpload:(int)uploadPartSizeInBytes
+    lastUploadPartNumber:(int)lastUploadPartNumber
+        totalUploadParts:(int)totalUploadParts
+               s3VideoId:(NSString *)s3VideoId
+            s3BucketName:(NSString *)s3BucketName
+              s3UploadId:(NSString *)s3UploadId
+                 s3Etags:(NSString *)s3Etags
+    youtubeUploadAttempt:(short)youtubeUploadAttempt
+    kamcordUploadAttempt:(short)kamcordUploadAttempt
+         uploadCompleted:(BOOL)uploadCompleted;
+
+@end
+// End KCVideoUploadStatus
+//////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////
+// Begin KCVideoSharingRequest
+typedef enum
+{
+    NONE,
+    TRYING_TO_SHARE,
+    EXPORT_CANCELLED,
+    MAKING_PREUPLOAD_HTTP_POST,
+    PREUPLOAD_HTTP_POST_DONE,
+    SEND_SHARE_REQUEST,
+    DONE_PENDING_CONVERSION,
+    DONE,
+    ERROR,
+} KC_SHARE_REQUEST_STATE;
+
+
+@interface KCVideoShareRequest : NSObject
+
+@property (readonly, nonatomic, assign) KCVideo * video;
 @property (readonly, nonatomic, copy)   NSString * message;
-@property (readonly, nonatomic, assign) BOOL shareOnFacebook;
-@property (readonly, nonatomic, assign) BOOL shareOnTwitter;
-@property (readonly, nonatomic, assign) BOOL shareOnYouTube;
-@property (readonly, nonatomic, assign) BOOL alreadySharedWithEmail;
+
+@property (nonatomic, assign) KC_SHARE_REQUEST_STATE shareState;
+@property (nonatomic, assign) BOOL shareOnFacebook;
+@property (nonatomic, assign) BOOL shareOnTwitter;
+@property (nonatomic, assign) BOOL shareOnYouTube;
+@property (nonatomic, assign) BOOL shareWithEmail;
+@property (nonatomic, assign) BOOL alreadySharedWithEmail;
 @property (readonly, nonatomic, assign) BOOL customUIShare;
 
-@property (readonly, nonatomic, assign) NSDictionary * data;
-@property (readonly, nonatomic, assign) GTMOAuth2Authentication * youTubeAuth;
+@property (readonly, nonatomic, retain) NSDictionary * data;
+@property (readonly, nonatomic, retain) GTMOAuth2Authentication * youTubeAuth;
+@property (readonly, nonatomic, retain) id <KCShareDelegate> shareDelegate;
+@property (readonly, nonatomic, retain) id <KamcordDelegate> delegate;
 
-- (id) initWithMessage:(NSString *)message
+- (id)    initForVideo:(KCVideo *)video
+               message:(NSString *)message
        shareOnFacebook:(BOOL)shareOnFacebook
         shareOnTwitter:(BOOL)shareOnTwitter
         shareOnYouTube:(BOOL)shareOnYouTube
+        shareWithEmail:(BOOL)shareWithEmail
 alreadySharedWithEmail:(BOOL)alreadySharedWithEmail
          customUIShare:(BOOL)customUIShare
                   data:(NSDictionary *)data
-           youTubeAuth:(GTMOAuth2Authentication *)auth;
+           youTubeAuth:(GTMOAuth2Authentication *)auth
+         shareDelegate:(id <KCShareDelegate>)shareDelegate
+              delegate:(id <KamcordDelegate>)delegate;
 
-- (void) dealloc;
+- (void)finished:(KCVideoSharingTask *)task
+           error:(NSError *)error;
+
+- (NSDictionary *)getSharedOnDict;
+
+- (void)dealloc;
 
 @end
-// End KCVideoSharingState
+// End KCVideoSharingRequest
 //////////////////////////////////////////////////////
-
- 
-
-// Used by KCVideo
-@class KCVideoSharingTask;
 
 
 //////////////////////////////////////////////////////
@@ -63,8 +119,40 @@ typedef enum
     KC_OS_PRE_5_0, // 3.x and 4.x
     KC_OS_5_0_0,   // 5.0.0
     KC_OS_5_0_1,   // 5.0.1
-    KC_OS_POST_5_1 // 5.1 and later
+    KC_OS_5_1,     // 5.1 and 5.1.1
+    KC_OS_POST_6_0 // 6.0 and later
 } KC_OS_VERSION;
+
+typedef enum
+{
+    KC_VIDEO_STATUS_NONE = 0,       // Just instantiated
+
+    KC_VIDEO_BEGUN = 1,             // beginVideo
+    KC_VIDEO_RECORDING = 2,         // startRecording
+    KC_VIDEO_PAUSED = 3,            // pause
+    KC_VIDEO_DONE_RECORDING = 4,    // stopRecording
+    KC_VIDEO_ENDED = 5,             // endVideo
+
+    KC_VIDEO_QUEUED_FOR_MERGE = 6,
+    KC_VIDEO_MERGING = 7,
+    KC_VIDEO_DONE_MERGING = 8,
+
+    KC_VIDEO_QUEUED_FOR_CONVERSION = 9,
+    KC_VIDEO_CONVERTING = 10,
+    KC_VIDEO_DONE_CONVERTING = 11,
+
+    KC_VIDEO_REQUESTING_KAMCORD_URL = 12,
+    KC_VIDEO_RECEIVED_KAMCORD_URL = 13,
+
+    KC_VIDEO_UPLOADING_TO_KAMCORD = 14,
+    KC_VIDEO_DONE_UPLOADING_TO_KAMCORD = 15,
+
+    KC_VIDEO_UPLOADING_TO_YOUTUBE = 16,
+    KC_VIDEO_DONE_UPLOADING_TO_YOUTUBE = 17,
+
+    KC_VIDEO_QUEUED_FOR_DELETION = 18,
+    KC_VIDEO_DONE_DELETING = 19,
+} KC_VIDEO_STATUS;
 
 // The unique video ID
 @property (readonly, nonatomic, copy) NSString * localVideoID;
@@ -77,6 +165,10 @@ typedef enum
 @property (nonatomic, readonly, assign) BOOL hasEnded;
 @property (nonatomic, readonly, assign) BOOL isMerged;
 @property (nonatomic, readonly, assign) BOOL isConverted;
+
+// The marked times and time ranges (processed)
+@property (nonatomic, readonly, retain) NSMutableArray * markedTimes;
+@property (nonatomic, readonly, retain) NSMutableArray * markedTimeRanges;
 
 // Information about the currently recorded clip
 @property (nonatomic, assign) CFAbsoluteTime startTime;
@@ -101,7 +193,7 @@ typedef enum
 @property (nonatomic, retain) NSURL * convertedVideoLocalURL;
 
 @property (nonatomic, retain) CGImageRef thumbnail __attribute__((NSObject));
-@property (nonatomic, retain) CGImageRef mergeThumbnail __attribute__((NSObject));
+
 // Online URLs and IDs
 @property (nonatomic, copy) NSString * onlineVideoID;
 @property (nonatomic, copy) NSString * onlineThumbnailID;
@@ -136,19 +228,30 @@ typedef enum
 
 
 // The managed object context that we use to store video state.
-@property (nonatomic, assign) NSManagedObjectContext * managedObjectContext;
+@property (nonatomic, assign) NSPersistentStoreCoordinator * persistentStoreCoordinator;
 
 // Public methods
 + (NSString *)videoStatusToString:(KC_VIDEO_STATUS)videoStatus;
 
++ (NSString *)getVideoDirectoryForVideo:(NSURL *)kamcordDirectory
+                                videoId:(NSString *)videoId;
+
 // Initializes a video with an ID
 - (id)initWithID:(NSString *)videoID
 kamcordDirectory:(NSURL *)kamcordDirectory
-managedObjectContext:(NSManagedObjectContext *)managedObjectContext
-   maximumLength:(CMTime)maxLength;
+persistentStoreCoordinator:(NSPersistentStoreCoordinator *)persistentStoreCoordinator
+   maximumLength:(CMTime)maxLength
+   coreDataQueue:(dispatch_queue_t)coreDataQueue;
 
 - (KC_VIDEO_STATUS)videoStatus;
 - (void)setVideoStatus:(KC_VIDEO_STATUS)videoStatus;
+
+- (void)updateVideoTrackerUploadStatus:(KCVideoUploadStatus *)uploadStatus
+                                  eTag:(NSString *)eTag;
+
+- (KCVideoUploadStatus *)getUploadStatus:(int)numberOfParts
+                              numAttempt:(int)numAttempt
+                          uploadPartSize:(int)uploadPartSize;
 
 // Returns the URL of the current video being recorded
 - (NSURL *)currentVideoClipLocalURL;
@@ -157,9 +260,19 @@ managedObjectContext:(NSManagedObjectContext *)managedObjectContext
 // local URL to that file path. Returns YES on success.
 - (BOOL)addNewVideoClip;
 
+// Should be called to mark each individual interesting time
+- (void)markAbsoluteTime:(CFAbsoluteTime)absoluteTime;
+
+// Should be called only once after the video
+// has finished recording.
+- (void)compressMarkedTimes;
+
 - (void)stopAllSounds:(KC_SOUND_TYPE)soundType;
 
-- (void)updateVideoTrackerSharing:(KCVideoShareInfo *)shareInfo;
+// Extracts the thumbnail from the video asset and saves it
+// as the thumbnail for this video. If a thumbnail already exists,
+// it just returns that one.
+- (CGImageRef)extractThumbnailFromAsset:(AVURLAsset *)asset;
 
 // API to track sharing task status
 - (void)addTask:(KCVideoSharingTask *)shareTask;

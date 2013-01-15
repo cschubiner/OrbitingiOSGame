@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "Common/Core/KamcordProtocols.h"
 #import "KCGLView.h"
 #import "CCDirectorIOS.h"
 
@@ -17,149 +18,13 @@
 #import "Common/View/KCViewController.h"
 #import "Common/Core/Audio/KCAudio.h"
 #import "Common/Core/Audio/KCSound.h"
+#import <MessageUI/MessageUI.h>
 
-#define KAMCORD_VERSION "0.9.5"
-
-// --------------------------------------------------------
-// The following enum and protocol are only relevant
-// if you're implementing your own custom UI.
-// If you're using the default Kamcord UI, please
-// ignore the following as it is irrelevant for you.
-
-@class GTMOAuth2Authentication;
+#import "Common/Core/KCAnalytics.h"
 
 // --------------------------------------------------------
-// API elements for custom sharing UI.
-// Will be documented soon as we roll out complete
-// support for custom UIs.
-typedef enum
-{
-    NO_ERROR,
-    FACEBOOK_NOT_AUTHENTICATED,
-    FACEBOOK_LOGIN_CANCELLED,
-    FACEBOOK_DAILY_SHARE_EXCEEDED,
-    FACEBOOK_SERVER_ERROR,
-    
-    TWITTER_NOT_SETUP,
-    TWITTER_NOT_AUTHENTICATED,
-    TWITTER_NO_ACCOUNTS,
-    TWITTER_SERVER_ERROR,
-    
-    YOUTUBE_NOT_AUTHENTICATED,
-    YOUTUBE_LOGIN_CANCELLED,
-    YOUTUBE_SERVER_ERROR,
-    
-    EMAIL_NOT_SETUP,
-    EMAIL_CANCELLED,
-    EMAIL_FAILED,
-    NO_INTERNET,
-    
-    KAMCORD_SERVER_ERROR,
-    KAMCORD_S3_ERROR,
-    
-    NOTHING_TO_SHARE,
-    MESSAGE_TOO_LONG,
-    
-    VIDEO_PROCESSING_ERROR,
-} KCShareStatus;
-
-
-@protocol KCShareDelegate <NSObject>
-
-@required
-// Only after this callback (or a generalError below) is it safe
-// make a new share request.
-- (void)shareStartedWithSuccess:(BOOL)success error:(KCShareStatus)error;
-
-// Errors that happen along the way
-- (void)generalError:(KCShareStatus)error;
-
-
-
-@optional
-// --------------------------------------------------------
-// Callbacks for case 1 (see below)
-
-// Don't worry about deferring on sharing until these are
-// called. Our internal system will wait until conversion
-// is finished before your share request is executed.
-- (void)videoMergeFinishedWithSuccess:(BOOL)success error:(NSError *)error;
-- (void)videoConversionFinishedWithSuccess:(BOOL)success error:(NSError *)error;
-
-// Auth requests
-- (void)facebookAuthFinishedWithSuccess:(BOOL)success;
-- (void)twitterAuthFinishedWithSuccess:(BOOL)success;
-- (void)youTubeAuthFinishedWithSuccess:(BOOL)success;
-
-// Beginning of share process
-// First: auth verification
-- (void)facebookShareStartedWithSuccess:(BOOL)success error:(KCShareStatus)error;
-- (void)twitterShareStartedWithSuccess:(BOOL)success error:(KCShareStatus)error;
-- (void)youTubeUploadStartedWithSuccess:(BOOL)success error:(KCShareStatus)error;
-- (void)emailSentWithSuccess:(BOOL)success error:(KCShareStatus)error;
-//
-// End of share process
-- (void)facebookShareFinishedWithSuccess:(BOOL)success error:(KCShareStatus)error;
-- (void)twitterShareFinishedWithSuccess:(BOOL)success error:(KCShareStatus)error;
-- (void)youTubeUploadFinishedWithSuccess:(BOOL)success error:(KCShareStatus)error;
-
-
-//
-// Retrying failed uploads/shares
-//
-
-
-// Indicate that we are queueing a failed share for retrying later
-- (void)queueingFailedShareForFutureRetry;
-
-// Indicate that we are retrying failed uploads/shares
-- (void)retryingPreviouslyFailedShares:(NSUInteger)numShares;
-
-// Indicate that we have given up on retrying a failed share
-- (void)stoppingRetryForFailedShare;
-
-
-// The following callback will be made for both Option 1 and Option 2:
-
-// We call this after we've received a video URL from the server.
-// The purpose of this call is to give you two pieces of information:
-//
-//   1. The URL the video will be at once the upload finishes
-//   2. The URL the video thumbnail will be at once the upload finishes
-//
-// We also pass in the data dictionary you passed in with the share request,
-// along with any possible error messages.
-- (void)videoWillBeginUploading:(NSURL *)onlineVideoURL
-                      thumbnail:(NSURL *)onlineThumbnailURL
-                           data:(NSDictionary *)data
-                          error:(NSError *)error;
-
-
-// If the error object is nil, then the video and thumbnail
-// URLs are valid. Otherwise, the video and thumbnail URLs
-// should not be considered valid, even if they are non-nil.
-// The data is the original object that was passed in with the share request.
-- (void)videoIsReadyToShare:(NSURL *)onlineVideoURL
-                  thumbnail:(NSURL *)onlineThumbnailURL
-                    message:(NSString *)message
-                       data:(NSDictionary *)data
-                      error:(NSError *)error;
-@end
-
-
-// --------------------------------------------------------
-// Callbacks for video playback
-// 
-@protocol KCMoviePlayerDelegate <NSObject>
-
-// Called when the movie player is presented
-- (void)moviePlayerDidAppear;
-
-// Called when the movie player is dismissed
-- (void)moviePlayerDidDisappear;
-
-@end
-
+// Current verion is 0.9.97 (12/27/2012)
+FOUNDATION_EXPORT NSString * const KamcordVersion;
 
 
 @interface Kamcord : NSObject
@@ -184,39 +49,54 @@ typedef enum
 
 // Convenience wrapper around [[UIApplication sharedApplication] statusBarOrientation]
 + (KCDeviceOrientation) deviceOrientation;
++ (BOOL)useUIKitAutorotation;
 
-// Social media
-// YouTube
+// Social media default messages.
 + (void) setYouTubeTitle:(NSString *)title
-             description:(NSString *)description 
-                tags:(NSString *)tags;
-+ (NSString *) youtubeTitle;
-+ (NSString *) youtubeDescription;
-+ (NSString *) youtubeTags;
+             description:(NSString *)description
+                    tags:(NSString *)tags;
++ (void)setYouTubeVideoCategory:(NSString *)category;
++ (NSString *)youtubeTitle;
++ (NSString *)youtubeDescription;
++ (NSString *)youtubeTags;
++ (NSString *)youtubeCategory;
 
-+ (void) setDefaultYouTubeMessage:(NSString *)message;
-+ (NSString *)defaultYouTubeMessage;
-
-// Facebook
 + (void) setFacebookTitle:(NSString *)title
                   caption:(NSString *)caption
               description:(NSString *)description;
-+ (NSString *) facebookTitle;
-+ (NSString *) facebookCaption;
-+ (NSString *) facebookDescription;
++ (NSString *)facebookTitle;
++ (NSString *)facebookCaption;
++ (NSString *)facebookDescription;
 
-+ (void) setDefaultFacebookMessage:(NSString *)message;
++ (void)setDefaultEmailSubject:(NSString *)subject;
++ (NSString *)defaultEmailSubject;
+
+// The default message to show in the share box regardless of network shared to.
++ (void)setDefaultMessage:(NSString *)message;
++ (NSString *)defaultMessage;
+
+
+// Start of depcrecated social media default messages.
+// These only work when using showViewDepcrecated.
++ (void)setDefaultYouTubeMessage:(NSString *)message;
++ (NSString *)defaultYouTubeMessage;
+
++ (void)setDefaultFacebookMessage:(NSString *)message;
 + (NSString *)defaultFacebookMessage;
 
-// Twitter
 + (void)setDefaultTweet:(NSString *)tweet;
 + (NSString *)defaultTweet;
 
++ (void)setDefaultEmailSubject:(NSString *)subject
+                          body:(NSString *)body;
++ (NSString *)defaultEmailBody;
+// End of depcrecated social media default messages.
 
-+ (void) setLevel:(NSString *)level
-            score:(NSNumber *)score;
-+ (NSString *) level;
-+ (NSNumber *) score;
+
++ (void)setLevel:(NSString *)level
+           score:(NSNumber *)score;
++ (NSString *)level;
++ (NSNumber *)score;
 
 ////////////////////
 // Video recording
@@ -229,13 +109,24 @@ typedef enum
 // (for example, on startup, or an end of level screen).
 + (BOOL)prepareNextVideo;
 
-+ (BOOL) startRecording;
-+ (BOOL) stopRecording;
-+ (BOOL) resume;
-+ (BOOL) pause;
++ (BOOL)startRecording;
++ (BOOL)stopRecording;
++ (BOOL)stopRecordingAndDiscardVideo;
++ (BOOL)resume;
++ (BOOL)pause;
+
++ (BOOL)isRecording;
 
 // Displays the Kamcord view inside the previously set parentViewController;
 + (void) showView;
++ (void) showViewInViewController:(UIViewController *)parentViewController;
+
+// Displays the old Kamcord View, deprecated since 0.9.96
++ (void)showViewDeprecated;
+
++ (UIView *) getThumbnailView:(NSUInteger)width
+         parentViewController:(UIViewController *)parentViewController;
+
 
 // Video recording settings
 // For release, use SMART_VIDEO_DIMENSIONS:
@@ -258,9 +149,12 @@ typedef enum {
 
 
 // Audio recording
-+ (KCAudio *) playSound:(NSString *)filename
-                   loop:(BOOL)loop;
-+ (KCAudio *) playSound:(NSString *)filename;
++ (KCAudio *)playSound:(NSString *)filename
+                  loop:(BOOL)loop;
++ (KCAudio *)playSound:(NSString *)filename;
++ (KCAudio *)playSoundAtURL:(NSURL *)fileURL
+                       loop:(BOOL)loop;
++ (KCAudio *)playSoundAtURL:(NSURL *)fileURL;
 
 // Will stop all looping, non-looping, or looping and non-looping sounds.
 typedef enum
@@ -277,14 +171,20 @@ typedef enum
 
 
 // When the user shares a video, should the Kamcord UI wait for
-// the video to finish converting before automatically dismissing 
+// the video to finish converting before automatically dismissing
 // the share screen?
-// 
+//
 // This can be turned on for games that experience a performance
 // hit if the video processing is happening in the background
 // while the user is playing the next round or level.
-+ (void)setEnableSynchronousConversionUI:(BOOL)on;
+//
+// The second argument determines whether or not the video processing
+// progress bar is always visible (set to YES), or only visible
+// when the user presses a button to share (defaults to this setting, which is NO).
++ (void)setEnableSynchronousConversionUI:(BOOL)on
+                   alwaysShowProgressBar:(BOOL)alwaysShow;
 + (BOOL)enableSynchronousConversionUI;
++ (BOOL)alwaysShowProgressBar;
 
 
 // Show the video player controls when the replay is shown?
@@ -332,10 +232,9 @@ typedef enum
 + (void)presentVideoPlayerInViewController:(UIViewController *)parentViewController;
 
 
-// The object that will receive callbacks when the movie player
-// is show and dismissed.
-+ (void)setMoviePlayerDelegate:(id <KCMoviePlayerDelegate>)delegate;
-+ (id <KCMoviePlayerDelegate>)moviePlayerDelegate;
+// The object that will receive all non-share related callbacks.
++ (void)setDelegate:(id <KamcordDelegate>)delegate;
++ (id <KamcordDelegate>)delegate;
 
 
 // The object that will receive callbacks about sharing state.
@@ -383,7 +282,9 @@ typedef enum
 + (BOOL)shareVideoOnFacebook:(BOOL)shareFacebook
                      Twitter:(BOOL)shareTwitter
                      YouTube:(BOOL)shareYouTube
-                 withMessage:(NSString *)message;
+                       Email:(BOOL)shareEmail
+                 withMessage:(NSString *)message
+mailViewParentViewController:(UIViewController *)parentViewController;
 
 // Show the send email dialog with the Kamcord URL in the message.
 // Any additional body text you'd like to add should be passed in the
@@ -421,8 +322,6 @@ typedef enum
                          data:(NSDictionary *)data;
 
 
-
-
 + (BOOL)handleOpenURL:(NSURL *)url;
 
 // --------------------------------------------------------
@@ -430,11 +329,20 @@ typedef enum
 
 // Returns the singleton Kamcord object. You don't ever really need this, just
 // use the static API calls.
-+ (Kamcord *) sharedManager;
++ (Kamcord *)sharedManager;
+
++ (void)track:(NSString *)eventName
+   properties:(NSDictionary *)properties
+analyticsType:(KC_ANALYTICS_TYPE)analyticsType;
+
++ (NSString *)kamcordSDKVersion;
 
 // Helper to figure calculate the internal scale factor
-+ (unsigned int) resolutionScaleFactor;
++ (unsigned int)resolutionScaleFactor;
 
-+ (KCAudio *) audioBackground;
++ (KCAudio *)audioBackground;
+
++ (BOOL)isIPhone5;
++ (BOOL)checkInternet;
 
 @end

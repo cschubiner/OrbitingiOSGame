@@ -10,7 +10,7 @@
 @class KC_SHKFormControllerLargeTextField;
 @compatibility_alias SHKFormControllerLargeTextField KC_SHKFormControllerLargeTextField;
 
-@interface SHKFormControllerLargeTextField : UIViewController <UITextViewDelegate>
+@interface KC_SHKFormControllerLargeTextField : UIViewController <UITextViewDelegate>
 
 @property (nonatomic, readonly, assign) id <KC_SHKFormControllerLargeTextFieldDelegate> delegate;
 @property (nonatomic, retain) UITextView *textView;

@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Kamcord Inc. All rights reserved.
 //
 
-// Tell Kamcord which version we're using
-#define COCOS2D_2_0 1
-
-
-
 #ifndef cocos2d_ios_KamcordMacros_h
 #define cocos2d_ios_KamcordMacros_h
+
+// Tell Kamcord which version we're using
+// #define PRE_IOS_6 1         // Comment out as necessary
+// #define COCOS2D_2_0 1       // Comment out as necessary
+#define COCOS2D_2_1 1    // Comment out as necessary
 
 #define CC_DIRECTOR_INIT_KAMCORD()                                                              \
 do	{																							\
@@ -38,7 +38,7 @@ do	{																							\
 
 
 // Logging
-#ifdef DEBUG
+#if KCDEBUG
 
 #define NLog(fmt, ...) printf("%s\n", [[NSString stringWithFormat:@"%s:%d %@", __PRETTY_FUNCTION__, __LINE__, [NSString stringWithFormat:fmt, ##__VA_ARGS__]] UTF8String])
 
@@ -47,6 +47,14 @@ do	{																							\
 #define NLog(...)
 
 #endif
+
+// iOS Versioning
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
 
 
 ////////////////////////////////////////////////
@@ -66,3 +74,9 @@ do	{																							\
 
 #endif
 
+// iOS Versioning
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)

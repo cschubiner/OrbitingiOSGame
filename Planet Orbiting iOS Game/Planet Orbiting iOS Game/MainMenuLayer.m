@@ -121,6 +121,9 @@ const float effectsVolumeMainMenu = 1;
 // on "init" you need to initialize your instance
 - (id)init {
 	if (self = [super init]) {
+        
+        [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setdidGetToMainMenu:YES];
+
         size = [[CCDirector sharedDirector] winSize];
         self.isTouchEnabled = true;
         

@@ -75,7 +75,7 @@
 @class KC_SBJsonParser;
 @compatibility_alias SBJsonParser KC_SBJsonParser;
 
-@interface SBJsonParser : SBJsonBase <KC_SBJsonParser> {
+@interface KC_SBJsonParser : SBJsonBase <KC_SBJsonParser> {
     
 @private
     const char *c;

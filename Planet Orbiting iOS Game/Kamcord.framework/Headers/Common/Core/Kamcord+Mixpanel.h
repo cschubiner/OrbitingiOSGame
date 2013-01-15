@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Kamcord.h"
+#import "KCAnalytics.h"
 
 @class MixpanelAPI;
 

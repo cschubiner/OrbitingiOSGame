@@ -32,7 +32,7 @@
 @class KC_SHKOfflineSharer;
 @compatibility_alias SHKOfflineSharer KC_SHKOfflineSharer;
 
-@interface SHKOfflineSharer : NSOperation <KCSHKSharerDelegate>
+@interface KC_SHKOfflineSharer : NSOperation <KCSHKSharerDelegate>
 {
 	SHKItem *item;
 	NSString *sharerId;
