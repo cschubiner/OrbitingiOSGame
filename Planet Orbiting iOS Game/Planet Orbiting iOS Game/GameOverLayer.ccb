@@ -581,66 +581,6 @@
 						<key>children</key>
 						<array/>
 						<key>class</key>
-						<string>CCLabelBMFont</string>
-						<key>properties</key>
-						<dict>
-							<key>anchorPoint</key>
-							<array>
-								<real>0.5</real>
-								<real>0.5</real>
-							</array>
-							<key>color</key>
-							<array>
-								<integer>245</integer>
-								<integer>255</integer>
-								<integer>250</integer>
-							</array>
-							<key>contentSize</key>
-							<array>
-								<real>130</real>
-								<real>62</real>
-							</array>
-							<key>customClass</key>
-							<string></string>
-							<key>fontFile</key>
-							<string>powerupText.fnt</string>
-							<key>isExpanded</key>
-							<true/>
-							<key>isRelativeAnchorPoint</key>
-							<true/>
-							<key>lockedScaleRatio</key>
-							<true/>
-							<key>memberVarAssignmentName</key>
-							<string>displayName</string>
-							<key>memberVarAssignmentType</key>
-							<integer>2</integer>
-							<key>opacity</key>
-							<integer>255</integer>
-							<key>position</key>
-							<array>
-								<real>103.09337615966797</real>
-								<real>285.61761474609375</real>
-							</array>
-							<key>rotation</key>
-							<real>0.0</real>
-							<key>scaleX</key>
-							<real>0.69164037704467773</real>
-							<key>scaleY</key>
-							<real>0.69164037704467773</real>
-							<key>string</key>
-							<string>PLAYER</string>
-							<key>tag</key>
-							<integer>-1</integer>
-							<key>visible</key>
-							<true/>
-							<key>zOrder</key>
-							<integer>0</integer>
-						</dict>
-					</dict>
-					<dict>
-						<key>children</key>
-						<array/>
-						<key>class</key>
 						<string>CCSprite</string>
 						<key>properties</key>
 						<dict>
@@ -869,6 +809,66 @@
 					<real>1.17578125</real>
 					<key>scaleY</key>
 					<real>1.17578125</real>
+					<key>tag</key>
+					<integer>-1</integer>
+					<key>visible</key>
+					<true/>
+					<key>zOrder</key>
+					<integer>0</integer>
+				</dict>
+			</dict>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>class</key>
+				<string>CCLabelBMFont</string>
+				<key>properties</key>
+				<dict>
+					<key>anchorPoint</key>
+					<array>
+						<real>0.5</real>
+						<real>0.5</real>
+					</array>
+					<key>color</key>
+					<array>
+						<integer>245</integer>
+						<integer>255</integer>
+						<integer>250</integer>
+					</array>
+					<key>contentSize</key>
+					<array>
+						<real>130</real>
+						<real>62</real>
+					</array>
+					<key>customClass</key>
+					<string></string>
+					<key>fontFile</key>
+					<string>powerupText.fnt</string>
+					<key>isExpanded</key>
+					<true/>
+					<key>isRelativeAnchorPoint</key>
+					<true/>
+					<key>lockedScaleRatio</key>
+					<true/>
+					<key>memberVarAssignmentName</key>
+					<string>displayName</string>
+					<key>memberVarAssignmentType</key>
+					<integer>2</integer>
+					<key>opacity</key>
+					<integer>255</integer>
+					<key>position</key>
+					<array>
+						<real>372.0074462890625</real>
+						<real>169.50433349609375</real>
+					</array>
+					<key>rotation</key>
+					<real>0.0</real>
+					<key>scaleX</key>
+					<real>0.69164037704467773</real>
+					<key>scaleY</key>
+					<real>0.69164037704467773</real>
+					<key>string</key>
+					<string>PLAYER</string>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>

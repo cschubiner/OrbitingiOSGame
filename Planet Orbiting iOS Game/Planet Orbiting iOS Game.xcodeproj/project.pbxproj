@@ -579,6 +579,8 @@
 		FAD6725915E0413800C06929 /* ObjectiveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD6725815E0413800C06929 /* ObjectiveManager.m */; };
 		FAD6725C15E0439000C06929 /* ObjectiveItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD6725B15E0439000C06929 /* ObjectiveItem.m */; };
 		FAD6725F15E0448C00C06929 /* ObjectiveGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD6725E15E0448C00C06929 /* ObjectiveGroup.m */; };
+		FAD84E6116A65D9D0010F996 /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD84E6016A65D9D0010F996 /* GameOverLayer.m */; };
+		FAD84E6416A6648C0010F996 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD84E6316A6648C0010F996 /* ImageIO.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FADA963C15E4D71B00238827 /* missionsPopup.png in Resources */ = {isa = PBXBuildFile; fileRef = FADA963A15E4D71B00238827 /* missionsPopup.png */; };
 		FADA963D15E4D71B00238827 /* missionsPopup-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FADA963B15E4D71B00238827 /* missionsPopup-hd.png */; };
 		FAF1C64015BCF8A1001136E3 /* Coin.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF1C63F15BCF8A1001136E3 /* Coin.m */; };
@@ -1339,6 +1341,9 @@
 		FAD6725B15E0439000C06929 /* ObjectiveItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveItem.m; sourceTree = "<group>"; };
 		FAD6725E15E0448C00C06929 /* ObjectiveGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveGroup.m; sourceTree = "<group>"; };
 		FAD6726D15E053E600C06929 /* ObjectiveHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveHeader.h; sourceTree = "<group>"; };
+		FAD84E5F16A65D9D0010F996 /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
+		FAD84E6016A65D9D0010F996 /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
+		FAD84E6316A6648C0010F996 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		FADA963A15E4D71B00238827 /* missionsPopup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missionsPopup.png; sourceTree = "<group>"; };
 		FADA963B15E4D71B00238827 /* missionsPopup-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "missionsPopup-hd.png"; sourceTree = "<group>"; };
 		FAF1C63E15BCF8A1001136E3 /* Coin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coin.h; sourceTree = "<group>"; };
@@ -1350,6 +1355,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD84E6416A6648C0010F996 /* ImageIO.framework in Frameworks */,
 				0CB11B2016A57700005710E3 /* AdSupport.framework in Frameworks */,
 				0C695E3D15F095FF0092DD51 /* StoreKit.framework in Frameworks */,
 				0C62B1B815C8DDE800318B66 /* Security.framework in Frameworks */,
@@ -2051,6 +2057,7 @@
 		0C7AA5F115946939000B58F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FAD84E6316A6648C0010F996 /* ImageIO.framework */,
 				0C5D470616A57D0300B07CA1 /* Kamcord */,
 				0C695E3C15F095FF0092DD51 /* StoreKit.framework */,
 				0C62B1B715C8DDE800318B66 /* Security.framework */,
@@ -2111,6 +2118,8 @@
 				0C695E3A15F08FFD0092DD51 /* IAPHelper.m */,
 				0C695E3615F08FF20092DD51 /* Reachability.h */,
 				0C695E3715F08FF20092DD51 /* Reachability.m */,
+				FAD84E5F16A65D9D0010F996 /* GameOverLayer.h */,
+				FAD84E6016A65D9D0010F996 /* GameOverLayer.m */,
 				0C2C49B715EF6675005B1214 /* iRate */,
 				C445304D15A68888004F8F48 /* CocosBuilder  */,
 				C43F5E7115C70356003BDF73 /* Achievements and Online Highscores */,
@@ -3286,6 +3295,7 @@
 				0C309D15160FC67B001C2EA8 /* main.m in Sources */,
 				0C309D1C160FD21D001C2EA8 /* DeviceDetection.m in Sources */,
 				0C16BB66169EEC2400F20044 /* iRate.m in Sources */,
+				FAD84E6116A65D9D0010F996 /* GameOverLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

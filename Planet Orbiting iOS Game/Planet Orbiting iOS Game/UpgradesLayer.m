@@ -537,30 +537,30 @@
         //     [[iRate sharedInstance] logEvent:YES];
         
         if (pushedItem.number == 3) { //Double Stars - 1.99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"doublestars"];
+            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"doublestars1880"];
 
             
         } else if (pushedItem.number == 11) { //Pink Stars - 5.99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"pinkstars"];
+            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"pinkstars1880"];
 
             
         } else if (pushedItem.number == 12) { //30,000 Stars - .99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"30000stars"];
+            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"30000stars1880"];
 
             
         } else if (pushedItem.number == 13) { //70,000 Stars - 1.99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"70000stars"];
+            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"70000stars1880"];
 
             
         } else if (pushedItem.number == 14) { //120,000 Stars - 2.99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"120000stars"];
+            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"120000stars1880"];
 
             
         } else if (pushedItem.number == 15) { //300,000 Stars - 4.99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"300000stars"];
+            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"300000stars1880"];
             
         } else if (pushedItem.number == 16) { //1,000,000 Stars - 9.99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"1000000stars"];
+            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"1000000stars1880"];
         }
         
     } else {

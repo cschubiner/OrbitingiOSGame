@@ -2141,17 +2141,18 @@ typedef struct {
 
 /* Your score goes up as you move along the vector between the current and next planet. Your score will also never go down, as the user doesn't like to see his score go down.*/
 - (void)UpdateScore:(float)dt {
-    tempScore = ccpDistance(CGPointZero, player.sprite.position)-160;
-    currentDistance = ccpDistance(CGPointZero, player.sprite.position)-160;
+    tempScore = ccpDistance(CGPointZero, player.sprite.position); //-160;
+    currentDistance = ccpDistance(CGPointZero, player.sprite.position); //-160;
     float distanceDif = currentDistance - previousDistance;
     if (distanceDif < 0)
         distanceDif = 0;
     
-    if (currentDistance > farthestPosSoFar && !loading_playerHasReachedFirstPlanet)
+    if (currentDistance > farthestPosSoFar && loading_playerHasReachedFirstPlanet)
         farthestPosSoFar = currentDistance;
     
-    if (currentDistance < farthestPosSoFar && !loading_playerHasReachedFirstPlanet)
+    if (currentDistance < farthestPosSoFar && loading_playerHasReachedFirstPlanet)
         distanceDif = 0;
+    //NSLog(@"farthest so far: %f, current: %f", farthestPosSoFar, currentDistance);
     //if (isInFeverMode)
     //    scoreAddedByCombo += dt*80 * comboMultiplier;
     /*
@@ -2222,7 +2223,7 @@ typedef struct {
         [underscore setPosition:displayName.position];
         return;
     }
-    [underscore setPosition:ccp(displayName.position.x + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, displayName.position.y)];
+    [underscore setPosition:ccp(372 + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, 169.5)];
 }
 
 - (BOOL)textViewShouldReturn:(UITextView*)textView {
@@ -2248,7 +2249,7 @@ typedef struct {
     [displayName setString:@""];
     underscore = [[CCLabelBMFont alloc] initWithString:@"_" fntFile:@"score_label_font.fnt"];
     [pauseLayer addChild:underscore];
-    [underscore setPosition:displayName.position];
+    [underscore setPosition:ccp(372, 169.5)];
     [underscore runAction: [CCRepeatForever actionWithAction: [CCBlink actionWithDuration:5 blinks:5]]];
 }
 
@@ -2293,6 +2294,9 @@ typedef struct {
         [thrustParticle stopSystem];
         
         
+        [self CheckEndGameMissions];
+        
+        
         id gameOverBlock = [CCCallBlock actionWithBlock:(^{
             //[dark setVisible:false];
             if ([[ObjectiveManager sharedInstance] shouldDisplayLevelUpAnimation]) {
@@ -2300,8 +2304,6 @@ typedef struct {
             }
             [self startGameOver];
         })];
-        
-        [self CheckEndGameMissions];
         
         [dark runAction:[CCSequence actions:
                          [CCFadeIn actionWithDuration:2],
@@ -2336,7 +2338,7 @@ typedef struct {
     [Kamcord setYouTubeVideoCategory:@"Games"];
     [Kamcord setDefaultEmailSubject:@"Check out my awesome Star Stream Gameplay!"];
 
-    [Kamcord setDefaultMessage:[NSString stringWithFormat:@"Check out my awesome Star Stream gameplay! I scored %d points and reached galaxy %d!",finalScore,currentGalaxy.number+1]];
+    [Kamcord setDefaultMessage:[NSString stringWithFormat:@"Check out my awesome Star Stream gameplay! I reached a score of %d and made it to galaxy %d!",finalScore,currentGalaxy.number+1]];
     [Kamcord setYouTubeTitle:@"Star Stream Gameplay" description:[NSString stringWithFormat:@"My awesome round of Star Stream. I scored %d points and reached galaxy %d.",finalScore,currentGalaxy.number+1] tags:@"Star Stream, Star, Stream, iPhone, iOS, iPod, gameplay, video, high score, score, highscore"];
     [Kamcord setLevel:[NSString stringWithFormat:@"Galaxy %d",currentGalaxy.number+1] score:[NSNumber numberWithInt:finalScore]];
     [Kamcord setFacebookTitle:@"Star Stream Gameplay" caption:[NSString stringWithFormat:@"Score: %d points. Reached galaxy: %d",finalScore,currentGalaxy.number+1] description:[NSString stringWithFormat:@"My awesome round of Star Stream. I scored %d points and reached galaxy %d.",finalScore,currentGalaxy.number+1]];
@@ -2358,7 +2360,7 @@ typedef struct {
     }
     @catch (NSException *exception) {}
     
-    [[DDGameKitHelper sharedGameKitHelper] submitScore:finalScore category:@"highscore_leaderboard"];
+    [[DDGameKitHelper sharedGameKitHelper] submitScore:finalScore category:@"highscore_leaderboard1880"];
     
     [[[[CCDirector sharedDirector]view]window]addSubview:playerNameLabel];
     [self schedule:@selector(nameDidChange) interval:.05];
@@ -2576,7 +2578,7 @@ typedef struct {
     if (numCoinsDisplayed >= 10)
         [self completeObjectiveFromGroupNumber:0 itemNumber:0];
     
-    if (score >= 5000)
+    if (score >= 8000)
         [self completeObjectiveFromGroupNumber:0 itemNumber:1];
     
     
@@ -2584,7 +2586,7 @@ typedef struct {
     if (player.currentPowerup != nil)
         [self completeObjectiveFromGroupNumber:1 itemNumber:0];
     
-    if (score >= 10000)
+    if (score >= 15000)
         [self completeObjectiveFromGroupNumber:1 itemNumber:1];
     
     if (numTimesSwiped >= 25)
@@ -2606,7 +2608,7 @@ typedef struct {
     
     
     
-    if (score >= 24000)
+    if (score >= 30000)
         [self completeObjectiveFromGroupNumber:4 itemNumber:1];
     
     
@@ -2628,7 +2630,7 @@ typedef struct {
         [self completeObjectiveFromGroupNumber:6 itemNumber:0];
     }
     
-    if (score >= 40000)
+    if (score >= 50000)
         [self completeObjectiveFromGroupNumber:6 itemNumber:1];
     
     if (numTimesSwiped >= 50)
@@ -2654,7 +2656,7 @@ typedef struct {
         [self completeObjectiveFromGroupNumber:8 itemNumber:0];
     }
     
-    if (score >= 55000)
+    if (score >= 65000)
         [self completeObjectiveFromGroupNumber:8 itemNumber:1];
     
     
@@ -2670,13 +2672,45 @@ typedef struct {
     if (asteroidsCrashedInto >= 15)
         [self completeObjectiveFromGroupNumber:10 itemNumber:1];
     
-    if (score >= 70000)
+    if (score >= 80000)
         [self completeObjectiveFromGroupNumber:10 itemNumber:2];
     
     
     
     if (numCoinsDisplayed >= 400)
         [self completeObjectiveFromGroupNumber:11 itemNumber:1];
+    
+    
+    
+    if (numCoinsDisplayed >= 500)
+        [self completeObjectiveFromGroupNumber:12 itemNumber:1];
+    
+    if (score >= 90000)
+        [self completeObjectiveFromGroupNumber:12 itemNumber:2];
+    
+    
+    
+    if (numCoinsDisplayed >= 600)
+        [self completeObjectiveFromGroupNumber:13 itemNumber:1];
+    
+    if (score >= 100000)
+        [self completeObjectiveFromGroupNumber:13 itemNumber:2];
+    
+    
+    
+    if (numCoinsDisplayed >= 800)
+        [self completeObjectiveFromGroupNumber:14 itemNumber:1];
+    
+    if (score >= 120000)
+        [self completeObjectiveFromGroupNumber:14 itemNumber:2];
+    
+    
+    
+    if (numCoinsDisplayed >= 2500)
+        [self completeObjectiveFromGroupNumber:15 itemNumber:1];
+    
+    if (score >= 250000)
+        [self completeObjectiveFromGroupNumber:15 itemNumber:2];
     
 }
 
@@ -2716,6 +2750,26 @@ typedef struct {
     
     if (currentGalaxy.number == 5)
         [self completeObjectiveFromGroupNumber:11 itemNumber:0];
+    
+    
+    
+    if (currentGalaxy.number == 6)
+        [self completeObjectiveFromGroupNumber:12 itemNumber:0];
+    
+    
+    
+    if (currentGalaxy.number == 7)
+        [self completeObjectiveFromGroupNumber:13 itemNumber:0];
+    
+    
+    
+    if (currentGalaxy.number == 8)
+        [self completeObjectiveFromGroupNumber:14 itemNumber:0];
+    
+    
+    
+    if (currentGalaxy.number >= 9)
+        [self completeObjectiveFromGroupNumber:15 itemNumber:0];
     
 }
 
@@ -2767,7 +2821,7 @@ typedef struct {
         
         if (targetPlanet.number >= 10 && isInTutorialMode) {
             if ([self checkShouldDisplayTextForVar:hasDiplayedBatteryText]) {
-                [self pauseWithDuration:5 message:@"\n\nLook at the battery in the lower-left of the screen. You die when it runs out! \nThe battery recharges when you go to a new galaxy!"];
+                [self pauseWithDuration:5 message:@"Look at the battery in the lower-left of the \nscreen. You die when it runs out! \nThe battery recharges upon entering new galaxies!"];
                 hasDiplayedBatteryText = true;
             }
         }

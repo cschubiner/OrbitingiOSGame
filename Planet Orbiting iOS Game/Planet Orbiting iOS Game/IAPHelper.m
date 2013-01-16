@@ -83,43 +83,43 @@
     for (int i = 0 ; i < 8; i++)
         [[iRate sharedInstance] logEvent:YES];
     
-    if ([productIdentifier isEqualToString:@"1000000stars"]) {
+    if ([productIdentifier isEqualToString:@"1000000stars1880"]) {
         int curBalance = [[UserWallet sharedInstance] getBalance];
         int newBalance = curBalance + 1000000;
         [[UserWallet sharedInstance] setBalance:newBalance];
         purchaseTitle = @"One Million Star Pack";
     }
-    else if ([productIdentifier isEqualToString:@"300000stars"]) {
+    else if ([productIdentifier isEqualToString:@"300000stars1880"]) {
         int curBalance = [[UserWallet sharedInstance] getBalance];
         int newBalance = curBalance + 300000;
         [[UserWallet sharedInstance] setBalance:newBalance];
         purchaseTitle = @"300,000 Star Pack";
         
     }
-    else if ([productIdentifier isEqualToString:@"120000stars"]) {
+    else if ([productIdentifier isEqualToString:@"120000stars1880"]) {
         int curBalance = [[UserWallet sharedInstance] getBalance];
         int newBalance = curBalance + 120000;
         [[UserWallet sharedInstance] setBalance:newBalance];
         purchaseTitle = @"120,000 Star Pack";
     }
-    else if ([productIdentifier isEqualToString:@"70000stars"]) {
+    else if ([productIdentifier isEqualToString:@"70000stars1880"]) {
         int curBalance = [[UserWallet sharedInstance] getBalance];
         int newBalance = curBalance + 70000;
         [[UserWallet sharedInstance] setBalance:newBalance];
         purchaseTitle = @"70,000 Star Pack";
     }
-    else if ([productIdentifier isEqualToString:@"30000stars"]) {
+    else if ([productIdentifier isEqualToString:@"30000stars1880"]) {
         int curBalance = [[UserWallet sharedInstance] getBalance];
         int newBalance = curBalance + 30000;
         [[UserWallet sharedInstance] setBalance:newBalance];
         purchaseTitle = @"30,000 Star Pack";
     }
-    else if ([productIdentifier isEqualToString:@"pinkstars"]) {
+    else if ([productIdentifier isEqualToString:@"pinkstars1880"]) {
         [[UpgradeManager sharedInstance] setUpgradeIndex:11 purchased:true equipped:true];
         purchaseTitle = @"Pink Star Upgrade";
         
     }
-    else if ([productIdentifier isEqualToString:@"doublestars"]) {
+    else if ([productIdentifier isEqualToString:@"doublestars1880"]) {
         [[UpgradeManager sharedInstance] setUpgradeIndex:3 purchased:true equipped:true];
         purchaseTitle = @"Double Star Multiplier";
         

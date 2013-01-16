@@ -167,7 +167,7 @@
 }
 
 - (void) initCredits {
-    CCLabelTTF* credits00 = [CCLabelTTF labelWithString:@"Star Stream was created by five college\nkids at Stanford, MIT, and UPenn." fontName:@"HelveticaNeue-CondensedBold" fontSize:20];
+    CCLabelTTF* credits00 = [CCLabelTTF labelWithString:@"Star Stream was created by five college\nkids at MIT, Stanford, and UPenn.\n\nCheck us out online at www.StarStreamGame.com!" fontName:@"HelveticaNeue-CondensedBold" fontSize:20];
     [scrollView addChild:credits00];
     [credits00 setAnchorPoint:ccp(.5, 1)];
     credits00.position = ccp(240, -5);
@@ -177,7 +177,7 @@
     [credits0 setAnchorPoint:ccp(.5, 1)];
     credits0.position = ccp(240, credits00.position.y - credits00.boundingBox.size.height - 30);
     
-    CCLabelTTF* credits1 = [CCLabelTTF labelWithString:@"ALEX BLICKENSTAFF\nCLAY SCHUBINER" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+    CCLabelTTF* credits1 = [CCLabelTTF labelWithString:@"CLAY SCHUBINER & ALEX BLICKENSTAFF" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
     [scrollView addChild:credits1];
     [credits1 setAnchorPoint:ccp(.5, 1)];
     credits1.position = ccp(240, credits0.position.y - credits0.boundingBox.size.height - 10);
@@ -214,7 +214,7 @@
     [credits9 setAnchorPoint:ccp(.5, 1)];
     credits9.position = ccp(240, credits8.position.y - credits8.boundingBox.size.height - 10);
     
-    CCLabelTTF* credits10 = [CCLabelTTF labelWithString:@"Follow us on Twitter! @StarStreamGame\n\nComments? Suggestions? Let us\nknow at contact@starstreamgame.com!" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+    CCLabelTTF* credits10 = [CCLabelTTF labelWithString:@"Comments? Suggestions? Let us\nknow at contact@starstreamgame.com!" fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
     [scrollView addChild:credits10];
     [credits10 setAnchorPoint:ccp(.5, 1)];
     credits10.position = ccp(240, credits9.position.y - credits9.boundingBox.size.height - 40);
