@@ -312,7 +312,7 @@ typedef struct {
     galaxy = [galaxies objectAtIndex:0];
     [galaxy setName:@"Galaxy 1"];
     [galaxy setNumberOfDifferentPlanetsDrawn:7];
-    [galaxy setOptimalPlanetsInThisGalaxy:31];
+    [galaxy setOptimalPlanetsInThisGalaxy:26];
     [galaxy setGalaxyColor: ccc3(45*darkScaler, 53*darkScaler, 147*darkScaler)]; //a dark blue
     
     galaxy = [galaxies objectAtIndex:1];
@@ -3159,7 +3159,7 @@ float lerpf(float a, float b, float t) {
 -(void)showRecording {
     muted = false;
     [self toggleMute];
-    //[Kamcord stopRecording];
+    [Kamcord stopRecording];
     allowVideoToConvert = true;
     [Kamcord showView];
 }

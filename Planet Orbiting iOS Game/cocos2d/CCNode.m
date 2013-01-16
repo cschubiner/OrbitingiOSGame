@@ -406,8 +406,9 @@ static NSUInteger globalOrderOfArrival = 1;
 
 	CCNode *child = [self getChildByTag:aTag];
 
-	if (child == nil)
-		CCLOG(@"cocos2d: removeChildByTag: child not found!");
+	if (child == nil){
+	//	CCLOG(@"cocos2d: removeChildByTag: child not found!");
+    }
 	else
 		[self removeChild:child cleanup:cleanup];
 }
