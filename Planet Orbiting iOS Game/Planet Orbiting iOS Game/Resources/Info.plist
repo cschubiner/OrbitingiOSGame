@@ -12,7 +12,6 @@
 	<array>
 		<string>Icon.png</string>
 		<string>Icon@2x.png</string>
-		<string>Default.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -22,18 +21,6 @@
 			<array>
 				<string>Icon.png</string>
 				<string>Icon@2x.png</string>
-				<string>Icon-72.png</string>
-				<string>Icon-Small-50.png</string>
-				<string>Icon-Small.png</string>
-				<string>Icon-Small@2x.png</string>
-				<string>Default@2x.png</string>
-				<string>Default.png</string>
-				<string>Default@2x.png</string>
-				<string>iconv2.png</string>
-				<string>iconv2@2x.png</string>
-				<string>Default.png</string>
-				<string>iconv4@2x.png</string>
-				<string>iconv4.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>

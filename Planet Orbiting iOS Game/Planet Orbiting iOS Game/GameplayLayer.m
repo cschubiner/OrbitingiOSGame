@@ -2223,7 +2223,7 @@ typedef struct {
         [underscore setPosition:displayName.position];
         return;
     }
-    [underscore setPosition:ccp(372 + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, 169.5)];
+    [underscore setPosition:ccp(373 + displayName.boundingBox.size.width/2 + underscore.boundingBox.size.width/2, 179.5)];
 }
 
 - (BOOL)textViewShouldReturn:(UITextView*)textView {
@@ -2249,7 +2249,7 @@ typedef struct {
     [displayName setString:@""];
     underscore = [[CCLabelBMFont alloc] initWithString:@"_" fntFile:@"score_label_font.fnt"];
     [pauseLayer addChild:underscore];
-    [underscore setPosition:ccp(372, 169.5)];
+    [underscore setPosition:ccp(373, 179.5)];
     [underscore runAction: [CCRepeatForever actionWithAction: [CCBlink actionWithDuration:5 blinks:5]]];
 }
 
