@@ -169,6 +169,7 @@ void HandleExceptions(NSException *exception) {
     //NSLog(@"This is where we save the application data during a exception");
     [Flurry logError:@"Game crashed" message:@"game crashed" exception:exception];
     // Save application data on crash
+    [DataStorage storeData];
 }
 
 /*
@@ -177,6 +178,7 @@ void HandleExceptions(NSException *exception) {
 void SignalHandler(int sig) {
     //NSLog(@"This is where we save the application data during a signal");
     // Save application data on crash
+    [DataStorage storeData];
 }
 
 -(NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{

@@ -22,16 +22,17 @@
 -(CGPoint)position{
     //don't do object.position, do object.SPRITE!!!.position. 
     //this method intentionally crashes to punish you for your error
-    CGPoint * hi =NULL;
-    return *hi;
+   // CGPoint * hi =NULL;
+ //   return *hi;
+    return CGPointZero;
 }
 
 -(void)setPosition:(CGPoint)position{
     //don't do [object setPosition], do object.SPRITE!!!.position. 
     //this method intentionally crashes to punish you for your error
-    int * hi =NULL;
-    int jok = *hi;
-    jok++;
+   // int * hi =NULL;
+    //int jok = *hi;
+  //  jok++;
 }
 
 -(CGPoint)getPositionOnScreen:(CCLayer*)layerObjectIsOn{

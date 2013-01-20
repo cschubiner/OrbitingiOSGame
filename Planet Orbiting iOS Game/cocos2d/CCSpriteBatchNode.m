@@ -207,7 +207,10 @@ const NSUInteger defaultCapacity = 29;
 	if (sprite == nil)
 		return;
 
-	NSAssert([children_ containsObject:sprite], @"CCSpriteBatchNode doesn't contain the sprite. Can't remove it");
+	if ([children_ containsObject:sprite]==false){
+        NSLog(@"ERROR: CCSpriteBatchNode.m:210: CCSpriteBatchNode doesn't contain the sprite. Can't remove it");
+        return;
+    }
 
 	// cleanup before removing
 	[self removeSpriteFromAtlas:sprite];
