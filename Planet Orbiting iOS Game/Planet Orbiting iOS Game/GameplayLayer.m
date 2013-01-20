@@ -824,7 +824,7 @@ typedef struct {
     }*/
     
     [Flurry logEvent:@"Played Game"timed:YES];
-    [self scheduleOnce:@selector(startGame) delay:1.5];
+    [self scheduleOnce:@selector(startGame) delay:1.25];
 }
 
 -(void) creditUserVirtualCurrencyForVideoShare {
