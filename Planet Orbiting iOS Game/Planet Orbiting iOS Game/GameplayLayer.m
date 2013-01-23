@@ -49,7 +49,9 @@
     bool hasShared;
     
     bool isIphone4;
-    
+    bool kamcordStartedRecording;
+    bool allowVideoToConvert;
+
     bool isInFeverMode;
     int feverModePlanetHitsInARow;
     float timeInOrbit;
@@ -58,7 +60,6 @@
     CCLayer* loadedPauseLayer;
     NSString *blankAvoiderName;
     BOOL isKeyboardShowing;
-    
     BOOL pauseEnabled;
     int asteroidsCrashedInto;
     int asteroidsDestroyedWithArmor;
@@ -469,8 +470,8 @@ typedef struct {
     //[loadingLayerBackground2 runAction:[CCSequence actions:
     //                                   [CCFadeOut actionWithDuration:fadeOutDuration],removeLoadingLayer, nil]];
     
+    kamcordStartedRecording = [Kamcord startRecording];
     [self scheduleUpdates];
-    [Kamcord startRecording];
 }
 
 - (void)loadEverything {
@@ -486,6 +487,7 @@ typedef struct {
     [self initUpgradedVariables];
     loadedPauseLayer = [self createPauseLayer];
     
+    allowVideoToConvert = false;
     
     float defaultDirection = defaultDirectionPlanetSegmentsGoIn;
     if (IS_IPHONE_5)
@@ -828,6 +830,7 @@ typedef struct {
 }
 
 -(void) creditUserVirtualCurrencyForVideoShare {
+    allowVideoToConvert = true;
     if (!hasShared)
     {
         //NSLog(@"creditUserVirtualCurrencyForVideoShare method called");
@@ -2267,11 +2270,16 @@ typedef struct {
 - (void)GameOver {
     if (!isGameOver) { // this line ensures that it only runs once
         isGameOver = true;
-        if ([[self children]containsObject:layerHudSlider])
-            [self removeChild:layerHudSlider cleanup:YES];
         
-        [Kamcord stopRecording];
-     
+        @try {
+            if ([[self children]containsObject:layerHudSlider])
+                [self removeChild:layerHudSlider cleanup:YES];
+            if (kamcordStartedRecording)
+            [Kamcord stopRecording];
+        }
+        @catch (NSException *exception) {    }
+
+       
         
         
         CCSprite* dark = [CCSprite spriteWithFile:@"OneByOne.png"];
@@ -3159,9 +3167,16 @@ float lerpf(float a, float b, float t) {
 -(void)showRecording {
     muted = false;
     [self toggleMute];
-    [Kamcord stopRecording];
-    allowVideoToConvert = true;
+    @try {
+        if (kamcordStartedRecording)
+          [Kamcord stopRecording];
+        if (kamcordStartedRecording)
     [Kamcord showView];
+        
+    }
+    @catch (NSException *exception) {    }
+ 
+ 
 }
 
 +(CCSprite*)labelWithString:(NSString *)string fontName:(NSString *)fontName fontSize:(CGFloat)fontSize color:(ccColor3B)color strokeSize:(CGFloat)strokeSize stokeColor:(ccColor3B)strokeColor{CCLabelTTF *label = [CCLabelTTF labelWithString:string fontName:fontName fontSize:fontSize];CCRenderTexture* rt = [CCRenderTexture renderTextureWithWidth:label.texture.contentSize.width + strokeSize*2  height:label.texture.contentSize.height+strokeSize*2];[label setFlipY:YES];[label setColor:strokeColor];ccBlendFunc originalBlendFunc = [label blendFunc];[label setBlendFunc:(ccBlendFunc) { GL_SRC_ALPHA, GL_ONE }];CGPoint bottomLeft = ccp(label.texture.contentSize.width * label.anchorPoint.x + strokeSize, label.texture.contentSize.height * label.anchorPoint.y + strokeSize);CGPoint position = ccpSub([label position], ccp(-label.contentSize.width / 2.0f, -label.contentSize.height / 2.0f));[rt begin];for (int i=0; i<360; i++)/*you should optimize that for your needs*/{[label setPosition:ccp(bottomLeft.x + sin(CC_DEGREES_TO_RADIANS(i))*strokeSize, bottomLeft.y + cos(CC_DEGREES_TO_RADIANS(i))*strokeSize)];[label visit];}[label setPosition:bottomLeft];[label setBlendFunc:originalBlendFunc];[label setColor:color];[label visit];[rt end];[rt setPosition:position];return [CCSprite spriteWithTexture:rt.sprite.texture];}

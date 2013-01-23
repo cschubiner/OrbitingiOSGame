@@ -48,7 +48,6 @@
     float timeSpentInPlanetOne;
     
     bool isLeavingLastPlanetInGalaxy;
-    bool allowVideoToConvert;
     CGSize size;
     CCLayer *hudLayer;
     CCLayer* layerHudSlider;
