@@ -65,6 +65,7 @@
     int asteroidsDestroyedWithArmor;
     int numTimesSwiped;
     int numTimesDied;
+    int coinsAtLastGalaxy;
     
     CCLayer *layerToAdd;
     
@@ -488,6 +489,8 @@ typedef struct {
     loadedPauseLayer = [self createPauseLayer];
     
     allowVideoToConvert = false;
+    
+    coinsAtLastGalaxy = 0;
     
     float defaultDirection = defaultDirectionPlanetSegmentsGoIn;
     if (IS_IPHONE_5)
@@ -1885,6 +1888,13 @@ typedef struct {
             {
                 Galaxy * lastGalaxy = [galaxies objectAtIndex:currentGalaxy.number-1];
                 lastGalaxyColor = lastGalaxy.galaxyColor;
+                
+                
+                lastGalaxy.percentTimeToAddUponGalaxyCompletion *= clampf(((float)numCoinsDisplayed-coinsAtLastGalaxy)/(88.5f), .95, 1.05);
+                
+                NSLog([NSString stringWithFormat:@"MULTIPLICATION FACTOR: %f CLAMPED: %f",((float)numCoinsDisplayed-coinsAtLastGalaxy)/(88.5f),clampf(((float)numCoinsDisplayed-coinsAtLastGalaxy)/(88.5f), .95, 1.05)]);
+                
+                coinsAtLastGalaxy = numCoinsDisplayed;
                 
                 timeToAddToTimer = lastGalaxy.percentTimeToAddUponGalaxyCompletion*[[UpgradeValues sharedInstance] maxBatteryTime];
                 if (timeToAddToTimer+light.timeLeft > [[UpgradeValues sharedInstance] maxBatteryTime])
