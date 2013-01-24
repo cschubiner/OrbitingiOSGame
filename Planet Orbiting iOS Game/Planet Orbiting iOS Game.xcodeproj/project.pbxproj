@@ -104,10 +104,6 @@
 		0C0E8800160423AF00779D6F /* galaxy4-hd.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87DC160423AE00779D6F /* galaxy4-hd.pvr.gz */; };
 		0C0E8801160423AF00779D6F /* galaxy4.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87DD160423AE00779D6F /* galaxy4.plist */; };
 		0C0E8802160423AF00779D6F /* galaxy4.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87DE160423AE00779D6F /* galaxy4.pvr.gz */; };
-		0C0E8803160423AF00779D6F /* galaxy5-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87DF160423AE00779D6F /* galaxy5-hd.plist */; };
-		0C0E8804160423AF00779D6F /* galaxy5-hd.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87E0160423AE00779D6F /* galaxy5-hd.pvr.gz */; };
-		0C0E8805160423AF00779D6F /* galaxy5.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87E1160423AE00779D6F /* galaxy5.plist */; };
-		0C0E8806160423AF00779D6F /* galaxy5.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87E2160423AE00779D6F /* galaxy5.pvr.gz */; };
 		0C0E8807160423AF00779D6F /* galaxy6-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87E3160423AE00779D6F /* galaxy6-hd.plist */; };
 		0C0E8808160423AF00779D6F /* galaxy6-hd.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87E4160423AE00779D6F /* galaxy6-hd.pvr.gz */; };
 		0C0E8809160423AF00779D6F /* galaxy6.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87E5160423AE00779D6F /* galaxy6.plist */; };
@@ -263,6 +259,10 @@
 		0C309D15160FC67B001C2EA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C309D14160FC67B001C2EA8 /* main.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0C309D19160FC86E001C2EA8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C309D18160FC86E001C2EA8 /* Default-568h@2x.png */; };
 		0C309D1C160FD21D001C2EA8 /* DeviceDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C309D1B160FD21D001C2EA8 /* DeviceDetection.m */; };
+		0C36E50A16B0D2DA00F59FAB /* galaxy5-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C36E50616B0D2DA00F59FAB /* galaxy5-hd.plist */; };
+		0C36E50B16B0D2DA00F59FAB /* galaxy5-hd.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = 0C36E50716B0D2DA00F59FAB /* galaxy5-hd.pvr.gz */; };
+		0C36E50C16B0D2DA00F59FAB /* galaxy5.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C36E50816B0D2DA00F59FAB /* galaxy5.plist */; };
+		0C36E50D16B0D2DA00F59FAB /* galaxy5.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = 0C36E50916B0D2DA00F59FAB /* galaxy5.pvr.gz */; };
 		0C3999931699287100F92658 /* galaxy2-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C39998F1699287100F92658 /* galaxy2-hd.plist */; };
 		0C3999941699287100F92658 /* galaxy2-hd.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = 0C3999901699287100F92658 /* galaxy2-hd.pvr.gz */; };
 		0C3999951699287100F92658 /* galaxy2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C3999911699287100F92658 /* galaxy2.plist */; };
@@ -687,10 +687,6 @@
 		0C0E87DC160423AE00779D6F /* galaxy4-hd.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "galaxy4-hd.pvr.gz"; sourceTree = "<group>"; };
 		0C0E87DD160423AE00779D6F /* galaxy4.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = galaxy4.plist; sourceTree = "<group>"; };
 		0C0E87DE160423AE00779D6F /* galaxy4.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = galaxy4.pvr.gz; sourceTree = "<group>"; };
-		0C0E87DF160423AE00779D6F /* galaxy5-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "galaxy5-hd.plist"; sourceTree = "<group>"; };
-		0C0E87E0160423AE00779D6F /* galaxy5-hd.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "galaxy5-hd.pvr.gz"; sourceTree = "<group>"; };
-		0C0E87E1160423AE00779D6F /* galaxy5.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = galaxy5.plist; sourceTree = "<group>"; };
-		0C0E87E2160423AE00779D6F /* galaxy5.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = galaxy5.pvr.gz; sourceTree = "<group>"; };
 		0C0E87E3160423AE00779D6F /* galaxy6-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "galaxy6-hd.plist"; sourceTree = "<group>"; };
 		0C0E87E4160423AE00779D6F /* galaxy6-hd.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "galaxy6-hd.pvr.gz"; sourceTree = "<group>"; };
 		0C0E87E5160423AE00779D6F /* galaxy6.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = galaxy6.plist; sourceTree = "<group>"; };
@@ -983,6 +979,10 @@
 		0C309D18160FC86E001C2EA8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		0C309D1A160FD21D001C2EA8 /* DeviceDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceDetection.h; sourceTree = "<group>"; };
 		0C309D1B160FD21D001C2EA8 /* DeviceDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceDetection.m; sourceTree = "<group>"; };
+		0C36E50616B0D2DA00F59FAB /* galaxy5-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "galaxy5-hd.plist"; sourceTree = "<group>"; };
+		0C36E50716B0D2DA00F59FAB /* galaxy5-hd.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "galaxy5-hd.pvr.gz"; sourceTree = "<group>"; };
+		0C36E50816B0D2DA00F59FAB /* galaxy5.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = galaxy5.plist; sourceTree = "<group>"; };
+		0C36E50916B0D2DA00F59FAB /* galaxy5.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = galaxy5.pvr.gz; sourceTree = "<group>"; };
 		0C39998F1699287100F92658 /* galaxy2-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "galaxy2-hd.plist"; sourceTree = "<group>"; };
 		0C3999901699287100F92658 /* galaxy2-hd.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "galaxy2-hd.pvr.gz"; sourceTree = "<group>"; };
 		0C3999911699287100F92658 /* galaxy2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = galaxy2.plist; sourceTree = "<group>"; };
@@ -2246,10 +2246,10 @@
 				0C0E87DC160423AE00779D6F /* galaxy4-hd.pvr.gz */,
 				0C0E87DD160423AE00779D6F /* galaxy4.plist */,
 				0C0E87DE160423AE00779D6F /* galaxy4.pvr.gz */,
-				0C0E87DF160423AE00779D6F /* galaxy5-hd.plist */,
-				0C0E87E0160423AE00779D6F /* galaxy5-hd.pvr.gz */,
-				0C0E87E1160423AE00779D6F /* galaxy5.plist */,
-				0C0E87E2160423AE00779D6F /* galaxy5.pvr.gz */,
+				0C36E50616B0D2DA00F59FAB /* galaxy5-hd.plist */,
+				0C36E50716B0D2DA00F59FAB /* galaxy5-hd.pvr.gz */,
+				0C36E50816B0D2DA00F59FAB /* galaxy5.plist */,
+				0C36E50916B0D2DA00F59FAB /* galaxy5.pvr.gz */,
 				0C0E87E3160423AE00779D6F /* galaxy6-hd.plist */,
 				0C0E87E4160423AE00779D6F /* galaxy6-hd.pvr.gz */,
 				0C0E87E5160423AE00779D6F /* galaxy6.plist */,
@@ -3037,10 +3037,6 @@
 				0C0E8800160423AF00779D6F /* galaxy4-hd.pvr.gz in Resources */,
 				0C0E8801160423AF00779D6F /* galaxy4.plist in Resources */,
 				0C0E8802160423AF00779D6F /* galaxy4.pvr.gz in Resources */,
-				0C0E8803160423AF00779D6F /* galaxy5-hd.plist in Resources */,
-				0C0E8804160423AF00779D6F /* galaxy5-hd.pvr.gz in Resources */,
-				0C0E8805160423AF00779D6F /* galaxy5.plist in Resources */,
-				0C0E8806160423AF00779D6F /* galaxy5.pvr.gz in Resources */,
 				0C0E8807160423AF00779D6F /* galaxy6-hd.plist in Resources */,
 				0C0E8808160423AF00779D6F /* galaxy6-hd.pvr.gz in Resources */,
 				0C0E8809160423AF00779D6F /* galaxy6.plist in Resources */,
@@ -3124,6 +3120,10 @@
 				0CB11B1C16A576E1005710E3 /* KCVideoTracker 3.omo in Resources */,
 				0CB11B1D16A576E1005710E3 /* KCVideoTracker.mom in Resources */,
 				0CB11B1E16A576E1005710E3 /* VersionInfo.plist in Resources */,
+				0C36E50A16B0D2DA00F59FAB /* galaxy5-hd.plist in Resources */,
+				0C36E50B16B0D2DA00F59FAB /* galaxy5-hd.pvr.gz in Resources */,
+				0C36E50C16B0D2DA00F59FAB /* galaxy5.plist in Resources */,
+				0C36E50D16B0D2DA00F59FAB /* galaxy5.pvr.gz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
