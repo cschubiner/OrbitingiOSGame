@@ -313,13 +313,13 @@ typedef struct {
     galaxy = [galaxies objectAtIndex:0];
     [galaxy setName:@"Galaxy 1"];
     [galaxy setNumberOfDifferentPlanetsDrawn:7];
-    [galaxy setOptimalPlanetsInThisGalaxy:26];
+    [galaxy setOptimalPlanetsInThisGalaxy:24];
     [galaxy setGalaxyColor: ccc3(45*darkScaler, 53*darkScaler, 147*darkScaler)]; //a dark blue
     
     galaxy = [galaxies objectAtIndex:1];
     [galaxy setName:@"Galaxy 2"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:25];
+    [galaxy setOptimalPlanetsInThisGalaxy:26];
     [galaxy setGalaxyColor: ccc3(0, 103*darkScaler, 3*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:2];
@@ -331,7 +331,7 @@ typedef struct {
     galaxy = [galaxies objectAtIndex:3];
     [galaxy setName:@"Galaxy 4"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
-    [galaxy setOptimalPlanetsInThisGalaxy:28];
+    [galaxy setOptimalPlanetsInThisGalaxy:26];
     [galaxy setGalaxyColor: ccc3(0, 130*darkScaler, 115*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:4];
@@ -2420,6 +2420,7 @@ typedef struct {
     [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
     
     [pauseLayer setTag:gameOverLayerTag];
+    [self removeAllChildrenWithCleanup:NO];
     [self addChild:pauseLayer];
     // [gameOverScoreLabel setString:scoreText];
     
