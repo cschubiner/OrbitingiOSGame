@@ -397,7 +397,7 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setHasDoubleCoins:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped]];
     
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:70 + 4*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:69 + 4*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
     
     [[UpgradeValues sharedInstance] setHasStarMagnet:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped]];
     
@@ -821,9 +821,9 @@ typedef struct {
     
     cameraShouldFocusOnPlayer = true;
     
-    /*for (int i = 0 ; i < 7; i++) {
+    for (int i = 0 ; i < 7; i++) {
         [self UpdateCamera:1.0/60.0f];
-    }*/
+    }
     
     [Flurry logEvent:@"Played Game"timed:YES];
     [self scheduleOnce:@selector(startGame) delay:1.25];
@@ -950,7 +950,7 @@ typedef struct {
     if (player.alive) {
         player.velocity = ccpAdd(player.velocity, player.acceleration);
         if (player.currentPowerup.type == kheadStart)
-            player.velocity = ccpMult(player.velocity, 1.234);
+            player.velocity = ccpMult(player.velocity, 1.3);
         else if (player.currentPowerup.type == kautopilot)
             player.velocity = ccpMult(player.velocity, 1.1);
         
@@ -1056,6 +1056,9 @@ typedef struct {
     
     float scale = horizontalScale*scalerToUse;//*zoomMultiplier;
     scale = clampf(scale, .15, 1.4);
+    
+    if (!loading_playerHasReachedFirstPlanet)
+        scale = .7f;
     
     //  if (fabsf(scale-cameraLayer.scale)<.06) //jerky camera scaling
     //    scale = cameraLayer.scale;
@@ -2271,11 +2274,16 @@ typedef struct {
     if (!isGameOver) { // this line ensures that it only runs once
         isGameOver = true;
         
+        
+        [self tryHighScore];
+        [DataStorage storeData];
+        
         @try {
             if ([[self children]containsObject:layerHudSlider])
                 [self removeChild:layerHudSlider cleanup:YES];
             if (kamcordStartedRecording)
-            [Kamcord stopRecording];
+           // [Kamcord stopRecording];
+                [Kamcord pause];
         }
         @catch (NSException *exception) {    }
 
@@ -2395,7 +2403,7 @@ typedef struct {
         if (!isIphone4)
             [self addChild:starStashParticle];
         [starStashParticle setScale:2.8];
-        [starStashParticle setPosition:ccp(gameOverScoreLabel.position.x+10,gameOverScoreLabel.position.y)];
+        [starStashParticle setPosition:ccp(gameOverScoreLabel.position.x+40,gameOverScoreLabel.position.y)];
         [starStashParticle resetSystem];
     })];
     
@@ -2428,7 +2436,6 @@ typedef struct {
 }
 
 - (void)pressedStoreButton {
-    [self tryHighScore];
     
     //[Flurry logEvent:@"Opened Store" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance" ,nil]];
     
@@ -2493,8 +2500,6 @@ typedef struct {
         {
             [self GameOver];
         }
-    
-    
 }
 
 - (void)UpdateCoins {
@@ -2504,7 +2509,7 @@ typedef struct {
             CGPoint p = coin.sprite.position;
             
             if (player.currentPowerup.type == kcoinMagnet) {
-                if (ccpLength(ccpSub(player.sprite.position, p)) <= 3*(coin.radius + player.sprite.height/1.3) && coin.isAlive && coin.speed < .1) {
+                if (ccpLength(ccpSub(player.sprite.position, p)) <= 3.6*(coin.radius + player.sprite.height/1.3) && coin.isAlive && coin.speed < .1) {
                     coin.speed = .5;
                 }
                 
@@ -2889,7 +2894,8 @@ typedef struct {
         //CCLOG(@"startx2");
         [((AppDelegate*)[[UIApplication sharedApplication]delegate])setWasJustBackgrounded:false];
         //CCLOG(@"startx3");
-        [self togglePause];
+        if (!isGameOver)
+            [self togglePause];
         //CCLOG(@"startx4");
     }
     
@@ -2910,7 +2916,6 @@ typedef struct {
         [[PlayerStats sharedInstance] addScore:score+prevCurrentPtoPScore withName:playerName];
         //CCLOG(@"4");
         [[PlayerStats sharedInstance] setRecentName:playerName];
-        [DataStorage storeData];
         if ([[[[[CCDirector sharedDirector] view] window] subviews]containsObject:playerNameLabel])
             [playerNameLabel removeFromSuperview];
         
@@ -2956,7 +2961,6 @@ typedef struct {
 }
 
 - (void)restartGame {
-    [self tryHighScore];
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     [Flurry logEvent:@"restarted game"];
     scoreAlreadySaved = NO;
