@@ -116,7 +116,7 @@
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Starting Asteroid Armor" description:@"Start each game with the Asteroid Armor powerup." price:8000 type:5 purchased:NO equipped:NO number:6]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Starting Autopilot" description:@"Start each game with the Autopilot powerup." price:20000 type:5 purchased:NO equipped:NO number:7]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Starting Autopilot" description:@"Start each game with the Autopilot powerup." price:10000 type:5 purchased:NO equipped:NO number:7]];
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Starting Random Powerup" description:@"Start each game with a random powerup." price:10000 type:5 purchased:NO equipped:NO number:8]];
     
@@ -138,11 +138,11 @@
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Camo Spaceship" description:@"Stay hidden from your enemies in this camoflauged spaceship!" price:10000 type:1 purchased:NO equipped:NO number:17]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"American Spaceship" description:@"Represent America with this red, white, and blue spaceship!" price:200000 type:1 purchased:NO equipped:NO number:18]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"American Spaceship" description:@"Represent America with this red, white, and blue spaceship!" price:80000 type:1 purchased:NO equipped:NO number:18]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Bacon Spaceship" description:@"Release your inner man with this meaty spaceship." price:500000 type:1 purchased:NO equipped:NO number:19]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Bacon Spaceship" description:@"Release your inner man with this meaty spaceship." price:100000 type:1 purchased:NO equipped:NO number:19]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Happy Spaceship" description:@"This spaceship is guaranteed to turn that frown upside-down!" price:100000 type:1 purchased:NO equipped:NO number:20]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Happy Spaceship" description:@"This spaceship is guaranteed to turn that frown upside-down!" price:40000 type:1 purchased:NO equipped:NO number:20]];
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Trippy Spaceship" description:@"Take a trip in a time machine back to the 70s with this psychedelic spaceship." price:30000 type:1 purchased:NO equipped:NO number:21]];
     
