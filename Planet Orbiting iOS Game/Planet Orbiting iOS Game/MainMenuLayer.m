@@ -65,8 +65,17 @@ const float effectsVolumeMainMenu = 1;
 
 //- (CCLayer*)createCellWithTitle:(NSString*)title spriteName:(NSString*)spriteName readableCost:(NSString*)readableCost {
 
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1)
+        [self openVideo];
+    else {
+        [self tappedToStart];
+    }
+}
+
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *touch in touches) {
+        
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
         swipeBeginPoint = location;
@@ -81,11 +90,24 @@ const float effectsVolumeMainMenu = 1;
         }
         
         if (swipeBeginPoint.y >= 40 && objectivesButton.isEnabled && beginLabel.visible) {
+            
+            if ([[iRate sharedInstance]eventCount] <= 5) {
+                UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"New Player Tutorial"
+                                                                  message:@"We see you're new to Star Stream. Would you like to see how a pro plays? (Do it.)"
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"Play Game"
+                                                        otherButtonTitles:@"Watch Video",nil];
+                [message show];
+                return;
+            }
+            
             [self tappedToStart];
         }
         
         
     }
+    
+//[[self.myPlayer view]removeFromSuperview];
 }
 
 -(void)enableButtons {
@@ -104,23 +126,105 @@ const float effectsVolumeMainMenu = 1;
     [soundButton setIsEnabled:false];
 }
 
+
+
+- (void)willEnterFullscreen:(NSNotification*)notification {
+    NSLog(@"willEnterFullscreen");
+}
+
+- (void)enteredFullscreen:(NSNotification*)notification {
+    NSLog(@"enteredFullscreen");
+}
+
+- (void)willExitFullscreen:(NSNotification*)notification {
+    NSLog(@"willExitFullscreen");
+    [self.myPlayer.view removeFromSuperview];
+    self.myPlayer = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+
+}
+
+- (void)exitedFullscreen:(NSNotification*)notification {
+    NSLog(@"exitedFullscreen");
+    [self.myPlayer.view removeFromSuperview];
+    self.myPlayer = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)playbackFinished:(NSNotification*)notification {
+  /*  NSNumber* reason = [[notification userInfo] objectForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey];
+    switch ([reason intValue]) {
+        case MPMovieFinishReasonPlaybackEnded:
+            NSLog(@"playbackFinished. Reason: Playback Ended");
+            break;
+        case MPMovieFinishReasonPlaybackError:
+            NSLog(@"playbackFinished. Reason: Playback Error");
+            break;
+        case MPMovieFinishReasonUserExited:
+            NSLog(@"playbackFinished. Reason: User Exited");
+            break;
+        default:
+            break;
+    }*/
+    [self.myPlayer setFullscreen:NO animated:YES];
+}
+
+-(void)openVideo{
+    NSURL *url = [NSURL URLWithString:@"http://www.weebly.com/uploads/1/6/2/0/16201940/tutorial_video.m4v"];//@"http://www.youtube.com/watch?v=-qHD9SO9F_0"];
+    
+    MPMoviePlayerController *player = [[MPMoviePlayerController alloc]initWithContentURL:url];
+    player.movieSourceType = MPMovieSourceTypeUnknown;
+    
+    [player prepareToPlay];
+    [player.view setFrame:CGRectMake(0, 0, 200, 300)];
+    
+    player.shouldAutoplay=YES;
+    
+    
+    player.controlStyle = MPMovieControlStyleEmbedded;
+    
+    [player setFullscreen:YES animated:NO];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willEnterFullscreen:) name:MPMoviePlayerWillEnterFullscreenNotification object:self.myPlayer];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willExitFullscreen:) name:MPMoviePlayerWillExitFullscreenNotification object:self.myPlayer];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enteredFullscreen:) name:MPMoviePlayerDidEnterFullscreenNotification object:self.myPlayer];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitedFullscreen:) name:MPMoviePlayerDidExitFullscreenNotification object:self.myPlayer];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playbackFinished:) name:MPMoviePlayerPlaybackDidFinishNotification object:self.myPlayer];
+    
+    
+    addedMoviePlayerObserver= YES;
+    //   player.view.hidden = YES;
+    
+    
+    self.myPlayer = player;
+    //   [player setFullscreen:YES];
+    [[[CCDirector sharedDirector] view] addSubview:self.myPlayer.view];
+    
+    
+    if(player){
+        [self.myPlayer play];
+        player.view.hidden = NO;
+    }
+    
+    int count = 0;
+    while (player.fullscreen == NO){
+        [    player setFullscreen:YES];
+        count++;
+        if (count > 1000)
+            break;
+    }
+    
+}
+
 -(void)pressedObjectiveButton:(id)sender {
-    
-    /*NSString* embeddedCode = @"<iframe width=\"560\" height=\"315\" src=\"http://www.youtube.com/embed/-qHD9SO9F_0\" frameborder=\"0\" allowfullscreen></iframe>";
-    UIWebView* videoView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-    [videoView setHidden:true];
-    [videoView loadHTMLString:embeddedCode baseURL:nil];
-    [[((AppDelegate*)[[UIApplication sharedApplication]delegate]) window] addSubview:videoView];*/
-   
-    
-    /*
     missionPopupIsUp = true;
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     [Flurry logEvent:@"Pressed objective button"];
     missionPopup = [[ObjectiveManager sharedInstance] createMissionPopupWithX:true withDark:true];
     [missionPopup setZOrder:INT_MAX];
     [self addChild:missionPopup];
-    [self disableButtons];*/
+    [self disableButtons];
 }
 
 - (void) initUpgradeStuff {
@@ -130,6 +234,8 @@ const float effectsVolumeMainMenu = 1;
 // on "init" you need to initialize your instance
 - (id)init {
 	if (self = [super init]) {
+        addedMoviePlayerObserver = false;
+        self.myPlayer = NULL;
         
         [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setdidGetToMainMenu:YES];
 

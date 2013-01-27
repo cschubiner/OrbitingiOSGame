@@ -13,8 +13,9 @@
 #import "ObjectiveManager.h"
 #import "UpgradesLayer.h"
 #import "CreditsLayer.h"
+#import <MediaPlayer/MediaPlayer.h>
 
-@interface MainMenuLayer : CCLayer <UIAlertViewDelegate,GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>{
+@interface MainMenuLayer : CCLayer <UIAlertViewDelegate,GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate,UIAlertViewDelegate>{
     CCLayer* layer;
     CCLabelBMFont *coinBalanceLabel;
     CCLabelBMFont *numMagnetsLabel;
@@ -52,8 +53,13 @@
     CCNode* topBarNode;
     
     CCSprite* playerSprite;
+    
+    bool addedMoviePlayerObserver;
 }
 
 + (CCScene *)scene;
 //+(void)completeObjectiveFromGroupNumber:(int)a_groupNumber itemNumber:(int)a_itemNumber;
+
+@property (strong,nonatomic) MPMoviePlayerController *myPlayer;
+
 @end

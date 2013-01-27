@@ -102,9 +102,11 @@
     
     
     
-    if ([DeviceDetection detectDevice]==MODEL_IPHONE_4)
-        [[iRate sharedInstance]setPromptAtLaunch:NO];
-        
+    if ([DeviceDetection detectDevice]==MODEL_IPHONE_4){
+     //   [[iRate sharedInstance]setPromptAtLaunch:NO];
+          [[iRate sharedInstance]setEventCount:2*[[iRate sharedInstance]eventCount]];
+          [[iRate sharedInstance]setDaysUntilPrompt:2*[[iRate sharedInstance]daysUntilPrompt]];
+    }
 	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images
 	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
 	// You can change anytime.
@@ -154,7 +156,7 @@
                      appName:@"Star Stream"];
 
   //  [Kamcord setEnableSynchronousConversionUI:YES alwaysShowProgressBar:YES];
-    
+ //   [Kamcord setVideoResolution:TRAILER_VIDEO_RESOLUTION]; //leave this disabled!!
 	
 	// make main window visible
 	[window_ makeKeyAndVisible];
