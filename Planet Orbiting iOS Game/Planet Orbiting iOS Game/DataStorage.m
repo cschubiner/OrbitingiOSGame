@@ -220,100 +220,100 @@
     NSMutableArray* bools;// = [[NSMutableArray alloc] init];
     
     bools = [boolGroupsToUse objectAtIndex:0];
-    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.05 starReward:400
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.05 starReward:1000
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Collect 10 stars in one game" isCompleted:[[bools objectAtIndex:0] boolValue]]
                                                           item1:[[ObjectiveItem alloc] initWithText:@"Reach a score of 8,000" isCompleted:[[bools objectAtIndex:1] boolValue]]
                                                           item2:[[ObjectiveItem alloc] initWithText:@"Reach the second galaxy" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     bools = [boolGroupsToUse objectAtIndex:1];
-    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.1 starReward:600
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.1 starReward:1500
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Pick up a powerup" isCompleted:[[bools objectAtIndex:0] boolValue]]
                                                           item1:[[ObjectiveItem alloc] initWithText:@"Reach a score of 15,000" isCompleted:[[bools objectAtIndex:1] boolValue]]
                                                           item2:[[ObjectiveItem alloc] initWithText:@"Swipe 25 times in one game" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     bools = [boolGroupsToUse objectAtIndex:2];
-    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.15 starReward:800
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.15 starReward:2000
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Reach the third galaxy" isCompleted:[[bools objectAtIndex:0] boolValue]]
                                                           item1:[[ObjectiveItem alloc] initWithText:@"Collect 100 stars in one game" isCompleted:[[bools objectAtIndex:1] boolValue]]
                                                           item2:[[ObjectiveItem alloc] initWithText:@"View your highscore on the Highscores page" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     bools = [boolGroupsToUse objectAtIndex:3];
-    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.2 starReward:1000
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.2 starReward:2500
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Destroy 5 asteroids with the Asteroid Armor powerup" isCompleted:[[bools objectAtIndex:0] boolValue]]
                                                           item1:[[ObjectiveItem alloc] initWithText:@"Purchase an item from the store" isCompleted:[[bools objectAtIndex:1] boolValue]]
                                                           item2:[[ObjectiveItem alloc] initWithText:@"Collect 150 stars in one game" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     bools = [boolGroupsToUse objectAtIndex:4];
-    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.22 starReward:1200
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.22 starReward:3000
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Reach the third galaxy without dying" isCompleted:[[bools objectAtIndex:0] boolValue]]
                                                           item1:[[ObjectiveItem alloc] initWithText:@"Reach a score of 30,000" isCompleted:[[bools objectAtIndex:1] boolValue]]
                                                           item2:[[ObjectiveItem alloc] initWithText:@"Reach the fourth galaxy" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     bools = [boolGroupsToUse objectAtIndex:5];
-    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.24 starReward:1400
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.24 starReward:4000
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Reach the third galaxy without hitting any asteroids" isCompleted:[[bools objectAtIndex:0] boolValue]]
                                                           item1:[[ObjectiveItem alloc] initWithText:@"Crash into 7 asteroids in one game" isCompleted:[[bools objectAtIndex:1] boolValue]]
-                                                          item2:[[ObjectiveItem alloc] initWithText:@"Finish a game having collected between 150 & 160 stars" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
+                                                          item2:[[ObjectiveItem alloc] initWithText:@"Reach a score of 40,000" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     bools = [boolGroupsToUse objectAtIndex:6];
-    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.26 starReward:1600
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.26 starReward:5000
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Start a game with a new Spaceship Trail (available in the shop)" isCompleted:[[bools objectAtIndex:0] boolValue]]
                                                           item1:[[ObjectiveItem alloc] initWithText:@"Reach a score of 50,000" isCompleted:[[bools objectAtIndex:1] boolValue]]
                                                           item2:[[ObjectiveItem alloc] initWithText:@"Swipe 50 times in one game" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     bools = [boolGroupsToUse objectAtIndex:7];
-    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.28 starReward:1800
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.28 starReward:6000
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Collect 200 stars in one game" isCompleted:[[bools objectAtIndex:0] boolValue]]
-                                                          item1:[[ObjectiveItem alloc] initWithText:@"Finish a game with a score between 41,000 & 43,000" isCompleted:[[bools objectAtIndex:1] boolValue]]
+                                                          item1:[[ObjectiveItem alloc] initWithText:@"Crash into 9 asteroids in one game" isCompleted:[[bools objectAtIndex:1] boolValue]]
                                                           item2:[[ObjectiveItem alloc] initWithText:@"Destroy 15 asteroids with the Asteroid Armor powerup" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     bools = [boolGroupsToUse objectAtIndex:8];
-    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.30 starReward:2000
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.30 starReward:7000
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Start a game with a new Spaceship (available in the shop)" isCompleted:[[bools objectAtIndex:0] boolValue]]
                                                           item1:[[ObjectiveItem alloc] initWithText:@"Reach a score of 65,000" isCompleted:[[bools objectAtIndex:1] boolValue]]
-                                                          item2:[[ObjectiveItem alloc] initWithText:@"Finish a game having collected between 220 & 230 stars" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
+                                                          item2:[[ObjectiveItem alloc] initWithText:@"Collect 250 stars in one game" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     bools = [boolGroupsToUse objectAtIndex:9];
-    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.32 starReward:2200
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.32 starReward:8000
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Reach the fifth galaxy" isCompleted:[[bools objectAtIndex:0] boolValue]]
                                                           item1:[[ObjectiveItem alloc] initWithText:@"Collect 300 stars in one game" isCompleted:[[bools objectAtIndex:1] boolValue]]
-                                                          item2:[[ObjectiveItem alloc] initWithText:@"Pick up an autopilot powerup (also available in the shop)" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
+                                                          item2:[[ObjectiveItem alloc] initWithText:@"Pick up the autopilot powerup in galaxy 3 or visit the shop" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     bools = [boolGroupsToUse objectAtIndex:10];
-    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.34 starReward:2400
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.34 starReward:9000
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Reach the fourth galaxy without dying" isCompleted:[[bools objectAtIndex:0] boolValue]]
-                                                          item1:[[ObjectiveItem alloc] initWithText:@"Crash into 15 asteroids in one game" isCompleted:[[bools objectAtIndex:1] boolValue]]
+                                                          item1:[[ObjectiveItem alloc] initWithText:@"Crash into 11 asteroids in one game" isCompleted:[[bools objectAtIndex:1] boolValue]]
                                                           item2:[[ObjectiveItem alloc] initWithText:@"Reach a score of 80,000" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     bools = [boolGroupsToUse objectAtIndex:11];
-    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.36 starReward:2600
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.36 starReward:10000
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Reach the sixth galaxy" isCompleted:[[bools objectAtIndex:0] boolValue]]
                                                           item1:[[ObjectiveItem alloc] initWithText:@"Collect 400 stars in one game" isCompleted:[[bools objectAtIndex:1] boolValue]]
-                                                          item2:[[ObjectiveItem alloc] initWithText:@"Finish a game having collected between 300 & 310 stars" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
+                                                          item2:[[ObjectiveItem alloc] initWithText:@"Crash into 14 asteroids in one game" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     bools = [boolGroupsToUse objectAtIndex:12];
-    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.38 starReward:2800
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.38 starReward:11000
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Reach the seventh galaxy" isCompleted:[[bools objectAtIndex:0] boolValue]]
                                                           item1:[[ObjectiveItem alloc] initWithText:@"Collect 500 stars in one game" isCompleted:[[bools objectAtIndex:1] boolValue]]
                                                           item2:[[ObjectiveItem alloc] initWithText:@"Reach a score of 90,000" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     bools = [boolGroupsToUse objectAtIndex:13];
-    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.4 starReward:3000
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.4 starReward:12500
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Reach the eighth galaxy" isCompleted:[[bools objectAtIndex:0] boolValue]]
                                                           item1:[[ObjectiveItem alloc] initWithText:@"Collect 600 stars in one game" isCompleted:[[bools objectAtIndex:1] boolValue]]
-                                                          item2:[[ObjectiveItem alloc] initWithText:@"Reach a score of 100,000" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
+                                                          item2:[[ObjectiveItem alloc] initWithText:@"Reach a score of 150,000" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     bools = [boolGroupsToUse objectAtIndex:14];
-    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.4 starReward:3500
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.4 starReward:15000
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Reach the ninth galaxy" isCompleted:[[bools objectAtIndex:0] boolValue]]
                                                           item1:[[ObjectiveItem alloc] initWithText:@"Collect 800 stars in one game" isCompleted:[[bools objectAtIndex:1] boolValue]]
-                                                          item2:[[ObjectiveItem alloc] initWithText:@"Reach a score of 120,000" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
+                                                          item2:[[ObjectiveItem alloc] initWithText:@"Reach a score of 170,000" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     bools = [boolGroupsToUse objectAtIndex:15];
-    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.5 starReward:10000
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.5 starReward:50000
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Reach the tenth galaxy" isCompleted:[[bools objectAtIndex:0] boolValue]]
                                                           item1:[[ObjectiveItem alloc] initWithText:@"Collect 2,500 stars in one game" isCompleted:[[bools objectAtIndex:1] boolValue]]
-                                                          item2:[[ObjectiveItem alloc] initWithText:@"Reach a score of 250,000" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
+                                                          item2:[[ObjectiveItem alloc] initWithText:@"Reach a score of 200,000" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     
     [[ObjectiveManager sharedInstance] setMaxObjectiveGroupNumber:totalObjectiveGroups - 1];

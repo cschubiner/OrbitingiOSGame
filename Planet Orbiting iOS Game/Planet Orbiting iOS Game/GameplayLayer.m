@@ -2640,6 +2640,9 @@ typedef struct {
     if (asteroidsCrashedInto >= 7)
         [self completeObjectiveFromGroupNumber:5 itemNumber:1];
     
+    if (score >= 40000)
+        [self completeObjectiveFromGroupNumber:5 itemNumber:2];
+    
     
     
     if ([[UpgradeValues sharedInstance] hasGreenTrail] ||
@@ -2665,6 +2668,9 @@ typedef struct {
     if (numCoinsDisplayed >= 200)
         [self completeObjectiveFromGroupNumber:7 itemNumber:0];
     
+    if (asteroidsCrashedInto >= 9)
+        [self completeObjectiveFromGroupNumber:7 itemNumber:1];
+    
     if (asteroidsDestroyedWithArmor >= 15)
         [self completeObjectiveFromGroupNumber:7 itemNumber:2];
     
@@ -2683,6 +2689,9 @@ typedef struct {
     if (score >= 65000)
         [self completeObjectiveFromGroupNumber:8 itemNumber:1];
     
+    if (numCoinsDisplayed >= 250)
+        [self completeObjectiveFromGroupNumber:8 itemNumber:2];
+    
     
     
     if (numCoinsDisplayed >= 300)
@@ -2693,7 +2702,7 @@ typedef struct {
     
     
     
-    if (asteroidsCrashedInto >= 15)
+    if (asteroidsCrashedInto >= 11)
         [self completeObjectiveFromGroupNumber:10 itemNumber:1];
     
     if (score >= 80000)
@@ -2703,6 +2712,9 @@ typedef struct {
     
     if (numCoinsDisplayed >= 400)
         [self completeObjectiveFromGroupNumber:11 itemNumber:1];
+    
+    if (asteroidsCrashedInto >= 14)
+        [self completeObjectiveFromGroupNumber:11 itemNumber:2];
     
     
     
@@ -2717,7 +2729,7 @@ typedef struct {
     if (numCoinsDisplayed >= 600)
         [self completeObjectiveFromGroupNumber:13 itemNumber:1];
     
-    if (score >= 100000)
+    if (score >= 150000)
         [self completeObjectiveFromGroupNumber:13 itemNumber:2];
     
     
@@ -2725,7 +2737,7 @@ typedef struct {
     if (numCoinsDisplayed >= 800)
         [self completeObjectiveFromGroupNumber:14 itemNumber:1];
     
-    if (score >= 120000)
+    if (score >= 170000)
         [self completeObjectiveFromGroupNumber:14 itemNumber:2];
     
     
@@ -2733,7 +2745,7 @@ typedef struct {
     if (numCoinsDisplayed >= 2500)
         [self completeObjectiveFromGroupNumber:15 itemNumber:1];
     
-    if (score >= 250000)
+    if (score >= 200000)
         [self completeObjectiveFromGroupNumber:15 itemNumber:2];
     
 }
@@ -2800,23 +2812,9 @@ typedef struct {
 - (void) CheckEndGameMissions {
     
     
-    if (numCoinsDisplayed >= 150 && numCoinsDisplayed <= 160)
-        [self completeObjectiveFromGroupNumber:5 itemNumber:2];
-    
-    
-    
-    if (score >= 41000 && score <= 43000)
-        [self completeObjectiveFromGroupNumber:7 itemNumber:1];
-    
-    
     
     if (numCoinsDisplayed >= 220 && numCoinsDisplayed <= 230)
         [self completeObjectiveFromGroupNumber:8 itemNumber:2];
-    
-    
-    
-    if (numCoinsDisplayed >= 300 && numCoinsDisplayed <= 310)
-        [self completeObjectiveFromGroupNumber:11 itemNumber:2];
     
 }
 
