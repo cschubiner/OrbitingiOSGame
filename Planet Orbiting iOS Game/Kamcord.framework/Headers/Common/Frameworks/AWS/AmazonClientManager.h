@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 
 #import <S3/AmazonS3Client.h>
-#import <SimpleDB/AmazonSimpleDBClient.h>
-#import <SQS/AmazonSQSClient.h>
-#import <SNS/AmazonSNSClient.h>
 #import "Constants.h"
 #import "Response.h"
 

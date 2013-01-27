@@ -16,6 +16,7 @@
 // Convenient for game developers
 #import "KamcordMacros.h"
 #import "Common/View/KCViewController.h"
+#import "Common/Core/Audio/KCAudioListener.h"
 #import "Common/Core/Audio/KCAudio.h"
 #import "Common/Core/Audio/KCSound.h"
 #import <MessageUI/MessageUI.h>
@@ -23,7 +24,7 @@
 #import "Common/Core/KCAnalytics.h"
 
 // --------------------------------------------------------
-// Current verion is 0.9.97 (12/27/2012)
+// Current verion is 0.9.99 (1/23/2013)
 FOUNDATION_EXPORT NSString * const KamcordVersion;
 
 
@@ -52,11 +53,9 @@ FOUNDATION_EXPORT NSString * const KamcordVersion;
 + (BOOL)useUIKitAutorotation;
 
 // Social media default messages.
-+ (void) setYouTubeTitle:(NSString *)title
-             description:(NSString *)description
-                    tags:(NSString *)tags;
++ (void) setYouTubeDescription:(NSString *)description
+                          tags:(NSString *)tags;
 + (void)setYouTubeVideoCategory:(NSString *)category;
-+ (NSString *)youtubeTitle;
 + (NSString *)youtubeDescription;
 + (NSString *)youtubeTags;
 + (NSString *)youtubeCategory;
@@ -68,12 +67,13 @@ FOUNDATION_EXPORT NSString * const KamcordVersion;
 + (NSString *)facebookCaption;
 + (NSString *)facebookDescription;
 
-+ (void)setDefaultEmailSubject:(NSString *)subject;
-+ (NSString *)defaultEmailSubject;
++ (void)setDefaultEmailBody:(NSString *)body;
++ (NSString *)defaultEmailBody;
 
-// The default message to show in the share box regardless of network shared to.
-+ (void)setDefaultMessage:(NSString *)message;
-+ (NSString *)defaultMessage;
+
+// The default text to show in the share box regardless of network shared to.
++ (void)setDefaultTitle:(NSString *)title;
++ (NSString *)defaultTitle;
 
 
 // Start of depcrecated social media default messages.
@@ -89,7 +89,7 @@ FOUNDATION_EXPORT NSString * const KamcordVersion;
 
 + (void)setDefaultEmailSubject:(NSString *)subject
                           body:(NSString *)body;
-+ (NSString *)defaultEmailBody;
++ (NSString *)defaultEmailSubject;
 // End of depcrecated social media default messages.
 
 
@@ -108,6 +108,7 @@ FOUNDATION_EXPORT NSString * const KamcordVersion;
 // processing and a slight drop in FPS won't be noticed
 // (for example, on startup, or an end of level screen).
 + (BOOL)prepareNextVideo;
++ (BOOL)prepareNextVideo:(BOOL)async;
 
 + (BOOL)startRecording;
 + (BOOL)stopRecording;
@@ -124,8 +125,8 @@ FOUNDATION_EXPORT NSString * const KamcordVersion;
 // Displays the old Kamcord View, deprecated since 0.9.96
 + (void)showViewDeprecated;
 
-+ (UIView *) getThumbnailView:(NSUInteger)width
-         parentViewController:(UIViewController *)parentViewController;
++ (UIView *)getThumbnailView:(NSUInteger)width
+        parentViewController:(UIViewController *)parentViewController;
 
 
 // Video recording settings
@@ -149,6 +150,7 @@ typedef enum {
 
 
 // Audio recording
++ (id <KCAudioListener>)audioListener;
 + (KCAudio *)playSound:(NSString *)filename
                   loop:(BOOL)loop;
 + (KCAudio *)playSound:(NSString *)filename;
@@ -343,6 +345,7 @@ analyticsType:(KC_ANALYTICS_TYPE)analyticsType;
 + (KCAudio *)audioBackground;
 
 + (BOOL)isIPhone5;
++ (BOOL)isEnabled;
 + (BOOL)checkInternet;
 
 @end

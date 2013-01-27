@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 
 #import "KCVideoProcessingAndShareManager.h"
+#import "KCAudioListener.h"
 
 @class KCUI;
 @class KCVideoWriter;
@@ -21,8 +22,10 @@
 
 @property (nonatomic, assign) UIViewController * parentViewController;
 
+#if (COCOS2D_1_0_1 || COCOS2D_2_0 || COCOS2D_2_1)
 // Audio background
 @property (nonatomic, retain) KCAudio * audioBackground;
+#endif
 
 // Should the UI wait for conversion to finish before
 // dismissing the share view?
@@ -37,7 +40,6 @@
 
 // The active video writer
 @property (nonatomic, assign) KCVideoWriter * activeVideoWriter;
-
 
 // Video properties
 @property (nonatomic, assign) CGSize        dimensions;
@@ -60,17 +62,19 @@
 - (BOOL)beginVideoForce:(BOOL)force;
 - (BOOL)endVideo;
 
-- (BOOL)endVideoAndDiscardVideo;
 - (BOOL)endVideoAndAddSounds:(NSArray *)sounds;
 
 - (BOOL)startRecording;
 - (BOOL)stopRecording;
+- (BOOL)stopRecordingAndDiscardVideo;
+- (BOOL)stopRecordingAndAddSounds:(NSArray *)sounds;
 - (BOOL)pause;
 - (BOOL)resume;
 - (BOOL)isRecording;
 
 - (void)markAbsoluteTime:(CFAbsoluteTime)absoluteTime;
 
+#if (COCOS2D_1_0_1 || COCOS2D_2_0 || COCOS2D_2_1)
 // Sound
 - (KCAudio *)playAudioAtURL:(NSURL *)url
                      volume:(float)volume
@@ -80,10 +84,15 @@
                         volume:(float)volume
                           loop:(BOOL)loop;
 - (void)stopAllSounds:(KC_SOUND_TYPE)soundType;
+#endif
+
+#if (COCOS2D_1_0_1 || COCOS2D_2_0 || COCOS2D_2_1)
+- (id <KCAudioListener>)audioListener;
+#endif
 
 #if KCUNITY
 - (void)writeAudioData:(float [])data
-                length:(size_t)nsamples
+                length:(size_t)nbytes
            numChannels:(int)numChannels;
 #endif
 

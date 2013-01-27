@@ -837,7 +837,7 @@ typedef struct {
     if (!hasShared)
     {
         //NSLog(@"creditUserVirtualCurrencyForVideoShare method called");
-        [[UserWallet sharedInstance] addCoins: 200];
+        [[UserWallet sharedInstance] addCoins: 500];
         hasShared = true;
     }
 }
@@ -2362,12 +2362,19 @@ typedef struct {
     }
     
     [Kamcord setYouTubeVideoCategory:@"Games"];
-    [Kamcord setDefaultEmailSubject:@"Check out my awesome Star Stream Gameplay!"];
 
-    [Kamcord setDefaultMessage:[NSString stringWithFormat:@"Check out my awesome Star Stream gameplay! I reached a score of %d and made it to galaxy %d!",finalScore,currentGalaxy.number+1]];
-    [Kamcord setYouTubeTitle:@"Star Stream Gameplay" description:[NSString stringWithFormat:@"My awesome round of Star Stream. I scored %d points and reached galaxy %d.",finalScore,currentGalaxy.number+1] tags:@"Star Stream, Star, Stream, iPhone, iOS, iPod, gameplay, video, high score, score, highscore"];
+ //   [Kamcord setDefaultEmailSubject:@"Check out my awesome Star Stream Gameplay!"];
+
+  //  [Kamcord setDefaultMessage:[NSString stringWithFormat:@"Check out my awesome Star Stream gameplay! I reached a score of %d and made it to galaxy %d!",finalScore,currentGalaxy.number+1]];
+    
+ 
+    
+    [Kamcord setDefaultTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];
+    
+    [Kamcord setYouTubeDescription:[NSString stringWithFormat:@"My awesome round of Star Stream. I scored %d points and reached galaxy %d.",finalScore,currentGalaxy.number+1] tags:@"Star Stream, Star, Stream, iPhone, iOS, iPod, gameplay, video, high score, score, highscore"];
+    
     [Kamcord setLevel:[NSString stringWithFormat:@"Galaxy %d",currentGalaxy.number+1] score:[NSNumber numberWithInt:finalScore]];
-    [Kamcord setFacebookTitle:@"Star Stream Gameplay" caption:[NSString stringWithFormat:@"Score: %d points. Reached galaxy: %d",finalScore,currentGalaxy.number+1] description:[NSString stringWithFormat:@"My awesome round of Star Stream. I scored %d points and reached galaxy %d.",finalScore,currentGalaxy.number+1]];
+    [Kamcord setFacebookTitle:@"Star Stream Gameplay" caption:[NSString stringWithFormat:@"Score: %d points. Reached galaxy: %d",finalScore,currentGalaxy.number+1] description:[NSString stringWithFormat:@"My awesome round of Star Stream. I reached a score of %d and reached galaxy %d!",finalScore,currentGalaxy.number+1]];
     [Kamcord setShareDelegate:self];
     //[Kamcord setEnableSynchronousConversionUI:YES alwaysShowProgressBar:YES];
   

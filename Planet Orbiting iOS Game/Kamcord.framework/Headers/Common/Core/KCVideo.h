@@ -15,6 +15,7 @@
 #import "Kamcord.h"
 #import "DataStructures/NSMutableArray+QueueAdditions.h"
 
+@class KCVideo;
 @class GTMOAuth2Authentication;
 @class KCVideoSharingTask;
 
@@ -110,7 +111,9 @@ alreadySharedWithEmail:(BOOL)alreadySharedWithEmail
 
 //////////////////////////////////////////////////////
 // Begin KCVideo
+#if (COCOS2D_1_0_1 || COCOS2D_2_0 || COCOS2D_2_1)
 @class KCAudioCollection;
+#endif
 
 @interface KCVideo : NSObject
 
@@ -208,9 +211,12 @@ typedef enum
 @property (nonatomic, retain) NSURL * onlineYouTubeVideoURL;
 
 @property (nonatomic, assign) BOOL uploadedToKamcord;
+@property (nonatomic, assign) float uploadProgress;
 
+#if (COCOS2D_1_0_1 || COCOS2D_2_0 || COCOS2D_2_1)
 // Audio
 @property (nonatomic, retain) KCAudioCollection * audioCollection;
+#endif
 
 // Has everything that we need to do with this video been done?
 // If so, we can just go ahead and erase it to save space.
@@ -267,7 +273,9 @@ persistentStoreCoordinator:(NSPersistentStoreCoordinator *)persistentStoreCoordi
 // has finished recording.
 - (void)compressMarkedTimes;
 
+#if (COCOS2D_1_0_1 || COCOS2D_2_0 || COCOS2D_2_1)
 - (void)stopAllSounds:(KC_SOUND_TYPE)soundType;
+#endif
 
 // Extracts the thumbnail from the video asset and saves it
 // as the thumbnail for this video. If a thumbnail already exists,

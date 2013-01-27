@@ -105,13 +105,22 @@ const float effectsVolumeMainMenu = 1;
 }
 
 -(void)pressedObjectiveButton:(id)sender {
+    
+    /*NSString* embeddedCode = @"<iframe width=\"560\" height=\"315\" src=\"http://www.youtube.com/embed/-qHD9SO9F_0\" frameborder=\"0\" allowfullscreen></iframe>";
+    UIWebView* videoView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    [videoView setHidden:true];
+    [videoView loadHTMLString:embeddedCode baseURL:nil];
+    [[((AppDelegate*)[[UIApplication sharedApplication]delegate]) window] addSubview:videoView];*/
+   
+    
+    /*
     missionPopupIsUp = true;
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     [Flurry logEvent:@"Pressed objective button"];
     missionPopup = [[ObjectiveManager sharedInstance] createMissionPopupWithX:true withDark:true];
     [missionPopup setZOrder:INT_MAX];
     [self addChild:missionPopup];
-    [self disableButtons];
+    [self disableButtons];*/
 }
 
 - (void) initUpgradeStuff {

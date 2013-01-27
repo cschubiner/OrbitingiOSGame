@@ -14,16 +14,19 @@ typedef enum
 {
     KC_ANALYTICS_RECORDING = 0,
     KC_ANALYTICS_VIEWING = 1,
-    KC_ANALYTICS_SHARING = 2
+    KC_ANALYTICS_UI_ACTIONS = 2,
+    KC_ANALYTICS_SHARING = 3
 } KC_ANALYTICS_TYPE;
 
 @property (nonatomic, assign) NSUInteger recordingSampleRate;
 @property (nonatomic, assign) NSUInteger viewingSampleRate;
+@property (nonatomic, assign) NSUInteger uiActionsSampleRate;
 @property (nonatomic, assign) NSUInteger sharingSampleRate;
 @property (nonatomic, retain) NSString * deviceIdentifier;
 @property (nonatomic, assign) NSUInteger uniqueDeviceHash;
 @property (nonatomic, assign) BOOL shouldTrackRecordings;
 @property (nonatomic, assign) BOOL shouldTrackViews;
+@property (nonatomic, assign) BOOL shouldTrackUIActions;
 @property (nonatomic, assign) BOOL shouldTrackShares;
 @property (nonatomic, retain) NSDate * lastUpdatedAt;
 

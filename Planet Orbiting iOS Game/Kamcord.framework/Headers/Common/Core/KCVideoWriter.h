@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 
+#import "KCAudioListener.h"
+
 @class KCVideo;
 
-@interface KCVideoWriter : NSObject
+@interface KCVideoWriter : NSObject <KCAudioListener>
 
 // Public properties
 @property (nonatomic, retain, readonly) KCVideo * currentVideo;
@@ -33,8 +35,6 @@
 
 #if KCUNITY
 - (void)setAudioFormatDescription:(CMFormatDescriptionRef)desc;
-- (void)writeAudioData:(float [])data
-           numChannels:(int)numChannels;
 #endif
 
 // Useful to know if we're currently writing frames or not

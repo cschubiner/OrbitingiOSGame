@@ -13,13 +13,9 @@
 
 @optional
 
-// Called when the Kamcord main view appears and disappears
+// Called when the Kamcord view appears and disappears
 - (void)mainViewDidAppear;
 - (void)mainViewDidDisappear;
-
-// Called when the Kamcord share view appears and disappears
-- (void)shareViewDidAppear;
-- (void)shareViewDidDisappear;
 
 // Called when the movie player appears and disappears
 - (void)moviePlayerDidAppear;
@@ -27,6 +23,12 @@
 
 // Called when a thumbnail image for the video is ready
 - (void)thumbnailReady:(CGImageRef)thumbnail;
+
+// Called when the video has finished merging
+- (void)videoFinishedMerging:(BOOL)success;
+
+// Called when the video has finished converting
+- (void)videoFinishedConverting:(BOOL)success;
 
 #if KCUNITY
 // Called when the thumbnail image for the video is ready
@@ -150,7 +152,6 @@ typedef enum
 - (void)youTubeUploadFinishedWithSuccess:(BOOL)success error:(KCShareStatus)error;
 
 - (void)shareCancelled;
-
 
 //
 // Retrying failed uploads/shares
