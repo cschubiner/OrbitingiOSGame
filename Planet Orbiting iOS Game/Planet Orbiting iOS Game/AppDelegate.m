@@ -59,6 +59,7 @@
     NSLog(@"iRate: Number of events: %d Number of uses: %d",[[iRate sharedInstance]eventCount],[[iRate sharedInstance]usesCount]);
     
     didGetToMainMenu = false;
+    [self setdidGetToMainMenu:false];
     shouldPlayMenuMusic = true;
     
 	// Create the main window
@@ -131,7 +132,7 @@
     [DataStorage fetchData];
     
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-	[director_ pushScene: [MainMenuLayer scene]];
+	//[director_ pushScene: [MainMenuLayer scene]];
     
 	
 	// Create a Navigation Controller with the Director
@@ -164,6 +165,13 @@
 	return YES;
 }
 
+-(void)directorDidReshapeProjection:(CCDirector *)director{
+    if (director.runningScene == nil){
+        // and add the scene to the stack. The director will run it when it automatically when the view is displayed.
+        [director_ runWithScene: [MainMenuLayer scene]];
+    }
+}
+
 /*
  My Apps Custom uncaught exception catcher, we do special stuff here, and TestFlight takes care of the rest
  **/
@@ -183,6 +191,7 @@ void SignalHandler(int sig) {
     [DataStorage storeData];
 }
 
+
 -(NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
     //return (NSUInteger)[application supportedInterfaceOrientationsForWindow:window] | (1<<UIInterfaceOrientationPortrait);
     
@@ -197,10 +206,10 @@ void SignalHandler(int sig) {
 {
 	return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
-
+/*
 -(NSUInteger)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskLandscape;
-}
+}*/
 
 -(UIViewController*)getViewController{
     return navController_;

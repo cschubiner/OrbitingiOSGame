@@ -240,7 +240,6 @@ const float effectsVolumeMainMenu = 1;
         addedMoviePlayerObserver = false;
         self.myPlayer = NULL;
         
-        [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setdidGetToMainMenu:YES];
 
         size = [[CCDirector sharedDirector] winSize];
         self.isTouchEnabled = true;
@@ -265,9 +264,19 @@ const float effectsVolumeMainMenu = 1;
         [beginLabel setPosition:ccp(240, 60)];
         [beginLabel setVisible:false];
         
-        if ([[DDGameKitHelper sharedGameKitHelper]isLocalPlayerAuthenticated]==false)
-            [[DDGameKitHelper sharedGameKitHelper]authenticateLocalPlayer];
-        
+        @try {
+            if ([[DDGameKitHelper sharedGameKitHelper]isLocalPlayerAuthenticated]==false) {
+                [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setdidGetToMainMenu:false];
+
+                [[DDGameKitHelper sharedGameKitHelper]authenticateLocalPlayer];
+   
+            }
+            else [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setdidGetToMainMenu:true];
+
+
+        }
+        @catch (NSException *exception) {
+        }
         
         [[UpgradeValues sharedInstance] setHasGreenShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:17] equipped]];
         [[UpgradeValues sharedInstance] setHasBlueShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:18] equipped]];

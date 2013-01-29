@@ -196,6 +196,7 @@
             [[DDGameKitHelper sharedGameKitHelper]authenticateLocalPlayer];
         else
         [[DDGameKitHelper sharedGameKitHelper]showLeaderboard];
+         //   [[DDGameKitHelper sharedGameKitHelper]showLeaderboardwithCategory:@"highscore_leaderboard1880" timeScope:GKLeaderboardTimeScopeAllTime];
     }
     @catch (NSException *exception) {
         

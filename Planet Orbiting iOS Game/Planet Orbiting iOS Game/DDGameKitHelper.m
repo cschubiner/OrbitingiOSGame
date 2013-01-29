@@ -139,21 +139,31 @@ static DDGameKitHelper *instanceOfGameKitHelper;
     if (isGameCenterAvailable == NO)
         return;
     
+    [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setdidGetToMainMenu:false];
+
     GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
     if (localPlayer.authenticated == NO)
     {
         [localPlayer authenticateWithCompletionHandler:^(NSError* error)
          {
+             [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setdidGetToMainMenu:true];
+
              if (error != nil)
              {
                  NSLog(@"error authenticating player: %@", [error localizedDescription]);
+
              }
              else
              {
+
                  NSLog(@"player authenticated");
              }
          }];
     }
+    else [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setdidGetToMainMenu:true];
+
+    
+
 }
 
 -(bool) isLocalPlayerAuthenticated
@@ -170,13 +180,16 @@ static DDGameKitHelper *instanceOfGameKitHelper;
     NSString* newPlayerID;
     GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
     
-    // if not authenticating then just return
+
     
+    // if not authenticating then just return
     if (!localPlayer.isAuthenticated)
     {
         return;
     }
     
+    [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setdidGetToMainMenu:true];
+
     NSLog(@"onLocalPlayerAuthenticationChanged. reloading scores and achievements and resynchronzing.");
     
     if (localPlayer.playerID != nil)
