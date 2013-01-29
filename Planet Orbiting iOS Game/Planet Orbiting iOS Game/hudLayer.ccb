@@ -370,7 +370,7 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>3.34765625</real>
+						<real>-0.65234375</real>
 						<real>300.19921875</real>
 					</array>
 					<key>rotation</key>
@@ -391,158 +391,211 @@
 			</dict>
 			<dict>
 				<key>children</key>
-				<array/>
+				<array>
+					<dict>
+						<key>children</key>
+						<array/>
+						<key>class</key>
+						<string>CCSprite</string>
+						<key>properties</key>
+						<dict>
+							<key>anchorPoint</key>
+							<array>
+								<real>1</real>
+								<real>0.5</real>
+							</array>
+							<key>blendFunc</key>
+							<array>
+								<integer>1</integer>
+								<integer>771</integer>
+							</array>
+							<key>color</key>
+							<array>
+								<integer>255</integer>
+								<integer>255</integer>
+								<integer>255</integer>
+							</array>
+							<key>contentSize</key>
+							<array>
+								<real>144</real>
+								<real>137</real>
+							</array>
+							<key>customClass</key>
+							<string></string>
+							<key>flipX</key>
+							<false/>
+							<key>flipY</key>
+							<false/>
+							<key>isExpanded</key>
+							<true/>
+							<key>isRelativeAnchorPoint</key>
+							<true/>
+							<key>lockedScaleRatio</key>
+							<true/>
+							<key>memberVarAssignmentName</key>
+							<string>coinsLabelStarSprite</string>
+							<key>memberVarAssignmentType</key>
+							<integer>2</integer>
+							<key>opacity</key>
+							<integer>255</integer>
+							<key>position</key>
+							<array>
+								<real>62.59375</real>
+								<real>280.123046875</real>
+							</array>
+							<key>rotation</key>
+							<real>0.0</real>
+							<key>scaleX</key>
+							<real>0.081835910677909851</real>
+							<key>scaleY</key>
+							<real>0.081835910677909851</real>
+							<key>spriteFile</key>
+							<string>star1.png</string>
+							<key>tag</key>
+							<integer>-1</integer>
+							<key>visible</key>
+							<true/>
+							<key>zOrder</key>
+							<integer>0</integer>
+						</dict>
+					</dict>
+					<dict>
+						<key>children</key>
+						<array/>
+						<key>class</key>
+						<string>CCLabelBMFont</string>
+						<key>properties</key>
+						<dict>
+							<key>anchorPoint</key>
+							<array>
+								<real>1</real>
+								<real>0.5</real>
+							</array>
+							<key>color</key>
+							<array>
+								<integer>255</integer>
+								<integer>255</integer>
+								<integer>255</integer>
+							</array>
+							<key>contentSize</key>
+							<array>
+								<real>12</real>
+								<real>25</real>
+							</array>
+							<key>customClass</key>
+							<string></string>
+							<key>fontFile</key>
+							<string>star_label_font.fnt</string>
+							<key>isExpanded</key>
+							<true/>
+							<key>isRelativeAnchorPoint</key>
+							<true/>
+							<key>lockedScaleRatio</key>
+							<true/>
+							<key>memberVarAssignmentName</key>
+							<string>coinsLabel</string>
+							<key>memberVarAssignmentType</key>
+							<integer>2</integer>
+							<key>opacity</key>
+							<integer>255</integer>
+							<key>position</key>
+							<array>
+								<real>50.006378173828125</real>
+								<real>280.85818481445312</real>
+							</array>
+							<key>rotation</key>
+							<real>0.0</real>
+							<key>scaleX</key>
+							<real>1.0319530963897705</real>
+							<key>scaleY</key>
+							<real>1.0319530963897705</real>
+							<key>string</key>
+							<string>0</string>
+							<key>tag</key>
+							<integer>-1</integer>
+							<key>visible</key>
+							<true/>
+							<key>zOrder</key>
+							<integer>0</integer>
+						</dict>
+					</dict>
+					<dict>
+						<key>children</key>
+						<array/>
+						<key>class</key>
+						<string>CCLabelBMFont</string>
+						<key>properties</key>
+						<dict>
+							<key>anchorPoint</key>
+							<array>
+								<real>0.0</real>
+								<real>0.5</real>
+							</array>
+							<key>color</key>
+							<array>
+								<integer>116</integer>
+								<integer>116</integer>
+								<integer>116</integer>
+							</array>
+							<key>contentSize</key>
+							<array>
+								<real>36</real>
+								<real>25</real>
+							</array>
+							<key>customClass</key>
+							<string></string>
+							<key>fontFile</key>
+							<string>star_label_font.fnt</string>
+							<key>isExpanded</key>
+							<true/>
+							<key>isRelativeAnchorPoint</key>
+							<true/>
+							<key>lockedScaleRatio</key>
+							<true/>
+							<key>memberVarAssignmentName</key>
+							<string>zeroCoinsLabel</string>
+							<key>memberVarAssignmentType</key>
+							<integer>2</integer>
+							<key>opacity</key>
+							<integer>255</integer>
+							<key>position</key>
+							<array>
+								<real>0.094268798828125</real>
+								<real>280.8756103515625</real>
+							</array>
+							<key>rotation</key>
+							<real>0.0</real>
+							<key>scaleX</key>
+							<real>1.0319530963897705</real>
+							<key>scaleY</key>
+							<real>1.0319530963897705</real>
+							<key>string</key>
+							<string>000</string>
+							<key>tag</key>
+							<integer>-1</integer>
+							<key>visible</key>
+							<true/>
+							<key>zOrder</key>
+							<integer>0</integer>
+						</dict>
+					</dict>
+				</array>
 				<key>class</key>
-				<string>CCSprite</string>
-				<key>properties</key>
-				<dict>
-					<key>anchorPoint</key>
-					<array>
-						<real>1</real>
-						<real>0.5</real>
-					</array>
-					<key>blendFunc</key>
-					<array>
-						<integer>1</integer>
-						<integer>771</integer>
-					</array>
-					<key>color</key>
-					<array>
-						<integer>255</integer>
-						<integer>255</integer>
-						<integer>255</integer>
-					</array>
-					<key>contentSize</key>
-					<array>
-						<real>144</real>
-						<real>137</real>
-					</array>
-					<key>customClass</key>
-					<string></string>
-					<key>flipX</key>
-					<false/>
-					<key>flipY</key>
-					<false/>
-					<key>isExpanded</key>
-					<true/>
-					<key>isRelativeAnchorPoint</key>
-					<true/>
-					<key>lockedScaleRatio</key>
-					<true/>
-					<key>memberVarAssignmentName</key>
-					<string>coinsLabelStarSprite</string>
-					<key>memberVarAssignmentType</key>
-					<integer>2</integer>
-					<key>opacity</key>
-					<integer>255</integer>
-					<key>position</key>
-					<array>
-						<real>51.427734375</real>
-						<real>280.123046875</real>
-					</array>
-					<key>rotation</key>
-					<real>0.0</real>
-					<key>scaleX</key>
-					<real>0.081835910677909851</real>
-					<key>scaleY</key>
-					<real>0.081835910677909851</real>
-					<key>spriteFile</key>
-					<string>star1.png</string>
-					<key>tag</key>
-					<integer>-1</integer>
-					<key>visible</key>
-					<true/>
-					<key>zOrder</key>
-					<integer>0</integer>
-				</dict>
-			</dict>
-			<dict>
-				<key>children</key>
-				<array/>
-				<key>class</key>
-				<string>CCLabelBMFont</string>
-				<key>properties</key>
-				<dict>
-					<key>anchorPoint</key>
-					<array>
-						<real>1</real>
-						<real>0.5</real>
-					</array>
-					<key>color</key>
-					<array>
-						<integer>255</integer>
-						<integer>255</integer>
-						<integer>255</integer>
-					</array>
-					<key>contentSize</key>
-					<array>
-						<real>12</real>
-						<real>25</real>
-					</array>
-					<key>customClass</key>
-					<string></string>
-					<key>fontFile</key>
-					<string>star_label_font.fnt</string>
-					<key>isExpanded</key>
-					<true/>
-					<key>isRelativeAnchorPoint</key>
-					<true/>
-					<key>lockedScaleRatio</key>
-					<true/>
-					<key>memberVarAssignmentName</key>
-					<string>coinsLabel</string>
-					<key>memberVarAssignmentType</key>
-					<integer>2</integer>
-					<key>opacity</key>
-					<integer>255</integer>
-					<key>position</key>
-					<array>
-						<real>40.598175048828125</real>
-						<real>280.27615356445312</real>
-					</array>
-					<key>rotation</key>
-					<real>0.0</real>
-					<key>scaleX</key>
-					<real>1.0319530963897705</real>
-					<key>scaleY</key>
-					<real>1.0319530963897705</real>
-					<key>string</key>
-					<string>0</string>
-					<key>tag</key>
-					<integer>-1</integer>
-					<key>visible</key>
-					<true/>
-					<key>zOrder</key>
-					<integer>0</integer>
-				</dict>
-			</dict>
-			<dict>
-				<key>children</key>
-				<array/>
-				<key>class</key>
-				<string>CCLabelBMFont</string>
+				<string>CCNode</string>
 				<key>properties</key>
 				<dict>
 					<key>anchorPoint</key>
 					<array>
 						<real>0.0</real>
-						<real>0.5</real>
-					</array>
-					<key>color</key>
-					<array>
-						<integer>116</integer>
-						<integer>116</integer>
-						<integer>116</integer>
+						<real>0.0</real>
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>24</real>
-						<real>25</real>
+						<real>0.0</real>
+						<real>0.0</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
-					<key>fontFile</key>
-					<string>star_label_font.fnt</string>
 					<key>isExpanded</key>
 					<true/>
 					<key>isRelativeAnchorPoint</key>
@@ -550,24 +603,20 @@
 					<key>lockedScaleRatio</key>
 					<true/>
 					<key>memberVarAssignmentName</key>
-					<string>zeroCoinsLabel</string>
+					<string>starsLabelNode</string>
 					<key>memberVarAssignmentType</key>
 					<integer>2</integer>
-					<key>opacity</key>
-					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>2.852081298828125</real>
-						<real>280.2760009765625</real>
+						<real>-13</real>
+						<real>0.0</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>1.0319530963897705</real>
+					<real>1</real>
 					<key>scaleY</key>
-					<real>1.0319530963897705</real>
-					<key>string</key>
-					<string>00</string>
+					<real>1</real>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>

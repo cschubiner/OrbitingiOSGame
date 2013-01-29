@@ -1149,12 +1149,17 @@ typedef struct {
     numCoinsDisplayed += ([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1);
     
     if (numCoinsDisplayed<10)
-        [zeroCoinsLabel setString:@"00"];
+        [zeroCoinsLabel setString:@"000"];
     else
         if (numCoinsDisplayed<100)
-            [zeroCoinsLabel setString:@"0"];
+            [zeroCoinsLabel setString:@"00"];
         else
+            if (numCoinsDisplayed<1000)
+                [zeroCoinsLabel setString:@"0"];
+        else {
             [zeroCoinsLabel setVisible:false];
+            [starsLabelNode setPosition:CGPointZero];
+        }
     [coinsLabel setString:[NSString stringWithFormat:@"%d",numCoinsDisplayed]];
     
     [coinsLabel runAction:[CCSequence actions:

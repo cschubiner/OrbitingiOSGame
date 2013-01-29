@@ -34,7 +34,7 @@
     NSMutableArray * coinAnimationFrames;
     CCAnimation * coinAnimation;
     CCLabelBMFont *scoreLabel;
-    
+    CCNode * starsLabelNode;
 
     float scoreAddedByCombo;
     
