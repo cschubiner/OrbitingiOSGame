@@ -254,7 +254,7 @@
     
     bools = [boolGroupsToUse objectAtIndex:4];
     [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.22 starReward:3000
-                                                          item0:[[ObjectiveItem alloc] initWithText:@"Reach the third galaxy without dying" isCompleted:[[bools objectAtIndex:0] boolValue]]
+                                                          item0:[[ObjectiveItem alloc] initWithText:@"Collect 180 stars in one game" isCompleted:[[bools objectAtIndex:0] boolValue]]
                                                           item1:[[ObjectiveItem alloc] initWithText:@"Reach a score of 30,000" isCompleted:[[bools objectAtIndex:1] boolValue]]
                                                           item2:[[ObjectiveItem alloc] initWithText:@"Reach the fourth galaxy" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     

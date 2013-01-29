@@ -2636,11 +2636,13 @@ typedef struct {
     if (asteroidsDestroyedWithArmor >= 5)
         [self completeObjectiveFromGroupNumber:3 itemNumber:0];
     
-    if (numCoinsDisplayed >= 150) {
+    if (numCoinsDisplayed >= 150)
         [self completeObjectiveFromGroupNumber:3 itemNumber:2];
-    }
     
     
+    
+    if (numCoinsDisplayed >= 180)
+        [self completeObjectiveFromGroupNumber:4 itemNumber:0];
     
     if (score >= 30000)
         [self completeObjectiveFromGroupNumber:4 itemNumber:1];
@@ -2772,9 +2774,6 @@ typedef struct {
         [self completeObjectiveFromGroupNumber:2 itemNumber:0];
     
     
-    
-    if (currentGalaxy.number == 2 & numTimesDied == 0)
-        [self completeObjectiveFromGroupNumber:4 itemNumber:0];
     
     if (currentGalaxy.number == 3)
         [self completeObjectiveFromGroupNumber:4 itemNumber:2];
