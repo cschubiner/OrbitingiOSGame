@@ -91,7 +91,7 @@ const float effectsVolumeMainMenu = 1;
         
         if (swipeBeginPoint.y >= 40 && objectivesButton.isEnabled && beginLabel.visible) {
             
-            if ([[iRate sharedInstance]eventCount] <= 5) {
+            if ([[iRate sharedInstance]eventCount] >= 12){ //&& PLAYER_HAS_ALREADY_WATCHED_THE_VIDEO) {
                 UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"New Player Tutorial"
                                                                   message:@"We see you're new to Star Stream. Would you like to see how a pro plays? (Do it.)"
                                                                  delegate:self
@@ -138,6 +138,7 @@ const float effectsVolumeMainMenu = 1;
 
 - (void)willExitFullscreen:(NSNotification*)notification {
     NSLog(@"willExitFullscreen");
+    //SET PLAYER_HAS_ALREADY_WATCHED_THE_VIDEO TO TRUE
     [self.myPlayer.view removeFromSuperview];
     self.myPlayer = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
