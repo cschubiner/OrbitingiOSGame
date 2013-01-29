@@ -18,7 +18,7 @@ const int highScoreLimit = 20;
     NSMutableDictionary *keyValuePairs;
 }
 
-@synthesize isMuted, recentName;
+@synthesize isMuted, recentName, hasWatchedVideo;
 
 static PlayerStats *sharedInstance = nil;
 
@@ -40,6 +40,7 @@ static PlayerStats *sharedInstance = nil;
         for (int i = 0; i < highScoreLimit; i++) {
             [highScores addObject:[NSNumber numberWithInt:0]];
         }
+        hasWatchedVideo = false;
     }
     return self;
 }
@@ -61,7 +62,7 @@ static PlayerStats *sharedInstance = nil;
         name = @"PLAYER";
     //NSLog(@"a1");
     NSNumber *newScore = [[NSNumber alloc] initWithInt:score];
-    [highScores addObject:newScore]; 
+    [highScores addObject:newScore];
     //NSLog(@"a2");
     [rawScores addObject:newScore];
     //NSLog(@"a3a");
