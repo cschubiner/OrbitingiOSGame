@@ -19,6 +19,9 @@
 + (void)storeData {
     int coins = [[UserWallet sharedInstance] getBalance];
     int numPlays = [[PlayerStats sharedInstance] getPlays];
+    
+    int hasWatchedVideo = [[PlayerStats sharedInstance] hasWatchedVideo];
+    
     NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
     NSMutableDictionary *nameScorePairs = [[PlayerStats sharedInstance] getKeyValuePairs];
     NSString *recentName = [[PlayerStats sharedInstance] recentName];
@@ -63,6 +66,8 @@
     [defaults setObject:recentName forKey:@"recentName"];
     [defaults setObject:upgradeCodes forKey:@"upgradeCodes"];
     
+    [defaults setInteger:hasWatchedVideo forKey:@"hasWatchedVideo"];
+    
     [defaults synchronize];
 }
 
@@ -77,6 +82,10 @@
     NSMutableDictionary *nameScorePairs = [defaults objectForKey:@"nameScorePairs"];
     NSString *recentName = [defaults objectForKey:@"recentName"];
     NSMutableArray *upgradeCodes = [defaults objectForKey:@"upgradeCodes"];
+    
+    int hasWatchedVideo = [defaults integerForKey:@"hasWatchedVideo"];
+    [[PlayerStats sharedInstance] setHasWatchedVideo:numPlays];
+    
 
     [[UserWallet sharedInstance] setBalance:coins];
     [[PlayerStats sharedInstance] setPlays:numPlays];

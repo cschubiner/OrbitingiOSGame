@@ -40,7 +40,6 @@ static PlayerStats *sharedInstance = nil;
         for (int i = 0; i < highScoreLimit; i++) {
             [highScores addObject:[NSNumber numberWithInt:0]];
         }
-        hasWatchedVideo = false;
     }
     return self;
 }

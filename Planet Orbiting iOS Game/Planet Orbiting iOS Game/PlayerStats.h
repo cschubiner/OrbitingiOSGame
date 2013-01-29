@@ -26,6 +26,6 @@
 @property (nonatomic, assign) BOOL isMuted;
 @property (nonatomic, retain) NSString *recentName;
 
-@property (nonatomic, assign) BOOL hasWatchedVideo;
+@property (nonatomic, assign) int hasWatchedVideo;
 
 @end
