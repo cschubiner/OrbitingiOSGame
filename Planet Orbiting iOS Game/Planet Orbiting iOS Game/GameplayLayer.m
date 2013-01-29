@@ -2285,7 +2285,6 @@ typedef struct {
         isGameOver = true;
         
         
-        [self tryHighScore];
         [DataStorage storeData];
         
         @try {
@@ -2360,6 +2359,8 @@ typedef struct {
         if (jawkwkkwCount >= 8)
             break;
     }
+    
+    [[PlayerStats sharedInstance] addPlay];
     
     [Kamcord setYouTubeVideoCategory:@"Games"];
 
@@ -2453,6 +2454,8 @@ typedef struct {
 }
 
 - (void)pressedStoreButton {
+    
+    [self tryHighScore];
     
     //[Flurry logEvent:@"Opened Store" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance" ,nil]];
     
@@ -2922,19 +2925,6 @@ typedef struct {
 
 
 - (void)endGame {
-    int finalScore = score + prevCurrentPtoPScore;
-    //CCLOG(@"1");
-    if ([[PlayerStats sharedInstance] isHighScore:finalScore]) {
-        //CCLOG(@"2");
-        NSString *playerName = displayName.string;
-        //CCLOG(@"3");
-        [[PlayerStats sharedInstance] addScore:score+prevCurrentPtoPScore withName:playerName];
-        //CCLOG(@"4");
-        [[PlayerStats sharedInstance] setRecentName:playerName];
-        if ([[[[[CCDirector sharedDirector] view] window] subviews]containsObject:playerNameLabel])
-            [playerNameLabel removeFromSuperview];
-        
-    }
     //CCLOG(@"5");
     if (!didEndGameAlready) {
         didEndGameAlready = true;
@@ -2976,11 +2966,19 @@ typedef struct {
 }
 
 - (void)restartGame {
+    [self tryHighScore];
+    [self actualRestart];
+}
+
+-(void)restartGameFromPause {
+    [self actualRestart];
+}
+
+-(void) actualRestart {
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     [Flurry logEvent:@"restarted game"];
     scoreAlreadySaved = NO;
     //if ([[PlayerStats sharedInstance] getPlays] == 1) {
-        [[PlayerStats sharedInstance] addPlay];
     //}
     //CCLOG(@"number of plays ever: %i", [[PlayerStats sharedInstance] getPlays]);
     
@@ -3221,7 +3219,7 @@ float lerpf(float a, float b, float t) {
     
     CCMenuItem *replay = [CCMenuItemImage
                           itemWithNormalImage:@"retry.png" selectedImage:@"retrypressed.png"
-                          target:self selector:@selector(restartGame)];
+                          target:self selector:@selector(restartGameFromPause)];
     replay.position = ccp(240, 20);
     
     CCMenuItem *resume = [CCMenuItemImage
