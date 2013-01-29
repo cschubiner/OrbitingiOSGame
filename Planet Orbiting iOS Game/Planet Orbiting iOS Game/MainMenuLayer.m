@@ -91,9 +91,9 @@ const float effectsVolumeMainMenu = 1;
         
         if (swipeBeginPoint.y >= 40 && objectivesButton.isEnabled && beginLabel.visible) {
             
-            if ([[iRate sharedInstance]eventCount] >= 12){ //&& PLAYER_HAS_ALREADY_WATCHED_THE_VIDEO) {
+            if ([[iRate sharedInstance]eventCount] >= 12 && [[PlayerStats sharedInstance] hasWatchedVideo] >= 1) {
                 UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"New Player Tutorial"
-                                                                  message:@"We see you're new to Star Stream. Would you like to see how a pro plays? (Do it.)"
+                                                                  message:@"We see you're new to Star Stream. Would you like to watch the trailer to see how a pro plays? It'll help a lot!"
                                                                  delegate:self
                                                         cancelButtonTitle:@"Play Game"
                                                         otherButtonTitles:@"Watch Video",nil];
@@ -173,6 +173,8 @@ const float effectsVolumeMainMenu = 1;
 
 -(void)openVideo{
     NSURL *url = [NSURL URLWithString:@"http://www.weebly.com/uploads/1/6/2/0/16201940/tutorial_video.m4v"];//@"http://www.youtube.com/watch?v=-qHD9SO9F_0"];
+    
+    [[PlayerStats sharedInstance] setHasWatchedVideo:1];
     
     MPMoviePlayerController *player = [[MPMoviePlayerController alloc]initWithContentURL:url];
     player.movieSourceType = MPMovieSourceTypeUnknown;
