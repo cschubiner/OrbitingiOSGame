@@ -116,6 +116,7 @@
 		0C0E8814160423AF00779D6F /* galaxy9-hd.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87F0160423AF00779D6F /* galaxy9-hd.pvr.gz */; };
 		0C0E8815160423AF00779D6F /* galaxy9.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87F1160423AF00779D6F /* galaxy9.plist */; };
 		0C0E8816160423AF00779D6F /* galaxy9.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87F2160423AF00779D6F /* galaxy9.pvr.gz */; };
+		0C11425A1675685900C0732C /* LandscapeNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1142591675685900C0732C /* LandscapeNavigationViewController.m */; };
 		0C1662C915CEA56B00C0D0B9 /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1662C815CEA56B00C0D0B9 /* Tutorial.m */; };
 		0C16BB65169EEC2400F20044 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C16BB62169EEC2400F20044 /* iRate.bundle */; };
 		0C16BB66169EEC2400F20044 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C16BB64169EEC2400F20044 /* iRate.m */; };
@@ -698,6 +699,8 @@
 		0C0E87F0160423AF00779D6F /* galaxy9-hd.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "galaxy9-hd.pvr.gz"; sourceTree = "<group>"; };
 		0C0E87F1160423AF00779D6F /* galaxy9.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = galaxy9.plist; sourceTree = "<group>"; };
 		0C0E87F2160423AF00779D6F /* galaxy9.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = galaxy9.pvr.gz; sourceTree = "<group>"; };
+		0C1142581675685900C0732C /* LandscapeNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LandscapeNavigationViewController.h; path = ../LandscapeNavigationViewController.h; sourceTree = "<group>"; };
+		0C1142591675685900C0732C /* LandscapeNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LandscapeNavigationViewController.m; path = ../LandscapeNavigationViewController.m; sourceTree = "<group>"; };
 		0C1662C715CEA56B00C0D0B9 /* Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutorial.h; sourceTree = "<group>"; };
 		0C1662C815CEA56B00C0D0B9 /* Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial.m; sourceTree = "<group>"; };
 		0C16BB62169EEC2400F20044 /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
@@ -1968,6 +1971,8 @@
 				0C487AFA159471E000674AB9 /* CameraObject.m */,
 				0C48318F15BFEB4E00311FB1 /* LevelObjectReturner.h */,
 				0C48319015BFEB4E00311FB1 /* LevelObjectReturner.m */,
+				0C1142581675685900C0732C /* LandscapeNavigationViewController.h */,
+				0C1142591675685900C0732C /* LandscapeNavigationViewController.m */,
 				0C487B031594739500674AB9 /* Player.h */,
 				0C487B041594739600674AB9 /* Player.m */,
 				0C487B0C1594792C00674AB9 /* Planet.h */,
@@ -3290,6 +3295,7 @@
 				0C16BB66169EEC2400F20044 /* iRate.m in Sources */,
 				0C489D2816B77CD000CCFF11 /* DDGameKitHelper.m in Sources */,
 				0C489D2916B77CD000CCFF11 /* DDGameKitHelperDelegate.m in Sources */,
+				0C11425A1675685900C0732C /* LandscapeNavigationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
