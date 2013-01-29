@@ -17,9 +17,8 @@
 // display new high score using GKAchievement class
 -(void) onSubmitScore:(int64_t)score;
 {
-    [[GKAchievementHandler defaultHandler] notifyAchievementTitle:@"New High Score!" andMessage:[NSString stringWithFormat:@"%lld", score]];
+    [[GKAchievementHandler defaultHandler] notifyAchievementTitle:@"New High Score!!!" andMessage:[NSString stringWithFormat:@"%d", score]];
 }
-
 
 // display the achievement using GKAchievement class
 -(void) onReportAchievement:(GKAchievement*)achievement

@@ -265,7 +265,8 @@ const float effectsVolumeMainMenu = 1;
         [beginLabel setPosition:ccp(240, 60)];
         [beginLabel setVisible:false];
         
-
+        if ([[DDGameKitHelper sharedGameKitHelper]isLocalPlayerAuthenticated]==false)
+            [[DDGameKitHelper sharedGameKitHelper]authenticateLocalPlayer];
         
         
         [[UpgradeValues sharedInstance] setHasGreenShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:17] equipped]];

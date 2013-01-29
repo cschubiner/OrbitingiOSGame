@@ -5,7 +5,6 @@
 //  Inspired by Steffen Itterheim's GameKitHelper
 
 #import <GameKit/GameKit.h>
-#import "AppDelegate.h"
 
 @protocol DDGameKitHelperProtocol
 -(bool) compare:(int64_t)score1 to:(int64_t)score2;
@@ -13,7 +12,7 @@
 -(void) onReportAchievement:(GKAchievement*)achievement;
 @end
 
-@interface DDGameKitHelper : NSObject <GKLeaderboardViewControllerDelegate, GKAchievementViewControllerDelegate>
+@interface DDGameKitHelper : NSObject <GKLeaderboardViewControllerDelegate, GKAchievementViewControllerDelegate, GKGameCenterControllerDelegate>
 {
     id<DDGameKitHelperProtocol> delegate;
     bool isGameCenterAvailable;
@@ -36,20 +35,17 @@
 
 -(bool) isAvailable;
 
--(void) initScores;
-
 -(void) authenticateLocalPlayer;
 
 -(bool) isLocalPlayerAuthenticated;
 
 -(void) submitScore:(int64_t)value category:(NSString*)category;
 
--(GKScore*) getScoreByCategory:(NSString*)category;
-
-
 -(void) reportAchievement:(NSString*)identifier percentComplete:(float)percent;
 
 -(void) resetAchievements;
+
+-(void) showGameCenter;
 
 -(void) showLeaderboard;
 

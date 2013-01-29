@@ -7,6 +7,7 @@
 #import "DDGameKitHelper.h"
 #import "DDGameKitHelperDelegate.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "AppDelegate.h"
 
 static NSString* kAchievementsFile = @".achievements";
 static NSString* kScoresFile = @".scores";
@@ -23,6 +24,7 @@ static NSString* kScoresFile = @".scores";
 -(GKScore*) getScoreByCategory:(NSString*)category;
 -(GKAchievement*) getAchievement:(NSString*)identifier;
 -(UIViewController*) getRootViewController;
+
 @end
 
 @implementation DDGameKitHelper
@@ -31,7 +33,7 @@ static DDGameKitHelper *instanceOfGameKitHelper;
 
 +(id) alloc
 {
-    @synchronized(self)
+    @synchronized(self) 
     {
         NSAssert(instanceOfGameKitHelper == nil, @"Attempted to allocate a second instance of the singleton: GameKitHelper");
         instanceOfGameKitHelper = [[super alloc] retain];
@@ -63,7 +65,7 @@ static DDGameKitHelper *instanceOfGameKitHelper;
 @synthesize achievementDescriptions;
 @synthesize currentPlayerID;
 
--(NSString *) returnMD5Hash:(NSString*)concat
+-(NSString *) returnMD5Hash:(NSString*)concat 
 {
     const char *concat_str = [concat UTF8String];
     unsigned char result[CC_MD5_DIGEST_LENGTH];
@@ -138,16 +140,17 @@ static DDGameKitHelper *instanceOfGameKitHelper;
         return;
     
     GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
-
     if (localPlayer.authenticated == NO)
     {
         [localPlayer authenticateWithCompletionHandler:^(NSError* error)
          {
              if (error != nil)
-                 NSLog(@"error authenticating player");
-             else {
+             {
+                 NSLog(@"error authenticating player: %@", [error localizedDescription]);
+             }
+             else
+             {
                  NSLog(@"player authenticated");
-                 [Flurry setUserID:localPlayer.alias];
              }
          }];
     }
@@ -157,7 +160,7 @@ static DDGameKitHelper *instanceOfGameKitHelper;
 {
 	if (isGameCenterAvailable == NO)
 		return isGameCenterAvailable;
-    
+
 	GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
 	return localPlayer.authenticated;
 }
@@ -228,7 +231,7 @@ static DDGameKitHelper *instanceOfGameKitHelper;
         scores = [[NSMutableDictionary alloc] init];
     }
     
-    NSLog(@"number of scores initialized: %d", scores.count);
+    NSLog(@"scores initialized: %d", scores.count);
 }
 
 -(void) initAchievements
@@ -257,7 +260,7 @@ static DDGameKitHelper *instanceOfGameKitHelper;
     NSString* file = [libraryPath stringByAppendingPathComponent:currentPlayerID];
     file = [file stringByAppendingString:kScoresFile];
     [NSKeyedArchiver archiveRootObject:scores toFile:file];
-    NSLog(@"number of scores saved: %d", scores.count);
+    NSLog(@"scores saved: %d", scores.count);
 }
 
 -(void) saveAchievements
@@ -266,7 +269,7 @@ static DDGameKitHelper *instanceOfGameKitHelper;
     NSString* file = [libraryPath stringByAppendingPathComponent:currentPlayerID];
     file = [file stringByAppendingString:kAchievementsFile];
     [NSKeyedArchiver archiveRootObject:achievements toFile:file];
-    NSLog(@"number of achievements saved: %d", achievements.count);
+    NSLog(@"achievements saved: %d", achievements.count);
 }
 
 -(void) synchronizeScores
@@ -275,7 +278,7 @@ static DDGameKitHelper *instanceOfGameKitHelper;
     
     // get the top score for each category for current player and compare it to the game center score for the same category
     
-    [GKLeaderboard loadCategoriesWithCompletionHandler:^(NSArray *categories, NSArray *titles, NSError *error)
+    [GKLeaderboard loadCategoriesWithCompletionHandler:^(NSArray *categories, NSArray *titles, NSError *error) 
      {
          if (error != nil)
          {
@@ -285,13 +288,13 @@ static DDGameKitHelper *instanceOfGameKitHelper;
          
          NSString* playerId = [GKLocalPlayer localPlayer].playerID;
          
-         for (NSString* category in categories)
-         {
+         for (NSString* category in categories) 
+         {            
              GKLeaderboard *leaderboardRequest = [[GKLeaderboard alloc] initWithPlayerIDs:[NSArray arrayWithObject:playerId]];
              leaderboardRequest.category = category;
              leaderboardRequest.timeScope = GKLeaderboardTimeScopeAllTime;
              leaderboardRequest.range = NSMakeRange(1,1);
-             [leaderboardRequest loadScoresWithCompletionHandler: ^(NSArray *playerScores, NSError *error)
+             [leaderboardRequest loadScoresWithCompletionHandler: ^(NSArray *playerScores, NSError *error) 
               {
                   if (error != nil)
                   {
@@ -303,6 +306,10 @@ static DDGameKitHelper *instanceOfGameKitHelper;
                   if ([playerScores count] > 0)
                       gcScore = [playerScores objectAtIndex:0];
                   GKScore* localScore = [scores objectForKey:category];
+                  
+                  //Must add the next two lines in order to prevent a 'A GKScore must contain an initialized value' crash
+                  GKScore *toReport = [[[GKScore alloc] initWithCategory:category] autorelease];
+                  toReport.value = localScore.value;
                   
                   if (gcScore == nil && localScore == nil)
                   {
@@ -325,7 +332,7 @@ static DDGameKitHelper *instanceOfGameKitHelper;
                   else if ([delegate compare:localScore.value to:gcScore.value])
                   {
                       NSLog(@"%@(%lld,%lld): local score more current than gc score. reporting local score", category, gcScore.value, localScore.value);
-                      [localScore reportScoreWithCompletionHandler:^(NSError* error) {}];
+                      [toReport reportScoreWithCompletionHandler:^(NSError* error) {}];
                   }
                   
                   else if ([delegate compare:gcScore.value to:localScore.value])
@@ -362,7 +369,7 @@ static DDGameKitHelper *instanceOfGameKitHelper;
          
          // convert NSArray into NSDictionary for ease of use
          NSMutableDictionary *gcAchievements = [[NSMutableDictionary alloc] init];
-         for (GKAchievement* gcAchievement in gcAchievementsArray)
+         for (GKAchievement* gcAchievement in gcAchievementsArray) 
          {
              [gcAchievements setObject:gcAchievement forKey:gcAchievement.identifier];
          }
@@ -397,30 +404,24 @@ static DDGameKitHelper *instanceOfGameKitHelper;
 
 -(void) submitScore:(int64_t)value category:(NSString*)category
 {
-    if (!scores)           // this line and the following were added by me!
-        [self initScores]; //
     if (isGameCenterAvailable == NO)
         return;
     
     // always report the new score
     NSLog(@"reporting score of %lld for %@", value, category);
     GKScore* newScore = [[GKScore alloc] initWithCategory:category];
-    [newScore retain];
-    
     newScore.value = value;
-    [newScore reportScoreWithCompletionHandler:^(NSError* error)
+    [newScore reportScoreWithCompletionHandler:^(NSError* error) 
      {
          // if it's better than the previous score, then save it and notify the user
          GKScore* score = [self getScoreByCategory:category];
-        // int64_t value = score.value+1; //added this
          if ([delegate compare:value to:score.value])
          {
-             NSLog(@"new high score of %lld to replace the old score of: %lld. Category: %@", value, score.value, category);
+             NSLog(@"new high score of %lld for %@", score.value, category);
              score.value = value;
              [self saveScores];
              [delegate onSubmitScore:value];
          }
-         [newScore release]; //added by me
      }];
     
     [newScore release];
@@ -476,7 +477,7 @@ static DDGameKitHelper *instanceOfGameKitHelper;
 {
     NSLog(@"loading achievement descriptions");
     
-    [GKAchievementDescription loadAchievementDescriptionsWithCompletionHandler:^(NSArray *achievementDesc, NSError *error)
+    [GKAchievementDescription loadAchievementDescriptionsWithCompletionHandler:^(NSArray *achievementDesc, NSError *error) 
      {
          achievementDescriptions = [[NSMutableDictionary alloc] init];
          
@@ -486,9 +487,9 @@ static DDGameKitHelper *instanceOfGameKitHelper;
              return;
          }
          
-         for (GKAchievementDescription *description in achievementDesc)
+         for (GKAchievementDescription *description in achievementDesc) 
          {
-             [achievementDescriptions setObject:description forKey:description.identifier];
+             [achievementDescriptions setObject:description forKey:description.identifier];    
          }
          
          NSLog(@"achievement descriptions initialized: %d", achievementDescriptions.count);
@@ -498,7 +499,7 @@ static DDGameKitHelper *instanceOfGameKitHelper;
 -(GKAchievementDescription*) getAchievementDescription:(NSString*)identifier
 {
     GKAchievementDescription* description = [achievementDescriptions objectForKey:identifier];
-    return description;
+    return description;    
 }
 
 -(void) resetAchievements
@@ -513,6 +514,7 @@ static DDGameKitHelper *instanceOfGameKitHelper;
     
     NSLog(@"achievements reset");
 }
+
 
 -(UIViewController*) getRootViewController
 {
@@ -529,7 +531,39 @@ static DDGameKitHelper *instanceOfGameKitHelper;
 -(void) dismissModalViewController
 {
     UIViewController* rootVC = [self getRootViewController];
+    
     [rootVC dismissModalViewControllerAnimated:YES];
+}
+
+-(void) showGameCenter
+{
+    if (isGameCenterAvailable == NO)
+    {
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Center" message:@"Game Center is not available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil, nil];
+      [alert show];
+      [alert release];
+      
+      return;
+    }
+  
+    if ([GKGameCenterViewController class])
+    {
+        GKGameCenterViewController *gameCenterController = [[[GKGameCenterViewController alloc] init] autorelease];
+        if (gameCenterController != nil)
+        {
+            gameCenterController.gameCenterDelegate = self;
+            [self presentViewController:gameCenterController];
+        }
+    }
+    else
+    {
+        [self showLeaderboard];
+    }
+}
+
+- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
+{
+    [self dismissModalViewController];
 }
 
 -(void) showLeaderboard
@@ -551,7 +585,7 @@ static DDGameKitHelper *instanceOfGameKitHelper;
     }
 }
 
--(void) showLeaderboardwithCategory:(NSString*)category timeScope:(int)tscope
+-(void) showLeaderboardwithCategory:(NSString*)category timeScope:(int)tscope 
 {
     if (isGameCenterAvailable == NO)
     {
@@ -569,7 +603,7 @@ static DDGameKitHelper *instanceOfGameKitHelper;
         leaderboardVC.category = category;
         leaderboardVC.timeScope = tscope;
         [self presentViewController:leaderboardVC];
-    }
+    }  
 }
 
 -(void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController*)viewController

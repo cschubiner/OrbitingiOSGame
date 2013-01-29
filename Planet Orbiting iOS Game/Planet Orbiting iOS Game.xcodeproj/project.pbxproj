@@ -287,6 +287,8 @@
 		0C487AFB159471E000674AB9 /* CameraObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487AFA159471E000674AB9 /* CameraObject.m */; };
 		0C487B051594739600674AB9 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B041594739600674AB9 /* Player.m */; };
 		0C487B0E1594792C00674AB9 /* Planet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B0D1594792C00674AB9 /* Planet.m */; };
+		0C489D2816B77CD000CCFF11 /* DDGameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C489D2516B77CD000CCFF11 /* DDGameKitHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0C489D2916B77CD000CCFF11 /* DDGameKitHelperDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C489D2716B77CD000CCFF11 /* DDGameKitHelperDelegate.m */; };
 		0C49E19015C0FE44007957E9 /* thrustParticle3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */; };
 		0C5F4EE515E6006E00075F36 /* LoadingLayerCCB.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F4EE415E6006E00075F36 /* LoadingLayerCCB.ccb */; };
 		0C60EC5A15CB8C42005FE434 /* Galaxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C60EC5915CB8C42005FE434 /* Galaxy.m */; };
@@ -380,8 +382,6 @@
 		0CF3349216B53C6100758C08 /* KCVideoTracker.mom in Resources */ = {isa = PBXBuildFile; fileRef = 0CF3348716B53C6100758C08 /* KCVideoTracker.mom */; };
 		0CF3349316B53C6100758C08 /* VersionInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CF3348816B53C6100758C08 /* VersionInfo.plist */; };
 		0CFB823915AE733800EADAF3 /* SWOOSH.WAV in Resources */ = {isa = PBXBuildFile; fileRef = 0CFB823815AE733800EADAF3 /* SWOOSH.WAV */; };
-		C43F5E6C15C70352003BDF73 /* DDGameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C43F5E6415C70352003BDF73 /* DDGameKitHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		C43F5E6E15C70352003BDF73 /* DDGameKitHelperDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43F5E6915C70352003BDF73 /* DDGameKitHelperDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C43F5E7315C7043F003BDF73 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C43F5E7215C7043F003BDF73 /* GameKit.framework */; };
 		C43F5E7F15C7053F003BDF73 /* gk-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C43F5E7915C7053F003BDF73 /* gk-icon.png */; };
 		C43F5E8015C7053F003BDF73 /* gk-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C43F5E7A15C7053F003BDF73 /* gk-icon@2x.png */; };
@@ -1013,6 +1013,10 @@
 		0C487B041594739600674AB9 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		0C487B0C1594792C00674AB9 /* Planet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Planet.h; sourceTree = "<group>"; };
 		0C487B0D1594792C00674AB9 /* Planet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Planet.m; sourceTree = "<group>"; };
+		0C489D2416B77CD000CCFF11 /* DDGameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGameKitHelper.h; sourceTree = "<group>"; };
+		0C489D2516B77CD000CCFF11 /* DDGameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDGameKitHelper.m; sourceTree = "<group>"; };
+		0C489D2616B77CD000CCFF11 /* DDGameKitHelperDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGameKitHelperDelegate.h; sourceTree = "<group>"; };
+		0C489D2716B77CD000CCFF11 /* DDGameKitHelperDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDGameKitHelperDelegate.m; sourceTree = "<group>"; };
 		0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = thrustParticle3.plist; sourceTree = "<group>"; };
 		0C5F4EE415E6006E00075F36 /* LoadingLayerCCB.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LoadingLayerCCB.ccb; sourceTree = "<group>"; };
 		0C60EC5815CB8C42005FE434 /* Galaxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Galaxy.h; sourceTree = "<group>"; };
@@ -1117,10 +1121,6 @@
 		0CFB823815AE733800EADAF3 /* SWOOSH.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SWOOSH.WAV; sourceTree = "<group>"; };
 		C4286D4215C3747F00773FA3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		C4286D4415C3748300773FA3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
-		C43F5E6415C70352003BDF73 /* DDGameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDGameKitHelper.m; sourceTree = "<group>"; };
-		C43F5E6515C70352003BDF73 /* DDGameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGameKitHelper.h; sourceTree = "<group>"; };
-		C43F5E6815C70352003BDF73 /* DDGameKitHelperDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGameKitHelperDelegate.h; sourceTree = "<group>"; };
-		C43F5E6915C70352003BDF73 /* DDGameKitHelperDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDGameKitHelperDelegate.m; sourceTree = "<group>"; };
 		C43F5E7215C7043F003BDF73 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		C43F5E7915C7053F003BDF73 /* gk-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gk-icon.png"; sourceTree = "<group>"; };
 		C43F5E7A15C7053F003BDF73 /* gk-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gk-icon@2x.png"; sourceTree = "<group>"; };
@@ -2277,10 +2277,10 @@
 		C43F5E7115C70356003BDF73 /* Achievements and Online Highscores */ = {
 			isa = PBXGroup;
 			children = (
-				C43F5E6415C70352003BDF73 /* DDGameKitHelper.m */,
-				C43F5E6515C70352003BDF73 /* DDGameKitHelper.h */,
-				C43F5E6815C70352003BDF73 /* DDGameKitHelperDelegate.h */,
-				C43F5E6915C70352003BDF73 /* DDGameKitHelperDelegate.m */,
+				0C489D2416B77CD000CCFF11 /* DDGameKitHelper.h */,
+				0C489D2516B77CD000CCFF11 /* DDGameKitHelper.m */,
+				0C489D2616B77CD000CCFF11 /* DDGameKitHelperDelegate.h */,
+				0C489D2716B77CD000CCFF11 /* DDGameKitHelperDelegate.m */,
 				C43F5E8315C70589003BDF73 /* GKAchievementHandler.h */,
 				C43F5E8415C70589003BDF73 /* GKAchievementHandler.m */,
 				C43F5E8515C70589003BDF73 /* GKAchievementNotification.h */,
@@ -3166,8 +3166,6 @@
 				01FE9B3C15BFC2C9007512ED /* PlayerStats.m in Sources */,
 				0C48319115BFEB4E00311FB1 /* LevelObjectReturner.m in Sources */,
 				FA895CDB15C525B400FA4EC3 /* Light.m in Sources */,
-				C43F5E6C15C70352003BDF73 /* DDGameKitHelper.m in Sources */,
-				C43F5E6E15C70352003BDF73 /* DDGameKitHelperDelegate.m in Sources */,
 				C43F5E8715C70589003BDF73 /* GKAchievementHandler.m in Sources */,
 				C43F5E8815C70589003BDF73 /* GKAchievementNotification.m in Sources */,
 				0C60EC5A15CB8C42005FE434 /* Galaxy.m in Sources */,
@@ -3296,6 +3294,8 @@
 				0C309D1C160FD21D001C2EA8 /* DeviceDetection.m in Sources */,
 				0C16BB66169EEC2400F20044 /* iRate.m in Sources */,
 				FAD84E6116A65D9D0010F996 /* GameOverLayer.m in Sources */,
+				0C489D2816B77CD000CCFF11 /* DDGameKitHelper.m in Sources */,
+				0C489D2916B77CD000CCFF11 /* DDGameKitHelperDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

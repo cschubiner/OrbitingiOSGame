@@ -192,8 +192,10 @@
   
     //YEAHH TRY AND CATCHHHHH <3
     @try {
+        if ([[DDGameKitHelper sharedGameKitHelper]isLocalPlayerAuthenticated]==false)
+            [[DDGameKitHelper sharedGameKitHelper]authenticateLocalPlayer];
+        else
         [[DDGameKitHelper sharedGameKitHelper]showLeaderboard];
-
     }
     @catch (NSException *exception) {
         
