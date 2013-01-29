@@ -84,7 +84,7 @@
     NSMutableArray *upgradeCodes = [defaults objectForKey:@"upgradeCodes"];
     
     int hasWatchedVideo = [defaults integerForKey:@"hasWatchedVideo"];
-    [[PlayerStats sharedInstance] setHasWatchedVideo:numPlays];
+    [[PlayerStats sharedInstance] setHasWatchedVideo:hasWatchedVideo];
     
 
     [[UserWallet sharedInstance] setBalance:coins];
