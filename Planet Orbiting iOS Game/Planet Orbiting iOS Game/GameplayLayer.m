@@ -2730,7 +2730,7 @@ typedef struct {
     
     
     
-    if (numCoinsDisplayed >= 500)
+    if (numCoinsDisplayed >= 550)
         [self completeObjectiveFromGroupNumber:12 itemNumber:1];
     
     if (score >= 90000)
@@ -2738,7 +2738,7 @@ typedef struct {
     
     
     
-    if (numCoinsDisplayed >= 600)
+    if (numCoinsDisplayed >= 750)
         [self completeObjectiveFromGroupNumber:13 itemNumber:1];
     
     if (score >= 150000)
@@ -2746,7 +2746,7 @@ typedef struct {
     
     
     
-    if (numCoinsDisplayed >= 800)
+    if (numCoinsDisplayed >= 1000)
         [self completeObjectiveFromGroupNumber:14 itemNumber:1];
     
     if (score >= 170000)
@@ -2757,7 +2757,7 @@ typedef struct {
     if (numCoinsDisplayed >= 2500)
         [self completeObjectiveFromGroupNumber:15 itemNumber:1];
     
-    if (score >= 200000)
+    if (score >= 235000)
         [self completeObjectiveFromGroupNumber:15 itemNumber:2];
     
 }
