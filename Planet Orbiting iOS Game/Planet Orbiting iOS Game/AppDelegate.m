@@ -157,7 +157,8 @@
              developerSecret:@"prcU7MltdajQ1YVTSeFDtPtywe2zABOmzzpSB5pGP79"
                      appName:@"Star Stream"];
 
-  //  [Kamcord setEnableSynchronousConversionUI:YES alwaysShowProgressBar:YES];
+    if ([DeviceDetection detectDevice]==MODEL_IPHONE_4)
+          [Kamcord setEnableSynchronousConversionUI:YES alwaysShowProgressBar:YES];
  //   [Kamcord setVideoResolution:TRAILER_VIDEO_RESOLUTION]; //leave this disabled!!
 	
 	// make main window visible
