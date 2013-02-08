@@ -269,6 +269,8 @@ void SignalHandler(int sig) {
 {
 	if( [navController_ visibleViewController] == director_ )
 		[director_ pause];
+    
+     [Kamcord pause];
 }
 
 // call got rejected
