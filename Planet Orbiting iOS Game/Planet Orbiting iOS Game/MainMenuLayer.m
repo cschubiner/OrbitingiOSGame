@@ -92,8 +92,8 @@ const float effectsVolumeMainMenu = 1;
         if (swipeBeginPoint.y >= 40 && objectivesButton.isEnabled && beginLabel.visible) {
             
             if ([[iRate sharedInstance]eventCount] >= 12 && [[PlayerStats sharedInstance] hasWatchedVideo] == 0) {
-                UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"New Player Tutorial"
-                                                                  message:@"We see you're new to Star Stream. Would you like to watch the trailer to see how a pro plays? It'll help a lot!"
+                UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Star Stream Tutorial"
+                                                                  message:@"We see you're getting into Star Stream. Would you like to watch the trailer to see how a pro plays? It'll improve your performance a lot!"
                                                                  delegate:self
                                                         cancelButtonTitle:@"Play Game"
                                                         otherButtonTitles:@"Watch Video",nil];

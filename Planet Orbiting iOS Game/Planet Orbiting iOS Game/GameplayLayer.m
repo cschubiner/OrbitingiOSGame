@@ -1107,7 +1107,7 @@ typedef struct {
     
     if (numTimesSwiped >= 4 && isInTutorialMode) {
         if ([self checkShouldDisplayTextForVar:hasDiplayedCoinText]) {
-            [self pauseWithDuration:5.5 message:@"You just picked up a star! Stars increase your score and you can use them in the shop to buy awesome new spaceships, upgrades, perks, and more!"];
+            [self pauseWithDuration:4.5 message:@"You just picked up a star! Stars increase your score and you can use them in the shop to buy awesome new spaceships, upgrades, perks, and more!"];
             hasDiplayedCoinText = true;
         }
     }
@@ -1497,7 +1497,7 @@ typedef struct {
                                 [self createPredPointsFrom:player.sprite.position to:targetForPred withColor:ccWHITE andRemoveOldLine:true];
                                 
                                 if ([self checkShouldDisplayTextForVar:hasDiplayedArrowText] && isInTutorialMode) {
-                                    [self pauseWithDuration:6 message:@"See that arrow that just popped up? It's telling you which side of the planet you swiped towards. You'll fly towards whichever side it points to."];
+                                    [self pauseWithDuration:4.5 message:@"See that arrow that just popped up? It's telling you which side of the planet you swiped towards. You'll fly towards whichever side it points to."];
                                     hasDiplayedArrowText = true;
                                 }
                                 
@@ -2857,7 +2857,7 @@ typedef struct {
         
         if (targetPlanet.number >= 10 && isInTutorialMode) {
             if ([self checkShouldDisplayTextForVar:hasDiplayedBatteryText]) {
-                [self pauseWithDuration:5 message:@"Look at the battery in the lower-left of the \nscreen. You die when it runs out! \nThe battery recharges upon entering new galaxies!"];
+                [self pauseWithDuration:4 message:@"Look at the battery in the lower-left of the \nscreen. You die when it runs out! \nThe battery recharges upon entering new galaxies!"];
                 hasDiplayedBatteryText = true;
             }
         }
