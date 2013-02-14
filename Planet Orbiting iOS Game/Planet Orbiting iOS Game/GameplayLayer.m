@@ -1112,8 +1112,6 @@ typedef struct {
         return false;
 }
 
-
-
 - (void)UserTouchedCoin: (Coin*)coin dt:(float)dt{
     
     if (numTimesSwiped >= 4 && isInTutorialMode) {
