@@ -123,13 +123,13 @@ const float deathAfterThisLong = 55*1.35f*1.1f*1.5f*1*2*.9*2*2;
 const float initialTimeDilation = .8*.89;
 
 //increase to make timeDilationFactor decrease more rapidly
-const float timeDilationReduceRate = .0005;
+const float timeDilationReduceRate = .0005*.98;
 
 //1 means you lose no speed when you die, 0 means you lose it all
 const float factorToScaleTimeDilationByOnDeath = .96;
 
 //increase to increase timeDilationFactor by a larger amount everytime you get to a new zone
-const float timeDilationIncreaseRate = .047*.8*1.5*.98;
+const float timeDilationIncreaseRate = .047*.8*1.5;
 
 const float timeDilationFeverModeMultiplier = 1.05;
 
@@ -137,7 +137,7 @@ const float timeDilationFeverModeMultiplier = 1.05;
 //THIS IS NOW IN UPGRADE VALUES const float absoluteMinTimeDilation = .85;
 
 //the highest the time dilation factor can go. this should probZ just be infinity. bitches will has c slow down if they're going too fast
-const float absoluteMaxTimeDilation = initialTimeDilation*1.7;
+const float absoluteMaxTimeDilation = initialTimeDilation*1.8;
 
 //----------------------------------------------------------------------------------------------------------
 

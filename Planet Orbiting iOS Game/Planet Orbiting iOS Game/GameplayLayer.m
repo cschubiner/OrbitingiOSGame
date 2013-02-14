@@ -1063,15 +1063,16 @@ typedef struct {
     if (!loading_playerHasReachedFirstPlanet)
         scale = .7f;
     
-   // NSLog(@"zoom: %f, VELOCITY: %f", scale, timeDilationCoefficient);
+    //NSLog(@"zoom: %f, time dilation coefficient: %f", scale, timeDilationCoefficient);
     
     const float lowerLimit = .8;
-    if (timeDilationCoefficient > lowerLimit) {
-        const float upperLimit = 1.4;
-        float valueToUse = (timeDilationCoefficient < upperLimit) ? timeDilationCoefficient : upperLimit;
-        scale *= -.7*(valueToUse - lowerLimit) + 1;
-     //   NSLog(@"MULTED BY: %f", -.7*(valueToUse - lowerLimit) + 1);
-    }
+    //    if (timeDilationCoefficient > lowerLimit) {
+    const float upperLimit = 1.3;
+    float valueToUse = (timeDilationCoefficient < upperLimit) ? timeDilationCoefficient : upperLimit;
+    const float scaleMulter = -.65*(valueToUse - lowerLimit) + 1.05;
+    scale *= scaleMulter;
+    //NSLog(@"MULTED BY: %f", scaleMulter);
+    //    }
     
     //  if (fabsf(scale-cameraLayer.scale)<.06) //jerky camera scaling
     //    scale = cameraLayer.scale;
@@ -1117,7 +1118,7 @@ typedef struct {
     
     if (numTimesSwiped >= 4 && isInTutorialMode) {
         if ([self checkShouldDisplayTextForVar:hasDiplayedCoinText]) {
-            [self pauseWithDuration:4.5 message:@"You just picked up a star! Stars increase your score and you can use them in the shop to buy awesome new spaceships, upgrades, perks, and more!"];
+            [self pauseWithDuration:4.0 message:@"You just picked up a star! Stars increase your score and you can use them in the shop to buy awesome new spaceships, upgrades, perks, and more!"];
             hasDiplayedCoinText = true;
         }
     }
@@ -1507,7 +1508,7 @@ typedef struct {
                                 [self createPredPointsFrom:player.sprite.position to:targetForPred withColor:ccWHITE andRemoveOldLine:true];
                                 
                                 if ([self checkShouldDisplayTextForVar:hasDiplayedArrowText] && isInTutorialMode) {
-                                    [self pauseWithDuration:4.5 message:@"See that arrow that just popped up? It's telling you which side of the planet you swiped towards. You'll fly towards whichever side it points to."];
+                                    [self pauseWithDuration:4.0 message:@"See that arrow that just popped up? It's telling you which side of the planet you swiped towards. You'll fly towards whichever side it points to."];
                                     hasDiplayedArrowText = true;
                                 }
                                 
@@ -2867,7 +2868,7 @@ typedef struct {
         
         if (targetPlanet.number >= 10 && isInTutorialMode) {
             if ([self checkShouldDisplayTextForVar:hasDiplayedBatteryText]) {
-                [self pauseWithDuration:4 message:@"Look at the battery in the lower-left of the \nscreen. You die when it runs out! \nThe battery recharges upon entering new galaxies!"];
+                [self pauseWithDuration:3.5 message:@"Look at the battery in the lower-left of the \nscreen. You die when it runs out! \nThe battery recharges upon entering new galaxies!"];
                 hasDiplayedBatteryText = true;
             }
         }
