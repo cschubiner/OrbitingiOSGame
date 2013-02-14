@@ -1063,6 +1063,16 @@ typedef struct {
     if (!loading_playerHasReachedFirstPlanet)
         scale = .7f;
     
+    NSLog(@"zoom: %f, VELOCITY: %f", scale, timeDilationCoefficient);
+    
+    const float lowerLimit = .8;
+    if (timeDilationCoefficient > lowerLimit) {
+        const float upperLimit = 1.4;
+        float valueToUse = (timeDilationCoefficient < upperLimit) ? timeDilationCoefficient : upperLimit;
+        scale *= -.7*(valueToUse - lowerLimit) + 1;
+        NSLog(@"MULTED BY: %f", -.7*(valueToUse - lowerLimit) + 1);
+    }
+    
     //  if (fabsf(scale-cameraLayer.scale)<.06) //jerky camera scaling
     //    scale = cameraLayer.scale;
     //else scale = lerpf(cameraLayer.scale, scale, .1);
