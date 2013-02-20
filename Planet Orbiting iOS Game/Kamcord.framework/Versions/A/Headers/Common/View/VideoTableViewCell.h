@@ -54,6 +54,9 @@ typedef struct
 //@property (nonatomic, retain) UIButton *    likeButton;	
 @property (atomic, assign)  KCLayout *layout;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier xOffset:(int)xOffset;
+- (id)initWithStyle:(UITableViewCellStyle)style
+    reuseIdentifier:(NSString *)reuseIdentifier
+            xOffset:(int)xOffset
+            forUser:(BOOL)forUser;
 
 @end

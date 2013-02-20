@@ -19,6 +19,7 @@
 @property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) VideoTableViewCell *internalCell;
 @property (nonatomic, retain) UIButton *closeButton;
+@property (nonatomic, retain) UIButton *retryButton;
 
 - (id)initWithFrame:(CGRect) frame
               video:(KCVideo *)video;

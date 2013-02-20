@@ -15,6 +15,7 @@
 
 // Called when the Kamcord view appears and disappears
 - (void)mainViewDidAppear;
+- (void)mainViewWillDisappear;
 - (void)mainViewDidDisappear;
 
 // Called when the movie player appears and disappears
@@ -51,7 +52,8 @@
 - (void)videoWillUploadToURL:(NSString *)kamcordURLString;
 
 // Called when the video has finished uploading
-- (void)videoFinishedUploadingWithSuccess:(BOOL)success;
+- (void)videoFinishedUploadingWithSuccess:(BOOL)success
+                           kamcordVideoID:(NSString *)videoID;
 
 @end
 

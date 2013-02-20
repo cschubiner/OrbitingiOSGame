@@ -204,8 +204,14 @@ typedef enum
 @property (nonatomic, copy) NSString * onlineVideoBucketName;
 @property (nonatomic, copy) NSString * onlineThumbnailBucketName;
 
-@property (nonatomic, retain) NSURL * onlineKamcordVideoURL;
+@property (nonatomic, copy) NSString * onlineVideoTitle;
+@property (nonatomic, copy) NSString * onlineVideoApplicationId;
+@property (nonatomic, copy) NSString * onlineVideoApplicationName;
+@property (nonatomic, copy) NSString * onlineVideoAddedAt;
+
+@property (nonatomic, retain) NSURL * onlineKamcordWatchPageURL;
 @property (nonatomic, retain) NSURL * onlineKamcordThumbnailURL;
+@property (nonatomic, retain) NSURL * onlineKamcordExpectedVideoURL;
 
 // This is probably the solution to our Youtube problem
 @property (nonatomic, retain) NSURL * onlineYouTubeVideoURL;
@@ -224,14 +230,10 @@ typedef enum
 @property (nonatomic, assign) BOOL deleted;
 @property (nonatomic, assign) BOOL markAsDoNotConvert;
 
-
-
 // List of sharing tasks
 @property (readonly, nonatomic, retain) NSMutableArray * pendingTasks;
 @property (readonly, nonatomic, retain) NSMutableArray * activeTasks;
 @property (readonly, nonatomic, retain) NSMutableArray * finishedTasks;
-
-
 
 // The managed object context that we use to store video state.
 @property (nonatomic, assign) NSPersistentStoreCoordinator * persistentStoreCoordinator;
@@ -288,6 +290,13 @@ persistentStoreCoordinator:(NSPersistentStoreCoordinator *)persistentStoreCoordi
 - (void)taskFinished:(KCVideoSharingTask *)shareTask
                error:(NSError *)error;
 
+// Goes through all active tasks and will retry them
+// if they've failed. These are the tasks that
+// did not succeed and are queued for future retries.
+//
+// Returns the number of active tasks that were actually
+// added for retrying.
+- (NSUInteger)retryFailedActiveTasks;
 
 // Erases all video files associated with this video
 - (void)dealloc;

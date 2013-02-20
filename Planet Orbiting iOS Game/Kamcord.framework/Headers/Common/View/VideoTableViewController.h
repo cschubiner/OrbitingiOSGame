@@ -42,6 +42,7 @@
 #import "KCVideo.h"
 #import "../Core/KCShareDelegateIntermediary.h"
 #import "KCProgressUIView.h"
+#import "KCMoviePlayerViewController.h"
 
 @interface VideoEntity : NSObject
 
@@ -57,7 +58,7 @@
 
 @end
 
-@interface KCMPMoviePlayerViewController : MPMoviePlayerViewController
+@interface KCMPMoviePlayerViewController : KCMoviePlayerViewController
 
 @property (nonatomic, assign) int appId;
 @property (nonatomic, copy) NSString * videoId;
@@ -78,6 +79,7 @@
 @property (nonatomic, retain) UIActivityIndicatorView * refreshSpinner;
 
 @property (nonatomic, retain) NSMutableArray * videoEntities;
+@property (nonatomic, retain) VideoEntity * userVideo;
 @property (nonatomic, retain) NSMutableData * httpResponseData;
 @property (nonatomic, retain) KCMPMoviePlayerViewController * player;
 @property (nonatomic, retain) NSDateFormatter * dateFormatter;

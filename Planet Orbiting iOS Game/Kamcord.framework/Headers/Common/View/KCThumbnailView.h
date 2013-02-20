@@ -12,6 +12,7 @@
 @interface KCThumbnailView : UIView
 
 - (id)initWithWidth:(int)width
+             height:(int)height
      viewController:(UIViewController *) viewController
           withVideo:(KCVideo *)activeVideo;
 

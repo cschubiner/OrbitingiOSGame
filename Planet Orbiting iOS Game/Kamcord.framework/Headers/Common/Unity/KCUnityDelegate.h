@@ -52,6 +52,7 @@
 - (void)videoWillUploadToURL:(NSString *)kamcordURLString;
 
 // Called when the video has finished uploading
-- (void)videoFinishedUploadingWithSuccess:(BOOL)success;
+- (void)videoFinishedUploadingWithSuccess:(BOOL)success
+                           kamcordVideoID:(NSString *)videoID;
 
 @end

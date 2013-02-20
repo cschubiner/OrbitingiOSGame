@@ -12,7 +12,7 @@
 
 @class KCVideo;
 
-@interface KC_BaseView : UINavigationController <KCVideoProcessDelegate, UITabBarControllerDelegate>
+@interface KC_BaseView : UINavigationController <KCVideoProcessDelegate, UITabBarControllerDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, retain) KCVideo * latestVideo;
 @property (nonatomic, retain) UITabBarController * tabBarController;
@@ -22,4 +22,7 @@
 
 - (void)doneTapped;
 - (void)setSelectedTab:(NSUInteger)index;
+- (void)userStartedShareProcess;
+- (void)disableTabBarItems;
+- (void)enableTabBarItems;
 @end

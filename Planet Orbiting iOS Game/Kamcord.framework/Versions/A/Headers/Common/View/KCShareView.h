@@ -20,6 +20,8 @@
 - (void)dismissView;
 - (void)setParentTabViewController:(KC_BaseView *)parentViewController;
 - (void)shareButtonPressed:(id)sender;
+- (void)conversionFinished;
+- (void)updateConversionProgress:(float)progress;
 
 + (void)roundCornersAndAddShadow:(UIView*)viewComponent;
 + (void)addShadowAbove:(UIView*)viewComponent;

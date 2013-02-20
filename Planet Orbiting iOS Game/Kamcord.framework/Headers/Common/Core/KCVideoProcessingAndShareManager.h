@@ -122,6 +122,11 @@ typedef enum
 - (void)resumeTasks;
 - (void)cancelAllActiveTasksAndPause;
 
+// Moves this list of KCVideoSharingTasks to the front of the retry queue.
+// Returns the number of tasks moved.
+- (NSUInteger)moveTasksToFrontOfRetryQueue:(NSArray *)tasks;
+- (void)processRetryQueue:(BOOL)requireWiFi;
+
 // Are there any active or pending tasks?
 // I don't care if it's a video converison, share, or pending share.
 - (BOOL)hasActiveOrPendingTasks;

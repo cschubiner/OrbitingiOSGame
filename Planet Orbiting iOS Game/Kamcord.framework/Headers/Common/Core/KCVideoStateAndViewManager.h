@@ -54,6 +54,7 @@
 - (void)showViewInViewController:(UIViewController *)parentViewController
                       useOldView:(BOOL)oldView;
 - (UIView *) getThumbnailView:(NSUInteger)width
+                       height:(NSUInteger)height
          parentViewController:(UIViewController *)parentViewController;
 
 - (BOOL)cancelConversionForLatestVideo;
@@ -61,7 +62,7 @@
 // Video
 - (BOOL)beginVideoForce:(BOOL)force;
 - (BOOL)endVideo;
-
+- (BOOL)endVideoAndDiscardVideo;
 - (BOOL)endVideoAndAddSounds:(NSArray *)sounds;
 
 - (BOOL)startRecording;

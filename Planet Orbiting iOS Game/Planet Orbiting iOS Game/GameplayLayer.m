@@ -66,6 +66,8 @@
     int numTimesSwiped;
     int numTimesDied;
     int coinsAtLastGalaxy;
+    float timeSinceShowViewWasCalled;
+    bool kamcordAppearedYay ;
     
     CCLayer *layerToAdd;
     
@@ -92,6 +94,70 @@ typedef struct {
     
 	// return the scene.
 	return scene;
+}
+
+
+
+-(void)mainViewDidAppear{
+    if (kamcordAppearedYay)
+        return;
+    timeSinceShowViewWasCalled = -1;
+    kamcordAppearedYay = true;
+    @try {
+        [self unschedule:@selector(showViewChecker:)];
+    }
+    @catch (NSException *exception) {
+        
+    }
+}
+
+-(void)mainViewDidDisappear{
+    if (kamcordAppearedYay)
+        return;
+    timeSinceShowViewWasCalled = -1;
+    kamcordAppearedYay = true;
+    @try {
+        [self unschedule:@selector(showViewChecker:)];
+    }
+    @catch (NSException *exception) {
+        
+    }}
+
+-(void)mainViewWillDisappear{
+    if (kamcordAppearedYay)
+        return;
+    timeSinceShowViewWasCalled = -1;
+    kamcordAppearedYay = true;
+    @try {
+        [self unschedule:@selector(showViewChecker:)];
+    }
+    @catch (NSException *exception) {
+        
+    }
+
+}
+
+-(void)showViewChecker:(float) dt{
+    if (timeSinceShowViewWasCalled != -1)
+        timeSinceShowViewWasCalled += dt;
+    
+    if (timeSinceShowViewWasCalled > 2.5 && kamcordAppearedYay == false){
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Kamcord Error"
+                              message: @"We're sorry, Kamcord failed to record your video. Force close your app to re-enable Kamcord functionality."
+                              delegate: self
+                              cancelButtonTitle:@"Dismiss"
+                              otherButtonTitles:nil];
+        [alert show];
+        @try {
+            [self unschedule:@selector(showViewChecker:)];
+        }
+        @catch (NSException *exception) {
+            
+        }
+        timeSinceShowViewWasCalled = 0;
+        kamcordAppearedYay = true;
+    }
 }
 
 
@@ -454,7 +520,8 @@ typedef struct {
     [self addChild:cameraLayer];
     [self addChild:hudLayer];
     [self addChild:layerHudSlider];
-    
+    kamcordAppearedYay = false;
+    timeSinceShowViewWasCalled = 0;
     
     [self reorderChild:loadingLayer z:30];
     id removeLoadingLayer = [CCCallBlock actionWithBlock:(^{
@@ -2391,6 +2458,7 @@ typedef struct {
     [Kamcord setLevel:[NSString stringWithFormat:@"Galaxy %d",currentGalaxy.number+1] score:[NSNumber numberWithInt:finalScore]];
     [Kamcord setFacebookTitle:@"Star Stream Gameplay" caption:[NSString stringWithFormat:@"Score: %d points. Reached galaxy: %d",finalScore,currentGalaxy.number+1] description:[NSString stringWithFormat:@"My awesome round of Star Stream. I reached a score of %d and reached galaxy %d!",finalScore,currentGalaxy.number+1]];
     [Kamcord setShareDelegate:self];
+    [Kamcord setDelegate:self];
     //[Kamcord setEnableSynchronousConversionUI:YES alwaysShowProgressBar:YES];
   
     //finalScore = 69669;
@@ -3203,7 +3271,7 @@ float lerpf(float a, float b, float t) {
           [Kamcord stopRecording];
         if (kamcordStartedRecording)
     [Kamcord showView];
-        
+    [self schedule:@selector(showViewChecker:) interval:1.0/10.0f];
     }
     @catch (NSException *exception) {    }
  

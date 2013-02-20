@@ -8,11 +8,14 @@
 
 #import "KCAudioListener.h"
 
+@class KCVideoWriter;
+
 @interface KCAudioRecorder : NSObject <KCAudioListener>
 
 @property (nonatomic, retain) id <KCAudioListener> delegate;
 
 - (id)init;
+- (void)setASBDForAudioListener:(id <KCAudioListener>)audioListener;
 - (void)dealloc;
 
 @end
