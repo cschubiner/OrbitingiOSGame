@@ -147,6 +147,7 @@
 		0C2AB0B515BE8E43008822F1 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */; };
 		0C2AB0BB15BE8E54008822F1 /* UserWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2AB0B915BE8E54008822F1 /* UserWallet.m */; };
 		0C2DEF02159C20BE0018F0FA /* Zone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2DEF01159C20BE0018F0FA /* Zone.m */; };
+		0C2DF35A16D476AA00640E48 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2DF35916D476AA00640E48 /* libFlurry.a */; };
 		0C2E4D1315C4F70B00AB28FC /* pauseButton7-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2E4D0F15C4F70B00AB28FC /* pauseButton7-hd.png */; };
 		0C2E4D1415C4F70B00AB28FC /* pauseButton7.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2E4D1015C4F70B00AB28FC /* pauseButton7.png */; };
 		0C30961C160F984C001C2EA8 /* playercamo-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C30961A160F984C001C2EA8 /* playercamo-hd.png */; };
@@ -281,7 +282,6 @@
 		0C3999BE1699612600F92658 /* ratepressed-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C3999BA1699612600F92658 /* ratepressed-hd.png */; };
 		0C3999BF1699612600F92658 /* ratepressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C3999BB1699612600F92658 /* ratepressed.png */; };
 		0C3E902E15F5EB6C007205B1 /* HelveticaNeue-CondensedBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E902D15F5EB6C007205B1 /* HelveticaNeue-CondensedBold.ttf */; };
-		0C3F53D415BD3397009A5915 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3F53D315BD3397009A5915 /* libFlurry.a */; };
 		0C3F53D615BD3533009A5915 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3F53D515BD3533009A5915 /* SystemConfiguration.framework */; };
 		0C48319115BFEB4E00311FB1 /* LevelObjectReturner.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C48319015BFEB4E00311FB1 /* LevelObjectReturner.m */; };
 		0C487AF815946E2300674AB9 /* GameplayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487AF715946E2300674AB9 /* GameplayLayer.m */; };
@@ -736,6 +736,8 @@
 		0C2AB0B915BE8E54008822F1 /* UserWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserWallet.m; sourceTree = "<group>"; };
 		0C2DEF00159C20BE0018F0FA /* Zone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Zone.h; sourceTree = "<group>"; };
 		0C2DEF01159C20BE0018F0FA /* Zone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Zone.m; sourceTree = "<group>"; };
+		0C2DF35916D476AA00640E48 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
+		0C2DF35B16D476AF00640E48 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		0C2E4D0F15C4F70B00AB28FC /* pauseButton7-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pauseButton7-hd.png"; sourceTree = "<group>"; };
 		0C2E4D1015C4F70B00AB28FC /* pauseButton7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pauseButton7.png; sourceTree = "<group>"; };
 		0C30961A160F984C001C2EA8 /* playercamo-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playercamo-hd.png"; sourceTree = "<group>"; };
@@ -1002,8 +1004,6 @@
 		0C3999BA1699612600F92658 /* ratepressed-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ratepressed-hd.png"; sourceTree = "<group>"; };
 		0C3999BB1699612600F92658 /* ratepressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ratepressed.png; sourceTree = "<group>"; };
 		0C3E902D15F5EB6C007205B1 /* HelveticaNeue-CondensedBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HelveticaNeue-CondensedBold.ttf"; sourceTree = "<group>"; };
-		0C3F53D215BD3397009A5915 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
-		0C3F53D315BD3397009A5915 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		0C3F53D515BD3533009A5915 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0C48318F15BFEB4E00311FB1 /* LevelObjectReturner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelObjectReturner.h; sourceTree = "<group>"; };
 		0C48319015BFEB4E00311FB1 /* LevelObjectReturner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelObjectReturner.m; sourceTree = "<group>"; };
@@ -1377,8 +1377,8 @@
 				0C7AA5F915946939000B58F2 /* AudioToolbox.framework in Frameworks */,
 				0C7AA5FB15946939000B58F2 /* AVFoundation.framework in Frameworks */,
 				0C7AA5FF15946939000B58F2 /* Foundation.framework in Frameworks */,
-				0C3F53D415BD3397009A5915 /* libFlurry.a in Frameworks */,
 				0CF3348D16B53C6100758C08 /* Kamcord.framework in Frameworks */,
+				0C2DF35A16D476AA00640E48 /* libFlurry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1599,6 +1599,15 @@
 				0C16BB64169EEC2400F20044 /* iRate.m */,
 			);
 			name = iRate;
+			sourceTree = "<group>";
+		};
+		0C2DF35C16D4774800640E48 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				0C2DF35916D476AA00640E48 /* libFlurry.a */,
+				0C2DF35B16D476AF00640E48 /* Flurry.h */,
+			);
+			name = Flurry;
 			sourceTree = "<group>";
 		};
 		0C30978A160FAE6B001C2EA8 /* cocos2d */ = {
@@ -1949,15 +1958,6 @@
 			name = "Cocos2D 2.1 Beta 2";
 			sourceTree = "<group>";
 		};
-		0C3F53D115BD3397009A5915 /* Flurry */ = {
-			isa = PBXGroup;
-			children = (
-				0C3F53D215BD3397009A5915 /* Flurry.h */,
-				0C3F53D315BD3397009A5915 /* libFlurry.a */,
-			);
-			path = Flurry;
-			sourceTree = "<group>";
-		};
 		0C487AFC159471E800674AB9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -2045,6 +2045,7 @@
 		0C7AA5F115946939000B58F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C2DF35C16D4774800640E48 /* Flurry */,
 				0CF3349616B5400E00758C08 /* Kamcord */,
 				0CB11B1F16A57700005710E3 /* AdSupport.framework */,
 				FAD84E6316A6648C0010F996 /* ImageIO.framework */,
@@ -2111,7 +2112,6 @@
 				C445304D15A68888004F8F48 /* CocosBuilder  */,
 				C43F5E7115C70356003BDF73 /* Achievements and Online Highscores */,
 				012ED2ED15BB87C1008FDFBD /* Commerce */,
-				0C3F53D115BD3397009A5915 /* Flurry */,
 				0C7AA60315946939000B58F2 /* Resources */,
 				0C7AA7501594693C000B58F2 /* Supporting Files */,
 				FACE0CE415CB93B70055B5DF /* Powerups */,
@@ -3383,6 +3383,7 @@
 					"\"$(SRCROOT)/Planet Orbiting iOS Game/Flurry\"",
 					"\"$(SRCROOT)/external/SpiderMonkey/ios/lib\"",
 					"\"$(SRCROOT)/external/SpiderMonkey/osx/lib\"",
+					"\"$(SRCROOT)\"",
 				);
 				LLVM_LTO = NO;
 				"OTHER_CFLAGS[arch=armv6]" = "-mno-thumb";
@@ -3436,6 +3437,7 @@
 					"\"$(SRCROOT)/Planet Orbiting iOS Game/Flurry\"",
 					"\"$(SRCROOT)/external/SpiderMonkey/ios/lib\"",
 					"\"$(SRCROOT)/external/SpiderMonkey/osx/lib\"",
+					"\"$(SRCROOT)\"",
 				);
 				LLVM_LTO = NO;
 				"OTHER_CFLAGS[arch=armv6]" = (
