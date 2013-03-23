@@ -40,7 +40,7 @@
 #import "Support/OpenGL_Internal.h"
 
 #import "kazmath.h"
-#import "GL/matrix.h"
+#import "matrix.h"
 
 #ifdef __CC_PLATFORM_IOS
 #import "Platforms/iOS/CCDirectorIOS.h"
