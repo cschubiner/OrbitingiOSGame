@@ -47,7 +47,7 @@
 #endif
 
 // extern
-#import "GL/matrix.h"
+#import "matrix.h"
 
 #pragma mark -
 #pragma mark Layer

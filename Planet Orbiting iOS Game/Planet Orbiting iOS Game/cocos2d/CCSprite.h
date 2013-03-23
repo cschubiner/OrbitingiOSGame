@@ -149,6 +149,9 @@
 @property (nonatomic,readonly) CGPoint	offsetPosition;
 /** conforms to CCTextureProtocol protocol */
 @property (nonatomic,readwrite) ccBlendFunc blendFunc;
+-(CGFloat)width;
+-(CGFloat)height;
+
 
 #pragma mark CCSprite - Initializers
 

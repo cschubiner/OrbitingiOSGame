@@ -50,7 +50,7 @@
 #import "../../Support/TransformUtils.h"
 
 #import "kazmath.h"
-#import "GL/matrix.h"
+#import "matrix.h"
 
 #if CC_ENABLE_PROFILERS
 #import "../../Support/CCProfiling.h"

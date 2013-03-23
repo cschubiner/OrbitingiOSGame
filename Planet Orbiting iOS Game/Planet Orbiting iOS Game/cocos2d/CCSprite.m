@@ -43,7 +43,7 @@
 #import "Support/OpenGL_Internal.h"
 
 // external
-#import "GL/matrix.h"
+#import "matrix.h"
 
 #pragma mark -
 #pragma mark CCSprite
@@ -792,6 +792,13 @@
 -(BOOL) flipY
 {
 	return flipY_;
+}
+
+-(CGFloat)width{
+    return self.contentSize.width * self.scaleX;
+}
+-(CGFloat)height{
+    return self.contentSize.height * self.scaleY;
 }
 
 //

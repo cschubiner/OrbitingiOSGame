@@ -175,7 +175,7 @@
 // external
 //
 #import "kazmath.h"
-#import "GL/matrix.h"
+#import "matrix.h"
 
 
 
