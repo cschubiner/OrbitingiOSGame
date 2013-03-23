@@ -28,7 +28,7 @@
 #import "CCCamera.h"
 #import "ccMacros.h"
 #import "CCDrawingPrimitives.h"
-#import "matrix.h"
+#import "GL/matrix.h"
 
 @implementation CCCamera
 
