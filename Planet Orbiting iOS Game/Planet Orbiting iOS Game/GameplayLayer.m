@@ -137,18 +137,15 @@ typedef struct {
 
 }
 
+bool kamcordFailed = false;
+
 -(void)showViewChecker:(float) dt{
     if (timeSinceShowViewWasCalled != -1)
         timeSinceShowViewWasCalled += dt;
     
     if (timeSinceShowViewWasCalled > 2.5 && kamcordAppearedYay == false){
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle: @"Kamcord Error"
-                              message: @"We're sorry, Kamcord failed to record your video. Force close your app to re-enable Kamcord functionality."
-                              delegate: self
-                              cancelButtonTitle:@"Dismiss"
-                              otherButtonTitles:nil];
-        [alert show];
+        kamcordFailed = true;
+        [self showKamcordFailedAlertView];
         @try {
             [self unschedule:@selector(showViewChecker:)];
         }
@@ -158,6 +155,36 @@ typedef struct {
         timeSinceShowViewWasCalled = 0;
         kamcordAppearedYay = true;
     }
+}
+
+-(void)showKamcordFailedAlertView{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle: @"Kamcord Error"
+                          message: @"We're sorry, Kamcord failed to record your video. Force close your app to re-enable Kamcord functionality."
+                          delegate: self
+                          cancelButtonTitle:@"Dismiss"
+                          otherButtonTitles:nil];
+    [alert show];
+}
+
+-(void)showRecording {
+    if (kamcordFailed){
+        [self showKamcordFailedAlertView];
+        if (kamcordStartedRecording)
+            [Kamcord showView];
+    }
+    muted = false;
+    [self toggleMute];
+    @try {
+        if (kamcordStartedRecording)
+            [Kamcord stopRecording];
+        if (kamcordStartedRecording)
+            [Kamcord showView];
+        [self schedule:@selector(showViewChecker:) interval:1.0/10.0f];
+    }
+    @catch (NSException *exception) {    }
+    
+    
 }
 
 
@@ -3261,21 +3288,6 @@ float lerpf(float a, float b, float t) {
  -(void)emailSentWithSuccess:(BOOL)success error:(KCShareStatus)error{
  [[UserWallet sharedInstance] addCoins: 100];
  }*/
-
--(void)showRecording {
-    muted = false;
-    [self toggleMute];
-    @try {
-        if (kamcordStartedRecording)
-          [Kamcord stopRecording];
-        if (kamcordStartedRecording)
-    [Kamcord showView];
-    [self schedule:@selector(showViewChecker:) interval:1.0/10.0f];
-    }
-    @catch (NSException *exception) {    }
- 
- 
-}
 
 +(CCSprite*)labelWithString:(NSString *)string fontName:(NSString *)fontName fontSize:(CGFloat)fontSize color:(ccColor3B)color strokeSize:(CGFloat)strokeSize stokeColor:(ccColor3B)strokeColor{CCLabelTTF *label = [CCLabelTTF labelWithString:string fontName:fontName fontSize:fontSize];CCRenderTexture* rt = [CCRenderTexture renderTextureWithWidth:label.texture.contentSize.width + strokeSize*2  height:label.texture.contentSize.height+strokeSize*2];[label setFlipY:YES];[label setColor:strokeColor];ccBlendFunc originalBlendFunc = [label blendFunc];[label setBlendFunc:(ccBlendFunc) { GL_SRC_ALPHA, GL_ONE }];CGPoint bottomLeft = ccp(label.texture.contentSize.width * label.anchorPoint.x + strokeSize, label.texture.contentSize.height * label.anchorPoint.y + strokeSize);CGPoint position = ccpSub([label position], ccp(-label.contentSize.width / 2.0f, -label.contentSize.height / 2.0f));[rt begin];for (int i=0; i<360; i++)/*you should optimize that for your needs*/{[label setPosition:ccp(bottomLeft.x + sin(CC_DEGREES_TO_RADIANS(i))*strokeSize, bottomLeft.y + cos(CC_DEGREES_TO_RADIANS(i))*strokeSize)];[label visit];}[label setPosition:bottomLeft];[label setBlendFunc:originalBlendFunc];[label setColor:color];[label visit];[rt end];[rt setPosition:position];return [CCSprite spriteWithTexture:rt.sprite.texture];}
 
