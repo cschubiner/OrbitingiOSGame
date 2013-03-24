@@ -10,7 +10,6 @@
 #import "cocos2d.h"
 #import "iRate.h"
 #import "Flurry.h"
-
 #import <Kamcord/Kamcord.h>
 
 @interface AppDelegate : NSObject <UIApplicationDelegate, CCDirectorDelegate,iRateDelegate>
