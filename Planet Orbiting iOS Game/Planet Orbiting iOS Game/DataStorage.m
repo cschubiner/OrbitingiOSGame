@@ -200,15 +200,13 @@
         
     int currGroup = [currentObjectiveGroupNumber intValue];
     if (!currGroup) {
-        currGroup = 0; // wtf is this!??!
+        currGroup = 0;
     }
     [[ObjectiveManager sharedInstance] setCurrentObjectiveGroupNumber:currGroup];
  
     NSMutableArray *boolGroupsToUse = [[NSMutableArray alloc] init];
-    int totalObjectiveGroups = 16; //the last number + 1
-    @try {
-        
     
+    int totalObjectiveGroups = 16; //the last number + 1
     if (!objectives) {
         for (int i = 0; i < totalObjectiveGroups; i++) {
             NSMutableArray *boolsToUse = [[NSMutableArray alloc] init];
@@ -225,11 +223,6 @@
             }
             [boolGroupsToUse addObject:boolsToUse];
         }
-    }
-        
-    }
-    @catch (NSException *exception) {
-        return;
     }
     
     NSMutableArray* groups = [[NSMutableArray alloc] init];
