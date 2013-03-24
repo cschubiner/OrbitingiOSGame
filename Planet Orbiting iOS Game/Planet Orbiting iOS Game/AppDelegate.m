@@ -35,7 +35,6 @@
     return didGetToMainMenu;
 }
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // installs HandleExceptions as the Uncaught Exception Handler
@@ -58,34 +57,41 @@
 
     //[TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
   
- //   NSLog(@"iRate: Number of events: %d Number of uses: %d",[[iRate sharedInstance]eventCount],[[iRate sharedInstance]usesCount]);
+    NSLog(@"iRate: Number of events: %d Number of uses: %d",[[iRate sharedInstance]eventCount],[[iRate sharedInstance]usesCount]);
     
     didGetToMainMenu = false;
     [self setdidGetToMainMenu:false];
     shouldPlayMenuMusic = true;
     
-    // Main Window
+	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-	
-	// Director
-	director_ = (CCDirectorIOS*)[CCDirector sharedDirector];
-	[director_ setDisplayStats:NO];
-	[director_ setAnimationInterval:1.0/60];
-	
-	// GL View
-	KCGLView *__glView = [KCGLView viewWithFrame:[window_ bounds]
-									 pixelFormat:kEAGLColorFormatRGB565
-									 depthFormat:0 /* GL_DEPTH_COMPONENT24_OES */
-							  preserveBackbuffer:NO
-									  sharegroup:nil
-								   multiSampling:NO
-								 numberOfSamples:0
-						  ];
     
-    [director_ setView:__glView];
-	[director_ setDelegate:self];
-	director_.wantsFullScreenLayout = YES;
+	// Create an CCGLView with a RGB565 color buffer, and a depth buffer of 0-bits
+	KCGLView * glView = [KCGLView viewWithFrame:[window_ bounds]
+                                    pixelFormat:kEAGLColorFormatRGB565
+                                    depthFormat:0 /* GL_DEPTH_COMPONENT24_OES */
+                             preserveBackbuffer:NO
+                                     sharegroup:nil
+                                  multiSampling:NO
+                                numberOfSamples:0];
+    
 
+    
+	director_ = (CCDirectorIOS*) [CCDirector sharedDirector];
+    
+	director_.wantsFullScreenLayout = YES;
+    
+	// Display FSP and SPF
+	[director_ setDisplayStats:NO];
+    
+	// set FPS at 60
+	[director_ setAnimationInterval:1.0/60.0f];
+    
+	// attach the openglView to the director
+	[director_ setView:glView];
+    
+	// for rotation and other messages
+	[director_ setDelegate:self];
     
 	// 2D projection
 	[director_ setProjection:kCCDirectorProjection2D];
@@ -157,14 +163,10 @@
 	
 	// make main window visible
 	[window_ makeKeyAndVisible];
-
+	
 	return YES;
 }
 
-
-// This is needed for iOS4 and iOS5 in order to ensure
-// that the 1st scene has the correct dimensions
-// This is not needed on iOS6 and could be added to the application:didFinish...
 -(void)directorDidReshapeProjection:(CCDirector *)director{
     if (director.runningScene == nil){
         // and add the scene to the stack. The director will run it when it automatically when the view is displayed.
