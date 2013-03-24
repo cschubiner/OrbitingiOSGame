@@ -42,7 +42,7 @@
 #import "Support/CCProfiling.h"
 
 // external
-#import "matrix.h"
+#import "GL/matrix.h"
 
 const NSUInteger defaultCapacity = 29;
 
