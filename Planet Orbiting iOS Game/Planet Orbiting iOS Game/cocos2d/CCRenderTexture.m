@@ -37,7 +37,7 @@
 #endif
 
 // extern
-#import "matrix.h"
+#import "GL/matrix.h"
 
 @implementation CCRenderTexture
 
