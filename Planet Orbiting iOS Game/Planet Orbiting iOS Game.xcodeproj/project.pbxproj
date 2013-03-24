@@ -1869,14 +1869,14 @@
 			name = CocosDenshion;
 			sourceTree = "<group>";
 		};
-		0C309D17160FC845001C2EA8 /* Cocos2D 2.1 Beta 2 */ = {
+		0C309D17160FC845001C2EA8 /* Cocos2D 2.1  */ = {
 			isa = PBXGroup;
 			children = (
 				0C309D16160FC83A001C2EA8 /* CocosDenshion */,
 				0C30978A160FAE6B001C2EA8 /* cocos2d */,
 				0C309855160FAE6B001C2EA8 /* external */,
 			);
-			name = "Cocos2D 2.1 Beta 2";
+			name = "Cocos2D 2.1 ";
 			sourceTree = "<group>";
 		};
 		0C3189F816FD3D03006FDAD8 /* Platforms */ = {
@@ -2065,7 +2065,7 @@
 				0C65EFB716FD3E4900BB1643 /* Kamcord.embeddedframework */,
 				0C7AA60215946939000B58F2 /* Planet Orbiting iOS Game */,
 				0C7AA5F115946939000B58F2 /* Frameworks */,
-				0C309D17160FC845001C2EA8 /* Cocos2D 2.1 Beta 2 */,
+				0C309D17160FC845001C2EA8 /* Cocos2D 2.1  */,
 				0C7AA5EF15946939000B58F2 /* Products */,
 			);
 			sourceTree = "<group>";
