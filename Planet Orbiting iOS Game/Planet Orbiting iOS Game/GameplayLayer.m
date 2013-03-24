@@ -1278,6 +1278,7 @@ bool kamcordFailed = false;
 }
 
 - (ALuint)playSound:(NSString*)soundFile shouldLoop:(bool)shouldLoop pitch:(float)pitch{
+    [Kamcord playSound:soundFile loop:shouldLoop];
     if (shouldLoop)
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:soundFile loop:YES];
     else
@@ -2570,8 +2571,8 @@ bool kamcordFailed = false;
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     
     if (allowVideoToConvert==false)
-        [Kamcord cancelConversionForLatestVideo];
-    
+//        [Kamcord cancelConversionForLatestVideo];
+    [Kamcord prepareNextVideo];
     [[CCDirector sharedDirector] replaceScene:[MainMenuLayer scene]];//[StoreLayer scene]];
     
     
@@ -3039,8 +3040,9 @@ bool kamcordFailed = false;
         [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
         
         if (allowVideoToConvert==false)
-            [Kamcord cancelConversionForLatestVideo];
-        
+            //[Kamcord cancelConversionForLatestVideo];
+            [Kamcord prepareNextVideo];
+
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
         //        [[CCDirector sharedDirector] pushScene:[MainMenuLayer scene]];
         
@@ -3093,8 +3095,9 @@ bool kamcordFailed = false;
     
     //CCLOG(@"GameplayLayerScene launched, game starting");
     if (allowVideoToConvert==false)
-        [Kamcord cancelConversionForLatestVideo];
-    
+    //    [Kamcord cancelConversionForLatestVideo];
+        [Kamcord prepareNextVideo];
+
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
 }
 

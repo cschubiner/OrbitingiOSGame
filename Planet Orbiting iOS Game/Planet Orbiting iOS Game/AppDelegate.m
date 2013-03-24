@@ -120,7 +120,7 @@
 	[sharedFileUtils setiPhoneRetinaDisplaySuffix:@"-hd"];		// Default on iPhone RetinaDisplay is "-hd"
 	[sharedFileUtils setiPadSuffix:@"-ipad"];					// Default on iPad is "ipad"
 	[sharedFileUtils setiPadRetinaDisplaySuffix:@"-ipadhd"];	// Default on iPad RetinaDisplay is "-ipadhd"
-    
+
 	// Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
     
@@ -151,8 +151,8 @@
              developerSecret:@"prcU7MltdajQ1YVTSeFDtPtywe2zABOmzzpSB5pGP79"
                      appName:@"Star Stream"];
 
-    if ([DeviceDetection detectDevice]==MODEL_IPHONE_4)
-          [Kamcord setEnableSynchronousConversionUI:YES alwaysShowProgressBar:YES];
+    //if ([DeviceDetection detectDevice]==MODEL_IPHONE_4)
+   //       [Kamcord setEnableSynchronousConversionUI:YES alwaysShowProgressBar:YES];
  //   [Kamcord setVideoResolution:TRAILER_VIDEO_RESOLUTION]; //leave this disabled!!
 	
 	// make main window visible

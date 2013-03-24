@@ -89,9 +89,9 @@ float const kCD_GainDefault = 1.0f;
 
 +(NSString*) fullPathFromRelativePath:(NSString*) relPath
 {
-#ifndef CD_USE_OWN_FILEUTILS
-    return [[CCFileUtils sharedFileUtils] fullPathForFilenameIgnoringResolutions:relPath];
-#else
+//#ifndef CD_USE_OWN_FILEUTILS
+  //  return [[CCFileUtils sharedFileUtils] fullPathForFilenameIgnoringResolutions:relPath];
+//#else
 	// do not convert an absolute path (starting with '/')
 	if(([relPath length] > 0) && ([relPath characterAtIndex:0] == '/'))
 	{
@@ -109,7 +109,7 @@ float const kCD_GainDefault = 1.0f;
 		fullpath = relPath;
 
 	return fullpath;
-#endif
+//#endif
 }
 
 @end
