@@ -43,7 +43,7 @@
 
 // external
 #import "kazmath.h"
-#import "GL/matrix.h"
+#import "matrix.h"
 
 #pragma mark -
 #pragma mark Director Mac extensions

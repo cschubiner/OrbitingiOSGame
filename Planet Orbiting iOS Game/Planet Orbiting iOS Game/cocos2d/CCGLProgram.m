@@ -36,9 +36,8 @@
 #import "CCDirector.h"
 
 // extern
-#import "GL/matrix.h"
+#import "matrix.h"
 #import "kazmath.h"
-
 
 typedef struct _hashUniformEntry
 {
