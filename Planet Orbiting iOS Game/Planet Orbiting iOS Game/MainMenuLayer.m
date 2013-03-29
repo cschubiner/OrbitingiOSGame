@@ -73,6 +73,8 @@ const float effectsVolumeMainMenu = 1;
     }
 }
 
+
+
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *touch in touches) {
         
@@ -130,6 +132,8 @@ const float effectsVolumeMainMenu = 1;
 
 - (void)willEnterFullscreen:(NSNotification*)notification {
     NSLog(@"willEnterFullscreen");
+    [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0];
+    [[SimpleAudioEngine sharedEngine] setEffectsVolume:0];
 }
 
 - (void)enteredFullscreen:(NSNotification*)notification {
@@ -151,6 +155,10 @@ const float effectsVolumeMainMenu = 1;
     [self.myPlayer.view removeFromSuperview];
     self.myPlayer = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    if (!muted) {
+        [self unmute];
+    }
 }
 
 - (void)playbackFinished:(NSNotification*)notification {
@@ -230,16 +238,13 @@ const float effectsVolumeMainMenu = 1;
     [self disableButtons];
 }
 
-- (void) initUpgradeStuff {
-    
-}
-
 // on "init" you need to initialize your instance
 - (id)init {
 	if (self = [super init]) {
         addedMoviePlayerObserver = false;
         self.myPlayer = NULL;
-        
+
+        [Kamcord setDelegate:self];
 
         size = [[CCDirector sharedDirector] winSize];
         self.isTouchEnabled = true;
@@ -563,22 +568,55 @@ const float effectsVolumeMainMenu = 1;
     //[[CCDirector sharedDirector] pushScene:[MissionsCompleteLayer scene]];
 }
 
+- (void)unmute {
+    [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:musicVolumeMainMenu];
+    [[SimpleAudioEngine sharedEngine] setEffectsVolume:effectsVolumeMainMenu];
+    [soundButton setNormalImage:[CCSprite spriteWithFile:@"sound.png"]];
+    [soundButton setSelectedImage:[CCSprite spriteWithFile:@"soundpressed.png"]];
+    [soundButton setDisabledImage:[CCSprite spriteWithFile:@"sound.png"]];
+}
+
+- (void)mute {
+    [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0];
+    [[SimpleAudioEngine sharedEngine] setEffectsVolume:0];
+    [soundButton setNormalImage:[CCSprite spriteWithFile:@"soundmuted.png"]];
+    [soundButton setSelectedImage:[CCSprite spriteWithFile:@"soundmutedpressed.png"]];
+    [soundButton setDisabledImage:[CCSprite spriteWithFile:@"soundmuted.png"]];
+}
+
 - (void)toggleMute {
     muted = !muted;
     if (!muted) {
-        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:musicVolumeMainMenu];
-        [[SimpleAudioEngine sharedEngine] setEffectsVolume:effectsVolumeMainMenu];
-        [soundButton setNormalImage:[CCSprite spriteWithFile:@"sound.png"]];
-        [soundButton setSelectedImage:[CCSprite spriteWithFile:@"soundpressed.png"]];
-        [soundButton setDisabledImage:[CCSprite spriteWithFile:@"sound.png"]];
+        [self unmute];
     } else {
-        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0];
-        [[SimpleAudioEngine sharedEngine] setEffectsVolume:0];
-        [soundButton setNormalImage:[CCSprite spriteWithFile:@"soundmuted.png"]];
-        [soundButton setSelectedImage:[CCSprite spriteWithFile:@"soundmutedpressed.png"]];
-        [soundButton setDisabledImage:[CCSprite spriteWithFile:@"soundmuted.png"]];
+        [self mute];
     }
     [[PlayerStats sharedInstance] setIsMuted:muted];
+    
+   
+}
+
+-(void)watchViewDidAppear{
+    [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0];
+    [[SimpleAudioEngine sharedEngine] setEffectsVolume:0];
+}
+
+-(void)watchViewWillDisappear{
+    if (!muted) {
+       [self unmute];
+    }
+}
+
+-(void)watchViewDidDisappear{
+    if (!muted) {
+       [self unmute];
+    }
+}
+
+-(void)showWatchView{
+    [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
+    [Flurry logEvent:@"Pressed showWatchView button"];
+     [Kamcord showWatchView];
 }
 
 - (NSString*)commaInt:(int)num {

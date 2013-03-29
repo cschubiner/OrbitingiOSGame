@@ -874,7 +874,7 @@
 									<key>scaleY</key>
 									<real>1</real>
 									<key>selector</key>
-									<string>toggleMute</string>
+									<string>showWatchView</string>
 									<key>spriteFileDisabled</key>
 									<string>sound.png</string>
 									<key>spriteFileNormal</key>

@@ -594,6 +594,8 @@ bool kamcordFailed = false;
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
         isIphone4 = true;
     }
+    
+
 
     [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setGalaxyCounter:0];
     isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsInTutorialMode];
@@ -1225,6 +1227,8 @@ bool kamcordFailed = false;
         return false;
 }
 
+
+
 - (void)UserTouchedCoin: (Coin*)coin dt:(float)dt{
     
     if (numTimesSwiped >= 4 && isInTutorialMode) {
@@ -1255,15 +1259,27 @@ bool kamcordFailed = false;
     // [coin.sprite runAction:[CCSequence actions:[CCSpawn actions:scaleAction,[CCRotateBy actionWithDuration:.1 angle:360], nil],[CCHide action], nil]];
     [coin.sprite setVisible:false];
     [spriteSheet removeChild:coin.sprite cleanup:YES];
+    coin.sprite = nil;
     coin.isAlive = false;
+    coin = nil;
     if (timeSinceGotLastCoin<.4){
-        lastCoinPitch +=.1;
+        lastCoinPitch +=.07;
     }
-    else lastCoinPitch = 0;
+    else
+        lastCoinPitch = 0;
     timeSinceGotLastCoin = 0;
-    if (lastCoinSoundID!=0)
-        [[SimpleAudioEngine sharedEngine]stopEffect:lastCoinSoundID];
-    lastCoinSoundID = [self playSound:@"buttonpress.mp3" shouldLoop:false pitch:1.1+lastCoinPitch];
+       
+    float pitchToUse = 1.1+lastCoinPitch;
+    if (pitchToUse > 2.5){
+        pitchToUse = [self randomValueBetween:2.3 andValue:3.0];
+    }
+    else{
+        if (lastCoinSoundID!=0)
+            [[SimpleAudioEngine sharedEngine]stopEffect:lastCoinSoundID];
+    }
+    
+   // [scoreLabel setString:[NSString stringWithFormat:@"%f",pitchToUse]];
+    lastCoinSoundID = [self playSound:@"buttonpress.mp3" shouldLoop:false pitch:pitchToUse];
 }
 
 - (void)coinDone {

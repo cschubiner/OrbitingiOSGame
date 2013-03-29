@@ -15,7 +15,7 @@
 #import "CreditsLayer.h"
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface MainMenuLayer : CCLayer <UIAlertViewDelegate,GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate,UIAlertViewDelegate>{
+@interface MainMenuLayer : CCLayer <UIAlertViewDelegate,GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate,UIAlertViewDelegate, KamcordDelegate>{
     CCLayer* layer;
     CCLabelBMFont *coinBalanceLabel;
     CCLabelBMFont *numMagnetsLabel;
