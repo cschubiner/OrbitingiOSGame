@@ -85,6 +85,17 @@
 		01FE9B2215BE94E9007512ED /* PowerupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B2115BE94E9007512ED /* PowerupManager.m */; };
 		01FE9B3415BFAE70007512ED /* DataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B3315BFAE6F007512ED /* DataStorage.m */; };
 		01FE9B3C15BFC2C9007512ED /* PlayerStats.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B3B15BFC2C9007512ED /* PlayerStats.m */; };
+		0AA0C873170526AB00578836 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0C872170526AB00578836 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0AD19DA017058B45004524FD /* Kamcord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD19D9417058B45004524FD /* Kamcord.framework */; };
+		0AD19DA117058B45004524FD /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0AD19D9617058B45004524FD /* FBDialog.bundle */; };
+		0AD19DA217058B45004524FD /* GTMOAuth2ViewTouch.nib in Resources */ = {isa = PBXBuildFile; fileRef = 0AD19D9717058B45004524FD /* GTMOAuth2ViewTouch.nib */; };
+		0AD19DA317058B45004524FD /* Kamcord.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0AD19D9817058B45004524FD /* Kamcord.bundle */; };
+		0AD19DA417058B45004524FD /* KCShareKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0AD19D9917058B45004524FD /* KCShareKit.bundle */; };
+		0AD19DA517058B45004524FD /* KCVideoTracker 2.mom in Resources */ = {isa = PBXBuildFile; fileRef = 0AD19D9B17058B45004524FD /* KCVideoTracker 2.mom */; };
+		0AD19DA617058B45004524FD /* KCVideoTracker 3.mom in Resources */ = {isa = PBXBuildFile; fileRef = 0AD19D9C17058B45004524FD /* KCVideoTracker 3.mom */; };
+		0AD19DA717058B45004524FD /* KCVideoTracker 3.omo in Resources */ = {isa = PBXBuildFile; fileRef = 0AD19D9D17058B45004524FD /* KCVideoTracker 3.omo */; };
+		0AD19DA817058B45004524FD /* KCVideoTracker.mom in Resources */ = {isa = PBXBuildFile; fileRef = 0AD19D9E17058B45004524FD /* KCVideoTracker.mom */; };
+		0AD19DA917058B45004524FD /* VersionInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0AD19D9F17058B45004524FD /* VersionInfo.plist */; };
 		0C0E87B91604050F00779D6F /* starParticleMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87B61604050F00779D6F /* starParticleMenu.plist */; };
 		0C0E87BA1604050F00779D6F /* starParticleTexture-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87B71604050F00779D6F /* starParticleTexture-hd.png */; };
 		0C0E87BB1604050F00779D6F /* starParticleTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87B81604050F00779D6F /* starParticleTexture.png */; };
@@ -148,7 +159,6 @@
 		0C2AB0BB15BE8E54008822F1 /* UserWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2AB0B915BE8E54008822F1 /* UserWallet.m */; };
 		0C2DEF02159C20BE0018F0FA /* Zone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2DEF01159C20BE0018F0FA /* Zone.m */; };
 		0C2DF35A16D476AA00640E48 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2DF35916D476AA00640E48 /* libFlurry.a */; };
-		0C2DF37E16D47C6C00640E48 /* Kamcord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2DF37D16D47C6C00640E48 /* Kamcord.framework */; };
 		0C2E4D1315C4F70B00AB28FC /* pauseButton7-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2E4D0F15C4F70B00AB28FC /* pauseButton7-hd.png */; };
 		0C2E4D1415C4F70B00AB28FC /* pauseButton7.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2E4D1015C4F70B00AB28FC /* pauseButton7.png */; };
 		0C30961C160F984C001C2EA8 /* playercamo-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C30961A160F984C001C2EA8 /* playercamo-hd.png */; };
@@ -291,6 +301,7 @@
 		0C487B0E1594792C00674AB9 /* Planet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C487B0D1594792C00674AB9 /* Planet.m */; };
 		0C489D2816B77CD000CCFF11 /* DDGameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C489D2516B77CD000CCFF11 /* DDGameKitHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0C489D2916B77CD000CCFF11 /* DDGameKitHelperDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C489D2716B77CD000CCFF11 /* DDGameKitHelperDelegate.m */; };
+		0C4938A11705AA8500520424 /* SWOOSH.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0C4938A01705AA8500520424 /* SWOOSH.wav */; };
 		0C49E19015C0FE44007957E9 /* thrustParticle3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */; };
 		0C5F4EE515E6006E00075F36 /* LoadingLayerCCB.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F4EE415E6006E00075F36 /* LoadingLayerCCB.ccb */; };
 		0C60EC5A15CB8C42005FE434 /* Galaxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C60EC5915CB8C42005FE434 /* Galaxy.m */; };
@@ -373,7 +384,6 @@
 		0CBF200B15E1C68B00E05CDB /* batteryglow-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CBF200915E1C68B00E05CDB /* batteryglow-hd.png */; };
 		0CBF200C15E1C68B00E05CDB /* batteryglow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CBF200A15E1C68B00E05CDB /* batteryglow.png */; };
 		0CD3054615CFC479007EA286 /* playerSpawnedParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CD3054515CFC479007EA286 /* playerSpawnedParticle.plist */; };
-		0CFB823915AE733800EADAF3 /* SWOOSH.WAV in Resources */ = {isa = PBXBuildFile; fileRef = 0CFB823815AE733800EADAF3 /* SWOOSH.WAV */; };
 		C43F5E7315C7043F003BDF73 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C43F5E7215C7043F003BDF73 /* GameKit.framework */; };
 		C43F5E7F15C7053F003BDF73 /* gk-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C43F5E7915C7053F003BDF73 /* gk-icon.png */; };
 		C43F5E8015C7053F003BDF73 /* gk-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C43F5E7A15C7053F003BDF73 /* gk-icon@2x.png */; };
@@ -659,6 +669,17 @@
 		01FE9B3315BFAE6F007512ED /* DataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataStorage.m; sourceTree = "<group>"; };
 		01FE9B3A15BFC2C9007512ED /* PlayerStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerStats.h; sourceTree = "<group>"; };
 		01FE9B3B15BFC2C9007512ED /* PlayerStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerStats.m; sourceTree = "<group>"; };
+		0AA0C872170526AB00578836 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		0AD19D9417058B45004524FD /* Kamcord.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kamcord.framework; sourceTree = "<group>"; };
+		0AD19D9617058B45004524FD /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
+		0AD19D9717058B45004524FD /* GTMOAuth2ViewTouch.nib */ = {isa = PBXFileReference; lastKnownFileType = file; path = GTMOAuth2ViewTouch.nib; sourceTree = "<group>"; };
+		0AD19D9817058B45004524FD /* Kamcord.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Kamcord.bundle; sourceTree = "<group>"; };
+		0AD19D9917058B45004524FD /* KCShareKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = KCShareKit.bundle; sourceTree = "<group>"; };
+		0AD19D9B17058B45004524FD /* KCVideoTracker 2.mom */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "KCVideoTracker 2.mom"; sourceTree = "<group>"; };
+		0AD19D9C17058B45004524FD /* KCVideoTracker 3.mom */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "KCVideoTracker 3.mom"; sourceTree = "<group>"; };
+		0AD19D9D17058B45004524FD /* KCVideoTracker 3.omo */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KCVideoTracker 3.omo"; sourceTree = "<group>"; };
+		0AD19D9E17058B45004524FD /* KCVideoTracker.mom */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = KCVideoTracker.mom; sourceTree = "<group>"; };
+		0AD19D9F17058B45004524FD /* VersionInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = VersionInfo.plist; sourceTree = "<group>"; };
 		0C0E87B61604050F00779D6F /* starParticleMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = starParticleMenu.plist; sourceTree = "<group>"; };
 		0C0E87B71604050F00779D6F /* starParticleTexture-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "starParticleTexture-hd.png"; sourceTree = "<group>"; };
 		0C0E87B81604050F00779D6F /* starParticleTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starParticleTexture.png; sourceTree = "<group>"; };
@@ -729,7 +750,6 @@
 		0C2DEF01159C20BE0018F0FA /* Zone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Zone.m; sourceTree = "<group>"; };
 		0C2DF35916D476AA00640E48 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		0C2DF35B16D476AF00640E48 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
-		0C2DF37D16D47C6C00640E48 /* Kamcord.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kamcord.framework; sourceTree = "<group>"; };
 		0C2E4D0F15C4F70B00AB28FC /* pauseButton7-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pauseButton7-hd.png"; sourceTree = "<group>"; };
 		0C2E4D1015C4F70B00AB28FC /* pauseButton7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pauseButton7.png; sourceTree = "<group>"; };
 		0C30961A160F984C001C2EA8 /* playercamo-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playercamo-hd.png"; sourceTree = "<group>"; };
@@ -1011,6 +1031,7 @@
 		0C489D2516B77CD000CCFF11 /* DDGameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDGameKitHelper.m; sourceTree = "<group>"; };
 		0C489D2616B77CD000CCFF11 /* DDGameKitHelperDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGameKitHelperDelegate.h; sourceTree = "<group>"; };
 		0C489D2716B77CD000CCFF11 /* DDGameKitHelperDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDGameKitHelperDelegate.m; sourceTree = "<group>"; };
+		0C4938A01705AA8500520424 /* SWOOSH.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SWOOSH.wav; sourceTree = "<group>"; };
 		0C49E18F15C0FE44007957E9 /* thrustParticle3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = thrustParticle3.plist; sourceTree = "<group>"; };
 		0C5F4EE415E6006E00075F36 /* LoadingLayerCCB.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LoadingLayerCCB.ccb; sourceTree = "<group>"; };
 		0C60EC5815CB8C42005FE434 /* Galaxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Galaxy.h; sourceTree = "<group>"; };
@@ -1102,7 +1123,6 @@
 		0CBF200915E1C68B00E05CDB /* batteryglow-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "batteryglow-hd.png"; sourceTree = "<group>"; };
 		0CBF200A15E1C68B00E05CDB /* batteryglow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batteryglow.png; sourceTree = "<group>"; };
 		0CD3054515CFC479007EA286 /* playerSpawnedParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = playerSpawnedParticle.plist; sourceTree = "<group>"; };
-		0CFB823815AE733800EADAF3 /* SWOOSH.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SWOOSH.WAV; sourceTree = "<group>"; };
 		C4286D4215C3747F00773FA3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		C4286D4415C3748300773FA3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		C43F5E7215C7043F003BDF73 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -1337,6 +1357,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AA0C873170526AB00578836 /* Social.framework in Frameworks */,
 				FAD84E6416A6648C0010F996 /* ImageIO.framework in Frameworks */,
 				0CB11B2016A57700005710E3 /* AdSupport.framework in Frameworks */,
 				0C695E3D15F095FF0092DD51 /* StoreKit.framework in Frameworks */,
@@ -1360,7 +1381,7 @@
 				0C7AA5FB15946939000B58F2 /* AVFoundation.framework in Frameworks */,
 				0C7AA5FF15946939000B58F2 /* Foundation.framework in Frameworks */,
 				0C2DF35A16D476AA00640E48 /* libFlurry.a in Frameworks */,
-				0C2DF37E16D47C6C00640E48 /* Kamcord.framework in Frameworks */,
+				0AD19DA017058B45004524FD /* Kamcord.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1571,6 +1592,39 @@
 				01825CAC15DA2F840010473B /* soundpressed.png */,
 			);
 			name = Sound;
+			sourceTree = "<group>";
+		};
+		0AD19D9317058B45004524FD /* Kamcord.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				0AD19D9417058B45004524FD /* Kamcord.framework */,
+				0AD19D9517058B45004524FD /* Resources */,
+			);
+			path = Kamcord.embeddedframework;
+			sourceTree = "<group>";
+		};
+		0AD19D9517058B45004524FD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0AD19D9617058B45004524FD /* FBDialog.bundle */,
+				0AD19D9717058B45004524FD /* GTMOAuth2ViewTouch.nib */,
+				0AD19D9817058B45004524FD /* Kamcord.bundle */,
+				0AD19D9917058B45004524FD /* KCShareKit.bundle */,
+				0AD19D9A17058B45004524FD /* KCVideoTracker.momd */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0AD19D9A17058B45004524FD /* KCVideoTracker.momd */ = {
+			isa = PBXGroup;
+			children = (
+				0AD19D9B17058B45004524FD /* KCVideoTracker 2.mom */,
+				0AD19D9C17058B45004524FD /* KCVideoTracker 3.mom */,
+				0AD19D9D17058B45004524FD /* KCVideoTracker 3.omo */,
+				0AD19D9E17058B45004524FD /* KCVideoTracker.mom */,
+				0AD19D9F17058B45004524FD /* VersionInfo.plist */,
+			);
+			path = KCVideoTracker.momd;
 			sourceTree = "<group>";
 		};
 		0C2C49B715EF6675005B1214 /* iRate */ = {
@@ -2009,7 +2063,8 @@
 		0C7AA5E315946938000B58F2 = {
 			isa = PBXGroup;
 			children = (
-				0C2DF37D16D47C6C00640E48 /* Kamcord.framework */,
+				0AD19D9317058B45004524FD /* Kamcord.embeddedframework */,
+				0AA0C872170526AB00578836 /* Social.framework */,
 				0C7AA60215946939000B58F2 /* Planet Orbiting iOS Game */,
 				0C7AA5F115946939000B58F2 /* Frameworks */,
 				0C309D17160FC845001C2EA8 /* Cocos2D 2.1 Beta 2 */,
@@ -2170,10 +2225,10 @@
 				FAC8A15C15F04C0E00F7B6B2 /* startFeverMode.mp3 */,
 				FA5492D815EB74EE00285707 /* popupSwoosh.mp3 */,
 				FA00EC5915EA3AD300C745BC /* click.mp3 */,
+				0C4938A01705AA8500520424 /* SWOOSH.wav */,
 				FA00EC3715E8C6CE00C745BC /* doorClose1.mp3 */,
 				FA00EC4C15EA1B0C00C745BC /* doorClose2.mp3 */,
 				FA18E60D15DB5CB20038E3EC /* purchase.wav */,
-				0CFB823815AE733800EADAF3 /* SWOOSH.WAV */,
 				FA48C83615BE84DC00FA6F32 /* buttonpress.mp3 */,
 				FA20FD3515ECADD3008F2F17 /* levelup.mp3 */,
 			);
@@ -2698,7 +2753,6 @@
 				C47774FE15A75CE2005D0AEB /* btn-test-2-hd.png in Resources */,
 				C47774FF15A75CE2005D0AEB /* jungle-hd.png in Resources */,
 				C477750215A75D2D005D0AEB /* burst-hd.png in Resources */,
-				0CFB823915AE733800EADAF3 /* SWOOSH.WAV in Resources */,
 				FA48C83715BE84DC00FA6F32 /* buttonpress.mp3 in Resources */,
 				0C68283215BF0CCA00BF09C0 /* playerExplosionParticle.plist in Resources */,
 				0C49E19015C0FE44007957E9 /* thrustParticle3.plist in Resources */,
@@ -3072,6 +3126,16 @@
 				0C36E50B16B0D2DA00F59FAB /* galaxy5-hd.pvr.gz in Resources */,
 				0C36E50C16B0D2DA00F59FAB /* galaxy5.plist in Resources */,
 				0C36E50D16B0D2DA00F59FAB /* galaxy5.pvr.gz in Resources */,
+				0AD19DA117058B45004524FD /* FBDialog.bundle in Resources */,
+				0AD19DA217058B45004524FD /* GTMOAuth2ViewTouch.nib in Resources */,
+				0AD19DA317058B45004524FD /* Kamcord.bundle in Resources */,
+				0AD19DA417058B45004524FD /* KCShareKit.bundle in Resources */,
+				0AD19DA517058B45004524FD /* KCVideoTracker 2.mom in Resources */,
+				0AD19DA617058B45004524FD /* KCVideoTracker 3.mom in Resources */,
+				0AD19DA717058B45004524FD /* KCVideoTracker 3.omo in Resources */,
+				0AD19DA817058B45004524FD /* KCVideoTracker.mom in Resources */,
+				0AD19DA917058B45004524FD /* VersionInfo.plist in Resources */,
+				0C4938A11705AA8500520424 /* SWOOSH.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3312,9 +3376,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Kamcord.embeddedframework\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_FAST_MATH = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Planet Orbiting iOS Game/Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
@@ -3365,6 +3431,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Kamcord.embeddedframework\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_FAST_MATH = NO;

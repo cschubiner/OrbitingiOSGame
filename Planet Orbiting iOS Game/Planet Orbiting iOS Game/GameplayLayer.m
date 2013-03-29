@@ -74,6 +74,10 @@
     CCParticleSystemQuad * powerupParticle;
 }
 
+-(void)generalError:(KCShareStatus)error{
+    NSLog(@"there was a kamcord error");
+}
+
 
 typedef struct {
     CGPoint velocity;
@@ -98,11 +102,19 @@ typedef struct {
 
 
 
--(void)mainViewDidAppear{
+-(void)mainViewDidAppear
+{
+    // Mute all
+    muted = false;
+    [self toggleMute];
+    
     if (kamcordAppearedYay)
+    {
         return;
+    }
     timeSinceShowViewWasCalled = -1;
     kamcordAppearedYay = true;
+    
     @try {
         [self unschedule:@selector(showViewChecker:)];
     }
@@ -111,11 +123,20 @@ typedef struct {
     }
 }
 
--(void)mainViewDidDisappear{
+-(void)mainViewDidDisappear
+{
+    // Unmute all
+    muted = true;
+    [self toggleMute];
+    
     if (kamcordAppearedYay)
+    {
         return;
+    }
     timeSinceShowViewWasCalled = -1;
     kamcordAppearedYay = true;
+    
+    
     @try {
         [self unschedule:@selector(showViewChecker:)];
     }
@@ -173,8 +194,6 @@ bool kamcordFailed = false;
         if (kamcordStartedRecording)
             [Kamcord showView];
     }
-    muted = false;
-    [self toggleMute];
     @try {
         if (kamcordStartedRecording)
             [Kamcord stopRecording];
@@ -648,7 +667,7 @@ bool kamcordFailed = false;
     [hudLayer addChild: powerupLabel];
     
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"bomb.wav"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.WAV"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.wav"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"buttonpress.mp3"];
     
     backgroundSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"backgroundStars.pvr.ccz"];
@@ -1548,7 +1567,7 @@ bool kamcordFailed = false;
                     velSoftener = 0;
                     gravIncreaser = 1;
                     if (loading_playerHasReachedFirstPlanet)
-                        [self playSound:@"SWOOSH.WAV" shouldLoop:false pitch:1];
+                        [self playSound:@"SWOOSH.wav" shouldLoop:false pitch:1];
                     player.acceleration = CGPointZero;
                     
                     CGPoint d = ccpSub(targetPlanet.sprite.position, player.sprite.position);
@@ -2570,7 +2589,9 @@ bool kamcordFailed = false;
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     
     if (allowVideoToConvert==false)
-        [Kamcord cancelConversionForLatestVideo];
+    {
+        // XXXXXXX [Kamcord cancelConversionForLatestVideo];
+    }
     
     [[CCDirector sharedDirector] replaceScene:[MainMenuLayer scene]];//[StoreLayer scene]];
     
@@ -3039,7 +3060,9 @@ bool kamcordFailed = false;
         [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
         
         if (allowVideoToConvert==false)
-            [Kamcord cancelConversionForLatestVideo];
+        {
+            // XXXXXX [Kamcord cancelConversionForLatestVideo];
+        }
         
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
         //        [[CCDirector sharedDirector] pushScene:[MainMenuLayer scene]];
@@ -3093,7 +3116,9 @@ bool kamcordFailed = false;
     
     //CCLOG(@"GameplayLayerScene launched, game starting");
     if (allowVideoToConvert==false)
-        [Kamcord cancelConversionForLatestVideo];
+    {
+        // XXXXXX [Kamcord cancelConversionForLatestVideo];
+    }
     
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
 }

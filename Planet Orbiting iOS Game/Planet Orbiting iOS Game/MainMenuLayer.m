@@ -323,7 +323,9 @@ const float effectsVolumeMainMenu = 1;
         
         
         if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getShouldPlayMenuMusic])
+        {
             [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic_new.mp3" loop:YES];
+        }
         
         position = ccp(-230, 485);
         [playerAndParticleNode setPosition:position];

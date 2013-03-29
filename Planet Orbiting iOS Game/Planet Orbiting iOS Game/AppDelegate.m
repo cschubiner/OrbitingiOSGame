@@ -66,6 +66,8 @@
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    //NSLog([NSString stringWithFormat:@"Kamcord version: %@",[Kamcord kamcordSDKVersion]]); // we're on 1.0.1 3/25/2013
+    
 	// Create an CCGLView with a RGB565 color buffer, and a depth buffer of 0-bits
 	KCGLView * glView = [KCGLView viewWithFrame:[window_ bounds]
                                     pixelFormat:kEAGLColorFormatRGB565
@@ -158,7 +160,9 @@
                      appName:@"Star Stream"];
 
     if ([DeviceDetection detectDevice]==MODEL_IPHONE_4)
-          [Kamcord setEnableSynchronousConversionUI:YES alwaysShowProgressBar:YES];
+    {
+          // XXXXXX [Kamcord setEnableSynchronousConversionUI:YES alwaysShowProgressBar:YES];
+    }
  //   [Kamcord setVideoResolution:TRAILER_VIDEO_RESOLUTION]; //leave this disabled!!
 	
 	// make main window visible

@@ -207,7 +207,8 @@
     NSMutableArray *boolGroupsToUse = [[NSMutableArray alloc] init];
     
     int totalObjectiveGroups = 16; //the last number + 1
-    if (!objectives) {
+    if (!objectives || [objectives count] == 0)
+    {
         for (int i = 0; i < totalObjectiveGroups; i++) {
             NSMutableArray *boolsToUse = [[NSMutableArray alloc] init];
             for (int j = 0; j < 3; j++) {
