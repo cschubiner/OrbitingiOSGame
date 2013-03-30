@@ -7,15 +7,15 @@
             <key>asteroid1-9.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{80,125},{33,25}}</string>
+                <string>{{80,88},{35,27}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{33,25}}</string>
+                <string>{{0,0},{35,27}}</string>
                 <key>sourceSize</key>
-                <string>{33,25}</string>
+                <string>{35,27}</string>
             </dict>
             <key>asteroid2-9.png</key>
             <dict>
@@ -33,15 +33,15 @@
             <key>asteroid3-9.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{80,88},{35,27}}</string>
+                <string>{{80,125},{33,25}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{35,27}}</string>
+                <string>{{0,0},{33,25}}</string>
                 <key>sourceSize</key>
-                <string>{35,27}</string>
+                <string>{33,25}</string>
             </dict>
             <key>planet1-9.png</key>
             <dict>
@@ -105,7 +105,7 @@
             <key>size</key>
             <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:d6266aba74c2efead90a1bee8757a473$</string>
+            <string>$TexturePacker:SmartUpdate:53a436dd3988b2f02c2a3a970e13f1fe$</string>
             <key>textureFileName</key>
             <string>galaxy9.pvr.gz</string>
         </dict>

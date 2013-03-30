@@ -3003,7 +3003,7 @@ bool kamcordFailed = false;
         }
         
         if (numTimesSwiped == 0) {
-            if (loading_playerHasReachedFirstPlanet) {
+            if (loading_playerHasReachedFirstPlanet && (!(player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart))) {
                 
                 timeSpentInPlanetOne += dt;
                 if (!tutHand && timeSpentInPlanetOne > 3.2) {

@@ -168,9 +168,12 @@
         
         
         
+        
         if ([((AppDelegate*)[[UIApplication sharedApplication]delegate]) getShouldPlayMenuMusic])
-            [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic_new.mp3" loop:YES];
-  
+        {
+            //       [[CDAudioManager sharedManager] playBackgroundMusic:@"menumusic_new.mp3" loop:YES];
+            [self playSound:@"menumusic_new.mp3" shouldLoop:YES pitch:1];
+        }
         
 //        [self schedule:@selector(Update:) interval:0];
 	}

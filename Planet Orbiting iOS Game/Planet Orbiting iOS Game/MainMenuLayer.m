@@ -147,7 +147,10 @@ const float effectsVolumeMainMenu = 1;
     self.myPlayer = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
-
+    if (!muted) {
+        [self unmute];
+    }
+    [[CCDirector sharedDirector] replaceScene: [GameplayLayer scene]];
 }
 
 - (void)exitedFullscreen:(NSNotification*)notification {
@@ -159,6 +162,8 @@ const float effectsVolumeMainMenu = 1;
     if (!muted) {
         [self unmute];
     }
+    [[CCDirector sharedDirector] replaceScene:[GameplayLayer scene]];
+
 }
 
 - (void)playbackFinished:(NSNotification*)notification {
@@ -175,8 +180,13 @@ const float effectsVolumeMainMenu = 1;
             break;
         default:
             break;
-    }*/
-    [self.myPlayer setFullscreen:NO animated:YES];
+    }
+  //  [self.myPlayer setFullscreen:NO animated:NO];
+    if (!muted) {
+        [self unmute];
+    }
+    [[CCDirector sharedDirector] replaceScene: [GameplayLayer scene]];*/
+
 }
 
 -(void)openVideo{
@@ -616,7 +626,7 @@ const float effectsVolumeMainMenu = 1;
 -(void)showWatchView{
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     [Flurry logEvent:@"Pressed showWatchView button"];
-     [Kamcord showWatchView];
+    [Kamcord showWatchView];
 }
 
 - (NSString*)commaInt:(int)num {
