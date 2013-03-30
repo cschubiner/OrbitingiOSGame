@@ -859,7 +859,7 @@
 									<key>lockedScaleRatio</key>
 									<true/>
 									<key>memberVarAssignmentName</key>
-									<string>soundButton</string>
+									<string>kamcordwatchButton</string>
 									<key>memberVarAssignmentType</key>
 									<integer>2</integer>
 									<key>position</key>
@@ -876,11 +876,11 @@
 									<key>selector</key>
 									<string>showWatchView</string>
 									<key>spriteFileDisabled</key>
-									<string>sound.png</string>
+									<string>kamcordwatch.png</string>
 									<key>spriteFileNormal</key>
-									<string>sound.png</string>
+									<string>kamcordwatch.png</string>
 									<key>spriteFileSelected</key>
-									<string>soundpressed.png</string>
+									<string>kamcordwatchpressed.png</string>
 									<key>tag</key>
 									<integer>-1</integer>
 									<key>target</key>

@@ -96,6 +96,10 @@
 		0AD19DA717058B45004524FD /* KCVideoTracker 3.omo in Resources */ = {isa = PBXBuildFile; fileRef = 0AD19D9D17058B45004524FD /* KCVideoTracker 3.omo */; };
 		0AD19DA817058B45004524FD /* KCVideoTracker.mom in Resources */ = {isa = PBXBuildFile; fileRef = 0AD19D9E17058B45004524FD /* KCVideoTracker.mom */; };
 		0AD19DA917058B45004524FD /* VersionInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0AD19D9F17058B45004524FD /* VersionInfo.plist */; };
+		0C010DCC1707935C00628DE0 /* kamcordwatch-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C010DC81707935C00628DE0 /* kamcordwatch-hd.png */; };
+		0C010DCD1707935C00628DE0 /* kamcordwatch.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C010DC91707935C00628DE0 /* kamcordwatch.png */; };
+		0C010DCE1707935C00628DE0 /* kamcordwatchpressed-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C010DCA1707935C00628DE0 /* kamcordwatchpressed-hd.png */; };
+		0C010DCF1707935C00628DE0 /* kamcordwatchpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C010DCB1707935C00628DE0 /* kamcordwatchpressed.png */; };
 		0C0E87B91604050F00779D6F /* starParticleMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87B61604050F00779D6F /* starParticleMenu.plist */; };
 		0C0E87BA1604050F00779D6F /* starParticleTexture-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87B71604050F00779D6F /* starParticleTexture-hd.png */; };
 		0C0E87BB1604050F00779D6F /* starParticleTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87B81604050F00779D6F /* starParticleTexture.png */; };
@@ -680,6 +684,10 @@
 		0AD19D9D17058B45004524FD /* KCVideoTracker 3.omo */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KCVideoTracker 3.omo"; sourceTree = "<group>"; };
 		0AD19D9E17058B45004524FD /* KCVideoTracker.mom */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = KCVideoTracker.mom; sourceTree = "<group>"; };
 		0AD19D9F17058B45004524FD /* VersionInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = VersionInfo.plist; sourceTree = "<group>"; };
+		0C010DC81707935C00628DE0 /* kamcordwatch-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kamcordwatch-hd.png"; sourceTree = "<group>"; };
+		0C010DC91707935C00628DE0 /* kamcordwatch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kamcordwatch.png; sourceTree = "<group>"; };
+		0C010DCA1707935C00628DE0 /* kamcordwatchpressed-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kamcordwatchpressed-hd.png"; sourceTree = "<group>"; };
+		0C010DCB1707935C00628DE0 /* kamcordwatchpressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kamcordwatchpressed.png; sourceTree = "<group>"; };
 		0C0E87B61604050F00779D6F /* starParticleMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = starParticleMenu.plist; sourceTree = "<group>"; };
 		0C0E87B71604050F00779D6F /* starParticleTexture-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "starParticleTexture-hd.png"; sourceTree = "<group>"; };
 		0C0E87B81604050F00779D6F /* starParticleTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starParticleTexture.png; sourceTree = "<group>"; };
@@ -1416,6 +1424,10 @@
 		011FE3F615DA12E8003C7713 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				0C010DC81707935C00628DE0 /* kamcordwatch-hd.png */,
+				0C010DC91707935C00628DE0 /* kamcordwatch.png */,
+				0C010DCA1707935C00628DE0 /* kamcordwatchpressed-hd.png */,
+				0C010DCB1707935C00628DE0 /* kamcordwatchpressed.png */,
 				0C87016516A2E3DA00A4C290 /* share-hd.png */,
 				0C87016616A2E3DA00A4C290 /* share.png */,
 				0C87016716A2E3DA00A4C290 /* sharepressed-hd.png */,
@@ -3136,6 +3148,10 @@
 				0CA0A4BA1706648D00F8C2D2 /* galaxy9-hd.pvr.gz in Resources */,
 				0CA0A4BB1706648D00F8C2D2 /* galaxy9.plist in Resources */,
 				0CA0A4BC1706648D00F8C2D2 /* galaxy9.pvr.gz in Resources */,
+				0C010DCC1707935C00628DE0 /* kamcordwatch-hd.png in Resources */,
+				0C010DCD1707935C00628DE0 /* kamcordwatch.png in Resources */,
+				0C010DCE1707935C00628DE0 /* kamcordwatchpressed-hd.png in Resources */,
+				0C010DCF1707935C00628DE0 /* kamcordwatchpressed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
