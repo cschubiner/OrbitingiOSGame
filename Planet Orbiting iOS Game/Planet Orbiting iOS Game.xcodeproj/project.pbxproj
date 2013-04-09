@@ -127,10 +127,10 @@
 		0C0E8810160423AF00779D6F /* galaxy8-hd.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87EC160423AF00779D6F /* galaxy8-hd.pvr.gz */; };
 		0C0E8811160423AF00779D6F /* galaxy8.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87ED160423AF00779D6F /* galaxy8.plist */; };
 		0C0E8812160423AF00779D6F /* galaxy8.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E87EE160423AF00779D6F /* galaxy8.pvr.gz */; };
+		0C1088641714C8CC006957B6 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C1088611714C8CC006957B6 /* iRate.bundle */; };
+		0C1088651714C8CC006957B6 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1088631714C8CC006957B6 /* iRate.m */; };
 		0C11425A1675685900C0732C /* LandscapeNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1142591675685900C0732C /* LandscapeNavigationViewController.m */; };
 		0C1662C915CEA56B00C0D0B9 /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1662C815CEA56B00C0D0B9 /* Tutorial.m */; };
-		0C16BB65169EEC2400F20044 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C16BB62169EEC2400F20044 /* iRate.bundle */; };
-		0C16BB66169EEC2400F20044 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C16BB64169EEC2400F20044 /* iRate.m */; };
 		0C16BB6816A29FBB00F20044 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C16BB6716A29FBB00F20044 /* Icon@2x.png */; };
 		0C16BB6A16A29FC000F20044 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C16BB6916A29FC000F20044 /* Icon.png */; };
 		0C28EEC615DBA3E600B440DD /* asteroidbreakericon-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C28EEB815DBA3E600B440DD /* asteroidbreakericon-hd.png */; };
@@ -715,13 +715,13 @@
 		0C0E87EC160423AF00779D6F /* galaxy8-hd.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "galaxy8-hd.pvr.gz"; sourceTree = "<group>"; };
 		0C0E87ED160423AF00779D6F /* galaxy8.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = galaxy8.plist; sourceTree = "<group>"; };
 		0C0E87EE160423AF00779D6F /* galaxy8.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = galaxy8.pvr.gz; sourceTree = "<group>"; };
+		0C1088611714C8CC006957B6 /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
+		0C1088621714C8CC006957B6 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
+		0C1088631714C8CC006957B6 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
 		0C1142581675685900C0732C /* LandscapeNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LandscapeNavigationViewController.h; path = ../LandscapeNavigationViewController.h; sourceTree = "<group>"; };
 		0C1142591675685900C0732C /* LandscapeNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LandscapeNavigationViewController.m; path = ../LandscapeNavigationViewController.m; sourceTree = "<group>"; };
 		0C1662C715CEA56B00C0D0B9 /* Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutorial.h; sourceTree = "<group>"; };
 		0C1662C815CEA56B00C0D0B9 /* Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial.m; sourceTree = "<group>"; };
-		0C16BB62169EEC2400F20044 /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
-		0C16BB63169EEC2400F20044 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
-		0C16BB64169EEC2400F20044 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
 		0C16BB6716A29FBB00F20044 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		0C16BB6916A29FC000F20044 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		0C28EEB815DBA3E600B440DD /* asteroidbreakericon-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "asteroidbreakericon-hd.png"; sourceTree = "<group>"; };
@@ -1642,9 +1642,9 @@
 		0C2C49B715EF6675005B1214 /* iRate */ = {
 			isa = PBXGroup;
 			children = (
-				0C16BB62169EEC2400F20044 /* iRate.bundle */,
-				0C16BB63169EEC2400F20044 /* iRate.h */,
-				0C16BB64169EEC2400F20044 /* iRate.m */,
+				0C1088611714C8CC006957B6 /* iRate.bundle */,
+				0C1088621714C8CC006957B6 /* iRate.h */,
+				0C1088631714C8CC006957B6 /* iRate.m */,
 			);
 			name = iRate;
 			sourceTree = "<group>";
@@ -3115,7 +3115,6 @@
 				0C3999BD1699612600F92658 /* rate.png in Resources */,
 				0C3999BE1699612600F92658 /* ratepressed-hd.png in Resources */,
 				0C3999BF1699612600F92658 /* ratepressed.png in Resources */,
-				0C16BB65169EEC2400F20044 /* iRate.bundle in Resources */,
 				0C16BB6816A29FBB00F20044 /* Icon@2x.png in Resources */,
 				0C16BB6A16A29FC000F20044 /* Icon.png in Resources */,
 				0C87016916A2E3DA00A4C290 /* share-hd.png in Resources */,
@@ -3152,6 +3151,7 @@
 				0C010DCD1707935C00628DE0 /* kamcordwatch.png in Resources */,
 				0C010DCE1707935C00628DE0 /* kamcordwatchpressed-hd.png in Resources */,
 				0C010DCF1707935C00628DE0 /* kamcordwatchpressed.png in Resources */,
+				0C1088641714C8CC006957B6 /* iRate.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3320,10 +3320,10 @@
 				0C309D13160FB79E001C2EA8 /* SimpleAudioEngine.m in Sources */,
 				0C309D15160FC67B001C2EA8 /* main.m in Sources */,
 				0C309D1C160FD21D001C2EA8 /* DeviceDetection.m in Sources */,
-				0C16BB66169EEC2400F20044 /* iRate.m in Sources */,
 				0C489D2816B77CD000CCFF11 /* DDGameKitHelper.m in Sources */,
 				0C489D2916B77CD000CCFF11 /* DDGameKitHelperDelegate.m in Sources */,
 				0C11425A1675685900C0732C /* LandscapeNavigationViewController.m in Sources */,
+				0C1088651714C8CC006957B6 /* iRate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3385,8 +3385,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_POSTPROCESSING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3440,8 +3440,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				FRAMEWORK_SEARCH_PATHS = (

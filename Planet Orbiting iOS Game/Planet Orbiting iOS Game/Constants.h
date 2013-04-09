@@ -137,7 +137,7 @@ const float timeDilationFeverModeMultiplier = 1.05;
 //THIS IS NOW IN UPGRADE VALUES const float absoluteMinTimeDilation = .85;
 
 //the highest the time dilation factor can go. this should probZ just be infinity. bitches will has c slow down if they're going too fast
-const float absoluteMaxTimeDilation = initialTimeDilation*1.8;
+const float absoluteMaxTimeDilation = initialTimeDilation*1.8*1.05;
 
 //----------------------------------------------------------------------------------------------------------
 

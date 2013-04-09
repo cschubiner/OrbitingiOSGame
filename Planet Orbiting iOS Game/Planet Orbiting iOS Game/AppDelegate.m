@@ -159,10 +159,11 @@
              developerSecret:@"prcU7MltdajQ1YVTSeFDtPtywe2zABOmzzpSB5pGP79"
                      appName:@"Star Stream"];
 
-    if ([DeviceDetection detectDevice]==MODEL_IPHONE_4)
+/*    if ([DeviceDetection detectDevice]==MODEL_IPHONE_4)
     {
           // XXXXXX [Kamcord setEnableSynchronousConversionUI:YES alwaysShowProgressBar:YES];
-    }
+
+    }*/
  //   [Kamcord setVideoResolution:TRAILER_VIDEO_RESOLUTION]; //leave this disabled!!
 	
 	// make main window visible
@@ -376,7 +377,9 @@ void SignalHandler(int sig) {
     [iRate sharedInstance].daysUntilPrompt = .02;
     [iRate sharedInstance].usesUntilPrompt = 10;
     [iRate sharedInstance].eventsUntilPrompt = 17;
-    
+    [[iRate sharedInstance] setDisplayAppUsingStorekitIfAvailable:false];
+    [[iRate sharedInstance] setAppStoreID:594091366];
+    [[iRate sharedInstance] setRatingsURL:[NSURL URLWithString:@"https://itunes.apple.com/us/app/star-stream/id594091366?ls=1&mt=8"]];
     
     //[[iRate sharedInstance]setDebug:YES];
     [[iRate sharedInstance]setAppStoreGenreID:iRateAppStoreGameGenreID];
