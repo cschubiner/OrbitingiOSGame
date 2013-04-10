@@ -376,6 +376,24 @@ void SignalHandler(int sig) {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
 }
 
+
+bool isIOSVersionGreaterThan6(){
+    // Obtain iOS version
+    unsigned int OSVersion_ = 0;
+    NSString *OSVer = [[UIDevice currentDevice] systemVersion];
+    NSArray *arr = [OSVer componentsSeparatedByString:@"."];
+    int idx = 0x01000000;
+    for( NSString *str in arr ) {
+        int value = [str intValue];
+        OSVersion_ += value * idx;
+        idx = idx >> 8;
+    }
+    CCLOG(@"VERSION: OS version: %@ (0x%08x)", OSVer, OSVersion_);
+    
+    return OSVersion_ >= kCCiOSVersion_6_0_0;
+}
+
+
 + (void)initialize
 {
     //configure iRate
@@ -383,8 +401,13 @@ void SignalHandler(int sig) {
     [iRate sharedInstance].usesUntilPrompt = 10;
     [iRate sharedInstance].eventsUntilPrompt = 17;
     [[iRate sharedInstance] setDisplayAppUsingStorekitIfAvailable:false];
+
     [[iRate sharedInstance] setAppStoreID:594091366];
-    [[iRate sharedInstance] setRatingsURL:[NSURL URLWithString:@"http://itunes.apple.com/us/app/star-stream/id594091366?ls=1&mt=8"]];
+    if (isIOSVersionGreaterThan6()){
+        [[iRate sharedInstance] setRatingsURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=594091366"]];
+        NSLog(@"ios version is greater than six!");
+    }
+    else [[iRate sharedInstance] setRatingsURL:[NSURL URLWithString:@"http://itunes.apple.com/us/app/star-stream/id594091366?ls=1&mt=8"]];
     
     //[[iRate sharedInstance]setDebug:YES];
   //  [[iRate sharedInstance]setAppStoreGenreID:iRateAppStoreGameGenreID];
@@ -403,6 +426,8 @@ void SignalHandler(int sig) {
 -(void)iRateUserDidRequestReminderToRateApp {
     [Flurry logEvent:@"iRate user did request reminder to rate app" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays", nil]];
 }
+
+
 
 @end
 
