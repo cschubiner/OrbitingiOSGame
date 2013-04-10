@@ -409,6 +409,8 @@ bool isIOSVersionGreaterThan6(){
     }
     else [[iRate sharedInstance] setRatingsURL:[NSURL URLWithString:@"http://itunes.apple.com/us/app/star-stream/id594091366?ls=1&mt=8"]];
     
+    
+    [[iRate sharedInstance] setPromptAgainForEachNewVersion:true];
     //[[iRate sharedInstance]setDebug:YES];
   //  [[iRate sharedInstance]setAppStoreGenreID:iRateAppStoreGameGenreID];
     [[iRate sharedInstance]setMessage:[NSString stringWithFormat:@"We're five college kids trying to make a name for ourselves. If you love Star Stream, help us out and rate our game 5 stars! :)"]];

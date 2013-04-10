@@ -1842,14 +1842,11 @@ bool kamcordFailed = false;
     player.velocity = ccpMult(ccpNormalize(vel), 9);//ccp(0, .05);
     player.acceleration=CGPointZero;
     if (!isIphone4) {
-    @try {
-        
+    
         [Flurry logEvent:@"Player Died" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSNumber numberWithInt:currentGalaxy.number],@"Galaxy",[NSNumber numberWithInt:numZonesHitInARow],@"Pre-death combo", nil]];
         
     }
-    @catch (NSException *exception) {}
-    
-    }
+
     totalSecondsAlive = 0;
 }
 
@@ -2522,8 +2519,10 @@ bool kamcordFailed = false;
 
   //  [Kamcord setDefaultMessage:[NSString stringWithFormat:@"Check out my awesome Star Stream gameplay! I reached a score of %d and made it to galaxy %d!",finalScore,currentGalaxy.number+1]];
     
- 
-    
+    if ([[PlayerStats sharedInstance] recentName] != nil && [[[PlayerStats sharedInstance] recentName] isEqualToString:@"PLAYER"] == false && [[[PlayerStats sharedInstance] recentName] length ] > 0){
+        [Kamcord setDefaultTitle:[NSString stringWithFormat:@"%@'s Gameplay - Score: %d", [[PlayerStats sharedInstance] recentName],finalScore] ];
+    }
+    else 
     [Kamcord setDefaultTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];
     
     [Kamcord setYouTubeDescription:[NSString stringWithFormat:@"My awesome round of Star Stream. I scored %d points and reached galaxy %d.",finalScore,currentGalaxy.number+1] tags:@"Star Stream, Star, Stream, iPhone, iOS, iPod, gameplay, video, high score, score, highscore"];
