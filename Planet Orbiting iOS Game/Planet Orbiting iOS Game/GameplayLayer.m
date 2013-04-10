@@ -2513,19 +2513,24 @@ bool kamcordFailed = false;
     
     [[PlayerStats sharedInstance] addPlay];
     
-    [Kamcord setYouTubeVideoCategory:@"Games"];
+  //  [Kamcord setYouTubeVideoCategory:@"Games"];
 
  //   [Kamcord setDefaultEmailSubject:@"Check out my awesome Star Stream Gameplay!"];
 
   //  [Kamcord setDefaultMessage:[NSString stringWithFormat:@"Check out my awesome Star Stream gameplay! I reached a score of %d and made it to galaxy %d!",finalScore,currentGalaxy.number+1]];
     
-    if ([[PlayerStats sharedInstance] recentName] == nil) {
-        [Kamcord setDefaultTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];
-    } else if ([[PlayerStats sharedInstance] recentName] != nil && [[[PlayerStats sharedInstance] recentName] isEqualToString:@"PLAYER"] == false && [[[PlayerStats sharedInstance] recentName] isEqualToString:@" "] == false && [[[PlayerStats sharedInstance] recentName] length ] > 0){
-        [Kamcord setDefaultTitle:[NSString stringWithFormat:@"%@'s Gameplay - Score: %d", [[PlayerStats sharedInstance] recentName],finalScore] ];
+    @try {
+        if ([[PlayerStats sharedInstance] recentName] == nil) {
+            [Kamcord setDefaultTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];
+        } else if ([[PlayerStats sharedInstance] recentName] != nil && [[[PlayerStats sharedInstance] recentName] isEqualToString:@"PLAYER"] == false && [[[PlayerStats sharedInstance] recentName] isEqualToString:@" "] == false && [[[PlayerStats sharedInstance] recentName] length ] > 0){
+            [Kamcord setDefaultTitle:[NSString stringWithFormat:@"%@'s Gameplay - Score: %d", [[PlayerStats sharedInstance] recentName],finalScore] ];
+        }
+        else
+            [Kamcord setDefaultTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];
     }
-    else 
-    [Kamcord setDefaultTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];
+    @catch (NSException *exception) {
+        [Kamcord setDefaultTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];
+    }
     
     [Kamcord setYouTubeDescription:[NSString stringWithFormat:@"My awesome round of Star Stream. I scored %d points and reached galaxy %d.",finalScore,currentGalaxy.number+1] tags:@"Star Stream, Star, Stream, iPhone, iOS, iPod, gameplay, video, high score, score, highscore"];
     
