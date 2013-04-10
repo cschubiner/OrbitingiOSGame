@@ -605,8 +605,8 @@ bool kamcordFailed = false;
     absoluteMaxTimeDilation *= 1+percentToIncrease;
     */
     absoluteMaxTimeDilation = initialTimeDilation*1.8*1.05;
-   // NSLog([NSString stringWithFormat:@"old dilation %f highscore: %d",absoluteMaxTimeDilation,highscore]);
-    absoluteMaxTimeDilation *= min(1-.201+.018*(min(highscore,80000)/10000.0)+.0106*((highscore-80000)/10000.0),1.3);
+    //NSLog([NSString stringWithFormat:@"old dilation %f highscore: %d",absoluteMaxTimeDilation,highscore]);
+    absoluteMaxTimeDilation *= min(1-.201+.011*(min(highscore,100000)/10000.0)+.011*((highscore-100000)/10000.0),1.115);
     //NSLog([NSString stringWithFormat:@"new dilation %f",absoluteMaxTimeDilation]);
 
     [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setGalaxyCounter:0];
