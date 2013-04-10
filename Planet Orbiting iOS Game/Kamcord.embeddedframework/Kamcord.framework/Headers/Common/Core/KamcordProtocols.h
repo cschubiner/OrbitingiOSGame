@@ -36,6 +36,9 @@
 // Called when the video has finished converting
 - (void)videoFinishedConverting:(BOOL)success;
 
+// Called when the user presses the button in the gameplay of the week screen
+- (void)notificationCallToActionButtonPressed;
+
 #if KCUNITY_VERSION
 // Called when the thumbnail image for the video is ready
 - (void)thumbnailReadyAtFilePath:(NSString *)thumbnailFilePath;

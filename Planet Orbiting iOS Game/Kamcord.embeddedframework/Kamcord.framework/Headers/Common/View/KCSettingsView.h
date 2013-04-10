@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Kamcord.h"
+#import <Kamcord.h>
 #import "KCViewController.h"
 #import "SHKSharer.h"
 #import "KCUiAssetMap.h"

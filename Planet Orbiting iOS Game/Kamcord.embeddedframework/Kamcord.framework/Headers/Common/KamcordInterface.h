@@ -33,6 +33,7 @@
 #import "../Unity/iPhone_GlesSupport_Kamcord.h"
 #endif
 
+#ifndef KCUNITY_VERSION
 /*
  * Audio overlay
  */
@@ -40,6 +41,7 @@
 
 #import "Core/Audio/KCAudio.h"
 #import "Core/Audio/KCSound.h"
+#endif
 
 /*
  * Cocos2D specific imports
@@ -101,7 +103,8 @@ typedef enum
     KC_WATCH_VIEW_TOP_BAR_BACKGROUND,
     KC_WATCH_VIEW_TOP_BUTTON_SELECTED,
     KC_WATCH_VIEW_TOP_BUTTON_DESELECTED,
-    KC_WATCH_VIEW_TOGGLE_BUTTON_TEXT_COLOR
+    KC_WATCH_VIEW_TOGGLE_BUTTON_TEXT_COLOR,
+    KC_NOTIFICATION_CALL_TO_ACTION_BUTTON_TEXT,
 } KC_UI_COMPONENT;
 
 
@@ -163,6 +166,22 @@ typedef enum
 + (void)setDeviceOrientation:(KCDeviceOrientation)deviceOrientation;
 + (KCDeviceOrientation)deviceOrientation;
 
+/*
+ * Turns on and off Kamcord notifications.
+ *
+ * Today, we schedule 4 "Gameplay of the Week" notifications for each of the
+ * next 4 weeks.
+ */
++ (void)setNotificationsEnabled:(BOOL)enabled;
++ (BOOL)notificationsEnabled;
+
+/*
+ * Pass Kamcord the local notifications from didReceiveLocalNotification: and
+ * didFinishLaunchingWithOptions: if the notification data has the "Kamcord" key.
+ * You can also pass us all your local notifications and we will handle the ones
+ * relevant to Kamcord and ignore the rest.
+ */
++ (void)handleKamcordNotification:(UILocalNotification *)notification;
 
 #if COCOS2D
 
@@ -337,6 +356,8 @@ typedef enum
 + (void)retrieveMetadataForVideoWithID:(NSString *)kamcordVideoID
                  withCompletionHandler:(void (^)(NSMutableDictionary *, NSError *))completionHandler;
 
++ (void)showPushNotificationViewInParent:(UIViewController *)parentViewController
+                                                         withParams:(NSDictionary *)params;
 
 // -------------------------------------------------------------------------
 // Advanced Settings
@@ -557,7 +578,6 @@ analyticsType:(KC_ANALYTICS_TYPE)analyticsType;
  */
 + (BOOL)supportPortraitAndPortraitUpsideDown;
 + (void)setSupportPortraitAndPortraitUpsideDown:(BOOL)value;
-
 
 #ifndef KCUNITY_VERSION
 /*

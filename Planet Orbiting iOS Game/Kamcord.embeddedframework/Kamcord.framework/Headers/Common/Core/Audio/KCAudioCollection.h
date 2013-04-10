@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-#import "Kamcord.h"
+#import <Kamcord.h>
 #import "KCAudio.h"
 
 @class KCVideo;

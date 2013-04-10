@@ -6,7 +6,7 @@
 //
 //
 
-#import "Kamcord.h"
+#import <Kamcord.h>
 
 @interface KCShareDelegateIntermediary : NSObject <KCShareDelegate>
 

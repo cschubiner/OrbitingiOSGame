@@ -22,6 +22,7 @@ typedef enum
 @property (nonatomic, assign) NSUInteger viewingSampleRate;
 @property (nonatomic, assign) NSUInteger uiActionsSampleRate;
 @property (nonatomic, assign) NSUInteger sharingSampleRate;
+@property (nonatomic, retain) NSMutableArray * notifTimes;
 @property (nonatomic, retain) NSString * deviceIdentifier;
 @property (nonatomic, assign) NSUInteger uniqueDeviceHash;
 @property (nonatomic, assign) BOOL shouldTrackRecordings;
@@ -30,15 +31,12 @@ typedef enum
 @property (nonatomic, assign) BOOL shouldTrackShares;
 @property (nonatomic, retain) NSDate * lastUpdatedAt;
 
-+ (NSString *)uniqueDeviceStringMD5;
-+ (NSString *)uniqueDeviceString;
++ (KCAnalytics *) sharedAnalytics;
 
-- (id)init;
-
+- (NSString *)uniqueDeviceStringMD5;
+- (NSString *)uniqueDeviceString;
 - (void)track:(NSString *)eventName
 properties:(NSDictionary *)properties
 analyticsType:(KC_ANALYTICS_TYPE)analyticsType;
-
-- (void)dealloc;
 
 @end

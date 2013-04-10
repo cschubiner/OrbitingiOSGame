@@ -29,7 +29,6 @@
 - (id)initWithMyVideosModeEnabled:(BOOL)myVideosModeEnabled
                          assetMap:(KCUiAssetMap *)assetMap
                             video:(KCVideo *)video;
-- (void)setToolbarProperty:(UIBarButtonItem *)doneButtonItem;
 - (void)dismissView;
 - (void)playMovie:(VideoEntity *)video row:(NSInteger)row;
 - (void)playLocalMovie:(KCVideo *)video;

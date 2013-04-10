@@ -12,7 +12,7 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import <CoreMedia/CMTime.h>
 
-#import "Kamcord.h"
+#import <Kamcord.h>
 #import "DataStructures/NSMutableArray+QueueAdditions.h"
 
 @class KCVideo;
@@ -133,6 +133,7 @@ typedef enum
     KC_WATCH_ONLY_VIEW,
     KC_AUTO_POP_VIEW,
     KC_PUSH_NOTIF_RECEIVE_VIEW,
+    KC_ZYNGA_PUSH_NOTIF_RECEIVE_VIEW,
     KC_ZYNGA_MAIN_VIEW
 } KC_VIEW_MODE;
 
@@ -189,8 +190,8 @@ typedef enum
 @property (nonatomic, assign) CFAbsoluteTime startTime;
 @property (nonatomic, assign) CFAbsoluteTime timeOfLastRecordedFrame;
 
-// The total duration of all previous clips (before the current clip)
-@property (nonatomic, assign) CMTime durationOfAllPreviousClips;
+// The video duration
+@property (nonatomic, assign) CMTime duration;
 
 // The maximum length of this video. If 0 (default), it's unlimited.
 // If the video recording time goes over maximumLength, this video

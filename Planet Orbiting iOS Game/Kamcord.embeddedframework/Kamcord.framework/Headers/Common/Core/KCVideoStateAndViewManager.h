@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "Kamcord.h"
+#import <Kamcord.h>
 #if !KCUNITY_VERSION
 #import "KCAudioRecorder.h"
 #endif
@@ -105,6 +105,9 @@
 // Video push notifications
 - (void)retrieveMetadataForVideoWithID:(NSString *)videoID
                  withCompletionHandler:(void (^)(NSMutableDictionary *, NSError *))completionHandler;
+
+- (void)showPushNotificationViewInParent:(UIViewController *)parentViewController
+                              withParams:(NSDictionary *)params;
 
 #if KCZYNGA
 - (void)showVideoPushNotificationReceiverViewInParentViewController:(UIViewController *)parentViewController

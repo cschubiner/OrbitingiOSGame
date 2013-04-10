@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Kamcord.h"
+#import <Kamcord.h>
 #import "KCViewController.h"
 #import "KCUiAssetMap.h"
 #import "KCVideo.h"
@@ -30,6 +30,6 @@
 + (void)roundCornersAndAddShadow:(UIView *)viewComponent;
 + (void)addShadowAbove:(UIView *)viewComponent;
 + (void)addShadow:(UIView *)viewComponent;
-+ (void)fitLatestImage:(UIImage *)image toView:(UIImageView *)imageView;
++ (UIImageView *)fitLatestImage:(UIImage *)image toView:(UIImageView *)imageView;
 
 @end

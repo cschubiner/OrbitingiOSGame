@@ -10,5 +10,3 @@
 #define COCOS2D_2_0 1
 
 #import "Common/KamcordInterface.h"
-#import "KCGLView.h"
-

@@ -13,7 +13,7 @@
 #import "KCYouTubeUploader.h"
 #import "KCVideo.h"
 #import "KCVideoProcessingAndShareManager.h"
-#import "Kamcord.h"
+#import <Kamcord.h>
 
 @class KCSHKConfigurator;
 

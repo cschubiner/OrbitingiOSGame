@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Kamcord.h"
+#import <Kamcord.h>
 
 // Starting this enum at 1000 because we use it inter-changeably with KC_UI_COMPONENT which starts at 0.
 typedef enum
@@ -29,8 +29,10 @@ typedef enum
 
 - (id)initWithDefaults;
 
+#if KCZYNGA
 - (void)updateWithZyngaValues;
 - (void)updateWithAutopopValues;
+#endif
 
 - (void)setValue:(id)value forUiComponent:(KC_UI_COMPONENT)uiComponent;
 - (id)getValueForUiComponent:(KC_UI_COMPONENT)uiComponent;
