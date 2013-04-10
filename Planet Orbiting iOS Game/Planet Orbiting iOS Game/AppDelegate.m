@@ -312,15 +312,20 @@ void SignalHandler(int sig) {
 }
 
 - (int)getHighestScore {
-    NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
-    int highestScore = 0;
-    for (int i = 0 ; i < highScores.count ; i++) {
-        NSNumber * highscoreObject = [highScores objectAtIndex:i];
-        int score = [highscoreObject intValue];
-        if (score>highestScore)
-            highestScore=score;
+    @try {
+        NSMutableArray *highScores = [[PlayerStats sharedInstance] getScores];
+        int highestScore = 0;
+        for (int i = 0 ; i < highScores.count ; i++) {
+            NSNumber * highscoreObject = [highScores objectAtIndex:i];
+            int score = [highscoreObject intValue];
+            if (score>highestScore)
+                highestScore=score;
+        }
+        return highestScore;
     }
-    return highestScore;
+    @catch (NSException *exception) {
+        return 0;
+    }
 }
 
 - (NSMutableDictionary *)getDictionaryOfFlurryParameters
@@ -379,10 +384,10 @@ void SignalHandler(int sig) {
     [iRate sharedInstance].eventsUntilPrompt = 17;
     [[iRate sharedInstance] setDisplayAppUsingStorekitIfAvailable:false];
     [[iRate sharedInstance] setAppStoreID:594091366];
-    [[iRate sharedInstance] setRatingsURL:[NSURL URLWithString:@"https://itunes.apple.com/us/app/star-stream/id594091366?ls=1&mt=8"]];
+    [[iRate sharedInstance] setRatingsURL:[NSURL URLWithString:@"http://itunes.apple.com/us/app/star-stream/id594091366?ls=1&mt=8"]];
     
     //[[iRate sharedInstance]setDebug:YES];
-    [[iRate sharedInstance]setAppStoreGenreID:iRateAppStoreGameGenreID];
+  //  [[iRate sharedInstance]setAppStoreGenreID:iRateAppStoreGameGenreID];
     [[iRate sharedInstance]setMessage:[NSString stringWithFormat:@"We're five college kids trying to make a name for ourselves. If you love Star Stream, help us out and rate our game 5 stars! :)"]];
     [[iRate sharedInstance]setCancelButtonLabel:@"No Thanks"];
 }

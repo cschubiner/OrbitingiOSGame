@@ -595,7 +595,19 @@ bool kamcordFailed = false;
         isIphone4 = true;
     }
     
-
+//    float percentToIncrease = -.23f;
+    int highscore = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getHighestScore];
+  /*  for (int i = 0; i < highscore; i+= 10000){
+        percentToIncrease += .035f;
+        if (i > 100000)
+            percentToIncrease += .015f;
+    }
+    absoluteMaxTimeDilation *= 1+percentToIncrease;
+    */
+    absoluteMaxTimeDilation = initialTimeDilation*1.8*1.05;
+   // NSLog([NSString stringWithFormat:@"old dilation %f highscore: %d",absoluteMaxTimeDilation,highscore]);
+    absoluteMaxTimeDilation *= min(1-.201+.018*(min(highscore,80000)/10000.0)+.0106*((highscore-80000)/10000.0),1.3);
+    //NSLog([NSString stringWithFormat:@"new dilation %f",absoluteMaxTimeDilation]);
 
     [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setGalaxyCounter:0];
     isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsInTutorialMode];

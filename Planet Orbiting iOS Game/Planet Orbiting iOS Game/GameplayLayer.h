@@ -73,6 +73,10 @@
     
     int lastOrbitState ;
     
+    
+    //the highest the time dilation factor can go. this should probZ just be infinity. bitches will has c slow down if they're going too fast
+    float absoluteMaxTimeDilation;
+    
     NSMutableArray* predPoints;
     
     CCLayer* tutLayer;

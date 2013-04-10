@@ -50,6 +50,6 @@
 -(bool)getShouldDisplayPredPoints;
 -(bool)getShouldPlayMenuMusic;
 -(void)setShouldPlayMenuMusic:(bool)a_shouldPlay;
-
+-(int)getHighestScore;
 
 @end
