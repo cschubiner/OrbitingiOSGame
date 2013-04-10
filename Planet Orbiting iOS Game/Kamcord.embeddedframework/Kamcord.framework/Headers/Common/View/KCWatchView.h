@@ -1,6 +1,6 @@
 //
 //  KCWatchView.h
-//  cocos2d-ios
+//
 //
 //  Created by Haitao Mao on 3/6/13.
 //

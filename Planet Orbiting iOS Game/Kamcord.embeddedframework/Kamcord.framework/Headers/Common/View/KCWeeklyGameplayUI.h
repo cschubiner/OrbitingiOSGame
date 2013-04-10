@@ -1,6 +1,6 @@
 //
 //  KCWeeklyGameplayUIViewController.h
-//  cocos2d-ios
+//
 //
 //  Created by Haitao Mao on 3/27/13.
 //

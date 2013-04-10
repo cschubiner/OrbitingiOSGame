@@ -1,6 +1,6 @@
 //
 //  KCURLRequest.h
-//  cocos2d-ios
+//
 //
 //  Created by Kevin Wang on 2/17/13.
 //

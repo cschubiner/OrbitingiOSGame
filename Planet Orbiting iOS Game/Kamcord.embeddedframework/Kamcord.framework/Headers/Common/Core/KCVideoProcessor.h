@@ -1,6 +1,6 @@
 //
 //  KCVideoProcessor.h
-//  cocos2d-ios
+//
 //
 //  Created by Kevin Wang on 6/1/12.
 //  Copyright (c) 2012 Kamcord Inc. All rights reserved.

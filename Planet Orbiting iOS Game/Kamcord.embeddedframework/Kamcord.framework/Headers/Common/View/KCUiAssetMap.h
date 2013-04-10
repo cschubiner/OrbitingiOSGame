@@ -1,6 +1,6 @@
 //
 //  KCUiAssetMap.h
-//  cocos2d-ios
+//
 //
 //  Created by Chris Perciballi on 2/15/13.
 //

@@ -1,6 +1,6 @@
 //
 //  Kamcord+Mixpanel.h
-//  cocos2d-ios
+//
 //
 //  Created by Matthew Zitzmann on 5/29/12.
 //  Copyright (c) 2012 Kamcord. All rights reserved.

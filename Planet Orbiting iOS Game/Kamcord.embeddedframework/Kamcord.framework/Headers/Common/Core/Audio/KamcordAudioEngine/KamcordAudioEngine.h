@@ -1,6 +1,6 @@
 //
 //  KamcordAudioEngine.h
-//  cocos2d-ios
+//
 //
 //  Created by Kevin Wang on 1/16/13.
 //
@@ -22,10 +22,6 @@
 
 // This static init method *MUST* be set before calling anything else.
 + (void)initWithSampleRate:(Float64)sampleRate;
-
-+ (id <KCAudioListener>)audioListener;
-+ (void)setAudioListener:(id <KCAudioListener>)listener;
-
 + (Float64)sampleRate;
 
 @end

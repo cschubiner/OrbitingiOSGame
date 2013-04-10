@@ -1,6 +1,6 @@
 //
 //  KCGradientButton.h
-//  cocos2d-ios
+//
 //
 //  Created by Matthew Zitzmann on 2/25/13.
 //

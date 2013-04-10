@@ -1,6 +1,6 @@
 //
 //  UIPlaceHolderTextView.h
-//  cocos2d-ios
+//
 //
 //  Created by Kevin Wang on 11/25/12.
 //

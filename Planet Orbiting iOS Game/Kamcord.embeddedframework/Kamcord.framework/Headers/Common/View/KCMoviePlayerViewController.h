@@ -1,6 +1,6 @@
 //
 //  KCMoviePlayerViewController.h
-//  cocos2d-ios
+//
 //
 //  Created by Kevin Wang on 2/1/13.
 //

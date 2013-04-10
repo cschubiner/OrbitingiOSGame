@@ -1,6 +1,6 @@
 //
 //  KCAudio.h
-//  cocos2d-ios
+//
 //
 //  Created by Matthew Zitzmann on 6/4/12.
 //  Copyright (c) 2012 Kamcord Inc. All rights reserved.

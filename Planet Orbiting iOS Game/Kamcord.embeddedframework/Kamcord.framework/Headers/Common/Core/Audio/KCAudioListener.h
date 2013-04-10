@@ -11,7 +11,7 @@
 @protocol KCAudioListener <NSObject>
 
 - (void)setAudioStreamBasicDescription:(AudioStreamBasicDescription)asbd;
-- (void)audioBytesReady:(Float32 [])data
+- (void)audioBytesReady:(void *)data
              numSamples:(UInt32)nsamples;
 
 @end

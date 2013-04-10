@@ -1,6 +1,6 @@
 //
 //  KCVideoTracker.h
-//  cocos2d-ios
+//
 //
 //  Created by Aditya Rathnam on 12/22/12.
 //

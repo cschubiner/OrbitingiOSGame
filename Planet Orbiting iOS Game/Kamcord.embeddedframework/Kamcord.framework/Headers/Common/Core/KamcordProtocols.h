@@ -1,6 +1,5 @@
 //
 //  KamcordProtocols.h
-//  cocos2d-ios
 //
 //  Created by Kevin Wang on 12/27/12.
 //

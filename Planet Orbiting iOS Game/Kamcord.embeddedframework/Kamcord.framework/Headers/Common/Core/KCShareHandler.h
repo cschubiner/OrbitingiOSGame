@@ -1,6 +1,6 @@
 //
 //  KCShareHandler.h
-//  cocos2d-ios
+//
 //
 //  Created by Kevin Wang on 5/29/12.
 //  Copyright (c) 2012 Kamcord Inc. All rights reserved.

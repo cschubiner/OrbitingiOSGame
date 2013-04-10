@@ -1,6 +1,6 @@
 //
 //  KCVideoStateAndViewManager.h
-//  cocos2d-ios
+//
 //
 //  Created by Kevin Wang on 7/13/12.
 //  Copyright (c) 2012 Kamcord Inc. All rights reserved.
@@ -132,7 +132,7 @@
 #endif
 
 #if KCUNITY_VERSION
-- (void)writeAudioData:(float [])data
+- (void)writeAudioData:(void *)data
                 length:(size_t)nbytes
            numChannels:(int)numChannels;
 #endif

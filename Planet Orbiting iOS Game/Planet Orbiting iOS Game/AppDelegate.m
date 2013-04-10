@@ -158,7 +158,16 @@
     [Kamcord setDeveloperKey:@"d05f73399ff3c1755bd97ec94cb5fdda"
              developerSecret:@"prcU7MltdajQ1YVTSeFDtPtywe2zABOmzzpSB5pGP79"
                      appName:@"Star Stream"];
+    
+    [Kamcord setNotificationsEnabled:true];
 
+    
+    UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (localNotif) {
+        [self application:application didReceiveLocalNotification:localNotif];
+    }
+    
+    [Kamcord setMaximumVideoLength:450];
 /*    if ([DeviceDetection detectDevice]==MODEL_IPHONE_4)
     {
           // XXXXXX [Kamcord setEnableSynchronousConversionUI:YES alwaysShowProgressBar:YES];
@@ -172,6 +181,15 @@
 	return YES;
 }
 
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notif
+{
+    if (notif != nil){
+    if ([notif.userInfo objectForKey:@"Kamcord"] != nil)
+    {
+        [Kamcord handleKamcordNotification:notif];
+    }
+    }
+}
 -(void)directorDidReshapeProjection:(CCDirector *)director{
     if (director.runningScene == nil){
         // and add the scene to the stack. The director will run it when it automatically when the view is displayed.
@@ -379,18 +397,24 @@ void SignalHandler(int sig) {
 
 bool isIOSVersionGreaterThan6(){
     // Obtain iOS version
-    unsigned int OSVersion_ = 0;
-    NSString *OSVer = [[UIDevice currentDevice] systemVersion];
-    NSArray *arr = [OSVer componentsSeparatedByString:@"."];
-    int idx = 0x01000000;
-    for( NSString *str in arr ) {
-        int value = [str intValue];
-        OSVersion_ += value * idx;
-        idx = idx >> 8;
+    @try {
+        unsigned int OSVersion_ = 0;
+        NSString *OSVer = [[UIDevice currentDevice] systemVersion];
+        NSArray *arr = [OSVer componentsSeparatedByString:@"."];
+        int idx = 0x01000000;
+        for( NSString *str in arr ) {
+            int value = [str intValue];
+            OSVersion_ += value * idx;
+            idx = idx >> 8;
+        }
+      //  CCLOG(@"VERSION: OS version: %@ (0x%08x)", OSVer, OSVersion_);
+        
+        return OSVersion_ >= kCCiOSVersion_6_0_0;
     }
-    CCLOG(@"VERSION: OS version: %@ (0x%08x)", OSVer, OSVersion_);
-    
-    return OSVersion_ >= kCCiOSVersion_6_0_0;
+    @catch (NSException *exception) {
+        return false;
+    }
+    return false;
 }
 
 
@@ -405,7 +429,7 @@ bool isIOSVersionGreaterThan6(){
     [[iRate sharedInstance] setAppStoreID:594091366];
     if (isIOSVersionGreaterThan6()){
         [[iRate sharedInstance] setRatingsURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=594091366"]];
-        NSLog(@"ios version is greater than six!");
+       // NSLog(@"ios version is greater than six!");
     }
     else [[iRate sharedInstance] setRatingsURL:[NSURL URLWithString:@"http://itunes.apple.com/us/app/star-stream/id594091366?ls=1&mt=8"]];
     

@@ -1,6 +1,6 @@
 //
 //  KCProgressUIView.h
-//  cocos2d-ios
+//
 //
 //  Created by Amrik Kochhar on 1/21/13.
 //

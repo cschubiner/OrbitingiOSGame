@@ -1,6 +1,6 @@
 //
 //  KCAudioRecorder.h
-//  cocos2d-ios
+//
 //
 //  Created by Kevin Wang on 1/9/13.
 //

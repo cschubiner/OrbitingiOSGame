@@ -256,6 +256,14 @@ typedef enum
 + (void)setMaximumVideoLength:(NSUInteger)seconds;
 + (NSUInteger)maximumVideoLength;
 
+#if (COCOS2D_2_0 || COCOS2D_2_1)
+/*
+ * Set target video FPS. Only valid values now are 15, 30, and 60.
+ */
++ (void)setVideoFPS:(NSUInteger)framesPerSecond;
++ (NSUInteger)videoFPS;
+#endif
+
 /*
  * Returns a UIView of the thumbnail cropped to the given width and height.
  */
@@ -274,7 +282,7 @@ typedef enum
 + (void)setASBD:(AudioStreamBasicDescription)asbd;
 
 /*
- * 
+ * Write the live audio bytes to the recorded video.
  */
 + (void)writeAudioBytes:(void *)data
              numSamples:(UInt32)numSamples;

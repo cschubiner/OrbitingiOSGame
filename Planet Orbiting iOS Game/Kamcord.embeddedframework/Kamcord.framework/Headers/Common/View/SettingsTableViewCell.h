@@ -1,6 +1,6 @@
 //
 //  SettingsTableViewCell.h
-//  cocos2d-ios
+//
 //
 //  Created by Chris Perciballi on 12/22/12.
 //

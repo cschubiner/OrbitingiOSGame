@@ -1,6 +1,6 @@
 //
 //  VideoTableViewCell.h
-//  cocos2d-ios
+//
 //
 //  Created by Chris Perciballi on 12/20/12.
 //

@@ -1,6 +1,6 @@
 //
 //  KCVideoWriter.h
-//  cocos2d-ios
+//
 //
 //  Created by Kevin Wang on 5/2/12.
 //  Copyright (c) 2012 Kamcord. All rights reserved.
@@ -39,7 +39,7 @@
 
 #if (KCUNITY_VERSION || KAMCORD_CUSTOM_ENGINE)
 - (void)setAudioFormatDescription:(CMFormatDescriptionRef)desc;
-- (void)audioBytesReady:(Float32 [])data
+- (void)audioBytesReady:(void *)data
              numSamples:(UInt32)nsamples;
 #endif
 

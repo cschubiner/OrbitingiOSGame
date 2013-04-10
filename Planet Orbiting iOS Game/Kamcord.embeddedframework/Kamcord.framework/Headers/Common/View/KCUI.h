@@ -1,6 +1,6 @@
 //
 //  KCGUI.h
-//  cocos2d-ios
+//
 //
 //  Created by Chris Grimm on 6/14/12.
 //  Copyright (c) 2012 Kamcord. All rights reserved.

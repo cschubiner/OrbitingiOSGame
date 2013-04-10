@@ -1,6 +1,6 @@
 //
 //  KCNotificationScheduler.h
-//  cocos2d-ios
+//
 //
 //  Created by Haitao Mao on 4/1/13.
 //

@@ -1,6 +1,6 @@
 //
 //  KCShareDelegateIntermediary.h
-//  cocos2d-ios
+//
 //
 //  Created by Kevin Wang on 12/10/12.
 //

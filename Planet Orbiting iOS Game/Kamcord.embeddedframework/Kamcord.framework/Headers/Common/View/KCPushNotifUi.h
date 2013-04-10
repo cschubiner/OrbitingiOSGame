@@ -1,6 +1,6 @@
 //
 //  KCPushNotifUi.h
-//  cocos2d-ios
+//
 //
 //  Created by Chris Perciballi on 3/2/13.
 //

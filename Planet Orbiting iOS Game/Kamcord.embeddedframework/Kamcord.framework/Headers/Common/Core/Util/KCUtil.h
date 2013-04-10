@@ -1,6 +1,6 @@
 //
 //  KCUtil.h
-//  cocos2d-ios
+//
 //
 //  Created by Aditya Rathnam on 3/7/13.
 //

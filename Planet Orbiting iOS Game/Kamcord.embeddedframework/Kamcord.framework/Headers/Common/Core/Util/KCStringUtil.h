@@ -1,6 +1,6 @@
 //
 //  KCStringUtil.h
-//  cocos2d-ios
+//
 //
 //  Created by Kevin Wang on 3/4/13.
 //
