@@ -175,7 +175,10 @@
 
     }*/
  //   [Kamcord setVideoResolution:TRAILER_VIDEO_RESOLUTION]; //leave this disabled!!
-	
+if (IS_IPHONE_5)
+    {
+        [Kamcord setVideoResolution:MEDIUM_VIDEO_RESOLUTION];
+    }
 	// make main window visible
 	[window_ makeKeyAndVisible];
 	
