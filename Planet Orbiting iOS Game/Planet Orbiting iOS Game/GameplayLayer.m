@@ -181,7 +181,7 @@ bool kamcordFailed = false;
 -(void)showKamcordFailedAlertView{
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle: @"Kamcord Error"
-                          message: @"We're sorry, Kamcord failed to record your video. Force close Star Stream to restart Kamcord."
+                          message: @"We're sorry, Kamcord failed to record your video. Force close your app to re-enable Kamcord functionality."
                           delegate: self
                           cancelButtonTitle:@"Dismiss"
                           otherButtonTitles:nil];
@@ -624,9 +624,6 @@ bool kamcordFailed = false;
         defaultDirection = 29.396052855;
     directionPlanetSegmentsGoIn = [self randomValueBetween:defaultDirection-directionPlanetSegmentsGoInVariance andValue:defaultDirection+directionPlanetSegmentsGoInVariance];
     
-    [Kamcord setShareDelegate:self];
-    [Kamcord setDelegate:self];
-
     [Kamcord prepareNextVideo];
     totalPlanetsVisitedForBackgroundStars = 0;
     planetCounter = 0;
@@ -2539,6 +2536,8 @@ bool kamcordFailed = false;
     
     [Kamcord setLevel:[NSString stringWithFormat:@"Galaxy %d",currentGalaxy.number+1] score:[NSNumber numberWithInt:finalScore]];
     [Kamcord setFacebookTitle:@"Star Stream Gameplay" caption:[NSString stringWithFormat:@"Score: %d points. Reached galaxy: %d",finalScore,currentGalaxy.number+1] description:[NSString stringWithFormat:@"My awesome round of Star Stream. I reached a score of %d and reached galaxy %d!",finalScore,currentGalaxy.number+1]];
+    [Kamcord setShareDelegate:self];
+    [Kamcord setDelegate:self];
     //[Kamcord setEnableSynchronousConversionUI:YES alwaysShowProgressBar:YES];
   
     //finalScore = 69669;
