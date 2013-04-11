@@ -147,20 +147,8 @@
     //	[window_ addSubview:navController_.view];	// Generates flicker.
 //	[window_ setRootViewController:navController_];
     
-    
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0){
-        [window_ setRootViewController:navController_];
-    }
-    else{
-        [window_ addSubview:navController_.view];
-    }
-    
-    [Kamcord setDeveloperKey:@"d05f73399ff3c1755bd97ec94cb5fdda"
-             developerSecret:@"prcU7MltdajQ1YVTSeFDtPtywe2zABOmzzpSB5pGP79"
-                     appName:@"Star Stream"];
-    
     [Kamcord setNotificationsEnabled:true];
-
+    
     
     UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (localNotif) {
@@ -168,16 +156,28 @@
     }
     
     [Kamcord setMaximumVideoLength:450];
-/*    if ([DeviceDetection detectDevice]==MODEL_IPHONE_4)
-    {
-          [Kamcord setEnableSynchronousConversionUI:YES alwaysShowProgressBar:YES];
-
-
-    }*/
- //   [Kamcord setVideoResolution:TRAILER_VIDEO_RESOLUTION]; //leave this disabled!!
-if (IS_IPHONE_5)
+    /*    if ([DeviceDetection detectDevice]==MODEL_IPHONE_4)
+     {
+     [Kamcord setEnableSynchronousConversionUI:YES alwaysShowProgressBar:YES];
+     
+     
+     }*/
+    //   [Kamcord setVideoResolution:TRAILER_VIDEO_RESOLUTION]; //leave this disabled!!
+    if (IS_IPHONE_5)
     {
         [Kamcord setVideoResolution:MEDIUM_VIDEO_RESOLUTION];
+    }
+    
+    [Kamcord setDeveloperKey:@"d05f73399ff3c1755bd97ec94cb5fdda"
+             developerSecret:@"prcU7MltdajQ1YVTSeFDtPtywe2zABOmzzpSB5pGP79"
+                     appName:@"Star Stream"];
+    
+
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0){
+        [window_ setRootViewController:navController_];
+    }
+    else{
+        [window_ addSubview:navController_.view];
     }
 	// make main window visible
 	[window_ makeKeyAndVisible];
