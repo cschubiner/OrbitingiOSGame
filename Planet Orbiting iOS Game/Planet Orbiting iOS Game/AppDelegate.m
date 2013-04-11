@@ -167,7 +167,7 @@
         [self application:application didReceiveLocalNotification:localNotif];
     }
     
-   // [Kamcord setMaximumVideoLength:450];
+    [Kamcord setMaximumVideoLength:450];
 /*    if ([DeviceDetection detectDevice]==MODEL_IPHONE_4)
     {
           [Kamcord setEnableSynchronousConversionUI:YES alwaysShowProgressBar:YES];
