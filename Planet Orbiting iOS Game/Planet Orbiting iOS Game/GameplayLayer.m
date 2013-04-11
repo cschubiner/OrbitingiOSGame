@@ -510,7 +510,8 @@ bool kamcordFailed = false;
     
     [[UpgradeValues sharedInstance] setHasDoubleCoins:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped]];
     
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:69 + 4*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
+    //[[UpgradeValues sharedInstance] setMaxBatteryTime:69 + 4*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:18 + 4*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
     
     [[UpgradeValues sharedInstance] setHasStarMagnet:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped]];
     
@@ -2533,6 +2534,8 @@ bool kamcordFailed = false;
     }
     
     [Kamcord setYouTubeDescription:[NSString stringWithFormat:@"My awesome round of Star Stream. I scored %d points and reached galaxy %d.",finalScore,currentGalaxy.number+1] tags:@"Star Stream, Star, Stream, iPhone, iOS, iPod, gameplay, video, high score, score, highscore"];
+    
+    [Kamcord setTwitterDescription:[NSString stringWithFormat:@"My awesome round of Star Stream. I scored %d points and reached galaxy %d.",finalScore,currentGalaxy.number+1]];
     
     [Kamcord setLevel:[NSString stringWithFormat:@"Galaxy %d",currentGalaxy.number+1] score:[NSNumber numberWithInt:finalScore]];
     [Kamcord setFacebookTitle:@"Star Stream Gameplay" caption:[NSString stringWithFormat:@"Score: %d points. Reached galaxy: %d",finalScore,currentGalaxy.number+1] description:[NSString stringWithFormat:@"My awesome round of Star Stream. I reached a score of %d and reached galaxy %d!",finalScore,currentGalaxy.number+1]];
