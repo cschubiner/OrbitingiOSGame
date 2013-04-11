@@ -510,8 +510,8 @@ bool kamcordFailed = false;
     
     [[UpgradeValues sharedInstance] setHasDoubleCoins:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped]];
     
-    //[[UpgradeValues sharedInstance] setMaxBatteryTime:69 + 4*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
-    [[UpgradeValues sharedInstance] setMaxBatteryTime:18 + 4*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
+    [[UpgradeValues sharedInstance] setMaxBatteryTime:70 + 4*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
+    //[[UpgradeValues sharedInstance] setMaxBatteryTime:18 + 4*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
     
     [[UpgradeValues sharedInstance] setHasStarMagnet:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped]];
     
