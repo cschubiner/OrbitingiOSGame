@@ -181,7 +181,7 @@ bool kamcordFailed = false;
 -(void)showKamcordFailedAlertView{
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle: @"Kamcord Error"
-                          message: @"We're sorry, Kamcord failed to record your video. Force close your app to re-enable Kamcord functionality."
+                          message: @"We're sorry, Kamcord failed to record your video. Force close Star Stream to restart Kamcord."
                           delegate: self
                           cancelButtonTitle:@"Dismiss"
                           otherButtonTitles:nil];
@@ -2513,7 +2513,7 @@ bool kamcordFailed = false;
     
     [[PlayerStats sharedInstance] addPlay];
     
-  //  [Kamcord setYouTubeVideoCategory:@"Games"];
+    [Kamcord setYouTubeVideoCategory:@"Games"];
 
  //   [Kamcord setDefaultEmailSubject:@"Check out my awesome Star Stream Gameplay!"];
 
