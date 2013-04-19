@@ -426,7 +426,7 @@ bool kamcordFailed = false;
     galaxy = [galaxies objectAtIndex:0];
     [galaxy setName:@"Galaxy 1"];
     [galaxy setNumberOfDifferentPlanetsDrawn:7];
-    [galaxy setOptimalPlanetsInThisGalaxy:24];
+    [galaxy setOptimalPlanetsInThisGalaxy:18];
     [galaxy setGalaxyColor: ccc3(45*darkScaler, 53*darkScaler, 147*darkScaler)]; //a dark blue
     
     galaxy = [galaxies objectAtIndex:1];
@@ -483,7 +483,9 @@ bool kamcordFailed = false;
     [galaxy setOptimalPlanetsInThisGalaxy:25];
     [galaxy setGalaxyColor: ccc3(95*darkScaler*1.09*1.1, 95*darkScaler*1.09*1.1, 95*darkScaler*1.09*1.1)];
     
+    //When you're in the earlier galaxies, your battery will increase by this much when going between galaxies.
     float maxPercentTimeToAdd = .30;
+    //When you're in the later galaxies, your battery will increase by this much when going between galaxies.
     float minPercentTimeToAdd = .25594;
  //   int maxOptimalPlanets = 31;
  //   int minOptimalPlanets = 25;
@@ -492,13 +494,7 @@ bool kamcordFailed = false;
       //  [galaxy setOptimalPlanetsInThisGalaxy:lerpf(minOptimalPlanets, maxOptimalPlanets,galaxyPercent)];
         [galaxy setPercentTimeToAddUponGalaxyCompletion:lerpf(maxPercentTimeToAdd, minPercentTimeToAdd, galaxyPercent)];
     }
-    
-    galaxy = [galaxies objectAtIndex:0];
-    [galaxy setOptimalPlanetsInThisGalaxy:18];
-    
- //   for (Galaxy* galaxy in galaxies)
-   //     [galaxy setOptimalPlanetsInThisGalaxy:11];
-    
+        
 }
 
 - (void)initUpgradedVariables {
@@ -511,7 +507,6 @@ bool kamcordFailed = false;
     [[UpgradeValues sharedInstance] setHasDoubleCoins:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped]];
     
     [[UpgradeValues sharedInstance] setMaxBatteryTime:70 + 4*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
-    //[[UpgradeValues sharedInstance] setMaxBatteryTime:18 + 4*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:4] equipped]];
     
     [[UpgradeValues sharedInstance] setHasStarMagnet:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:5] equipped]];
     
@@ -596,20 +591,25 @@ bool kamcordFailed = false;
         isIphone4 = true;
     }
     
-//    float percentToIncrease = -.23f;
+    
+    // MAX SPEED SECTION -------------------------------------------------------------------------------------------------
+    
     int highscore = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getHighestScore];
-  /*  for (int i = 0; i < highscore; i+= 10000){
-        percentToIncrease += .035f;
-        if (i > 100000)
-            percentToIncrease += .015f;
-    }
-    absoluteMaxTimeDilation *= 1+percentToIncrease;
-    */
+
+    //This sets the overall max speed. 
     absoluteMaxTimeDilation = initialTimeDilation*1.8*1.05;
     //NSLog([NSString stringWithFormat:@"old dilation %f highscore: %d",absoluteMaxTimeDilation,highscore]);
+    
+    //This formula determines how to scale the maximum speed based on how noob you are. Use Grapher (you have it on your mac) to visualize the formula.
     absoluteMaxTimeDilation *= min(1-.201+.011*(min(highscore,100000)/10000.0)+.011*((highscore-100000)/10000.0),1.115);
+    
     //NSLog([NSString stringWithFormat:@"new dilation %f",absoluteMaxTimeDilation]);
 
+    
+    // END OF MAX SPEED SECTION ------------------------------------------------------------------------------------------    
+    
+    
+    
     [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setGalaxyCounter:0];
     isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsInTutorialMode];
     shouldDisplayPredPoints = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getShouldDisplayPredPoints];
