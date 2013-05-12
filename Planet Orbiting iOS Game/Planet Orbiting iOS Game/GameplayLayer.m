@@ -432,25 +432,25 @@ bool kamcordFailed = false;
     galaxy = [galaxies objectAtIndex:1];
     [galaxy setName:@"Galaxy 2"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:26];
+    [galaxy setOptimalPlanetsInThisGalaxy:23];
     [galaxy setGalaxyColor: ccc3(0, 103*darkScaler, 3*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:2];
     [galaxy setName:@"Galaxy 3"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:27];
+    [galaxy setOptimalPlanetsInThisGalaxy:23];
     [galaxy setGalaxyColor: ccc3(114*darkScaler, 0, 115*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:3];
     [galaxy setName:@"Galaxy 4"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
-    [galaxy setOptimalPlanetsInThisGalaxy:26];
+    [galaxy setOptimalPlanetsInThisGalaxy:22];
     [galaxy setGalaxyColor: ccc3(0, 130*darkScaler, 115*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:4];
     [galaxy setName:@"Galaxy 5"];
     [galaxy setNumberOfDifferentPlanetsDrawn:1];
-    [galaxy setOptimalPlanetsInThisGalaxy:23];
+    [galaxy setOptimalPlanetsInThisGalaxy:20];
     [galaxy setGalaxyColor: ccc3(154*darkScaler, 86*darkScaler, 0)];
     
     galaxy = [galaxies objectAtIndex:5];
@@ -462,19 +462,19 @@ bool kamcordFailed = false;
     galaxy = [galaxies objectAtIndex:6];
     [galaxy setName:@"Galaxy 7"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:21];
+    [galaxy setOptimalPlanetsInThisGalaxy:19];
     [galaxy setGalaxyColor: ccc3(161*darkScaler, 163*darkScaler, 42*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:7];
     [galaxy setName:@"Galaxy 8"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:20];
+    [galaxy setOptimalPlanetsInThisGalaxy:21];
     [galaxy setGalaxyColor: ccc3(148*darkScaler, 74*darkScaler, 0*darkScaler)];
     
     galaxy = [galaxies objectAtIndex:8];
     [galaxy setName:@"Galaxy 9"];
     [galaxy setNumberOfDifferentPlanetsDrawn:3];
-    [galaxy setOptimalPlanetsInThisGalaxy:22];
+    [galaxy setOptimalPlanetsInThisGalaxy:23];
     [galaxy setGalaxyColor: ccc3(64, 104, 149)];
     
     galaxy = [galaxies objectAtIndex:9];
@@ -484,9 +484,9 @@ bool kamcordFailed = false;
     [galaxy setGalaxyColor: ccc3(95*darkScaler*1.09*1.1, 95*darkScaler*1.09*1.1, 95*darkScaler*1.09*1.1)];
     
     //When you're in the earlier galaxies, your battery will increase by this much when going between galaxies.
-    float maxPercentTimeToAdd = .30;
+    float maxPercentTimeToAdd = .38;
     //When you're in the later galaxies, your battery will increase by this much when going between galaxies.
-    float minPercentTimeToAdd = .25594;
+    float minPercentTimeToAdd = .31;
  //   int maxOptimalPlanets = 31;
  //   int minOptimalPlanets = 25;
     for (Galaxy* galaxy in galaxies) {
@@ -597,7 +597,7 @@ bool kamcordFailed = false;
     int highscore = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getHighestScore];
 
     //This sets the overall max speed. 
-    absoluteMaxTimeDilation = initialTimeDilation*1.8*1.05;
+    absoluteMaxTimeDilation = initialTimeDilation*1.43*1.05;
     //NSLog([NSString stringWithFormat:@"old dilation %f highscore: %d",absoluteMaxTimeDilation,highscore]);
     
     //This formula determines how to scale the maximum speed based on how noob you are. Use Grapher (you have it on your mac) to visualize the formula.

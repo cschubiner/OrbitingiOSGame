@@ -121,7 +121,7 @@ const float deathAfterThisLong = 55*1.35f*1.1f*1.5f*1*2*.9*2*2;
 //SPEED!!!!-------------------------------------------------------------------------------------------------
 
 /*This is the initial speed */
-const float initialTimeDilation = .8*.89;
+const float initialTimeDilation = .7*.89;
 
 //Increase to make timeDilationFactor decrease more rapidly. This is what slows you down when you're orbiting planets. For example, if you just orbit around and around a lot, your speed will decrease.
 const float timeDilationReduceRate = .0005*.98;
@@ -130,10 +130,10 @@ const float timeDilationReduceRate = .0005*.98;
 const float factorToScaleTimeDilationByOnDeath = .96;
 
 //This makes you go faster when you go between planets. Increase to increase timeDilationFactor by a larger amount everytime you get to a new zone.
-const float timeDilationIncreaseRate = .047*.8*1.5;
+const float timeDilationIncreaseRate = .047*.7*1.5;
 
 //This makes you faster when you are in "fever mode," which is the mode you're in when you get a combo and have a red streak and the score multiplier appears. 
-const float timeDilationFeverModeMultiplier = 1.05;
+const float timeDilationFeverModeMultiplier = 1.028;
 
 //also search for absoluteMaxTimeDilation!
 
