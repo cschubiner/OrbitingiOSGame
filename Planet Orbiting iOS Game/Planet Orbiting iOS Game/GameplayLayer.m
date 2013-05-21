@@ -3100,10 +3100,10 @@ bool kamcordFailed = false;
         
         [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
         
-        if (allowVideoToConvert==false)
+       /* if (allowVideoToConvert==false)
         {
            [Kamcord cancelConversionForLatestVideo];
-        }
+        }*/
         
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
         //        [[CCDirector sharedDirector] pushScene:[MainMenuLayer scene]];
@@ -3159,10 +3159,10 @@ bool kamcordFailed = false;
     
     if (kamcordStartedRecording)
         [Kamcord stopRecording];
-    if (allowVideoToConvert==false)
+   /* if (allowVideoToConvert==false)
     {
        [Kamcord cancelConversionForLatestVideo];
-    }
+    }*/
     
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
 }

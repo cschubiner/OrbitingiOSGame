@@ -36,7 +36,8 @@ const float effectsVolumeMainMenu = 1;
     CGPoint swipeEndPoint;
     CCLabelBMFont* beginLabel;
     bool missionPopupIsUp;
-    
+    CCLabelBMFont *tipLabel;
+
     CCLayer* missionPopup;
     
     CGPoint position;
@@ -255,6 +256,41 @@ const float effectsVolumeMainMenu = 1;
         self.myPlayer = NULL;
 
         [Kamcord setDelegate:self];
+        tipLabel = NULL;
+        NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://dl.dropboxusercontent.com/u/46621227/starstreamtipofday.txt"]];
+        if (data) {
+        NSString *urlContents = [[NSString alloc]initWithData:data
+                                                      encoding:NSASCIIStringEncoding];
+        NSLog(urlContents);
+            
+            NSArray *firstSplit = [urlContents componentsSeparatedByString:@"|"];
+            NSString *msg = [firstSplit lastObject];
+            
+            // print out the numbers (as strings)
+            float scale = .68;
+            scale = ((NSNumber*)[firstSplit objectAtIndex:0]).floatValue;
+            float yPos = 85;
+            yPos = ((NSNumber*)[firstSplit objectAtIndex:1]).floatValue;
+            float red = ((NSNumber*)[firstSplit objectAtIndex:2]).floatValue;
+            float green = ((NSNumber*)[firstSplit objectAtIndex:3]).floatValue;
+            float blue = ((NSNumber*)[firstSplit objectAtIndex:4]).floatValue;
+
+            tipLabel = [CCLabelBMFont labelWithString:msg fntFile:@"score_label_font.fnt"];
+            [tipLabel setColor:ccc3(red, green, blue)];
+            [tipLabel setScale:scale];
+            [self addChild: tipLabel];
+            [tipLabel setZOrder:INT_MAX-1];
+            
+            if (IS_IPHONE_5)
+                [tipLabel setPosition:ccp(240+HALF_IPHONE_5_ADDITIONAL_WIDTH, yPos)];
+            else
+                [tipLabel setPosition:ccp(240, yPos)];
+            [tipLabel setVisible:false];
+            
+            
+        }
+        
+        
 
         size = [[CCDirector sharedDirector] winSize];
         self.isTouchEnabled = true;
@@ -376,6 +412,15 @@ const float effectsVolumeMainMenu = 1;
                                                                          [CCDelayTime actionWithDuration:.3],
                                                                          [CCFadeTo actionWithDuration:.3 opacity:0],
                                                                          nil]]];
+                if (tipLabel != NULL) {
+                [tipLabel setVisible:true];
+                [tipLabel setOpacity:0];
+                [tipLabel runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
+                                                                         [CCFadeTo actionWithDuration:1.8 opacity:255],
+                                                                         [CCDelayTime actionWithDuration:1.4],
+                                                                         [CCFadeTo actionWithDuration:.3 opacity:0],
+                                                                         nil]]];
+                }
             })],
                                               nil]];
             
@@ -393,6 +438,16 @@ const float effectsVolumeMainMenu = 1;
                                                                      [CCDelayTime actionWithDuration:.3],
                                                                      [CCFadeTo actionWithDuration:.3 opacity:0],
                                                                      nil]]];
+            
+            if (tipLabel != NULL) {
+                [tipLabel setVisible:true];
+                [tipLabel setOpacity:0];
+                [tipLabel runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
+                                                                       [CCFadeTo actionWithDuration:1.85 opacity:255],
+                                                                       [CCDelayTime actionWithDuration:1.43],
+                                                                       [CCFadeTo actionWithDuration:.3 opacity:0],
+                                                                       nil]]];
+            }
             
             [topBarNode setPosition:ccp(0, 0)];
             [bottomBarNode setPosition:ccp(0, 320)];
@@ -418,6 +473,17 @@ const float effectsVolumeMainMenu = 1;
         [beginLabel setVisible:false];
     })],
                            nil]];
+    
+    if (tipLabel != NULL) {
+        [tipLabel runAction:[CCSequence actions:
+                               [CCFadeTo actionWithDuration:.3 opacity:0],
+                               [CCCallBlock actionWithBlock:(^{
+            
+            [tipLabel setOpacity:0];
+            [tipLabel setVisible:false];
+        })],
+                               nil]];
+    }
     
     [dark runAction:[CCSequence actions:
                      [CCDelayTime actionWithDuration:.5],
