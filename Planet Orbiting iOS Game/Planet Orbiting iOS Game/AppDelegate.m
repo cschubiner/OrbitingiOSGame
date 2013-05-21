@@ -449,8 +449,8 @@ bool isIOSVersionGreaterThan6(){
 {
     //configure iRate
     [iRate sharedInstance].daysUntilPrompt = .02;
-    [iRate sharedInstance].usesUntilPrompt = 10;
-    [iRate sharedInstance].eventsUntilPrompt = 17;
+    [iRate sharedInstance].usesUntilPrompt = 6;//10
+    [iRate sharedInstance].eventsUntilPrompt = 13;//17
     [[iRate sharedInstance] setDisplayAppUsingStorekitIfAvailable:false];
 
     [[iRate sharedInstance] setAppStoreID:594091366];
@@ -479,7 +479,6 @@ bool isIOSVersionGreaterThan6(){
 -(void)iRateUserDidRequestReminderToRateApp {
     [Flurry logEvent:@"iRate user did request reminder to rate app" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays", nil]];
 }
-
 
 
 @end
