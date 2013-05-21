@@ -601,7 +601,7 @@ bool kamcordFailed = false;
     //NSLog([NSString stringWithFormat:@"old dilation %f highscore: %d",absoluteMaxTimeDilation,highscore]);
     
     //This formula determines how to scale the maximum speed based on how noob you are. Use Grapher (you have it on your mac) to visualize the formula.
-    absoluteMaxTimeDilation *= min(1-.201+.011*(min(highscore,100000)/10000.0)+.011*((highscore-100000)/10000.0),1.115);
+    absoluteMaxTimeDilation *= min(1-.201+.013*(min(highscore,170000)/10000.0)+.018*((highscore-170000)/10000.0),1.229);
     
     //NSLog([NSString stringWithFormat:@"new dilation %f",absoluteMaxTimeDilation]);
 
@@ -2443,8 +2443,7 @@ bool kamcordFailed = false;
             if ([[self children]containsObject:layerHudSlider])
                 [self removeChild:layerHudSlider cleanup:YES];
             if (kamcordStartedRecording)
-           // [Kamcord stopRecording];
-                [Kamcord pause];
+                [Kamcord stopRecording];
         }
         @catch (NSException *exception) {    }
 
@@ -3096,11 +3095,14 @@ bool kamcordFailed = false;
     if (!didEndGameAlready) {
         didEndGameAlready = true;
         
+        if (kamcordStartedRecording)
+            [Kamcord stopRecording];
+        
         [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
         
         if (allowVideoToConvert==false)
         {
-            // XXXXXX [Kamcord cancelConversionForLatestVideo];
+           [Kamcord cancelConversionForLatestVideo];
         }
         
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
@@ -3154,9 +3156,12 @@ bool kamcordFailed = false;
     [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
     
     //CCLOG(@"GameplayLayerScene launched, game starting");
+    
+    if (kamcordStartedRecording)
+        [Kamcord stopRecording];
     if (allowVideoToConvert==false)
     {
-        // XXXXXX [Kamcord cancelConversionForLatestVideo];
+       [Kamcord cancelConversionForLatestVideo];
     }
     
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
