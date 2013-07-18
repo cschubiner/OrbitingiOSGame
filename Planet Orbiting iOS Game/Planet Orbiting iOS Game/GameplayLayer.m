@@ -283,7 +283,7 @@ bool kamcordFailed = false;
     
     //  [self setGlow];
     Asteroid *asteroid = [[Asteroid alloc]init];
-    asteroid.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"asteroid%d-%d.png",[self RandomBetween:1 maxvalue:3],currentGalaxy.number]];
+    asteroid.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"asteroid%d-%d.png",[self RandomBetween:1 maxvalue:3],currentGalaxy.actualNumber]];
     asteroid.sprite.position = ccp(xPos, yPos);
     [asteroid.sprite setScale:scale];
     asteroid.whichSegmentThisObjectIsOriginallyFrom = originalSegmentNumber;
@@ -299,7 +299,7 @@ bool kamcordFailed = false;
 - (void)CreatePlanetAndZone:(CGFloat)xPos yPos:(CGFloat)yPos scale:(float)scale {
     //CCLOG(@"started planet and zone");
     Planet *planet = [[Planet alloc]init];
-    planet.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"planet%d-%d.png",[self RandomBetween:1 maxvalue:currentGalaxy.numberOfDifferentPlanetsDrawn],currentGalaxy.number]];
+    planet.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"planet%d-%d.png",[self RandomBetween:1 maxvalue:currentGalaxy.numberOfDifferentPlanetsDrawn],currentGalaxy.actualNumber]];
     planet.sprite.position = ccp(xPos, yPos);
     planet.sprite.rotation = [self randomValueBetween:-180 andValue:180];
     [planet.sprite setScale:scale];
@@ -307,7 +307,7 @@ bool kamcordFailed = false;
     planet.segmentNumber = makingSegmentNumber;
     planet.whichSegmentThisObjectIsOriginallyFrom = originalSegmentNumber;
     Zone *zone = [[Zone alloc]init];
-    zone.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"zone%d.png",currentGalaxy.number]];
+    zone.sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"zone%d.png",currentGalaxy.actualNumber]];
     [zone.sprite setScale:scale*zoneScaleRelativeToPlanet];
     zone.sprite.position = planet.sprite.position;
     zone.segmentNumber = makingSegmentNumber;
@@ -493,6 +493,8 @@ bool kamcordFailed = false;
         float galaxyPercent = ((float)galaxy.number)/((float)galaxies.count-1);
       //  [galaxy setOptimalPlanetsInThisGalaxy:lerpf(minOptimalPlanets, maxOptimalPlanets,galaxyPercent)];
         [galaxy setPercentTimeToAddUponGalaxyCompletion:lerpf(maxPercentTimeToAdd, minPercentTimeToAdd, galaxyPercent)];
+        [galaxy setOptimalPlanetsInThisGalaxy:7];
+        galaxy.actualNumber = galaxy.number;
     }
         
 }
@@ -658,6 +660,7 @@ bool kamcordFailed = false;
     
     cometParticle = [CCParticleSystemQuad particleWithFile:@"cometParticle.plist"];
     playerExplosionParticle = [CCParticleSystemQuad particleWithFile:@"playerExplosionParticle.plist"];
+    playerSwipedParticle = [CCParticleSystemQuad particleWithFile:@"playerSwipedParticle.plist"];
     [cameraLayer addChild:playerExplosionParticle];
     [playerExplosionParticle setVisible:false];
     [playerExplosionParticle stopSystem];
@@ -812,7 +815,7 @@ bool kamcordFailed = false;
         streakWidth = streakWidthOnRetinaDisplay;
     
     
-    float strToUse = (isIphone4 ? .8 : 1.2);
+    float strToUse = (isIphone4 ? .59 : .768);
     streak = [CCMotionStreak streakWithFade:strToUse minSeg:3 width:streakWidth color:ccWHITE textureFilename:@"streak2.png"];
     
     if ([[UpgradeValues sharedInstance] hasGreenTrail]) {
@@ -988,27 +991,27 @@ bool kamcordFailed = false;
       
 
         NSArray * helperTextArray = [NSArray arrayWithObjects:
-                                     @"Stars increase your score and let you buy upgrades in the store!",
+                                     @"Stars increase your score and let you buy upgrades in the store",
                                      @"Aim your swipes - they determine the direction in which you'll move.",
                                      @"Aim your swipes - they determine the direction in which you'll proceed to the next planet.",
                                      @"Aim your swipes - they determine your direction of travel.",
                                      @"Swipe in different directions to avoid asteroids and get coins!",
                                                                           @"Swipe in different directions to avoid asteroids and get coins!",
+                                                                          @"Swipe in different directions to avoid asteroids and get coins",
                                                                           @"Swipe in different directions to avoid asteroids and get coins!",
-                                                                          @"Swipe in different directions to avoid asteroids and get coins!",
-                                                                          @"Swipe in different directions to avoid asteroids and get coins!",
+                                                                          @"Swipe in different directions to avoid asteroids and get coins",
                                                                           @"Swipe in different directions to avoid asteroids and get coins!",
                                                                           @"Don't always swipe in the same direction!",
                                                                         @"Don't always swipe in the same direction!",
                                                                 @"Don't always swipe in the same direction!",
-                                                                                @"Don't always swipe in the same direction!",
+                                                                                @"Don't always swipe in the same direction",
                                      @"Complete missions to earn more stars!",
                                      @"Orbit planets as briefly as you can to move as fast as possible.",
                                      @"Your time is limited; watch the battery in the lower-left corner of the screen.",
                                      @"Your battery recharges as you move between galaxies.",
-                                     @"Share a video of your gameplay on the game over screen for a star reward!",
+                                     @"Share a video of your gameplay on the game over screen for a star reward",
                                      @"Try not orbiting planets at all - you'll start moving super quickly!",
-                                     @"Visit the store to buy awesome upgrades!",
+                                     @"Visit the store to buy awesome upgrades",
                                      @"Galaxies increase in difficulty. See how many of them you can make it to!",
                                      nil];
         
@@ -1595,8 +1598,16 @@ bool kamcordFailed = false;
                 if (orbitState == 1) {
                     velSoftener = 0;
                     gravIncreaser = 1;
-                    if (loading_playerHasReachedFirstPlanet)
+                    if (loading_playerHasReachedFirstPlanet) {
                         [self playSound:@"SWOOSH.wav" shouldLoop:false pitch:1];
+                        if (!IS_IPHONE_4) {
+                            [playerSwipedParticle setRotation:player.sprite.rotation-180];
+                            [playerSwipedParticle resetSystem];
+                            [playerSwipedParticle setPosition:player.sprite.position];
+                            [playerSwipedParticle setPositionType:kCCPositionTypeGrouped];
+                            [playerSwipedParticle setVisible:true];
+                        }
+                    }
                     player.acceleration = CGPointZero;
                     
                     CGPoint d = ccpSub(targetPlanet.sprite.position, player.sprite.position);
@@ -1941,7 +1952,11 @@ bool kamcordFailed = false;
     justReachedNewPlanet = true;
     
     [thrustParticle setPositionType:kCCPositionTypeRelative];
-    //[cameraLayer addChild:thrustParticle z:2];
+    if (IS_IPHONE_5)
+        [cameraLayer addChild:thrustParticle z:2];
+    if (!IS_IPHONE_4)
+        [cameraLayer addChild:playerSwipedParticle z:2];
+
     [cameraLayer addChild:thrustBurstParticle z:2];
     [cameraLayer addChild:streak z:1];
     //CCLOG(@"adding player.sprite");
@@ -2051,16 +2066,16 @@ bool kamcordFailed = false;
                 timeToAddToTimer = lastGalaxy.percentTimeToAddUponGalaxyCompletion*[[UpgradeValues sharedInstance] maxBatteryTime];
                 if (timeToAddToTimer+light.timeLeft > [[UpgradeValues sharedInstance] maxBatteryTime])
                     timeToAddToTimer = [[UpgradeValues sharedInstance] maxBatteryTime] - light.timeLeft;
-                
+           /*
                 for (CCSprite* sprite in lastGalaxy.spriteSheet.children)
                     [[CCSpriteFrameCache sharedSpriteFrameCache]removeSpriteFramesFromTexture:sprite.texture];
                 
                 if ([[cameraLayer children]containsObject:lastGalaxy.spriteSheet]) {
                     [cameraLayer removeChild:lastGalaxy.spriteSheet cleanup:YES];
                 }
-                
+                */
                 if ([[cameraLayer children]containsObject:currentGalaxy.spriteSheet]==false) {
-                    [lastGalaxy.spriteSheet removeAllChildrenWithCleanup:YES];
+                  /*  [lastGalaxy.spriteSheet removeAllChildrenWithCleanup:YES];
                     [lastGalaxy.spriteSheet removeFromParentAndCleanup:YES];
                     [lastGalaxy.spriteSheet.children removeAllObjects];
                     lastGalaxy.spriteSheet = NULL;
@@ -2069,7 +2084,7 @@ bool kamcordFailed = false;
                     [lastGalaxy removeAllChildrenWithCleanup:YES];
                     lastGalaxy = NULL;
                     [galaxies replaceObjectAtIndex:lastGalaxy.number withObject:[NSNull null]];
-                    
+                    */
                     // [lastGalaxy cleanup];
                     
                     [cameraLayer addChild:currentGalaxy.spriteSheet z:3];
@@ -2083,13 +2098,13 @@ bool kamcordFailed = false;
                 //CCLOG(@"galaxy4");
                 
                 [self CheckMissionsGalaxyChange];
-                
+             /*
                 for (int i = 0 ; i <= 9 ; i++) {
-                    [[CCSpriteFrameCache sharedSpriteFrameCache]removeSpriteFrameByName:[NSString stringWithFormat:@"planet%d-%d.png",i,currentGalaxy.number-1]];
-                    [[CCSpriteFrameCache sharedSpriteFrameCache]removeSpriteFrameByName:[NSString stringWithFormat:@"asteroid%d-%d.png",i,currentGalaxy.number-1]];
+                    [[CCSpriteFrameCache sharedSpriteFrameCache]removeSpriteFrameByName:[NSString stringWithFormat:@"planet%d-%d.png",i,currentGalaxy.actualNumber-1]];
+                    [[CCSpriteFrameCache sharedSpriteFrameCache]removeSpriteFrameByName:[NSString stringWithFormat:@"asteroid%d-%d.png",i,currentGalaxy.actualNumber-1]];
                 }
                 [[CCSpriteFrameCache sharedSpriteFrameCache]removeSpriteFrameByName:[NSString stringWithFormat:@"zone%d.png",currentGalaxy.number-1]];
-                
+                */
                 flurrySegmentsVisitedSinceGalaxyJump = 0;
                 
                 [batteryGlowSprite setColor:ccc3(0, 255, 0)];
@@ -2146,16 +2161,59 @@ bool kamcordFailed = false;
             makingSegmentNumber--;
             [self CreatePlanetAndZone:indicatorPos.x yPos:indicatorPos.y scale:1];
             makingSegmentNumber++;
-            
+            static int everyOtherCounter = -1;
+            everyOtherCounter++;
             planetsHitSinceNewGalaxy=0;
             if (currentGalaxy.number+1<[galaxies count]) {
                 currentGalaxy = nextGalaxy;
-                if (currentGalaxy.number+1<[galaxies count])
-                    nextGalaxy = [galaxies objectAtIndex:currentGalaxy.number+1];
-                
+                  if (currentGalaxy.number+1<[galaxies count])
+                      nextGalaxy = [galaxies objectAtIndex:currentGalaxy.number+1];
+            if ((((everyOtherCounter % 2 == 0 && currentGalaxy.number>9)||currentGalaxy.number<=9))){
                 Planet*lastPlanetOfThisGalaxy = [planets objectAtIndex:planets.count-1];
                 [self CreateCoinArrowAtPosition:ccpAdd(lastPlanetOfThisGalaxy.sprite.position, ccpMult(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn)), lastPlanetOfThisGalaxy.orbitRadius*2.1)) withAngle:directionPlanetSegmentsGoIn];
-                indicatorPos = ccpAdd(indicatorPos, ccpMult(ccpNormalize(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn))), distanceBetweenGalaxies*generalScale));
+                    indicatorPos = ccpAdd(indicatorPos, ccpMult(ccpNormalize(ccpForAngle(CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn))), distanceBetweenGalaxies*generalScale));
+                }
+            }
+            else {
+                //create galaxies at the end!
+                int actualGalaxy = [self RandomBetween:1 maxvalue:9];
+                [galaxies addObject:[galaxies objectAtIndex:actualGalaxy]];
+                 Galaxy * galaxy = [galaxies objectAtIndex:[galaxies count]-1];
+            
+                
+                galaxy.segments = [[galaxies objectAtIndex:actualGalaxy] segments];
+                
+                [galaxy setName:[NSString stringWithFormat:@"Galaxy %d",[galaxies count]]];
+                galaxy.number = [galaxies count]-1;
+                galaxy.actualNumber = actualGalaxy;
+                if (actualGalaxy == 0)
+                    [galaxy setNumberOfDifferentPlanetsDrawn:7];
+                else if (actualGalaxy == 1)
+                    [galaxy setNumberOfDifferentPlanetsDrawn:3];
+                else if (actualGalaxy == 2)
+                    [galaxy setNumberOfDifferentPlanetsDrawn:3];
+                else if (actualGalaxy == 3)
+                    [galaxy setNumberOfDifferentPlanetsDrawn:1];
+                else if (actualGalaxy == 4)
+                    [galaxy setNumberOfDifferentPlanetsDrawn:1];
+                else if (actualGalaxy == 5)
+                    [galaxy setNumberOfDifferentPlanetsDrawn:2];
+                else
+                    [galaxy setNumberOfDifferentPlanetsDrawn:3];
+
+                float maxPercentTimeToAdd = .31;
+                //When you're in the later galaxies, your battery will increase by this much when going between galaxies.
+                float minPercentTimeToAdd = .21;
+                float galaxyPercent = ((float)galaxy.number-10)/((float)galaxies.count-1-9);
+                    //  [galaxy setOptimalPlanetsInThisGalaxy:lerpf(minOptimalPlanets, maxOptimalPlanets,galaxyPercent)];
+                [galaxy setPercentTimeToAddUponGalaxyCompletion:lerpf(maxPercentTimeToAdd, minPercentTimeToAdd, galaxyPercent)];
+                
+                [galaxy setOptimalPlanetsInThisGalaxy:20];
+                const float darkScaler = .35;
+                [galaxy setGalaxyColor: ccc3([self RandomBetween:80 maxvalue:255]*darkScaler*1.09*1.1,
+                                             [self RandomBetween:80 maxvalue:255]*darkScaler*1.09*1.1,
+                                             [self RandomBetween:80 maxvalue:255]*darkScaler*1.09*1.1)];
+
             }
             [self CreateSegment];
         }
@@ -2494,6 +2552,10 @@ bool kamcordFailed = false;
 }
 
 -(void) startGameOver {
+    @try {
+        
+   
+ 
     int finalScore = score + prevCurrentPtoPScore;
     BOOL isHighScore = [[PlayerStats sharedInstance] isHighScore:finalScore];
     NSString *ccbFile = @"GameOverLayer.ccb";
@@ -2521,9 +2583,9 @@ bool kamcordFailed = false;
     
     @try {
         if ([[PlayerStats sharedInstance] recentName] == nil) {
-            [Kamcord setDefaultTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];
+            [Kamcord setVideoTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];
         } else if ([[PlayerStats sharedInstance] recentName] != nil && [[[PlayerStats sharedInstance] recentName] isEqualToString:@"PLAYER"] == false && [[[PlayerStats sharedInstance] recentName] isEqualToString:@" "] == false && [[[PlayerStats sharedInstance] recentName] length ] > 0){
-            [Kamcord setDefaultTitle:[NSString stringWithFormat:@"%@'s Gameplay - Score: %d", [[PlayerStats sharedInstance] recentName],finalScore] ];
+            [Kamcord setVideoTitle:[NSString stringWithFormat:@"%@'s Gameplay - Score: %d", [[PlayerStats sharedInstance] recentName],finalScore] ];
         }
         else
             [Kamcord setDefaultTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];
@@ -2616,6 +2678,11 @@ bool kamcordFailed = false;
     // [gameOverScoreLabel setString:scoreText];
     
     scoreAlreadySaved = YES;
+    }
+    @catch (NSException *exception) {
+        [[CCDirector sharedDirector] replaceScene:[MainMenuLayer scene]];//[StoreLayer scene]];
+
+    }
 }
 
 - (void)pressedStoreButton {

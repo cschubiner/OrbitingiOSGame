@@ -254,6 +254,7 @@ const float effectsVolumeMainMenu = 1;
 	if (self = [super init]) {
         addedMoviePlayerObserver = false;
         self.myPlayer = NULL;
+      //  [[UserWallet sharedInstance] addCoins: 500000000];
 
         [Kamcord setDelegate:self];
         tipLabel = NULL;

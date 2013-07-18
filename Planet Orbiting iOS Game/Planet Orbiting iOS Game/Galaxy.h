@@ -14,6 +14,7 @@
 }
 @property (nonatomic,retain) CCSprite *backgroundSprite;
 @property (nonatomic) int number;
+@property (nonatomic) int actualNumber;
 @property (nonatomic) int optimalPlanetsInThisGalaxy;
 @property (nonatomic) int numberOfDifferentPlanetsDrawn;
 @property (nonatomic) float percentTimeToAddUponGalaxyCompletion;

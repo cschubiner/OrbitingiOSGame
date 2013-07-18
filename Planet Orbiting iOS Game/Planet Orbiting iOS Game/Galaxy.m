@@ -10,12 +10,13 @@
 #import "AppDelegate.h"
 
 @implementation Galaxy
-@synthesize number,segments,backgroundSprite,name,numberOfDifferentPlanetsDrawn,spriteSheet,optimalPlanetsInThisGalaxy,percentTimeToAddUponGalaxyCompletion,galaxyColor;
+@synthesize number,segments,backgroundSprite,name,numberOfDifferentPlanetsDrawn,spriteSheet,optimalPlanetsInThisGalaxy,percentTimeToAddUponGalaxyCompletion,galaxyColor,actualNumber;
 
 -(id)initWithSegments:(NSArray *)levelsegments{
     if ((self = [super init])) {
         segments = levelsegments;
         self.number = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getGalaxyCounter];
+        self.actualNumber = self.number;
         [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setGalaxyCounter:self.number+1];
         spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"galaxy%d.pvr.gz",self.number]];
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[NSString stringWithFormat:@"galaxy%d.plist",self.number]];
