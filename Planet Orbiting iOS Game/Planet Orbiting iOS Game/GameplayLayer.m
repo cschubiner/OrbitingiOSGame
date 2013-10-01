@@ -49,7 +49,6 @@
     bool hasShared;
     
     bool isIphone4;
-    bool kamcordStartedRecording;
     bool allowVideoToConvert;
 
     bool isInFeverMode;
@@ -67,16 +66,13 @@
     int numTimesDied;
     int coinsAtLastGalaxy;
     float timeSinceShowViewWasCalled;
-    bool kamcordAppearedYay ;
     
     CCLayer *layerToAdd;
     
     CCParticleSystemQuad * powerupParticle;
 }
 
--(void)generalError:(KCShareStatus)error{
-    NSLog(@"there was a kamcord error");
-}
+
 
 
 typedef struct {
@@ -108,19 +104,7 @@ typedef struct {
     muted = false;
     [self toggleMute];
     
-    if (kamcordAppearedYay)
-    {
-        return;
-    }
-    timeSinceShowViewWasCalled = -1;
-    kamcordAppearedYay = true;
-    
-    @try {
-        [self unschedule:@selector(showViewChecker:)];
-    }
-    @catch (NSException *exception) {
-        
-    }
+ 
 }
 
 -(void)mainViewDidDisappear
@@ -129,81 +113,14 @@ typedef struct {
     muted = true;
     [self toggleMute];
     
-    if (kamcordAppearedYay)
-    {
-        return;
-    }
-    timeSinceShowViewWasCalled = -1;
-    kamcordAppearedYay = true;
-    
-    
-    @try {
-        [self unschedule:@selector(showViewChecker:)];
-    }
-    @catch (NSException *exception) {
-        
-    }}
+}
 
 -(void)mainViewWillDisappear{
-    if (kamcordAppearedYay)
-        return;
-    timeSinceShowViewWasCalled = -1;
-    kamcordAppearedYay = true;
-    @try {
-        [self unschedule:@selector(showViewChecker:)];
-    }
-    @catch (NSException *exception) {
-        
-    }
-
 }
 
-bool kamcordFailed = false;
-
--(void)showViewChecker:(float) dt{
-    if (timeSinceShowViewWasCalled != -1)
-        timeSinceShowViewWasCalled += dt;
-    
-    if (timeSinceShowViewWasCalled > 2.5 && kamcordAppearedYay == false){
-        kamcordFailed = true;
-        [self showKamcordFailedAlertView];
-        @try {
-            [self unschedule:@selector(showViewChecker:)];
-        }
-        @catch (NSException *exception) {
-            
-        }
-        timeSinceShowViewWasCalled = 0;
-        kamcordAppearedYay = true;
-    }
-}
-
--(void)showKamcordFailedAlertView{
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle: @"Kamcord Error"
-                          message: @"We're sorry, Kamcord failed to record your video. Force close Star Stream to restart Kamcord."
-                          delegate: self
-                          cancelButtonTitle:@"Dismiss"
-                          otherButtonTitles:nil];
-    [alert show];
-}
 
 -(void)showRecording {
-    if (kamcordFailed){
-        [self showKamcordFailedAlertView];
-        if (kamcordStartedRecording)
-            [Kamcord showView];
-    }
-    @try {
-        if (kamcordStartedRecording)
-            [Kamcord stopRecording];
-        if (kamcordStartedRecording)
-            [Kamcord showView];
-        [self schedule:@selector(showViewChecker:) interval:1.0/10.0f];
-    }
-    @catch (NSException *exception) {    }
-    
-    
+    [Kamcord showView];
 }
 
 
@@ -493,6 +410,8 @@ bool kamcordFailed = false;
         float galaxyPercent = ((float)galaxy.number)/((float)galaxies.count-1);
       //  [galaxy setOptimalPlanetsInThisGalaxy:lerpf(minOptimalPlanets, maxOptimalPlanets,galaxyPercent)];
         [galaxy setPercentTimeToAddUponGalaxyCompletion:lerpf(maxPercentTimeToAdd, minPercentTimeToAdd, galaxyPercent)];
+        [galaxy setOptimalPlanetsInThisGalaxy:10];//DEBUG
+
     }
         
 }
@@ -502,7 +421,7 @@ bool kamcordFailed = false;
     
     [[UpgradeValues sharedInstance] setAsteroidImmunityDuration:400 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:1] equipped]];
     
-    [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:initialTimeDilation + .07*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] equipped]];
+    [[UpgradeValues sharedInstance] setAbsoluteMinTimeDilation:initialTimeDilation + .09*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:2] equipped]];
     
     [[UpgradeValues sharedInstance] setHasDoubleCoins:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:3] equipped]];
     
@@ -518,7 +437,7 @@ bool kamcordFailed = false;
     
     [[UpgradeValues sharedInstance] setHasHeadStart:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:9] equipped]];
     
-    [[UpgradeValues sharedInstance] setAutopilotDuration:5*60*1.3 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:10] equipped]];
+    [[UpgradeValues sharedInstance] setAutopilotDuration:50000	*60*1.3 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:10] equipped]];//autopilot duration
     
     [[UpgradeValues sharedInstance] setHasPinkStars:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:11] equipped]];
     
@@ -562,7 +481,6 @@ bool kamcordFailed = false;
     [self addChild:cameraLayer];
     [self addChild:hudLayer];
     [self addChild:layerHudSlider];
-    kamcordAppearedYay = false;
     timeSinceShowViewWasCalled = 0;
     
     [self reorderChild:loadingLayer z:30];
@@ -580,7 +498,7 @@ bool kamcordFailed = false;
     //[loadingLayerBackground2 runAction:[CCSequence actions:
     //                                   [CCFadeOut actionWithDuration:fadeOutDuration],removeLoadingLayer, nil]];
     
-    kamcordStartedRecording = [Kamcord startRecording];
+    [Kamcord startRecording];
     [self scheduleUpdates];
 }
 
@@ -601,7 +519,7 @@ bool kamcordFailed = false;
     //NSLog([NSString stringWithFormat:@"old dilation %f highscore: %d",absoluteMaxTimeDilation,highscore]);
     
     //This formula determines how to scale the maximum speed based on how noob you are. Use Grapher (you have it on your mac) to visualize the formula.
-    absoluteMaxTimeDilation *= min(1-.201+.013*(min(highscore,170000)/10000.0)+.018*((highscore-170000)/10000.0),1.229);
+    absoluteMaxTimeDilation *= min(1-.081+.006*(min(highscore,170000)/10000.0)+.011*((highscore-170000)/10000.0),1.229);
     
     //NSLog([NSString stringWithFormat:@"new dilation %f",absoluteMaxTimeDilation]);
 
@@ -625,7 +543,6 @@ bool kamcordFailed = false;
         defaultDirection = 29.396052855;
     directionPlanetSegmentsGoIn = [self randomValueBetween:defaultDirection-directionPlanetSegmentsGoInVariance andValue:defaultDirection+directionPlanetSegmentsGoInVariance];
     
-    [Kamcord prepareNextVideo];
     totalPlanetsVisitedForBackgroundStars = 0;
     planetCounter = 0;
     planets = [[NSMutableArray alloc] init];
@@ -1253,7 +1170,10 @@ bool kamcordFailed = false;
     
     [[UserWallet sharedInstance] addCoins: ([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1) ];
     
-    int howMuchToAddToScore = howMuchCoinsAddToScore*([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1);
+    //int howMuchToAddToScore = howMuchCoinsAddToScore*([[UpgradeValues sharedInstance] hasDoubleCoins] ? 2 : 1);
+    
+    //double coins doesn't increase score
+    int howMuchToAddToScore = howMuchCoinsAddToScore;
     score += howMuchToAddToScore;
     tempScore += howMuchToAddToScore;
     
@@ -2024,7 +1944,7 @@ bool kamcordFailed = false;
             Galaxy * nextGalaxy2 = [galaxies objectAtIndex:targetPlanet.whichGalaxyThisObjectBelongsTo];
             
             ccColor3B lastColor;
-            if (thisGalaxy != [NSNull null])
+            if (thisGalaxy != NULL)
                 lastColor= thisGalaxy.galaxyColor;
             else lastColor = lastGalaxyColor;
             ccColor3B nextColor = nextGalaxy2.galaxyColor;
@@ -2442,7 +2362,6 @@ bool kamcordFailed = false;
         @try {
             if ([[self children]containsObject:layerHudSlider])
                 [self removeChild:layerHudSlider cleanup:YES];
-            if (kamcordStartedRecording)
                 [Kamcord stopRecording];
         }
         @catch (NSException *exception) {    }
@@ -2489,9 +2408,6 @@ bool kamcordFailed = false;
     }
 }
 
--(void)shareStartedWithSuccess:(BOOL)success error:(KCShareStatus)error{
-    [self creditUserVirtualCurrencyForVideoShare];
-}
 
 -(void) startGameOver {
     int finalScore = score + prevCurrentPtoPScore;
@@ -2513,7 +2429,6 @@ bool kamcordFailed = false;
     
     [[PlayerStats sharedInstance] addPlay];
     
-    [Kamcord setYouTubeVideoCategory:@"Games"];
 
  //   [Kamcord setDefaultEmailSubject:@"Check out my awesome Star Stream Gameplay!"];
 
@@ -2521,15 +2436,15 @@ bool kamcordFailed = false;
     
     @try {
         if ([[PlayerStats sharedInstance] recentName] == nil) {
-            [Kamcord setDefaultTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];
+            [Kamcord setVideoTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];
         } else if ([[PlayerStats sharedInstance] recentName] != nil && [[[PlayerStats sharedInstance] recentName] isEqualToString:@"PLAYER"] == false && [[[PlayerStats sharedInstance] recentName] isEqualToString:@" "] == false && [[[PlayerStats sharedInstance] recentName] length ] > 0){
-            [Kamcord setDefaultTitle:[NSString stringWithFormat:@"%@'s Gameplay - Score: %d", [[PlayerStats sharedInstance] recentName],finalScore] ];
+            [Kamcord setVideoTitle:[NSString stringWithFormat:@"%@'s Gameplay - Score: %d", [[PlayerStats sharedInstance] recentName],finalScore]];
         }
         else
-            [Kamcord setDefaultTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];
+            [Kamcord setVideoTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];
     }
     @catch (NSException *exception) {
-        [Kamcord setDefaultTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];
+        [Kamcord setVideoTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];
     }
     
     [Kamcord setYouTubeDescription:[NSString stringWithFormat:@"My awesome round of Star Stream. I scored %d points and reached galaxy %d.",finalScore,currentGalaxy.number+1] tags:@"Star Stream, Star, Stream, iPhone, iOS, iPod, gameplay, video, high score, score, highscore"];
@@ -2539,8 +2454,7 @@ bool kamcordFailed = false;
     [Kamcord setDefaultEmailBody:[NSString stringWithFormat:@"Check out my awesome round of Star Stream. I scored %d points and reached galaxy %d.",finalScore,currentGalaxy.number+1]];
     
     [Kamcord setLevel:[NSString stringWithFormat:@"Galaxy %d",currentGalaxy.number+1] score:[NSNumber numberWithInt:finalScore]];
-    [Kamcord setFacebookTitle:@"Star Stream Gameplay" caption:[NSString stringWithFormat:@"Score: %d points. Reached galaxy: %d",finalScore,currentGalaxy.number+1] description:[NSString stringWithFormat:@"My awesome round of Star Stream. I reached a score of %d and reached galaxy %d!",finalScore,currentGalaxy.number+1]];
-    [Kamcord setShareDelegate:self];
+    [Kamcord setFacebookDescription:[NSString stringWithFormat:@"My awesome round of Star Stream. I reached a score of %d and reached galaxy %d!",finalScore,currentGalaxy.number+1]];
     [Kamcord setDelegate:self];
     //[Kamcord setEnableSynchronousConversionUI:YES alwaysShowProgressBar:YES];
   
@@ -2921,7 +2835,7 @@ bool kamcordFailed = false;
     
     
     
-    if (numCoinsDisplayed >= 2500)
+    if (numCoinsDisplayed >= 1250)
         [self completeObjectiveFromGroupNumber:15 itemNumber:1];
     
     if (score >= 235000)
@@ -3095,28 +3009,14 @@ bool kamcordFailed = false;
     if (!didEndGameAlready) {
         didEndGameAlready = true;
         
-        if (kamcordStartedRecording)
             [Kamcord stopRecording];
         
         [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
-        
-       /* if (allowVideoToConvert==false)
-        {
-           [Kamcord cancelConversionForLatestVideo];
-        }*/
-        
+   
         [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
-        //        [[CCDirector sharedDirector] pushScene:[MainMenuLayer scene]];
-        
-        //CCLOG(@"7");
     }
 }
 
-- (void)launchSurvey {
-    [Flurry logEvent:@"Launched survey from gameplaylayer"];
-    NSURL *url = [NSURL URLWithString:@"https://docs.google.com/spreadsheet/viewform?formkey=dGwxbVRnd1diQTlKTkpBUE5mRHRBMGc6MQ#gid=0"];//"http://www.surveymonkey.com/s/VJJ3RGJ"];
-    [[UIApplication sharedApplication] openURL:url];
-}
 
 - (void)tryHighScore {
     // LOL T NOOBS
@@ -3149,15 +3049,8 @@ bool kamcordFailed = false;
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     [Flurry logEvent:@"restarted game"];
     scoreAlreadySaved = NO;
-    //if ([[PlayerStats sharedInstance] getPlays] == 1) {
-    //}
-    //CCLOG(@"number of plays ever: %i", [[PlayerStats sharedInstance] getPlays]);
-    
-    [[UIApplication sharedApplication]setStatusBarOrientation:[[UIApplication sharedApplication]statusBarOrientation]];
     
     //CCLOG(@"GameplayLayerScene launched, game starting");
-    
-    if (kamcordStartedRecording)
         [Kamcord stopRecording];
    /* if (allowVideoToConvert==false)
     {
@@ -3439,7 +3332,7 @@ float lerpf(float a, float b, float t) {
 }
 
 -(void)pauseWithDuration:(float)a_duration message:(NSString*)a_message {
-    bool isOnRegularPause = (a_duration == 0 && a_message == @"");
+    bool isOnRegularPause = (a_duration == 0 && [a_message isEqual: @""]);
     if (!isOnRegularPause)
         isDoingTutStuff = true;
     pauseDuration = a_duration;
