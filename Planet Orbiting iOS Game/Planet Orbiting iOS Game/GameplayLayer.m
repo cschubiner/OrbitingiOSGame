@@ -410,13 +410,8 @@ typedef struct {
         float galaxyPercent = ((float)galaxy.number)/((float)galaxies.count-1);
       //  [galaxy setOptimalPlanetsInThisGalaxy:lerpf(minOptimalPlanets, maxOptimalPlanets,galaxyPercent)];
         [galaxy setPercentTimeToAddUponGalaxyCompletion:lerpf(maxPercentTimeToAdd, minPercentTimeToAdd, galaxyPercent)];
-<<<<<<< HEAD
-        [galaxy setOptimalPlanetsInThisGalaxy:7];
         galaxy.actualNumber = galaxy.number;
-=======
-        [galaxy setOptimalPlanetsInThisGalaxy:10];//DEBUG
-
->>>>>>> cocos2d2.0
+        [galaxy setOptimalPlanetsInThisGalaxy:8];//DEBUG
     }
         
 }
@@ -442,7 +437,7 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setHasHeadStart:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:9] equipped]];
     
-    [[UpgradeValues sharedInstance] setAutopilotDuration:50000	*60*1.3 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:10] equipped]];//autopilot duration
+    [[UpgradeValues sharedInstance] setAutopilotDuration:50000*60*1.3 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:10] equipped]];//autopilot duration . old was 5*60...
     
     [[UpgradeValues sharedInstance] setHasPinkStars:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:11] equipped]];
     
@@ -2503,11 +2498,7 @@ typedef struct {
         if ([[PlayerStats sharedInstance] recentName] == nil) {
             [Kamcord setVideoTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];
         } else if ([[PlayerStats sharedInstance] recentName] != nil && [[[PlayerStats sharedInstance] recentName] isEqualToString:@"PLAYER"] == false && [[[PlayerStats sharedInstance] recentName] isEqualToString:@" "] == false && [[[PlayerStats sharedInstance] recentName] length ] > 0){
-<<<<<<< HEAD
-            [Kamcord setVideoTitle:[NSString stringWithFormat:@"%@'s Gameplay - Score: %d", [[PlayerStats sharedInstance] recentName],finalScore] ];
-=======
             [Kamcord setVideoTitle:[NSString stringWithFormat:@"%@'s Gameplay - Score: %d", [[PlayerStats sharedInstance] recentName],finalScore]];
->>>>>>> cocos2d2.0
         }
         else
             [Kamcord setVideoTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];

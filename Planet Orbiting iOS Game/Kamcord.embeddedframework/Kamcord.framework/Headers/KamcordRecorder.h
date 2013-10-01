@@ -128,4 +128,18 @@
 + (void)setTargetVideoFPS:(NSUInteger)fps;
 + (NSUInteger)targetVideoFPS;
 
+/*
+ *
+ * Returns whether KamcordRecorder believes the current frame is recording or not.
+ *
+ */
++ (BOOL)isRecording;
+
+/*
+ *
+ * Sets the parent view controller. Identical to calling [Kamcord setParentViewController:...];
+ *
+ */
++ (void)setParentViewController:(UIViewController *)parentViewController;
+
 @end

@@ -37,7 +37,7 @@
 
 /*
  *
- * Current version is 1.5.2 (9/09/2013)
+ * Current version is 1.5.3 (9/26/2013)
  *
  */
 FOUNDATION_EXPORT NSString * const KamcordVersion;
@@ -74,6 +74,7 @@ typedef enum
     KC_TAB_BAR,
     KC_BACKGROUND,
     KC_BACKGROUND_TALL,
+    KC_TAB_BAR_SELECTED_COLOR,
     KC_TOOLBAR_BACK_BUTTON,
     KC_TOOLBAR_BACK_BUTTON_LANDSCAPE,
     KC_TOOLBAR_DONE_BUTTON,
@@ -252,9 +253,21 @@ typedef enum
  * Is a video currently being recorded?
  *
  * @returns     Whether or not a video is currently recording.
+ *              The only time this video returns YES is when frames are
+ *              in the process of being written to a video.
+ *              Note that this will return NO if the video is paused.
  *
  */
 + (BOOL)isRecording;
+
+/*
+ *
+ * Is the current recording paused?
+ *
+ * @returns     Whether or not the current video recording has been paused."
+ *
+ */
++ (BOOL)isPaused;
 
 /*
  *

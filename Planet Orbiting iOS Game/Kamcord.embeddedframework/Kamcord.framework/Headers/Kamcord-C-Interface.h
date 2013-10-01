@@ -78,7 +78,10 @@ extern "C" {
     
     /*
      *
-     * Enable or disable the live voice overlay.
+     * Enable or disable the live voice overlay. Note: enabling Voice Overlay only
+     * enables the users to activate voice overlay in the Kamcord settings UI.
+     * To activate Voice Overlay on behalf of the user (after you've enabled it with
+     * this method), please use Kamcord_ActivateVoiceOverlay(...) below.
      *
      * @param   enabled             Whether to enable or disable the live voiced overlay feature.
      *                              By default, this is disabled.
@@ -93,6 +96,24 @@ extern "C" {
      */
     bool Kamcord_VoiceOverlayEnabled();
     
+    /*
+     *
+     * Once the voice overlay is enabled, the user can go to the Kamcord UI
+     * and activate the voice overlay. You can also do activate/deactivate voice
+     * overlay for the user by calling the following method.
+     *
+     * @param   bool                Whether or not to activate voice overlay recording.
+     *
+     */
+    void Kamcord_ActivateVoiceOverlay(bool activate);
+    
+    /*
+     *
+     * Returns true if the user's voice is being recorded on every video.
+     *
+     */
+    bool Kamcord_VoiceOverlayActivated();
+
     /*******************************************************************
      *
      * Video recording
@@ -134,6 +155,14 @@ extern "C" {
      *
      */
     bool Kamcord_IsRecording();
+    
+    /*
+     *
+     * Returns true if video recording is currently paused.
+     *
+     */
+    bool Kamcord_IsPaused();
+    
     
     /*
      *
