@@ -320,9 +320,9 @@
                                                           item2:[[ObjectiveItem alloc] initWithText:@"Reach a score of 170,000" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     bools = [boolGroupsToUse objectAtIndex:15];
-    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.5 starReward:100000
+    [groups addObject:[[ObjectiveGroup alloc] initWithScoreMult:1.45 starReward:45000
                                                           item0:[[ObjectiveItem alloc] initWithText:@"Reach the tenth galaxy" isCompleted:[[bools objectAtIndex:0] boolValue]]
-                                                          item1:[[ObjectiveItem alloc] initWithText:@"Collect 2,500 stars in one game. (Hint: Get double stars)" isCompleted:[[bools objectAtIndex:1] boolValue]]
+                                                          item1:[[ObjectiveItem alloc] initWithText:@"Collect 1,250 stars in one game. (Hint: Get double stars)" isCompleted:[[bools objectAtIndex:1] boolValue]]
                                                           item2:[[ObjectiveItem alloc] initWithText:@"Reach a score of 235,000" isCompleted:[[bools objectAtIndex:2] boolValue]]]];
     
     

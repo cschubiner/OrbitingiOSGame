@@ -45,7 +45,7 @@ const float defaultDirectionPlanetSegmentsGoIn= 33.3910034413;
 //this is the variance of the direction all planet segments go in. it changes everytime you run the game (press play)
 const float directionPlanetSegmentsGoInVariance = 20;
 //The maximum number of degrees that the segment of planets can be rotated from the direction (directionPlanetSegmentsGoIn)
-const float segmentRotationVariation = 20;//30;
+const float segmentRotationVariation = 60;//30;
 
 const float playerSizeScale = 1;
 
@@ -153,10 +153,10 @@ const float zoneCollisionFactor = 1.01;
 
 //THIS IS NOW IN UPGRADE VALUES const float negativeLightStartingScore = 9000;
 
-const int howMuchCoinsAddToScore = 45;
+const int howMuchCoinsAddToScore = 40;
 
 const float coinAnimationDelay = .02;
 
 const int minPlanetsInARowForFeverMode = 5;
 
-const float maxTimeInOrbitThatCountsAsGoodSwipe = .85;
+const float maxTimeInOrbitThatCountsAsGoodSwipe = 1.08;

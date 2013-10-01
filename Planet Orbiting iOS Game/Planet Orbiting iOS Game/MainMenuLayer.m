@@ -290,8 +290,6 @@ const float effectsVolumeMainMenu = 1;
             
             
         }
-        
-        
 
         size = [[CCDirector sharedDirector] winSize];
         self.isTouchEnabled = true;

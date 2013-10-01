@@ -53,7 +53,7 @@
     //[TestFlight takeOff:@"d617a481887a5d2cf7db0f22b735c89f_MTExODYwMjAxMi0wNy0xOCAxOToxNToyNC43NzQ3NjA"];
     
     [Flurry startSession:@"96GKYS7HQZHNKZJJN2CZ"];
-    [Flurry setUserID:[[UIDevice currentDevice] uniqueIdentifier]];
+//    [Flurry setUserID:[[UIDevice currentDevice] uniqueIdentifier]];
 
     //[TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
   
@@ -188,12 +188,13 @@
     //   [Kamcord setVideoResolution:TRAILER_VIDEO_RESOLUTION]; //leave this disabled!!
     if (IS_IPHONE_5)
     {
-        [Kamcord setVideoResolution:MEDIUM_VIDEO_RESOLUTION];
+        Kamcord_SetVideoQuality(KC_MEDIUM_VIDEO_QUALITY);
     }
     
     [Kamcord setDeveloperKey:@"d05f73399ff3c1755bd97ec94cb5fdda"
              developerSecret:@"prcU7MltdajQ1YVTSeFDtPtywe2zABOmzzpSB5pGP79"
-                     appName:@"Star Stream"];
+                     appName:@"Star Stream"
+        parentViewController: navController_];
     
 
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0){
