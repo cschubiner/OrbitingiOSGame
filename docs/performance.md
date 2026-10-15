@@ -14,7 +14,7 @@ The native XCTest clock test produces exactly 600 simulation ticks over 10 secon
 
 An instrumented iPhone 17 Pro Max simulator run used the same procedural seed and build with the old camera/HUD behaviors enabled and disabled. Initial HUD nodes fell from 65 to 5; in the next galaxy they fell from 98 to 4. The optimized simulator measured roughly 43–55 FPS during the first 20 seconds, compared with roughly 41–53 FPS with the old behaviors enabled. These are simulator observations on a busy shared Mac, not reliable iPhone GPU, power or battery-life measurements. CPU percentages were similar in that sample. No percentage battery-life improvement is claimed.
 
-A post-fix live simulator flight reached the tenth galaxy, visited 171 planets, and ended normally at score 112,750. Three additional native physics tests each advance a different seed for 60 simulation seconds across several galaxies. The full gameplay/layout suite now passes 13 tests with zero failures.
+A post-fix live simulator flight reached the tenth galaxy, visited 171 planets, and ended normally at score 112,750. Native physics coverage also advances three distinct seeds for 60 simulation seconds each across several galaxies. The full gameplay/layout suite now passes 13 tests with zero failures.
 
 A physical iPhone is required to verify sustained device FPS and energy impact. It was unavailable when the new profiling run was attempted; the earlier purchase/audio/lifecycle suite had passed on that phone before these layout and procedural changes.
 
