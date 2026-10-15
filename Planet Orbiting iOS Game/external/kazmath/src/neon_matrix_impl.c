@@ -23,7 +23,8 @@
 
 #include "neon_matrix_impl.h"
 
-#if defined(__ARM_NEON__)
+// Modernization: the legacy NEON assembly supports 32-bit ARM only.
+#if defined(__ARM_NEON__) && defined(__arm__)
 
 void NEON_Matrix4Mul(const float* a, const float* b, float* output )
 {

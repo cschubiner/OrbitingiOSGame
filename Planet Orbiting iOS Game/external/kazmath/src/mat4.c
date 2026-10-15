@@ -215,7 +215,8 @@ kmMat4* const kmMat4Transpose(kmMat4* pOut, const kmMat4* pIn)
  */
 kmMat4* const kmMat4Multiply(kmMat4* pOut, const kmMat4* pM1, const kmMat4* pM2)
 {
-#if defined(__ARM_NEON__)
+// Modernization: the legacy NEON assembly supports 32-bit ARM only.
+#if defined(__ARM_NEON__) && defined(__arm__)
 
 	float mat[16];
 
