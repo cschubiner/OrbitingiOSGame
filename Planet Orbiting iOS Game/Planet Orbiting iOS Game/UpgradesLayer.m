@@ -380,7 +380,7 @@
         
         
         
-        if (!moved && location.y < 275) {
+        if (!moved && location.y >= 20 && location.y < 275) {
             NSMutableArray* upgrades = [[UpgradeManager sharedInstance] upgradeItems];
             
             //NSLog(@"scrollviewPos: %f, tap y value: %f", scrollView.position.y, location.y);

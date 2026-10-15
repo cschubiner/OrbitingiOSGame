@@ -54,6 +54,7 @@ const float effectsVolumeMainMenu = 1;
     CCNode *bottomAnchor;
 }
 
+- (CGFloat)menuScale { return 1; } // Main menu anchors its header and footer independently.
 - (void)layoutViewport {
     [super layoutViewport];
     CGRect safe = SSSafeViewport();

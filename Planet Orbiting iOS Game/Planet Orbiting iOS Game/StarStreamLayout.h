@@ -17,11 +17,13 @@ static inline NSUInteger SSPhysicsSteps(double elapsed, double *remainder) {
 FOUNDATION_EXPORT NSString *const SSViewportDidChange;
 FOUNDATION_EXPORT CGRect SSSafeViewport(void);
 FOUNDATION_EXPORT CGPoint SSMenuOrigin(void);
+FOUNDATION_EXPORT CGFloat SSMenuScale(void);
 FOUNDATION_EXPORT void SSFillViewport(CCNode *node);
 
 // Authored menu controls retain their proportions while the space background fills the display.
 @interface SSMenuLayer : CCLayer
 - (void)layoutViewport;
+- (CGFloat)menuScale;
 @end
 
 @interface SSClippedLayer : CCLayer

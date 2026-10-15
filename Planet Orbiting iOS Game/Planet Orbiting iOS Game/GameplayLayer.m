@@ -128,7 +128,7 @@ typedef struct {
     loadingLabel.position = ccp(CGRectGetMaxX(safe)-85, CGRectGetMinY(safe)+13);
     loadingDidYouKnowLabel.position = ccp(size.width/2, size.height/2+45);
     loadingLabelHelperText2.position = ccp(size.width/2, size.height/2);
-    if (pauseLayer) pauseLayer.position = ccpAdd(SSMenuOrigin(), isGameOver ? ccp(44,0) : CGPointZero);
+    if (pauseLayer) { pauseLayer.scale=SSMenuScale(); pauseLayer.position = ccpAdd(SSMenuOrigin(), isGameOver ? ccp(44*SSMenuScale(),0) : CGPointZero); }
     pauseLabel.position = ccp(size.width/2, CGRectGetMaxY(safe)-50);
     continueLabel.position = ccp(size.width/2, CGRectGetMinY(safe)+50);
 }
@@ -2507,7 +2507,8 @@ typedef struct {
     NSString *ccbFile = @"GameOverLayer.ccb";
     pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:ccbFile owner:self];
     if (IS_IPHONE_5)
-        pauseLayer.position = ccpAdd(SSMenuOrigin(), ccp(44, 0));
+        pauseLayer.position = ccpAdd(SSMenuOrigin(), ccp(44*SSMenuScale(), 0));
+    pauseLayer.scale=SSMenuScale();
     if (finalScore > 60000)
         [[iRate sharedInstance] logEvent:YES];
     
@@ -3427,6 +3428,7 @@ float lerpf(float a, float b, float t) {
         menu.position = ccp(layerToAdd.position.x + 44, layerToAdd.position.y);
     }
     layerToAdd.position = SSMenuOrigin();
+    layerToAdd.scale = SSMenuScale();
     return layerToAdd;
 }
 

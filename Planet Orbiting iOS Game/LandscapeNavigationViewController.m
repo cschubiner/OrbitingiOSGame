@@ -10,7 +10,12 @@ CGRect SSSafeViewport(void) {
 }
 CGPoint SSMenuOrigin(void) {
     CGRect safe = SSSafeViewport();
-    return ccp(CGRectGetMidX(safe) - 284, CGRectGetMidY(safe) - 160);
+    CGFloat scale=SSMenuScale();
+    return ccp(CGRectGetMidX(safe) - 284*scale, CGRectGetMidY(safe) - 160*scale);
+}
+CGFloat SSMenuScale(void) {
+    CGRect safe=SSSafeViewport();
+    return MIN(1,MIN(safe.size.width/568,safe.size.height/320));
 }
 void SSFillViewport(CCNode *node) {
     CGSize size = CCDirector.sharedDirector.winSize;
@@ -36,13 +41,17 @@ void SSFillViewport(CCNode *node) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(layoutViewport) name:SSViewportDidChange object:nil];
 }
 - (void)layoutViewport {
-    self.position = SSMenuOrigin();
+    CGRect safe=SSSafeViewport();
+    CGFloat scale=self.menuScale;
+    self.scale=scale;
+    self.position=ccp(CGRectGetMidX(safe)-284*scale,CGRectGetMidY(safe)-160*scale);
     CGSize size = CCDirector.sharedDirector.winSize;
-    spaceBackground.position = ccp(-self.position.x, -self.position.y);
-    spaceBackground.contentSize = size;
-    spaceStars.position = ccp(size.width / 2 - self.position.x, size.height / 2 - self.position.y);
-    spaceStars.posVar = ccp(size.width / 2, size.height / 2);
+    spaceBackground.position = ccp(-self.position.x/scale, -self.position.y/scale);
+    spaceBackground.contentSize = CGSizeMake(size.width/scale,size.height/scale);
+    spaceStars.position = ccp((size.width/2-self.position.x)/scale,(size.height/2-self.position.y)/scale);
+    spaceStars.posVar = ccp(size.width/scale/2,size.height/scale/2);
 }
+- (CGFloat)menuScale { return SSMenuScale(); }
 - (void)onExit {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:SSViewportDidChange object:nil];
     [super onExit];

@@ -23,6 +23,14 @@
 @interface PlayerStatsTests : XCTestCase
 @end
 @implementation PlayerStatsTests
+- (void)testMenuPanelsFitInsideSafeEdgesWhileTheCanvasFillsTheWindow {
+    CGRect safe=SSSafeViewport();
+    CGPoint origin=SSMenuOrigin(); CGFloat scale=SSMenuScale();
+    XCTAssertGreaterThanOrEqual(origin.x,CGRectGetMinX(safe)-.001);
+    XCTAssertGreaterThanOrEqual(origin.y,CGRectGetMinY(safe)-.001);
+    XCTAssertLessThanOrEqual(origin.x+568*scale,CGRectGetMaxX(safe)+.001);
+    XCTAssertLessThanOrEqual(origin.y+320*scale,CGRectGetMaxY(safe)+.001);
+}
 - (void)testProceduralRoutesFlyAcrossSeveralGalaxiesWithoutCrashing {
     NSDictionary *previous=SSMapSession.shared.currentMap;
     NSUserDefaults *defaults=NSUserDefaults.standardUserDefaults;

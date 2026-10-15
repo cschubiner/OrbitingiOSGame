@@ -2,7 +2,7 @@
 
 ## Automated checks
 
-Xcode 27.0 / iOS SDK 27.0, iOS Simulator 26.5. The latest gameplay/layout hosted run passed **12 tests, zero failures** (`StarStreamFlightTests.xcresult`, retained outside Git).
+Xcode 27.0 / iOS SDK 27.0, iOS Simulator 26.5. The latest gameplay/layout hosted run passed **13 tests, zero failures** (`StarStreamSafeMenusFinal.xcresult`, retained outside Git).
 
 Coverage includes immutable/restored leaderboards, top-20 score retention, repeated saved-game loading, real AVAudioPlayer playback/pause/resume/mute, full canvas coverage with a uniform scale, phone/iPad aspect ratios, fixed 60-Hz physics at 30/60/120 display callbacks, 100 generated maps' dimensions and flight-corridor clearance, favorite persistence and duplicate saves, and identical live planet/asteroid/star/powerup positions after replaying saved JSON. The camera test executes 3,600 updates without allocating follow actions or preallocating a HUD pickup sprite for each star.
 
@@ -14,7 +14,7 @@ The prior physical-iPhone hosted suite passed **12 tests, zero failures** before
 
 Dedicated iPhone SE 3, iPhone 17 Pro Max, iPad mini A17 Pro and iPad Pro 13-inch M5 simulators are used. The canvas now fills the whole device window; it is no longer fitted inside a 568×320 safe-area rectangle. Geometry retains a uniform scale, backgrounds extend into the extra space, and HUD controls follow safe edges.
 
-Verified new flows include selecting a procedural map, playing it with swipes, saving it after game over, opening Favorite Maps from the main menu, and replaying the saved route. Existing checks cover pause/resume/quit, score and earned stars, shop categories and insufficient-star behavior, game-over name editing, Replay, and purchase/restore UI. Current full-screen store-list clipping and replacement release captures are being finalized.
+Verified new flows include selecting a procedural map, playing it with swipes, saving it after game over, opening Favorite Maps from the main menu, and replaying the saved route. Existing checks cover pause/resume/quit, score and earned stars, shop categories and insufficient-star behavior, game-over name editing, Replay, and purchase/restore UI. Verified that store rows clip above the Restore Purchases footer on phone and iPad, and menu panels fit inside safe edges. Five new public screenshots for each family and seven IAP review screenshots were uploaded successfully.
 
 ## Performance
 
@@ -24,4 +24,4 @@ See [performance.md](performance.md) for the concrete old-code defects, simulato
 
 App: Star Stream: Orbit Adventure (`6823318721`), bundle `com.cschubiner.starstream`, version 3.0. The game is free, with five optional consumable star packs and two permanent perks. All seven IAP records have localized metadata, availability, prices and review screenshots. App Privacy is published as Data Not Collected. The restored original description has been adapted to the current features.
 
-Build 3 was uploaded and attached before the user requested full-screen play and procedural favorites. It must be replaced by build 4 before review. Automatic release after approval is configured. No App Review submission or public release of build 4 is claimed by this report; the final release receipt is the authority for that state.
+Build 4 is uploaded, processed as VALID, and attached to version 3.0, replacing build 3. The App Store archive passed codesign verification; its IPA contains no StoreKit Test configuration, test bundle, or debug profiling markers. Automatic release after approval is configured. The app and all seven IAPs are being assembled into the combined review submission. No public release is claimed by this report; the final release receipt is the authority for that state.
