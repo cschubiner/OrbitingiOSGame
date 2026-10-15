@@ -37,28 +37,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // installs HandleExceptions as the Uncaught Exception Handler
-    NSSetUncaughtExceptionHandler(&HandleExceptions);
-    // create the signal action structure
-    struct sigaction newSignalAction;
-    // initialize the signal action structure
-    memset(&newSignalAction, 0, sizeof(newSignalAction));
-    // set SignalHandler as the handler in the signal action structure
-    newSignalAction.sa_handler = &SignalHandler;
-    // set SignalHandler as the handlers for SIGABRT, SIGILL and SIGBUS
-    sigaction(SIGABRT, &newSignalAction, NULL);
-    sigaction(SIGILL, &newSignalAction, NULL);
-    sigaction(SIGBUS, &newSignalAction, NULL);
-    // Call takeOff after install your own unhandled exception and signal handlers
-    //[TestFlight takeOff:@"d617a481887a5d2cf7db0f22b735c89f_MTExODYwMjAxMi0wNy0xOCAxOToxNToyNC43NzQ3NjA"];
-    
-    [Flurry startSession:@"96GKYS7HQZHNKZJJN2CZ"];
-//    [Flurry setUserID:[[UIDevice currentDevice] uniqueIdentifier]];
-
-    //[TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-  
-    NSLog(@"iRate: Number of events: %d Number of uses: %d",[[iRate sharedInstance]eventCount],[[iRate sharedInstance]usesCount]);
-    
     didGetToMainMenu = false;
     [self setdidGetToMainMenu:false];
     shouldPlayMenuMusic = true;
@@ -66,7 +44,7 @@
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    //NSLog([NSString stringWithFormat:@"Kamcord version: %@",[Kamcord kamcordSDKVersion]]); // we're on 1.0.1 3/25/2013
+    //NSLog([NSString stringWithFormat:@"Kamcord version: %@",(void)0;]); // we're on 1.0.1 3/25/2013
    	// CCGLView creation
 	// viewWithFrame: size of the OpenGL view. For full screen use [_window bounds]
 	//  - Possible values: any CGRect
@@ -80,28 +58,10 @@
 	//  - Possible values: YES, NO
 	// numberOfSamples: Only valid if multisampling is enabled
 	//  - Possible values: 0 to glGetIntegerv(GL_MAX_SAMPLES_APPLE)
-	CCGLView *glView;
-    if (IS_IPHONE_5){
-        glView = [CCGLView viewWithFrame:[window_ bounds]
-								   pixelFormat:kEAGLColorFormatRGBA8
-								   depthFormat:0
-							preserveBackbuffer:NO
-									sharegroup:nil
-								 multiSampling:YES
-							   numberOfSamples:0];
-    } else {
-            glView = [CCGLView viewWithFrame:[window_ bounds]
-                                 pixelFormat:kEAGLColorFormatRGB565
-                                 depthFormat:0
-                          preserveBackbuffer:NO
-                                  sharegroup:nil
-                               multiSampling:NO
-                             numberOfSamples:0];
-        
-    }
-    
+    CCGLView *glView = [CCGLView viewWithFrame:CGRectMake(0, 0, 568, 320)
+        pixelFormat:kEAGLColorFormatRGBA8 depthFormat:0 preserveBackbuffer:NO
+        sharegroup:nil multiSampling:NO numberOfSamples:0];
 
-    
 	director_ = (CCDirectorIOS*) [CCDirector sharedDirector];
     
 	director_.wantsFullScreenLayout = YES;
@@ -147,10 +107,10 @@
 	// On iPad     : "-ipad", "-hd"
 	// On iPhone HD: "-hd"
 	CCFileUtils *sharedFileUtils = [CCFileUtils sharedFileUtils];
-	[sharedFileUtils setEnableFallbackSuffixes:NO];				// Default: NO. No fallback suffixes are going to be used
+	[sharedFileUtils setEnableFallbackSuffixes:YES];				// Default: NO. No fallback suffixes are going to be used
 	[sharedFileUtils setiPhoneRetinaDisplaySuffix:@"-hd"];		// Default on iPhone RetinaDisplay is "-hd"
-	[sharedFileUtils setiPadSuffix:@"-ipad"];					// Default on iPad is "ipad"
-	[sharedFileUtils setiPadRetinaDisplaySuffix:@"-ipadhd"];	// Default on iPad RetinaDisplay is "-ipadhd"
+	[sharedFileUtils setiPadSuffix:@"-hd"];					// Default on iPad is "ipad"
+	[sharedFileUtils setiPadRetinaDisplaySuffix:@"-hd"];	// Default on iPad RetinaDisplay is "-ipadhd"
     
 	// Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
@@ -168,9 +128,9 @@
 	
 	// set the Navigation Controller as the root view controller
     //	[window_ addSubview:navController_.view];	// Generates flicker.
-//	[window_ setRootViewController:navController_];
+//	[window_ setRootViewController:[LandscapeNavigationViewController hostForNavigationController:navController_]];
     
-    [Kamcord setNotificationsEnabled:true];
+    (void)0;
     
     
     UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
@@ -178,27 +138,21 @@
         [self application:application didReceiveLocalNotification:localNotif];
     }
     
-    [Kamcord setMaximumVideoLength:450];
+    (void)0;
     /*    if ([DeviceDetection detectDevice]==MODEL_IPHONE_4)
      {
-     [Kamcord setEnableSynchronousConversionUI:YES alwaysShowProgressBar:YES];
+     (void)0;
      
      
      }*/
-    //   [Kamcord setVideoResolution:TRAILER_VIDEO_RESOLUTION]; //leave this disabled!!
-    if (IS_IPHONE_5)
-    {
-        Kamcord_SetVideoQuality(KC_MEDIUM_VIDEO_QUALITY);
-    }
+    //   (void)0; //leave this disabled!!
+
     
-    [Kamcord setDeveloperKey:@"d05f73399ff3c1755bd97ec94cb5fdda"
-             developerSecret:@"prcU7MltdajQ1YVTSeFDtPtywe2zABOmzzpSB5pGP79"
-                     appName:@"Star Stream"
-        parentViewController: navController_];
+    (void)0;
     
 
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0){
-        [window_ setRootViewController:navController_];
+        [window_ setRootViewController:[LandscapeNavigationViewController hostForNavigationController:navController_]];
     }
     else{
         [window_ addSubview:navController_.view];
@@ -214,7 +168,7 @@
     if (notif != nil){
     if ([notif.userInfo objectForKey:@"Kamcord"] != nil)
     {
-        [Kamcord handleKamcordNotification:notif];
+        (void)0;
     }
     }
 }
@@ -230,7 +184,7 @@
  **/
 void HandleExceptions(NSException *exception) {
     //NSLog(@"This is where we save the application data during a exception");
-    [Flurry logError:@"Game crashed" message:@"game crashed" exception:exception];
+    (void)0;
     // Save application data on crash
     [DataStorage storeData];
 }
@@ -249,8 +203,6 @@ void SignalHandler(int sig) {
     //return (NSUInteger)[application supportedInterfaceOrientationsForWindow:window] | (1<<UIInterfaceOrientationPortrait);
     
    // if ([DeviceDetection detectDevice] == MODEL_IPHONE_4)
-    if (!didGetToMainMenu)
-        return UIInterfaceOrientationMaskAllButUpsideDown;
     return UIInterfaceOrientationMaskLandscape;
 }
 
@@ -321,7 +273,7 @@ void SignalHandler(int sig) {
 	if( [navController_ visibleViewController] == director_ )
 		[director_ pause];
     
-     [Kamcord pause];
+     (void)0;
 }
 
 // call got rejected
@@ -333,7 +285,7 @@ void SignalHandler(int sig) {
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
-        //[Flurry logEvent:@"Application Backgrounded" withParameters:[self getDictionaryOfFlurryParameters]];09
+        //(void)0;09
 	if( [navController_ visibleViewController] == director_ )
 		[director_ stopAnimation];
     
@@ -342,7 +294,7 @@ void SignalHandler(int sig) {
 
 -(void) applicationWillEnterForeground:(UIApplication*)application
 {
-    [Flurry logEvent:@"Application entered foreground"];
+    (void)0;
 	if( [navController_ visibleViewController] == director_ )
 		[director_ startAnimation];
 }
@@ -405,7 +357,7 @@ void SignalHandler(int sig) {
 // application will be killed
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    [Flurry logEvent:@"Application Terminated" withParameters:[self getDictionaryOfFlurryParameters]];
+    (void)0;
     	[DataStorage storeData];
 	CC_DIRECTOR_END();
 }
@@ -448,37 +400,20 @@ bool isIOSVersionGreaterThan6(){
 
 + (void)initialize
 {
-    //configure iRate
-    [iRate sharedInstance].daysUntilPrompt = .02;
-    [iRate sharedInstance].usesUntilPrompt = 6;//10
-    [iRate sharedInstance].eventsUntilPrompt = 13;//17
-    [[iRate sharedInstance] setDisplayAppUsingStorekitIfAvailable:false];
-
-    [[iRate sharedInstance] setAppStoreID:594091366];
-    if (isIOSVersionGreaterThan6()){
-        [[iRate sharedInstance] setRatingsURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=594091366"]];
-       // NSLog(@"ios version is greater than six!");
-    }
-    else [[iRate sharedInstance] setRatingsURL:[NSURL URLWithString:@"http://itunes.apple.com/us/app/star-stream/id594091366?ls=1&mt=8"]];
-    
-    
-    [[iRate sharedInstance] setPromptAgainForEachNewVersion:true];
-    //[[iRate sharedInstance]setDebug:YES];
-  //  [[iRate sharedInstance]setAppStoreGenreID:iRateAppStoreGameGenreID];
-    [[iRate sharedInstance]setMessage:[NSString stringWithFormat:@"We're five college kids trying to make a name for ourselves. If you love Star Stream, help us out and rate our game 5 stars! :)"]];
-    [[iRate sharedInstance]setCancelButtonLabel:@"No Thanks"];
+    // StoreKit owns review prompting; never ask for a particular rating.
+    [iRate sharedInstance].promptAtLaunch = NO;
 }
 
 -(void)iRateUserDidAttemptToRateApp {
-    [Flurry logEvent:@"iRate user did attempt to rate app" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays", nil]];
+    (void)0;
 }
 
 -(void)iRateUserDidDeclineToRateApp {
-    [Flurry logEvent:@"iRate user did decline to rate app" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays", nil]];
+    (void)0;
 }
 
 -(void)iRateUserDidRequestReminderToRateApp {
-    [Flurry logEvent:@"iRate user did request reminder to rate app" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays", nil]];
+    (void)0;
 }
 
 

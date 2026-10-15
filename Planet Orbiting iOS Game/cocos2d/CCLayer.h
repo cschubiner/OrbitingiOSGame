@@ -48,7 +48,7 @@
  - It can receive Accelerometer input
 */
 #ifdef __CC_PLATFORM_IOS
-@interface CCLayer : CCNode <UIAccelerometerDelegate, CCStandardTouchDelegate, CCTargetedTouchDelegate>
+@interface CCLayer : CCNode <CCStandardTouchDelegate, CCTargetedTouchDelegate>
 {
 	BOOL isTouchEnabled_;
 	BOOL isAccelerometerEnabled_;

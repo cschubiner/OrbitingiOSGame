@@ -36,7 +36,7 @@
         hello.position = ccp(60, -27);
         
         
-        if (!(item.number == 3 || item.number ==  11 || item.number == 12 || item.number == 13 || item.number == 14 || item.number == 15 || item.number == 16)) {
+        {
             coinSprite = [CCSprite spriteWithFile:@"staricon.png"];
             [coinSprite setScale:.45];
             [self addChild:coinSprite];
@@ -44,10 +44,6 @@
             
             
             priceLabel = [CCLabelTTF labelWithString:[self commaInt:item.price]  fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
-            [self addChild: priceLabel];
-            [priceLabel setPosition:ccp(480 - 33 - [priceLabel boundingBox].size.width/2, -27)];
-        } else {
-            priceLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"$%.2f", ((float)item.price)/100] fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
             [self addChild: priceLabel];
             [priceLabel setPosition:ccp(480 - 33 - [priceLabel boundingBox].size.width/2, -27)];
         }

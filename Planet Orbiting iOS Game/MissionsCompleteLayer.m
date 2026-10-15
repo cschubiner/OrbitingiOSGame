@@ -460,7 +460,7 @@
 
 
 - (ALuint)playSound:(NSString*)soundFile shouldLoop:(bool)shouldLoop pitch:(float)pitch{
-    //[Kamcord playSound:soundFile loop:shouldLoop];
+    //(void)0;
     if (shouldLoop)
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:soundFile loop:YES];
     else

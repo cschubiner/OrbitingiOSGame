@@ -104,6 +104,8 @@
         [[PlayerStats sharedInstance] setRecentName:@"PLAYER"];
     }
         
+    [[[UpgradeManager sharedInstance] upgradeItems] removeAllObjects];
+
     // 0 = SPACESHIP TRAILS
     // 1 = ROCKETSHIPS
     // 2 = UPGRADES
@@ -117,7 +119,7 @@
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Nitrous Rocket" description:@"Increase the strength of your rocket to fly faster through space." price:40000 type:2 purchased:NO equipped:NO number:2]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Double Stars" description:@"A great long-term investment! Each star you collect is worth two." price:199 type:4 purchased:NO equipped:NO number:3]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Double Stars" description:@"A great long-term investment! Each star you collect is worth two." price:30000 type:4 purchased:NO equipped:NO number:3]];
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Lithium Ion Battery" description:@"Increase your battery's efficiency to allow you to fly deeper into space." price:50000 type:2 purchased:NO equipped:NO number:4]];
     
@@ -133,17 +135,17 @@
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Autopilot" description:@"Increase the duration of the Autopilot powerup." price:6000 type:3 purchased:NO equipped:NO number:10]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Pink Stars" description:@"Turn all stars pink. Are they worth more? No. Are they more fun? Meh. Are they super awesome? Absolutely." price:599 type:4 purchased:NO equipped:NO number:11]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Pink Stars" description:@"Turn all stars pink. Are they worth more? No. Are they more fun? Meh. Are they super awesome? Absolutely." price:60000 type:4 purchased:NO equipped:NO number:11]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Starter Pack (30,000 Stars)" description:@"Get a quick fix of stars to make ends meet. Get that final bit of cash to grab your next awesome upgrade!" price:99 type:4 purchased:NO equipped:NO number:12]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Starter Pack (30,000 Stars)" description:@"Get a quick fix of stars to make ends meet. Get that final bit of cash to grab your next awesome upgrade!" price:99 type:-1 purchased:NO equipped:NO number:12]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Bag O' Stars (70,000 Stars)" description:@"Deck out your ride with some sweet new trails or grab some quick perks for pursuing those high scores!" price:199 type:4 purchased:NO equipped:NO number:13]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Bag O' Stars (70,000 Stars)" description:@"Deck out your ride with some sweet new trails or grab some quick perks for pursuing those high scores!" price:199 type:-1 purchased:NO equipped:NO number:13]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Galaxy Pack (120,000 Stars)" description:@"Some pretty serious cash will be at your disposal. Upgrade your ship and purchase that Lithium Ion battery to max out your score!" price:299 type:4 purchased:NO equipped:NO number:14]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Galaxy Pack (120,000 Stars)" description:@"Some pretty serious cash will be at your disposal. Upgrade your ship and purchase that Lithium Ion battery to max out your score!" price:299 type:-1 purchased:NO equipped:NO number:14]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Warp-Speed Pack (300,000 Stars)" description:@"Make sure you're covered in flour, 'cause you'll be rolling in dough." price:499 type:4 purchased:NO equipped:NO number:15]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Warp-Speed Pack (300,000 Stars)" description:@"Make sure you're covered in flour, 'cause you'll be rolling in dough." price:499 type:-1 purchased:NO equipped:NO number:15]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"StarMaster Pack (1,000,000 Stars)" description:@"You'll have enough cash to pursue your wildest dreams. You are the StarMaster." price:999 type:4 purchased:NO equipped:NO number:16]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"StarMaster Pack (1,000,000 Stars)" description:@"You'll have enough cash to pursue your wildest dreams. You are the StarMaster." price:999 type:-1 purchased:NO equipped:NO number:16]];
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Camo Spaceship" description:@"Stay hidden from your enemies in this camoflauged spaceship!" price:10000 type:1 purchased:NO equipped:NO number:17]];
     
@@ -179,7 +181,7 @@
     
     
     if (upgradeCodes) {
-        for (int i = 0; i < [upgradeCodes count]; i++) {
+        for (int i = 0; i < MIN([upgradeCodes count], [[[UpgradeManager sharedInstance] upgradeItems] count]); i++) {
             NSNumber *number = [upgradeCodes objectAtIndex:i];
             UpgradeItem *item = [[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:i];
             if ([number intValue] == 0) {
@@ -218,9 +220,10 @@
         }
     } else {
         for (int i = 0; i < totalObjectiveGroups; i++) {
-            NSMutableArray *boolsToUse = [objectives objectAtIndex:i];
+            NSArray *savedGroup = i < objectives.count ? objectives[i] : @[];
+            NSMutableArray *boolsToUse = [NSMutableArray new];
             for (int j = 0; j < 3; j++) {
-                [boolsToUse addObject:[boolsToUse objectAtIndex:j]];
+                [boolsToUse addObject:j < savedGroup.count ? @([savedGroup[j] boolValue]) : @NO];
             }
             [boolGroupsToUse addObject:boolsToUse];
         }

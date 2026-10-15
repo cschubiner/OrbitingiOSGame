@@ -41,17 +41,17 @@
 					<key>customClass</key>
 					<string></string>
 					<key>duration</key>
-					<real>-1</real>
+					<real>-1.0</real>
 					<key>emissionRate</key>
-					<real>40</real>
+					<real>40.0</real>
 					<key>emitterMode</key>
 					<integer>0</integer>
 					<key>endColor</key>
 					<array>
-						<real>0.54574888944625854</real>
-						<real>0.62580353021621704</real>
-						<real>0.78713059425354004</real>
-						<real>1</real>
+						<real>0.5457488894462585</real>
+						<real>0.625803530216217</real>
+						<real>0.78713059425354</real>
+						<real>1.0</real>
 					</array>
 					<key>endColorVar</key>
 					<array>
@@ -70,7 +70,7 @@
 					<integer>360</integer>
 					<key>gravity</key>
 					<array>
-						<real>-50</real>
+						<real>-50.0</real>
 						<real>0.0</real>
 					</array>
 					<key>isExpanded</key>
@@ -78,7 +78,7 @@
 					<key>isRelativeAnchorPoint</key>
 					<true/>
 					<key>life</key>
-					<real>3</real>
+					<real>3.0</real>
 					<key>lifeVar</key>
 					<real>0.0</real>
 					<key>lockedScaleRatio</key>
@@ -89,13 +89,13 @@
 					<integer>0</integer>
 					<key>posVar</key>
 					<array>
-						<real>170</real>
-						<real>160</real>
+						<real>170.0</real>
+						<real>160.0</real>
 					</array>
 					<key>position</key>
 					<array>
-						<real>480</real>
-						<real>480</real>
+						<real>480.0</real>
+						<real>480.0</real>
 					</array>
 					<key>radialAccel</key>
 					<integer>0</integer>
@@ -104,9 +104,9 @@
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>1</real>
+					<real>1.0</real>
 					<key>scaleY</key>
-					<real>1</real>
+					<real>1.0</real>
 					<key>speed</key>
 					<integer>340</integer>
 					<key>speedVar</key>
@@ -115,9 +115,9 @@
 					<string>particle-stars.png</string>
 					<key>startColor</key>
 					<array>
-						<real>0.69333970546722412</real>
-						<real>0.79504406452178955</real>
-						<real>1</real>
+						<real>0.6933397054672241</real>
+						<real>0.7950440645217896</real>
+						<real>1.0</real>
 						<real>0.10000000149011612</real>
 					</array>
 					<key>startColorVar</key>
@@ -125,7 +125,7 @@
 						<real>0.0</real>
 						<real>0.0</real>
 						<real>0.0</real>
-						<real>1</real>
+						<real>1.0</real>
 					</array>
 					<key>startSize</key>
 					<integer>7</integer>
@@ -181,9 +181,9 @@
 							<key>customClass</key>
 							<string></string>
 							<key>duration</key>
-							<real>-1</real>
+							<real>-1.0</real>
 							<key>emissionRate</key>
-							<real>110</real>
+							<real>110.0</real>
 							<key>emitterMode</key>
 							<integer>0</integer>
 							<key>endColor</key>
@@ -191,7 +191,7 @@
 								<real>0.0</real>
 								<real>0.0</real>
 								<real>0.0</real>
-								<real>1</real>
+								<real>1.0</real>
 							</array>
 							<key>endColorVar</key>
 							<array>
@@ -218,7 +218,7 @@
 							<key>isRelativeAnchorPoint</key>
 							<true/>
 							<key>life</key>
-							<real>0.69999998807907104</real>
+							<real>0.699999988079071</real>
 							<key>lifeVar</key>
 							<real>0.25</real>
 							<key>lockedScaleRatio</key>
@@ -234,7 +234,7 @@
 							</array>
 							<key>position</key>
 							<array>
-								<real>-95.019622802734375</real>
+								<real>-95.01962280273438</real>
 								<real>0.0</real>
 							</array>
 							<key>radialAccel</key>
@@ -242,7 +242,7 @@
 							<key>radialAccelVar</key>
 							<integer>0</integer>
 							<key>rotation</key>
-							<real>-90</real>
+							<real>-90.0</real>
 							<key>scaleX</key>
 							<real>2.5</real>
 							<key>scaleY</key>
@@ -255,10 +255,10 @@
 							<string>thrustParticleTexture.png</string>
 							<key>startColor</key>
 							<array>
-								<real>0.75999999046325684</real>
+								<real>0.7599999904632568</real>
 								<real>0.25</real>
 								<real>0.11999999731779099</real>
-								<real>1</real>
+								<real>1.0</real>
 							</array>
 							<key>startColorVar</key>
 							<array>
@@ -324,9 +324,9 @@
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>1</real>
+					<real>1.0</real>
 					<key>scaleY</key>
-					<real>1</real>
+					<real>1.0</real>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
@@ -363,8 +363,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>215</real>
-								<real>122</real>
+								<real>215.0</real>
+								<real>122.0</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -390,11 +390,11 @@
 								<real>595.6484375</real>
 							</array>
 							<key>rotation</key>
-							<real>-6.1999998092651367</real>
+							<real>-6.199999809265137</real>
 							<key>scaleX</key>
-							<real>1</real>
+							<real>1.0</real>
 							<key>scaleY</key>
-							<real>1</real>
+							<real>1.0</real>
 							<key>spriteFile</key>
 							<string>startitle.png</string>
 							<key>tag</key>
@@ -430,8 +430,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>353</real>
-								<real>129</real>
+								<real>353.0</real>
+								<real>129.0</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -457,11 +457,11 @@
 								<real>596.87109375</real>
 							</array>
 							<key>rotation</key>
-							<real>-6.1999998092651367</real>
+							<real>-6.199999809265137</real>
 							<key>scaleX</key>
-							<real>1</real>
+							<real>1.0</real>
 							<key>scaleY</key>
-							<real>1</real>
+							<real>1.0</real>
 							<key>spriteFile</key>
 							<string>streamtitle.png</string>
 							<key>tag</key>
@@ -502,14 +502,14 @@
 					<key>position</key>
 					<array>
 						<real>0.0</real>
-						<real>100</real>
+						<real>100.0</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>1</real>
+					<real>1.0</real>
 					<key>scaleY</key>
-					<real>1</real>
+					<real>1.0</real>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
@@ -546,8 +546,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>484</real>
-								<real>49</real>
+								<real>484.0</real>
+								<real>49.0</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -569,15 +569,15 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>-2</real>
-								<real>-4</real>
+								<real>-2.0</real>
+								<real>-4.0</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>1</real>
+							<real>1.0</real>
 							<key>scaleY</key>
-							<real>1</real>
+							<real>1.0</real>
 							<key>spriteFile</key>
 							<string>mainmenubanner.png</string>
 							<key>tag</key>
@@ -605,8 +605,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>122</real>
-										<real>39</real>
+										<real>122.0</real>
+										<real>39.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -624,15 +624,15 @@
 									<integer>2</integer>
 									<key>position</key>
 									<array>
-										<real>117</real>
-										<real>19</real>
+										<real>117.0</real>
+										<real>19.0</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
 									<key>scaleX</key>
-									<real>1</real>
+									<real>1.0</real>
 									<key>scaleY</key>
-									<real>1</real>
+									<real>1.0</real>
 									<key>selector</key>
 									<string>pressedScoresButton:</string>
 									<key>spriteFileDisabled</key>
@@ -665,8 +665,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>127</real>
-										<real>39</real>
+										<real>127.0</real>
+										<real>39.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -684,15 +684,15 @@
 									<integer>2</integer>
 									<key>position</key>
 									<array>
-										<real>240</real>
-										<real>19</real>
+										<real>240.0</real>
+										<real>19.0</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
 									<key>scaleX</key>
-									<real>1</real>
+									<real>1.0</real>
 									<key>scaleY</key>
-									<real>1</real>
+									<real>1.0</real>
 									<key>selector</key>
 									<string>pressedObjectiveButton:</string>
 									<key>spriteFileDisabled</key>
@@ -725,8 +725,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>36</real>
-										<real>36</real>
+										<real>36.0</real>
+										<real>36.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -744,15 +744,15 @@
 									<integer>2</integer>
 									<key>position</key>
 									<array>
-										<real>30</real>
-										<real>19</real>
+										<real>30.0</real>
+										<real>19.0</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
 									<key>scaleX</key>
-									<real>1</real>
+									<real>1.0</real>
 									<key>scaleY</key>
-									<real>1</real>
+									<real>1.0</real>
 									<key>selector</key>
 									<string>pressedCreditsButton</string>
 									<key>spriteFileDisabled</key>
@@ -785,8 +785,8 @@
 									</array>
 									<key>contentSize</key>
 									<array>
-										<real>122</real>
-										<real>39</real>
+										<real>122.0</real>
+										<real>39.0</real>
 									</array>
 									<key>customClass</key>
 									<string></string>
@@ -804,15 +804,15 @@
 									<integer>2</integer>
 									<key>position</key>
 									<array>
-										<real>363</real>
-										<real>19</real>
+										<real>363.0</real>
+										<real>19.0</real>
 									</array>
 									<key>rotation</key>
 									<real>0.0</real>
 									<key>scaleX</key>
-									<real>1</real>
+									<real>1.0</real>
 									<key>scaleY</key>
-									<real>1</real>
+									<real>1.0</real>
 									<key>selector</key>
 									<string>pressedStoreButton:</string>
 									<key>spriteFileDisabled</key>
@@ -821,66 +821,6 @@
 									<string>store.png</string>
 									<key>spriteFileSelected</key>
 									<string>storepressed.png</string>
-									<key>tag</key>
-									<integer>-1</integer>
-									<key>target</key>
-									<integer>2</integer>
-									<key>visible</key>
-									<true/>
-									<key>zOrder</key>
-									<integer>0</integer>
-								</dict>
-							</dict>
-							<dict>
-								<key>children</key>
-								<array/>
-								<key>class</key>
-								<string>CCMenuItemImage</string>
-								<key>properties</key>
-								<dict>
-									<key>anchorPoint</key>
-									<array>
-										<real>0.5</real>
-										<real>0.5</real>
-									</array>
-									<key>contentSize</key>
-									<array>
-										<real>36</real>
-										<real>36</real>
-									</array>
-									<key>customClass</key>
-									<string></string>
-									<key>isEnabled</key>
-									<true/>
-									<key>isExpanded</key>
-									<true/>
-									<key>isRelativeAnchorPoint</key>
-									<true/>
-									<key>lockedScaleRatio</key>
-									<true/>
-									<key>memberVarAssignmentName</key>
-									<string>kamcordwatchButton</string>
-									<key>memberVarAssignmentType</key>
-									<integer>2</integer>
-									<key>position</key>
-									<array>
-										<real>450</real>
-										<real>19</real>
-									</array>
-									<key>rotation</key>
-									<real>0.0</real>
-									<key>scaleX</key>
-									<real>1</real>
-									<key>scaleY</key>
-									<real>1</real>
-									<key>selector</key>
-									<string>showWatchView</string>
-									<key>spriteFileDisabled</key>
-									<string>kamcordwatch.png</string>
-									<key>spriteFileNormal</key>
-									<string>kamcordwatch.png</string>
-									<key>spriteFileSelected</key>
-									<string>kamcordwatchpressed.png</string>
 									<key>tag</key>
 									<integer>-1</integer>
 									<key>target</key>
@@ -932,9 +872,9 @@
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>1</real>
+							<real>1.0</real>
 							<key>scaleY</key>
-							<real>1</real>
+							<real>1.0</real>
 							<key>tag</key>
 							<integer>-1</integer>
 							<key>touchEnabled</key>
@@ -975,14 +915,14 @@
 					<key>position</key>
 					<array>
 						<real>0.0</real>
-						<real>270</real>
+						<real>270.0</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>1</real>
+					<real>1.0</real>
 					<key>scaleY</key>
-					<real>1</real>
+					<real>1.0</real>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
@@ -1005,8 +945,8 @@
 			</array>
 			<key>contentSize</key>
 			<array>
-				<real>480</real>
-				<real>320</real>
+				<real>480.0</real>
+				<real>320.0</real>
 			</array>
 			<key>customClass</key>
 			<string></string>
@@ -1027,14 +967,14 @@
 			<key>position</key>
 			<array>
 				<real>0.0</real>
-				<real>-320</real>
+				<real>-320.0</real>
 			</array>
 			<key>rotation</key>
 			<real>0.0</real>
 			<key>scaleX</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>scaleY</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>tag</key>
 			<integer>-1</integer>
 			<key>touchEnabled</key>

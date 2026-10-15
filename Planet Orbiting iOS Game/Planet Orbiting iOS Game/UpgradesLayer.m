@@ -448,7 +448,7 @@
             //              target:self selector:@selector(pressedDisabledButton)];
             //}
             
-        } else if ([[UserWallet sharedInstance] getBalance] < pushedItem.price && item.number != 3 && item.number != 11) {
+        } else if ([[UserWallet sharedInstance] getBalance] < pushedItem.price) {
             
             resume = [CCMenuItemImage
                       itemWithNormalImage:@"buydisabled.png" selectedImage:@"buydisabled.png"
@@ -525,46 +525,10 @@
 
 - (void) pressedPurchaseButton {
     
-    if (pushedItem.number == 3 ||
-        pushedItem.number == 11 ||
-        pushedItem.number == 12 ||
-        pushedItem.number == 13 ||
-        pushedItem.number == 14 ||
-        pushedItem.number == 15 ||
-        pushedItem.number == 16) {
-        
-        //   for (int i = 0 ; i < 8; i++)
-        //     [[iRate sharedInstance] logEvent:YES];
-        
-        if (pushedItem.number == 3) { //Double Stars - 1.99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"doublestars1880"];
-
-            
-        } else if (pushedItem.number == 11) { //Pink Stars - 5.99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"pinkstars1880"];
-
-            
-        } else if (pushedItem.number == 12) { //30,000 Stars - .99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"30000stars1880"];
-
-            
-        } else if (pushedItem.number == 13) { //70,000 Stars - 1.99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"70000stars1880"];
-
-            
-        } else if (pushedItem.number == 14) { //120,000 Stars - 2.99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"120000stars1880"];
-
-            
-        } else if (pushedItem.number == 15) { //300,000 Stars - 4.99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"300000stars1880"];
-            
-        } else if (pushedItem.number == 16) { //1,000,000 Stars - 9.99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"1000000stars1880"];
-        }
-        
-    } else {
-        
+    // Every unlock uses earned in-game stars. Never spend a negative balance or charge twice.
+    if (!pushedItem || pushedItem.purchased || pushedItem.type < 0 ||
+        [[UserWallet sharedInstance] getBalance] < pushedItem.price) return;
+    {
         for (int i = 0 ; i < 5; i++)
             [[iRate sharedInstance] logEvent:YES];
         
@@ -610,7 +574,7 @@
  [[UserWallet sharedInstance] setBalance:newBalance];
  
  [self completeObjectiveFromGroupNumber:0 itemNumber:1];
- [Flurry logEvent:@"Purchased Item" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:newBalance],@"Coin Balance after purchase",item.title,@"Item Title",nil]];
+ (void)0;
  
  [DataStorage storeData];
  }
@@ -633,7 +597,7 @@
 
 
 - (ALuint)playSound:(NSString*)soundFile shouldLoop:(bool)shouldLoop pitch:(float)pitch{
-    //[Kamcord playSound:soundFile loop:shouldLoop];
+    //(void)0;
     if (shouldLoop)
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:soundFile loop:YES];
     else

@@ -181,37 +181,37 @@
 }
 
 - (void)pressedPerksButton {
-    [Flurry logEvent:@"Pressed Perks Button"];
+    (void)0;
     [[UpgradeManager sharedInstance] setButtonPushed:5];
     [self pressedAnUpgradeButton];
 }
 
 - (void)pressedRocketShipsButton {
-    [Flurry logEvent:@"Pressed Rocketships Button"];
+    (void)0;
     [[UpgradeManager sharedInstance] setButtonPushed:1];
     [self pressedAnUpgradeButton];
 }
 
 - (void)pressedUpgradesButton {
-    [Flurry logEvent:@"Pressed Upgrades Button"];
+    (void)0;
     [[UpgradeManager sharedInstance] setButtonPushed:2];
     [self pressedAnUpgradeButton];
 }
 
 - (void)pressedPowerupsButton {
-    [Flurry logEvent:@"Pressed Powerups Button"];
+    (void)0;
     [[UpgradeManager sharedInstance] setButtonPushed:3];
     [self pressedAnUpgradeButton];
 }
 
 - (void)pressedStarsButton {
-    [Flurry logEvent:@"Pressed Stars Button"];
+    (void)0;
     [[UpgradeManager sharedInstance] setButtonPushed:4];
     [self pressedAnUpgradeButton];
 }
 
 - (void)pressedRocketTrailsButton {
-    [Flurry logEvent:@"Pressed Rocket Trails Button"];
+    (void)0;
     [[UpgradeManager sharedInstance] setButtonPushed:0];
     [self pressedAnUpgradeButton];
 }
@@ -242,7 +242,7 @@
 
 
 - (ALuint)playSound:(NSString*)soundFile shouldLoop:(bool)shouldLoop pitch:(float)pitch{
-    //[Kamcord playSound:soundFile loop:shouldLoop];
+    //(void)0;
     if (shouldLoop)
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:soundFile loop:YES];
     else

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface LandscapeNavigationViewController : UINavigationController
++ (UIViewController *)hostForNavigationController:(UINavigationController *)navigation;
 
 @end

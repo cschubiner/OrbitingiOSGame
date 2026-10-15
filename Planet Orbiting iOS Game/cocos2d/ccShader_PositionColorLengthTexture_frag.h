@@ -20,7 +20,6 @@
  */
 
 "																															\n\
-#extension GL_OES_standard_derivatives : enable																				\n\
 																															\n\
 #ifdef GL_ES																												\n\
 varying mediump vec4 v_color;																								\n\

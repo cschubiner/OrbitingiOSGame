@@ -89,11 +89,12 @@ static PlayerStats *sharedInstance = nil;
 }
 
 - (void)setScores:(NSMutableArray *)scores {
-    highScores = scores;
+    highScores = scores ? [scores mutableCopy] : [NSMutableArray new];
+    while (highScores.count < highScoreLimit) [highScores addObject:@0];
 }
 
 - (void)setKeyValuePairs:(NSMutableDictionary *)dict {
-    keyValuePairs = dict;
+    keyValuePairs = dict ? [dict mutableCopy] : [NSMutableDictionary new];
 }
 
 - (BOOL)isHighScore:(int)score {

@@ -120,7 +120,7 @@ typedef struct {
 
 
 -(void)showRecording {
-    [Kamcord showView];
+    (void)0;
 }
 
 
@@ -498,7 +498,7 @@ typedef struct {
     //[loadingLayerBackground2 runAction:[CCSequence actions:
     //                                   [CCFadeOut actionWithDuration:fadeOutDuration],removeLoadingLayer, nil]];
     
-    [Kamcord startRecording];
+    (void)0;
     [self scheduleUpdates];
 }
 
@@ -873,7 +873,7 @@ typedef struct {
         [self UpdateCamera:1.0/60.0f];
     }
     
-    [Flurry logEvent:@"Played Game"timed:YES];
+    (void)0;
     [self scheduleOnce:@selector(startGame) delay:1.25];
 }
 
@@ -1764,7 +1764,7 @@ typedef struct {
     player.acceleration=CGPointZero;
     if (!isIphone4) {
     
-        [Flurry logEvent:@"Player Died" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSNumber numberWithInt:currentGalaxy.number],@"Galaxy",[NSNumber numberWithInt:numZonesHitInARow],@"Pre-death combo", nil]];
+        (void)0;
         
     }
 
@@ -2362,7 +2362,7 @@ typedef struct {
         @try {
             if ([[self children]containsObject:layerHudSlider])
                 [self removeChild:layerHudSlider cleanup:YES];
-                [Kamcord stopRecording];
+                (void)0;
         }
         @catch (NSException *exception) {    }
 
@@ -2430,33 +2430,33 @@ typedef struct {
     [[PlayerStats sharedInstance] addPlay];
     
 
- //   [Kamcord setDefaultEmailSubject:@"Check out my awesome Star Stream Gameplay!"];
+ //   (void)0;
 
-  //  [Kamcord setDefaultMessage:[NSString stringWithFormat:@"Check out my awesome Star Stream gameplay! I reached a score of %d and made it to galaxy %d!",finalScore,currentGalaxy.number+1]];
+  //  (void)0;
     
     @try {
         if ([[PlayerStats sharedInstance] recentName] == nil) {
-            [Kamcord setVideoTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];
+            (void)0;
         } else if ([[PlayerStats sharedInstance] recentName] != nil && [[[PlayerStats sharedInstance] recentName] isEqualToString:@"PLAYER"] == false && [[[PlayerStats sharedInstance] recentName] isEqualToString:@" "] == false && [[[PlayerStats sharedInstance] recentName] length ] > 0){
-            [Kamcord setVideoTitle:[NSString stringWithFormat:@"%@'s Gameplay - Score: %d", [[PlayerStats sharedInstance] recentName],finalScore]];
+            (void)0;
         }
         else
-            [Kamcord setVideoTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];
+            (void)0;
     }
     @catch (NSException *exception) {
-        [Kamcord setVideoTitle:[NSString stringWithFormat:@"Star Stream Gameplay - Score: %d",finalScore] ];
+        (void)0;
     }
     
-    [Kamcord setYouTubeDescription:[NSString stringWithFormat:@"My awesome round of Star Stream. I scored %d points and reached galaxy %d.",finalScore,currentGalaxy.number+1] tags:@"Star Stream, Star, Stream, iPhone, iOS, iPod, gameplay, video, high score, score, highscore"];
+    (void)0;
     
-    [Kamcord setTwitterDescription:[NSString stringWithFormat:@"My awesome round of Star Stream. I scored %d points and reached galaxy %d.",finalScore,currentGalaxy.number+1]];
+    (void)0;
     
-    [Kamcord setDefaultEmailBody:[NSString stringWithFormat:@"Check out my awesome round of Star Stream. I scored %d points and reached galaxy %d.",finalScore,currentGalaxy.number+1]];
+    (void)0;
     
-    [Kamcord setLevel:[NSString stringWithFormat:@"Galaxy %d",currentGalaxy.number+1] score:[NSNumber numberWithInt:finalScore]];
-    [Kamcord setFacebookDescription:[NSString stringWithFormat:@"My awesome round of Star Stream. I reached a score of %d and reached galaxy %d!",finalScore,currentGalaxy.number+1]];
-    [Kamcord setDelegate:self];
-    //[Kamcord setEnableSynchronousConversionUI:YES alwaysShowProgressBar:YES];
+    (void)0;
+    (void)0;
+    (void)0;
+    //(void)0;
   
     //finalScore = 69669;
     //numCoinsDisplayed = 69;
@@ -2468,14 +2468,14 @@ typedef struct {
         NSDictionary *dictForFlurry = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:finalScore],@"Highscore Value", [NSNumber numberWithInt:planetsHitFlurry],@"Planets traveled to",[NSNumber numberWithInt:segmentsSpawnedFlurry],@"Segments spawned",[NSString stringWithFormat:@"Galaxy %d-%d",currentGalaxy.number+1,lastPlanetVisited.whichSegmentThisObjectIsOriginallyFrom+1],@"Location of death",[NSString stringWithFormat:@"%d galaxies and %d segments",currentGalaxy.number+1,flurrySegmentsVisitedSinceGalaxyJump],@"How far player went",[NSNumber numberWithInt:[[PlayerStats sharedInstance] getPlays]],@"Number of total plays",[[PlayerStats sharedInstance] recentName],@"Player Name",nil];
         
         if (isHighScore) {
-            [Flurry logEvent:@"Got a top 10 highscore" withParameters:dictForFlurry];
+            (void)0;
         }
     }
     @catch (NSException *exception) {}
     
-    [[DDGameKitHelper sharedGameKitHelper] submitScore:finalScore category:@"highscore_leaderboard1880"];
+    // Scores are saved locally by PlayerStats. The retired online board is not contacted.
     
-    [[[[CCDirector sharedDirector]view]window]addSubview:playerNameLabel];
+    [[[CCDirector sharedDirector] view] addSubview:playerNameLabel];
     [self schedule:@selector(nameDidChange) interval:.05];
     playerNameLabel.delegate = self;
     playerNameLabel.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
@@ -2522,7 +2522,7 @@ typedef struct {
                                        , nil]];
     }
     
-    [Flurry endTimedEvent:@"Played Game" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:score],@"Score", nil]];
+    (void)0;
     
     [pauseLayer setTag:gameOverLayerTag];
     [self removeAllChildrenWithCleanup:NO];
@@ -2536,13 +2536,13 @@ typedef struct {
     
     [self tryHighScore];
     
-    //[Flurry logEvent:@"Opened Store" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance" ,nil]];
+    //(void)0;
     
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     
     if (allowVideoToConvert==false)
     {
-        // XXXXXXX [Kamcord cancelConversionForLatestVideo];
+        // XXXXXXX (void)0;
     }
     
     [[CCDirector sharedDirector] replaceScene:[MainMenuLayer scene]];//[StoreLayer scene]];
@@ -3009,7 +3009,7 @@ typedef struct {
     if (!didEndGameAlready) {
         didEndGameAlready = true;
         
-            [Kamcord stopRecording];
+            (void)0;
         
         [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
    
@@ -3030,7 +3030,7 @@ typedef struct {
         //CCLOG(@"4");
         [[PlayerStats sharedInstance] setRecentName:playerName];
         [DataStorage storeData];
-        if ([[[[[CCDirector sharedDirector] view] window] subviews]containsObject:playerNameLabel])
+        if (playerNameLabel.superview != nil)
             [playerNameLabel removeFromSuperview];
         
     }
@@ -3047,14 +3047,14 @@ typedef struct {
 
 -(void) actualRestart {
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
-    [Flurry logEvent:@"restarted game"];
+    (void)0;
     scoreAlreadySaved = NO;
     
     //CCLOG(@"GameplayLayerScene launched, game starting");
-        [Kamcord stopRecording];
+        (void)0;
    /* if (allowVideoToConvert==false)
     {
-       [Kamcord cancelConversionForLatestVideo];
+       (void)0;
     }*/
     
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5 scene:[GameplayLayer scene]]];
@@ -3343,7 +3343,7 @@ float lerpf(float a, float b, float t) {
     }
     paused = !paused;
     if (paused) {
-        [Kamcord pause];
+        (void)0;
         [self unscheduleEverythingButTutorialStuff];
         
         if (isOnRegularPause) {
@@ -3361,7 +3361,7 @@ float lerpf(float a, float b, float t) {
     }
     else {
         [self unschedule:@selector(UpdateTutorial:)];
-        [Kamcord resume];
+        (void)0;
         [self rescheduleEverythingButTutorialStuff];
         [self removeChildByTag:pauseLayerTag cleanup:NO];
     }
@@ -3372,12 +3372,12 @@ float lerpf(float a, float b, float t) {
         return;
     
     if (tutCounter == 0) {
-        pauseLabel = [CCLabelTTF labelWithString:pauseText dimensions:CGSizeMake(390, 320) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentTop lineBreakMode:kCCLineBreakModeWordWrap fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+        pauseLabel = [CCLabelTTF labelWithString:pauseText dimensions:CGSizeMake(390, 240) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentTop lineBreakMode:kCCLineBreakModeWordWrap fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
         pauseLabel.anchorPoint = ccp(.5, 1);
         if (IS_IPHONE_5)
-            pauseLabel.position = ccp(240 + HALF_IPHONE_5_ADDITIONAL_WIDTH, 320);
+            pauseLabel.position = ccp(240 + HALF_IPHONE_5_ADDITIONAL_WIDTH, 270);
         else
-            pauseLabel.position = ccp(240, 320);
+            pauseLabel.position = ccp(240, 270);
         pauseLabel.opacity = 0;
         [self addChild: pauseLabel];
         

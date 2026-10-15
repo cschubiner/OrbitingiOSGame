@@ -142,7 +142,7 @@
         gameCenter.position = ccp(480-70, 300.5);
         //quit.scale = 1.7;
         
-        CCMenu* menu = [CCMenu menuWithItems:quit, gameCenter, nil];
+        CCMenu* menu = [CCMenu menuWithItems:quit, nil];
         menu.position = ccp(0, 0);
         
         [self addChild:menu];
@@ -156,7 +156,7 @@
 
 - (void)gameCenterButtonPressed {
     [self playSound:@"doorClose2.mp3" shouldLoop:false pitch:1];
-    [Flurry logEvent:@"Opened gamecenter leaderboards"];
+    (void)0;
     [[DDGameKitHelper sharedGameKitHelper]showLeaderboard];
 }
 
@@ -611,7 +611,7 @@
 
 
 - (ALuint)playSound:(NSString*)soundFile shouldLoop:(bool)shouldLoop pitch:(float)pitch{
-    //[Kamcord playSound:soundFile loop:shouldLoop];
+    //(void)0;
     if (shouldLoop)
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:soundFile loop:YES];
     else

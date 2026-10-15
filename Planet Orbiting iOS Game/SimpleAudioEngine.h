@@ -23,7 +23,9 @@
  */
 
 
-#import "CDAudioManager.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+typedef uint32_t ALuint;
 
 /**
  A wrapper to the CDAudioManager object.
@@ -37,7 +39,7 @@
  - Frameworks: OpenAL, AudioToolbox, AVFoundation
  @since v0.8
  */
-@interface SimpleAudioEngine : NSObject <CDAudioInterruptProtocol> {
+@interface SimpleAudioEngine : NSObject {
 
 	BOOL	mute_;
 	BOOL	enabled_;
@@ -82,7 +84,7 @@
 /** unloads an audio effect from memory */
 -(void) unloadEffect:(NSString*) filePath;
 /** Gets a CDSoundSource object set up to play the specified file. */
--(CDSoundSource *) soundSourceForFile:(NSString*) filePath;
+
 
 /** Shuts down the shared audio engine instance so that it can be reinitialised */
 +(void) end;

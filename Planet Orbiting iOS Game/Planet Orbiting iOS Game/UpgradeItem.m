@@ -9,6 +9,7 @@
 #import "UpgradeItem.h"
 
 @implementation UpgradeItem
+@synthesize description = _description;
 
 - (id)initWithTitle:(NSString *)cTitle description:(NSString *)cDescription price:(int)cPrice type:(int)cType purchased:(BOOL)cPurchased equipped:(BOOL)cEquipped number:(int)a_number {
     if (self = [super init]) {
