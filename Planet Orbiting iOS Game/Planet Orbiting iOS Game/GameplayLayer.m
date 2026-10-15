@@ -6,6 +6,8 @@
 //  Copyright Clayton Schubiner 2012. All rights reserved.
 
 #import "GameplayLayer.h"
+#import "StarStreamLayout.h"
+#import "SSMapSession.h"
 #import "CameraObject.h"
 #import "Player.h"
 #import "Planet.h"
@@ -30,6 +32,16 @@
 #define LABEL_0_TAG         1219
 
 @implementation GameplayLayer {
+    NSDictionary *runMap;
+    uint32_t mapRandomState;
+    BOOL generatingMapGeometry;
+    CCLabelTTF *mapRunLabel;
+#if COCOS2D_DEBUG
+    Powerup *profileAutopilot;
+#endif
+    CCLabelTTF *saveMapLabel;
+    double physicsAccumulator;
+    float missionCheckElapsed;
     int planetCounter;
     int totalPlanetsVisitedForBackgroundStars;
     int score;
@@ -80,6 +92,46 @@ typedef struct {
     CGPoint acceleration;
     CGPoint position;
 } VelocityAccelerationPositionStruct;
+
+- (void)onEnter {
+    [super onEnter];
+    [self layoutViewport];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(layoutViewport) name:SSViewportDidChange object:nil];
+}
+- (void)onExit {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:SSViewportDidChange object:nil];
+    [super onExit];
+}
+- (void)layoutViewport {
+    size = CCDirector.sharedDirector.winSize;
+    CGRect safe = SSSafeViewport();
+    self.contentSize = size;
+    mapRunLabel.position = ccp(CGRectGetMidX(safe), CGRectGetMaxY(safe)-15);
+    CCNode *pause = [hudLayer getChildByTag:90041];
+    pause.position = ccp(CGRectGetMaxX(safe)-23, CGRectGetMaxY(safe)-22);
+    // Score and stars attach to the safe top left, battery to the safe bottom left.
+    for (CCNode *child in layerHudSlider.children) {
+        if (child == scoreLabel || child == starsLabelNode) {
+            // Authored child coordinates remain unchanged; their parent offsets the top edge.
+            continue;
+        }
+        child.position = ccp(81.8086 + CGRectGetMinX(safe), 5.0078 + CGRectGetMinY(safe));
+    }
+    scoreLabel.position = ccp(12 + CGRectGetMinX(safe), CGRectGetMaxY(safe)-19.8008);
+    starsLabelNode.position = ccp(12 + CGRectGetMinX(safe), CGRectGetMaxY(safe)-320);
+    backgroundClouds.position = ccp(size.width/2, size.height/2);
+    if (backgroundClouds) {
+        backgroundClouds.scaleX = size.width / backgroundClouds.contentSize.width;
+        backgroundClouds.scaleY = size.height / backgroundClouds.contentSize.height;
+    }
+    loadingLayerBackground.contentSize = size;
+    loadingLabel.position = ccp(CGRectGetMaxX(safe)-85, CGRectGetMinY(safe)+13);
+    loadingDidYouKnowLabel.position = ccp(size.width/2, size.height/2+45);
+    loadingLabelHelperText2.position = ccp(size.width/2, size.height/2);
+    if (pauseLayer) pauseLayer.position = ccpAdd(SSMenuOrigin(), isGameOver ? ccp(44,0) : CGPointZero);
+    pauseLabel.position = ccp(size.width/2, CGRectGetMaxY(safe)-50);
+    continueLabel.position = ccp(size.width/2, CGRectGetMinY(safe)+50);
+}
 
 // returns a singleton scene
 + (CCScene *) scene {
@@ -138,13 +190,13 @@ typedef struct {
     coin.whichGalaxyThisObjectBelongsTo  = currentGalaxy.number;
     [coin.sprite runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:coinAnimation]]];
     
-    coin.movingSprite = [CCSprite spriteWithSpriteFrameName:@"25.png"];
-    coin.movingSprite.scale = coin.sprite.scale*.3;
-    [hudLayer addChild: coin.movingSprite];
-    if ([[UpgradeValues sharedInstance] hasPinkStars])
-        coin.movingSprite.color = ccc3(255, 20, 147);
-    coin.movingSprite.position = ccp(-20, -20);
-    
+#if COCOS2D_DEBUG
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"SSLegacyPerformance"]) {
+        coin.movingSprite=[CCSprite spriteWithSpriteFrameName:@"25.png"];
+        coin.movingSprite.position=ccp(-20,-20); coin.movingSprite.scale=.3;
+        [hudLayer addChild:coin.movingSprite];
+    }
+#endif
     [coins addObject:coin];
     //CCLOG(@"adding coin");
     [spriteSheet addChild:coin.sprite];
@@ -276,7 +328,9 @@ typedef struct {
 
 - (bool)CreateSegment
 {
+    generatingMapGeometry = (runMap != nil);
     float rotationOfSegment = CC_DEGREES_TO_RADIANS([self RandomBetween:-segmentRotationVariation+directionPlanetSegmentsGoIn maxvalue:segmentRotationVariation+directionPlanetSegmentsGoIn]);
+    if (runMap) rotationOfSegment = CC_DEGREES_TO_RADIANS(directionPlanetSegmentsGoIn + (SSMapUnit(&mapRandomState)-.5)*30);
     Galaxy *galaxy = currentGalaxy;
     int segNumber = [self RandomBetween:0 maxvalue:[[galaxy segments ]count]-1];
     NSArray *chosenSegment = [[galaxy segments] objectAtIndex:segNumber];
@@ -294,7 +348,7 @@ typedef struct {
     
     int futurePlanetCount = planetsHitSinceNewGalaxy + planetsInSegment;
     if (abs(currentGalaxy.optimalPlanetsInThisGalaxy-planetsHitSinceNewGalaxy)<abs(currentGalaxy.optimalPlanetsInThisGalaxy-futurePlanetCount))
-        return false;
+    { generatingMapGeometry = NO; return false; }
     
     originalSegmentNumber = segNumber;
     
@@ -325,6 +379,7 @@ typedef struct {
         
     }
     makingSegmentNumber++;
+    generatingMapGeometry = NO;
     return true;
 }
 
@@ -333,6 +388,14 @@ typedef struct {
     galaxies = [[NSMutableArray alloc]initWithObjects:
 #include "LevelsFromLevelCreator"
                 nil];
+    if (runMap) {
+        NSArray *savedGalaxies=runMap[@"galaxies"];
+        for (NSUInteger i=0;i<MIN(galaxies.count,savedGalaxies.count);i++) {
+            NSMutableArray *sections=[NSMutableArray new];
+            for (NSArray *section in savedGalaxies[i]) [sections addObject:[SSMapSession objectsForSegment:section]];
+            ((Galaxy *)galaxies[i]).segments=sections;
+        }
+    }
 }
 
 - (void)setGalaxyProperties {
@@ -481,6 +544,10 @@ typedef struct {
     [self addChild:cameraLayer];
     [self addChild:hudLayer];
     [self addChild:layerHudSlider];
+    if (runMap) {
+        mapRunLabel=[CCLabelTTF labelWithString:[NSString stringWithFormat:@"ORBIT %@",runMap[@"seed"]] fontName:@"HelveticaNeue-CondensedBold" fontSize:12];
+        [self addChild:mapRunLabel];
+    }
     timeSinceShowViewWasCalled = 0;
     
     [self reorderChild:loadingLayer z:30];
@@ -499,6 +566,7 @@ typedef struct {
     //                                   [CCFadeOut actionWithDuration:fadeOutDuration],removeLoadingLayer, nil]];
     
     (void)0;
+    [self layoutViewport];
     [self scheduleUpdates];
 }
 
@@ -541,7 +609,7 @@ typedef struct {
     float defaultDirection = defaultDirectionPlanetSegmentsGoIn;
     if (IS_IPHONE_5)
         defaultDirection = 29.396052855;
-    directionPlanetSegmentsGoIn = [self randomValueBetween:defaultDirection-directionPlanetSegmentsGoInVariance andValue:defaultDirection+directionPlanetSegmentsGoInVariance];
+    directionPlanetSegmentsGoIn = runMap ? defaultDirection-directionPlanetSegmentsGoInVariance + SSMapUnit(&mapRandomState)*directionPlanetSegmentsGoInVariance*2 : [self randomValueBetween:defaultDirection-directionPlanetSegmentsGoInVariance andValue:defaultDirection+directionPlanetSegmentsGoInVariance];
     
     totalPlanetsVisitedForBackgroundStars = 0;
     planetCounter = 0;
@@ -589,6 +657,7 @@ typedef struct {
     [thrustBurstParticle stopSystem];
     
     CCSprite *pauseButton =  [CCSprite spriteWithFile:@"pauseButton7.png"];
+    pauseButton.tag = 90041;
     pauseButton.position = ccp(size.width - 23, 298);
     [hudLayer addChild:pauseButton];
     
@@ -799,6 +868,8 @@ typedef struct {
     backgroundClouds = [CCSprite spriteWithSpriteFrameName:@"backgroundClouds.png"];
     if (IS_IPHONE_5)
     [backgroundClouds setScaleX:IPHONE_5_RATIO];
+    backgroundClouds.scaleX = size.width / backgroundClouds.contentSize.width;
+    backgroundClouds.scaleY = size.height / backgroundClouds.contentSize.height;
     [backgroundClouds setPosition:ccp(size.width/2,size.height/2)];
     [backgroundClouds setColor:currentGalaxy.galaxyColor];
     [backgroundSpriteSheet addChild:backgroundClouds];
@@ -811,7 +882,7 @@ typedef struct {
             sector = [self RandomBetween:0 maxvalue:numSectors-1];
         CCSprite * star = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"bstar%d-hd.png",i]];
         for (int j = 0 ; j < 4; j++) {
-            [star setPosition:ccp([self randomValueBetween:(480*sector)/numSectors andValue:(480*(sector+1))/numSectors],[self randomValueBetween:0 andValue:320])];
+            [star setPosition:ccp([self randomValueBetween:(size.width*sector)/numSectors andValue:(size.width*(sector+1))/numSectors],[self randomValueBetween:0 andValue:size.height])];
             bool collidesWithOtherStar = false;
             for (CCSprite * star2 in backgroundStars) {
                 if (CGRectContainsRect(star.boundingBox, star2.boundingBox)){
@@ -821,7 +892,7 @@ typedef struct {
                 }
             }
             if (collidesWithOtherStar ==false) {
-                //CCLOG(@"star pos: %f,%f between %d and %d",star.position.x,star.position.y,(480*(sector))/numSectors,(480*(sector+1))/numSectors);
+                //CCLOG(@"star pos: %f,%f between %d and %d",star.position.x,star.position.y,(480*(sector))/numSectors,(size.width*(sector+1))/numSectors);
                 //CCLOG(@"adding backroudnstars");
                 [backgroundSpriteSheet addChild:star];
                 [backgroundStars addObject:star];
@@ -831,7 +902,7 @@ typedef struct {
     }
     
     
-    cometParticle.position = ccp([self RandomBetween:0 maxvalue:390],325);
+    cometParticle.position = ccp([self RandomBetween:0 maxvalue:size.width],size.height+5);
     cometVelocity = ccp([self RandomBetween:-10 maxvalue:10]/5,-[self RandomBetween:1 maxvalue:23]/5);
     [self resetVariablesForNewGame];
     
@@ -867,6 +938,15 @@ typedef struct {
     [coinsLabelStarSprite setVisible:false];
     [zeroCoinsLabel setVisible:false];
     
+#if COCOS2D_DEBUG
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"SSProfileGameplay"]) {
+        isInTutorialMode=NO;
+        profileAutopilot=[[Powerup alloc] initWithType:kautopilot];
+        [cameraLayer addChild:profileAutopilot.glowSprite];
+        player.currentPowerup=profileAutopilot;
+        player.currentPowerup.duration=1e9;
+    }
+#endif
     cameraShouldFocusOnPlayer = true;
     
     for (int i = 0 ; i < 7; i++) {
@@ -893,6 +973,8 @@ typedef struct {
 	// Apple recommends to re-assign "self" with the "super" return value
 	if ((self = [super init])) {
         size = [[CCDirector sharedDirector] winSize];
+        runMap = SSMapSession.shared.currentMap;
+        mapRandomState = [runMap[@"seed"] unsignedIntValue] ?: 1;
         startingCoins = [[UserWallet sharedInstance] getBalance];
         self.isTouchEnabled= TRUE;
         
@@ -923,7 +1005,7 @@ typedef struct {
                                      @"Orbit planets as briefly as you can to move as fast as possible.",
                                      @"Your time is limited; watch the battery in the lower-left corner of the screen.",
                                      @"Your battery recharges as you move between galaxies.",
-                                     @"Share a video of your gameplay on the game over screen for a star reward!",
+                                     @"Complete missions to earn stars and boost your score multiplier!",
                                      @"Try not orbiting planets at all - you'll start moving super quickly!",
                                      @"Visit the store to buy awesome upgrades!",
                                      @"Galaxies increase in difficulty. See how many of them you can make it to!",
@@ -1131,7 +1213,12 @@ typedef struct {
     else backgroundStarsMovementSpeed = 1;
     
     [self scaleLayer:cameraLayer scaleToZoomTo:lerpf(cameraLayer.scale, scale, cameraZoomSpeed) scaleCenter:cameraLastFocusPosition];
-    [cameraLayer runAction: [CCFollow actionWithTarget:cameraFocusNode]];
+#if COCOS2D_DEBUG
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"SSLegacyPerformance"])
+        [cameraLayer runAction:[CCFollow actionWithTarget:cameraFocusNode]];
+    else
+#endif
+    cameraLayer.position = ccpSub(ccp(size.width/2, size.height/2), cameraFocusNode.position);
     
 }
 
@@ -1177,15 +1264,20 @@ typedef struct {
     score += howMuchToAddToScore;
     tempScore += howMuchToAddToScore;
     
+    if (!coin.movingSprite) coin.movingSprite = [CCSprite spriteWithSpriteFrameName:@"25.png"];
+    coin.movingSprite.scale = coin.sprite.scale*.3;
+    coin.movingSprite.color = coin.sprite.color;
+    if (!coin.movingSprite.parent) [hudLayer addChild:coin.movingSprite];
     CGPoint coinPosOnHud = [cameraLayer convertToWorldSpace:coin.sprite.position];
     coin.movingSprite.position = ccp(coinPosOnHud.x+4, coinPosOnHud.y-4);
     
     coin.movingSprite.scale *= 1.0f/generalScale;
     [coin.movingSprite runAction:[CCSequence actions:
                                   [CCSpawn actions:[CCAnimate actionWithAnimation:coinAnimation],
-                                   [CCSequence actions:[CCMoveTo actionWithDuration:.28 position:coinsLabel.position],[CCHide action],nil], nil],
+                                   [CCSequence actions:[CCMoveTo actionWithDuration:.28 position:[coinsLabel convertToWorldSpace:CGPointZero]],[CCHide action],nil], nil],
                                   [CCHide action],
                                   [CCCallFunc actionWithTarget:self selector:@selector(coinDone)],
+                                  [CCCallBlock actionWithBlock:^{ [coin.movingSprite removeFromParentAndCleanup:YES]; coin.movingSprite=nil; }],
                                   nil]];
     
     //id scaleAction = [CCScaleTo actionWithDuration:.1 scale:.2*coin.sprite.scale];
@@ -1229,7 +1321,7 @@ typedef struct {
                 [zeroCoinsLabel setString:@"0"];
         else {
             [zeroCoinsLabel setVisible:false];
-            [starsLabelNode setPosition:CGPointZero];
+            [starsLabelNode setPosition:ccp(12 + CGRectGetMinX(SSSafeViewport()), CGRectGetMaxY(SSSafeViewport())-320)];
         }
     [coinsLabel setString:[NSString stringWithFormat:@"%d",numCoinsDisplayed]];
     
@@ -1318,13 +1410,13 @@ typedef struct {
     //CCLOG(@"how many %d", feverModePlanetHitsInARow);
     
     for (Coin* coin in coins) {
-        
+        if (!coin.isAlive) continue;
         CGPoint p = coin.sprite.position;
-        coin.velocity = ccpMult(ccpNormalize(ccpSub(player.sprite.position, p)), coin.speed);
+        if (coin.speed > 0) coin.velocity = ccpMult(ccpNormalize(ccpSub(player.sprite.position, p)), coin.speed);
         if (coin.isAlive)
             coin.sprite.position = ccpAdd(coin.sprite.position, coin.velocity);
         
-        if (ccpLength(ccpSub(player.sprite.position, p)) <= coin.radius + player.sprite.height/1.9 && coin.isAlive) {
+        if (ccpLengthSQ(ccpSub(player.sprite.position, p)) <= powf(coin.radius + player.sprite.height/1.9, 2) && coin.isAlive) {
             [self UserTouchedCoin:coin dt:dt];
         }
     }
@@ -1944,7 +2036,7 @@ typedef struct {
             Galaxy * nextGalaxy2 = [galaxies objectAtIndex:targetPlanet.whichGalaxyThisObjectBelongsTo];
             
             ccColor3B lastColor;
-            if (thisGalaxy != NULL)
+            if ([thisGalaxy isKindOfClass:Galaxy.class])
                 lastColor= thisGalaxy.galaxyColor;
             else lastColor = lastGalaxyColor;
             ccColor3B nextColor = nextGalaxy2.galaxyColor;
@@ -2258,7 +2350,7 @@ typedef struct {
     
     //if (tempScore > score)
     score += distanceDif;
-    [scoreLabel setString:[NSString stringWithFormat:@"%d",score]];
+    if (scoreLabel.string.intValue != score) [scoreLabel setString:[NSString stringWithFormat:@"%d",score]];
     
     if (!loading_playerHasReachedFirstPlanet)
         score = 0;
@@ -2292,13 +2384,13 @@ typedef struct {
         timeSinceCometLeftScreen+=dt;
         if (timeSinceCometLeftScreen>cometRespawnTimer) {
             [cometParticle resetSystem];
-            cometParticle.position = ccp([self RandomBetween:0 maxvalue:480],325);
+            cometParticle.position = ccp([self RandomBetween:0 maxvalue:size.width],size.height+5);
             cometVelocity = ccp([self RandomBetween:-10 maxvalue:10]/5,-[self RandomBetween:cometMinYSpeed maxvalue:cometMaxYSpeed]);
             timeSinceCometLeftScreen=0;
             [cometParticle setAngle:180+CC_RADIANS_TO_DEGREES(ccpToAngle(cometVelocity))];
         }
     }
-    [cometParticle setPosition:ccpAdd(cometParticle.position, cometVelocity)];
+    [cometParticle setPosition:ccpAdd(cometParticle.position, ccpMult(cometVelocity,60*dt))];
 }
 
 -(void)nameDidChange {
@@ -2372,11 +2464,11 @@ typedef struct {
         CCSprite* dark = [CCSprite spriteWithFile:@"OneByOne.png"];
         [self addChild:dark];
         //[dark setZOrder:112];
-        dark.position = ccp(240, 160);
+        dark.position = ccp(size.width/2, size.height/2);
         dark.color = ccBLACK;
         dark.opacity = 0;
-        dark.scaleX = 480*(IS_IPHONE_5 ? IPHONE_5_RATIO*2 : 1);
-        dark.scaleY = 320;
+        dark.scaleX = size.width / dark.contentSize.width;
+        dark.scaleY = size.height / dark.contentSize.height;
         //dark.visible = false;
         
         
@@ -2415,7 +2507,7 @@ typedef struct {
     NSString *ccbFile = @"GameOverLayer.ccb";
     pauseLayer = (CCLayer*)[CCBReader nodeGraphFromFile:ccbFile owner:self];
     if (IS_IPHONE_5)
-        pauseLayer.position = ccpAdd(pauseLayer.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
+        pauseLayer.position = ccpAdd(SSMenuOrigin(), ccp(44, 0));
     if (finalScore > 60000)
         [[iRate sharedInstance] logEvent:YES];
     
@@ -2527,6 +2619,13 @@ typedef struct {
     [pauseLayer setTag:gameOverLayerTag];
     [self removeAllChildrenWithCleanup:NO];
     [self addChild:pauseLayer];
+    if (runMap && isGameOver && !saveMapLabel) {
+        saveMapLabel=[CCLabelTTF labelWithString:(SSMapSession.shared.isCurrentMapFavorite ? @"MAP SAVED" : @"SAVE MAP TO FAVORITES") fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+        CCMenuItemLabel *save=[CCMenuItemLabel itemWithLabel:saveMapLabel target:self selector:@selector(saveMapToFavorites)];
+        save.position=ccp(240,20);
+        CCMenu *menu=[CCMenu menuWithItems:save,nil]; menu.position=CGPointZero;
+        [pauseLayer addChild:menu z:100];
+    }
     // [gameOverScoreLabel setString:scoreText];
     
     scoreAlreadySaved = YES;
@@ -2606,7 +2705,7 @@ typedef struct {
 - (void)UpdateCoins {
     if (player.alive)
         for (Coin* coin in coins) {
-            
+            if (!coin.isAlive) continue;
             CGPoint p = coin.sprite.position;
             
             if (player.currentPowerup.type == kcoinMagnet) {
@@ -2632,7 +2731,7 @@ typedef struct {
     float additionalWidth = 0;
     if (IS_IPHONE_5)
         additionalWidth = HALF_IPHONE_5_ADDITIONAL_WIDTH;
-    if (powerupPos > 480 + [powerupLabel boundingBox].size.width+additionalWidth) {
+    if (powerupPos > size.width + [powerupLabel boundingBox].size.width) {
         paused = false;
         isDisplayingPowerupAnimation = false;
     }
@@ -2640,7 +2739,7 @@ typedef struct {
         [powerupLabel setString:player.currentPowerup.title];
         //[powerupLabel setString:[player.currentPowerup.title stringByReplacingOccurrencesOfString:@" " withString:@""]];
     
-    powerupLabel.position = ccp(-[powerupLabel boundingBox].size.width/2 + powerupPos, 160);
+    powerupLabel.position = ccp(-[powerupLabel boundingBox].size.width/2 + powerupPos, size.height/2);
     //powerupLabel.position = ccp(- 500, 500);
 }
 
@@ -2658,9 +2757,12 @@ typedef struct {
         if (totalPlanetsVisitedForBackgroundStars != 1)
         star.position = ccpAdd(star.position,  ccpMult(camLayerVelocity, 1*.0882*60*dt*backgroundStarsMovementSpeed));//*cameraLayer.scale
         
-        if (star.position.x<0-star.width/2 || star.position.y <0-star.height/2) { //if star is off-screen
-            star.position = ccp([self RandomBetween:480+star.width/2 maxvalue:480*1.8],[self RandomBetween:320*.248+star.height/2 maxvalue:320*2.401+star.height/2]);
-        }
+        // Toroidal wrapping keeps stars across the entire screen in every flight direction.
+        CGPoint point = star.position;
+        CGFloat width = size.width + star.width, height = size.height + star.height;
+        point.x = fmodf(point.x + star.width/2 + width, width) - star.width/2;
+        point.y = fmodf(point.y + star.height/2 + height, height) - star.height/2;
+        star.position = point;
     }
 }
 
@@ -2909,9 +3011,20 @@ typedef struct {
 }
 
 - (void) Update:(ccTime)dt {
-    if (dt > .2) {
-		dt = 1.0 / 60.0f;
-	}
+    // The original constants are per-60-Hz-tick. A fixed step preserves their feel
+    // at 30/60/120-Hz presentation and during occasional dropped frames.
+    if (paused || isGameOver) {
+        physicsAccumulator = 0;
+        [self stepSimulation:MIN(dt, .1f)];
+        return;
+    }
+    NSUInteger steps = SSPhysicsSteps(dt, &physicsAccumulator);
+    for (NSUInteger tick=0;tick<steps;tick++) {
+        [self stepSimulation:1.0/60.0];
+        if (paused || isGameOver) { physicsAccumulator=0; break; }
+    }
+}
+- (void)stepSimulation:(ccTime)dt {
     //CCLOG(@"start");
     if (!paused&&isGameOver==false) {
         totalGameTime+=dt;
@@ -2929,7 +3042,8 @@ typedef struct {
         //CCLOG(@"start3");
         [self UpdatePlayer: dt];
         
-        [self CheckMissions];
+        missionCheckElapsed += dt;
+        if (missionCheckElapsed >= .2f) { missionCheckElapsed=0; [self CheckMissions]; }
         
         if (targetPlanet.number >= 10 && isInTutorialMode) {
             if ([self checkShouldDisplayTextForVar:hasDiplayedBatteryText]) {
@@ -2963,9 +3077,7 @@ typedef struct {
                     tutLabel.opacity = 0;
                     [tutLabel runAction:[CCFadeIn actionWithDuration:.5]];
                     [hudLayer addChild:tutLabel];
-                    tutLabel.position = ccp(240, 280);
-                    if (IS_IPHONE_5)
-                        tutLabel.position = ccpAdd(tutLabel.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
+                    tutLabel.position = ccp(size.width/2, CGRectGetMaxY(SSSafeViewport())-65);
                 }
             }
         } else if (tutHand) {
@@ -3064,7 +3176,7 @@ typedef struct {
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
         location = [[CCDirector sharedDirector] convertToGL:location];
-        if (location.x >= size.width - 40 && location.y >= size.height - 40) {
+        if (CGRectContainsPoint(CGRectInset([hudLayer getChildByTag:90041].boundingBox, -12, -12), location)) {
             if (!paused && !isGameOver)
                 [self togglePause];
         }
@@ -3077,7 +3189,7 @@ typedef struct {
         //}
         
         if (!isKeyboardShowing &&
-            location.x >= 10*size.width/18 && location.y >= 3*size.height/7 && location.y <= 6*size.height/7) {
+            CGRectContainsPoint(CGRectInset(displayName.boundingBox, -20, -15), [pauseLayer convertToNodeSpace:location])) {
             [self showKeyboard];
         } else
             [self hideKeyboard];
@@ -3205,12 +3317,24 @@ float lerpf(float a, float b, float t) {
     return a + (b - a) * t;
 }
 
+#if COCOS2D_DEBUG
+- (NSDictionary *)ssDiagnosticState {
+    return @{@"cameraActions":@(cameraLayer.numberOfRunningActions), @"hudNodes":@(hudLayer.children.count), @"planetsVisited":@(planetsHitFlurry), @"score":@(score), @"galaxy":@(currentGalaxy.number), @"mapSeed":runMap[@"seed"] ?: @0, @"paused":@(paused), @"gameOver":@(isGameOver)};
+}
+#endif
+
+- (void)saveMapToFavorites {
+    BOOL saved=[SSMapSession.shared saveCurrentMapWithScore:score+prevCurrentPtoPScore];
+    [saveMapLabel setString:saved ? @"MAP SAVED" : @"COULD NOT SAVE - TAP TO RETRY"];
+}
+
 - (float) randomValueBetween:(float)low andValue:(float)high {
+    if (generatingMapGeometry) return low+SSMapUnit(&mapRandomState)*(high-low);
     return (((float) arc4random() / 0xFFFFFFFFu) * (high - low)) + low;
 }
 
 - (int)RandomBetween:(int)minvalue maxvalue:(int)maxvalue  {
-    int randomNumber = minvalue+  arc4random() % (1+maxvalue-minvalue);
+    int randomNumber = minvalue + (generatingMapGeometry ? SSMapNext(&mapRandomState) : arc4random()) % (1+maxvalue-minvalue);
     return randomNumber;
 }
 
@@ -3302,6 +3426,7 @@ float lerpf(float a, float b, float t) {
         mainLayerToAdd.position = ccp(layerToAdd.position.x + 44, layerToAdd.position.y);
         menu.position = ccp(layerToAdd.position.x + 44, layerToAdd.position.y);
     }
+    layerToAdd.position = SSMenuOrigin();
     return layerToAdd;
 }
 
@@ -3375,9 +3500,9 @@ float lerpf(float a, float b, float t) {
         pauseLabel = [CCLabelTTF labelWithString:pauseText dimensions:CGSizeMake(390, 240) hAlignment:kCCTextAlignmentCenter vAlignment:kCCVerticalTextAlignmentTop lineBreakMode:kCCLineBreakModeWordWrap fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
         pauseLabel.anchorPoint = ccp(.5, 1);
         if (IS_IPHONE_5)
-            pauseLabel.position = ccp(240 + HALF_IPHONE_5_ADDITIONAL_WIDTH, 270);
+            pauseLabel.position = ccp(size.width/2, CGRectGetMaxY(SSSafeViewport()) - 50);
         else
-            pauseLabel.position = ccp(240, 270);
+            pauseLabel.position = ccp(size.width/2, CGRectGetMaxY(SSSafeViewport()) - 50);
         pauseLabel.opacity = 0;
         [self addChild: pauseLabel];
         
@@ -3393,9 +3518,7 @@ float lerpf(float a, float b, float t) {
             
             continueLabel = [CCLabelTTF labelWithString:@"Tap to continue..." fontName:@"HelveticaNeue-CondensedBold" fontSize:20];
             continueLabel.anchorPoint = ccp(.5, 0);
-            continueLabel.position = ccp(240, 60);
-            if (IS_IPHONE_5)
-                continueLabel.position = ccpAdd(continueLabel.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
+            continueLabel.position = ccp(size.width/2, CGRectGetMinY(SSSafeViewport()) + 50);
 
             continueLabel.opacity = 0;
             [self addChild: continueLabel];
@@ -3406,9 +3529,9 @@ float lerpf(float a, float b, float t) {
                            itemWithNormalImage:@"blank.png" selectedImage:@"blank.png"
                            target:self selector:@selector(continueTut)];
             CCMenuItem *sound = soundButton;
-            sound.position = ccp(240, 160);
-            sound.scaleX = 480;
-            sound.scaleY = 320;
+            sound.position = ccp(size.width/2, size.height/2);
+            sound.scaleX = size.width / sound.contentSize.width;
+            sound.scaleY = size.height / sound.contentSize.height;
             
             CCMenu* menu = [CCMenu menuWithItems:sound, nil];
             menu.position = ccp(0, 0);

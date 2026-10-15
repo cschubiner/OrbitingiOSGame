@@ -7,6 +7,7 @@
 //
 
 #import "UpgradeCell.h"
+#import "StarStream-Swift.h"
 
 @implementation UpgradeCell
 
@@ -36,7 +37,13 @@
         hello.position = ccp(60, -27);
         
         
-        {
+        if ([StarStore isPaidItem:item.number]) {
+            NSString *price = [[StarStore shared] priceForItem:item.number] ?: @"Unavailable";
+            priceLabel = [CCLabelTTF labelWithString:price fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
+            [self addChild:priceLabel];
+            priceLabel.anchorPoint = ccp(1,.5);
+            priceLabel.position = ccp(465,-27);
+        } else {
             coinSprite = [CCSprite spriteWithFile:@"staricon.png"];
             [coinSprite setScale:.45];
             [self addChild:coinSprite];

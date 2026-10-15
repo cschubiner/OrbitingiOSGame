@@ -40,8 +40,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>128</real>
-								<real>91</real>
+								<real>128.0</real>
+								<real>91.0</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -69,9 +69,9 @@
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>0.88299214839935303</real>
+							<real>0.882992148399353</real>
 							<key>scaleY</key>
-							<real>0.88299214839935303</real>
+							<real>0.882992148399353</real>
 							<key>spriteFile</key>
 							<string>batteryglow.png</string>
 							<key>tag</key>
@@ -107,8 +107,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>68</real>
-								<real>38</real>
+								<real>68.0</real>
+								<real>38.0</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -130,8 +130,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>43.499526977539062</real>
-								<real>95.015998840332031</real>
+								<real>43.49952697753906</real>
+								<real>95.01599884033203</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -158,7 +158,7 @@
 						<dict>
 							<key>anchorPoint</key>
 							<array>
-								<real>1</real>
+								<real>1.0</real>
 								<real>0.5</real>
 							</array>
 							<key>blendFunc</key>
@@ -174,8 +174,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>1</real>
-								<real>1</real>
+								<real>1.0</real>
+								<real>1.0</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -198,14 +198,14 @@
 							<key>position</key>
 							<array>
 								<real>74.5390625</real>
-								<real>93.515998840332031</real>
+								<real>93.51599884033203</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
 							<real>0.0</real>
 							<key>scaleY</key>
-							<real>37</real>
+							<real>37.0</real>
 							<key>spriteFile</key>
 							<string>OneByOne.png</string>
 							<key>tag</key>
@@ -241,8 +241,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>68</real>
-								<real>38</real>
+								<real>68.0</real>
+								<real>38.0</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -264,8 +264,8 @@
 							<integer>255</integer>
 							<key>position</key>
 							<array>
-								<real>43.499526977539062</real>
-								<real>94.015998840332031</real>
+								<real>43.49952697753906</real>
+								<real>94.01599884033203</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -316,11 +316,11 @@
 						<real>5.0078125</real>
 					</array>
 					<key>rotation</key>
-					<real>-90</real>
+					<real>-90.0</real>
 					<key>scaleX</key>
-					<real>0.61332035064697266</real>
+					<real>0.6133203506469727</real>
 					<key>scaleY</key>
-					<real>0.61332035064697266</real>
+					<real>0.6133203506469727</real>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
@@ -349,8 +349,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>75</real>
-						<real>39</real>
+						<real>75.0</real>
+						<real>39.0</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -370,15 +370,15 @@
 					<integer>255</integer>
 					<key>position</key>
 					<array>
-						<real>-0.65234375</real>
+						<real>12.0</real>
 						<real>300.19921875</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>0.84781253337860107</real>
+					<real>0.8478125333786011</real>
 					<key>scaleY</key>
-					<real>0.84781253337860107</real>
+					<real>0.8478125333786011</real>
 					<key>string</key>
 					<string>94381</string>
 					<key>tag</key>
@@ -401,7 +401,7 @@
 						<dict>
 							<key>anchorPoint</key>
 							<array>
-								<real>1</real>
+								<real>1.0</real>
 								<real>0.5</real>
 							</array>
 							<key>blendFunc</key>
@@ -417,8 +417,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>144</real>
-								<real>137</real>
+								<real>144.0</real>
+								<real>137.0</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -446,9 +446,9 @@
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>0.081835910677909851</real>
+							<real>0.08183591067790985</real>
 							<key>scaleY</key>
-							<real>0.081835910677909851</real>
+							<real>0.08183591067790985</real>
 							<key>spriteFile</key>
 							<string>star1.png</string>
 							<key>tag</key>
@@ -468,7 +468,7 @@
 						<dict>
 							<key>anchorPoint</key>
 							<array>
-								<real>1</real>
+								<real>1.0</real>
 								<real>0.5</real>
 							</array>
 							<key>color</key>
@@ -479,8 +479,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>12</real>
-								<real>25</real>
+								<real>12.0</real>
+								<real>25.0</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -501,7 +501,7 @@
 							<key>position</key>
 							<array>
 								<real>50.006378173828125</real>
-								<real>280.85818481445312</real>
+								<real>280.8581848144531</real>
 							</array>
 							<key>rotation</key>
 							<real>0.0</real>
@@ -539,8 +539,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>36</real>
-								<real>25</real>
+								<real>36.0</real>
+								<real>25.0</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -608,15 +608,15 @@
 					<integer>2</integer>
 					<key>position</key>
 					<array>
-						<real>-13</real>
+						<real>12.0</real>
 						<real>0.0</real>
 					</array>
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>1</real>
+					<real>1.0</real>
 					<key>scaleY</key>
-					<real>1</real>
+					<real>1.0</real>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>visible</key>
@@ -639,8 +639,8 @@
 			</array>
 			<key>contentSize</key>
 			<array>
-				<real>480</real>
-				<real>320</real>
+				<real>480.0</real>
+				<real>320.0</real>
 			</array>
 			<key>customClass</key>
 			<string></string>
@@ -666,9 +666,9 @@
 			<key>rotation</key>
 			<real>0.0</real>
 			<key>scaleX</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>scaleY</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>tag</key>
 			<integer>-1</integer>
 			<key>touchEnabled</key>

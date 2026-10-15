@@ -1,0 +1,65 @@
+[
+  {
+    "index": 3,
+    "id": "com.cschubiner.starstream.doublestars",
+    "name": "Double Stars",
+    "description": "Double the stars earned while playing.",
+    "usd": "1.99",
+    "stars": 0,
+    "type": "NON_CONSUMABLE"
+  },
+  {
+    "index": 11,
+    "id": "com.cschubiner.starstream.pinkstars",
+    "name": "Pink Stars",
+    "description": "Turn collectible stars pink.",
+    "usd": "5.99",
+    "stars": 0,
+    "type": "NON_CONSUMABLE"
+  },
+  {
+    "index": 12,
+    "id": "com.cschubiner.starstream.stars30000",
+    "name": "30,000 Stars",
+    "description": "Add 30,000 stars to your local wallet.",
+    "usd": "0.99",
+    "stars": 30000,
+    "type": "CONSUMABLE"
+  },
+  {
+    "index": 13,
+    "id": "com.cschubiner.starstream.stars70000",
+    "name": "70,000 Stars",
+    "description": "Add 70,000 stars to your local wallet.",
+    "usd": "1.99",
+    "stars": 70000,
+    "type": "CONSUMABLE"
+  },
+  {
+    "index": 14,
+    "id": "com.cschubiner.starstream.stars120000",
+    "name": "120,000 Stars",
+    "description": "Add 120,000 stars to your local wallet.",
+    "usd": "2.99",
+    "stars": 120000,
+    "type": "CONSUMABLE"
+  },
+  {
+    "index": 15,
+    "id": "com.cschubiner.starstream.stars300000",
+    "name": "300,000 Stars",
+    "description": "Add 300,000 stars to your local wallet.",
+    "usd": "4.99",
+    "stars": 300000,
+    "type": "CONSUMABLE"
+  },
+  {
+    "index": 16,
+    "id": "com.cschubiner.starstream.stars1000000",
+    "name": "1,000,000 Stars",
+    "description": "Add 1,000,000 stars to your local wallet.",
+    "usd": "9.99",
+    "stars": 1000000,
+    "type": "CONSUMABLE"
+  }
+]

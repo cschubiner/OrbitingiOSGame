@@ -8,6 +8,7 @@
 //
 
 #import "MainMenuLayer.h"
+#import "SSMapSession.h"
 #import "GameplayLayer.h"
 #import "Tutorial.h"
 #import "UserWallet.h"
@@ -47,6 +48,22 @@ const float effectsVolumeMainMenu = 1;
     CCSprite* dark;
     bool isDoingEndAnimation;
     bool startAnimation;
+    CCMenu *mapMenu;
+    CCLabelTTF *mapChoiceLabel;
+    CCNode *topAnchor;
+    CCNode *bottomAnchor;
+}
+
+- (void)layoutViewport {
+    [super layoutViewport];
+    CGRect safe = SSSafeViewport();
+    topAnchor.position = ccp(0, CGRectGetMaxY(safe) - self.position.y - 320);
+    bottomAnchor.position = ccp(0, CGRectGetMinY(safe) - self.position.y + 4);
+    beginLabel.position = ccp(284, CGRectGetMinY(safe) - self.position.y + 110);
+    mapMenu.position = ccp(0, CGRectGetMinY(safe)-self.position.y);
+    dark.position = ccp(-self.position.x, -self.position.y);
+    dark.scaleX = CCDirector.sharedDirector.winSize.width / dark.contentSize.width;
+    dark.scaleY = CCDirector.sharedDirector.winSize.height / dark.contentSize.height;
 }
 
 // returns a singleton scene
@@ -80,7 +97,7 @@ const float effectsVolumeMainMenu = 1;
     for (UITouch *touch in touches) {
         
         CGPoint location = [touch locationInView:[touch view]];
-        location = [[CCDirector sharedDirector] convertToGL:location];
+        location = [self convertToNodeSpace:[[CCDirector sharedDirector] convertToGL:location]];
         swipeBeginPoint = location;
         
         float numToAdd = (IS_IPHONE_5 ? 44 : 0);
@@ -92,7 +109,7 @@ const float effectsVolumeMainMenu = 1;
             return;
         }
         
-        if (swipeBeginPoint.y >= 40 && objectivesButton.isEnabled && beginLabel.visible) {
+        if (swipeBeginPoint.y >= CGRectGetMinY(SSSafeViewport()) - self.position.y + 98 && objectivesButton.isEnabled && beginLabel.visible) {
             
 
             
@@ -206,6 +223,13 @@ const float effectsVolumeMainMenu = 1;
         self.isTouchEnabled = true;
         
         layer = (CCLayer*)[CCBReader nodeGraphFromFile:@"MainMenuCCBFile.ccb" owner:self];
+        for (CCNode *child in [layer.children copy]) if ([child isKindOfClass:CCParticleSystem.class]) [child removeFromParentAndCleanup:YES];
+        // Animate the original nodes inside separate responsive edge anchors.
+        topAnchor = [CCNode node]; bottomAnchor = [CCNode node];
+        [topBarNode removeFromParentAndCleanup:NO];
+        [bottomBarNode removeFromParentAndCleanup:NO];
+        [layer addChild:topAnchor]; [topAnchor addChild:topBarNode];
+        [layer addChild:bottomAnchor]; [bottomAnchor addChild:bottomBarNode];
         if (IS_IPHONE_5)
         layer.position = ccpAdd(layer.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
         muted = ![[PlayerStats sharedInstance] isMuted];
@@ -260,6 +284,7 @@ const float effectsVolumeMainMenu = 1;
         
         
         [playerAndParticleNode addChild:newSprite];
+        playerAndParticleNode.scale = MIN(1, .74 + MAX(0,size.height-320)/106*.26);
         newSprite.position = ccp(52.5, 0);
         newSprite.scale = .736;
         
@@ -277,7 +302,7 @@ const float effectsVolumeMainMenu = 1;
             [self playSound:@"menumusic_new.mp3" shouldLoop:YES pitch:1];
         }
         
-        position = ccp(-230, 485);
+        position = ccp(-230, 500);
         [playerAndParticleNode setPosition:position];
         isDoingEndAnimation = false;
         
@@ -297,9 +322,9 @@ const float effectsVolumeMainMenu = 1;
             startAnimation = false;
             [self disableButtons];
             [playerAndParticleNode runAction:[CCSequence actions:
-                                              [CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(200, 480)]],
+                                              [CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(200, 495)]],
                                               [CCCallBlock actionWithBlock:(^{
-                position = ccp(200, 480);
+                position = ccp(200, 495);
                 velocity = CGPointZero;
                 startAnimation = true;
                 [self enableButtons];
@@ -325,7 +350,7 @@ const float effectsVolumeMainMenu = 1;
             [topBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(0, 0)]]];
             [bottomBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(0, 320)]]];
         } else {
-            position = ccp(200, 480);
+            position = ccp(200, 495);
             velocity = CGPointZero;
             startAnimation = true;
             [self enableButtons];
@@ -351,6 +376,13 @@ const float effectsVolumeMainMenu = 1;
             [bottomBarNode setPosition:ccp(0, 320)];
         }
         
+        mapChoiceLabel = [CCLabelTTF labelWithString:@"MAP: CLASSIC" fontName:@"HelveticaNeue-CondensedBold" fontSize:16];
+        CCMenuItemLabel *mode = [CCMenuItemLabel itemWithLabel:mapChoiceLabel target:self selector:@selector(chooseMap)];
+        CCLabelTTF *favoritesLabel = [CCLabelTTF labelWithString:@"FAVORITE MAPS" fontName:@"HelveticaNeue-CondensedBold" fontSize:16];
+        CCMenuItemLabel *favorites = [CCMenuItemLabel itemWithLabel:favoritesLabel target:self selector:@selector(openFavorites)];
+        mode.position = ccp(170, 76); favorites.position = ccp(390,76);
+        mapMenu = [CCMenu menuWithItems:mode,favorites,nil]; mapMenu.position=CGPointZero;
+        [self addChild:mapMenu z:100];
         [self schedule:@selector(Update:) interval:0];
         
 	}
@@ -399,10 +431,14 @@ const float effectsVolumeMainMenu = 1;
     acceleration = ccp(.12, acceleration.y);
 }
 
+- (void)chooseMap { if (!isDoingEndAnimation) [SSMapSession.shared showMapChooser]; }
+- (void)openFavorites { if (!isDoingEndAnimation) [SSMapSession.shared showFavorites]; }
 - (void) Update:(ccTime)dt {
+    NSString *mapTitle = SSMapSession.shared.procedural ? [NSString stringWithFormat:@"MAP: ORBIT %@", SSMapSession.shared.currentMap[@"seed"]] : @"MAP: CLASSIC";
+    if (![mapChoiceLabel.string isEqualToString:mapTitle]) [mapChoiceLabel setString:mapTitle];
     if (dt > .1)
 		dt = .1;
-    difVector = ccpSub(ccp(200, 480), position);
+    difVector = ccpSub(ccp(200, 495), position);
     float multer = .0022;
     float variance = .021;
     float xVarMult = .4;

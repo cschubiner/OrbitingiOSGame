@@ -34,6 +34,7 @@
 @property (readonly) UINavigationController *navController;
 @property (readonly) CCDirectorIOS *director;
 -(UIViewController*)getViewController;
+- (void)connectGameScene:(UIWindowScene *)scene;
 -(void)setIsInTutorialMode:(bool)mode;
 -(bool)getIsInTutorialMode;
 -(bool)getIsRetinaDisplay;

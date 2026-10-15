@@ -7,13 +7,14 @@
 //
 
 #import "UserWallet.h"
+#import <limits.h>
 
 @implementation UserWallet
 
 @synthesize balance;
 
 static UserWallet *sharedInstance = nil;
-static int MAX_BALANCE = 10000000000;
+static int MAX_BALANCE = INT_MAX;
 
 + (id)sharedInstance {
     @synchronized([UserWallet class]) {
@@ -29,9 +30,7 @@ static int MAX_BALANCE = 10000000000;
 }
 
 - (void)addCoins:(int)coinsToAdd {
-    if (balance + coinsToAdd <= MAX_BALANCE) {
-        balance += coinsToAdd;
-    }
+    if (coinsToAdd > 0) balance = (int)MIN((int64_t)MAX_BALANCE, (int64_t)balance + coinsToAdd);
 }
 
 - (void)removeCoins:(int)coinsToRemove {

@@ -331,7 +331,7 @@
     moved = true;
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
-        location = [[CCDirector sharedDirector] convertToGL:location];
+        location = [self convertToNodeSpace:[[CCDirector sharedDirector] convertToGL:location]];
         swipeEndPoint = location;
         
         velocity = swipeEndPoint.y - swipeBeginPoint.y;
@@ -364,7 +364,7 @@
     moved = false;
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
-        location = [[CCDirector sharedDirector] convertToGL:location];
+        location = [self convertToNodeSpace:[[CCDirector sharedDirector] convertToGL:location]];
         swipeBeginPoint = location;
     }
 }
@@ -374,7 +374,7 @@
     counter = 1;
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
-        location = [[CCDirector sharedDirector] convertToGL:location];
+        location = [self convertToNodeSpace:[[CCDirector sharedDirector] convertToGL:location]];
         swipeBeginPoint = location;
     }
 }

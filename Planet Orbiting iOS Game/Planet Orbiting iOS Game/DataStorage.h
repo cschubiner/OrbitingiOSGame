@@ -12,5 +12,8 @@
 
 + (void)storeData;
 + (void)fetchData;
++ (BOOL)grantProduct:(NSString *)productID transactionID:(NSString *)transactionID;
++ (void)revokeProduct:(NSString *)productID;
++ (void)reconcileOwnedProducts:(NSArray<NSString *> *)productIDs;
 
 @end

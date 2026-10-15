@@ -9,12 +9,14 @@
 #import "cocos2d.h"
 
 #import "AppDelegate.h"
+#import "StarStream-Swift.h"
 #import "DataStorage.h"
 #import "GameplayLayer.h"
 #import "DataStorage.h"
 #import "PlayerStats.h"
 #import "DeviceDetection.h"
 #import "LandscapeNavigationViewController.h"
+#import "SSMapSession.h"
 
 @implementation AppDelegate
 
@@ -36,13 +38,17 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{ return YES; }
+
+- (void)connectGameScene:(UIWindowScene *)scene
 {
+    if (window_) { window_.windowScene = scene; [window_ makeKeyAndVisible]; return; }
     didGetToMainMenu = false;
     [self setdidGetToMainMenu:false];
     shouldPlayMenuMusic = true;
     
 	// Create the main window
-	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	window_ = [[UIWindow alloc] initWithWindowScene:scene];
     
     //NSLog([NSString stringWithFormat:@"Kamcord version: %@",(void)0;]); // we're on 1.0.1 3/25/2013
    	// CCGLView creation
@@ -116,6 +122,7 @@
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
     
     [DataStorage fetchData];
+    [[StarStore shared] start];
     
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
 	//[director_ pushScene: [MainMenuLayer scene]];
@@ -132,11 +139,6 @@
     
     (void)0;
     
-    
-    UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-    if (localNotif) {
-        [self application:application didReceiveLocalNotification:localNotif];
-    }
     
     (void)0;
     /*    if ([DeviceDetection detectDevice]==MODEL_IPHONE_4)
@@ -160,7 +162,6 @@
 	// make main window visible
 	[window_ makeKeyAndVisible];
 	
-	return YES;
 }
 
 -(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notif
@@ -175,6 +176,13 @@
 -(void)directorDidReshapeProjection:(CCDirector *)director{
     if (director.runningScene == nil){
         // and add the scene to the stack. The director will run it when it automatically when the view is displayed.
+#if COCOS2D_DEBUG
+        if ([NSUserDefaults.standardUserDefaults boolForKey:@"SSProfileGameplay"]) {
+            uint32_t seed=(uint32_t)[NSUserDefaults.standardUserDefaults integerForKey:@"SSMapSeed"];
+            if (seed) [SSMapSession.shared selectMap:[SSMapSession generateMapWithSeed:seed]];
+            [director_ runWithScene:[GameplayLayer scene]];
+        } else
+#endif
         [director_ runWithScene: [MainMenuLayer scene]];
     }
 }
@@ -290,11 +298,12 @@ void SignalHandler(int sig) {
 		[director_ stopAnimation];
     
    wasJustBackgrounded = true;
+   [DataStorage storeData];
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application
 {
-    (void)0;
+    [[StarStore shared] refreshOwnedProducts];
 	if( [navController_ visibleViewController] == director_ )
 		[director_ startAnimation];
 }
@@ -419,3 +428,18 @@ bool isIOSVersionGreaterThan6(){
 
 @end
 
+
+@interface StarStreamSceneDelegate : NSObject <UIWindowSceneDelegate>
+@property(nonatomic,strong) UIWindow *window;
+@end
+@implementation StarStreamSceneDelegate
+- (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)options {
+    AppDelegate *app = (AppDelegate *)UIApplication.sharedApplication.delegate;
+    [app connectGameScene:(UIWindowScene *)scene];
+    self.window = app.window;
+}
+- (void)sceneWillResignActive:(UIScene *)scene { [(AppDelegate *)UIApplication.sharedApplication.delegate applicationWillResignActive:UIApplication.sharedApplication]; }
+- (void)sceneDidBecomeActive:(UIScene *)scene { [(AppDelegate *)UIApplication.sharedApplication.delegate applicationDidBecomeActive:UIApplication.sharedApplication]; }
+- (void)sceneDidEnterBackground:(UIScene *)scene { [(AppDelegate *)UIApplication.sharedApplication.delegate applicationDidEnterBackground:UIApplication.sharedApplication]; }
+- (void)sceneWillEnterForeground:(UIScene *)scene { [(AppDelegate *)UIApplication.sharedApplication.delegate applicationWillEnterForeground:UIApplication.sharedApplication]; }
+@end

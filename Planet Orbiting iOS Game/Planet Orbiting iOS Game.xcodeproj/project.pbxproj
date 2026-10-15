@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+        A1FACE000000000000000001 /* SSMapSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FACE000000000000000002 /* SSMapSession.m */; };
 		01029DAC15E630CD00B9AB24 /* upgradeFooter-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 01029DAA15E630CD00B9AB24 /* upgradeFooter-hd.png */; };
 		01029DAD15E630CD00B9AB24 /* upgradeFooter.png in Resources */ = {isa = PBXBuildFile; fileRef = 01029DAB15E630CD00B9AB24 /* upgradeFooter.png */; };
 		0112359615C6995D009A5344 /* TutorialLayer.ccb in Resources */ = {isa = PBXBuildFile; fileRef = 0112359515C6995D009A5344 /* TutorialLayer.ccb */; };
@@ -85,6 +86,7 @@
 		01FE9B2215BE94E9007512ED /* PowerupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B2115BE94E9007512ED /* PowerupManager.m */; };
 		01FE9B3415BFAE70007512ED /* DataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B3315BFAE6F007512ED /* DataStorage.m */; };
 		01FE9B3C15BFC2C9007512ED /* PlayerStats.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FE9B3B15BFC2C9007512ED /* PlayerStats.m */; };
+		05A12C3EA1A552A2BAC2CAF3 /* StorePurchaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A74805A10F56976AAEE8EBF /* StorePurchaseTests.swift */; };
 		0AA0C873170526AB00578836 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA0C872170526AB00578836 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0C010DCC1707935C00628DE0 /* kamcordwatch-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C010DC81707935C00628DE0 /* kamcordwatch-hd.png */; };
 		0C010DCD1707935C00628DE0 /* kamcordwatch.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C010DC91707935C00628DE0 /* kamcordwatch.png */; };
@@ -371,6 +373,8 @@
 		0CBF200B15E1C68B00E05CDB /* batteryglow-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CBF200915E1C68B00E05CDB /* batteryglow-hd.png */; };
 		0CBF200C15E1C68B00E05CDB /* batteryglow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CBF200A15E1C68B00E05CDB /* batteryglow.png */; };
 		0CD3054615CFC479007EA286 /* playerSpawnedParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CD3054515CFC479007EA286 /* playerSpawnedParticle.plist */; };
+		5B5B02890B3DE978195E6DF7 /* StarStream.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 432B5178E291B6C9381F5CE9 /* StarStream.storekit */; };
+		5F3D5A191BE5EC2753789EDC /* StarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61691CF63272C20B5E447E6 /* StarStore.swift */; };
 		79B1CB133CC3D0DBF0CD6527 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = E8790BD510C1BF8B0B495744 /* PrivacyInfo.xcprivacy */; };
 		7B8884080BCA16116B332B92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0806A46788522038F3F22609 /* Foundation.framework */; };
 		AB65EC46AF6FCFCB077EFB7A /* PlayerStatsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7911D6132F0EA510604894D0 /* PlayerStatsTests.m */; };
@@ -588,6 +592,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+        A1FACE000000000000000002 /* SSMapSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSMapSession.m; sourceTree = "<group>"; };
 		01029DAA15E630CD00B9AB24 /* upgradeFooter-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upgradeFooter-hd.png"; sourceTree = "<group>"; };
 		01029DAB15E630CD00B9AB24 /* upgradeFooter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgradeFooter.png; sourceTree = "<group>"; };
 		0112359515C6995D009A5344 /* TutorialLayer.ccb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TutorialLayer.ccb; sourceTree = "<group>"; };
@@ -1124,7 +1129,11 @@
 		0CBF200915E1C68B00E05CDB /* batteryglow-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "batteryglow-hd.png"; sourceTree = "<group>"; };
 		0CBF200A15E1C68B00E05CDB /* batteryglow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batteryglow.png; sourceTree = "<group>"; };
 		0CD3054515CFC479007EA286 /* playerSpawnedParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = playerSpawnedParticle.plist; sourceTree = "<group>"; };
+		14456A2E5A3E315DD1DB16A7 /* Tests-Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Tests-Bridging-Header.h"; sourceTree = "<group>"; };
+		432B5178E291B6C9381F5CE9 /* StarStream.storekit */ = {isa = PBXFileReference; includeInIndex = 1; path = StarStream.storekit; sourceTree = "<group>"; };
+		466EE4EF506E0E25FDA37772 /* StarStream-Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "StarStream-Bridging-Header.h"; sourceTree = "<group>"; };
 		7911D6132F0EA510604894D0 /* PlayerStatsTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PlayerStatsTests.m; path = Tests/PlayerStatsTests.m; sourceTree = "<group>"; };
+		8A74805A10F56976AAEE8EBF /* StorePurchaseTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StorePurchaseTests.swift; sourceTree = "<group>"; };
 		C30A1036CAE7719C31492DA8 /* StarStreamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StarStreamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4286D4215C3747F00773FA3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		C4286D4415C3748300773FA3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
@@ -1186,6 +1195,7 @@
 		CE7186AA169285850080FF11 /* generalSpritesheet.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = generalSpritesheet.pvr.ccz; sourceTree = "<group>"; };
 		DDAFDBEADF1213795367CCE2 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E8790BD510C1BF8B0B495744 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		F61691CF63272C20B5E447E6 /* StarStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StarStore.swift; sourceTree = "<group>"; };
 		FA00EBAE15E8A58300C745BC /* back-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-hd.png"; sourceTree = "<group>"; };
 		FA00EBAF15E8A58300C745BC /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		FA00EBB015E8A58300C745BC /* backpressed-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backpressed-hd.png"; sourceTree = "<group>"; };
@@ -2070,6 +2080,8 @@
 				DDAFDBEADF1213795367CCE2 /* Assets.xcassets */,
 				E8790BD510C1BF8B0B495744 /* PrivacyInfo.xcprivacy */,
 				7911D6132F0EA510604894D0 /* PlayerStatsTests.m */,
+				3EF0875D0B7EBCEC2B06292F /* StoreKit */,
+				60C2C31509D138D230E0D46F /* Tests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2126,6 +2138,7 @@
 				C49E914A159A48D700BC424D /* Constants.h */,
 				0C2AB0B315BE8E43008822F1 /* MainMenuLayer.h */,
 				0C2AB0B415BE8E43008822F1 /* MainMenuLayer.m */,
+                A1FACE000000000000000002 /* SSMapSession.m */,
 				0C487AF615946E2300674AB9 /* GameplayLayer.h */,
 				0C487AF715946E2300674AB9 /* GameplayLayer.m */,
 				0C1662C715CEA56B00C0D0B9 /* Tutorial.h */,
@@ -2236,6 +2249,27 @@
 				FA20FD3515ECADD3008F2F17 /* levelup.mp3 */,
 			);
 			name = Effects;
+			sourceTree = "<group>";
+		};
+		3EF0875D0B7EBCEC2B06292F /* StoreKit */ = {
+			isa = PBXGroup;
+			children = (
+				F61691CF63272C20B5E447E6 /* StarStore.swift */,
+				466EE4EF506E0E25FDA37772 /* StarStream-Bridging-Header.h */,
+				432B5178E291B6C9381F5CE9 /* StarStream.storekit */,
+			);
+			name = StoreKit;
+			path = StoreKit;
+			sourceTree = "<group>";
+		};
+		60C2C31509D138D230E0D46F /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				8A74805A10F56976AAEE8EBF /* StorePurchaseTests.swift */,
+				14456A2E5A3E315DD1DB16A7 /* Tests-Bridging-Header.h */,
+			);
+			name = Tests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		7BA99FD69238DB5534C3BB5C /* iOS */ = {
@@ -3173,6 +3207,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B5B02890B3DE978195E6DF7 /* StarStream.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3209,6 +3244,7 @@
 				CE30F28715AA972E00796589 /* Asteroid.m in Sources */,
 				FAF1C64015BCF8A1001136E3 /* Coin.m in Sources */,
 				0C2AB0B515BE8E43008822F1 /* MainMenuLayer.m in Sources */,
+                A1FACE000000000000000001 /* SSMapSession.m in Sources */,
 				0C2AB0BB15BE8E54008822F1 /* UserWallet.m in Sources */,
 				01FE9B2215BE94E9007512ED /* PowerupManager.m in Sources */,
 				01FE9B3415BFAE70007512ED /* DataStorage.m in Sources */,
@@ -3340,6 +3376,7 @@
 				0C489D2916B77CD000CCFF11 /* DDGameKitHelperDelegate.m in Sources */,
 				0C11425A1675685900C0732C /* LandscapeNavigationViewController.m in Sources */,
 				0C1088651714C8CC006957B6 /* iRate.m in Sources */,
+				5F3D5A191BE5EC2753789EDC /* StarStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3348,6 +3385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB65EC46AF6FCFCB077EFB7A /* PlayerStatsTests.m in Sources */,
+				05A12C3EA1A552A2BAC2CAF3 /* StorePurchaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3416,15 +3454,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALTERNATE_GROUP = "$(INSTALL_GROUP)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGNING_ALLOWED[sdk=iphoneos*]" = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_POSTPROCESSING = NO;
 				DEVELOPMENT_TEAM = 94NPBVCHV4;
+				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3453,6 +3496,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				LLVM_LTO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				"OTHER_CFLAGS[arch=armv6]" = "-mno-thumb";
 				"OTHER_CFLAGS[arch=armv7]" = "";
 				OTHER_LDFLAGS = (
@@ -3461,9 +3505,15 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cschubiner.starstream;
+				PRODUCT_MODULE_NAME = StarStream;
 				PRODUCT_NAME = "Star Stream";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Star Stream Development 2026";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/StoreKit/StarStream-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 x86_64";
 				WRAPPER_EXTENSION = app;
@@ -3474,8 +3524,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALTERNATE_GROUP = "$(INSTALL_GROUP)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
@@ -3522,10 +3574,14 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cschubiner.starstream;
+				PRODUCT_MODULE_NAME = StarStream;
 				PRODUCT_NAME = "Star Stream";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				STRIP_INSTALLED_PRODUCT = YES;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/StoreKit/StarStream-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 x86_64";
@@ -3537,6 +3593,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGNING_ALLOWED = NO;
@@ -3549,6 +3606,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cschubiner.starstream.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Tests/Tests-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Star Stream.app/Star Stream";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3558,18 +3617,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGNING_ALLOWED = NO;
+				"CODE_SIGNING_ALLOWED[sdk=iphoneos*]" = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Manual;
+				DEVELOPMENT_TEAM = 94NPBVCHV4;
+				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Planet Orbiting iOS Game",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cschubiner.starstream.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Star Stream Tests Development 2026";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Tests/Tests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Star Stream.app/Star Stream";
 			};
 			name = Debug;
