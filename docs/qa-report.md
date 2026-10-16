@@ -8,7 +8,7 @@ Coverage includes immutable/restored leaderboards, top-20 score retention, repea
 
 Three seeded procedural routes each ran through the real steering/physics code for 60 simulated seconds with Autopilot, crossed several galaxies, and remained finite and playable. This reproduces and guards the old NSNull galaxy-color crash discovered during a longer run. A subsequent live simulator run reached galaxy 10, 171 planets and score 112,750 before normal game over, without that crash. Autopilot flight and geometry constraints are supplemented by manual swipes; they do not prove every possible human input succeeds.
 
-The prior physical-iPhone hosted suite passed **12 tests, zero failures** before the viewport/procedural changes: five audio/persistence tests plus seven StoreKit Test cases. Purchases cover all five advertised pack amounts (1,520,000 combined), duplicate transaction delivery, wallet saturation, cancellation, pending approval, both permanent perks, restore, and refund/revocation. A mandatory local-only test product guards against accidentally charging the real App Store. iOS Simulator 26.5's SKTestSession service fails, so the purchase suite runs on the connected iOS 27 phone instead.
+After the phone reconnected, the complete current physical-iPhone suite passed **20 tests, zero failures or skips** (`StarStreamHardwareBuild4.xcresult`): 13 gameplay/layout/audio/persistence tests plus seven StoreKit Test cases. Purchases cover all five advertised pack amounts (1,520,000 combined), duplicate transaction delivery, wallet saturation, cancellation, pending approval, both permanent perks, restore, and refund/revocation. A mandatory local-only test product guards against accidentally charging the real App Store. iOS Simulator 26.5's SKTestSession service fails, so the purchase suite runs on the connected iOS 27 phone instead.
 
 ## Manual checks and captures
 
@@ -18,7 +18,7 @@ Verified new flows include selecting a procedural map, playing it with swipes, s
 
 ## Performance
 
-See [performance.md](performance.md) for the concrete old-code defects, simulator comparison and measurement limits. Simulator FPS is not an iPhone power measurement. The physical iPhone became unavailable before the new performance run, and reconnection was requested. Sustained device FPS/energy and the latest complete hardware suite remain pending that reconnection.
+See [performance.md](performance.md) for the old-code defects, measurements and limits. A matched physical-iPhone run averaged 59.02 FPS, with app CPU use falling from 9.78% to 6.58% when the old camera/HUD behavior was removed (32.8% less CPU time). Both runs crossed the same 67 planets by 100 seconds. The full optimized capture spans 145 seconds. Direct power profiling was unavailable, so no battery-life percentage is claimed. The app was left running normally with profiling switches off.
 
 ## Release state
 
