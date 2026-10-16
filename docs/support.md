@@ -7,3 +7,5 @@ The green pause button opens Pause, Retry, Resume, and Quit. The speaker button 
 If something goes wrong, open an issue at https://github.com/cschubiner/OrbitingiOSGame/issues with your device model, iOS version, app version, and reproduction steps. Please do not include private information. Removing the app deletes its local progress.
 
 Optional purchases: The Stars shop offers five paid star packs and permanent Double Stars and Pink Stars perks. Prices are localized by the App Store. Core gameplay and earned-star unlocks remain available offline. Purchases require an App Store connection. Use Restore Purchases in the shop to restore permanent perks purchased with the same Apple Account. Delivered consumable packs cannot be restored. Keep the app installed to preserve its local balance.
+
+Flight tuning: Main Menu > Options opens Replay Tutorial and, after each of the seven paid products has been purchased on this device, the Tuning menu. Done saves the next run’s settings; Reset Defaults restores the original balance. Favorites keep their saved layout and tuning. Local consumable purchase history cannot be restored after reinstalling.

@@ -382,7 +382,9 @@ const float effectsVolumeMainMenu = 1;
         CCLabelTTF *favoritesLabel = [CCLabelTTF labelWithString:@"FAVORITE MAPS" fontName:@"HelveticaNeue-CondensedBold" fontSize:16];
         CCMenuItemLabel *favorites = [CCMenuItemLabel itemWithLabel:favoritesLabel target:self selector:@selector(openFavorites)];
         mode.position = ccp(170, 76); favorites.position = ccp(390,76);
-        mapMenu = [CCMenu menuWithItems:mode,favorites,nil]; mapMenu.position=CGPointZero;
+        CCMenuItemLabel *options=[CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"OPTIONS" fontName:@"HelveticaNeue-CondensedBold" fontSize:14] target:self selector:@selector(openOptions)];
+        options.position=ccp(284,49);
+        mapMenu = [CCMenu menuWithItems:mode,favorites,options,nil]; mapMenu.position=CGPointZero;
         [self addChild:mapMenu z:100];
         [self schedule:@selector(Update:) interval:0];
         
@@ -432,6 +434,7 @@ const float effectsVolumeMainMenu = 1;
     acceleration = ccp(.12, acceleration.y);
 }
 
+- (void)openOptions { if (!isDoingEndAnimation) [SSMapSession.shared showOptions]; }
 - (void)chooseMap { if (!isDoingEndAnimation) [SSMapSession.shared showMapChooser]; }
 - (void)openFavorites { if (!isDoingEndAnimation) [SSMapSession.shared showFavorites]; }
 - (void) Update:(ccTime)dt {

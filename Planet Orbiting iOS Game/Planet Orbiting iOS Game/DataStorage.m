@@ -13,12 +13,15 @@
 #import "UpgradeManager.h"
 #import "UpgradeItem.h"
 #import "ObjectiveManager.h"
+#import "SSMapSession.h"
 
 @implementation DataStorage
 
 + (void)storeData { [self storeDataWithTransactionID:nil]; }
 
-+ (BOOL)storeDataWithTransactionID:(NSString *)transactionID {
++ (BOOL)storeDataWithTransactionID:(NSString *)transactionID { return [self storeDataWithTransactionID:transactionID productID:nil]; }
+
++ (BOOL)storeDataWithTransactionID:(NSString *)transactionID productID:(NSString *)productID {
     int coins = [[UserWallet sharedInstance] getBalance];
     int numPlays = [[PlayerStats sharedInstance] getPlays];
     
@@ -79,6 +82,9 @@
     NSMutableArray *delivered = [[[defaults dictionaryForKey:@"StarStreamProgressV3"] objectForKey:@"transactions"] mutableCopy] ?: [NSMutableArray new];
     if (transactionID && ![delivered containsObject:transactionID]) [delivered addObject:transactionID];
     snapshot[@"transactions"] = delivered;
+    NSMutableArray *products=[[[defaults dictionaryForKey:@"StarStreamProgressV3"] objectForKey:@"purchasedProducts"] mutableCopy] ?: [NSMutableArray new];
+    if (productID && ![products containsObject:productID]) [products addObject:productID];
+    snapshot[@"purchasedProducts"]=products;
     NSDictionary *previousSnapshot = [defaults dictionaryForKey:@"StarStreamProgressV3"];
     [defaults setObject:snapshot forKey:@"StarStreamProgressV3"];
     if ([defaults synchronize]) return YES;
@@ -359,7 +365,7 @@
         @"com.cschubiner.starstream.stars70000":@70000,@"com.cschubiner.starstream.stars120000":@120000,
         @"com.cschubiner.starstream.stars300000":@300000,@"com.cschubiner.starstream.stars1000000":@1000000};
     NSNumber *stars = packs[productID];
-    if (stars && [snapshot[@"transactions"] containsObject:transactionID]) return YES;
+    if (stars && [snapshot[@"transactions"] containsObject:transactionID]) return [self storeDataWithTransactionID:transactionID productID:productID];
     NSInteger index = [productID isEqualToString:@"com.cschubiner.starstream.doublestars"] ? 3 :
         [productID isEqualToString:@"com.cschubiner.starstream.pinkstars"] ? 11 : NSNotFound;
     if (!transactionID.length || (!stars && index == NSNotFound)) return NO;
@@ -368,11 +374,18 @@
         UpgradeItem *item = [[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:index];
         if (!item.purchased) [[UpgradeManager sharedInstance] setUpgradeIndex:(int)index purchased:YES equipped:YES];
     }
-    if ([self storeDataWithTransactionID:transactionID]) return YES;
+    if ([self storeDataWithTransactionID:transactionID productID:productID]) return YES;
     [self fetchData];
     return NO;
 }
 + (void)revokeProduct:(NSString *)productID {
+    if (SSTuning.localTestingUnlock) return;
+    NSUserDefaults *d=NSUserDefaults.standardUserDefaults;
+    NSMutableDictionary *snapshot=[[d dictionaryForKey:@"StarStreamProgressV3"] mutableCopy];
+    NSMutableArray *products=[snapshot[@"purchasedProducts"] mutableCopy];
+    [products removeObject:productID];
+    if (products) snapshot[@"purchasedProducts"]=products;
+    if (snapshot) [d setObject:snapshot forKey:@"StarStreamProgressV3"];
     NSInteger index = [productID isEqualToString:@"com.cschubiner.starstream.doublestars"] ? 3 :
         [productID isEqualToString:@"com.cschubiner.starstream.pinkstars"] ? 11 : NSNotFound;
     if (index != NSNotFound) {

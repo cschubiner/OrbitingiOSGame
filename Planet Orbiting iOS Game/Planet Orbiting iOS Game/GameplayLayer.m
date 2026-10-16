@@ -33,6 +33,8 @@
 
 @implementation GameplayLayer {
     NSDictionary *runMap;
+    NSDictionary *runTuning;
+    double gameSpeed, playerSpeed, gravityScale, difficulty, planetSpin, cameraZoom;
     uint32_t mapRandomState;
     BOOL generatingMapGeometry;
     CCLabelTTF *mapRunLabel;
@@ -500,7 +502,7 @@ typedef struct {
     
     [[UpgradeValues sharedInstance] setHasHeadStart:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:9] equipped]];
     
-    [[UpgradeValues sharedInstance] setAutopilotDuration:50000	*60*1.3 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:10] equipped]];//autopilot duration
+    [[UpgradeValues sharedInstance] setAutopilotDuration:5*60*1.3 + 50*[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:10] equipped]];//autopilot duration
     
     [[UpgradeValues sharedInstance] setHasPinkStars:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:11] equipped]];
     
@@ -535,6 +537,12 @@ typedef struct {
     [[UpgradeValues sharedInstance] setHasBlackTrail:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:31] equipped]];
     
     [[UpgradeValues sharedInstance] setHasBrownTrail:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:32] equipped]];
+    float durationScale=[runTuning[@"powerupDuration"] floatValue];
+    [UpgradeValues.sharedInstance setAutopilotDuration:[[UpgradeValues sharedInstance] autopilotDuration]*durationScale];
+    [UpgradeValues.sharedInstance setCoinMagnetDuration:[[UpgradeValues sharedInstance] coinMagnetDuration]*durationScale];
+    [UpgradeValues.sharedInstance setAsteroidImmunityDuration:[[UpgradeValues sharedInstance] asteroidImmunityDuration]*durationScale];
+    [UpgradeValues.sharedInstance setMaxBatteryTime:[[UpgradeValues sharedInstance] maxBatteryTime]*[runTuning[@"batteryCapacity"] floatValue]];
+
 }
 
 - (void)startGame {
@@ -597,7 +605,7 @@ typedef struct {
     
     
     [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setGalaxyCounter:0];
-    isInTutorialMode = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getIsInTutorialMode];
+    isInTutorialMode = [SSTuning beginTutorial];
     shouldDisplayPredPoints = [((AppDelegate*)[[UIApplication sharedApplication]delegate]) getShouldDisplayPredPoints];
     [self initUpgradedVariables];
     loadedPauseLayer = [self createPauseLayer];
@@ -974,6 +982,10 @@ typedef struct {
 	if ((self = [super init])) {
         size = [[CCDirector sharedDirector] winSize];
         runMap = SSMapSession.shared.currentMap;
+        runTuning = runMap ? [SSTuning validated:runMap[@"tuning"]] : SSTuning.current;
+        gameSpeed=[runTuning[@"gameSpeed"] doubleValue]; playerSpeed=[runTuning[@"playerSpeed"] doubleValue];
+        gravityScale=[runTuning[@"gravity"] doubleValue]; difficulty=[runTuning[@"difficulty"] doubleValue];
+        planetSpin=[runTuning[@"planetSpin"] doubleValue]; cameraZoom=[runTuning[@"cameraZoom"] doubleValue];
         mapRandomState = [runMap[@"seed"] unsignedIntValue] ?: 1;
         startingCoins = [[UserWallet sharedInstance] getBalance];
         self.isTouchEnabled= TRUE;
@@ -1084,7 +1096,7 @@ typedef struct {
         else if (player.currentPowerup.type == kautopilot)
             player.velocity = ccpMult(player.velocity, 1.1);
         
-        player.sprite.position = ccpAdd(ccpMult(player.velocity, 60*dt*timeDilationCoefficient), player.sprite.position);
+        player.sprite.position = ccpAdd(ccpMult(player.velocity, 60*dt*timeDilationCoefficient*playerSpeed), player.sprite.position);
         [streak setPosition:player.sprite.position];
     }
     
@@ -1212,7 +1224,7 @@ typedef struct {
         cameraLayerLastPosition  = player.sprite.position;
     else backgroundStarsMovementSpeed = 1;
     
-    [self scaleLayer:cameraLayer scaleToZoomTo:lerpf(cameraLayer.scale, scale, cameraZoomSpeed) scaleCenter:cameraLastFocusPosition];
+    [self scaleLayer:cameraLayer scaleToZoomTo:lerpf(cameraLayer.scale, scale*cameraZoom, cameraZoomSpeed) scaleCenter:cameraLastFocusPosition];
 #if COCOS2D_DEBUG
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"SSLegacyPerformance"])
         [cameraLayer runAction:[CCFollow actionWithTarget:cameraFocusNode]];
@@ -1237,8 +1249,7 @@ typedef struct {
 }
 
 -(bool)checkShouldDisplayTextForVar:(bool)varToCheck {
-    int numTimesPlayed = [[PlayerStats sharedInstance] getPlays];
-    if (numTimesPlayed <= 99999 && !varToCheck) //change 999 to 1
+    if (isInTutorialMode && !varToCheck)
         return true;
     else
         return false;
@@ -1525,7 +1536,7 @@ typedef struct {
             if (isOnFirstRun) {
                 
                 [self playSound:@"kick_shock.mp3" shouldLoop:YES pitch:1];
-                initialVel = ccp(0, sqrtf(planet.orbitRadius*gravity));
+                initialVel = ccp(0, sqrtf(planet.orbitRadius*gravity*gravityScale));
                 isOnFirstRun = false;
                 player.velocity = initialVel;
             }
@@ -1596,7 +1607,7 @@ typedef struct {
                     }
                     
                     CGPoint direction = ccpNormalize(ccpSub(planet.sprite.position, player.sprite.position));
-                    player.acceleration = ccpMult(direction, gravity);
+                    player.acceleration = ccpMult(direction, gravity*gravityScale);
                     
                     if (player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart) {
                         [self JustSwiped];
@@ -1714,7 +1725,7 @@ typedef struct {
                 
                 CGPoint accelToAdd = CGPointZero;
                 CGPoint direction = ccpNormalize(ccpSub(spotGoingTo, player.sprite.position));
-                accelToAdd = ccpAdd(accelToAdd, ccpMult(direction, gravity));
+                accelToAdd = ccpAdd(accelToAdd, ccpMult(direction, gravity*gravityScale));
                 
                 player.velocity = ccpMult(ccpNormalize(player.velocity), ccpLength(initialVel));
                 
@@ -2654,7 +2665,7 @@ typedef struct {
 }
 
 - (void)UpdateLight:(float)dt {
-    light.timeLeft -= dt;
+    light.timeLeft -= dt*difficulty;
     float timerAddSpeed = 10;
     timeToAddToTimer-= timerAddSpeed * dt;
     if (timeToAddToTimer>0) {
@@ -3019,7 +3030,7 @@ typedef struct {
         [self stepSimulation:MIN(dt, .1f)];
         return;
     }
-    NSUInteger steps = SSPhysicsSteps(dt, &physicsAccumulator);
+    NSUInteger steps = SSPhysicsSteps(MIN(dt,.1f)*gameSpeed, &physicsAccumulator);
     for (NSUInteger tick=0;tick<steps;tick++) {
         [self stepSimulation:1.0/60.0];
         if (paused || isGameOver) { physicsAccumulator=0; break; }
@@ -3037,6 +3048,7 @@ typedef struct {
         //CCLOG(@"start2");
         if (player.alive) {
             [self UpdatePlanets];
+            if (planetSpin>0) for (Planet *planet in planets) planet.sprite.rotation+=planetSpin*30*dt;
             //CCLOG(@"start1");
         }
         [self UpdateCoins];
@@ -3053,7 +3065,7 @@ typedef struct {
             }
         }
         
-        if (numTimesSwiped == 0) {
+        if (isInTutorialMode && numTimesSwiped == 0) {
             if (loading_playerHasReachedFirstPlanet && (!(player.currentPowerup.type == kautopilot || player.currentPowerup.type == kheadStart))) {
                 
                 timeSpentInPlanetOne += dt;

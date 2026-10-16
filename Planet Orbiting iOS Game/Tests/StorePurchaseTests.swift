@@ -116,6 +116,21 @@ import StoreKitTest
         XCTAssertFalse((upgrades.upgradeItems[11] as! UpgradeItem).purchased)
         XCTAssertFalse((upgrades.upgradeItems[11] as! UpgradeItem).equipped)
     }
+    func testTuningRequiresAllSevenProductsAndPersistsAcrossReload() async throws {
+        XCTAssertFalse(SSTuning.unlocked())
+        for (offset, index) in [3,11,12,13,14,15,16].enumerated() {
+            let result = await buy(index)
+            XCTAssertNil(result)
+            XCTAssertEqual(SSTuning.unlocked(), offset == 6)
+        }
+        DataStorage.fetchData()
+        XCTAssertTrue(SSTuning.unlocked())
+        let snapshot = try XCTUnwrap(UserDefaults.standard.dictionary(forKey: "StarStreamProgressV3"))
+        XCTAssertEqual((snapshot["purchasedProducts"] as? [String])?.count,7)
+        DataStorage.revokeProduct(StarStore.catalog[11]!)
+        DataStorage.fetchData()
+        XCTAssertFalse(SSTuning.unlocked())
+    }
     func testWalletAdditionClampsWithoutOverflow() {
         wallet.balance = Int32.max - 10
         wallet.addCoins(1000000)

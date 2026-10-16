@@ -16,6 +16,7 @@
 - (BOOL)isCurrentMapFavorite;
 - (void)showMapChooser;
 - (void)showFavorites;
+- (void)showOptions;
 @end
 
 // Stable integer PRNG, independent of rendering, particles, timing and device size.
@@ -25,3 +26,17 @@ static inline uint32_t SSMapNext(uint32_t *state) {
     return *state = x;
 }
 static inline double SSMapUnit(uint32_t *state) { return SSMapNext(state) / 4294967296.0; }
+
+// Values are snapshotted for each run and favorite, never read inside a physics tick.
+@interface SSTuning : NSObject
++ (NSArray<NSDictionary *> *)controls;
++ (NSDictionary *)defaults;
++ (NSDictionary *)validated:(NSDictionary *)values;
++ (NSDictionary *)current;
++ (void)save:(NSDictionary *)values;
++ (BOOL)unlocked;
++ (BOOL)beginTutorial;
++ (void)replayTutorial;
++ (BOOL)localTestingUnlock;
++ (void)applyLocalTestingUnlockIfRequested;
+@end

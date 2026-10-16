@@ -14,8 +14,13 @@
 #import "CameraObject.h"
 #import "Powerup.h"
 #import "Player.h"
+#import "Planet.h"
+#import "Coin.h"
+#import "UpgradeValues.h"
 @interface GameplayLayer (LayoutTests)
 - (void)loadEverything;
+- (void)ApplyGravity:(float)dt;
+- (void)CreatePowerup:(CGFloat)x yPos:(CGFloat)y scale:(float)scale type:(int)type;
 - (void)UpdateCamera:(float)dt;
 - (void)startGame;
 - (void)Update:(float)dt;
@@ -23,6 +28,142 @@
 @interface PlayerStatsTests : XCTestCase
 @end
 @implementation PlayerStatsTests
+- (void)testTutorialAppearsOnceAndReplayIsOneRunOnly {
+    NSUserDefaults *d=NSUserDefaults.standardUserDefaults; NSString *domain=NSBundle.mainBundle.bundleIdentifier;
+    NSDictionary *backup=[d persistentDomainForName:domain]; int plays=[PlayerStats.sharedInstance getPlays];
+    @try {
+        [d removeObjectForKey:@"SSTutorialSeen"]; [d removeObjectForKey:@"SSReplayTutorial"];
+        [PlayerStats.sharedInstance setPlays:0];
+        XCTAssertTrue([SSTuning beginTutorial]);
+        XCTAssertFalse([SSTuning beginTutorial]); // Even if the first run was quit before a score was saved.
+        [SSTuning replayTutorial]; XCTAssertTrue([SSTuning beginTutorial]); XCTAssertFalse([SSTuning beginTutorial]);
+        [d removeObjectForKey:@"SSTutorialSeen"]; [PlayerStats.sharedInstance setPlays:1];
+        XCTAssertFalse([SSTuning beginTutorial]); // Existing players migrate without another introduction.
+    } @finally { [d setPersistentDomain:backup forName:domain]; [PlayerStats.sharedInstance setPlays:plays]; }
+}
+- (void)testNormalAutopilotPickupExpiresInClassicAndProceduralWithAndWithoutUpgrade {
+    NSUserDefaults *d=NSUserDefaults.standardUserDefaults; NSString *domain=NSBundle.mainBundle.bundleIdentifier;
+    NSDictionary *backup=[d persistentDomainForName:domain], *previous=SSMapSession.shared.currentMap;
+    @try {
+        [d removeObjectForKey:@"SSTuningValues"];
+        for (NSNumber *procedural in @[@NO,@YES]) for (NSNumber *upgrade in @[@NO,@YES]) @autoreleasepool {
+            [UpgradeManager.sharedInstance setUpgradeIndex:10 purchased:upgrade.boolValue equipped:upgrade.boolValue];
+            [SSMapSession.shared selectMap:procedural.boolValue ? [SSMapSession generateMapWithSeed:12345678] : nil];
+            GameplayLayer *game=[GameplayLayer node]; [game unscheduleAllSelectors]; [game loadEverything]; [game unscheduleAllSelectors];
+            Player *pilot=[game valueForKey:@"player"];
+            for (Powerup *p in [game valueForKey:@"powerups"]) p.sprite.visible=NO;
+            [game CreatePowerup:pilot.sprite.position.x yPos:pilot.sprite.position.y scale:1 type:kautopilot];
+            Powerup *pickup=[[game valueForKey:@"powerups"] lastObject];
+            XCTAssertEqualWithAccuracy(pickup.duration,390+(upgrade.boolValue ? 50 : 0),.001);
+            [game ApplyGravity:1.0f/60]; // Exercise collision delivery and its counter reset.
+            XCTAssertEqual(pilot.currentPowerup,pickup);
+            for (int tick=1;tick<(int)pickup.duration;tick++) [game ApplyGravity:1.0f/60];
+            XCTAssertEqual(pilot.currentPowerup,pickup);
+            [game ApplyGravity:1.0f/60]; XCTAssertNil(pilot.currentPowerup);
+            [game cleanup];
+        }
+    } @finally { [d setPersistentDomain:backup forName:domain]; [DataStorage fetchData]; [SSMapSession.shared selectMap:previous]; }
+}
+- (void)testTuningClampsMalformedValuesAndFavoritesKeepTheirPhysics {
+    NSUserDefaults *d=NSUserDefaults.standardUserDefaults; NSString *domain=NSBundle.mainBundle.bundleIdentifier;
+    NSDictionary *backup=[d persistentDomainForName:domain], *previous=SSMapSession.shared.currentMap;
+    @try {
+        [d setBool:YES forKey:@"SSLocalTestingUnlock"];
+        NSDictionary *bounded=[SSTuning validated:@{@"gameSpeed":@100,@"gravity":@(-10),@"planetSize":@"bad",@"playerSpeed":@(NAN)}];
+        XCTAssertEqualObjects(bounded[@"gameSpeed"],@1.5); XCTAssertEqualObjects(bounded[@"gravity"],@.4);
+        XCTAssertEqualObjects(bounded[@"planetSize"],@1); XCTAssertEqualObjects(bounded[@"playerSpeed"],@1);
+        NSMutableDictionary *custom=[SSTuning.defaults mutableCopy]; custom[@"gameSpeed"]=@1.5; custom[@"gravity"]=@1.3; custom[@"planetSpin"]=@2;
+        [SSTuning save:custom]; NSDictionary *map=[SSMapSession generateMapWithSeed:456];
+        [SSTuning save:SSTuning.defaults]; [SSMapSession.shared selectMap:map];
+        GameplayLayer *game=[GameplayLayer node]; [game unscheduleAllSelectors];
+        XCTAssertEqualObjects([game valueForKey:@"runTuning"],custom);
+        XCTAssertEqualWithAccuracy([[game valueForKey:@"gameSpeed"] doubleValue],1.5,.001);
+        XCTAssertEqualWithAccuracy([[game valueForKey:@"gravityScale"] doubleValue],1.3,.001); [game cleanup];
+        [d setBool:NO forKey:@"SSLocalTestingUnlock"]; [d removeObjectForKey:@"StarStreamProgressV3"];
+        XCTAssertFalse(SSTuning.unlocked); XCTAssertEqualObjects(SSTuning.current,SSTuning.defaults);
+    } @finally { [d setPersistentDomain:backup forName:domain]; [DataStorage fetchData]; [SSMapSession.shared selectMap:previous]; }
+}
+- (void)testTuningSlidersPersistTheirValuesAndResetDefaults {
+    NSUserDefaults *d=NSUserDefaults.standardUserDefaults; NSString *domain=NSBundle.mainBundle.bundleIdentifier;
+    NSDictionary *backup=[d persistentDomainForName:domain];
+    @try {
+        [d setBool:YES forKey:@"SSLocalTestingUnlock"];
+        UITableViewController *tuner=[[NSClassFromString(@"SSTuningController") alloc] initWithStyle:UITableViewStyleInsetGrouped];
+        [tuner loadViewIfNeeded];
+        UITableViewCell *cell=[tuner.tableView.dataSource tableView:tuner.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        UISlider *slider=nil; for (UIView *v in cell.contentView.subviews) if ([v isKindOfClass:UISlider.class]) slider=(UISlider *)v;
+        XCTAssertNotNil(slider); slider.value=1.25;
+        [slider sendActionsForControlEvents:UIControlEventValueChanged];
+        XCTAssertEqualWithAccuracy([[tuner valueForKey:@"values"][@"gameSpeed"] doubleValue],1.25,.001);
+        UILabel *label=[cell.contentView viewWithTag:100]; XCTAssertTrue([label.text containsString:@"1.25"]);
+        UIBarButtonItem *done=tuner.navigationItem.rightBarButtonItem;
+        [UIApplication.sharedApplication sendAction:done.action to:done.target from:done forEvent:nil];
+        XCTAssertEqualWithAccuracy([SSTuning.current[@"gameSpeed"] doubleValue],1.25,.001);
+        UIBarButtonItem *reset=tuner.navigationItem.leftBarButtonItem;
+        [UIApplication.sharedApplication sendAction:reset.action to:reset.target from:reset forEvent:nil];
+        XCTAssertEqualObjects([tuner valueForKey:@"values"],SSTuning.defaults);
+    } @finally { [d setPersistentDomain:backup forName:domain]; }
+}
+- (void)testGameAndPlayerSpeedControlsChangeTheActualSimulation {
+    NSUserDefaults *d=NSUserDefaults.standardUserDefaults; NSString *domain=NSBundle.mainBundle.bundleIdentifier;
+    NSDictionary *backup=[d persistentDomainForName:domain], *previous=SSMapSession.shared.currentMap;
+    @try {
+        [d setBool:YES forKey:@"SSLocalTestingUnlock"];
+        NSMutableDictionary *custom=[SSTuning.defaults mutableCopy]; custom[@"gameSpeed"]=@1.5; custom[@"playerSpeed"]=@1.5;
+        [SSTuning save:custom]; [SSMapSession.shared selectClassic];
+        GameplayLayer *game=[GameplayLayer node]; [game unscheduleAllSelectors]; [game loadEverything]; [game unscheduleAllSelectors];
+        Player *pilot=[game valueForKey:@"player"]; pilot.currentPowerup=nil; pilot.velocity=ccp(1,0); pilot.acceleration=CGPointZero;
+        [game setValue:@1 forKey:@"timeDilationCoefficient"]; CGPoint before=pilot.sprite.position;
+        [game UpdateCamera:1.0f/60];
+        XCTAssertEqualWithAccuracy(pilot.sprite.position.x-before.x,1.5,.001);
+        [game setValue:@NO forKey:@"paused"]; [game setValue:@NO forKey:@"isInTutorialMode"];
+        double beforeTime=[[game valueForKey:@"totalGameTime"] doubleValue];
+        for (int frame=0;frame<60;frame++) [game Update:1.0f/60];
+        XCTAssertEqualWithAccuracy([[game valueForKey:@"totalGameTime"] doubleValue]-beforeTime,1.5,.001);
+        [game cleanup];
+    } @finally { [d setPersistentDomain:backup forName:domain]; [DataStorage fetchData]; [SSMapSession.shared selectMap:previous]; }
+}
+- (void)testGeneratedStarsClearEveryPlanetAndEachOtherAtDefaultAndExtremeSettings {
+    NSUserDefaults *d=NSUserDefaults.standardUserDefaults; NSString *domain=NSBundle.mainBundle.bundleIdentifier;
+    NSDictionary *backup=[d persistentDomainForName:domain];
+    @try {
+        [d setBool:YES forKey:@"SSLocalTestingUnlock"];
+        for (int preset=0;preset<3;preset++) {
+            NSMutableDictionary *values=[SSTuning.defaults mutableCopy];
+            if (preset) for (NSDictionary *c in SSTuning.controls) values[c[@"key"]]=c[preset==1 ? @"min" : @"max"];
+            [SSTuning save:values];
+            for (uint32_t seed=1;seed<=100;seed++) @autoreleasepool {
+                NSDictionary *map=[SSMapSession generateMapWithSeed:seed];
+                for (NSArray *galaxy in map[@"galaxies"]) for (NSArray *section in galaxy) {
+                    NSMutableArray *stars=[NSMutableArray new],*planets=[NSMutableArray new];
+                    for (NSDictionary *o in section) { if ([o[@"type"] intValue]==kcoin) [stars addObject:o]; if ([o[@"type"] intValue]==kplanet) [planets addObject:o]; }
+                    for (NSUInteger i=0;i<stars.count;i++) {
+                        NSDictionary *star=stars[i]; double x=[star[@"x"] doubleValue],y=[star[@"y"] doubleValue];
+                        for (NSDictionary *planet in planets) {
+                            double distance=hypot(x-[planet[@"x"] doubleValue],y-[planet[@"y"] doubleValue])*.498;
+                            XCTAssertGreaterThanOrEqual(distance,54*[planet[@"scale"] doubleValue]+14.5+13.99);
+                        }
+                        for (NSUInteger j=0;j<i;j++) XCTAssertGreaterThanOrEqual(hypot(x-[stars[j][@"x"] doubleValue],y-[stars[j][@"y"] doubleValue])*.498,31.99);
+                    }
+                }
+            }
+        }
+    } @finally { [d setPersistentDomain:backup forName:domain]; }
+}
+- (void)testLiveStarsClearPlanetArtAcrossSectionSeams {
+    NSDictionary *previous=SSMapSession.shared.currentMap;
+    @try {
+        for (uint32_t seed=1;seed<=20;seed++) @autoreleasepool {
+            [SSMapSession.shared selectMap:[SSMapSession generateMapWithSeed:seed]];
+            GameplayLayer *game=[GameplayLayer node]; [game unscheduleAllSelectors]; [game loadEverything]; [game unscheduleAllSelectors];
+            for (Coin *coin in [game valueForKey:@"coins"]) for (Planet *planet in [game valueForKey:@"planets"]) {
+                double body=fmax(planet.sprite.contentSize.width,planet.sprite.contentSize.height)*planet.sprite.scale/2;
+                XCTAssertGreaterThanOrEqual(ccpDistance(coin.sprite.position,planet.sprite.position),body+14.5+11);
+            }
+            [game cleanup];
+        }
+    } @finally { [SSMapSession.shared selectMap:previous]; }
+}
 - (void)testMenuPanelsFitInsideSafeEdgesWhileTheCanvasFillsTheWindow {
     CGRect safe=SSSafeViewport();
     CGPoint origin=SSMenuOrigin(); CGFloat scale=SSMenuScale();
