@@ -113,6 +113,13 @@
     
 }
 
+// Pushing a scene from init ran while the menu was still replacing itself with this scene,
+// so the director replaced the pushed missions scene and leaked the old menu in the stack.
+- (void)onEnterTransitionDidFinish {
+    [super onEnterTransitionDidFinish];
+    [self completeObjectiveFromGroupNumber:2 itemNumber:2];
+}
+
 /* On "init," initialize the instance */
 - (id)init {
 	// always call "super" init.
@@ -145,7 +152,6 @@
         [mainLayer addChild:topBar];
         [topBar setPosition: ccp(240, 320 - topBar.boundingBox.size.height/2 + 2)];
         
-        [self completeObjectiveFromGroupNumber:2 itemNumber:2];
         
         NSString* stringToUse;
         stringToUse = @"HIGH SCORES";

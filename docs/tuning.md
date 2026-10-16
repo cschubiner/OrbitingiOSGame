@@ -22,7 +22,18 @@ Core gameplay, procedural maps, Favorites, and Replay Tutorial remain free. Thes
 | Route bends | 1 | 0–1.5 | New-map changes in route direction |
 | Powerup frequency | 1 | 0–2 | New-map pickup frequency |
 
-Favorites store full geometry and the run's tuning. Selecting a favorite always uses that saved tuning, even if global sliders change. New maps use generator version 2, with binary fixed-point coordinates that survive JSON without rounding-induced duplicate favorites. Existing version 1 favorites retain their original geometry and default physics. Old favorites are intentionally not regenerated; choose a new procedural map for the new star placement.
+Favorites store full geometry and the run's tuning. Selecting a favorite always uses that saved tuning, even if global sliders change. New maps use generator version 3, with binary fixed-point coordinates that survive JSON without rounding-induced duplicate favorites. Existing version 1 and 2 favorites retain their original geometry (and version 1 its default physics). Old favorites are intentionally not regenerated; choose a new procedural map for the new layouts.
+
+## Procedural generator version 3
+
+Version 2 built every section the same way: five equal planets on a gentle line, three stars in a row per gap and a mirrored asteroid pair. Version 3 is measured against the handmade galaxies (`LevelsFromLevelCreator`) and ramps from galaxy 1 to galaxy 10:
+
+- Each section has a style: cruise, zigzag, sweep, asteroid gauntlet, asteroid field or star stream. Later galaxies favor gauntlets and fields.
+- Sections hold 4–6 planets. Interior planets range from 0.78× to 1.6× size; section ends stay 1× so seams match. Hops range from tight (≈350) to long jumps (up to 950), and the maximum heading change grows from about 32° to 77°.
+- Stars form lines, bowed arcs, waves, partial rings around interior planets and risky off-route clusters.
+- Asteroids line the corridor, scatter as fields, wall gauntlets and include occasional wide boulders. At default tuning, median rocks per section rise from about 12 (galaxy 1) to about 30 (galaxy 10), against 15–40 in the handmade maps.
+
+Every object is placed by rejection against fixed fairness rules: stars clear planet art and each other by 32 world points; rocks clear every orbit zone and stay at least 100 map units (plus their radius) from every hop in the section; section first and last hops stay within 25° of the section axis. The tests check these rules for 60 seeds and at the minimum and maximum of every tuning slider.
 
 ## Bugs found
 

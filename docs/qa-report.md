@@ -35,3 +35,11 @@ Star Stream: Orbit Adventure, Apple ID 6823318721, bundle com.cschubiner.starstr
 Build 5 is archived, exported, codesign-verified, uploaded, processed as VALID, and attached to version 3.0. Its executable excludes the local unlock command and both profiling switches; its app bundle contains no StoreKit Test configuration or test bundle.
 
 Build 4's review was canceled to replace the known bugs. Replacement submission 1768d797-19a3-478d-b8e9-debb717ae2ab was submitted on October 15, 2026 at 11:52 PM EDT. The app version and all seven IAPs are **WAITING_FOR_REVIEW**, eight items accepted together. Both the web UI and public API confirm the state. Automatic release AFTER_APPROVAL remains configured. Public availability is not yet confirmed.
+
+## Build 6 — prepared October 16, 2026, not uploaded
+
+Build 5 crashes whenever a powerup spawns: immediately on procedural maps and around galaxy 2 of classic mode. `Powerup.glowSprite` was an `assign` (unretained) property under ARC, and optimized builds released the sprite inside `-initWithType:`. Device crash reports symbolicated with a link map point to `-[GameplayLayer CreatePowerup:]`, and an optimized build of the exact build 5 source (`ff13650`) crashed the same way within 40 seconds on a procedural map. Debug builds and the simulator test suite never exercised the optimized path.
+
+Build 6 (3.0, build 6) fixes that and adds the audio-engine rewrite (no blocking audio calls per star pickup), frame-pacing fixes, interpolated rendering away from 1× game speed, procedural generator version 3, and the store and gameplay fixes listed in the session notes. All 25 gameplay tests pass, including a regression test that fails on the old property. On an iPhone 17 Pro Max, a profiling build of the same source held 60 FPS with zero frames over 25 ms through six galaxies of a version 3 map.
+
+The App Store archive is signed with Apple Distribution and the "Star Stream App Store 2026" profile, `get-task-allow` is false, the binary contains no local-unlock or profiling switches, and the bundle has no StoreKit configuration or tests. Release builds now generate a dSYM (`GCC_GENERATE_DEBUGGING_SYMBOLS = YES`, `dwarf-with-dsym`); the shipped executable remains stripped. The StoreKit purchase suite still hangs in the simulator outside Xcode and was not rerun.

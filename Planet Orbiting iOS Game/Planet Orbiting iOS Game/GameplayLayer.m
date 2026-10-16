@@ -31,6 +31,9 @@
 #define LOADING_LAYER_TAG   212
 #define LABEL_0_TAG         1219
 
+// What the camera and ship looked like after a fixed step, for drawing between steps.
+typedef struct { CGPoint camera, player; float cameraScale, playerRotation; } SSFlightPose;
+
 @implementation GameplayLayer {
     NSDictionary *runMap;
     NSDictionary *runTuning;
@@ -43,6 +46,10 @@
 #endif
     CCLabelTTF *saveMapLabel;
     double physicsAccumulator;
+    SSFlightPose renderFrom, renderTo;
+    CGPoint *starsFrom, *starsTo;
+    NSUInteger interpolatedStarCount;
+    BOOL renderPosesReady;
     float missionCheckElapsed;
     int planetCounter;
     int totalPlanetsVisitedForBackgroundStars;
@@ -678,6 +685,10 @@ typedef struct {
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"bomb.wav"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"SWOOSH.wav"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"buttonpress.mp3"];
+    // Decode the rest now; a first-time decode mid-flight (fever mode, game over) hitched.
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"doorClose1.mp3"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"startFeverMode.mp3"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"endFeverMode.mp3"];
     
     backgroundSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"backgroundStars.pvr.ccz"];
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"backgroundStars.plist"];
@@ -986,6 +997,7 @@ typedef struct {
         gameSpeed=[runTuning[@"gameSpeed"] doubleValue]; playerSpeed=[runTuning[@"playerSpeed"] doubleValue];
         gravityScale=[runTuning[@"gravity"] doubleValue]; difficulty=[runTuning[@"difficulty"] doubleValue];
         planetSpin=[runTuning[@"planetSpin"] doubleValue]; cameraZoom=[runTuning[@"cameraZoom"] doubleValue];
+        physicsAccumulator = SSPhysicsPhase;
         mapRandomState = [runMap[@"seed"] unsignedIntValue] ?: 1;
         startingCoins = [[UserWallet sharedInstance] getBalance];
         self.isTouchEnabled= TRUE;
@@ -1516,6 +1528,12 @@ typedef struct {
         
         if (powerupCounter >= player.currentPowerup.duration) {
             [player.currentPowerup.glowSprite setVisible:false];
+            // The ring update below is skipped once currentPowerup is nil, so a magnet that
+            // expired on a blink-visible tick left its rings on the ship.
+            if (player.currentPowerup.type == kcoinMagnet) {
+                [[spriteSheet getChildByTag:coinImageTag1] setVisible:false];
+                [[spriteSheet getChildByTag:coinImageTag2] setVisible:false];
+            }
             player.currentPowerup = nil;
         }
         
@@ -2629,7 +2647,11 @@ typedef struct {
     (void)0;
     
     [pauseLayer setTag:gameOverLayerTag];
-    [self removeAllChildrenWithCleanup:NO];
+    // Without cleanup, the removed run kept its endless coin actions, particle and streak
+    // updates (and the blocks capturing self) registered with cocos2d after every retry.
+    for (CCNode *child in [[self.children getNSArray] copy])
+        if (child != pauseLayer) [self removeChild:child cleanup:YES];
+    [pauseLayer removeFromParentAndCleanup:NO];
     [self addChild:pauseLayer];
     if (runMap && isGameOver && !saveMapLabel) {
         saveMapLabel=[CCLabelTTF labelWithString:(SSMapSession.shared.isCurrentMapFavorite ? @"MAP SAVED" : @"SAVE MAP TO FAVORITES") fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
@@ -2789,8 +2811,6 @@ typedef struct {
 -(void)scheduleUpdates {
     //CCLOG(@"start4");
     [self schedule:@selector(UpdateScore:) interval:1.0/40.0f];
-    [self schedule:@selector(UpdateParticles:) interval:1.0/60.0f];
-    [self schedule:@selector(UpdateBackgroundStars:) interval:1.0/44.0f];
     [self schedule:@selector(UpdateLight:) interval:1.0/10.0f];
     [self schedule:@selector(Update:) interval:0];// this makes the update loop loop!!!!
     //    [self UpdateScore];
@@ -3014,27 +3034,102 @@ typedef struct {
 }
 
 - (void) CheckEndGameMissions {
-    
-    
-    
-    if (numCoinsDisplayed >= 220 && numCoinsDisplayed <= 230)
-        [self completeObjectiveFromGroupNumber:8 itemNumber:2];
-    
+    // In-flight checks are throttled to every 0.2 s, so check once more at death. (This used
+    // to award the 250-star mission for ending a run with 220-230 stars.)
+    [self CheckMissions];
 }
 
 - (void) Update:(ccTime)dt {
     // The original constants are per-60-Hz-tick. A fixed step preserves their feel
     // at 30/60/120-Hz presentation and during occasional dropped frames.
     if (paused || isGameOver) {
-        physicsAccumulator = 0;
+        physicsAccumulator = SSPhysicsPhase;
+        renderPosesReady = NO;
         [self stepSimulation:MIN(dt, .1f)];
+        [self UpdateParticles:dt];
         return;
     }
-    NSUInteger steps = SSPhysicsSteps(MIN(dt,.1f)*gameSpeed, &physicsAccumulator);
+    NSUInteger steps = SSPhysicsSteps(SSSnapFrameTime(MIN(dt,.1f))*gameSpeed, &physicsAccumulator);
+    BOOL interpolate = gameSpeed != 1 && [self prepareStarInterpolation];
     for (NSUInteger tick=0;tick<steps;tick++) {
+        if (interpolate) { renderFrom = [self currentFlightPose]; [self captureStarPositions:starsFrom]; }
         [self stepSimulation:1.0/60.0];
-        if (paused || isGameOver) { physicsAccumulator=0; break; }
+        if (paused || isGameOver) { physicsAccumulator=SSPhysicsPhase; renderPosesReady=NO; interpolate=NO; break; }
     }
+    if (interpolate && steps > 0) {
+        renderTo = [self currentFlightPose]; [self captureStarPositions:starsTo];
+        renderPosesReady = YES;
+    }
+    // Effects that track the ship follow this frame's final position, not last frame's.
+    [self UpdateParticles:dt];
+}
+- (SSFlightPose)currentFlightPose {
+    return (SSFlightPose){cameraLayer.position, player.sprite.position, cameraLayer.scale, player.sprite.rotation};
+}
+- (BOOL)prepareStarInterpolation {
+    if (interpolatedStarCount != backgroundStars.count) {
+        free(starsFrom); free(starsTo);
+        interpolatedStarCount = backgroundStars.count;
+        starsFrom = calloc(MAX(interpolatedStarCount, 1), sizeof(CGPoint));
+        starsTo = calloc(MAX(interpolatedStarCount, 1), sizeof(CGPoint));
+        renderPosesReady = NO;
+    }
+    return starsFrom && starsTo;
+}
+- (void)captureStarPositions:(CGPoint *)positions {
+    NSUInteger i = 0;
+    for (CCSprite *star in backgroundStars) { if (i == interpolatedStarCount) break; positions[i++] = star.position; }
+}
+// Away from 1x game speed a frame runs a varying number of fixed steps (1.25x adds a step
+// every fourth frame; 0.5x steps every other frame), which shows as judder. Draw the camera,
+// ship and starfield between the last two steps so motion advances evenly, then put the
+// physics values back so gameplay, touches and timers never see the drawn positions.
+- (void)visit {
+    if (!renderPosesReady || paused || isGameOver || gameSpeed == 1) { [super visit]; return; }
+    double t = SSInterpolationAlpha(physicsAccumulator);
+    SSFlightPose now = [self currentFlightPose];
+    BOOL moveCamera = CGPointEqualToPoint(now.camera, renderTo.camera) && now.cameraScale == renderTo.cameraScale;
+    BOOL movePlayer = CGPointEqualToPoint(now.player, renderTo.player) && now.playerRotation == renderTo.playerRotation;
+    CGPoint shownPlayer = ccpLerp(renderFrom.player, renderTo.player, t);
+    CCNode *glow = player.currentPowerup.glowSprite;
+    CCNode *rings[2] = {[spriteSheet getChildByTag:coinImageTag1], [spriteSheet getChildByTag:coinImageTag2]};
+    BOOL moveGlow = movePlayer && glow && CGPointEqualToPoint(glow.position, renderTo.player);
+    BOOL moveRing[2] = {movePlayer && rings[0] && CGPointEqualToPoint(rings[0].position, renderTo.player),
+                        movePlayer && rings[1] && CGPointEqualToPoint(rings[1].position, renderTo.player)};
+    float glowRotation = glow.rotation;
+    if (moveCamera) {
+        cameraLayer.scale = lerpf(renderFrom.cameraScale, renderTo.cameraScale, t);
+        cameraLayer.position = ccpLerp(renderFrom.camera, renderTo.camera, t);
+    }
+    if (movePlayer) {
+        player.sprite.position = shownPlayer;
+        player.sprite.rotation = SSLerpAngle(renderFrom.playerRotation, renderTo.playerRotation, t);
+        // The trail and exhaust only read their position on their next update; keep it.
+        [streak setPosition:shownPlayer];
+        thrustParticle.position = shownPlayer;
+    }
+    if (moveGlow) { glow.position = shownPlayer; glow.rotation = player.sprite.rotation; }
+    for (int r = 0; r < 2; r++) if (moveRing[r]) rings[r].position = shownPlayer;
+    NSUInteger count = MIN(interpolatedStarCount, backgroundStars.count), i = 0;
+    BOOL movedStar[MAX(count, 1)];
+    for (CCSprite *star in backgroundStars) {
+        if (i == count) break;
+        CGPoint a = starsFrom[i], b = starsTo[i];
+        // Skip stars that wrapped around the screen edge during the step.
+        movedStar[i] = CGPointEqualToPoint(star.position, b) && fabs(b.x - a.x) < size.width/2 && fabs(b.y - a.y) < size.height/2;
+        if (movedStar[i]) star.position = ccpLerp(a, b, t);
+        i++;
+    }
+    [super visit];
+    if (moveCamera) { cameraLayer.scale = renderTo.cameraScale; cameraLayer.position = renderTo.camera; }
+    if (movePlayer) { player.sprite.position = renderTo.player; player.sprite.rotation = renderTo.playerRotation; }
+    if (moveGlow) { glow.position = renderTo.player; glow.rotation = glowRotation; }
+    for (int r = 0; r < 2; r++) if (moveRing[r]) rings[r].position = renderTo.player;
+    i = 0;
+    for (CCSprite *star in backgroundStars) { if (i == count) break; if (movedStar[i]) star.position = starsTo[i]; i++; }
+}
+- (void)dealloc {
+    free(starsFrom); free(starsTo);
 }
 - (void)stepSimulation:(ccTime)dt {
     //CCLOG(@"start");
@@ -3102,6 +3197,9 @@ typedef struct {
         
         //CCLOG(@"start5");
         [self UpdateCamera:dt];
+        // The starfield parallax reads the per-step camera delta, so it advances with the
+        // camera. A separate 44-Hz timer fired on alternate 60-Hz frames and juddered.
+        [self UpdateBackgroundStars:dt];
         
         //CCLOG(@"start7b");
         updatesSinceLastPlanet++;
@@ -3201,11 +3299,15 @@ typedef struct {
         //playerIsTouchingScreen=true;
         //}
         
-        if (!isKeyboardShowing &&
-            CGRectContainsPoint(CGRectInset(displayName.boundingBox, -20, -15), [pauseLayer convertToNodeSpace:location])) {
-            [self showKeyboard];
-        } else
-            [self hideKeyboard];
+        // Before game over displayName and pauseLayer are nil, and their zero rects made
+        // every gameplay touch count as a tap on the name field.
+        if (isGameOver && displayName) {
+            if (!isKeyboardShowing &&
+                CGRectContainsPoint(CGRectInset(displayName.boundingBox, -20, -15), [pauseLayer convertToNodeSpace:location])) {
+                [self showKeyboard];
+            } else
+                [self hideKeyboard];
+        }
     }
 }
 

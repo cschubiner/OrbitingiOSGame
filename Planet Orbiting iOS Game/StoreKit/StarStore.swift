@@ -88,18 +88,15 @@ import StoreKit
         changed()
     }
     func refreshEntitlements() async throws {
-        var owned: [String] = []
         // Inspect each permanent product's latest signed transaction, including refunds.
+        // No local record (new device, signed out, history not yet synced) is not a refund,
+        // so a saved perk is kept; only a signed revocation removes it, through deliver.
         for index in [3, 11] {
             let id = Self.catalog[index]!
             guard let result = await Transaction.latest(for: id) else { continue }
             guard case .verified(let transaction) = result else { throw StoreError.unverified }
-            if transaction.revocationDate == nil, transaction.productType == .nonConsumable {
-                owned.append(id)
-                try await deliver(result)
-            }
+            if transaction.productType == .nonConsumable { try await deliver(result) }
         }
-        DataStorage.reconcileOwnedProducts(owned)
         changed()
     }
     private func changed() {

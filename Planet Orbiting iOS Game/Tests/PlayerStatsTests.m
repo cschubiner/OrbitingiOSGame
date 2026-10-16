@@ -120,6 +120,13 @@
         double beforeTime=[[game valueForKey:@"totalGameTime"] doubleValue];
         for (int frame=0;frame<60;frame++) [game Update:1.0f/60];
         XCTAssertEqualWithAccuracy([[game valueForKey:@"totalGameTime"] doubleValue]-beforeTime,1.5,.001);
+        // Drawing between steps must leave the simulated camera and ship where physics put them.
+        CCLayer *camera=[game valueForKey:@"cameraLayer"];
+        CGPoint shipBefore=pilot.sprite.position, cameraBefore=camera.position; float zoomBefore=camera.scale;
+        [game visit];
+        XCTAssertTrue(CGPointEqualToPoint(pilot.sprite.position,shipBefore));
+        XCTAssertTrue(CGPointEqualToPoint(camera.position,cameraBefore));
+        XCTAssertEqual(camera.scale,zoomBefore);
         [game cleanup];
     } @finally { [d setPersistentDomain:backup forName:domain]; [DataStorage fetchData]; [SSMapSession.shared selectMap:previous]; }
 }
@@ -251,31 +258,106 @@
     double remainder=0;
     XCTAssertEqual(SSPhysicsSteps(20,&remainder),6u); // Bounded catch-up after a stall.
 }
-- (void)testProceduralMapsAreStableAndKeepAuthoredFlightProportions {
-    for (uint32_t seed=1;seed<=100;seed++) @autoreleasepool {
-        NSDictionary *map=[SSMapSession generateMapWithSeed:seed];
-        XCTAssertEqualObjects(map,[SSMapSession generateMapWithSeed:seed]);
-        XCTAssertEqual([map[@"galaxies"] count],10u);
-        for (NSArray *galaxy in map[@"galaxies"]) for (NSArray *section in galaxy) {
-            NSArray *objects=[SSMapSession objectsForSegment:section];
-            NSMutableArray<LevelObjectReturner *> *planets=[NSMutableArray new];
-            for (LevelObjectReturner *object in objects) if (object.type==kplanet) [planets addObject:object];
-            XCTAssertEqual(planets.count,5u);
-            for (NSUInteger i=1;i<planets.count;i++) {
-                CGPoint a=planets[i-1].pos,b=planets[i].pos;
-                double distance=hypot(b.x-a.x,b.y-a.y);
-                XCTAssertGreaterThanOrEqual(distance,439.99);
-                XCTAssertLessThanOrEqual(distance,540.01);
-                XCTAssertEqual(planets[i].scale,1); // Matches the original maps' median size.
-                for (LevelObjectReturner *object in objects) if (object.type==kasteroid) {
-                    double dx=b.x-a.x,dy=b.y-a.y;
-                    double t=fmax(0,fmin(1,((object.pos.x-a.x)*dx+(object.pos.y-a.y)*dy)/(distance*distance)));
-                    double clearance=hypot(object.pos.x-a.x-t*dx,object.pos.y-a.y-t*dy);
-                    XCTAssertGreaterThan(clearance,140); // Clear launch/flight corridor on both sides.
-                }
+- (void)testDisplayLinkNoiseKeepsOneStepPerSixtyHertzFrame {
+    // Display-link timestamps carry microsecond noise and slight refresh drift. The original
+    // zero-phase accumulator flipped between 0 and 2 steps on such input (visible stutter).
+    for (NSNumber *hz in @[@60,@59.94,@60.03]) {
+        double fixedRemainder=SSPhysicsPhase, legacyRemainder=0, previous=0;
+        NSUInteger irregular=0, legacyIrregular=0, ticks=0;
+        uint32_t noise=12345;
+        for (int frame=0;frame<=3600;frame++) {
+            noise=noise*1664525u+1013904223u;
+            double now=frame/hz.doubleValue+((noise>>8)/(double)(1u<<24)-.5)*.0006; // ±0.3 ms
+            if (frame==1800) continue; // One dropped frame: the next interval spans two refreshes.
+            if (frame>0) {
+                double dt=now-previous;
+                NSUInteger steps=SSPhysicsSteps(SSSnapFrameTime(dt),&fixedRemainder);
+                NSUInteger expected=frame==1801 ? 2 : 1;
+                if (steps!=expected) irregular++;
+                if (SSPhysicsSteps(dt,&legacyRemainder)!=expected) legacyIrregular++;
+                ticks+=steps;
             }
+            previous=now;
+        }
+        XCTAssertEqual(irregular,0u,@"%@ Hz",hz);
+        XCTAssertEqual(ticks,3600u,@"%@ Hz",hz);
+        XCTAssertGreaterThan(legacyIrregular,0u,@"%@ Hz: the input should reproduce the old stutter",hz);
+    }
+    XCTAssertEqualWithAccuracy(SSSnapFrameTime(1/60.0+.0004),1/60.0,1e-12);
+    XCTAssertEqualWithAccuracy(SSSnapFrameTime(.05),.05,1e-12); // Genuine hitches are not hidden.
+}
+- (void)testInterpolatedFramesAdvanceEvenlyAtEveryGameSpeed {
+    // Step counts per frame vary away from 1x; the drawn state, between the last two steps,
+    // must still advance by exactly the game speed every 60-Hz frame.
+    for (NSNumber *speed in @[@.5,@.75,@1.25,@1.5]) {
+        double remainder=SSPhysicsPhase, lastShown=NAN; NSUInteger total=0;
+        for (int frame=0;frame<600;frame++) {
+            total+=SSPhysicsSteps(SSSnapFrameTime(1/60.0)*speed.doubleValue,&remainder);
+            if (total==0) continue;
+            double shown=(double)total-1+SSInterpolationAlpha(remainder);
+            if (!isnan(lastShown)) XCTAssertEqualWithAccuracy(shown-lastShown,speed.doubleValue,1e-6,@"%@x frame %d",speed,frame);
+            lastShown=shown;
         }
     }
+    XCTAssertEqualWithAccuracy(SSLerpAngle(170,-170,.5),180,1e-4); // Through 180, not through 0.
+    XCTAssertEqualWithAccuracy(SSLerpAngle(-170,170,.25),-175,1e-4);
+    XCTAssertEqualWithAccuracy(SSLerpAngle(10,30,.5),20,1e-4);
+}
+- (void)testProceduralMapsAreStableVariedFairAndRampUp {
+    double early=0, late=0; NSUInteger earlySections=0, lateSections=0;
+    NSMutableSet *planetScales=[NSMutableSet set], *planetCounts=[NSMutableSet set];
+    double shortest=INFINITY, longest=0, sharpest=0;
+    for (uint32_t seed=1;seed<=60;seed++) @autoreleasepool {
+        NSDictionary *map=[SSMapSession generateMapWithSeed:seed];
+        XCTAssertEqualObjects(map,[SSMapSession generateMapWithSeed:seed]);
+        XCTAssertEqualObjects(map[@"version"],@3);
+        XCTAssertEqual([map[@"galaxies"] count],10u);
+        NSUInteger galaxyIndex=0;
+        for (NSArray *galaxy in map[@"galaxies"]) {
+            for (NSArray *section in galaxy) {
+                NSArray *objects=[SSMapSession objectsForSegment:section];
+                NSMutableArray<LevelObjectReturner *> *planets=[NSMutableArray new];
+                NSUInteger rocks=0;
+                for (LevelObjectReturner *object in objects) { if (object.type==kplanet) [planets addObject:object]; if (object.type==kasteroid) rocks++; }
+                XCTAssertEqual(objects.lastObject, planets.lastObject); // The endpoint marker stays last.
+                XCTAssertGreaterThanOrEqual(planets.count,5u); XCTAssertLessThanOrEqual(planets.count,7u);
+                [planetCounts addObject:@(planets.count)];
+                XCTAssertEqual(planets.firstObject.scale,1); XCTAssertEqual(planets.lastObject.scale,1); // Seams match.
+                double lastHeading=0;
+                for (NSUInteger i=1;i<planets.count;i++) {
+                    CGPoint a=planets[i-1].pos,b=planets[i].pos;
+                    double distance=hypot(b.x-a.x,b.y-a.y), heading=atan2(b.y-a.y,b.x-a.x)*180/M_PI;
+                    shortest=fmin(shortest,distance); longest=fmax(longest,distance);
+                    XCTAssertGreaterThanOrEqual(distance,(54*(planets[i-1].scale+planets[i].scale)+57.02)/.498+63.99);
+                    XCTAssertLessThanOrEqual(distance,1000);
+                    if (i==1 || i==planets.count-1) XCTAssertLessThanOrEqual(fabs(heading),25.01); // Gentle section seams.
+                    if (i>1) { double turn=fabs(remainder(heading-lastHeading,360)); sharpest=fmax(sharpest,turn); XCTAssertLessThanOrEqual(turn,100.01); }
+                    lastHeading=heading;
+                    [planetScales addObject:@(planets[i].scale)];
+                }
+                for (LevelObjectReturner *rock in objects) if (rock.type==kasteroid) {
+                    double radius=16*rock.scale/.498;
+                    for (NSUInteger i=0;i<planets.count;i++) {
+                        CGPoint p=planets[i].pos;
+                        XCTAssertGreaterThanOrEqual(hypot(rock.pos.x-p.x,rock.pos.y-p.y),72*planets[i].scale/.498*1.3+radius+29.9); // Clear of every orbit.
+                        if (i==0) continue;
+                        CGPoint a=planets[i-1].pos; double dx=p.x-a.x,dy=p.y-a.y;
+                        double t=fmax(0,fmin(1,((rock.pos.x-a.x)*dx+(rock.pos.y-a.y)*dy)/(dx*dx+dy*dy)));
+                        XCTAssertGreaterThanOrEqual(hypot(rock.pos.x-a.x-t*dx,rock.pos.y-a.y-t*dy),100+radius-.01); // Flight corridor.
+                    }
+                }
+                if (galaxyIndex<2) { early+=rocks; earlySections++; }
+                if (galaxyIndex>=8) { late+=rocks; lateSections++; }
+            }
+            galaxyIndex++;
+        }
+    }
+    XCTAssertGreaterThan(planetScales.count,10u); // Planet sizes vary.
+    XCTAssertEqual(planetCounts.count,3u);         // Section lengths vary.
+    XCTAssertLessThan(shortest,420); XCTAssertGreaterThan(longest,700); // Spacing varies, with long jumps.
+    XCTAssertGreaterThan(sharpest,60);             // Sharp turns exist at default settings.
+    XCTAssertGreaterThan(late/lateSections,1.8*early/earlySections); // Hazards ramp up across galaxies.
+    XCTAssertGreaterThan(late/lateSections,18);    // Late galaxies approach the handmade maps' rock density.
     XCTAssertNotEqualObjects([SSMapSession generateMapWithSeed:1],[SSMapSession generateMapWithSeed:2]);
 }
 - (void)testFavoritePersistsExactGeometryAndDoesNotDuplicateOnSave {
@@ -302,6 +384,43 @@
         if (backup) [backup writeToURL:url atomically:YES];
         else [NSFileManager.defaultManager removeItemAtURL:url error:nil];
         [session selectMap:previous];
+    }
+}
+- (void)testClosingTuningKeepsFavoritesAndRebuildsOnlyChangedRoutes {
+    NSUserDefaults *d=NSUserDefaults.standardUserDefaults; NSString *domain=NSBundle.mainBundle.bundleIdentifier;
+    NSDictionary *backup=[d persistentDomainForName:domain];
+    SSMapSession *session=SSMapSession.shared; NSDictionary *previous=session.currentMap;
+    NSURL *url=[[NSFileManager.defaultManager URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask].firstObject URLByAppendingPathComponent:@"StarStreamFavoriteMaps.json"];
+    NSData *favoritesBackup=[NSData dataWithContentsOfURL:url];
+    void (^closeTuningWith)(NSString *, double)=^(NSString *key, double value) {
+        UITableViewController *tuner=[[NSClassFromString(@"SSTuningController") alloc] initWithStyle:UITableViewStyleInsetGrouped];
+        [tuner loadViewIfNeeded];
+        [tuner valueForKey:@"values"][key]=@(value);
+        UIBarButtonItem *done=tuner.navigationItem.rightBarButtonItem;
+        [UIApplication.sharedApplication sendAction:done.action to:done.target from:done forEvent:nil];
+    };
+    @try {
+        [d setBool:YES forKey:@"SSLocalTestingUnlock"];
+        [SSTuning save:SSTuning.defaults];
+        NSDictionary *favorite=[SSMapSession generateMapWithSeed:424242];
+        [session selectMap:favorite];
+        XCTAssertTrue([session saveCurrentMapWithScore:1]);
+        closeTuningWith(@"starDensity",1.5);
+        XCTAssertEqualObjects(session.currentMap,favorite); // Favorites keep their layout and tuning.
+
+        [session selectMap:[SSMapSession generateMapWithSeed:777]];
+        NSDictionary *unsaved=session.currentMap;
+        closeTuningWith(@"starDensity",1.5); // Done without changes.
+        XCTAssertEqualObjects(session.currentMap,unsaved);
+        closeTuningWith(@"starDensity",.8);
+        XCTAssertNotEqualObjects(session.currentMap,unsaved);
+        XCTAssertEqualObjects(session.currentMap[@"seed"],unsaved[@"seed"]);
+        XCTAssertEqualWithAccuracy([session.currentMap[@"tuning"][@"starDensity"] doubleValue],.8,.001);
+    } @finally {
+        if (favoritesBackup) [favoritesBackup writeToURL:url atomically:YES];
+        else [NSFileManager.defaultManager removeItemAtURL:url error:nil];
+        [session selectMap:previous];
+        [d setPersistentDomain:backup forName:domain];
     }
 }
 - (void)testGameCanvasCoversTheEntireDeviceWindow {
@@ -402,5 +521,33 @@
     engine.effectsVolume = 0;
     XCTAssertEqual([engine playEffect:@"purchase.wav"],0u);
     engine.backgroundMusicVolume = oldMusic; engine.effectsVolume = oldEffects;
+}
+- (void)testRapidPickupChimesReuseVoicesAtTheOriginalPitchRange {
+    SimpleAudioEngine *engine = SimpleAudioEngine.sharedEngine;
+    float oldEffects = engine.effectsVolume; engine.effectsVolume = 1;
+    [engine preloadEffect:@"buttonpress.mp3"];
+    NSMutableSet *ids = [NSMutableSet set]; ALuint last = 0;
+    for (int i = 0; i < 40; i++) { // More pickups than voices: the oldest voice is reused.
+        if (last) [engine stopEffect:last];
+        last = [engine playEffect:@"buttonpress.mp3" pitch:1.1 + i * .05 pan:0 gain:1];
+        XCTAssertNotEqual(last, 0u);
+        [ids addObject:@(last)];
+    }
+    XCTAssertEqual(ids.count, 40u);
+    XCTAssertNotEqual([engine playEffect:@"buttonpress.mp3" pitch:3 pan:0 gain:1], 0u);
+    engine.effectsVolume = oldEffects;
+}
+- (void)testPowerupKeepsItsGlowSpriteAfterTheAutoreleasePoolDrains {
+    // An unretained glowSprite was freed in optimized builds and crashed when a powerup spawned.
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"generalSpritesheet.plist"];
+    for (NSNumber *type in @[@(kasteroidImmunity), @(kcoinMagnet), @(kautopilot), @(kheadStart)]) {
+        Powerup *powerup; __weak CCSprite *glow;
+        @autoreleasepool {
+            powerup = [[Powerup alloc] initWithType:type.intValue];
+            glow = powerup.glowSprite;
+        }
+        XCTAssertNotNil(glow, @"type %@", type);
+        XCTAssertEqual(glow, powerup.glowSprite);
+    }
 }
 @end

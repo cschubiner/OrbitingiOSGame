@@ -116,6 +116,14 @@ import StoreKitTest
         XCTAssertFalse((upgrades.upgradeItems[11] as! UpgradeItem).purchased)
         XCTAssertFalse((upgrades.upgradeItems[11] as! UpgradeItem).equipped)
     }
+    func testSavedPerkSurvivesWhenStoreKitHasNoLocalRecord() async throws {
+        // A restored backup or new device carries the saved perk before StoreKit history syncs.
+        upgrades.setUpgradeIndex(11, purchased: true, equipped: true)
+        DataStorage.storeData()
+        try await StarStore.shared.refreshEntitlements()
+        DataStorage.fetchData()
+        XCTAssertTrue((upgrades.upgradeItems[11] as! UpgradeItem).purchased)
+    }
     func testTuningRequiresAllSevenProductsAndPersistsAcrossReload() async throws {
         XCTAssertFalse(SSTuning.unlocked())
         for (offset, index) in [3,11,12,13,14,15,16].enumerated() {

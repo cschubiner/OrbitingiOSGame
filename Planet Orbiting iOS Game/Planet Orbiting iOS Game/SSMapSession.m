@@ -27,57 +27,169 @@ static NSDictionary *SSMapObject(int type, double x, double y, double scale) {
 @implementation SSMapSession
 + (instancetype)shared { static SSMapSession *s; static dispatch_once_t once; dispatch_once(&once, ^{ s=[self new]; }); return s; }
 - (BOOL)procedural { return self.currentMap != nil; }
+// Generator version 3. Each section has a style (cruise, zigzag, sweep, asteroid gauntlet,
+// asteroid field or star stream), varied planet sizes and spacing, and hazards that ramp
+// from galaxy 1 to 10 toward the density of the original handmade maps. Objects are placed
+// by rejection against fixed fairness rules: no star on a planet or another star, no rock
+// inside an orbit zone or any hop's minimum flight corridor. Geometry units are world
+// points / .498, the factor the game applies to map positions but not to sprite sizes.
+typedef NS_ENUM(int, SSSectionStyle) { SSCruise, SSZigzag, SSSweep, SSGauntlet, SSField, SSStarStream };
+typedef struct { double x, y, scale; } SSMapPlanet;
+typedef struct { double x, y, radius; } SSMapPoint;
+static const double SSMinimumCorridor = 100;
+static double SSPlanetBody(double scale) { return (54*scale+14.5+14.01)/.498; } // Planet art + animated star + gap.
+static double SSPlanetZone(double scale) { return 72*scale/.498; } // zone art: 84 pt x 1.7 planet scale, rounded up.
+static double SSRockRadius(double scale) { return 16*scale/.498; }
+static int SSMapPick(const double *weights, int count, uint32_t *state) {
+    double total=0; for (int i=0;i<count;i++) total+=fmax(0,weights[i]);
+    double pick=SSMapUnit(state)*total;
+    for (int i=0;i<count;i++) { pick-=fmax(0,weights[i]); if (pick<0) return i; }
+    return count-1;
+}
+static double SSDistanceToHop(double x, double y, SSMapPlanet a, SSMapPlanet b) {
+    double dx=b.x-a.x, dy=b.y-a.y, t=fmax(0,fmin(1,((x-a.x)*dx+(y-a.y)*dy)/(dx*dx+dy*dy)));
+    return hypot(x-a.x-t*dx,y-a.y-t*dy);
+}
+static void SSMapAddStar(double x, double y, const SSMapPlanet *planets, int planetCount, SSMapPoint *stars, int *starCount, const SSMapPoint *pickups, int pickupCount, NSMutableArray *objects) {
+    if (*starCount>=512) return;
+    for (int i=0;i<planetCount;i++) if (hypot(x-planets[i].x,y-planets[i].y)<SSPlanetBody(planets[i].scale)) return;
+    for (int i=0;i<*starCount;i++) if (hypot(x-stars[i].x,y-stars[i].y)<32.02/.498) return; // 32 world points apart.
+    for (int i=0;i<pickupCount;i++) if (hypot(x-pickups[i].x,y-pickups[i].y)<90) return;
+    NSDictionary *star=SSMapObject(kcoin,x,y,1);
+    double sx=[star[@"x"] doubleValue], sy=[star[@"y"] doubleValue]; // Check the rounded position that is saved.
+    for (int i=0;i<planetCount;i++) if (hypot(sx-planets[i].x,sy-planets[i].y)<SSPlanetBody(planets[i].scale)) return;
+    stars[(*starCount)++]=(SSMapPoint){sx,sy,0};
+    [objects addObject:star];
+}
+static BOOL SSMapRockFits(double x, double y, double radius, const SSMapPlanet *planets, int planetCount, const SSMapPoint *stars, int starCount, const SSMapPoint *rocks, int rockCount, const SSMapPoint *pickups, int pickupCount) {
+    for (int i=0;i<planetCount;i++) if (hypot(x-planets[i].x,y-planets[i].y)<SSPlanetZone(planets[i].scale)*1.3+radius+30) return NO;
+    for (int i=0;i+1<planetCount;i++) if (SSDistanceToHop(x,y,planets[i],planets[i+1])<SSMinimumCorridor+radius) return NO;
+    for (int i=0;i<starCount;i++) if (hypot(x-stars[i].x,y-stars[i].y)<radius+40) return NO;
+    for (int i=0;i<rockCount;i++) if (hypot(x-rocks[i].x,y-rocks[i].y)<radius+rocks[i].radius+10) return NO;
+    for (int i=0;i<pickupCount;i++) if (hypot(x-pickups[i].x,y-pickups[i].y)<radius+80) return NO;
+    return YES;
+}
 + (NSDictionary *)generateMapWithSeed:(uint32_t)seed {
     NSDictionary *tuning=SSTuning.current;
     uint32_t state = seed ?: 1;
+    double planetSize=round([tuning[@"planetSize"] doubleValue]*1024)/1024;
+    double density=[tuning[@"planetDensity"] doubleValue], bend=[tuning[@"routeBend"] doubleValue];
+    double starDensity=[tuning[@"starDensity"] doubleValue], powerupFrequency=[tuning[@"powerupFrequency"] doubleValue];
+    double hazard=[tuning[@"asteroidDensity"] doubleValue]*[tuning[@"difficulty"] doubleValue];
+    double rockSize=[tuning[@"asteroidSize"] doubleValue];
     NSMutableArray *galaxies=[NSMutableArray new];
     for (int galaxy=0;galaxy<10;galaxy++) {
+        double level=galaxy/9.0; // Difficulty ramps from the first galaxy to the tenth.
         NSMutableArray *segments=[NSMutableArray new];
         for (int section=0;section<12;section++) {
-            NSMutableArray *objects=[NSMutableArray new], *planets=[NSMutableArray new];
-            double x=0,y=0;
-            // Geometry coordinates are multiplied by .498 in the game, but sprite
-            // sizes are not. Reserve the largest planet body + animated star + gap.
-            double planetSize=round([tuning[@"planetSize"] doubleValue]*1024)/1024;
-            double clearance=(54*planetSize+14.5+14.01)/.498;
-            double density=[tuning[@"planetDensity"] doubleValue];
-            for (int i=0;i<5;i++) {
-                [planets addObject:SSMapObject(kplanet,x,y,planetSize)];
-                double distance=fmax(2*clearance+64,(440+SSMapUnit(&state)*100)/density);
-                double angle=(SSMapUnit(&state)-.5)*.55*[tuning[@"routeBend"] doubleValue];
-                x+=cos(angle)*distance; y+=sin(angle)*distance;
+            double weights[6]={1.6-level, 1, 1, .3+1.3*level, .5+level, .9};
+            SSSectionStyle style=(SSSectionStyle)SSMapPick(weights,6,&state);
+            int count=5+(int)(SSMapNext(&state)%3); // 4-6 planets plus the endpoint marker.
+            SSMapPlanet planets[8];
+            planets[0]=(SSMapPlanet){0,0,planetSize};
+            double maxHeading=fmin(80,(32+45*level)*bend)*M_PI/180, seamHeading=fmin(maxHeading,25*M_PI/180);
+            double heading=0, turnSide=SSMapUnit(&state)<.5 ? -1 : 1;
+            for (int i=1;i<count;i++) {
+                // Interior planets vary in size; section ends match the next section's first planet.
+                double s=planetSize;
+                if (i<count-1) {
+                    double u=SSMapUnit(&state), v=SSMapUnit(&state);
+                    s*=u<.18 ? .78+.12*v : u>.8-.1*level ? 1.2+.4*v : .92+.16*v;
+                    s=round(fmin(s,2)*1024)/1024;
+                }
+                double next;
+                switch (style) {
+                    case SSZigzag: next=(i%2 ? 1 : -1)*turnSide*(.55+.45*SSMapUnit(&state))*maxHeading; break;
+                    case SSSweep: next=i==1 ? -turnSide*.4*maxHeading : heading+turnSide*(.25+.25*SSMapUnit(&state))*maxHeading; break;
+                    case SSCruise: next=(SSMapUnit(&state)-.5)*.9*maxHeading; break;
+                    default: next=heading+(SSMapUnit(&state)-.5)*1.2*maxHeading;
+                }
+                double limit=(i==1 || i==count-1) ? seamHeading : maxHeading; // Gentle seams between sections.
+                next=fmax(-limit,fmin(limit,next));
+                if (fabs(next-heading)>100*M_PI/180) next=heading+copysign(100*M_PI/180,next-heading);
+                double base=(style==SSGauntlet ? 520 : style==SSZigzag ? 420 : 470)*(.82+.4*SSMapUnit(&state));
+                double jump=SSMapUnit(&state);
+                if (jump<.06+.12*level) base=fmin(950,base*(1.45+.3*SSMapUnit(&state))); // Occasional long jump.
+                else if (jump>.82) base*=.68;                                           // Or a tight hop.
+                SSMapPlanet previous=planets[i-1];
+                double distance=fmax(fmax(SSPlanetBody(previous.scale)+SSPlanetBody(s)+64, SSPlanetZone(previous.scale)+SSPlanetZone(s)+90), base/density);
+                // Sharp zigzags can fold the route back on itself; soften the turn until every orbit is clear.
+                for (int attempt=0;attempt<4;attempt++) {
+                    planets[i]=(SSMapPlanet){previous.x+cos(next)*distance, previous.y+sin(next)*distance, s};
+                    BOOL clear=YES;
+                    for (int j=0;j<i-1 && clear;j++)
+                        clear=hypot(planets[i].x-planets[j].x,planets[i].y-planets[j].y)>=SSPlanetZone(planets[j].scale)+SSPlanetZone(s)+120;
+                    if (clear) break;
+                    next=attempt==2 ? 0 : next*.55;
+                }
+                heading=next;
             }
-            for (int i=0;i<4;i++) {
-                NSDictionary *a=planets[i],*b=planets[i+1];
-                double ax=[a[@"x"] doubleValue],ay=[a[@"y"] doubleValue];
-                double dx=[b[@"x"] doubleValue]-ax,dy=[b[@"y"] doubleValue]-ay;
-                double distance=hypot(dx,dy),nx=-dy/distance,ny=dx/distance;
-                // Adaptive count keeps every star outside the planet silhouette,
-                // with at least 32 world points between animated stars.
-                double span=distance-2*clearance;
-                int capacity=1+(int)floor(span/(32/.498));
-                int count=MAX(1,MIN(capacity,(int)round(3*[tuning[@"starDensity"] doubleValue])));
-                for (int coin=0;coin<count;coin++) {
-                    double along=count==1 ? distance*.5 : clearance+span*coin/(count-1);
-                    double offset=(SSMapUnit(&state)-.5)*16;
-                    [objects addObject:SSMapObject(kcoin,ax+dx*along/distance+nx*offset,ay+dy*along/distance+ny*offset,1)];
+            SSMapPoint stars[512], rocks[256], pickups[8]; int starCount=0, rockCount=0, pickupCount=0;
+            NSMutableArray *objects=[NSMutableArray new];
+            for (int i=0;i<count-1;i++) {
+                if (pickupCount<8 && SSMapUnit(&state)<fmin(.9,.14*powerupFrequency)) {
+                    SSMapPlanet a=planets[i], b=planets[i+1];
+                    pickups[pickupCount++]=(SSMapPoint){(a.x+b.x)/2,(a.y+b.y)/2,0};
+                    [objects addObject:SSMapObject(kpowerup,(a.x+b.x)/2,(a.y+b.y)/2,1+(SSMapNext(&state)%3))];
                 }
-                double hazards=[tuning[@"asteroidDensity"] doubleValue]*[tuning[@"difficulty"] doubleValue];
-                for (int side=-1;side<=1;side+=2) for (int slot=0;slot<4;slot++) {
-                    if (SSMapUnit(&state)>=fmin(1,fmax(0,hazards-slot))) continue;
-                    double offset=side*(235+slot*100+SSMapUnit(&state)*90);
-                    [objects addObject:SSMapObject(kasteroid,ax+dx*.5+nx*offset,ay+dy*.5+ny*offset,.875*[tuning[@"asteroidSize"] doubleValue])];
+            }
+            for (int i=0;i<count-1;i++) {
+                SSMapPlanet a=planets[i], b=planets[i+1];
+                double length=hypot(b.x-a.x,b.y-a.y), ux=(b.x-a.x)/length, uy=(b.y-a.y)/length, nx=-uy, ny=ux;
+                double ta=SSPlanetBody(a.scale)/length, tb=1-SSPlanetBody(b.scale)/length;
+                int n=MAX(1,(int)round((5+3.5*level)*starDensity*(style==SSStarStream ? 2.2 : 1)));
+                double u=SSMapUnit(&state), side=SSMapUnit(&state)<.5 ? -1 : 1;
+                int pattern=style==SSStarStream ? (u<.5 ? 1 : 2) : u<.4 ? 0 : u<.7 ? 1 : u<.85 ? 2 : 3;
+                if (pattern==3 && i+1>=count-1) pattern=1; // Rings only around interior planets.
+                if (pattern==3) {
+                    // A partial ring around the next planet, collected while settling into orbit.
+                    double radius=fmax(SSPlanetBody(b.scale)+24,SSPlanetZone(b.scale)*1.05);
+                    double start=atan2(a.y-b.y,a.x-b.x), sweep=(2+1.4*SSMapUnit(&state))*side;
+                    int ringStars=MAX(3,(int)round(fabs(sweep)*radius/80*fmin(1.5,starDensity)));
+                    for (int k=0;k<ringStars;k++) {
+                        double angle=start+sweep*(k+.5)/ringStars;
+                        SSMapAddStar(b.x+cos(angle)*radius,b.y+sin(angle)*radius,planets,count,stars,&starCount,pickups,pickupCount,objects);
+                    }
+                } else for (int k=0;k<n;k++) {
+                    double t=ta+(tb-ta)*(k+.5)/n, f=(t-ta)/(tb-ta), offset=(SSMapUnit(&state)-.5)*16;
+                    if (pattern==1) offset+=side*(.12+.16*u)*length*sin(M_PI*f);        // Bowed arc.
+                    else if (pattern==2) offset+=side*(45+35*u)*sin(3*M_PI*f);          // Wave.
+                    SSMapAddStar(a.x+ux*t*length+nx*offset,a.y+uy*t*length+ny*offset,planets,count,stars,&starCount,pickups,pickupCount,objects);
                 }
-                if (SSMapUnit(&state)<.25*[tuning[@"powerupFrequency"] doubleValue])
-                    [objects addObject:SSMapObject(kpowerup,ax+dx*.5,ay+dy*.5,1+(SSMapNext(&state)%3))];
+                if (SSMapUnit(&state)<.15+.15*level) {
+                    // A risky detour cluster off the route.
+                    double cx=a.x+ux*length/2+nx*side*(170+60*SSMapUnit(&state)), cy=a.y+uy*length/2+ny*side*(170+60*SSMapUnit(&state));
+                    double cluster[5][2]={{0,0},{70,0},{-70,0},{0,70},{0,-70}};
+                    for (int k=0;k<5;k++) SSMapAddStar(cx+cluster[k][0],cy+cluster[k][1],planets,count,stars,&starCount,pickups,pickupCount,objects);
+                }
+            }
+            double multiplier[6]={.5,.8,.8,2,1.6,.6};
+            double corridor=fmax(SSMinimumCorridor,170-65*level)*(style==SSGauntlet ? .85 : 1);
+            corridor=fmax(SSMinimumCorridor,corridor);
+            for (int i=0;i<count-1;i++) {
+                SSMapPlanet a=planets[i], b=planets[i+1];
+                double length=hypot(b.x-a.x,b.y-a.y), ux=(b.x-a.x)/length, uy=(b.y-a.y)/length, nx=-uy, ny=ux;
+                int n=MIN(60,(int)round(hazard*(3.5+7*level)*multiplier[style]*(.7+.6*SSMapUnit(&state))));
+                for (int k=0;k<n;k++) for (int attempt=0;attempt<6;attempt++) {
+                    double scale=.875*rockSize*(.75+.45*SSMapUnit(&state)), extra=0;
+                    if (SSMapUnit(&state)<.06+.1*level) { scale*=2+1.2*SSMapUnit(&state); extra=120; } // Boulder, kept wide.
+                    double radius=SSRockRadius(scale), t=.15+.7*SSMapUnit(&state);
+                    double side=style==SSGauntlet ? (k%2 ? 1 : -1) : (SSMapUnit(&state)<.5 ? -1 : 1), spread=SSMapUnit(&state);
+                    double offset=corridor+radius+extra+(style==SSGauntlet ? 35*spread : style==SSField ? 300*spread*spread : 160*spread);
+                    double x=a.x+ux*t*length+nx*side*offset, y=a.y+uy*t*length+ny*side*offset;
+                    if (!SSMapRockFits(x,y,radius,planets,count,stars,starCount,rocks,rockCount,pickups,pickupCount) || rockCount>=256) continue;
+                    rocks[rockCount++]=(SSMapPoint){x,y,radius};
+                    [objects addObject:SSMapObject(kasteroid,x,y,scale)];
+                    break;
+                }
             }
             // The final planet is the endpoint marker, consumed by the next section.
-            [objects addObjectsFromArray:planets];
+            for (int i=0;i<count;i++) [objects addObject:SSMapObject(kplanet,planets[i].x,planets[i].y,planets[i].scale)];
             [segments addObject:objects];
         }
         [galaxies addObject:segments];
     }
-    return @{@"version":@2, @"seed":@(seed ?: 1), @"galaxies":galaxies, @"tuning":tuning};
+    return @{@"version":@3, @"seed":@(seed ?: 1), @"galaxies":galaxies, @"tuning":tuning};
 }
 + (NSArray<LevelObjectReturner *> *)objectsForSegment:(NSArray<NSDictionary *> *)segment {
     NSMutableArray *objects=[NSMutableArray new];
@@ -97,7 +209,7 @@ static NSDictionary *SSMapObject(int type, double x, double y, double scale) {
     id maps=data ? [NSJSONSerialization JSONObjectWithData:data options:0 error:nil] : nil;
     if (![maps isKindOfClass:NSArray.class]) return @[];
     NSMutableArray *valid=[NSMutableArray new];
-    for (id map in maps) if ([map isKindOfClass:NSDictionary.class] && ([map[@"version"] intValue]==1 || [map[@"version"] intValue]==2) && [map[@"galaxies"] isKindOfClass:NSArray.class] && [map[@"galaxies"] count]==10) [valid addObject:map];
+    for (id map in maps) if ([map isKindOfClass:NSDictionary.class] && ([map[@"version"] intValue]>=1 && [map[@"version"] intValue]<=3) && [map[@"galaxies"] isKindOfClass:NSArray.class] && [map[@"galaxies"] count]==10) [valid addObject:map];
     return valid;
 }
 - (BOOL)isCurrentMapFavorite {
@@ -299,8 +411,13 @@ static NSDictionary *SSMapObject(int type, double x, double y, double scale) {
 - (void)reset { self.values=[SSTuning.defaults mutableCopy]; [self.tableView reloadData]; }
 - (void)close {
     if (SSTuning.unlocked) {
+        NSDictionary *before=SSTuning.current;
         [SSTuning save:self.values];
-        if (SSMapSession.shared.procedural) [SSMapSession.shared selectMap:[SSMapSession generateMapWithSeed:[SSMapSession.shared.currentMap[@"seed"] unsignedIntValue]]];
+        // Favorites replay their saved layout and tuning; only an unsaved route is rebuilt,
+        // and only when the settings actually changed.
+        SSMapSession *session=SSMapSession.shared;
+        if (session.procedural && ![SSTuning.current isEqual:before] && !session.isCurrentMapFavorite)
+            [session selectMap:[SSMapSession generateMapWithSeed:[session.currentMap[@"seed"] unsignedIntValue]]];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }

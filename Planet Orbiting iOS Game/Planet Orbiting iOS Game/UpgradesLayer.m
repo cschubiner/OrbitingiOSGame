@@ -22,6 +22,7 @@
     CCLayer* scrollView;
     CCLayer* mainLayer;
     SSClippedLayer *itemsClip;
+    BOOL hasExited;
     
     float screenHeight;
     float scrollViewHeight;
@@ -191,7 +192,6 @@
         [self initScrollStuff];
         [self refreshUpgradeCells];
         [self schedule:@selector(Update:) interval:0];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(storeChanged:) name:@"StarStoreUpdated" object:nil];
         [[StarStore shared] reloadProducts];
 	}
 	return self;
@@ -660,8 +660,16 @@
 - (void)storeChanged:(NSNotification *)notification {
     [self refreshUpgradeCells]; [self initScrollStuff];
 }
+// Observe while on screen. The observer used to be added only in init, so returning from
+// the missions scene left the shop deaf to product loads, approvals and refunds.
+- (void)onEnter {
+    [super onEnter];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(storeChanged:) name:@"StarStoreUpdated" object:nil];
+    if (hasExited) [self storeChanged:nil];
+}
 - (void)onExit {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"StarStoreUpdated" object:nil];
+    hasExited = YES;
     [super onExit];
 }
 @end

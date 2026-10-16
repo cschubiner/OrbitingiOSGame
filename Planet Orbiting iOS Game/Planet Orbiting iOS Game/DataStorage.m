@@ -393,8 +393,4 @@
         [self storeData];
     }
 }
-+ (void)reconcileOwnedProducts:(NSArray<NSString *> *)productIDs {
-    for (NSString *product in @[@"com.cschubiner.starstream.doublestars",@"com.cschubiner.starstream.pinkstars"])
-        if (![productIDs containsObject:product]) [self revokeProduct:product];
-}
 @end

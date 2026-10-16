@@ -260,8 +260,14 @@
                 [self playSound:@"levelup.mp3" shouldLoop:false pitch:1];
                 [starExplosion setPosition:starsLayer.position];
                 [starExplosion resetSystem];
-                [[UserWallet sharedInstance] setBalance:finalScore];
-                
+                // Add rather than assign: stars delivered by StoreKit during this animation
+                // must survive. Advance the group and save in the same step so a kill before
+                // the popup finishes can neither lose nor repeat the reward.
+                [[UserWallet sharedInstance] addCoins:[[ObjectiveManager sharedInstance] getStarRewardFromGroupNumber:[[ObjectiveManager sharedInstance] currentObjectiveGroupNumber]]];
+                [[ObjectiveManager sharedInstance] setCurrentObjectiveGroupNumber: [[ObjectiveManager sharedInstance] currentObjectiveGroupNumber] + 1];
+                [DataStorage storeData];
+                [starCountLabel setString:[NSString stringWithFormat:@"%@", [self commaInt:[[UserWallet sharedInstance] getBalance]]]];
+
                 [starsLayer runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
                                                                          [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.4 scale:1.2]],
                                                                          [CCEaseSineInOut actionWithAction:[CCScaleTo actionWithDuration:.4 scale:1]],
@@ -299,7 +305,6 @@
                                        
                                        [CCCallBlock actionWithBlock:(^{
                 [mPopup runAction:[CCEaseSineIn actionWithAction:[CCMoveTo actionWithDuration:.7 position:ccp(480, -19)]]];
-                [[ObjectiveManager sharedInstance] setCurrentObjectiveGroupNumber: [[ObjectiveManager sharedInstance] currentObjectiveGroupNumber] + 1];
             })],
                                        
                                        [CCDelayTime actionWithDuration:.5],
