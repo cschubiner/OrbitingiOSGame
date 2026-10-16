@@ -1,0 +1,138 @@
+{
+  "identifier": "45735052-45d2-4806-867e-dfc85c355e04",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "1.99",
+      "familyShareable": false,
+      "internalID": "c5f9b546-3b7c-4a0e-bb8d-1b47c163e5be",
+      "localizations": [
+        {
+          "description": "Double the stars earned while playing.",
+          "displayName": "Double Stars",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.cschubiner.starstream.doublestars",
+      "referenceName": "Double Stars",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "5.99",
+      "familyShareable": false,
+      "internalID": "e49ae883-611d-42e9-b210-4f62d18ec862",
+      "localizations": [
+        {
+          "description": "Turn collectible stars pink.",
+          "displayName": "Pink Stars",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.cschubiner.starstream.pinkstars",
+      "referenceName": "Pink Stars",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "7c59b24f-d086-4d25-950c-14c12057b290",
+      "localizations": [
+        {
+          "description": "Add 30,000 stars to your local wallet.",
+          "displayName": "30,000 Stars",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.cschubiner.starstream.stars30000",
+      "referenceName": "30,000 Stars",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "1.99",
+      "familyShareable": false,
+      "internalID": "a28b534d-8459-413a-8aef-f9c6938eaa2b",
+      "localizations": [
+        {
+          "description": "Add 70,000 stars to your local wallet.",
+          "displayName": "70,000 Stars",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.cschubiner.starstream.stars70000",
+      "referenceName": "70,000 Stars",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "3046f82c-3015-4fb8-a1ed-423d274f2e6b",
+      "localizations": [
+        {
+          "description": "Add 120,000 stars to your local wallet.",
+          "displayName": "120,000 Stars",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.cschubiner.starstream.stars120000",
+      "referenceName": "120,000 Stars",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "6618cb74-8e6a-475a-b61e-88d78affbd96",
+      "localizations": [
+        {
+          "description": "Add 300,000 stars to your local wallet.",
+          "displayName": "300,000 Stars",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.cschubiner.starstream.stars300000",
+      "referenceName": "300,000 Stars",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "9.99",
+      "familyShareable": false,
+      "internalID": "46261c0f-c32b-4de6-8a1a-6209edf6c5cb",
+      "localizations": [
+        {
+          "description": "Add 1,000,000 stars to your local wallet.",
+          "displayName": "1,000,000 Stars",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.cschubiner.starstream.stars1000000",
+      "referenceName": "1,000,000 Stars",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "1.99",
+      "familyShareable": false,
+      "internalID": "B4EEE1B1-C84C-41B3-87B7-279E97A87B31",
+      "localizations": [
+        {
+          "description": "Double the stars earned while playing.",
+          "displayName": "Double Stars",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.cschubiner.starstream.testguard",
+      "referenceName": "Local Test Guard",
+      "type": "NonConsumable"
+    }
+  ],
+  "settings": {
+    "_applicationInternalID": "6823318721",
+    "_developerTeamID": "94NPBVCHV4",
+    "_failTransactionsEnabled": false,
+    "_locale": "en_US",
+    "_storefront": "USA"
+  },
+  "subscriptionGroups": [],
+  "version": {
+    "major": 3,
+    "minor": 0
+  }
+}

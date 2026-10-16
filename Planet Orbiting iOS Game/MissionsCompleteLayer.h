@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Planet Orbiting iOS Game/StarStreamLayout.h"
 
-@interface MissionsCompleteLayer : CCLayer
+@interface MissionsCompleteLayer : SSMenuLayer
 
 + (CCScene *) scene;
 

@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 #import "iRate.h"
-#import "Flurry.h"
-#import <Kamcord/Kamcord.h>
+
+
 
 @interface AppDelegate : NSObject <UIApplicationDelegate, CCDirectorDelegate,iRateDelegate>
 {
@@ -34,6 +34,7 @@
 @property (readonly) UINavigationController *navController;
 @property (readonly) CCDirectorIOS *director;
 -(UIViewController*)getViewController;
+- (void)connectGameScene:(UIWindowScene *)scene;
 -(void)setIsInTutorialMode:(bool)mode;
 -(bool)getIsInTutorialMode;
 -(bool)getIsRetinaDisplay;

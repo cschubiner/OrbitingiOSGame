@@ -13,10 +13,15 @@
 #import "UpgradeManager.h"
 #import "UpgradeItem.h"
 #import "ObjectiveManager.h"
+#import "SSMapSession.h"
 
 @implementation DataStorage
 
-+ (void)storeData {
++ (void)storeData { [self storeDataWithTransactionID:nil]; }
+
++ (BOOL)storeDataWithTransactionID:(NSString *)transactionID { return [self storeDataWithTransactionID:transactionID productID:nil]; }
+
++ (BOOL)storeDataWithTransactionID:(NSString *)transactionID productID:(NSString *)productID {
     int coins = [[UserWallet sharedInstance] getBalance];
     int numPlays = [[PlayerStats sharedInstance] getPlays];
     
@@ -68,14 +73,31 @@
     
     [defaults setInteger:hasWatchedVideo forKey:@"hasWatchedVideo"];
     
-    [defaults synchronize];
+    // Store the wallet and delivery IDs in one snapshot. A redelivery cannot grant twice.
+    NSMutableDictionary *snapshot = [NSMutableDictionary new];
+    for (NSString *key in @[@"coin",@"plays",@"highscores",@"objectives",@"currentObjectiveGroupNumber",@"nameScorePairs",@"recentName",@"upgradeCodes",@"hasWatchedVideo"]) {
+        id value = [defaults objectForKey:key];
+        if (value) snapshot[key] = value;
+    }
+    NSMutableArray *delivered = [[[defaults dictionaryForKey:@"StarStreamProgressV3"] objectForKey:@"transactions"] mutableCopy] ?: [NSMutableArray new];
+    if (transactionID && ![delivered containsObject:transactionID]) [delivered addObject:transactionID];
+    snapshot[@"transactions"] = delivered;
+    NSMutableArray *products=[[[defaults dictionaryForKey:@"StarStreamProgressV3"] objectForKey:@"purchasedProducts"] mutableCopy] ?: [NSMutableArray new];
+    if (productID && ![products containsObject:productID]) [products addObject:productID];
+    snapshot[@"purchasedProducts"]=products;
+    NSDictionary *previousSnapshot = [defaults dictionaryForKey:@"StarStreamProgressV3"];
+    [defaults setObject:snapshot forKey:@"StarStreamProgressV3"];
+    if ([defaults synchronize]) return YES;
+    [defaults setObject:previousSnapshot ?: @{} forKey:@"StarStreamProgressV3"];
+    return NO;
 }
 
 + (void)fetchData {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *storage = [NSUserDefaults standardUserDefaults];
+    NSDictionary *defaults = [storage dictionaryForKey:@"StarStreamProgressV3"] ?: [storage dictionaryRepresentation];
     
-    int coins = [defaults integerForKey:@"coin"];
-    int numPlays = [defaults integerForKey:@"plays"];
+    int coins = [[defaults objectForKey:@"coin"] intValue];
+    int numPlays = [[defaults objectForKey:@"plays"] intValue];
     NSMutableArray *highScores = [defaults objectForKey:@"highscores"];
     NSMutableArray *objectives = [defaults objectForKey:@"objectives"];
     NSNumber *currentObjectiveGroupNumber = [defaults objectForKey:@"currentObjectiveGroupNumber"];
@@ -83,7 +105,7 @@
     NSString *recentName = [defaults objectForKey:@"recentName"];
     NSMutableArray *upgradeCodes = [defaults objectForKey:@"upgradeCodes"];
     
-    int hasWatchedVideo = [defaults integerForKey:@"hasWatchedVideo"];
+    int hasWatchedVideo = [[defaults objectForKey:@"hasWatchedVideo"] intValue];
     [[PlayerStats sharedInstance] setHasWatchedVideo:hasWatchedVideo];
     
 
@@ -104,6 +126,8 @@
         [[PlayerStats sharedInstance] setRecentName:@"PLAYER"];
     }
         
+    [[[UpgradeManager sharedInstance] upgradeItems] removeAllObjects];
+
     // 0 = SPACESHIP TRAILS
     // 1 = ROCKETSHIPS
     // 2 = UPGRADES
@@ -133,17 +157,17 @@
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Autopilot" description:@"Increase the duration of the Autopilot powerup." price:6000 type:3 purchased:NO equipped:NO number:10]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Pink Stars" description:@"Turn all stars pink. Are they worth more? No. Are they more fun? Meh. Are they super awesome? Absolutely." price:599 type:4 purchased:NO equipped:NO number:11]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Pink Stars" description:@"Turn collectible stars pink. A permanent cosmetic perk with the same star value." price:599 type:4 purchased:NO equipped:NO number:11]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Starter Pack (30,000 Stars)" description:@"Get a quick fix of stars to make ends meet. Get that final bit of cash to grab your next awesome upgrade!" price:99 type:4 purchased:NO equipped:NO number:12]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Starter Pack (30,000 Stars)" description:@"Add 30,000 stars to your wallet. Spend them on ships, trails, upgrades, and perks." price:99 type:4 purchased:NO equipped:NO number:12]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Bag O' Stars (70,000 Stars)" description:@"Deck out your ride with some sweet new trails or grab some quick perks for pursuing those high scores!" price:199 type:4 purchased:NO equipped:NO number:13]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Bag O' Stars (70,000 Stars)" description:@"Add 70,000 stars to your wallet. Spend them on ships, trails, upgrades, and perks." price:199 type:4 purchased:NO equipped:NO number:13]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Galaxy Pack (120,000 Stars)" description:@"Some pretty serious cash will be at your disposal. Upgrade your ship and purchase that Lithium Ion battery to max out your score!" price:299 type:4 purchased:NO equipped:NO number:14]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Galaxy Pack (120,000 Stars)" description:@"Add 120,000 stars to your wallet. Spend them on ships, trails, upgrades, and perks." price:299 type:4 purchased:NO equipped:NO number:14]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Warp-Speed Pack (300,000 Stars)" description:@"Make sure you're covered in flour, 'cause you'll be rolling in dough." price:499 type:4 purchased:NO equipped:NO number:15]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Warp-Speed Pack (300,000 Stars)" description:@"Add 300,000 stars to your wallet. Spend them on ships, trails, upgrades, and perks." price:499 type:4 purchased:NO equipped:NO number:15]];
     
-    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"StarMaster Pack (1,000,000 Stars)" description:@"You'll have enough cash to pursue your wildest dreams. You are the StarMaster." price:999 type:4 purchased:NO equipped:NO number:16]];
+    [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"StarMaster Pack (1,000,000 Stars)" description:@"Add 1,000,000 stars to your wallet. Spend them on ships, trails, upgrades, and perks." price:999 type:4 purchased:NO equipped:NO number:16]];
     
     [[[UpgradeManager sharedInstance] upgradeItems] addObject:[[UpgradeItem alloc] initWithTitle:@"Camo Spaceship" description:@"Stay hidden from your enemies in this camoflauged spaceship!" price:10000 type:1 purchased:NO equipped:NO number:17]];
     
@@ -179,7 +203,7 @@
     
     
     if (upgradeCodes) {
-        for (int i = 0; i < [upgradeCodes count]; i++) {
+        for (int i = 0; i < MIN([upgradeCodes count], [[[UpgradeManager sharedInstance] upgradeItems] count]); i++) {
             NSNumber *number = [upgradeCodes objectAtIndex:i];
             UpgradeItem *item = [[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:i];
             if ([number intValue] == 0) {
@@ -218,9 +242,10 @@
         }
     } else {
         for (int i = 0; i < totalObjectiveGroups; i++) {
-            NSMutableArray *boolsToUse = [objectives objectAtIndex:i];
+            NSArray *savedGroup = i < objectives.count ? objectives[i] : @[];
+            NSMutableArray *boolsToUse = [NSMutableArray new];
             for (int j = 0; j < 3; j++) {
-                [boolsToUse addObject:[boolsToUse objectAtIndex:j]];
+                [boolsToUse addObject:j < savedGroup.count ? @([savedGroup[j] boolValue]) : @NO];
             }
             [boolGroupsToUse addObject:boolsToUse];
         }
@@ -329,6 +354,47 @@
     [[ObjectiveManager sharedInstance] setMaxObjectiveGroupNumber:totalObjectiveGroups - 1];
     objectives = groups;
     [[ObjectiveManager sharedInstance] setObjectiveGroups:objectives];
+    if (![storage dictionaryForKey:@"StarStreamProgressV3"]) [self storeData];
 }
 
+// Called only after StoreKit verifies Apple's signed transaction, on the main thread.
++ (BOOL)grantProduct:(NSString *)productID transactionID:(NSString *)transactionID {
+    NSAssert(NSThread.isMainThread, @"Purchase delivery must run on the main thread");
+    NSDictionary *snapshot = [NSUserDefaults.standardUserDefaults dictionaryForKey:@"StarStreamProgressV3"];
+    NSDictionary *packs = @{@"com.cschubiner.starstream.stars30000":@30000,
+        @"com.cschubiner.starstream.stars70000":@70000,@"com.cschubiner.starstream.stars120000":@120000,
+        @"com.cschubiner.starstream.stars300000":@300000,@"com.cschubiner.starstream.stars1000000":@1000000};
+    NSNumber *stars = packs[productID];
+    if (stars && [snapshot[@"transactions"] containsObject:transactionID]) return [self storeDataWithTransactionID:transactionID productID:productID];
+    NSInteger index = [productID isEqualToString:@"com.cschubiner.starstream.doublestars"] ? 3 :
+        [productID isEqualToString:@"com.cschubiner.starstream.pinkstars"] ? 11 : NSNotFound;
+    if (!transactionID.length || (!stars && index == NSNotFound)) return NO;
+    if (stars) [[UserWallet sharedInstance] addCoins:stars.intValue];
+    else {
+        UpgradeItem *item = [[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:index];
+        if (!item.purchased) [[UpgradeManager sharedInstance] setUpgradeIndex:(int)index purchased:YES equipped:YES];
+    }
+    if ([self storeDataWithTransactionID:transactionID productID:productID]) return YES;
+    [self fetchData];
+    return NO;
+}
++ (void)revokeProduct:(NSString *)productID {
+    if (SSTuning.localTestingUnlock) return;
+    NSUserDefaults *d=NSUserDefaults.standardUserDefaults;
+    NSMutableDictionary *snapshot=[[d dictionaryForKey:@"StarStreamProgressV3"] mutableCopy];
+    NSMutableArray *products=[snapshot[@"purchasedProducts"] mutableCopy];
+    [products removeObject:productID];
+    if (products) snapshot[@"purchasedProducts"]=products;
+    if (snapshot) [d setObject:snapshot forKey:@"StarStreamProgressV3"];
+    NSInteger index = [productID isEqualToString:@"com.cschubiner.starstream.doublestars"] ? 3 :
+        [productID isEqualToString:@"com.cschubiner.starstream.pinkstars"] ? 11 : NSNotFound;
+    if (index != NSNotFound) {
+        [[UpgradeManager sharedInstance] setUpgradeIndex:(int)index purchased:NO equipped:NO];
+        [self storeData];
+    }
+}
++ (void)reconcileOwnedProducts:(NSArray<NSString *> *)productIDs {
+    for (NSString *product in @[@"com.cschubiner.starstream.doublestars",@"com.cschubiner.starstream.pinkstars"])
+        if (![productIDs containsObject:product]) [self revokeProduct:product];
+}
 @end

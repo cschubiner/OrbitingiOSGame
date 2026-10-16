@@ -8,6 +8,7 @@
 //
 
 #import "MainMenuLayer.h"
+#import "SSMapSession.h"
 #import "GameplayLayer.h"
 #import "Tutorial.h"
 #import "UserWallet.h"
@@ -47,6 +48,23 @@ const float effectsVolumeMainMenu = 1;
     CCSprite* dark;
     bool isDoingEndAnimation;
     bool startAnimation;
+    CCMenu *mapMenu;
+    CCLabelTTF *mapChoiceLabel;
+    CCNode *topAnchor;
+    CCNode *bottomAnchor;
+}
+
+- (CGFloat)menuScale { return 1; } // Main menu anchors its header and footer independently.
+- (void)layoutViewport {
+    [super layoutViewport];
+    CGRect safe = SSSafeViewport();
+    topAnchor.position = ccp(0, CGRectGetMaxY(safe) - self.position.y - 320);
+    bottomAnchor.position = ccp(0, CGRectGetMinY(safe) - self.position.y + 4);
+    beginLabel.position = ccp(284, CGRectGetMinY(safe) - self.position.y + 110);
+    mapMenu.position = ccp(0, CGRectGetMinY(safe)-self.position.y);
+    dark.position = ccp(-self.position.x, -self.position.y);
+    dark.scaleX = CCDirector.sharedDirector.winSize.width / dark.contentSize.width;
+    dark.scaleY = CCDirector.sharedDirector.winSize.height / dark.contentSize.height;
 }
 
 // returns a singleton scene
@@ -80,7 +98,7 @@ const float effectsVolumeMainMenu = 1;
     for (UITouch *touch in touches) {
         
         CGPoint location = [touch locationInView:[touch view]];
-        location = [[CCDirector sharedDirector] convertToGL:location];
+        location = [self convertToNodeSpace:[[CCDirector sharedDirector] convertToGL:location]];
         swipeBeginPoint = location;
         
         float numToAdd = (IS_IPHONE_5 ? 44 : 0);
@@ -92,17 +110,9 @@ const float effectsVolumeMainMenu = 1;
             return;
         }
         
-        if (swipeBeginPoint.y >= 40 && objectivesButton.isEnabled && beginLabel.visible) {
+        if (swipeBeginPoint.y >= CGRectGetMinY(SSSafeViewport()) - self.position.y + 98 && objectivesButton.isEnabled && beginLabel.visible) {
             
-            if ([[iRate sharedInstance]eventCount] >= 12 && [[PlayerStats sharedInstance] hasWatchedVideo] == 0) {
-                UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Star Stream Tutorial"
-                                                                  message:@"We see you're getting into Star Stream. Would you like to watch the trailer to see how a pro plays? It'll improve your performance a lot!"
-                                                                 delegate:self
-                                                        cancelButtonTitle:@"Play Game"
-                                                        otherButtonTitles:@"Watch Video",nil];
-                [message show];
-                return;
-            }
+
             
             [self tappedToStart];
         }
@@ -190,59 +200,12 @@ const float effectsVolumeMainMenu = 1;
 
 }
 
--(void)openVideo{
-    NSURL *url = [NSURL URLWithString:@"http://www.weebly.com/uploads/1/6/2/0/16201940/tutorial_video.m4v"];//@"http://www.youtube.com/watch?v=-qHD9SO9F_0"];
-    
-    [[PlayerStats sharedInstance] setHasWatchedVideo:1];
-    
-    MPMoviePlayerController *player = [[MPMoviePlayerController alloc]initWithContentURL:url];
-    player.movieSourceType = MPMovieSourceTypeUnknown;
-    
-    [player prepareToPlay];
-    [player.view setFrame:CGRectMake(0, 0, 200, 300)];
-    
-    player.shouldAutoplay=YES;
-    
-    
-    player.controlStyle = MPMovieControlStyleEmbedded;
-    
-    [player setFullscreen:YES animated:NO];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willEnterFullscreen:) name:MPMoviePlayerWillEnterFullscreenNotification object:self.myPlayer];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willExitFullscreen:) name:MPMoviePlayerWillExitFullscreenNotification object:self.myPlayer];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enteredFullscreen:) name:MPMoviePlayerDidEnterFullscreenNotification object:self.myPlayer];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitedFullscreen:) name:MPMoviePlayerDidExitFullscreenNotification object:self.myPlayer];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playbackFinished:) name:MPMoviePlayerPlaybackDidFinishNotification object:self.myPlayer];
-    
-    
-    addedMoviePlayerObserver= YES;
-    //   player.view.hidden = YES;
-    
-    
-    self.myPlayer = player;
-    //   [player setFullscreen:YES];
-    [[[CCDirector sharedDirector] view] addSubview:self.myPlayer.view];
-    
-    
-    if(player){
-        [self.myPlayer play];
-        player.view.hidden = NO;
-    }
-    
-    int count = 0;
-    while (player.fullscreen == NO){
-        [    player setFullscreen:YES];
-        count++;
-        if (count > 1000)
-            break;
-    }
-    
-}
+-(void)openVideo { [self tappedToStart]; }
 
 -(void)pressedObjectiveButton:(id)sender {
     missionPopupIsUp = true;
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
-    [Flurry logEvent:@"Pressed objective button"];
+    (void)0;
     missionPopup = [[ObjectiveManager sharedInstance] createMissionPopupWithX:true withDark:true];
     [missionPopup setZOrder:INT_MAX];
     [self addChild:missionPopup];
@@ -255,45 +218,19 @@ const float effectsVolumeMainMenu = 1;
         addedMoviePlayerObserver = false;
         self.myPlayer = NULL;
 
-        [Kamcord setDelegate:self];
+        (void)0;
         tipLabel = NULL;
-        NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://dl.dropboxusercontent.com/u/46621227/starstreamtipofday.txt"]];
-        if (data) {
-        NSString *urlContents = [[NSString alloc]initWithData:data
-                                                      encoding:NSASCIIStringEncoding];
-        NSLog(urlContents);
-            
-            NSArray *firstSplit = [urlContents componentsSeparatedByString:@"|"];
-            NSString *msg = [firstSplit lastObject];
-            
-            // print out the numbers (as strings)
-            float scale = .68;
-            scale = ((NSNumber*)[firstSplit objectAtIndex:0]).floatValue;
-            float yPos = 85;
-            yPos = ((NSNumber*)[firstSplit objectAtIndex:1]).floatValue;
-            float red = ((NSNumber*)[firstSplit objectAtIndex:2]).floatValue;
-            float green = ((NSNumber*)[firstSplit objectAtIndex:3]).floatValue;
-            float blue = ((NSNumber*)[firstSplit objectAtIndex:4]).floatValue;
-
-            tipLabel = [CCLabelBMFont labelWithString:msg fntFile:@"score_label_font.fnt"];
-            [tipLabel setColor:ccc3(red, green, blue)];
-            [tipLabel setScale:scale];
-            [self addChild: tipLabel];
-            [tipLabel setZOrder:INT_MAX-1];
-            
-            if (IS_IPHONE_5)
-                [tipLabel setPosition:ccp(240+HALF_IPHONE_5_ADDITIONAL_WIDTH, yPos)];
-            else
-                [tipLabel setPosition:ccp(240, yPos)];
-            [tipLabel setVisible:false];
-            
-            
-        }
-
         size = [[CCDirector sharedDirector] winSize];
         self.isTouchEnabled = true;
         
         layer = (CCLayer*)[CCBReader nodeGraphFromFile:@"MainMenuCCBFile.ccb" owner:self];
+        for (CCNode *child in [layer.children copy]) if ([child isKindOfClass:CCParticleSystem.class]) [child removeFromParentAndCleanup:YES];
+        // Animate the original nodes inside separate responsive edge anchors.
+        topAnchor = [CCNode node]; bottomAnchor = [CCNode node];
+        [topBarNode removeFromParentAndCleanup:NO];
+        [bottomBarNode removeFromParentAndCleanup:NO];
+        [layer addChild:topAnchor]; [topAnchor addChild:topBarNode];
+        [layer addChild:bottomAnchor]; [bottomAnchor addChild:bottomBarNode];
         if (IS_IPHONE_5)
         layer.position = ccpAdd(layer.position, ccp(HALF_IPHONE_5_ADDITIONAL_WIDTH,0));
         muted = ![[PlayerStats sharedInstance] isMuted];
@@ -313,20 +250,8 @@ const float effectsVolumeMainMenu = 1;
         [beginLabel setPosition:ccp(240, 60)];
         [beginLabel setVisible:false];
         
-        @try {
-            if ([[DDGameKitHelper sharedGameKitHelper]isLocalPlayerAuthenticated]==false) {
-                [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setdidGetToMainMenu:false];
+        [((AppDelegate *)UIApplication.sharedApplication.delegate) setdidGetToMainMenu:YES];
 
-                [[DDGameKitHelper sharedGameKitHelper]authenticateLocalPlayer];
-   
-            }
-            else [((AppDelegate*)[[UIApplication sharedApplication]delegate]) setdidGetToMainMenu:true];
-
-
-        }
-        @catch (NSException *exception) {
-        }
-        
         [[UpgradeValues sharedInstance] setHasGreenShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:17] equipped]];
         [[UpgradeValues sharedInstance] setHasBlueShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:18] equipped]];
         [[UpgradeValues sharedInstance] setHasGoldShip:[[[[UpgradeManager sharedInstance] upgradeItems] objectAtIndex:19] equipped]];
@@ -360,6 +285,7 @@ const float effectsVolumeMainMenu = 1;
         
         
         [playerAndParticleNode addChild:newSprite];
+        playerAndParticleNode.scale = MIN(1, .74 + MAX(0,size.height-320)/106*.26);
         newSprite.position = ccp(52.5, 0);
         newSprite.scale = .736;
         
@@ -377,7 +303,7 @@ const float effectsVolumeMainMenu = 1;
             [self playSound:@"menumusic_new.mp3" shouldLoop:YES pitch:1];
         }
         
-        position = ccp(-230, 485);
+        position = ccp(-230, 500);
         [playerAndParticleNode setPosition:position];
         isDoingEndAnimation = false;
         
@@ -397,9 +323,9 @@ const float effectsVolumeMainMenu = 1;
             startAnimation = false;
             [self disableButtons];
             [playerAndParticleNode runAction:[CCSequence actions:
-                                              [CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(200, 480)]],
+                                              [CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(200, 495)]],
                                               [CCCallBlock actionWithBlock:(^{
-                position = ccp(200, 480);
+                position = ccp(200, 495);
                 velocity = CGPointZero;
                 startAnimation = true;
                 [self enableButtons];
@@ -425,7 +351,7 @@ const float effectsVolumeMainMenu = 1;
             [topBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(0, 0)]]];
             [bottomBarNode runAction:[CCEaseSineInOut actionWithAction: [CCMoveTo actionWithDuration:startAnimationTime position:ccp(0, 320)]]];
         } else {
-            position = ccp(200, 480);
+            position = ccp(200, 495);
             velocity = CGPointZero;
             startAnimation = true;
             [self enableButtons];
@@ -451,6 +377,15 @@ const float effectsVolumeMainMenu = 1;
             [bottomBarNode setPosition:ccp(0, 320)];
         }
         
+        mapChoiceLabel = [CCLabelTTF labelWithString:@"MAP: CLASSIC" fontName:@"HelveticaNeue-CondensedBold" fontSize:16];
+        CCMenuItemLabel *mode = [CCMenuItemLabel itemWithLabel:mapChoiceLabel target:self selector:@selector(chooseMap)];
+        CCLabelTTF *favoritesLabel = [CCLabelTTF labelWithString:@"FAVORITE MAPS" fontName:@"HelveticaNeue-CondensedBold" fontSize:16];
+        CCMenuItemLabel *favorites = [CCMenuItemLabel itemWithLabel:favoritesLabel target:self selector:@selector(openFavorites)];
+        mode.position = ccp(170, 76); favorites.position = ccp(390,76);
+        CCMenuItemLabel *options=[CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"OPTIONS" fontName:@"HelveticaNeue-CondensedBold" fontSize:14] target:self selector:@selector(openOptions)];
+        options.position=ccp(284,49);
+        mapMenu = [CCMenu menuWithItems:mode,favorites,options,nil]; mapMenu.position=CGPointZero;
+        [self addChild:mapMenu z:100];
         [self schedule:@selector(Update:) interval:0];
         
 	}
@@ -499,10 +434,15 @@ const float effectsVolumeMainMenu = 1;
     acceleration = ccp(.12, acceleration.y);
 }
 
+- (void)openOptions { if (!isDoingEndAnimation) [SSMapSession.shared showOptions]; }
+- (void)chooseMap { if (!isDoingEndAnimation) [SSMapSession.shared showMapChooser]; }
+- (void)openFavorites { if (!isDoingEndAnimation) [SSMapSession.shared showFavorites]; }
 - (void) Update:(ccTime)dt {
+    NSString *mapTitle = SSMapSession.shared.procedural ? [NSString stringWithFormat:@"MAP: ORBIT %@", SSMapSession.shared.currentMap[@"seed"]] : @"MAP: CLASSIC";
+    if (![mapChoiceLabel.string isEqualToString:mapTitle]) [mapChoiceLabel setString:mapTitle];
     if (dt > .1)
 		dt = .1;
-    difVector = ccpSub(ccp(200, 480), position);
+    difVector = ccpSub(ccp(200, 495), position);
     float multer = .0022;
     float variance = .021;
     float xVarMult = .4;
@@ -545,7 +485,7 @@ const float effectsVolumeMainMenu = 1;
 - (void)pressedStoreButton:(id)sender {
     
     
-    [Flurry logEvent:@"Opened Store" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[[UserWallet sharedInstance] getBalance]],@"Coin Balance" ,nil]];
+    (void)0;
     
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
     [[CCDirector sharedDirector] replaceScene:[StoreLayer scene]];
@@ -606,7 +546,7 @@ const float effectsVolumeMainMenu = 1;
      }
      //  NSDictionary *parameterDict2 = [NSDictionary dictionaryWithObjectsAndKeys:highScores.description,@"Scores", nil];
      
-     [Flurry logEvent:@"Opened High Scores" withParameters:parameterDict];
+     (void)0;
      id action = [CCMoveTo actionWithDuration:.8f position:ccp(0,-320)];
      id ease = [CCEaseSineInOut actionWithAction:action];
      [layer runAction: ease];*/
@@ -615,7 +555,7 @@ const float effectsVolumeMainMenu = 1;
     [[CCDirector sharedDirector] replaceScene:[HighScoresLayer scene]];
 }
 - (void)pressedLevelsButton: (id) sender {
-    [Flurry logEvent:@"Pressed Levels Button"];
+    (void)0;
     //CCLOG(@"levels layer launched");
     id action = [CCMoveTo actionWithDuration:.8f position:ccp(0,0)];
     id ease = [CCEaseSineInOut actionWithAction:action];
@@ -625,7 +565,7 @@ const float effectsVolumeMainMenu = 1;
 
 - (void)pressedSendFeedback: (id) sender {
     //[TestFlight passCheckpoint:@"pressed survey button on main menu"];
-    [Flurry logEvent:@"Pressed Survey Button on main menu"];
+    (void)0;
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle: @"Entering survey"
                           message: @"Thanks for taking the time to answer our survey! Any input is helpful. \n-Clay, Alex, Jeff, and Michael.\n\nIf you want to take the survey on your computer, type in this URL: tinyurl.com/stardashsurvey"
@@ -689,8 +629,8 @@ const float effectsVolumeMainMenu = 1;
 
 -(void)showWatchView{
     [self playSound:@"doorClose1.mp3" shouldLoop:false pitch:1];
-    [Flurry logEvent:@"Pressed showWatchView button"];
-    [Kamcord showWatchView];
+    (void)0;
+    (void)0;
 }
 
 - (NSString*)commaInt:(int)num {
@@ -700,7 +640,7 @@ const float effectsVolumeMainMenu = 1;
 }
 
 - (ALuint)playSound:(NSString*)soundFile shouldLoop:(bool)shouldLoop pitch:(float)pitch{
-    //[Kamcord playSound:soundFile loop:shouldLoop];
+    //(void)0;
     if (shouldLoop)
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:soundFile loop:YES];
     else

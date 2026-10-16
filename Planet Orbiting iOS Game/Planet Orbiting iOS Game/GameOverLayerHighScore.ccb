@@ -37,8 +37,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>1</real>
-						<real>320</real>
+						<real>1.0</real>
+						<real>320.0</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -66,9 +66,9 @@
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>480</real>
+					<real>480.0</real>
 					<key>scaleY</key>
-					<real>1</real>
+					<real>1.0</real>
 					<key>spriteFile</key>
 					<string>gameOverGradient.png</string>
 					<key>tag</key>
@@ -99,8 +99,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>713</real>
-						<real>145</real>
+						<real>713.0</real>
+						<real>145.0</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -159,8 +159,8 @@
 					</array>
 					<key>contentSize</key>
 					<array>
-						<real>343</real>
-						<real>67</real>
+						<real>343.0</real>
+						<real>67.0</real>
 					</array>
 					<key>customClass</key>
 					<string></string>
@@ -186,9 +186,9 @@
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>0.51308590173721313</real>
+					<real>0.5130859017372131</real>
 					<key>scaleY</key>
-					<real>0.51308590173721313</real>
+					<real>0.5130859017372131</real>
 					<key>string</key>
 					<string>Enter your name:</string>
 					<key>tag</key>
@@ -216,68 +216,8 @@
 							</array>
 							<key>contentSize</key>
 							<array>
-								<real>68</real>
-								<real>68</real>
-							</array>
-							<key>customClass</key>
-							<string></string>
-							<key>isEnabled</key>
-							<true/>
-							<key>isExpanded</key>
-							<true/>
-							<key>isRelativeAnchorPoint</key>
-							<true/>
-							<key>lockedScaleRatio</key>
-							<true/>
-							<key>memberVarAssignmentName</key>
-							<string></string>
-							<key>memberVarAssignmentType</key>
-							<integer>1</integer>
-							<key>position</key>
-							<array>
-								<real>-288.56640625</real>
-								<real>124.65625</real>
-							</array>
-							<key>rotation</key>
-							<real>0.0</real>
-							<key>scaleX</key>
-							<real>0.64999997615814209</real>
-							<key>scaleY</key>
-							<real>0.64999997615814209</real>
-							<key>selector</key>
-							<string>showRecording</string>
-							<key>spriteFileDisabled</key>
-							<string>play.png</string>
-							<key>spriteFileNormal</key>
-							<string>kamcord.png</string>
-							<key>spriteFileSelected</key>
-							<string>kamcordpressed.png</string>
-							<key>tag</key>
-							<integer>1</integer>
-							<key>target</key>
-							<integer>2</integer>
-							<key>visible</key>
-							<false/>
-							<key>zOrder</key>
-							<integer>0</integer>
-						</dict>
-					</dict>
-					<dict>
-						<key>children</key>
-						<array/>
-						<key>class</key>
-						<string>CCMenuItemImage</string>
-						<key>properties</key>
-						<dict>
-							<key>anchorPoint</key>
-							<array>
-								<real>0.5</real>
-								<real>0.5</real>
-							</array>
-							<key>contentSize</key>
-							<array>
-								<real>68</real>
-								<real>68</real>
+								<real>68.0</real>
+								<real>68.0</real>
 							</array>
 							<key>customClass</key>
 							<string></string>
@@ -301,9 +241,9 @@
 							<key>rotation</key>
 							<real>0.0</real>
 							<key>scaleX</key>
-							<real>0.98078125715255737</real>
+							<real>0.9807812571525574</real>
 							<key>scaleY</key>
-							<real>0.98078125715255737</real>
+							<real>0.9807812571525574</real>
 							<key>selector</key>
 							<string>endGame</string>
 							<key>spriteFileDisabled</key>
@@ -363,9 +303,9 @@
 					<key>rotation</key>
 					<real>0.0</real>
 					<key>scaleX</key>
-					<real>1</real>
+					<real>1.0</real>
 					<key>scaleY</key>
-					<real>1</real>
+					<real>1.0</real>
 					<key>tag</key>
 					<integer>-1</integer>
 					<key>touchEnabled</key>
@@ -450,8 +390,8 @@
 			</array>
 			<key>contentSize</key>
 			<array>
-				<real>480</real>
-				<real>320</real>
+				<real>480.0</real>
+				<real>320.0</real>
 			</array>
 			<key>customClass</key>
 			<string></string>
@@ -477,9 +417,9 @@
 			<key>rotation</key>
 			<real>0.0</real>
 			<key>scaleX</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>scaleY</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>tag</key>
 			<integer>-1</integer>
 			<key>touchEnabled</key>

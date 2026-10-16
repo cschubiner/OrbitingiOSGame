@@ -33,6 +33,7 @@
 
 // cocos2d imports
 #import "CCDirectorIOS.h"
+#import <time.h>
 #import "CCTouchDelegateProtocol.h"
 #import "CCTouchDispatcher.h"
 #import "../../CCScheduler.h"
@@ -137,6 +138,9 @@ CGFloat	__ccContentScaleFactor = 1;
 //
 - (void) drawScene
 {
+#if COCOS2D_DEBUG
+    double profileStart = CACurrentMediaTime();
+#endif
 	/* calculate "global" dt */
 	[self calculateDeltaTime];
 
@@ -168,7 +172,27 @@ CGFloat	__ccContentScaleFactor = 1;
 
 	totalFrames_++;
 
-	[openGLview swapBuffers];
+    [openGLview swapBuffers];
+#if COCOS2D_DEBUG
+    static NSMutableArray *samples;
+    static double windowStart=0, cpuStart=0, renderTotal=0;
+    static NSUInteger frames=0, slowFrames=0;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"SSProfileGameplay"]) {
+        double now=CACurrentMediaTime();
+        if (!samples) { samples=[NSMutableArray new]; windowStart=now; cpuStart=(double)clock()/CLOCKS_PER_SEC; }
+        renderTotal += now-profileStart; frames++; if (dt>.025) slowFrames++;
+        if (now-windowStart>=5) {
+            CCNode *layer=runningScene_.children.count ? [runningScene_.children objectAtIndex:0] : nil;
+            NSMutableDictionary *sample=[NSMutableDictionary dictionaryWithDictionary:@{@"seconds":@(now-windowStart), @"fps":@(frames/(now-windowStart)), @"meanFrameWorkMs":@(renderTotal*1000/frames), @"processCPUPercent":@(((double)clock()/CLOCKS_PER_SEC-cpuStart)*100/(now-windowStart)), @"framesOver25ms":@(slowFrames), @"legacy":@([[NSUserDefaults standardUserDefaults] boolForKey:@"SSLegacyPerformance"])}];
+            if ([layer respondsToSelector:@selector(ssDiagnosticState)]) [sample addEntriesFromDictionary:[layer performSelector:@selector(ssDiagnosticState)]];
+            [samples addObject:sample];
+            NSString *path=[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"StarStreamFrameProfile.json"];
+            [[NSJSONSerialization dataWithJSONObject:samples options:NSJSONWritingPrettyPrinted error:nil] writeToFile:path atomically:YES];
+            NSLog(@"StarStream profile: %@",sample);
+            windowStart=now; cpuStart=(double)clock()/CLOCKS_PER_SEC; frames=slowFrames=0; renderTotal=0;
+        }
+    }
+#endif
 
 	if( displayStats_ )
 		[self calculateMPF];
@@ -494,7 +518,9 @@ CGFloat	__ccContentScaleFactor = 1;
 	CCLOG(@"cocos2d: animation started with frame interval: %.2f", 60.0f/frameInterval);
 
 	displayLink_ = [CADisplayLink displayLinkWithTarget:self selector:@selector(mainLoop:)];
-	[displayLink_ setFrameInterval:frameInterval];
+	// Request 60 explicitly on both 60-Hz and ProMotion displays. Legacy frameInterval
+    // counted physical refreshes and could change the simulation rate across devices.
+    displayLink_.preferredFramesPerSecond = MAX(1, (NSInteger)lround(1.0 / animationInterval_));
 
 #if CC_DIRECTOR_IOS_USE_BACKGROUND_THREAD
 	//

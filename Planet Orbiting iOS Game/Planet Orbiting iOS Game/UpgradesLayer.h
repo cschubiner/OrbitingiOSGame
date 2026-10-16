@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "StarStreamIAPHelper.h"
-#import "IAPHelper.h"
+#import "StarStreamLayout.h"
 
-@interface UpgradesLayer : CCLayer
+
+
+@interface UpgradesLayer : SSMenuLayer
 
 + (CCScene *) scene;
 

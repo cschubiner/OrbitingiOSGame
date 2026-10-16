@@ -6,6 +6,7 @@
 //  Copyright Clayton Schubiner 2012. All rights reserved.
 
 #import "UpgradesLayer.h"
+#import "StarStream-Swift.h"
 #import "UpgradeManager.h"
 #import "UpgradeItem.h"
 #import "UpgradeCell.h"
@@ -20,6 +21,7 @@
 @implementation UpgradesLayer {
     CCLayer* scrollView;
     CCLayer* mainLayer;
+    SSClippedLayer *itemsClip;
     
     float screenHeight;
     float scrollViewHeight;
@@ -116,8 +118,11 @@
         [self addChild:starParticle];
         
                 
+        itemsClip=[SSClippedLayer node];
+        itemsClip.clippingRect=CGRectMake(0,20,480,255);
+        [mainLayer addChild:itemsClip];
         scrollView = [[CCLayer alloc] init];
-        [mainLayer addChild:scrollView];
+        [itemsClip addChild:scrollView];
         
         CCSprite* topBar = [CCSprite spriteWithFile:@"banner.png"];
         [mainLayer addChild:topBar];
@@ -159,7 +164,9 @@
         quit.position = ccp(41, 300.5);
         //quit.scale = 1.7;
         
-        CCMenu* menu = [CCMenu menuWithItems:quit, nil];
+        CCMenuItemLabel *restore = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"RESTORE PURCHASES" fontName:@"HelveticaNeue-CondensedBold" fontSize:14] target:self selector:@selector(restorePurchases)];
+        restore.position = ccp(240,10);
+        CCMenu* menu = [CCMenu menuWithItems:quit, restore, nil];
         menu.position = ccp(0, 0);
         
         [mainLayer addChild:menu];
@@ -184,6 +191,8 @@
         [self initScrollStuff];
         [self refreshUpgradeCells];
         [self schedule:@selector(Update:) interval:0];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(storeChanged:) name:@"StarStoreUpdated" object:nil];
+        [[StarStore shared] reloadProducts];
 	}
 	return self;
 }
@@ -249,7 +258,7 @@
     
     [scrollView removeFromParentAndCleanup:true];
     scrollView = [[CCLayer alloc] init];
-    [mainLayer addChild:scrollView];
+    [itemsClip addChild:scrollView];
     [scrollView setZOrder:-1];
     
     [self initUpgradeLayer];
@@ -323,7 +332,7 @@
     moved = true;
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
-        location = [[CCDirector sharedDirector] convertToGL:location];
+        location = [self convertToNodeSpace:[[CCDirector sharedDirector] convertToGL:location]];
         swipeEndPoint = location;
         
         velocity = swipeEndPoint.y - swipeBeginPoint.y;
@@ -356,7 +365,7 @@
     moved = false;
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
-        location = [[CCDirector sharedDirector] convertToGL:location];
+        location = [self convertToNodeSpace:[[CCDirector sharedDirector] convertToGL:location]];
         swipeBeginPoint = location;
     }
 }
@@ -366,12 +375,12 @@
     counter = 1;
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:[touch view]];
-        location = [[CCDirector sharedDirector] convertToGL:location];
+        location = [self convertToNodeSpace:[[CCDirector sharedDirector] convertToGL:location]];
         swipeBeginPoint = location;
         
         
         
-        if (!moved && location.y < 275) {
+        if (!moved && location.y >= 20 && location.y < 275) {
             NSMutableArray* upgrades = [[UpgradeManager sharedInstance] upgradeItems];
             
             //NSLog(@"scrollviewPos: %f, tap y value: %f", scrollView.position.y, location.y);
@@ -411,11 +420,17 @@
     title.position = ccp(240, 247);
     [purchaseLayer addChild:title];
     
-    CCLabelTTF* label0 = [CCLabelTTF labelWithString:item.description dimensions:CGSizeMake(273, 113) hAlignment:UITextAlignmentLeft vAlignment:kCCVerticalTextAlignmentTop lineBreakMode:UITextAlignmentLeft fontName:@"HelveticaNeue-CondensedBold" fontSize:20];
+    CCLabelTTF* label0 = [CCLabelTTF labelWithString:item.description dimensions:CGSizeMake(273, 90) hAlignment:UITextAlignmentLeft vAlignment:kCCVerticalTextAlignmentTop lineBreakMode:UILineBreakModeWordWrap fontName:@"HelveticaNeue-CondensedBold" fontSize:18];
     label0.position = ccp(90, 230);
     label0.anchorPoint = ccp(0, 1);
     [purchaseLayer addChild:label0];
     
+    if ([StarStore isPaidItem:item.number]) {
+        NSString *price = [[StarStore shared] priceForItem:item.number] ?: @"Unavailable while offline";
+        CCLabelTTF *priceText = [CCLabelTTF labelWithString:[@"App Store price: " stringByAppendingString:price] fontName:@"HelveticaNeue-CondensedBold" fontSize:16];
+        priceText.position = ccp(240,128);
+        [purchaseLayer addChild:priceText];
+    }
     CCMenuItem *resume;
     
     
@@ -448,7 +463,7 @@
             //              target:self selector:@selector(pressedDisabledButton)];
             //}
             
-        } else if ([[UserWallet sharedInstance] getBalance] < pushedItem.price && item.number != 3 && item.number != 11) {
+        } else if (![StarStore isPaidItem:item.number] && [[UserWallet sharedInstance] getBalance] < pushedItem.price) {
             
             resume = [CCMenuItemImage
                       itemWithNormalImage:@"buydisabled.png" selectedImage:@"buydisabled.png"
@@ -482,6 +497,7 @@
 
 - (void) removePurchasePopup {
     [purchaseLayer removeFromParentAndCleanup:true];
+    purchaseLayer = nil;
     self.isTouchEnabled = true;
 }
 
@@ -525,46 +541,18 @@
 
 - (void) pressedPurchaseButton {
     
-    if (pushedItem.number == 3 ||
-        pushedItem.number == 11 ||
-        pushedItem.number == 12 ||
-        pushedItem.number == 13 ||
-        pushedItem.number == 14 ||
-        pushedItem.number == 15 ||
-        pushedItem.number == 16) {
-        
-        //   for (int i = 0 ; i < 8; i++)
-        //     [[iRate sharedInstance] logEvent:YES];
-        
-        if (pushedItem.number == 3) { //Double Stars - 1.99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"doublestars1880"];
-
-            
-        } else if (pushedItem.number == 11) { //Pink Stars - 5.99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"pinkstars1880"];
-
-            
-        } else if (pushedItem.number == 12) { //30,000 Stars - .99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"30000stars1880"];
-
-            
-        } else if (pushedItem.number == 13) { //70,000 Stars - 1.99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"70000stars1880"];
-
-            
-        } else if (pushedItem.number == 14) { //120,000 Stars - 2.99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"120000stars1880"];
-
-            
-        } else if (pushedItem.number == 15) { //300,000 Stars - 4.99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"300000stars1880"];
-            
-        } else if (pushedItem.number == 16) { //1,000,000 Stars - 9.99
-            [[StarStreamIAPHelper sharedHelper]buyProductIdentifier:@"1000000stars1880"];
-        }
-        
-    } else {
-        
+    if ([StarStore isPaidItem:pushedItem.number]) {
+        if ([StarStore shared].busy) return;
+        [[StarStore shared] purchaseItem:pushedItem.number completion:^(NSString *message) {
+            [self refreshUpgradeCells]; [self initScrollStuff]; [self removePurchasePopup];
+            if (message) [self showStoreMessage:message];
+        }];
+        return;
+    }
+    // Earned-star items remain available without an App Store connection.
+    if (!pushedItem || pushedItem.purchased || pushedItem.type < 0 ||
+        [[UserWallet sharedInstance] getBalance] < pushedItem.price) return;
+    {
         for (int i = 0 ; i < 5; i++)
             [[iRate sharedInstance] logEvent:YES];
         
@@ -610,7 +598,7 @@
  [[UserWallet sharedInstance] setBalance:newBalance];
  
  [self completeObjectiveFromGroupNumber:0 itemNumber:1];
- [Flurry logEvent:@"Purchased Item" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:newBalance],@"Coin Balance after purchase",item.title,@"Item Title",nil]];
+ (void)0;
  
  [DataStorage storeData];
  }
@@ -633,7 +621,7 @@
 
 
 - (ALuint)playSound:(NSString*)soundFile shouldLoop:(bool)shouldLoop pitch:(float)pitch{
-    //[Kamcord playSound:soundFile loop:shouldLoop];
+    //(void)0;
     if (shouldLoop)
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:soundFile loop:YES];
     else
@@ -657,4 +645,23 @@
 
 
 
+- (void)showStoreMessage:(NSString *)message {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"App Store" message:message preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+    UIViewController *root = [CCDirector sharedDirector].view.window.rootViewController;
+    if (!root.presentedViewController) [root presentViewController:alert animated:YES completion:nil];
+}
+- (void)restorePurchases {
+    [[StarStore shared] restorePurchases:^(NSString *message) {
+        [self refreshUpgradeCells]; [self initScrollStuff];
+        if (message) [self showStoreMessage:message];
+    }];
+}
+- (void)storeChanged:(NSNotification *)notification {
+    [self refreshUpgradeCells]; [self initScrollStuff];
+}
+- (void)onExit {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"StarStoreUpdated" object:nil];
+    [super onExit];
+}
 @end

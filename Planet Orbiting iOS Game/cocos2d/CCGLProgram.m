@@ -132,6 +132,9 @@ typedef void (*GLLogFunction) (GLuint program,
 		
 		const GLchar *sources[] = {
 #ifdef __CC_PLATFORM_IOS
+            (type == GL_FRAGMENT_SHADER ? "#extension GL_OES_standard_derivatives : enable\n" : ""),
+#endif
+#ifdef __CC_PLATFORM_IOS
 			(type == GL_VERTEX_SHADER ? "precision highp float;\n" : "precision mediump float;\n"),
 #endif
 			"uniform mat4 CC_PMatrix;\n"

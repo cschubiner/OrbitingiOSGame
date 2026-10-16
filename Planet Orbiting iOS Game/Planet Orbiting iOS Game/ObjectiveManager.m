@@ -116,7 +116,8 @@ static ObjectiveManager *sharedInstance = nil;
         dark.opacity = 200;
         
         if (IS_IPHONE_5)
-            dark.scaleX = IPHONE_5_RATIO;
+            dark.scaleX = size.width * 2 / dark.contentSize.width;
+        dark.scaleY = size.height * 2 / dark.contentSize.height;
     }
     
     CCSprite* bg = [CCSprite spriteWithFile:(withX) ? @"popup2.png" : @"popup.png"];

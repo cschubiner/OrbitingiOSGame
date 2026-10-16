@@ -1,0 +1,3 @@
+Built-in image generation tool, using the original Icon@2x.png as reference:
+Recreate/upscale the supplied legacy Star Stream iOS game icon as a crisp 1024x1024 App Store icon. Keep the cheerful lime-green alien with antennae and big white eyes, red and gray rocket, blue/purple radial starburst and yellow warmth. Preserve the recognizable character, composition, playful original game style and colors. Fully opaque square, full bleed, no rounded-corner mask, no border, no words, no watermark.
+Generated source: exec-86e92071-45bd-4aee-98d2-765a975c3c6e.png. Converted to 1024px RGB PNG for the AppIcon asset catalog; original legacy assets are preserved.
