@@ -1,5 +1,7 @@
 # Star Stream 3.0 build 5 QA — 2026-10-15
 
+**Current review checkpoint — October 20, 2026:** Build 6 was rejected under Guideline 4.3(a), Design–Spam. Original-development provenance and distinct revival features were added to the review notes, and the same build and seven purchases were resubmitted at 3:56 PM EDT. The web UI shows all eight items Waiting for Review; the API confirms version/submission `WAITING_FOR_REVIEW` and release type `MANUAL`. Approval and public availability remain unconfirmed. See [the resubmission record](review-resubmission-2026-10-20.md). Older release-state statements below are historical checkpoints.
+
 ## Automated checks
 
 Xcode 27.0 / iOS SDK 27.0; simulator runtime 26.5; physical iPhone 17 Pro Max running iOS 27.0.1.
